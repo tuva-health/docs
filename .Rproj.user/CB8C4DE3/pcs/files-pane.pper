@@ -1,0 +1,13 @@
+{
+    "sortOrder": [
+        {
+            "columnIndex": 1,
+            "ascending": true
+        },
+        {
+            "columnIndex": 2,
+            "ascending": false
+        }
+    ],
+    "path": "~/dev/tuva-dev/docs"
+}
