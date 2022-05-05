@@ -1,6 +1,0 @@
-book_filename: "bookdown-demo"
-language:
-  ui:
-    chapter_name: "Chapter "bookdown::render_book("index.Rmd", "bookdown::gitbook")
-delete_merged_file: true
-output_dir: "docs"
