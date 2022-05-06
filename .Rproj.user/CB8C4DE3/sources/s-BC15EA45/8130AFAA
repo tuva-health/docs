@@ -3,7 +3,7 @@
     "path": "~/dev/tuva-dev/docs/_bookdown.yml",
     "project_path": "_bookdown.yml",
     "type": "yaml",
-    "hash": "768109679",
+    "hash": "2647610777",
     "contents": "",
     "dirty": false,
     "created": 1651854740463.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "9,14",
+        "cursorPosition": "6,0",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651854759,
+    "lastKnownWriteTime": 1651862293,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651854759095,
+    "last_content_update": 1651862293899,
     "read_only": false,
     "read_only_alternatives": []
 }
