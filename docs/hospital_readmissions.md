@@ -1,6 +1,6 @@
 # (PART\*) Healthcare Concepts {.unnumbered}
 
-# Hospital Readmission Measures
+# Hospital Readmissions
 
 ## Overview
 
@@ -21,15 +21,17 @@ To better understand these fundamental concepts, it is helpful to think of build
     
 For example, the resulting data table might look something like this:
 
-```{r, echo = FALSE, fig.cap = 'Example of hospital readmission records with index and readmit flag columns.'}
-knitr::include_graphics(rep("images/readmit_table.png"),1)
-```
+<div class="figure">
+<img src="images/readmit_table.png" alt="Example of hospital readmission records with index and readmit flag columns."  />
+<p class="caption">(\#fig:unnamed-chunk-1)Example of hospital readmission records with index and readmit flag columns.</p>
+</div>
 
 The index admission (index_admit_flag) and readmission (readmit_flag) are then used to compute the readmission measure.  The sum of the index_admit_flag column forms the denominator of the readmission measure while the sum of the readmit_flag column forms the numerator.  In the example data table above there are 3 total inpatient admissions, 2 index admissions, and 1 readmission, resulting in a 50% readmission rate.
 
-```{r, echo = FALSE, fig.cap = 'Example of readmission rate calculation.'}
-knitr::include_graphics(rep("images/example_readmission_rate_calc.png"),1)
-```
+<div class="figure">
+<img src="images/example_readmission_rate_calc.png" alt="Example of readmission rate calculation."  />
+<p class="caption">(\#fig:unnamed-chunk-2)Example of readmission rate calculation.</p>
+</div>
 
 The different definitions of readmission measures are simply variations in the inclusion and/or exclusion criteria that defines the index_admit_flag and the readmit_flag.  The most commonly used readmission measures are the CMS readmission measures.
 
@@ -81,9 +83,10 @@ The data elements needed to process the readmission measure are listed below.
 
 The Hospital-wide Measure requires several terminology datasets that are used as lookup tables to create the index admission and readmission. The following is a complete list of the terminology datasets that are needed:
 
-```{r, echo = FALSE, fig.cap = 'List of terminology datasets needed by the hospital-wide readmission measure.'}
-knitr::include_graphics(rep("images/terminology_datasets.png"),1)
-```
+<div class="figure">
+<img src="images/terminology_datasets.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">(\#fig:unnamed-chunk-3)List of terminology datasets needed by the hospital-wide readmission measure.</p>
+</div>
 
 CMS makes these terminology datasets available as files on the quality net website.  The links below download two Excel spreadsheets that include all the terminology datasets listed above.
 - https://qualitynet.cms.gov/files/60943ca9fd340b002259fe16?filename=2021_HWR.xlsx
@@ -130,9 +133,10 @@ Here are the steps to implement the cohort inclusion algorithm:
 
 Here is a diagram of the cohort inclusion algorithm:
 
-```{r, echo = FALSE, fig.cap = 'List of terminology datasets needed by the hospital-wide readmission measure.'}
-knitr::include_graphics(rep("images/cohort_inclusion_algorithm.png"),1)
-```
+<div class="figure">
+<img src="images/cohort_inclusion_algorithm.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">(\#fig:unnamed-chunk-4)List of terminology datasets needed by the hospital-wide readmission measure.</p>
+</div>
 
 ### Cohort Exclusion Algorithm
 
@@ -181,9 +185,10 @@ Here are the steps to implement the algorithm:
 
 Here is a diagram of the algorithm:
 
-```{r, echo = FALSE, fig.cap = 'List of terminology datasets needed by the hospital-wide readmission measure.'}
-knitr::include_graphics(rep("images/planned_admission_algorithm.png"),1)
-```
+<div class="figure">
+<img src="images/planned_admission_algorithm.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">(\#fig:unnamed-chunk-5)List of terminology datasets needed by the hospital-wide readmission measure.</p>
+</div>
 
 ## Unplanned Readmission Algorithm
 
@@ -197,15 +202,17 @@ Planned readmissions are excluded from the readmission measure, as described in 
 
 In a chain of readmissions, where the planned readmission occurs before an unplanned readmission, the unplanned readmission does not qualify as a readmission.
 
-```{r, echo = FALSE, fig.cap = 'List of terminology datasets needed by the hospital-wide readmission measure.'}
-knitr::include_graphics(rep("images/unplanned_readmission_1.png"),1)
-```
+<div class="figure">
+<img src="images/unplanned_readmission_1.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">(\#fig:unnamed-chunk-6)List of terminology datasets needed by the hospital-wide readmission measure.</p>
+</div>
 
 In a chain of readmissions, where two or more unplanned readmissions follow an index admission, only the first unplanned readmission qualifies as a readmission.  This is because the readmission flag is binary.
 
-```{r, echo = FALSE, fig.cap = 'List of terminology datasets needed by the hospital-wide readmission measure.'}
-knitr::include_graphics(rep("images/unplanned_readmission_2.png"),1)
-```
+<div class="figure">
+<img src="images/unplanned_readmission_2.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">(\#fig:unnamed-chunk-7)List of terminology datasets needed by the hospital-wide readmission measure.</p>
+</div>
 
 ## Querying the Readmission DAG
 

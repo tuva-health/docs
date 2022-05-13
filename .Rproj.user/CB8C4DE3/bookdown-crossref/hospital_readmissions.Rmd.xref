@@ -1,5 +1,5 @@
 h1:part-healthcare-concepts (PART*) Healthcare Concepts
-h1:hospital-readmission-measures Hospital Readmission Measures
+h1:hospital-readmissions Hospital Readmissions
 h2:overview Overview
 fig:echo Example of hospital readmission records with index and readmit flag columns.
 fig:echo Example of readmission rate calculation.

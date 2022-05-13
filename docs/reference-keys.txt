@@ -20,7 +20,7 @@ merging-claims-into-encounters
 assigning-encounter-types
 adjusting-and-reversing-claims
 lab-data
-hospital-readmission-measures
+hospital-readmissions
 overview-1
 data-requirements
 terminology-datasets

@@ -96,8 +96,21 @@
 <li class="part"><span><b>Healthcare Concepts</b></span></li>
 <li class="chapter" data-level="7" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html"><i class="fa fa-check"></i><b>7</b> Hospital Readmissions</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#measures"><i class="fa fa-check"></i><b>7.1</b> Measures</a></li>
-<li class="chapter" data-level="7.2" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#risk-stratification"><i class="fa fa-check"></i><b>7.2</b> Risk-stratification</a></li>
+<li class="chapter" data-level="7.1" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#overview-1"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#data-requirements"><i class="fa fa-check"></i><b>7.2</b> Data Requirements</a></li>
+<li class="chapter" data-level="7.3" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#terminology-datasets"><i class="fa fa-check"></i><b>7.3</b> Terminology Datasets</a></li>
+<li class="chapter" data-level="7.4" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#index-admission-algorithm"><i class="fa fa-check"></i><b>7.4</b> Index Admission Algorithm</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#cohort-inclusion-algorithm"><i class="fa fa-check"></i><b>7.4.1</b> Cohort Inclusion Algorithm</a></li>
+<li class="chapter" data-level="7.4.2" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#cohort-exclusion-algorithm"><i class="fa fa-check"></i><b>7.4.2</b> Cohort Exclusion Algorithm</a></li>
+<li class="chapter" data-level="7.4.3" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#discharged-alive-and-not-against-medical-advice"><i class="fa fa-check"></i><b>7.4.3</b> Discharged Alive and Not Against Medical Advice</a></li>
+<li class="chapter" data-level="7.4.4" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#not-a-transfer"><i class="fa fa-check"></i><b>7.4.4</b> Not a Transfer</a></li>
+<li class="chapter" data-level="7.4.5" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#not-a-same-day-readmission"><i class="fa fa-check"></i><b>7.4.5</b> Not a Same-day Readmission</a></li>
+<li class="chapter" data-level="7.4.6" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#run-out"><i class="fa fa-check"></i><b>7.4.6</b> Run-out</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#planned-admission-algorithm"><i class="fa fa-check"></i><b>7.5</b> Planned Admission Algorithm</a></li>
+<li class="chapter" data-level="7.6" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#unplanned-readmission-algorithm"><i class="fa fa-check"></i><b>7.6</b> Unplanned Readmission Algorithm</a></li>
+<li class="chapter" data-level="7.7" data-path="hospital-readmissions.html"><a href="hospital-readmissions.html#querying-the-readmission-dag"><i class="fa fa-check"></i><b>7.7</b> Querying the Readmission DAG</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -121,6 +134,11 @@
             <section class="normal" id="section-">
 <div id="hospital-readmissions" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">7</span> Hospital Readmissions<a href="hospital-readmissions.html#hospital-readmissions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Overview<a href="hospital-readmissions.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Check out these videos on how to perform proper hospital readmission analytics and how to implement the CMS readmission measures:
+- <a href="https://www.youtube.com/watch?v=TCG_QCb63n4&amp;t=4s">Performing Hospital Readmission Analytics</a>
+- <a href="https://www.youtube.com/watch?v=5pA-gm94PyU">Implementing the CMS Readmission Measures</a></p>
 <p>Hospital readmissions are one of the most common healthcare concepts. They are also one of the most complicated concepts to define and implement as code.</p>
 <p>There are many different ways to define hospital readmission measures. However every readmission measure is built on two underlying concepts: the index admission and the readmission. An index admission is a hospitalization that should be used in the calculation of a readmission measure. There are hospitalizations that will not be index admissions and will therefore not be used to calculate readmission measures. For example, if a patient dies in a hospitalization, that hospitalization will not be an index admission, since it can’t have a readmission. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.</p>
 <p>To better understand these fundamental concepts, it is helpful to think of building a readmission measure as follows:</p>
@@ -163,11 +181,188 @@ Figure 7.2: Example of readmission rate calculation.
 <li>Coronary Artery Bypass Graft</li>
 </ul></li>
 </ul>
-<div id="measures" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Measures<a href="hospital-readmissions.html#measures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The All-cause Hospital-wide Readmission Measure (“Hospital-wide Measure”) is the most commonly used readmission measure definition of all. The sections that follow describe how to define and implement the Hospital-wide Measure on EHR data or claims data in your data warehouse. This measure has also been encoded into the Tuva Project, including all necessary terminology datasets and data quality tests.</p>
 </div>
-<div id="risk-stratification" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Risk-stratification<a href="hospital-readmissions.html#risk-stratification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-requirements" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Data Requirements<a href="hospital-readmissions.html#data-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Hospital-wide Measure can be implemented on either EHR data or claims data. Strictly speaking, CMS developed the Hospital-wide Measure to run on Medicare FFS claims data, but CMS explicitly states in their documentation that the measure may be adapted to run against an all-payer patient population.</p>
+<p>The data elements needed to process the readmission measure are listed below.</p>
+<ul>
+<li>patient
+<ul>
+<li>patient_id</li>
+<li>gender</li>
+<li>birth_date</li>
+</ul></li>
+<li>encounter
+<ul>
+<li>encounter_id</li>
+<li>patient_id</li>
+<li>encounter_start_date</li>
+<li>encounter_end_date</li>
+<li>discharge_disposition_code</li>
+<li>location</li>
+<li>ms_drg</li>
+<li>encounter_type</li>
+</ul></li>
+<li>condition
+<ul>
+<li>encounter_id</li>
+<li>code</li>
+<li>diagnosis_rank</li>
+<li>code_type</li>
+<li>condition_type</li>
+</ul></li>
+<li>procedure
+<ul>
+<li>encounter_id</li>
+<li>procedure_code</li>
+<li>code_type</li>
+</ul></li>
+</ul>
+</div>
+<div id="terminology-datasets" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Terminology Datasets<a href="hospital-readmissions.html#terminology-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Hospital-wide Measure requires several terminology datasets that are used as lookup tables to create the index admission and readmission. The following is a complete list of the terminology datasets that are needed:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/terminology_datasets.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">
+Figure 7.3: List of terminology datasets needed by the hospital-wide readmission measure.
+</p>
+</div>
+<p>CMS makes these terminology datasets available as files on the quality net website. The links below download two Excel spreadsheets that include all the terminology datasets listed above.
+- <a href="https://qualitynet.cms.gov/files/60943ca9fd340b002259fe16?filename=2021_HWR.xlsx" class="uri">https://qualitynet.cms.gov/files/60943ca9fd340b002259fe16?filename=2021_HWR.xlsx</a>
+- <a href="https://qualitynet.cms.gov/files/6092ab86fd340b002259fda0?filename=YaleMod_CCS_PCS_CM_Map_v2020.xlsx" class="uri">https://qualitynet.cms.gov/files/6092ab86fd340b002259fda0?filename=YaleMod_CCS_PCS_CM_Map_v2020.xlsx</a></p>
+<p>These terminology datasets are already included in the Tuva Project.</p>
+</div>
+<div id="index-admission-algorithm" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Index Admission Algorithm<a href="hospital-readmissions.html#index-admission-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The index admission algorithm is the set of sub-algorithms (i.e. rules) that together determine whether an inpatient admission qualifies as an index admission (i.e. receives an index_admit_flag = 1 or 0). Not every inpatient admission qualifies as an index admission.</p>
+<p>Here are the sub-algorithms used by the Hospital-wide Measure:</p>
+<ol style="list-style-type: decimal">
+<li>Cohort Inclusion Algorithm</li>
+<li>Cohort Exclusion Algorithm</li>
+<li>Discharged Alive and Not Against Medical Advice</li>
+<li>Not a Transfer</li>
+<li>Not a Same Day Admission</li>
+<li>Run-out</li>
+</ol>
+<p>If an inpatient admission meets the criteria from all of these sub-algorithms then it qualifies as an index admission. Otherwise it does not. Below we walk through each sub-algorithm.</p>
+<div id="cohort-inclusion-algorithm" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Cohort Inclusion Algorithm<a href="hospital-readmissions.html#cohort-inclusion-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The cohort inclusion algorithm is a set of rules that determine whether an inpatient admission belongs to 1 or more specialty categories. In order to qualify as an index admission, an inpatient admission must belong to 1 or more of these 5 specialty categories:</p>
+<ol style="list-style-type: decimal">
+<li>Medicine</li>
+<li>Cardiorespiratory</li>
+<li>Cardiovascular</li>
+<li>Neurology</li>
+<li>Surgery / Gynecology</li>
+</ol>
+<p>Here are the steps to implement the cohort inclusion algorithm:</p>
+<ol style="list-style-type: decimal">
+<li><p>Each inpatient admission should have 1 primary ICD-10-CM diagnosis code and 0 or more ICD-10-PCS procedure codes associated with it.</p></li>
+<li><p>Map each of these codes to the custom CCS Condition Categories (terminology datasets #8 and #9). Now each inpatient admission should have its corresponding CCS diagnosis and procedure categories assigned.</p></li>
+<li><p>For each inpatient admission, map its assigned CCS diagnosis and procedure categories to those listed in the HWR Specialty Cohort Inclusion terminology dataset (terminology dataset #1) to determine if it should be assigned to any of the first 4 specialty categories (medicine, cardiorespiratory, cardiovascular, and neurology).</p></li>
+<li><p>For each inpatient admission, map its ICD-10-PCS codes to those listed in the HWR Surg-Gyn Cohort Inclusion terminology dataset (terminology dataset #2) to determine if the readmission should be assigned to the Surgical / Gynecology specialty category.</p></li>
+<li><p>Inpatient admissions are successfully assigned to one or more specialty categories based on steps 3 and 4 pass this algorithm. Otherwise the admission fails and is no longer a candidate for an index admission.</p></li>
+</ol>
+<p>Here is a diagram of the cohort inclusion algorithm:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/cohort_inclusion_algorithm.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">
+Figure 7.4: List of terminology datasets needed by the hospital-wide readmission measure.
+</p>
+</div>
+</div>
+<div id="cohort-exclusion-algorithm" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Cohort Exclusion Algorithm<a href="hospital-readmissions.html#cohort-exclusion-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An inpatient admission does not qualify as an index admission if the primary reason for the index admission was related to cancer, rehabilitation, or mental health. These categories are defined in the HWR Cohort Exclusion terminology dataset (terminology dataset #3). In order to use this dataset, first map all primary ICD-10-CM codes to the Custom CCS mapping dataset and then lookup whether each inpatient admission had any of these CCS condition categories.</p>
+<p>Inpatient admissions that do not map to any of these CCS condition categories pass this criteria for inclusion as an index admission.</p>
+</div>
+<div id="discharged-alive-and-not-against-medical-advice" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Discharged Alive and Not Against Medical Advice<a href="hospital-readmissions.html#discharged-alive-and-not-against-medical-advice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to qualify as an index admission the inpatient admission must not have a discharge status of 20 (‘expired’) or 07 (‘left against medical advice’).</p>
+</div>
+<div id="not-a-transfer" class="section level3 hasAnchor" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> Not a Transfer<a href="hospital-readmissions.html#not-a-transfer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inpatient admissions that result in the patient being transferred to another acute care facility do not count as index admissions. However, the subsequent transfer does count as an index admission if:</p>
+<ul>
+<li>The patient is discharged alive and not against medical advice</li>
+<li>The patient is discharged to a non-acute care setting (e.g. home, SNF, etc.)</li>
+</ul>
+<p>Importantly, the transfer does not necessarily have to meet the other index admission criteria. For example, the transfer does not have to pass the cohort inclusion algorithm as long as the initial admission does.</p>
+<p>A transfer is defined as occurring if a patient is discharged from an acute care hospital and admitted to another acute care hospital on the same day or the following day. No other criteria such as discharge status or admit source is required to define a transfer.</p>
+</div>
+<div id="not-a-same-day-readmission" class="section level3 hasAnchor" number="7.4.5">
+<h3><span class="header-section-number">7.4.5</span> Not a Same-day Readmission<a href="hospital-readmissions.html#not-a-same-day-readmission" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inpatient admissions do not qualify as an index admission if the patient has a readmission to the same hospital on the same day as they were discharged for the previous admission for the same condition. In this case the readmission does however qualify as an index admission.</p>
+</div>
+<div id="run-out" class="section level3 hasAnchor" number="7.4.6">
+<h3><span class="header-section-number">7.4.6</span> Run-out<a href="hospital-readmissions.html#run-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to qualify as an index admission, the admission must occur at least 30 days before the last date of discharge in the dataset.</p>
+<p>For example, suppose your dataset contains inpatient admissions that occurred in calendar year 2018. Without this rule, admissions in this dataset that occurred on the last date in the dataset (i.e. December 31, 2018) could be flagged as index admissions but would never have an associated readmission because the data does not exist. As a result the readmission measure for the month of December 2018 would be artificially low (there would be a typical number of index admissions but fewer than typical readmissions simply because the data does not exist).</p>
+</div>
+</div>
+<div id="planned-admission-algorithm" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Planned Admission Algorithm<a href="hospital-readmissions.html#planned-admission-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The planned readmission algorithm is used to exclude planned admissions from being flagged as readmissions in the Hospital-wide Measure. Terminology datasets #4-7 are used in this algorithm.</p>
+<p>Here are the steps to implement the algorithm:</p>
+<ol style="list-style-type: decimal">
+<li><p>This algorithm requires mapping the primary ICD-10-CM code to the custom CCS diagnosis categories and all the ICD-10-PCS codes to the custom CCS procedure categories for each inpatient admission (terminology datasets #8 and #9).</p></li>
+<li><p>For each inpatient admission, check whether the CCS diagnosis and procedure categories fall under the always planned list of diagnoses and procedures (terminology datasets #4 and #5). If any match occurs, this is a planned admission.</p></li>
+<li><p>For each inpatient admission, check whether the CCS procedure categories and ICD-10-PCS codes fall under the list of potentially planned procedures (terminology dataset #6). If any match occurs, check whether this patient had any primary ICD-10-CM code or CCS diagnosis category that is considered always acute (terminology dataset #7). If the answer is no, this is a planned admission.</p></li>
+<li><p>Inpatient admissions that do not qualify as planned admissions based on steps #2 and #3 above are considered unplanned.</p></li>
+</ol>
+<p>Here is a diagram of the algorithm:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/planned_admission_algorithm.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">
+Figure 7.5: List of terminology datasets needed by the hospital-wide readmission measure.
+</p>
+</div>
+</div>
+<div id="unplanned-readmission-algorithm" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Unplanned Readmission Algorithm<a href="hospital-readmissions.html#unplanned-readmission-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An admission that occurs within 30 days of an index admission is considered a readmission if it meets the criteria below:</p>
+<ul>
+<li>Not a Planned Readmission</li>
+<li>Does Not Follow a Planned Readmission</li>
+<li>Not a Multiple Readmission</li>
+</ul>
+<p>Planned readmissions are excluded from the readmission measure, as described in the previous section.</p>
+<p>In a chain of readmissions, where the planned readmission occurs before an unplanned readmission, the unplanned readmission does not qualify as a readmission.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="images/unplanned_readmission_1.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">
+Figure 7.6: List of terminology datasets needed by the hospital-wide readmission measure.
+</p>
+</div>
+<p>In a chain of readmissions, where two or more unplanned readmissions follow an index admission, only the first unplanned readmission qualifies as a readmission. This is because the readmission flag is binary.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/unplanned_readmission_2.png" alt="List of terminology datasets needed by the hospital-wide readmission measure."  />
+<p class="caption">
+Figure 7.7: List of terminology datasets needed by the hospital-wide readmission measure.
+</p>
+</div>
+</div>
+<div id="querying-the-readmission-dag" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Querying the Readmission DAG<a href="hospital-readmissions.html#querying-the-readmission-dag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once you have successfully ran the Tuva Readmissions mart, two schemas will be populated in your data warehouse (both will appear in a database called Tuva). The first is the readmissions schema. This schema contains the views and tables corresponding to the dbt models in the readmissions DAG. Three tables in this schema are key:</p>
+<ul>
+<li><p>encounter_augmented: lists all acute inpatient encounters with fields that give extra information about the encounter (e.g. length_of_stay, index_admission_flag, planned_flag, specialty_cohort, etc.), as well as data quality flags.</p></li>
+<li><p>readmission_summary: lists all encounters that are not discarded due to data quality problems, together with fields giving extra information about the encounter and it’s associated readmission (if the encounter had a readmission).</p></li>
+<li><p>encounter_data_quality: lists potential data quality issues with every inpatient encounter in the dataset. Encounters that are disqualified from being used in the readmissions analysis due to data quality issues have disqualified_encounter_flag = 1.Other columns in this table give a more granular view of which data quality problems are present for a given encounter.</p></li>
+</ul>
+<p>To calculate the 30-day readmission rate, e.g., you must count how many rows in the readmission_symmary table were index admissions that had an unplanned 30-day readmission, and divide that by the number of rows in that table that were index admissions:</p>
+<p>select
+(select count(<em>)
+from readmission_summary
+where index_admission_flag = 1 and unplanned_readmit_30_flag = 1)
+/
+(select count(</em>)
+from readmission_summary
+where index_admission_flag = 1)</p>
+<p>A terminology schema will also appear in your data warehouse. The tables in this schema represent terminology datasets that are required to implement the readmissions logic.</p>
 
 </div>
 </div>
@@ -208,7 +403,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/readmissions.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/hospital_readmissions.Rmd",
 "text": "Edit"
 },
 "history": {
