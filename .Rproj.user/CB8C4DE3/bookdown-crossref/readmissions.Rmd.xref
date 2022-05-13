@@ -1,5 +1,23 @@
 h1:part-healthcare-concepts (PART*) Healthcare Concepts
-h1:hospital-readmissions Hospital Readmissions
-h2:measures Measures
-h2:risk-stratification Risk-stratification
+h1:hospital-readmission-measures Hospital Readmission Measures
+h2:overview Overview
+fig:echo Example of hospital readmission records with index and readmit flag columns.
+fig:echo Example of readmission rate calculation.
+h2:data-requirements Data Requirements
+h2:terminology-datasets Terminology Datasets
+fig:echo List of terminology datasets needed by the hospital-wide readmission measure.
+h2:index-admission-algorithm Index Admission Algorithm
+h3:cohort-inclusion-algorithm Cohort Inclusion Algorithm
+fig:echo List of terminology datasets needed by the hospital-wide readmission measure.
+h3:cohort-exclusion-algorithm Cohort Exclusion Algorithm
+h3:discharged-alive-and-not-against-medical-advice Discharged Alive and Not Against Medical Advice
+h3:not-a-transfer Not a Transfer
+h3:not-a-same-day-readmission Not a Same-day Readmission
+h3:run-out Run-out
+h2:planned-admission-algorithm Planned Admission Algorithm
+fig:echo List of terminology datasets needed by the hospital-wide readmission measure.
+h2:unplanned-readmission-algorithm Unplanned Readmission Algorithm
+fig:echo List of terminology datasets needed by the hospital-wide readmission measure.
+fig:echo List of terminology datasets needed by the hospital-wide readmission measure.
+h2:querying-the-readmission-dag Querying the Readmission DAG
 

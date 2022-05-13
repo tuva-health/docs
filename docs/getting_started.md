@@ -1,3 +1,3 @@
 # Getting Started
 
-How to get started using the Tuva Project.
+Step-by-step instructions for getting started w/ the Tuva Project.

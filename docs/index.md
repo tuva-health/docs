@@ -15,6 +15,10 @@ description: "A repository of knowledge for healthcare data practitioners."
 
 # (PART\*) Welcome {.unnumbered}
 
+# Book Office Hours
+
+If you need help setting up the Tuva Project or if you have suggestions about how we can improve the Tuva Project for you or your organization, we would love to chat.  Use this [link](https://calendly.com/d/cnc-jj3-nmf/tuva-project-office-hours) to schedule office hours with someone from the Tuva Health team.
+
 # Introduction
 
 ## What is the Tuva Project?
@@ -29,31 +33,31 @@ What's the problem with institutional knowledge?  It's hidden and not accessible
 
 The Tuva Project was created to bring this knowledge out into the open.  It includes 3 main components:
 
-- **Knowledge Repo**: An open repository of healthcare domain knowledge for how to work with healthcare data (this site is the Knowledge Repo).
+- **Knowledge Base**: An open repository of healthcare domain knowledge for how to work with healthcare data (this site is the Knowledge Base).
 
-- [**Code Base**](https://github.com/tuva-health): An open Github library of healthcare data infrastructure - common data models, terminologies, data marts, and pre-processing pipelines.  We're translating healthcare knowledge to code so data practitioners can stop reinventing the wheel and focus on higher-leverage problems.
+- [**Code Base**](https://github.com/tuva-health): An open library of healthcare data infrastructure including data pre-processing pipelines, common data models and terminologies, and data marts.  We're translating healthcare knowledge into code so data practitioners can stop reinventing the wheel and focus on higher-leverage problems.
 
-- [**Slack Community**](https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q): An open Slack community where healthcare data practitioners can go to get answers to difficult healthcare data problems, learn about the latest trends in healthcare data and network about career opportunities in healthcare data.
+- [**Slack Community**](https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q): An open community where healthcare data practitioners can go to get answers to difficult healthcare data problems, learn about the latest trends in healthcare data and network about career opportunities.
 
-The goal of the Knowledge Repo and Community is to move the industry from institutional knowledge to open knowledge.  The goal of the Code Base is to give healthcare data practitioners a foundation of healthcare data infrastructure they can build on.
+The goal of the Knowledge Base and Community is to move the industry from institutional knowledge to open knowledge.  The goal of the Code Base is to give healthcare data practitioners a foundation of healthcare data infrastructure tools they can build on.
 
-Notice the emphasis on "open".  Turns out the right way to build all of this is open source.
+Notice the emphasis on "open".  Turns out the right way to build all of this is open source...
 
 ## Why Open Source?
 
 The basic problem is that healthcare knowledge and data infrastructure is closed. 
 
-Today, knowledge is closed and institutional.  Try googling about almost any topic in healthcare data and see how far you get.  In addition, there is no place practitioners can congregate and learn from each other.  
+Today, knowledge is closed and institutional.  Try Googling almost any topic in healthcare data and see how far you get.  In addition, there is no place practitioners can congregate to learn from each other.  
 
-Today, healthcare data infrastructure is closed.  Either your company (vendor, health system, payer, pharma, etc.) is building this from scratch or paying a vendor who built it from scratch millions of dollars.  
+Today, healthcare data infrastructure is closed.  Either your company (vendor, health system, payer, pharma, etc.) is building this from scratch or paying a vendor who built it from scratch to deliver it to you in a black-box form for hundreds of thousands or millions of dollars.  
 
 That's why open source is key to how we solve this problem.  By making knowledge and data infrastructure open, we give individuals and organizations a platform they can build on and grow.  We can stop the cycle of building the same thing over and over.
 
-The last few years we've seen a revolution in open source data tools, including dbt, great_expectations, and Airbyte.  It's time for healthcare to catch up.
+The last few years we've seen a revolution in open source data tools, including [dbt](https://www.getdbt.com/), [great_expectations](https://greatexpectations.io/), and [Airbyte](https://airbyte.com/).  It's time for healthcare to catch up.
 
 ## What is Tuva Health?
 
-Tuva Health is the for-profit company behind the Tuva Project.  We're a team of expert healthcare data engineers and scientists totally focused on solving the messy healthcare data problem.  Being a for-profit company is extremely important to the long-term success of our mission because over time it allows us to make significantly larger R+D investment in the open source.  The larger investment substantially increases the probability that we'll achieve our mission of solving this problem for the entire industry.
+Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem.  Being a for-profit company is extremely important to the long-term success of our mission because over time it allows us to make significantly larger R+D investments in the open source.  The larger investment substantially increases the probability that we'll achieve our mission of solving this problem for the entire industry.
 
 Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and runniing to fully managing the Tuva Project for them, all within their cloud environment.
 
