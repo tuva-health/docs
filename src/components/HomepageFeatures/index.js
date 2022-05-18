@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        An Github project containing code for cleaning and transforming healthcare data.
+        A collection of Github repositories that make it easier to work with healthcare data.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        A Slack community for learning from each other about healthcare data.
+        A Slack community where we can learn from each other about working with healthcare data.
       </>
     ),
   },
