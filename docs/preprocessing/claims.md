@@ -46,3 +46,4 @@ Merging claims into encounters...
 
 - [Claims Data: Source and Processing](https://www.youtube.com/watch?v=6wTohlWfwAo)
 - [The Fragmentation of Health Data by Travis May](https://medium.com/datavant/the-fragmentation-of-health-data-8fa708109e13)
+- [The Medical Claims Submission Pipeline by Guido Vivaldi](https://towardsdatascience.com/the-claims-submission-pipeline-fbe8fb9c0f19)
