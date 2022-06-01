@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Setting Up dbt
+# Getting Started With dbt
 
 This section provides an overview of dbt and how to set it up in order to run the Tuva Project.
 
@@ -16,4 +16,4 @@ We created [this overview](https://docs.google.com/presentation/d/17gXDpjIFFNArq
 
 dbt provides great documentation on how to get started [here](https://docs.getdbt.com/tutorial/getting-started).
 
-
+## Setting Up the Tuva Project
