@@ -72,14 +72,16 @@ const config = {
             label: 'Knowledge',
           },
           {
-            href: 'https://github.com/tuva-health',
+            to: 'https://github.com/tuva-health',
             label: 'Code',
             position: 'left',
+            target: null,
           },
           {
-            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+            to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
             label: 'Community',
             position: 'left',
+            target: null,
           },
           {to: '/blog', label: 'Blog', position: 'left'},
 
