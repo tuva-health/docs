@@ -63,8 +63,8 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/TheTuvaProjectLogo.jpg',
+          alt: 'The Tuva Project',
+          src: 'img/TheTuvaProjectLogo.png',
         },
         items: [
           {
