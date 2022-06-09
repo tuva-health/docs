@@ -6,7 +6,6 @@ authors:
     title: Co-creator of the Tuva Project
     url: https://github.com/aneiderhiser
     image_url: https://avatars.githubusercontent.com/aneiderhiser
-    # image_url: https://github.com/JoelMarcey.png
 # tags: [greetings]
 ---
 

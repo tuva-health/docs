@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # Claims
 
+We are actively developing knowledge and code for claims pre-processing, which is the process of transforming claims data so it's ready for analytics and machine learning.  Check out our latest thinking on this process [here](https://miro.com/app/board/uXjVOvThMEo=/?share_link_id=354108018377).
+
+And we're actively looking for claims data experts to help us get this critical transformation layer right.  If you or someone you know could help, please reach out!
+
 ## What is Claims Data?
 
 Claims data is the data that is generated when medical providers bill insurance companies for medical services.  There are two types of paper claims forms: UB-04 and CMS-1500.  Each paper claim form has a corresponding digial claim form: UB-04 is the 837i and CMS-1500 the 837p.  
