@@ -1,6 +1,6 @@
 {
-  "label": "Master Data Management",
-  "position": 4,
+  "label": "Mastering Data",
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "This section includes an overview of the standard concepts and analytical tools used in value-based care analytics."
