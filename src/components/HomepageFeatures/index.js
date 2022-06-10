@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Knowledge',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/knowledge.svg').default,
     description: (
       <>
         A collection of knowledge for learning how to work with healthcare data.
@@ -14,7 +14,7 @@ const FeatureList = [
   },
   {
     title: 'Code',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/code.svg').default,
     description: (
       <>
         A collection of Github repositories that make it easier to work with healthcare data.
@@ -23,7 +23,7 @@ const FeatureList = [
   },
   {
     title: 'Community',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
         A Slack community where we can learn from each other about working with healthcare data.
