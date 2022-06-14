@@ -88,8 +88,8 @@ const config = {
 
         ],
       },
-      // footer: {
-      //   style: 'dark',
+      footer: {
+        style: 'light',
       //   links: [
       //     {
       //       title: 'Docs',
@@ -131,8 +131,8 @@ const config = {
       //       ],
       //     },
       //   ],
-      //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-      // },
+        copyright: `<a href="https://netlify.com">This site is powered by Netlify</a> &nbsp;&nbsp;&nbsp; Copyright © ${new Date().getFullYear()} The Tuva Project`,
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
