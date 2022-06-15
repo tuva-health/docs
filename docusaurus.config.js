@@ -79,6 +79,12 @@ const config = {
             target: null,
           },
           {
+            to: 'https://google.com',
+            label: 'Search',
+            position: 'left',
+            target: null,
+          },
+          {
             to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
             label: 'Community',
             position: 'left',
