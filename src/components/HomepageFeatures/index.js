@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/code.svg').default,
     description: (
       <>
-        A collection of Github repositories that make it easier to work with healthcare data.
+        A collection of GitHub repositories that make it easier to work with healthcare data.
       </>
     ),
   },
