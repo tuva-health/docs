@@ -51,3 +51,4 @@ The name Tuva is a reference to the country of Tuva in the former Soviet Union. 
 We're massive Feynman fans and especially appreciate his strong values around intellectual honesty.  We believe these values and behavior are at the core of doing anything important in the world and we're centering the Tuva Project around them.  
 
 Healthcare data has been challenging to work with since inception of claims data in the mid-90s.  The Tuva Project is our attempt to fix it - Tuva or Bust.
+

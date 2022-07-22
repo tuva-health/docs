@@ -1,6 +1,6 @@
 {
-  "label": "Healthcare Concepts",
-  "position": 4,
+  "label": "Concepts",
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "This section includes an overview of the standard concepts and analytical tools used in healthcare analytics."
