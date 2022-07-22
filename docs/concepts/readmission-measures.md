@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
 ---
 
-# Hospital Readmissions
+# Readmission Measures
 
 ## Overview
 
@@ -194,27 +194,5 @@ In a chain of readmissions, where two or more unplanned readmissions follow an i
 
 ![Unplanned Readmission 2](/img/readmissions/unplanned_readmission_2.png)
 
-## Querying the Readmission DAG
-
-Once you have successfully ran the Tuva Readmissions mart, two schemas will be populated in your data warehouse (both will appear in a database called Tuva). The first is the readmissions schema. This schema contains the views and tables corresponding to the dbt models in the readmissions DAG. Three tables in this schema are key:
-
-- encounter_augmented: lists all acute inpatient encounters with fields that give extra information about the encounter (e.g. length_of_stay, index_admission_flag, planned_flag, specialty_cohort, etc.), as well as data quality flags.
-
-- readmission_summary: lists all encounters that are not discarded due to data quality problems, together with fields giving extra information about the encounter and it's associated readmission (if the encounter had a readmission).
-
-- encounter_data_quality: lists potential data quality issues with every inpatient encounter in the dataset.  Encounters that are disqualified from being used in the readmissions analysis due to data quality issues have disqualified_encounter_flag = 1.Other columns in this table give a more granular view of which data quality problems are present for a given encounter.
-
-To calculate the 30-day readmission rate, e.g., you must count how many rows in the readmission_symmary table were index admissions that had an unplanned 30-day readmission, and divide that by the number of rows in that table that were index admissions:
-
-```
-select 
-(select count(*)
- from readmission_summary
- where index_admission_flag = 1 and unplanned_readmit_30_flag = 1)
-/
-(select count(*)
- from readmission_summary
- where index_admission_flag = 1)
-```
-
-A terminology schema will also appear in your data warehouse. The tables in this schema represent terminology datasets that are required to implement the readmissions logic.
+## Example
+We've put together an example of how to do proper readmission analytics using the Tuva Project.  Check it out in the Examples section.
