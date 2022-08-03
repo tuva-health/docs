@@ -20,7 +20,7 @@ The Tuva Project was created to bring this knowledge out into the open.  It incl
 
 - [**Knowledge**](https://thetuvaproject.com/docs/intro): A collection of healthcare domain knowledge for how to work with healthcare data.
 
-- [**Code**](https://github.com/tuva-health): An open library of healthcare data infrastructure including data pre-processing pipelines, common data models and terminologies, and data marts.  We're translating healthcare knowledge into code so data practitioners can stop reinventing the wheel and focus on higher-leverage problems.
+- [**Code**](https://github.com/tuva-health): An open repository of code and datasets to profile, normalize, and enrich raw healthcare data so it's ready for analytics.
 
 - [**Community**](https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q): An open community where healthcare data practitioners can learn from each other about the best way to tackle different healthcare data problems.
 
@@ -40,7 +40,7 @@ The last few years we've seen a revolution in open source data tools, including 
 
 ## Who is Tuva Health?
 
-Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem by bringing knowledge and code out into the open.  Being a for-profit company is extremely important to the long-term success of our mission because it enables us to make significantly larger R+D investments over time compared to a not-for-profit corporate structure.  The larger investment increases the probability that we'll achieve our mission of solving this problem for the entire industry.
+Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem by bringing knowledge and code out into the open.  Being a for-profit company is extremely important to the long-term success of our mission because it enables us to make significantly larger R+D investments in the open source over time compared to a not-for-profit corporate structure.  The larger investment increases the probability that we'll achieve our mission of solving this problem for the entire industry.
 
 Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and running to fully managing the Tuva Project for them, all within their cloud environment.
 
