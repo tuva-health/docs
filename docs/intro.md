@@ -12,7 +12,7 @@ The Tuva Project is an open source knowledge-base, code-base, and community for 
 
 They realized healthcare data practitioners were being held back by one main fundamental problem: knowledge.  Compared to other disciplines, doing healthcare data engineering and data science requires a tremendous amount of domain knowledge.  This comes up in almost every facet of the work we do: building measures and cohorts, pre-processing claims and lab data, stratifying high-risk patients.  A data practitioner needs knowledge not only about how to do these things but also about the underlying data.  
 
-Where does this knowledge live today?  It's institutional knowledge that lives within healthcare analytics companies and healthcare data teams.  Most of us who have been in the industry long enough have had the experience of trying to learn something knew only to be told that we should "go talk to Susie on team X who's been with our company for 20 years and is the resident expert on the topic."
+Where does this knowledge live today?  It's institutional knowledge that lives within healthcare analytics companies and healthcare data teams.  Most of us who have been in the industry long enough have had the experience of trying to learn something new only to be told that we should "go talk to Susie on team X who's been with our company for 20 years and is the resident expert on the topic."
 
 What's the problem with institutional knowledge?  It's hidden and not accessible to everyone, so it doesn't scale.  As an industry we end up learning the same things over and over.
 
@@ -42,7 +42,7 @@ The last few years we've seen a revolution in open source data tools, including 
 
 Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem by bringing knowledge and code out into the open.  Being a for-profit company is extremely important to the long-term success of our mission because it enables us to make significantly larger R+D investments in the open source over time compared to a not-for-profit corporate structure.  The larger investment increases the probability that we'll achieve our mission of solving this problem for the entire industry.
 
-Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and runniing to fully managing the Tuva Project for them, all within their cloud environment.
+Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and running to fully managing the Tuva Project for them, all within their cloud environment.
 
 ## Why the Name Tuva?
 
@@ -51,4 +51,3 @@ The name Tuva is a reference to the country of Tuva in the former Soviet Union. 
 We're massive Feynman fans and especially appreciate his strong values around intellectual honesty.  We believe these values and behavior are at the core of doing anything important in the world and we're centering the Tuva Project around them.  
 
 Healthcare data has been challenging to work with since inception of claims data in the mid-90s.  The Tuva Project is our attempt to fix it - Tuva or Bust.
-
