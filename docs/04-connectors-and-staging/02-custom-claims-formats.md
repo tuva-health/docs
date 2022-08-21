@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Encounter Grouper
+# Custom Claims Formats
 We are currently polishing our documentation about this important concept and will release it here soon!

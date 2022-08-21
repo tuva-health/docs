@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Getting Started with dbt
+# dbt
 
 The Tuva Project code base is built on dbt.  This means that the Tuva Project is essentially a set of dbt projects and packages that you can pull and run directly against your data warehouse.  This section provides an overview of dbt and how to set it up in order to run the Tuva Project.
 

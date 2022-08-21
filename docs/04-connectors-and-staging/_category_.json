@@ -1,0 +1,10 @@
+{
+  "label": "Data Sources",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Here we provide a comprehensive catalog of standard healthcare data sources including those 
+    the Tuva Project has pre-built connectors for.  We also provide an introduction and guidance for commonalities
+    across non-standard healthcare data sources."
+  }
+}

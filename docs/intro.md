@@ -6,15 +6,25 @@ sidebar_position: 1
 
 If you want to learn more about healthcare data and how to work with it, you've come to the right place!
 
+![Virtual Roadmap](/img/updated_virtual_roadmap.jpg)
+The virtual roadmap is a visual representation of all the components of the Tuva Project.  It organizes each component of the Tuva Project into 5 main sections:
+- Connectors + Staging
+- Terminology + Value Sets + Open Datasets
+- Preprocessing
+- Core Concepts
+- Higher-level Concepts
+
+Click [here](https://miro.com/app/board/uXjVPdixcVg=/?share_link_id=550536097762) to access the "live" version of our virtual roadmap.
+
 ## What is the Tuva Project?
 
-The Tuva Project is an open source knowledge-base, code-base, and community for healthcare data practitioners.  The project was started by Aaron Neiderhiser and Coco Zuloaga.  After working in healthcare data science for more than a decade they became frustrated by what they saw as a lack of progress in the field.  From their standpoint, they saw healthcare data engineers and data scientists solving the same problems over and over again with little improvement in terms of data empowering better treatment and care delivery decisions.  
+The Tuva Project is an open source knowledge-base, code-base, and community for healthcare data practitioners.  The project was started by Aaron Neiderhiser and Coco Zuloaga.  After working in healthcare data science for more than a decade they were frustrated by what they saw as a lack of progress in the field.  They were spending all of their time solving the same data quality and transformation problems over and over again.
 
-They realized healthcare data practitioners were being held back by one main fundamental problem: knowledge.  Compared to other disciplines, doing healthcare data engineering and data science requires a tremendous amount of domain knowledge.  This comes up in almost every facet of the work we do: building measures and cohorts, pre-processing claims and lab data, stratifying high-risk patients.  A data practitioner needs knowledge not only about how to do these things but also about the underlying data.  
+They realized healthcare data practitioners were being held back by one main fundamental problem: knowledge.  Compared to other disciplines, doing healthcare data engineering and data science requires a tremendous amount of domain knowledge.  This comes up in almost every facet of the work we do: building measures and cohorts, preprocessing claims and clinical data, identifying high-risk patients.  A data practitioner needs knowledge not only about how to do these things but also about the underlying healthcare data.  
 
 Where does this knowledge live today?  It's institutional knowledge that lives within healthcare analytics companies and healthcare data teams.  Most of us who have been in the industry long enough have had the experience of trying to learn something new only to be told that we should "go talk to Susie on team X who's been with our company for 20 years and is the resident expert on the topic."
 
-What's the problem with institutional knowledge?  It's hidden and not accessible to everyone, so it doesn't scale.  As an industry we end up learning the same things over and over.
+What's the problem with institutional knowledge?  It's hidden and not accessible to everyone, so it doesn't scale.  As an industry we end up learning and re-learning the same things over and over.
 
 The Tuva Project was created to bring this knowledge out into the open.  It includes 3 main components:
 
@@ -24,17 +34,15 @@ The Tuva Project was created to bring this knowledge out into the open.  It incl
 
 - [**Community**](https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q): An open community where healthcare data practitioners can learn from each other about the best way to tackle different healthcare data problems.
 
-The goal of Knowledge and Community is to move the industry from institutional knowledge to open knowledge.  The goal of Code is to give healthcare data practitioners a foundation of healthcare data infrastructure tools they can build on so we can all stop re-inventing the wheel.
-
 ## Why Open Source?
 
-The basic problem is that healthcare knowledge and data infrastructure is closed.
+The basic problem is that healthcare knowledge and code is closed.
 
-Today, healthcare knowledge is closed and institutional.  Try Googling almost any topic in healthcare data and see how far you get.  In addition, there is no place practitioners can congregate to learn from each other.  
+Today, healthcare knowledge is closed and institutional.  Try Googling almost any topic in healthcare data and see how far you get.  
 
-Today, healthcare data infrastructure is closed.  Your company (vendor, health system, payer, pharma, etc.) is building this from scratch or paying a vendor who built it from scratch to deliver it to you in a black-box form for hundreds of thousands or millions of dollars.  
+Today, healthcare code is closed.  Your company (vendor, health system, payer, pharma, etc.) is building this from scratch or paying a vendor who built it from scratch to deliver it to you in a black-box form for hundreds of thousands or millions of dollars.  
 
-That's why open source is key to how we solve this problem.  By making healthcare knowledge and data infrastructure open, we give individuals and organizations a platform they can build on and grow over time.  And we stop the cycle of building the same thing over and over.
+That's why open source is key to how we solve this problem.  By making healthcare knowledge and code open, we give individuals and organizations the tools they need to build and grow their data platform and data team over time.  And we stop the cycle of building the same thing over and over.
 
 The last few years we've seen a revolution in open source data tools, including [dbt](https://www.getdbt.com/), [great_expectations](https://greatexpectations.io/), and [Airbyte](https://airbyte.com/).  It's time for healthcare to catch up.
 

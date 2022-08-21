@@ -1,0 +1,9 @@
+{
+  "label": "The Healthcare Data Generation Process",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "In this section we're developing a comprehensive review of how healthcare data gets created
+    by various entities and the complications this creates for downstream analytics."
+  }
+}

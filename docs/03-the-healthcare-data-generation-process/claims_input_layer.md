@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Claims
+# Claims Data
 
 We are actively developing knowledge and code for claims pre-processing, which is the process of transforming claims data so it's ready for analytics and machine learning.  Check out our latest thinking on this process [here](https://miro.com/app/board/uXjVOvThMEo=/?share_link_id=354108018377).
 

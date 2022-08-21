@@ -1,9 +1,0 @@
-{
-  "label": "Terminology",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "This section provides an overview of the standard terminologies used in healthcare analytics
-    and the terminology datasets included in the Tuva Project."
-  }
-}
