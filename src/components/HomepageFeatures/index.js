@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/knowledge.svg').default,
     description: (
       <>
-        Learn about healthcare data and how to work with it.
+        Learn how to clean, transform, and analyze healthcare data.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/code.svg').default,
     description: (
       <>
-        Pull and run the Tuva Project in your health data platform.
+        Code and datasets that make cleaning and transforming healthcare data easy.
       </>
     ),
   },
