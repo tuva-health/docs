@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/knowledge.svg').default,
     description: (
       <>
-        A collection of knowledge for learning how to work with healthcare data.
+        Learn how to clean, transform, and analyze healthcare data.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/code.svg').default,
     description: (
       <>
-        A collection of GitHub repositories that make it easier to work with healthcare data.
+        Code and datasets that make cleaning and transforming healthcare data easy.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
-        A Slack community where we can learn from each other about working with healthcare data.
+        Contribute and learn from a community of health data experts.
       </>
     ),
   },

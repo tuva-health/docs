@@ -9,4 +9,4 @@ authors:
 # tags: [greetings]
 ---
 
-This is story all about how my life got flipped-turned upside down.
+This is a story all about how, my life got flipped-turned upside down.

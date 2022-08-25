@@ -18,7 +18,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'tuva-health', // Usually your GitHub org/user name.
-  projectName: 'docs2', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
   deploymentBranch: 'deployment',
   trailingSlash: false,
 
@@ -36,11 +36,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: "/knowledge",
+          routeBasePath: "/docs",
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/tuva-health/knowledge_base/edit/main/'
+            'https://github.com/tuva-health/docs/edit/main/'
         },
         blog: {
           showReadingTime: true,
