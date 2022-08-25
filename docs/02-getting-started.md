@@ -14,7 +14,7 @@ The Tuva Project code base is built on top of dbt.  This means that the Tuva Pro
 
 [dbt](https://www.getdbt.com/) is an open source framework and execution engine for doing data transformation inside of a data warehouse.  It works on all the most common data warehouses (e.g. Snowflake, Redshift, BigQuery, Postgres, Spark, etc.).  Before dbt it was common for data teams to have hundreds of SQL files floating around their data team.  With dbt a data engineer can organize those SQL files into a single project and dbt will determine the correct order to run them in (i.e. construct a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)).
 
-dbt incorporates software development best practices such as testing and version control directly into dbt - two things that the data engineering discipline has done completely without but sorely needs.
+dbt incorporates software development best practices such as testing and version control directly into dbt - two things that the data analytics discipline has done completely without but sorely needs.
 
 Over the last few years adoption of dbt has grown exponentially across the data community.  However healthcare is still a bit behind the curve, as usual, moving slowly to adopt new tools and technology.  
 
