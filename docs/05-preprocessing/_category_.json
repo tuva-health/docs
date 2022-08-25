@@ -3,6 +3,6 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "foo-bar"
+    "description": "Preprocessing is a set of data transformations and data profiling tests that standardize, normalize, and test raw healthcare data."
   }
 }

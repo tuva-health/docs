@@ -14,7 +14,7 @@ Standard data formats are typically maintained by a governing organization and f
 
 Here is a list of the standard data formats we currently support.
 
-| Data Source | Maintaining Organization | Tuva Connector |
+| Data Source | Maintaining Organization | Tuva Connector on GitHub |
 | --- | --- | --- |
 | [Medicare CCLF Claims Data](https://www.cms.gov/files/document/cclf-file-data-elements-resource.pdf) | CMS | [Medicare CCLF Connector](https://github.com/tuva-health/medicare_cclf_connector) |
 | [Medicare SAF Claims Data](https://www.cms.gov/Research-Statistics-Data-and-Systems/Files-for-Order/LimitedDataSets/StandardAnalyticalFiles) | CMS | [Medicare SAF Connector](https://github.com/tuva-health/medicare_saf_connector) |
@@ -37,20 +37,20 @@ Below is an overview of the Claims Input Layer data model.  It includes two main
 - **eligibility:** The eligibility table is at the member month grain i.e. it has one record per member per month of eligibility.  
 - **medical_claim:** The medical_claim table is at the claim-line grain i.e. it has one record per claim-line.
 
-| Table | Column | Data Type | Normalized | Description |
+| Table | Column | Data Type | Normalized Terminology | Description |
 | --- | --- | --- | :---: | --- |
 | eligibility | patient_id | varchar | no | Unique identifier for each member or patient |
-| eligibility | gender | varchar | yes | Biological sex of the patient |
+| eligibility | gender | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/gender.csv) | Biological sex of the patient |
 | eligibility | birth_date | date | no | Birthdate of the patient |
-| eligibility | race | varchar | yes | Race of the patient |
+| eligibility | race | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/race.csv) | Race of the patient |
 | eligibility | zip_code | varchar | yes | Zip code the patient lives in (most recent known address) |
-| eligibility | state | varchar | yes | State the patient lives in (most recent known address) |
+| eligibility | state | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/state.csv) | State the patient lives in (most recent known address) |
 | eligibility | deceased_flag | int | yes ∈ {0,1} | Indicates whether the patient has died |
 | eligibility | death_date | date | no | Date the patient died |
 | eligibility | payer | varchar | no | Primary payer for the patient |
-| eligibility | payer_type | varchar | yes | Type of payer the patient's primary payer is |
-| eligibility | dual_status | varchar | yes | Whether the patient is a dual eligible |
-| eligibility | medicare_status | varchar | yes | Indicates how the patient became eligible for Medicare |
+| eligibility | payer_type | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/payer_type.csv) | Type of payer the patient's primary payer is |
+| eligibility | dual_status | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/medicare_dual_eligibility.csv) | Whether the patient is a dual eligible |
+| eligibility | medicare_status | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/medicare_status_code.csv) | Indicates how the patient became eligible for Medicare |
 | eligibility | month | int | no | Indicates the month of eligibility for the given patient |
 | eligibility | year | int | no | Indicates the year of eligibility for the given patient |
 | medical_claim | claim_id | varchar | no | Unique Identifier for each claim |
@@ -62,16 +62,16 @@ Below is an overview of the Claims Input Layer data model.  It includes two main
 | medical_claim | claim_line_end_date | date | no | End date for the claim line |
 | medical_claim | admission_date | date | no | Admission date for the claim (typically inpatient claims only) |
 | medical_claim | discharge_date | date | no | Discharge date for the claim (typically inpatient claims only) |
-| medical_claim | claim_type | varchar | yes | Indicates whether the claim is professional (CMS-1500) or institutional (UB-04) |
-| medical_claim | bill_type_code | varchar | yes | Bill type code for the claim (institutional claims only) |
-| medical_claim | place_of_service_code | varchar | yes | Place of service for the claim (professional claims only) |
-| medical_claim | admit_source_code | varchar | yes | Indicates where the patient was before the healthcare encounter (typically inpatient claims only) |
-| medical_claim | admit_type_code | varchar | yes | Indicates the type of admission (typically inpatient claims only) |
-| medical_claim | discharge_disposition_code | varchar | yes | Indicates the type of setting the patient was discharged to (typically inpatient claims only) |
-| medical_claim | ms_drg | varchar | yes | MS-DRG for the claim (typically inpatient claims only) |
-| medical_claim | revenue_center_code | varchar | yes | Revenue center code for the claim line (institutional only and typically multiple codes per claim) |
+| medical_claim | claim_type | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/claim_type.csv) | Indicates whether the claim is professional (CMS-1500) or institutional (UB-04) |
+| medical_claim | bill_type_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/bill_type.csv) | Bill type code for the claim (institutional claims only) |
+| medical_claim | place_of_service_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/place_of_service.csv) | Place of service for the claim (professional claims only) |
+| medical_claim | admit_source_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/admit_source.csv) | Indicates where the patient was before the healthcare encounter (typically inpatient claims only) |
+| medical_claim | admit_type_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/admit_type.csv) | Indicates the type of admission (typically inpatient claims only) |
+| medical_claim | discharge_disposition_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/discharge_disposition.csv) | Indicates the type of setting the patient was discharged to (typically inpatient claims only) |
+| medical_claim | ms_drg | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/ms_drg.csv) | MS-DRG for the claim (typically inpatient claims only) |
+| medical_claim | revenue_center_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/revenue_center_code.csv) | Revenue center code for the claim line (institutional only and typically multiple codes per claim) |
 | medical_claim | service_unit_quantity | int | no | The number of units for the particular revenue center code | 
-| medical_claim | hcpcs_code | varchar | yes | HCPCS level 1 or level 2 code for the claim line |
+| medical_claim | hcpcs_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/hcpcs_level_2.csv) | HCPCS level 1 or level 2 code for the claim line |
 | medical_claim | hcpcs_modifier_1 | varchar | yes | 1st modifier for HCPCS code |
 | medical_claim | hcpcs_modifier_2 | varchar | yes | 2nd modifier for HCPCS code |
 | medical_claim | hcpcs_modifier_3 | varchar | yes | 3rd modifier for HCPCS code |
@@ -84,83 +84,83 @@ Below is an overview of the Claims Input Layer data model.  It includes two main
 | medical_claim | paid_amount | float | no | The total amount paid on the claim by the insurer |
 | medical_claim | charge_amount | float | no | The total amount charged on the claim by the provider |
 | medical_claim | adjustment_type_code | varchar | yes | Indicates whether the claim is original, adjusted, or final |
-| medical_claim | diagnosis_code_1 | varchar | yes | 1st ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_2 | varchar | yes | 2nd ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_3 | varchar | yes | 3rd ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_4 | varchar | yes | 4th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_5 | varchar | yes | 5th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_6 | varchar | yes | 6th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_7 | varchar | yes | 7th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_8 | varchar | yes | 8th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_9 | varchar | yes | 9th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_10 | varchar | yes | 10th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_11 | varchar | yes | 11th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_12 | varchar | yes | 12th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_13 | varchar | yes | 13th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_14 | varchar | yes | 14th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_15 | varchar | yes | 15th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_16 | varchar | yes | 16th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_17 | varchar | yes | 17th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_18 | varchar | yes | 18th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_19 | varchar | yes | 19th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_20 | varchar | yes | 20th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_21 | varchar | yes | 21st ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_22 | varchar | yes | 22nd ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_23 | varchar | yes | 23rd ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_24 | varchar | yes | 24th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_code_25 | varchar | yes | 25th ICD (9 or 10) CM diagnosis code on the claim |
-| medical_claim | diagnosis_poa_1 | varchar | yes | Present on admission code for the 1st diagnosis on the claim |
-| medical_claim | diagnosis_poa_2 | varchar | yes | Present on admission code for the 2nd diagnosis on the claim |
-| medical_claim | diagnosis_poa_3 | varchar | yes | Present on admission code for the 3rd diagnosis on the claim |
-| medical_claim | diagnosis_poa_4 | varchar | yes | Present on admission code for the 4th diagnosis on the claim |
-| medical_claim | diagnosis_poa_5 | varchar | yes | Present on admission code for the 5th diagnosis on the claim |
-| medical_claim | diagnosis_poa_6 | varchar | yes | Present on admission code for the 6th diagnosis on the claim |
-| medical_claim | diagnosis_poa_7 | varchar | yes | Present on admission code for the 7th diagnosis on the claim |
-| medical_claim | diagnosis_poa_8 | varchar | yes | Present on admission code for the 8th diagnosis on the claim |
-| medical_claim | diagnosis_poa_9 | varchar | yes | Present on admission code for the 9th diagnosis on the claim |
-| medical_claim | diagnosis_poa_10 | varchar | yes | Present on admission code for the 10th diagnosis on the claim |
-| medical_claim | diagnosis_poa_11 | varchar | yes | Present on admission code for the 11th diagnosis on the claim |
-| medical_claim | diagnosis_poa_12 | varchar | yes | Present on admission code for the 12th diagnosis on the claim |
-| medical_claim | diagnosis_poa_13 | varchar | yes | Present on admission code for the 13th diagnosis on the claim |
-| medical_claim | diagnosis_poa_14 | varchar | yes | Present on admission code for the 14th diagnosis on the claim |
-| medical_claim | diagnosis_poa_15 | varchar | yes | Present on admission code for the 15th diagnosis on the claim |
-| medical_claim | diagnosis_poa_16 | varchar | yes | Present on admission code for the 16th diagnosis on the claim |
-| medical_claim | diagnosis_poa_17 | varchar | yes | Present on admission code for the 17th diagnosis on the claim |
-| medical_claim | diagnosis_poa_18 | varchar | yes | Present on admission code for the 18th diagnosis on the claim |
-| medical_claim | diagnosis_poa_19 | varchar | yes | Present on admission code for the 19th diagnosis on the claim |
-| medical_claim | diagnosis_poa_20 | varchar | yes | Present on admission code for the 20th diagnosis on the claim |
-| medical_claim | diagnosis_poa_21 | varchar | yes | Present on admission code for the 21st diagnosis on the claim |
-| medical_claim | diagnosis_poa_22 | varchar | yes | Present on admission code for the 22nd diagnosis on the claim |
-| medical_claim | diagnosis_poa_23 | varchar | yes | Present on admission code for the 23rd diagnosis on the claim |
-| medical_claim | diagnosis_poa_24 | varchar | yes | Present on admission code for the 24th diagnosis on the claim |
-| medical_claim | diagnosis_poa_25 | varchar | yes | Present on admission code for the 25th diagnosis on the claim |
-| medical_claim | diagnosis_code_type | varchar | yes | Indicates the type of diagnosis code (e.g. ICD-10-CM) |
-| medical_claim | procedure_code_type | varchar | yes | Indicates the type of procedure code (e.g. ICD-10-PCS) |
-| medical_claim | procedure_code_1 | varchar | yes | 1st ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_2 | varchar | yes | 2nd ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_3 | varchar | yes | 3rd ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_4 | varchar | yes | 4th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_5 | varchar | yes | 5th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_6 | varchar | yes | 6th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_7 | varchar | yes | 7th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_8 | varchar | yes | 8th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_9 | varchar | yes | 9th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_10 | varchar | yes | 10th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_11 | varchar | yes | 11th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_12 | varchar | yes | 12th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_13 | varchar | yes | 13th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_14 | varchar | yes | 14th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_15 | varchar | yes | 15th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_16 | varchar | yes | 16th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_17 | varchar | yes | 17th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_18 | varchar | yes | 18th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_19 | varchar | yes | 19th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_20 | varchar | yes | 20th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_21 | varchar | yes | 21st ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_22 | varchar | yes | 22nd ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_23 | varchar | yes | 23rd ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_24 | varchar | yes | 24th ICD (9 or 10) procedure code on the claim |
-| medical_claim | procedure_code_25 | varchar | yes | 25th ICD (9 or 10) procedure code on the claim |
+| medical_claim | diagnosis_code_1 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 1st ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_2 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 2nd ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_3 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 3rd ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_4 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 4th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_5 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 5th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_6 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 6th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_7 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 7th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_8 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 8th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_9 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 9th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_10 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 10th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_11 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 11th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_12 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 12th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_13 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 13th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_14 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 14th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_15 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 15th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_16 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 16th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_17 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 17th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_18 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 18th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_19 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 19th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_20 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 20th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_21 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 21st ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_22 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 22nd ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_23 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 23rd ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_24 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 24th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_code_25 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | 25th ICD (9 or 10) CM diagnosis code on the claim |
+| medical_claim | diagnosis_poa_1 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 1st diagnosis on the claim |
+| medical_claim | diagnosis_poa_2 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 2nd diagnosis on the claim |
+| medical_claim | diagnosis_poa_3 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 3rd diagnosis on the claim |
+| medical_claim | diagnosis_poa_4 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 4th diagnosis on the claim |
+| medical_claim | diagnosis_poa_5 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 5th diagnosis on the claim |
+| medical_claim | diagnosis_poa_6 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 6th diagnosis on the claim |
+| medical_claim | diagnosis_poa_7 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 7th diagnosis on the claim |
+| medical_claim | diagnosis_poa_8 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 8th diagnosis on the claim |
+| medical_claim | diagnosis_poa_9 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 9th diagnosis on the claim |
+| medical_claim | diagnosis_poa_10 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 10th diagnosis on the claim |
+| medical_claim | diagnosis_poa_11 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 11th diagnosis on the claim |
+| medical_claim | diagnosis_poa_12 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 12th diagnosis on the claim |
+| medical_claim | diagnosis_poa_13 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 13th diagnosis on the claim |
+| medical_claim | diagnosis_poa_14 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 14th diagnosis on the claim |
+| medical_claim | diagnosis_poa_15 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 15th diagnosis on the claim |
+| medical_claim | diagnosis_poa_16 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 16th diagnosis on the claim |
+| medical_claim | diagnosis_poa_17 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 17th diagnosis on the claim |
+| medical_claim | diagnosis_poa_18 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 18th diagnosis on the claim |
+| medical_claim | diagnosis_poa_19 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 19th diagnosis on the claim |
+| medical_claim | diagnosis_poa_20 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 20th diagnosis on the claim |
+| medical_claim | diagnosis_poa_21 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 21st diagnosis on the claim |
+| medical_claim | diagnosis_poa_22 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 22nd diagnosis on the claim |
+| medical_claim | diagnosis_poa_23 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 23rd diagnosis on the claim |
+| medical_claim | diagnosis_poa_24 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 24th diagnosis on the claim |
+| medical_claim | diagnosis_poa_25 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Present on admission code for the 25th diagnosis on the claim |
+| medical_claim | diagnosis_code_type | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/code_type.csv) | Indicates the type of diagnosis code (e.g. ICD-10-CM) |
+| medical_claim | procedure_code_type | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/code_type.csv) | Indicates the type of procedure code (e.g. ICD-10-PCS) |
+| medical_claim | procedure_code_1 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 1st ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_2 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 2nd ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_3 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 3rd ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_4 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 4th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_5 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 5th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_6 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 6th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_7 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 7th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_8 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 8th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_9 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 9th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_10 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 10th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_11 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 11th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_12 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 12th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_13 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 13th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_14 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 14th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_15 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 15th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_16 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 16th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_17 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 17th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_18 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 18th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_19 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 19th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_20 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 20th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_21 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 21st ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_22 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 22nd ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_23 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 23rd ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_24 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 24th ICD (9 or 10) procedure code on the claim |
+| medical_claim | procedure_code_25 | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | 25th ICD (9 or 10) procedure code on the claim |
 | medical_claim | procedure_date_1 | date | no | Date of the 1st procedure on the claim |
 | medical_claim | procedure_date_2 | date | no | Date of the 2nd procedure on the claim |
 | medical_claim | procedure_date_3 | date | no | Date of the 3rd procedure on the claim |

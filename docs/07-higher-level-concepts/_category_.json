@@ -3,6 +3,6 @@
   "position": 7,
   "link": {
     "type": "generated-index",
-    "description": "foobar"
+    "description": "Code that creates new columns of data needed for advanced analytics (e.g. measures, groupers, etc.)."
   }
 }
