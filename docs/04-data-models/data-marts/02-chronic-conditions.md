@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # Chronic Conditions
 
+There are two main output tables from this data mart:
+- **Union Calculation:** A "long" table with all qualifying encounters per patient-condition
+- **Condition Pivot:** A "wide" table with one record per patient and each condition flag is a separate column
+
 ## Union Calculation
 
 ### Description
