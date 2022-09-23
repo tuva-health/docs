@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
-        Contribute and learn from a community of health data experts.
+        Contribute and learn from a growing community of healthcare data practitioners.
       </>
     ),
   },

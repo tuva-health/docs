@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Chronic Condition Grouper
+# Chronic Conditions
 
 Checkout out the code and terminology datasets for our chronic condition grouper on [GitHub](https://github.com/tuva-health/chronic_conditions).
 

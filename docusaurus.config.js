@@ -89,7 +89,7 @@ const config = {
             position: 'left',
             target: null,
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          //{to: '/blog', label: 'Blog', position: 'left'},
 
         ],
       },

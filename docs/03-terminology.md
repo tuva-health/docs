@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Terminology
 
 Click [here](https://github.com/tuva-health/terminology) to navigate to the Terminology Repo on GitHub.
 
-The Tuva Project ships with a number of terminology sets.  Terminology sets are maintained by a wide variety of organizations, updated on various frequencies, and scattered all over the internet.  We're pulling them into a single place, maintaining them, and making them easy to load into a data warehouse (it literally takes less than 5 minutes to load the terminology datasets in the Tuva Project).
+The Tuva Project ships with a number of terminology sets.  Terminology sets are maintained by a wide variety of organizations, updated on various frequencies, and scattered all over the internet.  We're pulling them into a single place, maintaining them, and making them easy to load into a data warehouse.
 
 See below for a complete catalog of the terminology sets that ship with the Tuva Project.
 
