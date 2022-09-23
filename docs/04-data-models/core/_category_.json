@@ -1,0 +1,8 @@
+{
+  "label": "Core",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Core is common data model of the Tuva Project.  It has all the key concepts needed to do basic analytics and is the foundation upon which all data marts run."
+  }
+}
