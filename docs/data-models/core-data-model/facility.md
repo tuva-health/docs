@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# Location
+# Facility
 
 ## Description
 The location table stores information about places where patients receive healthcare services, e.g. hospitals, clinics, and pharmacies.
@@ -11,7 +11,7 @@ The location table stores information about places where patients receive health
 This table is at the NPI grain.  It's very common for locations to have multiple NPIs.
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | facility_npi | varchar | yes | The NPI assigned to the facility. |
 | facility_name | varchar | no | Name of the facility. |

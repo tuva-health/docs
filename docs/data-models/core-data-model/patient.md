@@ -11,7 +11,7 @@ The patient table describes the attributes of a patient that are unchanging over
 The patient table is intended to store a single unique record per patient.  If you're dealing with multiple healthcare datasets with overlapping patients these datasets should be mastered (e.g. merged) upstream from this table.  A few concepts in the patient table need to be normalized (e.g. gender, race, etc.).  You can see exactly which concepts these are in the data dictionary below.
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | patient_id | varchar | no | Unique ID for the patient |
 | name | varchar | no |	Full name of the patient |

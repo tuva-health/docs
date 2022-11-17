@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
-# Encounter Line
+# Encounter Claim Line
 
 ## Description
 During a typical healthcare encounter clinicians will perform multiple services for the patient.  This can include anything from a physician consult, to therapy (e.g. respiratory therapy), to administering intravenous medications.  These services are recorded for billing purposes using revenue center codes and HCPCS codes and provide a useful record of care.  Each service receives it's own separate record.
@@ -11,7 +11,7 @@ During a typical healthcare encounter clinicians will perform multiple services 
 The grain of this table is at the encounter-service level (i.e. one record per encounter per service).
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | encounter_id | varchar | no | Unique encounter ID (one for each visit) |
 | patient_id | varchar | no | Unique patient ID for each patient |

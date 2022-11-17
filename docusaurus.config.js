@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'The Tuva Project',
-  tagline: 'Open source software to clean and transform raw healthcare data',
+  tagline: 'Open source software for cleaning and transforming raw healthcare data',
   url: 'https://www.thetuvaproject.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',

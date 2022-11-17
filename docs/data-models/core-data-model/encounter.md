@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Encounter
@@ -11,7 +11,7 @@ The encounter table is intended to store information that represents a unique pa
 Each record in the encounter table is supposed to be a unique encounter (i.e. visit).  The encounter_type field (which is a normalized field) indicates the type of visit (e.g. acute inpatient).  If the data source is claims data, you can use [claims preprocessing](https://github.com/tuva-health/claims_preprocessing_snowflake) to create this concept.
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | encounter_id | varchar | no | Unique ID for each visit |
 | patient_id | varchar | no | Unique ID for the patient |
