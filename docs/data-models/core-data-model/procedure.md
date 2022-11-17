@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # Procedure
@@ -11,7 +11,7 @@ Procedures are treatments performed by clinicians for patients to help manage or
 This grain of this table is the encounter and procedure level.  Every procedure must have a corresponding encounter during which the procedure was performed.
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | encounter_id | varchar | no | Unique ID for each visit |
 | patient_id | varchar | no | Unique ID for the patient |

@@ -11,7 +11,7 @@ This table contains information on every practitioner (e.g. physician, physician
 This table has one record per practitioner.
 
 ## Data Dictionary
-| Column Name | Data Type | Normalized Terminology | Description |
+| Column Name | Data Type | Terminology | Description |
 |---|:---:|:---:|---|
 | provider_npi | varchar | yes | National Provider Identifier (NPI) for each provider in the dataset |
 | name | varchar |  | Full name of the provider |
