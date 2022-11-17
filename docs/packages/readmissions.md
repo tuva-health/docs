@@ -1,8 +1,5 @@
----
-sidebar_position: 2
----
 
-# Hospital Readmissions
+# Readmissions
 
 ## Overview
 

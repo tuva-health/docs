@@ -1,6 +1,4 @@
----
-sidebar_position: 3
----
+
 
 # Terminology
 
@@ -36,5 +34,8 @@ See below for a complete catalog of the terminology sets that ship with the Tuva
 | [present on admission](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__present_on_admission.csv) | CMS | 4/19/2022 | 
 | [race](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__race.csv) |  | 4/19/2022 | 
 | [revenue center](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__revenue_center.csv) | National Uniform Billing Committee | 6/23/2022 |  
+<<<<<<< HEAD:docs/packages/terminology.md
+=======
 
 
+>>>>>>> main:docs/03-terminology.md
