@@ -10,29 +10,27 @@ See below for a complete catalog of the terminology sets that ship with the Tuva
 
 | Terminology Set | Maintaining Organization | Last Updated |
 |---|---|---|
-| [admit source](https://github.com/tuva-health/terminology/blob/main/terminology/admit_source.csv) | National Uniform Billing Committee | 4/19/2022    | 
-| [admit type](https://github.com/tuva-health/terminology/blob/main/terminology/admit_type.csv) | National Uniform Billing Committee | 4/19/2022 | 
-| [bill type](https://github.com/tuva-health/terminology/blob/main/terminology/bill_type.csv) | National Uniform Billing Committee | 4/19/2022 | 
-| [CMS chronic condition value sets](https://github.com/tuva-health/terminology/blob/main/terminology/chronic_conditions.csv) | CMS | 6/22/2022 | 
+| [admit source](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__admit_source.csv) | National Uniform Billing Committee | 4/19/2022    | 
+| [admit type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__admit_type.csv) | National Uniform Billing Committee | 4/19/2022 | 
+| [bill type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__bill_type.csv) | National Uniform Billing Committee | 4/19/2022 | 
+| [CMS chronic condition value sets](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__chronic_conditions.csv) | CMS | 6/22/2022 | 
 | CMS readmission measures value sets | CMS | 4/19/2022 |
-| [claim type](https://github.com/tuva-health/terminology/blob/main/terminology/claim_type.csv) | Tuva Project | 4/19/2022 | 
-| [code type](https://github.com/tuva-health/terminology/blob/main/terminology/code_type.csv) | Tuva Project | 4/19/2022 | 
-| [discharge disposition](https://github.com/tuva-health/terminology/blob/main/terminology/discharge_disposition.csv) | National Uniform Billing Committee | 4/19/2022 | 
-| [encounter type](https://github.com/tuva-health/terminology/blob/main/terminology/encounter_type.csv) | Tuva Project | 6/17/2022  | 
-| [ethnicity](https://github.com/tuva-health/terminology/blob/main/terminology/ethnicity.csv) |  | 4/19/2022 | 
-| [gender](https://github.com/tuva-health/terminology/blob/main/terminology/gender.csv) | Tuva Project | 4/19/2022 | 
-| [HCPCS Level 2](https://github.com/tuva-health/terminology/blob/main/terminology/hcpcs_level_2.csv) | CMS | 4/19/2022 | 
-| [icd-10-cm](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_cm.csv) | CMS | 4/19/2022 | 
-| [icd-10-pcs](https://github.com/tuva-health/terminology/blob/main/terminology/icd_10_pcs.csv) | CMS | 4/19/2022 | 
-| [major diagnostic category](https://github.com/tuva-health/terminology/blob/main/terminology/mdc.csv) | CMS | 4/19/2022 | 
-| [medicare dual eligibility](https://github.com/tuva-health/terminology/blob/main/terminology/medicare_dual_eligibility.csv) | CMS | 4/19/2022 | 
-| [medicare state fips](https://github.com/tuva-health/terminology/blob/main/terminology/medicare_state_fips.csv) | CMS | 4/19/2022 | 
-| [medicare status code](https://github.com/tuva-health/terminology/blob/main/terminology/medicare_status_code.csv) | CMS | 4/19/2022 | 
-| [ms-drg](https://github.com/tuva-health/terminology/blob/main/terminology/ms_drg.csv) | CMS | 4/19/2022 | 
-| [payer type](https://github.com/tuva-health/terminology/blob/main/terminology/payer_type.csv)| Tuva Project | 4/19/2022 | 
-| [place of service](https://github.com/tuva-health/terminology/blob/main/terminology/place_of_service.csv) | National Uniform Billing Committee | 4/19/2022 | 
-| [present on admission](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | CMS | 4/19/2022 | 
-| [race](https://github.com/tuva-health/terminology/blob/main/terminology/race.csv) |  | 4/19/2022 | 
-| [revenue center code](https://github.com/tuva-health/terminology/blob/main/terminology/revenue_center_code.csv) | National Uniform Billing Committee | 6/23/2022 |  
-| [state](https://github.com/tuva-health/terminology/blob/main/terminology/state.csv) |  |  |  
-
+| [claim type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__claim_type.csv) | Tuva Project | 4/19/2022 | 
+| [code type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__code_type.csv) | Tuva Project | 4/19/2022 | 
+| [discharge disposition](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__discharge_disposition.csv) | National Uniform Billing Committee | 4/19/2022 | 
+| [encounter type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__encounter_type.csv) | Tuva Project | 6/17/2022  | 
+| [ethnicity](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__ethnicity.csv) |  | 4/19/2022 | 
+| [gender](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__gender.csv) | Tuva Project | 4/19/2022 | 
+| [HCPCS Level 2](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__hcpcs_level_2.csv) | CMS | 4/19/2022 | 
+| [icd-10-cm](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__icd_10_cm.csv) | CMS | 4/19/2022 | 
+| [icd-10-pcs](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__icd_10_pcs.csv) | CMS | 4/19/2022 | 
+| [major diagnostic category](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__mdc.csv) | CMS | 4/19/2022 | 
+| [medicare dual eligibility](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_dual_eligibility.csv) | CMS | 4/19/2022 | 
+| [medicare state fips](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_state_fips.csv) | CMS | 4/19/2022 | 
+| [medicare status](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_status.csv) | CMS | 4/19/2022 | 
+| [ms-drg](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__ms_drg.csv) | CMS | 4/19/2022 | 
+| [payer type](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__payer_type.csv)| Tuva Project | 4/19/2022 | 
+| [place of service](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__place_of_service.csv) | National Uniform Billing Committee | 4/19/2022 | 
+| [present on admission](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__present_on_admission.csv) | CMS | 4/19/2022 | 
+| [race](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__race.csv) |  | 4/19/2022 | 
+| [revenue center](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__revenue_center.csv) | National Uniform Billing Committee | 6/23/2022 |  
