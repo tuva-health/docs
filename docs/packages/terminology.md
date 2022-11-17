@@ -1,6 +1,4 @@
----
-sidebar_position: 3
----
+
 
 # Terminology
 
@@ -37,5 +35,4 @@ See below for a complete catalog of the terminology sets that ship with the Tuva
 | [race](https://github.com/tuva-health/terminology/blob/main/terminology/race.csv) |  | 4/19/2022 | 
 | [revenue center code](https://github.com/tuva-health/terminology/blob/main/terminology/revenue_center_code.csv) | National Uniform Billing Committee | 6/23/2022 |  
 | [state](https://github.com/tuva-health/terminology/blob/main/terminology/state.csv) |  |  |  
-
 
