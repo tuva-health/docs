@@ -33,8 +33,8 @@ The eligibility table uses the coverage format because this format is more commo
 | enrollment_end_date | date | no | Date the patient's insurance eligibility ended. |
 | payer | varchar | no | Name of the payer (i.e. health insurer) providing coverage. |
 | payer_type | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__payer_type.csv) | Type of payer (e.g. commercial, medicare, medicaid, etc.). |
-| dual_status | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_dual_eligibility.csv) | Indicates whether the patient is dually eligible for Medicare and Medicaid. |
-| medicare_status | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_status.csv) | Indicates how the patient became eligible for Medicare. |
+| dual_status_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_dual_eligibility.csv) | Indicates whether the patient is dually eligible for Medicare and Medicaid. |
+| medicare_status_code | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/terminology__medicare_status.csv) | Indicates how the patient became eligible for Medicare. |
 | first_name | varchar | no | Patient's first name. |
 | last_name | varchar | no | Patient's last name. |
 | address | varchar | no | Patient's street address. |
