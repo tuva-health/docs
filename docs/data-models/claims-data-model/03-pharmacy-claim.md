@@ -14,7 +14,7 @@ The pharmacy_claim table is at the claim-line grain.
 | Column | Data Type | Terminology | Description |
 | --- | :---: | :---: | --- |
 | claim_id | varchar | no | Unique identifier for each claim. |
-| claim_line | int | no | Indicates the line number for the particular line of the claim. |
+| claim_line_number | int | no | Indicates the line number for the particular line of the claim. |
 | patient_id | varchar | no | Unique identifier for each patient in the dataset. |
 | member_id | varchar | no | Identifier that links a patient to a particular insurance product or health plan.  A patient can have more than one member_id because they can have more than one insurance product/plan. |
 | prescribing_provider_npi | varchar | no | NPI for the provider that wrote the prescription (e.g. priamry care physician). |
