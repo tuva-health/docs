@@ -1,9 +1,7 @@
 ---
-sidebar_position: 3
+id: pharmacy-claim
+title: "Pharmacy Claim"
 ---
-
-# Pharmacy Claim
-
 ## Description
 The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.
 

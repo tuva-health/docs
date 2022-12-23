@@ -1,12 +1,18 @@
 ---
-sidebar_position: 1
+id: cms-chronic-conditions
+title: "CMS Chronic Conditions"
 ---
+The CMS Chronic Conditions data mart implements the CMS Chronic Condition grouper from the [CMS Chronic Condition Data Warehouse](https://www2.ccwdata.org/web/guest/condition-categories-chronic).  The data mart includes the value set of ICD-10-CM diagnosis codes related for each of the ~70 chronic conditions defined by CMS.  It also includes logic to assign condition flags to your patient population.
 
-# Chronic Conditions
+While implementing the CMS Chronic Condition logic we encountered several issues.  First, some of the condition categories aren't particularly specific.  For example, the condition category "Diabetes" includes both Type 1 and Type 2 Diabetes, which doesn't make a ton of sense given the heterogeneity in the underlying pathology of these two diseases (i.e. one is an autoimmune disease while the other is a metabolic diseaese).  Second, several of the condition categories are not mutually exclusive.  For example, schizophrenia is found in multiple condition categories.  
 
-There are two main output tables from this data mart:
-- **Union Calculation:** A "long" table with all qualifying encounters per patient-condition
-- **Condition Pivot:** A "wide" table with one record per patient and each condition flag is a separate column
+Both of these issues are troubling because the point of any grouper is to group patients into homogeneous cohorts to enable "apples-to-apples" comparisons and analytics.  We decided to keep this grouper as part of the Tuva Project, since it's a standard grouper used by many people doing healthcare analytics.  But we also decided to develop our own chronic disease grouper data mart (Tuva Chronic Conditions) with more precise and mutually exclusive categories.
+
+There are two main output tables created by this data mart:
+
+- **[Union Calculation](#union-calculation):** A "long" table with all qualifying encounters per patient-condition
+
+- **[Condition Pivot](#condition-pivot):** A "wide" table with one record per patient and each condition flag is a separate column
 
 ## Union Calculation
 

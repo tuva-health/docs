@@ -1,9 +1,14 @@
-
+---
+id: readmissions
+title: "Hospital Readmissions"
+---
 # Readmissions
 
 ## Overview
 
 Check out these videos on how to perform proper hospital readmission analytics and how to implement the CMS readmission measures:
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/TCG_QCb63n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - [Performing Hospital Readmission Analytics](https://www.youtube.com/watch?v=TCG_QCb63n4)
 - [Implementing the CMS Readmission Measures](https://www.youtube.com/watch?v=5pA-gm94PyU)

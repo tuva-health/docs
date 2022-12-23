@@ -1,9 +1,7 @@
 ---
-sidebar_position: 2
+id: pmpm
+title: "PMPM"
 ---
-
-# Readmissions
-
 ## Readmission Summary
 
 ### Description

@@ -1,9 +1,7 @@
 ---
-sidebar_position: 1
+id: eligibility
+title: "Eligibility"
 ---
-
-# Eligibility
-
 ## Description
 The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member).  Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.
 

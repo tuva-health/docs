@@ -1,9 +1,7 @@
 ---
-sidebar_position: 2
+id: medical-claim
+title: "Medical Claim"
 ---
-
-# Medical Claim
-
 ## Description
 The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers.  It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  
 
