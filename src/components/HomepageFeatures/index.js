@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/knowledge.svg').default,
     description: (
       <>
-        Learn how to clean, transform, and analyze healthcare data.
+        Learn how to work with and analyze healthcare data.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/code.svg').default,
     description: (
       <>
-        Code and datasets that make cleaning and transforming healthcare data easy.
+        Data marts for cleaning and transforming healthcare data.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/community.svg').default,
     description: (
       <>
-        Contribute and learn from a growing community of healthcare data practitioners.
+        A growing community of healthcare data practitioners.
       </>
     ),
   },

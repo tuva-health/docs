@@ -1,26 +1,27 @@
 ---
-sidebar_position: 1
+id: intro
+title: "Welcome"
 ---
+Welcome to Knowledge Base!  Knowledge Base is an open source repository of knowledge about healthcare data and how to analyze it.  Healthcare data is difficult to work with, in large part because it requires a lot of specialized knowledge, and there's no single place where this knowledge is written down.  As a consequence, you end up having to work in healthcare data for 5-10 years to learn the ropes.  The goal of Knowledge Base is to make it easier for people to learn about how to work with and analyze healthcare data. 
 
-# Welcome
+Right now the main focus of the Tuva Project is claims data, so a lot of the content in Knowledge Base is about working with and analyzing claims data.
 
-We're building the open source data transformation layer for healthcare data.
+## What is the Tuva Project
 
-![The Tuva Project](/img/the_tuva_project_map.jpg)
+The Tuva Project is a set of open source healthcare-specific data models, data marts, data quality tests and terminology sets built on top of [dbt](https://www.getdbt.com/) for the modern data stack.  
 
-## What Is The Tuva Project
 
-The Tuva Project is a set of open source tools for cleaning and transforming healthcare data.  Cleaning and transforming healthcare data requires many different healthcare-specific data tools, including things like:
+![The Tuva Project](/img/tuva_claims_data_stack.jpg)
 
-- Common Data Model(s)
-- Data Curation
-- Data Quality Testing
-- Groupers
-- Measures
-- Patient Identity
-- Terminology
+Our main focus right now is building out the claims data stack, which includes the following set of tools designed for claims data:
 
-We've seen healthcare data teams, including ourselves, build these tools from scratch over and over again.  We're open sourcing all of these tools so healthcare data teams can move faster to generate high-quality healthcare data capable of answering important questions that will improve care efficiency and efficacy for patients.
+- **Claims Common Data Model**: A common data model that is easy to map raw claims data into and is specifically designed for doing healthcare analytics.
+
+- **Data Marts**: Higher-level concepts that include things like measures, groupers, and risk models, built on top of the claims common data model.
+
+- **Data Profiling**: A set of claims-data-specific data quality tests that run on the claims common data model.
+
+- **Terminology**: Common claims terminology sets that are applied to the claims common data model and data marts.
 
 ## Who is Tuva Health
 
@@ -28,7 +29,9 @@ Tuva Health is the for-profit company behind the Tuva Project.  We're a team of 
 
 Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and running to fully managing the Tuva Project for them, all within their cloud environment.
 
-## Why the Name Tuva
+
+
+## Why Tuva
 
 The name Tuva is a reference to the country of Tuva in the former Soviet Union.  For more than a decade before his death, [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  During the cold war getting visas for this journey was no easy feat.  Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
 

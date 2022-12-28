@@ -1,16 +1,13 @@
 ---
-sidebar_position: 2
+id: readmissions
+title: "Readmissions"
 ---
-
-# Readmissions
+The Readmissions data mart builds the CMS hospital-wide readmission measure on your healthcare data.  The main output table from this data mart is called readmission_summary.
 
 ## Readmission Summary
 
 ### Description
 The readmission summary table is the output table from the readmissions data mart.  It contains all the columns needed to do hospital readmission analytics in a single table.
-
-### Mapping Guidelines
-Once your data is mapped to core you can run the readmissions mart automatically.
 
 ### Data Dictionary
 | Column Name | Data Type | Normalized Terminology | Description |
@@ -20,8 +17,8 @@ Once your data is mapped to core you can run the readmissions mart automatically
 | admit_date | date | no | Date of admission for the index admission. |
 | discharge_date | date | no | Date of discharge for the index admission. |
 | discharge_disposition_code | varchar | yes | Discharge disposition for the index admission. |
-| facility | varchar | no | Name of the facility (hospital) for the index admission. |
-| ms_drg | varchar | yes | MS-DRG for the index admission. |
+| facility_npi | varchar | no | NPI of the facility (hospital) for the index admission. |
+| ms_drg_code | varchar | yes | MS-DRG for the index admission. |
 | length_of_stay | int | no | Length of stay (discharge minus admit date) for the index admission. |
 | index_admission_flag | int | no | Flag indicating the admission qualified as an index admission. |
 | planned_flag | int | no | Flag indicating the admission qualified as a planned admission. |
