@@ -2,9 +2,9 @@
 id: intro
 title: "Welcome"
 ---
-Welcome to the Tuva Project's Knowledge Base!  Knowledge Base is an open source knowledge repository where we write down all the things we've learned about healthcare data over the years.  Healthcare data is so difficult to work with, in large part because it requires a lot of specialized knowledge, and there's no place where this knowledge is written down.  You end up having to work in healthcare data for 5-10 years to learn the ropes.  With Knowledge Base we hope to make it easier for people to learn about how to work with healthcare data faster.  
+Welcome to Knowledge Base!  Knowledge Base is an open source repository of knowledge about healthcare data and how to analyze it.  Healthcare data is difficult to work with, in large part because it requires a lot of specialized knowledge, and there's no single place where this knowledge is written down.  As a consequence, you end up having to work in healthcare data for 5-10 years to learn the ropes.  The goal of Knowledge Base is to make it easier for people to learn about how to work with and analyze healthcare data. 
 
-Right now we are focused on claims data, so a lot of the content in Knowledge Base is about working with and analyzing claims data.
+Right now the main focus of the Tuva Project is claims data, so a lot of the content in Knowledge Base is about working with and analyzing claims data.
 
 ## What is the Tuva Project
 

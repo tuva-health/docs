@@ -10,11 +10,11 @@ Both of these issues are troubling because the point of any grouper is to group 
 
 There are two main output tables created by this data mart:
 
-- **[Union Calculation](#union-calculation):** A "long" table with all qualifying encounters per patient-condition
+- **[Union Calculation](#chronic-conditions-unioned):** A "long" table with all qualifying encounters per patient-condition
 
-- **[Condition Pivot](#condition-pivot):** A "wide" table with one record per patient and each condition flag is a separate column
+- **[Condition Pivot](#chronic-conditions-pivoted):** A "wide" table with one record per patient and each condition flag is a separate column
 
-## Union Calculation
+## Chronic Conditions Unioned
 
 ### Description
 This table contains one record per patient per chronic condition.  For example, if a patient has 3 chronic conditions they will have 3 records in this table.  Each record includes the condition category, condition, date of onset, most recent diagnosis, and the total count of diagnosis codes that were recorded that are relevant for the condition.
@@ -33,7 +33,7 @@ This table is created by running the chronic conditions data mart on data that's
 | condition_count | int |  | The number of conditions for the patient. |
 | data_source | varchar |  | Indicates the name of the source dataset (e.g. Medicare Claims). |
 
-## Condition Pivot
+## Chronic Conditions Pivoted
 
 ### Description
 This table contains a single record per patient with separate binary (i.e. 0 or 1) columns for every chronic condition.  If a patient has a particular chronic condition they will have a 1 in that particular column and 0 otherwise.

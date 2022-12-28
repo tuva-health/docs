@@ -46,5 +46,42 @@ This table contains a single record per patient with columns for every chronic c
 | Column Name | Data Type | Normalized Terminology | Description |
 |---|:---:|:---:|---|
 | patient_id | varchar | no | Unique ID for each patient. |
-| patient_id | varchar | no | Unique ID for each patient. |
+| hypertension | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| hyperlipidemia | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| atherosclerosis | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| obesity | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| type 2 diabetes | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| anxiety | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| depression | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| chronic obstructive pulmonary disease (copd) | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| chronic kidney disease | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| atrial fibrillation | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| asthma | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| heart failure | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| stroke / transient ischemic attack | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| tobacco | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| dementia | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| breast cancer | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| rheumatoid arthritis | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| acute myocardial infarction | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| bipolar | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| metabolic syndrome | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| alzheimer's disease | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| type 1 diabetes | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| alcohol | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| opioid | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| parkinson's disease | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| colorectal cancer | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| personality disorder | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| lupus | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| schizophrenia | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| lung cancer | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| multiple sclerosis | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| post-traumatic stress disorder (ptsd) | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| crohn's disease | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| attention-deficit hyperactivity disorder (adhd) | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| ulcerative colitis | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| obsessive-compulsive disorder (ocd) | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| cystic fibrosis | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
+| cocaine | integer | no | Flag indicating whether the patient has ever been diagnosed with this disease. |
 

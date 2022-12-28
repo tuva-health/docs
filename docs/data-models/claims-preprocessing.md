@@ -15,7 +15,7 @@ Claims Preprocessing is a data mart that transforms data from the Claims Common 
 ## Condition
 
 ### Description
-Includes billing diagnosis codes from institutional and professional claims in the medical_claim table.  Key ancillary data related to each diagnosis includes the date it was reported, it's rank (i.e. primary or secondary), and whether or not it was present during admission (inpatient encounters only).)  
+The condition table includes billing diagnosis codes from institutional and professional claims in the medical_claim table.  Key ancillary data related to each diagnosis includes the date it was reported, it's rank (i.e. primary or secondary), and whether or not it was present during admission (inpatient encounters only).)  
 
 ### Data Dictionary
 | Column Name | Data Type | Terminology | Description |

@@ -3,12 +3,16 @@ id: medical-claim
 title: "Medical Claim"
 ---
 ## Description
-The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers.  It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  
+The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers.  It includes information on the provider who rendered the service or supply, the amount paid for the service or supply by the health insurer, and the underlying reason for the service (i.e. diagnosis).  
 
 ## Mapping Guidelines
-The medical_claim table is at the claim-line grain i.e. it has one record per claim-line.  It combines professional claims (i.e. services billed on a CMS-1500 claim form typically by physicians) and institutional claims (i.e. services billed on a UB-04 claim form typically by hospitals or other institutions) into a single table.  
+The medical_claim table is at the claim-line grain i.e. it has one record per claim-line.  It combines professional claims (i.e. services billed on a CMS-1500 claim form) and institutional claims (i.e. services billed on a UB-04 claim form) into a single table.  
 
-A typical medical claims dataset includes claims header information and claims line information.  Header information (e.g. DRG) only occurs once per claim whereas line information (e.g. revenue code) may occur many times per claim.  Some claims datasets have header and line information separated into distinct tables while other datasets have the information combined into a single table.  When you combine header and line information into a single table you need to repeat the values of the header data elements for every line on the claim.  
+Both professional and institutional claims have header information and line information on them.  Header information (e.g. MS-DRG) occurs a specific number of times (typically once) per claim, whereas line information (e.g. revenue codes) may occur an unlimited number of times per claim.  Some claims data models separate header and line information into distinct tables.  However it's more common for this information to exist in a single table, which is why we chose this approach for the medical_claims table.  
+
+If your medical claims data already exists in a single table, you'll likely find it easy to map to medical_claims.  However if your claims data is separated into multiple tables, for example separate tables for professional and institutional claims, or separate tables for header and line information, you'll need to transform the data into a single table as part of your mapping to medical_claim.
+
+In medical_claim, every header data element that occurs only one time (e.g. bill_type_code on institutional claims) is repeated for every line on that claim.  
 
 ## Data Dictionary
 | Column | Data Type | Terminology | Description |

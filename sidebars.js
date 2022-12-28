@@ -5,27 +5,17 @@ const sidebars = {
         {
           type: "category",
           label: "Getting Started",
-          items: ["getting-started-dbt", "getting-started-tuva-project"]
+          items: ["getting-started/dbt", "getting-started/the-tuva-project","getting-started/mapping"]
         },
         {
           type: "category",
           label: "Intro to Claims Data",
-          items: ["intro-claims/overview","intro-claims/claims-data-generation","intro-claims/claims-data-elements","intro-claims/adjustments-and-reversals"]
+          items: ["intro-claims/claims-data-generation","intro-claims/claims-data-elements","intro-claims/adjustments-and-reversals"]
         },
-        // {
-        //   type: "category",
-        //   label: "Core Concepts",
-        //   items: ["core-concepts-overview"]
-        // },
         {
           type: "category",
           label: "Measures",
           items: ["readmissions"]
-        },
-        {
-          type: "category",
-          label: "Groupers",
-          items: ["chronic-conditions"]
         },
         {
           type: "category",

@@ -6,7 +6,7 @@ title: "Pharmacy Claim"
 The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.
 
 ## Mapping Guidelines
-The pharmacy_claim table is at the claim-line grain.
+The pharmacy_claim table is at the claim-line grain.  Each prescription should get it's own claim line.  The majority of claims may only have a single line.  In fact, it's totally fine if every claim only has a single line.
 
 ## Data Dictionary
 | Column | Data Type | Terminology | Description |

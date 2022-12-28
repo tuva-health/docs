@@ -6,14 +6,9 @@ title: "Hospital Readmissions"
 
 ## Overview
 
-Check out these videos on how to perform proper hospital readmission analytics and how to implement the CMS readmission measures:
+Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.  Here we provide a general overview of how to calculate a hospital readmission measure.
 
 <iframe width="800" height="500" src="https://www.youtube.com/embed/TCG_QCb63n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- [Performing Hospital Readmission Analytics](https://www.youtube.com/watch?v=TCG_QCb63n4)
-- [Implementing the CMS Readmission Measures](https://www.youtube.com/watch?v=5pA-gm94PyU)
-
-Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.
 
 There are many different ways to define hospital readmission measures.  However every readmission measure is built on two underlying concepts: the index admission and the readmission.  An index admission is a hospitalization that should be used in the calculation of a readmission measure. There are hospitalizations that will not be index admissions and will therefore not be used to calculate readmission measures. For example, if a patient dies in a hospitalization, that hospitalization will not be an index admission, since it can’t have a readmission. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.
 
@@ -29,6 +24,8 @@ To better understand these fundamental concepts, it is helpful to think of build
 The index admission (index_admit_flag) and readmission (readmit_flag) are then used to compute the readmission measure.  The sum of the index_admit_flag column forms the denominator of the readmission measure while the sum of the readmit_flag column forms the numerator.  In the example data table above there are 3 total inpatient admissions, 2 index admissions, and 1 readmission, resulting in a 50% readmission rate.
 
 ![Example Readmission Rate](/img/readmissions/example_readmission_rate_calc.png)
+
+## CMS Readmission Measures
 
 The different definitions of readmission measures are simply variations in the inclusion and/or exclusion criteria that defines the index_admit_flag and the readmit_flag.  The most commonly used readmission measures are the CMS readmission measures.
 
@@ -46,7 +43,7 @@ There are 7 such measures grouped into 3 categories:
 
 The All-cause Hospital-wide Readmission Measure (“Hospital-wide Measure”) is the most commonly used readmission measure definition of all.  The sections that follow describe how to define and implement the Hospital-wide Measure on EHR data or claims data in your data warehouse.  This measure has also been encoded into the Tuva Project, including all necessary terminology datasets and data quality tests.
 
-## Data Requirements
+### Data Requirements
 
 The Hospital-wide Measure can be implemented on either EHR data or claims data.  Strictly speaking, CMS developed the Hospital-wide Measure to run on Medicare FFS claims data, but CMS explicitly states in their documentation that the measure may be adapted to run against an all-payer patient population.
 
@@ -76,7 +73,7 @@ The data elements needed to process the readmission measure are listed below.
     - procedure_code
     - code_type
     
-## Terminology Datasets
+### Terminology Datasets
 
 The Hospital-wide Measure requires several terminology datasets that are used as lookup tables to create the index admission and readmission. The following is a complete list of the terminology datasets that are needed:
 
@@ -88,7 +85,7 @@ CMS makes these terminology datasets available as files on the quality net websi
 
 These terminology datasets are already included in the Tuva Project.
 
-## Index Admission Algorithm
+### Index Admission Algorithm
 
 The index admission algorithm is the set of sub-algorithms (i.e. rules) that together determine whether an inpatient admission qualifies as an index admission (i.e. receives an index_admit_flag = 1 or 0).  Not every inpatient admission qualifies as an index admission. 
 
@@ -160,7 +157,7 @@ In order to qualify as an index admission, the admission must occur at least 30 
 
 For example, suppose your dataset contains inpatient admissions that occurred in calendar year 2018.  Without this rule, admissions in this dataset that occurred on the last date in the dataset (i.e. December 31, 2018) could be flagged as index admissions but would never have an associated readmission because the data does not exist.  As a result the readmission measure for the month of December 2018 would be artificially low (there would be a typical number of index admissions but fewer than typical readmissions simply because the data does not exist).
 
-## Planned Admission Algorithm
+### Planned Admission Algorithm
 
 The planned readmission algorithm is used to exclude planned admissions from being flagged as readmissions in the Hospital-wide Measure. Terminology datasets #4-7 are used in this algorithm.
 
@@ -178,7 +175,7 @@ Here is a diagram of the algorithm:
 
 ![Planned Admission Algorithm](/img/readmissions/planned_admission_algorithm.png)
 
-## Unplanned Readmission Algorithm
+### Unplanned Readmission Algorithm
 
 An admission that occurs within 30 days of an index admission is considered a readmission if it meets the criteria below:
 
@@ -196,9 +193,11 @@ In a chain of readmissions, where two or more unplanned readmissions follow an i
 
 ![Unplanned Readmission 2](/img/readmissions/unplanned_readmission_2.png)
 
-## Example
+## Readmission Analytics
 
 Doing proper readmission analytics or building a readmission machine learning model is a complex task.  But with the Tuva Project the key data elements you need are all available in a few tables.
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/5pA-gm94PyU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Querying the Readmission DAG
 
