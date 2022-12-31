@@ -15,7 +15,7 @@ const sidebars = {
         {
           type: "category",
           label: "Core Concepts",
-          items: ["core-concepts/medications"]
+          items: ["core-concepts/overview","core-concepts/medications"]
         },
         {
           type: "category",
