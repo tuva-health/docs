@@ -14,6 +14,11 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Core Concepts",
+          items: ["core-concepts/medications"]
+        },
+        {
+          type: "category",
           label: "Measures",
           items: ["readmissions"]
         },
