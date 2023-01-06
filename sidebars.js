@@ -14,8 +14,8 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Core Concepts",
-          items: ["core-concepts/overview","core-concepts/medications"]
+          label: "Claims Data Concepts",
+          items: ["claims-data-concepts/overview","claims-data-concepts/patients","claims-data-concepts/medications"]
         },
         {
           type: "category",
