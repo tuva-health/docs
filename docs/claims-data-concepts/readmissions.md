@@ -1,8 +1,12 @@
 ---
 id: readmissions
-title: "Hospital Readmissions"
+title: "Readmissions"
 ---
-# Readmissions
+## Key Questions
+
+- How do you calculate hospital readmissions from claims data?
+- What data quality issues can impair our ability to calculate hospital readmissions?
+- What is the best way to analyze hospital readmissions?
 
 ## Overview
 
