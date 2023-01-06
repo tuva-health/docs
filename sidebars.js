@@ -15,13 +15,18 @@ const sidebars = {
         {
           type: "category",
           label: "Claims Data Concepts",
-          items: ["claims-data-concepts/overview","claims-data-concepts/patients","claims-data-concepts/medications"]
+          items: ["claims-data-concepts/overview",
+          {
+            type: "category",
+            label: "Hospital Measures",
+            items: ["claims-data-concepts/mortality","claims-data-concepts/readmissions"]
+          },
+                  "claims-data-concepts/medications",
+                  "claims-data-concepts/patient-demographics"
+
+                ]
         },
-        {
-          type: "category",
-          label: "Measures",
-          items: ["readmissions"]
-        },
+
         {
           type: "category",
           label: "Tuva Project Data Models",
