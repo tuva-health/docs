@@ -5,9 +5,9 @@ title: "Mortality"
 Mortality is one of the most important measures in healthcare.  It’s the primary end-point for the majority of real-world evidence and epidemiological studies for diseases like cancer and neurodegeneration.  It’s also used in numerous measures and benchmarks of hospital quality.
 
 ## Key Questions
-- How do you calculate mortality from claims data?
-- What data quality issues impact our ability to calculate mortality?
-- What is the best way to analyze mortality rates?
+- How do you calculate mortality for a population of patients.
+- How often do patients die more than once?
+- What percent of total deaths are captured by claims data?
 
 ## How to Calculate
 The basis of any mortality measure is having sound data about which patients died, when they died, and what they died from.
