@@ -2,9 +2,19 @@
 id: medications
 title: "Medications"
 ---
-The most important piece of information included on pharmacy claims is the information about the actual medication being prescribed.  The National Drug Code (NDC) on a pharmacy claim describes the actual drug being prescribed.  NDC is a complex data element so we will spend some time describing it here.
+Prescription drug data plays a vitally important role in healthcare economics and outcomes research and all parts of the drug development and commercialization pipeline.  It also plays an important role in value-based care organizations looking to improve patient treatment regimens and adherence to optimze cost and outcomes.
+
+Pharmacy claims include lots of granular information on the type of prescription drugs and supplies that have been filled by retail pharmacies for patients.  However, analyzing medications from pharmacy claims usually requires classifying drugs into higher-level drug classes using drug terminologies.
+
+## Key Questions
+
+- How do you identify all the drugs that treat a given disease (e.g. Alzheimer's)?
+- How do you identify all the drugs with a particular mechanism of action (e.g. breast cancer drugs which target the HER2 receptor)?
+- Given a list of drugs (e.g. a list of drugs that treat hypertension), which terminology set should you use to create a value set that can be joined to pharmacy_claim to identify patients that have received one or more of these drugs?
 
 ## National Drug Codes
+
+The most important piece of information included on pharmacy claims is the information about the actual medication being prescribed.  The National Drug Code (NDC) on a pharmacy claim describes the actual drug being prescribed.  NDC is a complex data element so we will spend some time describing it here.
 
 The NDC code set was first introduced in 1972 by the U.S. Food and Drug Administration (FDA).  The original NDC consisted of 10 digits broken up into 3 segments:
 
@@ -37,25 +47,22 @@ The latter is included because retail pharmacies often sell and bill health insu
 
 Another thing that makes NDC a complex data element to work with is that there are often many NDCs for the same drug or active ingredient.  So answering a question like “which patients have received Drug X?” often requires looking up dozens of NDCs.  
 
-## Other Drug Terminologies
+## Drug Terminologies
 
 Because of these complexities, if you’re doing analytics on pharmacy claims, the typical approach is to map NDC to other drug classification terminologies and use these other terminologies for analytics.  There are many open source and closed source drug terminologies.  For example:
 
-- RxNorm - NLM - open source
-- Anatomical Therapeutic Chemical (ATC) - WHO - open source
-- Multum - Oracle (Cerner) - closed source
-- GPI - Woulters Kluwer Medi-span - closed source
-- Micromedex - IBM (Thomson) not sure where this is at now - closed source
+| Drug Terminology | Organization | Open or Closed |
+|---|---|---|
+|[NDC](https://www.fda.gov/drugs/development-approval-process-drugs/national-drug-code-database-background-information)|FDA|Open|
+|[RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/index.html)|NLM|Open|
+|[Anatomical Therapeutic Chemical (ATC)](https://www.who.int/tools/atc-ddd-toolkit/atc-classification)|WHO|Open|
+|[Multum](https://www.cerner.com/solutions/drug-database)|Cerner (Oracle)|Closed|
+|[GPI](https://www.wolterskluwer.com/en/solutions/medi-span/about/gpi)|Medi-span (Woulters Kluwer)|Closed|
+|[Micromedex](https://www.ibm.com/watson-health/about/micromedex)|IBM (not sure who owns this now)|Closed|
 
 All of these drug terminologies map to NDC.  The success of these mappings largely depends on the quality of the source data (some of the papers in the reference section below described the mapping success rate of different terminologies).
 
 **Quick Aside:** It should be noted that most (all?) of these drug terminologies are actually ontologies - which one can think of as multiple terminologies with mappings between them.  For example: any grouper that uses a hierarchy is an ontology.
-
-## Use Cases
-
-- Analyzing Prescription Drug Spend - what brand drugs are driving spend that have generic substitutes?
-- Analyzing Medication Adherence and Gaps - stratify and identify patients that need help
-- Patient Medication History — list of drugs, class, generic, first, last, total count
 
 ## References
 

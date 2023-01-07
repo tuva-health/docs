@@ -1,6 +1,6 @@
 ---
 id: adjustments-and-reversals
-title: "Claims Adjustments, Denials, and Reversals"
+title: "Adjustments, Denials, and Reversals"
 ---
 ## Key Questions
 - What are the different scenarios for how adjustments, denials, and reversals appear in claims data?
