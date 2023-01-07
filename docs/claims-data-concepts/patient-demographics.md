@@ -101,3 +101,11 @@ from patients
 group by 1
 having count(1) > 1
 ```
+
+## Gender
+
+- Do any patients have more than one gender?
+    - For patients w/ more than one gender, is there evidence of gender-reassignment surgery?
+    - For patients w/ more than one gender, do diagnosis and/or procedure codes provide clues as to the correct gender?
+
+## Race
