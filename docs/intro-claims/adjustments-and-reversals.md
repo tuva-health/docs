@@ -2,6 +2,12 @@
 id: adjustments-and-reversals
 title: "Claims Adjustments, Denials, and Reversals"
 ---
+## Key Questions
+- What are the different scenarios for how adjustments, denials, and reversals appear in claims data?
+- How can we identify adjustments, denials, and reversals in claims data?
+- How do you calculate adjustment, denial, and reversal rates in a claims data?
+- What adjustment, denial, and reversal rates are typical in a claims dataset?
+
 ## Overview
 Raw healthcare claims data is often messy and suffers from many data quality issues, which impact analytics.  One of the most common types of issues is dealing with claims adjustments, denials, and reversals that are often hidden in raw claims datasets.  
 

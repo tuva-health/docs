@@ -18,6 +18,11 @@ const sidebars = {
           items: ["claims-data-concepts/overview",
           {
             type: "category",
+            label: "Encounters",
+            items: ["claims-data-concepts/acute-inpatient","claims-data-concepts/emergency-department"]
+          },
+          {
+            type: "category",
             label: "Hospital Measures",
             items: ["claims-data-concepts/mortality","claims-data-concepts/readmissions"]
           },
