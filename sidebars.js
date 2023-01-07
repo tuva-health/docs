@@ -35,6 +35,7 @@ const sidebars = {
         "claims-data-concepts/medications",
         "claims-data-concepts/member-months",
         "claims-data-concepts/patient-demographics",
+        "claims-data-concepts/pmpm",
         "claims-data-concepts/providers"
         ]
       },
