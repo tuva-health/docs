@@ -61,7 +61,11 @@ const sidebars = {
           },
           "the-tuva-project/terminology"]
       },
-      "how-to-contribute"   
+      {
+        type: "category",
+        label: "How to Contribute",
+        items: ["how-to-contribute/building-knowledge","how-to-contribute/edit-github"]
+      },  
           ],
         };
 
