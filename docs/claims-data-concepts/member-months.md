@@ -8,3 +8,4 @@ The eligible/enrolled population of patients in a given health insurance plan is
 
 - How do you calculate member months?
 - How do you identify patients with overlapping enrollment spans?
+- How do calculate monthly churn rate (i.e. rate of members leaving a health plan)?
