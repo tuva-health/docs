@@ -7,11 +7,3 @@ Hospice is a type of care that patients can receive when they have a terminal di
 ## Key Questions
 - How do you identify patients that are (or have been) in hospice?
 - Can you predict which patients are good candidates for hospice care?
-
-## How to Calculate
-
-## Data Quality Issues
-
-## How to Analyze
-
-## References
