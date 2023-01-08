@@ -12,9 +12,9 @@ Mortality is one of the most important measures in healthcare.  It’s the prima
 ## How to Calculate
 The basis of any mortality measure is having sound data about which patients died, when they died, and what they died from.
 
-There are two places death information may be found in claims data.  Death information is sometimes included in eligibility and enrollment information.  In the Tuva Claims CDM this includes death_date and death_flag fields in the eligibility table.  However, death data from eligibility information is notoriously incomplete and inaccurate.
+There are two places death information may be found in claims data.  Death information is sometimes included in eligibility and enrollment information.  In the Tuva Claims Data Model (CDM), this includes death_date and death_flag fields in the eligibility table.  However, death data from eligibility information is notoriously incomplete and inaccurate.
 
-The more commonly used place to The second place you can find death information is in the medical claims data.  Every inpatient medical claim is required to have a discharge_disposition_code.  A discharge_disposition_code = 20 corresponds to a patient that died.  
+The second place you can find death information is in the medical claims data (i.e. medical_claim in the CDM).  Every inpatient medical claim is required to have a discharge_disposition_code.  discharge_disposition_code = 20 corresponds to a patient that died.  This information  
 
 Unfortunately these two sources of information often do not agree.
 
