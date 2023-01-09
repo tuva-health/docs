@@ -7,7 +7,7 @@ Individual provider and facility information is encoded in claims via National P
 ## Key Questions
 
 - Can physicians or facilities have more than one NPI?
-- Are the rendering, billing, and facility NPIs in my claims dataset are valid?
+- Are the rendering, billing, and facility NPIs in my claims dataset are missing or invalid?
 - Which specialties and sub-specialties does my patient population see most frequently?
 - How do you attribute patients to a primary care provider?
 - How do you attribute patients to a provider during inpatient visits? [^1]
