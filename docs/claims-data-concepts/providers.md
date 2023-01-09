@@ -2,7 +2,7 @@
 id: providers
 title: "Providers"
 ---
-Individual provider and facility information is encoded in claims via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
+Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
 
 ## Key Questions
 
