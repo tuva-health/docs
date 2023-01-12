@@ -6,7 +6,7 @@ The CMS Chronic Conditions data mart implements the CMS Chronic Condition groupe
 
 While implementing the CMS Chronic Condition logic we encountered several issues.  First, some of the condition categories aren't particularly specific.  For example, the condition category "Diabetes" includes both Type 1 and Type 2 Diabetes, which doesn't make a ton of sense given the heterogeneity in the underlying pathology of these two diseases (i.e. one is an autoimmune disease while the other is a metabolic diseaese).  Second, several of the condition categories are not mutually exclusive.  For example, schizophrenia is found in multiple condition categories.  
 
-Both of these issues are troubling because the point of any grouper is to group patients into homogeneous cohorts to enable "apples-to-apples" comparisons and analytics.  We decided to keep this grouper as part of the Tuva Project, since it's a standard grouper used by many people doing healthcare analytics.  But we also decided to develop our own chronic disease grouper data mart ([Tuva Chronic Conditions](tuva-chronic-conditions.md)) with more precise and mutually exclusive categories.
+Both of these issues are troubling because the point of any grouper is to group patients into homogeneous cohorts to enable "apples-to-apples" comparisons and analytics.  We decided to keep this grouper as part of the Tuva Project, since it's a standard grouper used by many people doing healthcare analytics.  But we also decided to develop our own chronic disease grouper data mart with more precise and mutually exclusive categories.
 
 There are two main output tables created by this data mart:
 
