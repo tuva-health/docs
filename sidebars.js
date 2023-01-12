@@ -30,20 +30,20 @@ const sidebars = {
         type: "category",
         label: "Claims Data Analytics",
         items: ["analytics/overview",
-                {
-                  type: "category",
-                  label: "Claims Data Model",
-                  items: ["analytics/claims-data-model/eligibility",
-                          "analytics/claims-data-model/medical-claim",
-                          "analytics/claims-data-model/pharmacy-claim"]
-                },
                 "analytics/claims-data-profiling",
                 "analytics/claims-preprocessing",
                 "analytics/chronic-conditions",
                 "analytics/pmpm",
-                "analytics/readmissions",
-                "analytics/terminology"
+                "analytics/readmissions"
               ]
+      },
+      {
+        type: "category",
+        label: "Building a Claims Data Warehouse",
+        items: ["claims-data-warehouse/overview", 
+                "claims-data-warehouse/ingestion",
+                "claims-data-warehouse/mapping",
+                "claims-data-warehouse/maintenance",]
       },
       {
         type: "category",

@@ -2,13 +2,19 @@
 id: how-claims-are-paid
 title: "How Claims Are Paid"
 ---
-## Key Questions
+Providers have contractual arrangements with health insurers that dictate how they are paid.  These terms vary by provider and by type of provider.  For example, a physician treating patients in a clinic is likely billing insurers using a CMS-1500 claim form and receiving payment for each HCPCS code they bill.  These codes are at the line-level of the CMS-1500 claim form, and therefore it's common  to see multiple payments on this sort of claim.  On the other hand, an acute care hospital will bill insurers using a UB-04 claim form and will be paid by insurers on a DRG (diagnosis related grouper).  The DRG is at the header-level, and therefore it's common to see one payment per claim.
+
+Nuances such as these in how claims are paid can dramatically impact how you perform spend analytics and therefore it's important to understand them in detail.  We go over these nuances in this section, along with a detailed look at claims adjustments, denials, and reversals, which can also significantly impact analysis and results.
+
+## Adjustments, Denials, and Reversals
+
+**Key Questions:**
+
 - What are the different scenarios for how adjustments, denials, and reversals appear in claims data?
 - How can we identify adjustments, denials, and reversals in claims data?
 - How do you calculate adjustment, denial, and reversal rates in a claims data?
 - What adjustment, denial, and reversal rates are typical in a claims dataset?
 
-## Overview
 Raw healthcare claims data is often messy and suffers from many data quality issues, which impact analytics.  One of the most common types of issues is dealing with claims adjustments, denials, and reversals that are often hidden in raw claims datasets.  
 
 Given a healthcare claims dataset, there are likely to be original, denied, reversed, and adjusted claims in the dataset.  Claims reversals and adjustments occur because payers allow providers to re-submit claims that have been submitted in error (e.g. wrong service was billed).  The result is often multiple claims for the same encounter are billed for different services and/or paid amounts.  Denied claims occur because the claim failed to pass some adjudication check performed by the payer.  The result is claims for services that may not have actually occurred.
@@ -27,7 +33,7 @@ Claims adjustments and reversals may not be obvious or easy to identify in raw c
 
 In our experience working across dozens of healthcare claims datasets, each scenario is equally common.
 
-## An Example
+### An Example
 
 It’s easiest to illustrate how claim adjustments and reversals manifest by looking at an example using sample data.  This fictitious example follows the third scenario (mentioned above), where a mix of old and new claim IDs are used.  
 
@@ -66,7 +72,7 @@ Simultaneously a new claim_id and claim_line_number is created for the adjustmen
 - paid_amount: The new paid amount is $200, reflecting a higher-severity HCPCS code and urgent care setting
 - paid_date: The paid date reflects the date the adjusted payment was transacted
 
-## Impact on Analytics
+### Impact on Analytics
 
 In an ideal world, all healthcare analytics should be based on a claims dataset that represents the true set of services rendered by the provider to the patient and payments rendered by the health insurer to the provider.  However, unless you account and correct for claims adjustments and reversals in raw claims data, you are including records in your analysis for services that may never have been delivered.  The problem with downstream analytics is much more on the utilization side than on the payments side.
 
@@ -80,7 +86,7 @@ However, the impact on utilization analytics is not as straightforward.  In the 
 
 This has serious consequences for utilization analytics and also impacts payment analytics if we want to analyze payments by care setting.  For example, suppose we are interested in looking at spend across different care settings, e.g., acute inpatient, inpatient rehab, emergency department, urgent care, and office visit.  Without properly identifying and correcting claims adjustments and reversals we won’t be able to bucket spend or number of visits in the appropriate category.
 
-## Identifying Adjustments and Reversals
+### Identifying Adjustments and Reversals
 
 As discussed above, there are generally 3 scenarios for how adjustments and reversals are generated in raw claims data.  The method used to identify adjustments and reversals depends on how adjustments and reversals are generated in the raw claims data.  
 

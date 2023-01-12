@@ -1,6 +1,6 @@
 ---
 id: terminology
-title: "Terminology"
+title: "TERMINOLOGY"
 ---
 Click [here](https://github.com/tuva-health/terminology) to navigate to the Terminology Repo on GitHub.
 
