@@ -1,6 +1,6 @@
 ---
-id: medications
-title: "Medications"
+id: prescription-drugs
+title: "Prescription Drugs"
 ---
 Prescription drug data plays a vitally important role in healthcare economics and outcomes research and all parts of the drug development and commercialization pipeline.  It also plays an important role in value-based care organizations looking to improve patient treatment regimens and adherence to optimze cost and outcomes.
 
