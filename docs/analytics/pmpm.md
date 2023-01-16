@@ -9,7 +9,7 @@ The PMPM data mart outputs a single data table called pmpm_builder.
 ## PMPM Builder
 
 ### Description
-The readmission summary table is the output table from the readmissions data mart.  It contains all the columns needed to do hospital readmission analytics in a single table.
+The `pmpm_builder` table is the output table from the `pmpm` data mart.  It contains all the columns needed to do spend and utilization analytics in a single table.
 
 ### Data Dictionary
 | Column Name | Data Type | Normalized Terminology | Description |
