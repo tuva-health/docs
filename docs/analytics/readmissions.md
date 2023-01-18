@@ -2,26 +2,28 @@
 id: readmissions
 title: "Readmissions"
 ---
+
+In this section we provide an overview of the methodology for calculating hospital readmissions and examples of how to do proper readmission analytics.
+
 ## Key Questions
 
 - How do you calculate hospital readmissions from claims data?
 - What data quality issues can impair our ability to calculate hospital readmissions?
-- What is a typical hospital readmission rate?
 
 ## Overview
 
 Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.  Here we provide a general overview of how to calculate a hospital readmission measure.
 
-<iframe width="800" height="500" src="https://www.youtube.com/embed/TCG_QCb63n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="750" height="500" src="https://www.youtube.com/embed/TCG_QCb63n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-There are many different ways to define hospital readmission measures.  However every readmission measure is built on two underlying concepts: the index admission and the readmission.  An index admission is a hospitalization that should be used in the calculation of a readmission measure. There are hospitalizations that will not be index admissions and will therefore not be used to calculate readmission measures. For example, if a patient dies in a hospitalization, that hospitalization will not be an index admission, since it can’t have a readmission. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.
+There are many different ways to define hospital readmission measures.  However every readmission measure is built on two underlying concepts: the index admission and the readmission.  The index admission is a hospitalization that qualifies to be included in the readmission measure. Not all hospitalizations will meet the criteria to be index admissions and will therefore not be included in the readmission measure. For example, if a patient dies during a hospitalization, that hospitalization will not be an index admission, and will not be included in the readmission measure. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.  We explain each piece of logic further below.
 
 To better understand these fundamental concepts, it is helpful to think of building a readmission measure as follows:
 
 1. Start with a data table of inpatient admissions, one record per admission.
 2. Use logic (defined further below) to compute two additional columns which you append to this table:
-    a. The first column (index_admit_flag) is a binary variable that indicates whether each inpatient admission qualifies as an index admission.
-    b. The second column (readmit_flag) is a binary variable that indicates whether each inpatient admission had a subsequent admission that qualifies as a readmission. 
+    * The first column (index_admit_flag) is a binary variable that indicates whether each inpatient admission qualifies as an index admission.
+    * The second column (readmit_flag) is a binary variable that indicates whether each inpatient admission had a subsequent admission that qualifies as a readmission. 
 
 ![Readmission Table](/img/readmissions/readmit_table.png)
 
@@ -29,9 +31,177 @@ The index admission (index_admit_flag) and readmission (readmit_flag) are then u
 
 ![Example Readmission Rate](/img/readmissions/example_readmission_rate_calc.png)
 
-## CMS Readmission Measures
+## Analytics
 
-The different definitions of readmission measures are simply variations in the inclusion and/or exclusion criteria that defines the index_admit_flag and the readmit_flag.  The most commonly used readmission measures are the CMS readmission measures.
+Doing proper readmission analytics or building a readmission machine learning model is a complex task.  The Tuva Project implements the CMS Hospital-wide Readmission Measure on your data.
+
+### Data Model
+
+The Tuva Project readmission data mart has two main output tables that are useful to query.
+
+- **readmission_summary:** This table contains 1 record for each inpatient hospital visit that qualifies as an index admission.  This is the main table you should query for readmission-related analytics.
+
+- **encounter_augmented:** This table includes all inpatient hospital visits, including those that do not qualify as index admissions.  It includes columns that specify whether each encounter suffered from various data quality issues.
+
+You can find more information about the readmissions data model in the Tuva Project [Docs](https://tuva-health.github.io/the_tuva_project/#!/overview).
+
+### Identifying Data Quality Issues
+There are several types of data quality issues that can prevent a hospitalization from qualifying as an index admission or from being part of a readmission measure.  Data quality checks for these issues are built into the Tuva Project's readmission mart.  The query below reports the total number of inpatient encounters and the number of encounters that fail any particular data quality check.
+
+```sql
+-- readmission data quality issues
+with dq_stats as (
+select 
+    cast(count(1) as int) as total_encounters
+,   cast(sum(disqualified_encounter_flag) as int) as disqualified_encounters
+,   cast(sum(missing_admit_date_flag) as int) as missing_admit_date
+,   cast(sum(missing_discharge_date_flag) as int) as missing_discharge_date
+,   cast(sum(admit_after_discharge_flag) as int) as admit_after_discharge_date
+,   cast(sum(missing_discharge_disposition_code_flag) as int) as missing_discharge_disposition
+,   cast(sum(invalid_discharge_disposition_code_flag) as int) as invalid_discharge_disposition
+,   cast(sum(missing_primary_diagnosis_flag) as int) as missing_primary_diagnosis
+,   cast(sum(multiple_primary_diagnoses_flag) as int) as multiple_primary_diagnoses
+,   cast(sum(invalid_primary_diagnosis_code_flag) as int) as invalid_primary_diagnosis
+,   cast(sum(no_diagnosis_ccs_flag) as int) as no_diagnosis_ccs
+,   cast(sum(overlaps_with_another_encounter_flag) as int) as overlapping_encounter
+,   cast(sum(missing_ms_drg_flag) as int) as missing_ms_drg
+,   cast(sum(invalid_ms_drg_flag) as int) as invalid_ms_drg
+from readmissions.encounter_augmented
+)
+select 
+    measure
+,   number_of_encounters
+from dq_stats
+unpivot(number_of_encounters for measure in (total_encounters,
+                                     disqualified_encounters,
+                                     missing_admit_date,
+                                     missing_discharge_date,
+                                     admit_after_discharge_date,
+                                     missing_discharge_disposition,
+                                     invalid_discharge_disposition,
+                                     missing_primary_diagnosis,
+                                     multiple_primary_diagnoses,
+                                     invalid_primary_diagnosis,
+                                     no_diagnosis_ccs,
+                                     overlapping_encounter,
+                                     missing_ms_drg,
+                                     invalid_ms_drg                                     
+                                    ))
+;
+```
+The following is example output from this query from the Tuva Claims Demo dataset.  You can see there are a total of 223 inpatient encounters in the dataset, 79 of which are excluded from readmission analytics due to data quality issues.  You can then see the specific reasons for the exclusion (i.e. missing primary diagnosis and overlapping encounter).
+
+![The Tuva Project](/img/readmissions/data_quality_issues.jpg)
+
+### Basic Readmission Statistics
+Here we demonstrate how to calculate basic statistics related to readmissions.
+
+```sql
+-- Simple readmission statistics
+select 
+    1 as id
+,   'Index Admissions' as measure
+,   count(1) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1
+
+union
+
+select 
+    2 as id
+,   'Unplanned 30-day Readmissions' as measure
+,   count(1) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+    
+union
+
+select 
+    3 as id
+,   'Avg Days to Readmission' as measure
+,   avg(days_to_readmit) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+
+union
+
+select 
+    4 as id
+,   'Readmission Avg Length of Stay' as measure
+,   avg(readmission_length_of_stay) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+    
+union
+
+select 
+    5 as id
+,   'Readmission Mortalities' as measure
+,   sum(died_flag) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+    
+union
+
+select 
+    6 as id
+,   'Readmission Avg Paid Amount' as measure
+,   cast(avg(paid_amount) as numeric(38,0)) as value
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+order by 1
+;
+```
+The following output is obtained by running the above query on the Tuva Claims Demo dataset.
+
+![The Tuva Project](/img/readmissions/basic_stats.jpg)
+
+### Trending Readmission Rate
+Another common analytics use case is trending the readmission rate over time, typically by month.  
+
+```sql
+-- readmission rate by month
+with index_admissions as (
+select
+    date_part(year, discharge_date) || '-' || lpad(date_part(month, discharge_date),2,0) as year_month
+,   count(1) as index_admissions
+from readmissions.readmission_summary
+where index_admission_flag = 1
+group by 1
+)
+
+, readmissions as (
+select 
+    date_part(year, discharge_date) || '-' || lpad(date_part(month, discharge_date),2,0) as year_month
+,   count(1) as readmissions
+from readmissions.readmission_summary
+where index_admission_flag = 1 
+    and unplanned_readmit_30_flag = 1
+group by 1
+)
+
+select
+    a.year_month
+,   a.index_admissions
+,   coalesce(b.readmissions,0) as readmissions
+,   cast(coalesce(b.readmissions,0) / a.index_admissions as numeric(38,2)) as readmission_rate
+from index_admissions a
+left join readmissions b
+    on a.year_month = b.year_month
+order by 1
+;
+```
+The following output is generated by running the above query on the Tuva Claims Demo dataset.  The results are sparse for this dataset (there are only 5 total readmissions) but you can get a sense of the structure of the table and how you might use it against your data.
+![The Tuva Project](/img/readmissions/readmission_rate_monthly.jpg)
+
+## Methodology
+
+The different definitions of readmission measures are simply variations in the inclusion and/or exclusion criteria that define the index_admit_flag and the readmit_flag.  The most commonly used readmission measures are the CMS readmission measures.
 
 There are 7 such measures grouped into 3 categories:
 
@@ -197,28 +367,3 @@ In a chain of readmissions, where two or more unplanned readmissions follow an i
 
 ![Unplanned Readmission 2](/img/readmissions/unplanned_readmission_2.png)
 
-## Readmission Analytics
-
-Doing proper readmission analytics or building a readmission machine learning model is a complex task.  But with the Tuva Project the key data elements you need are all available in a few tables.
-
-<iframe width="800" height="500" src="https://www.youtube.com/embed/5pA-gm94PyU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### Querying the Readmission DAG
-
-The Tuva Project readmission mart creates several tables/views in your data warehouse.  Many of these tables are intermediate tables, i.e. tables that are part of the data transformation pipeline but aren't designed to query for analysis.  The tables that are designed to query for analytics are called output tables and there are 3 main output tables:
-- encounter_augmented: lists all acute inpatient encounters with fields that give extra information about the encounter (e.g. length_of_stay, index_admission_flag, planned_flag, specialty_cohort, etc.), as well as data quality flags.
-- readmission_summary: lists all encounters that are not discarded due to data quality problems, together with fields giving extra information about the encounter and it's associated readmission (if the encounter had a readmission).
-- encounter_data_quality: lists potential data quality issues with every inpatient encounter in the dataset.  Encounters that are disqualified from being used in the readmissions analysis due to data quality issues have disqualified_encounter_flag = 1.Other columns in this table give a more granular view of which data quality problems are present for a given encounter.
-
-To calculate the 30-day readmission rate you must count how many rows in the readmission_symmary table were index admissions that had an unplanned 30-day readmission and divide that by the number of rows in that table that were index admissions:
-
-```
-select 
-(select count(*)
- from readmission_summary
- where index_admission_flag = 1 and unplanned_readmit_30_flag = 1)
-/
-(select count(*)
- from readmission_summary
- where index_admission_flag = 1)
-```
