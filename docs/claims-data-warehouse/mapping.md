@@ -1,4 +1,0 @@
----
-id: mapping
-title: "Mapping"
----

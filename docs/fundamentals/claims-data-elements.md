@@ -1,6 +1,6 @@
 ---
 id: claims-data-elements
-title: "Claims Forms and Data Elements"
+title: "Data Elements and Forms"
 ---
 ## Claim Forms
 
