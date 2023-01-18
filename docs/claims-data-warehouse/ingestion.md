@@ -1,4 +1,4 @@
 ---
-id: ingestion
-title: "Ingestion"
+id: setup
+title: "Setup"
 ---

@@ -15,13 +15,6 @@ const sidebars = {
                 "fundamentals/how-claims-are-paid",
                 "fundamentals/enrollment-member-months",
                 "fundamentals/encounters",
-                {
-                  type: "category",
-                  label: "Measures",
-                  items: ["fundamentals/pmpm",
-                          "fundamentals/mortality",
-                          "fundamentals/readmissions"]
-                },
                 "fundamentals/prescription-drugs",
                 "fundamentals/providers"
               ]
@@ -30,19 +23,19 @@ const sidebars = {
         type: "category",
         label: "Claims Data Analytics",
         items: ["analytics/overview",
-                "analytics/claims-data-profiling",
-                "analytics/claims-preprocessing",
                 "analytics/chronic-conditions",
-                "analytics/pmpm",
-                "analytics/readmissions"
+                "analytics/data-profiling",
+                "analytics/mortality",
+                "analytics/patient-demographics",
+                "analytics/readmissions",
+                "analytics/spend-and-utilization",
               ]
       },
       {
         type: "category",
-        label: "Building a Claims Data Warehouse",
-        items: ["claims-data-warehouse/overview", 
-                "claims-data-warehouse/ingestion",
-                "claims-data-warehouse/mapping",
+        label: "Claims Data Warehousing",
+        items: ["claims-data-warehouse/architecture", 
+                "claims-data-warehouse/setup",
                 "claims-data-warehouse/maintenance",]
       },
       {

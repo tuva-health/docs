@@ -1,4 +1,4 @@
 ---
-id: overview
-title: "Overview"
+id: architecture
+title: "Architecture"
 ---
