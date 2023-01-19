@@ -4,9 +4,7 @@ title: "Spend and Utilization"
 ---
 ## Key Questions
 
-- How do you calculate member months?
-- How do you identify patients with overlapping enrollment spans?
-- How do calculate monthly churn rate (i.e. rate of members leaving a health plan)?
-- How should a claim be attributed to a member month?  Is claim_start_date better than claim_end_date?
+- How should a claim be attributed to a member month?  Is it better to use claim_start_date or claim_end_date?
 - How do you calculate total PMPM and PMPM broken out by medical and pharmacy claims?
-- How do you calculate PMPM rates for acute inpatient and emergency department visits?
+- How do you calculate utilization rates for acute inpatient and emergency department visits?
+- How do spend and utilization rates vary for patients with different chronic conditions?
