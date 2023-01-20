@@ -34,8 +34,9 @@ const sidebars = {
       {
         type: "category",
         label: "Claims Data Warehousing",
-        items: ["claims-data-warehouse/architecture", 
-                "claims-data-warehouse/setup",
+        items: ["claims-data-warehouse/platform-architecture", 
+                "claims-data-warehouse/data-acquisition",
+                "claims-data-warehouse/mapping-guide",
                 "claims-data-warehouse/maintenance",]
       },
       {
