@@ -6,10 +6,9 @@ The eligible/enrolled population of patients in a given health insurance plan is
 
 ## Key Questions
 - How do you calculate member months?
-- How do you identify patients with overlapping enrollment spans?
 - What data quality problems can affect member month calculations?
-- How do you calculate monthly churn rate (i.e. rate of members leaving a health plan)?
 - What types of metrics use member months as a basis?
+- How do you calculate monthly churn rate (i.e. rate of members leaving a health plan)?
 
 ## How to Calculate
 Sometimes claims data comes from health insurers with member months already included. In this case you don’t have to create them. It would come in a file or table with one record per member per month. Already done? Yay!!!
@@ -28,13 +27,13 @@ In order to ensure correct member months, you have to take into account possible
 - Missing the plan information on enrollment data.
 
 Once you have calculated member months based on quality tested enrollment data, it's a good idea to check for some basic structure in the member months table. You want to check that there's one record per member per month per plan in the data table. 
-The tuva project includes the pmpm package which builds a member month table for you. Using this table as your member month table, you can run the following query to check that the data is in this structure. (Note: We've assumed for simplicity that there is just one plan in the data.)
+The tuva project includes the pmpm package which builds a member month table for you, taking into account all these possible data quality issues at the enrollment level. Based on this tuva project member month table, you can run the following query to check that the data is in the correct structure for futher analysis. This query should return zero records if your data is in the correct structure. (Note: We've assumed for simplicity that there is just one plan in the data.)
 
 ```sql
 select 
     year_month
     ,patient_id
-from pmpm.intermediate_member_months
+from tuva_claims_demo_full.pmpm.intermediate_member_months
 group by 
     year_month
     ,patient_id
@@ -42,36 +41,43 @@ having count(patient_id) > 1;
 ```
 
 ## Analytics
+Many healthcare metrics are normalized using member months. Usually you'll see spend metrics using member months directly as a denominator in per member per month calculations (pmpm), broken out by different dimensions such as encounter type or different types of patient population. The other type of metric you'll see using member months are utilization metrics denoted as something like utilization per 1000 lives covered. Lives covered are equivalent to 12 member months for a year. So if you had 2 patients who each were covered in a plan for 6 months of the year, you would have the equivalent of 1 life covered for that year. Utilization metrics range from radiology imaging per 1000 lives to office visits or even flu shots per thousand lives. Any service or procedure provided by the healthcare system that can be counted can be normalized using this 1000 lives denonminator. Look in the PMPM section of Knowledge Base to learn more about analyzing pmpm and utilization metrics.
 ### Trending Member Months 
-Based on the tuva project member month table you can run the following query to produce a trend over time of member month counts per month.
+It is also useful to look at member months directly to analyze plan membership trends. Based on the tuva project member month table you can run the following query to produce a trend over time of member month counts per month.
 ```sql
 select 
     year_month
     ,count(patient_id)
-from pmpm.intermediate_member_months
+from tuva_claims_demo_full.pmpm.intermediate_member_months
 group by year_month
 order by year_month;
 ```
+The following is example output from the above query run on the Tuva Claims Demo dataset:
 
-### Calculating Membership Churn Rates
-The basic churn rate calculation takes the difference between the number of patients enrolled in a plan at the beginning of a time period and the end of that time period and divides that difference by the number of patients in the plan at the beginning of the same time period. Using the tuva project member month table, you can run the following query to get a basic member churn rate per month. 
+![The Tuva Project](/img/member_months/plan_membership_trend_by_month.png)
+
+
+### Membership Growth Rate
+Adding the growth rate to the membership trend allows you to benchmark and monitor the growth rate to make sure it is reasonable or in line with projections, etc. The growth rate calculation takes the difference between the number of patients enrolled in a plan at the beginning of a time period and the end of that time period and divides that difference by the number of patients in the plan at the beginning of the same time period. Using the tuva project member month table, you can run the following query to get a basic member growth rate per month. 
 
 ```sql
 select 
     year_month
     ,count(patient_id) as cnt_patients
-    ,count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0) as overall_monthly_churn
-    ,round(100*(count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0))/count(patient_id),2) as overall_monthly_churn_rate
-from pmpm.intermediate_member_months
+    ,count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0) as overall_monthly_growth
+    ,round(100*(count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0))/count(patient_id),2)||'%' as overall_monthly_growth_rate
+from tuva_claims_demo_full.pmpm.intermediate_member_months
 group by year_month
-order by year_month
+order by year_month;
 ```
 
 The following is example output from the above query run on the Tuva Claims Demo dataset. You can see for each month the change in the number of patients in the plan and the rate of growth or decline.
 
-![The Tuva Project](/img/member_months/basic_churn_rate_calc.png)
+![The Tuva Project](/img/member_months/membership_growth_rate.png)
 
-The previous basic churn rate doesn't take into account cohorts, or in other words, specific patients staying in the plan over time or coming and going. It just shows directionally whether the plan is increasing or decreasing in membership over time. A more complete analysis of churn must look at how many patients left a plan and how many new patients are added to a plan during a time period so we can see whether high churn is being masked by high growth in membership at the same time. We may also want to see whether patients are leaving and then coming back, etc. To do this, we'll use window functions in sql and follow a few steps to get to a more complete picture. 
+### Churn and other Drivers of Membership Growth Rate
+
+The above membership growth rate doesn't take into account cohorts, or in other words, specific patients staying in the plan over time or coming and going. It just shows directionally whether the plan is increasing or decreasing in membership over time. A more complete analysis includes looking at how many patients left a plan and how many new patients are added to a plan during a time period so we can see whether high churn is being masked by high growth in membership at the same time. We may also want to see whether patients are leaving and then coming back, etc. To do this, we'll use window functions in sql and follow a few steps to analyze churn to get to a more complete picture. 
 
 Step 1: To make it simler to analyze over time, we'll associate simple integer time periods with each member month so we can add and subtract time periods easily. Below is a sample output of this first part of the query:
 
@@ -151,7 +157,6 @@ from distinct_member_months
     from previous_next_with_diffs
     group by 
         1,2,3,4,5
-    order by 1,2,3,4,5
 )
 --Step 4--
 select 
