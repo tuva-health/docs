@@ -1,4 +1,0 @@
----
-id: setup
-title: "Setup"
----
