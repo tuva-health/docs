@@ -2,77 +2,8 @@
 id: readmissions
 title: "Readmissions"
 ---
-## Key Questions
 
-- How do you calculate hospital readmissions from claims data?
-- What data quality issues can impair our ability to calculate hospital readmissions?
-
-
-
-## Analytics
-
-Doing proper readmission analytics or building a readmission machine learning model is a complex task.  The Tuva Project implements the CMS Hospital-wide Readmission Measure on your data.
-
-### Data Model
-
-The Tuva Project readmission data mart has two main output tables that are useful to query.
-
-- **readmission_summary:** This table contains 1 record for each inpatient hospital visit that qualifies as an index admission.  This is the main table you should query for readmission-related analytics.
-
-- **encounter_augmented:** This table includes all inpatient hospital visits, including those that do not qualify as index admissions.  It includes columns that specify whether each encounter suffered from various data quality issues.
-
-You can find more information about the readmissions data model in the Tuva Project [Docs](https://tuva-health.github.io/the_tuva_project/#!/overview).
-
-### Identifying Data Quality Issues
-There are several types of data quality issues that can prevent a hospitalization from qualifying as an index admission or from being part of a readmission measure.  Data quality checks for these issues are built into the Tuva Project's readmission mart.  The query below reports the total number of inpatient encounters and the number of encounters that fail any particular data quality check.
-
-```sql
--- readmission data quality issues
-with dq_stats as (
-select 
-    cast(count(1) as int) as total_encounters
-,   cast(sum(disqualified_encounter_flag) as int) as disqualified_encounters
-,   cast(sum(missing_admit_date_flag) as int) as missing_admit_date
-,   cast(sum(missing_discharge_date_flag) as int) as missing_discharge_date
-,   cast(sum(admit_after_discharge_flag) as int) as admit_after_discharge_date
-,   cast(sum(missing_discharge_disposition_code_flag) as int) as missing_discharge_disposition
-,   cast(sum(invalid_discharge_disposition_code_flag) as int) as invalid_discharge_disposition
-,   cast(sum(missing_primary_diagnosis_flag) as int) as missing_primary_diagnosis
-,   cast(sum(multiple_primary_diagnoses_flag) as int) as multiple_primary_diagnoses
-,   cast(sum(invalid_primary_diagnosis_code_flag) as int) as invalid_primary_diagnosis
-,   cast(sum(no_diagnosis_ccs_flag) as int) as no_diagnosis_ccs
-,   cast(sum(overlaps_with_another_encounter_flag) as int) as overlapping_encounter
-,   cast(sum(missing_ms_drg_flag) as int) as missing_ms_drg
-,   cast(sum(invalid_ms_drg_flag) as int) as invalid_ms_drg
-from readmissions.encounter_augmented
-)
-select 
-    measure
-,   number_of_encounters
-from dq_stats
-unpivot(number_of_encounters for measure in (total_encounters,
-                                     disqualified_encounters,
-                                     missing_admit_date,
-                                     missing_discharge_date,
-                                     admit_after_discharge_date,
-                                     missing_discharge_disposition,
-                                     invalid_discharge_disposition,
-                                     missing_primary_diagnosis,
-                                     multiple_primary_diagnoses,
-                                     invalid_primary_diagnosis,
-                                     no_diagnosis_ccs,
-                                     overlapping_encounter,
-                                     missing_ms_drg,
-                                     invalid_ms_drg                                     
-                                    ))
-;
-```
-The following is example output from this query from the Tuva Claims Demo dataset.  You can see there are a total of 223 inpatient encounters in the dataset, 79 of which are excluded from readmission analytics due to data quality issues.  You can then see the specific reasons for the exclusion (i.e. missing primary diagnosis and overlapping encounter).
-
-![The Tuva Project](/img/readmissions/data_quality_issues.jpg)
-
-### Basic Readmission Statistics
-Here we demonstrate how to calculate basic statistics related to readmissions.
+<details><summary>How do I calculate basic readmissin statistics for my patient population?</summary>
 
 ```sql
 -- Simple readmission statistics
@@ -133,14 +64,15 @@ from readmissions.readmission_summary
 where index_admission_flag = 1 
     and unplanned_readmit_30_flag = 1
 order by 1
-;
 ```
+
 The following output is obtained by running the above query on the Tuva Claims Demo dataset.
 
 ![The Tuva Project](/img/readmissions/basic_stats.jpg)
+</details>
 
-### Trending Readmission Rate
-Another common analytics use case is trending the readmission rate over time, typically by month.  
+
+<details><summary>How do I trend the hospital-wide readmission rate?</summary>
 
 ```sql
 -- readmission rate by month
@@ -172,10 +104,62 @@ from index_admissions a
 left join readmissions b
     on a.year_month = b.year_month
 order by 1
-;
 ```
 The following output is generated by running the above query on the Tuva Claims Demo dataset.  The results are sparse for this dataset (there are only 5 total readmissions) but you can get a sense of the structure of the table and how you might use it against your data.
+
 ![The Tuva Project](/img/readmissions/readmission_rate_monthly.jpg)
+
+</details>
+
+<details><summary>What data quality issues can impact readmission analytics?</summary>
+There are several types of data quality issues that can prevent a hospitalization from qualifying as an index admission or from being part of a readmission measure.  Data quality checks for these issues are built into the Tuva Project's readmission mart.  The query below reports the total number of inpatient encounters and the number of encounters that fail any particular data quality check.
+
+```sql
+-- readmission data quality issues
+with dq_stats as (
+select 
+    cast(count(1) as int) as total_encounters
+,   cast(sum(disqualified_encounter_flag) as int) as disqualified_encounters
+,   cast(sum(missing_admit_date_flag) as int) as missing_admit_date
+,   cast(sum(missing_discharge_date_flag) as int) as missing_discharge_date
+,   cast(sum(admit_after_discharge_flag) as int) as admit_after_discharge_date
+,   cast(sum(missing_discharge_disposition_code_flag) as int) as missing_discharge_disposition
+,   cast(sum(invalid_discharge_disposition_code_flag) as int) as invalid_discharge_disposition
+,   cast(sum(missing_primary_diagnosis_flag) as int) as missing_primary_diagnosis
+,   cast(sum(multiple_primary_diagnoses_flag) as int) as multiple_primary_diagnoses
+,   cast(sum(invalid_primary_diagnosis_code_flag) as int) as invalid_primary_diagnosis
+,   cast(sum(no_diagnosis_ccs_flag) as int) as no_diagnosis_ccs
+,   cast(sum(overlaps_with_another_encounter_flag) as int) as overlapping_encounter
+,   cast(sum(missing_ms_drg_flag) as int) as missing_ms_drg
+,   cast(sum(invalid_ms_drg_flag) as int) as invalid_ms_drg
+from readmissions.encounter_augmented
+)
+select 
+    measure
+,   number_of_encounters
+from dq_stats
+unpivot(number_of_encounters for measure in (total_encounters,
+                                     disqualified_encounters,
+                                     missing_admit_date,
+                                     missing_discharge_date,
+                                     admit_after_discharge_date,
+                                     missing_discharge_disposition,
+                                     invalid_discharge_disposition,
+                                     missing_primary_diagnosis,
+                                     multiple_primary_diagnoses,
+                                     invalid_primary_diagnosis,
+                                     no_diagnosis_ccs,
+                                     overlapping_encounter,
+                                     missing_ms_drg,
+                                     invalid_ms_drg                                     
+                                    ))
+
+```
+
+The following is example output from this query from the Tuva Claims Demo dataset.  You can see there are a total of 223 inpatient encounters in the dataset, 79 of which are excluded from readmission analytics due to data quality issues.  You can then see the specific reasons for the exclusion (i.e. missing primary diagnosis and overlapping encounter).
+
+![The Tuva Project](/img/readmissions/data_quality_issues.jpg)
+</details>
 
 ## Methodology
 
