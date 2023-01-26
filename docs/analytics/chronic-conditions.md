@@ -6,38 +6,37 @@ title: "Chronic Conditions"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Key Questions
-<details><summary>Which chronic diseases are most prevalent in my patient population?</summary>
+<details><summary>What are the top 10 most prevalent chronic conditions in my patient population?</summary>
 <Tabs groupId="cc_package">
 <TabItem value="cms" label="CMS">
 
 ```sql
 select
-    condition,
-    count(distinct patient_id) as count
-From CMS_CHRONIC_CONDITIONS.CHRONIC_CONDITIONS_UNIONED
-group by condition
-order by count(distinct PATIENT_ID) desc
-limit 20
+    condition
+,   cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+From cms_chronic_conditions.chronic_conditions_unioned
+group by 1
+order by 2 desc
+limit 10
 ```
 The following is example output from this query from the Tuva Claims Demo dataset.  
 
-![The Tuva Project](/img/chronic_conditions/CCC-most_prevalent_conditions.png)
+![CMS Condition Prevalence](/img/cms_condition_prevalence.jpg)
 </TabItem>
 <TabItem value="tuva" label="Tuva">
 
 ```sql
 select
-    condition,
-    count(distinct patient_id) as count
-From TUVA_CHRONIC_CONDITIONS.FINAL_CHRONIC_CONDITIONS_LONG
-group by condition
-order by count(distinct PATIENT_ID) desc
-limit 20
+    condition
+,   cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+From tuva_chronic_conditions.final_chronic_conditions_long
+group by 1
+order by 2 desc
+limit 10
 ```
 The following is example output from this query from the Tuva Claims Demo dataset.  
 
-![The Tuva Project](/img/chronic_conditions/TCC-most_prevalent_conditions.png)
+![Tuva Condition Prevalence](/img/tuva_condition_prevalence.jpg)
 </TabItem>
 </Tabs >
 </details>
@@ -47,7 +46,7 @@ The following is example output from this query from the Tuva Claims Demo datase
 
 :::caution warning
 
-The CMS Condition grouper does not differentiate Type 1 and Type 2 diabetes.  The following query and graph show combined stats for both types of diabetes.  To run analytics a specific type of diabetes, use the Tuva Chronic Conditions mart or query the core.condition table directly.
+The CMS Condition grouper does not differentiate Type 1 and Type 2 diabetes.  The following query and graph show combined stats for both types of diabetes.  To run analytics a specific type of diabetes, use the Tuva Chronic Conditions data mart.
 
 :::
 
