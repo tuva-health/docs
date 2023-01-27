@@ -200,3 +200,18 @@ The following is example output from this query from the Tuva Claims Demo datase
 </Tabs>
 </details>
 
+## Methodology
+
+The Tuva Project includes two chronic condition groupers: one created and maintained by CMS, the other created and maintained by the Tuva Project.
+
+### CMS Grouper
+
+The CMS chronic conditions grouper is maintained by the Chronic Conditions Data Warehouse (CCW).  You can read more about the grouper [here](https://www2.ccwdata.org/web/guest/condition-categories).  The grouper primarily relies on ICD-10-CM codes but does use other code sets to some degree e.g. HCPCS.
+
+### Tuva Project Grouper
+
+We created the Tuva Project's chronic conditions grouper after discovering shortcomings with the CMS grouper.  The point of any claims data grouper is to group things (e.g. services, patients, conditions, etc.) into homogeneous categories.  We found certain condition groups as defined by CMS were heterogeneous in nature.  For example, CMS only has a single category for Diabetes that combines both Type 1 and Type 2 Diabetes, despite these conditions having very different pathology.
+
+You can view and contribute to the Tuva Project Chronic Condition Grouper [here](https://docs.google.com/spreadsheets/d/1BgTEOdq54yeoIgMs7Hl-nqiB0ri19fmGJqAXKvME7BM/edit?usp=sharing).
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTsZ3P2bpz-U3Rm5kSxCtj6FbpKFQPrRsvwcmkZ418t1EM1looqOOMVMe-yrTzTbBim6I1j_V7AAH4D/pubhtml?widget=true&amp;headers=false" frameborder="0" width="800" height="600" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
