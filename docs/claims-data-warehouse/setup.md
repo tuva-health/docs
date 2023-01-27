@@ -3,6 +3,7 @@ id: setup
 title: setup
 ---
 
+
 import {Redirect} from '@docusaurus/router';
 
 const Home = () => {
