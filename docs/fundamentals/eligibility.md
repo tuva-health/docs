@@ -1,6 +1,6 @@
 ---
-id: enrollment-member-months
-title: "Enrollment and Member Months"
+id: eligibility
+title: "Eligibility"
 ---
 The eligible/enrolled population of patients in a given health insurance plan is always changing.  Patients gain and lose health insurance eligibility for a variety of reasons, including changes in employment, birth, and death.  It's important to normalize spend and utilization measures for these eligibility changes.  Normalizing for patient population changes involves computing member months.
 
@@ -187,6 +187,6 @@ Here's some sample output of the whole query put together based on the tuva proj
 
 ![The Tuva Project](/img/member_months/grouped_churn_counts_per_month.png)
 
-And finally, either using the Tuva Project paid analytics products, or using your own BI tools, you can vizualize your churn rates to help you keep an eye on the drivers of plan membership growth or decline. This example is based on the tuva project demo dataset and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
+This final example is based on the tuva project demo dataset and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
 
 ![The Tuva Project](/img/member_months/churn_graph.png)
