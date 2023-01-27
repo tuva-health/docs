@@ -11,12 +11,14 @@ const sidebars = {
         type: "category",
         label: "Claims Data Fundamentals",
         items: ["fundamentals/intro-to-claims",
-                "fundamentals/claims-data-elements",
-                "fundamentals/how-claims-are-paid",
-                "fundamentals/enrollment-member-months",
+                "fundamentals/claims-forms",
+                "fundamentals/data-elements",
+                "fundamentals/eligibility",
                 "fundamentals/encounters",
+                "fundamentals/how-claims-are-paid",
                 "fundamentals/prescription-drugs",
-                "fundamentals/providers"
+                "fundamentals/providers",
+                "fundamentals/service-categories",
               ]
       },
       {
