@@ -187,6 +187,6 @@ Here's some sample output of the whole query put together based on the tuva proj
 
 ![The Tuva Project](/img/member_months/grouped_churn_counts_per_month.png)
 
-And finally, either using the Tuva Project paid analytics products, or using your own BI tools, you can vizualize your churn rates to help you keep an eye on the drivers of plan membership growth or decline. This example is based on the tuva project demo dataset and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
+This final example is based on the tuva project demo dataset and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
 
 ![The Tuva Project](/img/member_months/churn_graph.png)
