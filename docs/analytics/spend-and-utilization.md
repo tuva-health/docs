@@ -2,9 +2,18 @@
 id: spend-and-utilization
 title: "Spend and Utilization"
 ---
-## Key Questions
 
-- How should a claim be attributed to a member month?  Is it better to use claim_start_date or claim_end_date?
-- How do you calculate total PMPM and PMPM broken out by medical and pharmacy claims?
-- How do you calculate utilization rates for acute inpatient and emergency department visits?
-- How do spend and utilization rates vary for patients with different chronic conditions?
+<details><summary>How do I stratify claims payments by medical claims vs. pharmacy claims?</summary>
+</details>
+
+<details><summary>How do I stratify medical claims payments into high-level service categories (i.e. inpatient, outpatient, office visits, ancillary, and other)?</summary>
+</details>
+
+<details><summary>How do I stratify medical claims payments into homogeneous service categories (e.g. acute inpatient, skilled nursing, etc.)?</summary>
+</details>
+
+<details><summary>What is contribution margin, why is it useful for analyzing payments, and how do I calculate it?</summary>
+</details>
+
+<details><summary>Why is there a discrepancy between total payments and per-member-per-month (PMPM) payments?</summary>
+</details>
