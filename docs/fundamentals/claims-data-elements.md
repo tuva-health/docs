@@ -1,9 +1,42 @@
 ---
-id: data-elements
-title: "Data Elements"
+id: claims-data-elements
+title: "Claims Data Elements"
 ---
+This section provides an overview of the forms used in the creation of claims data and the specific data elements captured by these forms.
 
-## Professional and Institutional Claims
+## Claims Forms
+
+Healthcare claims are created when a healthcare provider populates a claim form for services or supplies they’ve rendered to a patient.  These days almost all claims are created and submitted using electronic versions of these forms.  There are 3 main types of claim forms which we describe below.  The type of form used depends on the type of healthcare entity submitting the claim.
+
+**CMS-1500**
+- Also Known As: Professional claim
+- Electronic Version: 837P
+- Maintained By: National Uniform Claim Committee (NUCC)
+- Example Form: [https://nucc.org/images/stories/PDF/cms_1500_sample.pdf](https://nucc.org/images/stories/PDF/cms_1500_sample.pdf)
+- Used By: Physicians, lab test companies, durable medical equipment companies, etc.
+
+**CMS-1450**
+- Also Known As: UB-04 (i.e. universal bill), institutional, or facility claim
+- Electronic Version: 837I
+- Maintained By: National Uniform Billing Committee (NUBC)
+- Example Form: [https://www.amerihealth.com/pdfs/providers/npi/ub04_form.pdf](https://www.amerihealth.com/pdfs/providers/npi/ub04_form.pdf)
+- Used By: Facilities (e.g. hospitals, SNFs, ambulatory surgery centers), home health agencies, hospice organizations, etc.
+
+**NCPDP Universal Claim Form**
+- Also Known As: N/A
+- Electronic Version: 
+- Maintained By: National Council for Prescription Drug Programs
+- Example Form:
+- Used By: Retail pharmacies (e.g. Walgreens, CVS, Wal-Mart) to bill health insurers.
+In this section we’ll cover the key data elements present in claims data.
+
+Each claim form has two sections: a header section and a line section.  Each data element is either entered on the header section or line section.  Every data element in the header section may only be entered a specific number of times (typically one time, but not always).  On the other hand, data elements in the line section may be entered an unlimited number of times.  
+
+## Data Elements
+
+THis section describes some of the key data elements included in claims data and the claims forms they are generated on.  It is not an exhaustive list of claims data elements however.
+
+### Professional and Institutional Claims
 The following data elements exist on both professional and institutional claims.
 
 **Billing NPI**
@@ -27,19 +60,19 @@ The following data elements exist on both professional and institutional claims.
 - Location: Header
 
 **HCPCS Codes**
-- Description: Includes both HCPCS Level 1 (i.e. CPT-4) and HCPCS Level 2 codes.  HCPCS Level 1 codes are maintained by the American Medical Association and HCPCS Level 2 codes are maintained by CMS.  HCPCS codes are the primary mechanism by which professional claims are billed (i.e. contracted payment rates are made at the HCPCS code level).  HCPCS codes may be used on institutional claims, although the more common service codes used are revenue codes.
+- Description: Includes both HCPCS Level 1 (i.e. CPT-4) and HCPCS Level 2 codes.  HCPCS Level 1 codes are maintained by the American Medical Association and HCPCS Level 2 codes are maintained by CMS.  HCPCS codes are the primary mechanism by which professional claims are billed (i.e. fee for service rates are contracted at the HCPCS code level).  HCPCS codes may be used on institutional claims, although the more common service codes used are revenue codes.
 - Location: Line
 
 **Patient Information**
 
 All of the following patient information is located in the header portion of the claim.
+- ID: Patient's health insurance member ID.
+- Name: Patient's full name.
 - Address: Patient's address.
 - Birth Date: Patient's date of birth.
 - Gender: Patient's gender
-- ID: Patient's health insurance member ID.
-- Name: Patient's full name.
 
-## Professional Claims Only
+### Professional Claims Only
 
 **Place of Service Code**
 - Description: Code that specifies the care setting where the healthcare service was rendered.  Place of service information is coded at the line level to reflect the fact that services during a particular encounter can occur in different locations.
@@ -49,7 +82,7 @@ All of the following patient information is located in the header portion of the
 - Description: National Provider Identifier that represents the healthcare provider (e.g. physician) who delivered the particular service.  Because this information is captured at the line-level, a single claim can contain services that were rendered by multiple providers.
 - Location: Line
 
-## Institutional Claims Only
+### Institutional Claims Only
 
 **Admit and Discharge Dates**
 - Description: Indicates the date the patient was admitted and discharged from the facility.  Only used for inpatient claims.
@@ -99,7 +132,7 @@ All of the following patient information is located in the header portion of the
 - Description: A set of codes used to account for the services and supplies rendered to the patient e.g. Room and Board, Emergency, IV Therapy, etc.  There are typically dozens of these for an inpatient encounter.  A hospital will use these codes to "charge" the health insurer, although they have no bearing on the payment amount.  The payment amount is entirely determined by MS-DRG for inpatient claims.
 - Location: Line
 
-## Pharmacy Claims
+### Pharmacy Claims
 
 **Prescriber NPI**
 - Description: Indicates the provider that wrote the prescription.

@@ -10,12 +10,13 @@ const sidebars = {
       {
         type: "category",
         label: "Claims Data Fundamentals",
-        items: ["fundamentals/intro-to-claims",
-                "fundamentals/claims-forms",
-                "fundamentals/data-elements",
+        items: ["fundamentals/introduction",
+                "fundamentals/claims-data-elements",
+                "fundamentals/claims-data-quality",
                 "fundamentals/eligibility",
                 "fundamentals/encounters",
-                "fundamentals/how-claims-are-paid",
+
+                "fundamentals/payments",
                 "fundamentals/prescription-drugs",
                 "fundamentals/providers",
                 "fundamentals/service-categories",
@@ -26,10 +27,14 @@ const sidebars = {
         label: "Claims Data Analytics",
         items: ["analytics/overview",
                 "analytics/chronic-conditions",
-                "analytics/data-profiling",
-                "analytics/mortality",
+                {
+                  type: "category",
+                  label: "Hospital Measures",
+                  items: ["analytics/mortality",
+                          "analytics/readmissions",
+                        ]
+                },
                 "analytics/patient-demographics",
-                "analytics/readmissions",
                 "analytics/spend-and-utilization",
               ]
       },
