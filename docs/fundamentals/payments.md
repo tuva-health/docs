@@ -1,19 +1,16 @@
 ---
-id: how-claims-are-paid
-title: "How Claims Are Paid"
+id: payments
+title: "Payments"
 ---
+This section explains the different types of financial data elements that are included in claims data, the nuances for how different types of claims are paid, and how to identify payment adjustments, denials, and reversals in your claims data.
+
+## How Claims Are Paid
+
 Providers have contractual arrangements with health insurers that dictate how they are paid.  These terms vary by provider and by type of provider.  For example, a physician treating patients in a clinic is likely billing insurers using a CMS-1500 claim form and receiving payment for each HCPCS code they bill.  These codes are at the line-level of the CMS-1500 claim form, and therefore it's common  to see multiple payments on this sort of claim.  On the other hand, an acute care hospital will bill insurers using a UB-04 claim form and will be paid by insurers on a DRG (diagnosis related grouper).  The DRG is at the header-level, and therefore it's common to see one payment per claim.
 
-Nuances such as these in how claims are paid can dramatically impact how you perform spend analytics and therefore it's important to understand them in detail.  We go over these nuances in this section, along with a detailed look at claims adjustments, denials, and reversals, which can also significantly impact analysis and results.
+Nuances such as these in how claims are paid can dramatically impact how you perform spend analytics and therefore it's important to understand them in detail.  
 
 ## Adjustments, Denials, and Reversals
-
-**Key Questions:**
-
-- What are the different scenarios for how adjustments, denials, and reversals appear in claims data?
-- How can we identify adjustments, denials, and reversals in claims data?
-- How do you calculate adjustment, denial, and reversal rates in a claims data?
-- What adjustment, denial, and reversal rates are typical in a claims dataset?
 
 Raw healthcare claims data is often messy and suffers from many data quality issues, which impact analytics.  One of the most common types of issues is dealing with claims adjustments, denials, and reversals that are often hidden in raw claims datasets.  
 

@@ -2,15 +2,11 @@
 id: prescription-drugs
 title: "Prescription Drugs"
 ---
+This section provides an overview of prescription drug information contained in claims data and how you can use reference terminologies to make analysis of prescription drug data easier.
+
 Prescription drug data plays a vitally important role in healthcare economics and outcomes research and all parts of the drug development and commercialization pipeline.  It also plays an important role in value-based care organizations looking to improve patient treatment regimens and adherence to optimze cost and outcomes.
 
 Pharmacy claims include lots of granular information on the type of prescription drugs and supplies that have been filled by retail pharmacies for patients.  However, analyzing medications from pharmacy claims usually requires classifying drugs into higher-level drug classes using drug terminologies.
-
-## Key Questions
-
-- How do you identify all the drugs that treat a given disease (e.g. Alzheimer's)?
-- How do you identify all the drugs with a particular mechanism of action (e.g. breast cancer drugs which target the HER2 receptor)?
-- Given a list of drugs (e.g. a list of drugs that treat hypertension), which terminology set should you use to create a value set that can be joined to pharmacy_claim to identify patients that have received one or more of these drugs?
 
 ## National Drug Codes
 

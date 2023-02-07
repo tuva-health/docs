@@ -1,6 +1,6 @@
 ---
 id: patient-demographics
-title: "Patient Demographics"
+title: "Patients Demographics"
 ---
 
 <details><summary>What is the age distribution of my patient population?</summary>

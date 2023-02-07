@@ -2,15 +2,9 @@
 id: providers
 title: "Providers"
 ---
+This section describes provider information included in claims data - namely the National Provider Identity (NPI).
+
 Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
-
-## Key Questions
-
-- Can physicians or facilities have more than one NPI?
-- Are the rendering, billing, and facility NPIs in my claims dataset are missing or invalid?
-- Which specialties and sub-specialties does my patient population see most frequently?
-- How do you attribute patients to a primary care provider? 
-- How do you attribute patients to a provider during inpatient visits? 
 
 ## What is an NPI?
 

@@ -2,92 +2,103 @@
 id: eligibility
 title: "Eligibility"
 ---
-The eligible/enrolled population of patients in a given health insurance plan is always changing.  Patients gain and lose health insurance eligibility for a variety of reasons, including changes in employment, birth, and death.  It's important to normalize spend and utilization measures for these eligibility changes.  Normalizing for patient population changes involves computing member months.
+This section explains what eligibility data is and how to use it to calculate member months, as well as membership growth and churn analytics.
 
-## Key Questions
-- How do you calculate member months?
-- What data quality problems can affect member month calculations?
-- What types of metrics use member months as a basis?
-- How do you calculate monthly churn rate (i.e. rate of members leaving a health plan)?
+## Understanding Eligibility Data
 
-## How to Calculate
-Sometimes claims data comes from health insurers with member months already included. In this case you don’t have to create them. It would come in a file or table with one record per member per month. Already done? Yay!!!
+Eligibility information in claims data tells you when a patient was eligible to receive healthcare services and/or supplies that were covered by their insurer.  There are a few key pieces of information generally included in eligibility data:
 
-More often though, claims data comes in the enrollment span format, with an enrollment or eligibility table that has one record for each period of coverage for a patient. For example, there would be one record for a patient covered from January 1 to December 31 with a patient identifier, a start of coverage date of January 1, and an end of coverage date of December 31.
+- **patient_id:** Identifies a unique patient
+- **payer:** Identifies the health insurance company the patient has/had insurance coverage through
+- **enrollment_start_date:** The date when the patient first gained insurance coverage
+- **enrollment_end_date:** The date when the patient's insurance coverage ended
 
-If a patient (i.e. member) had partial eligibility for a given month, they are assumed to have eligibility for the entire month. Not every type of health insurance coverage works like this, but the majority do. For example, if a patient had an enrollment span starting on Jan 1 2022 and ending on Mar 2 2022, they would be assigned 3 member months, i.e., 202201, 202202, and 202203.
+Note: We use the words eligibility and enrollment interchangeably.  We also use the words patient and member interchangeably.
 
-## Data Quality Problems
-In order to ensure correct member months, you have to take into account possible data quality issues with enrollment data. Basic logic that fails to account for these issues with enrollment data will produce incorrect member months
-- Overlapping enrollment periods
-- Enrollment end dates before enrollment begin dates
-- Duplicate enrollment period records
-- Null values in enrollment start or end dates
-- Double counting member months for any member whose memberID has changed due to change in employment, insurance product, or other eligibility status changes.
-- Missing the plan information on enrollment data.
+Eligibility data is most commonly modeled in what we call the **enrollment format**.  In this format, each patient has exactly one record per enrollment span.  An enrollment span is a record in an eligibility data table that includes both a start and end date for a specific patient.  For example, the following 3 records are each enrollment spans:
 
-Once you have calculated member months based on quality tested enrollment data, it's a good idea to check for some basic structure in the member months table. You want to check that there's one record per member per month per plan in the data table. 
-The tuva project includes the pmpm package which builds a member month table for you, taking into account all these possible data quality issues at the enrollment level. Based on this tuva project member month table, you can run the following query to check that the data is in the correct structure for futher analysis. This query should return zero records if your data is in the correct structure. (Note: We've assumed for simplicity that there is just one plan in the data.)
+| patient_id | payer | enrollment_start_date | enrollment_end_date |
+| --- | --- | --- | --- |
+| A1234 | Aetna | 01-01-2022 | 06-15-2022 |
+| A1234 | Aetna | 08-10-2022 | |
+| B2468 | Aetna | 01-01-2022 | 12-31-2022 |
 
-```sql
-select 
-    year_month
-    ,patient_id
-from tuva_claims_demo_full.pmpm.intermediate_member_months
-group by 
-    year_month
-    ,patient_id
-having count(patient_id) > 1;
-```
+The example above includes eligibility data on two patients: A1234 and B2468.  A1234 has two enrollment spans.  The first span begins 01-01-2022 and ends 06-15-2022.  It ends in the middle of the month.  This patient may have lost eligibility during the middle of the month because they lost their job or changed to their spouse's health insurance.  The patient then regained eligibility on 08-10-2022, possibly by getting their job back or switching insurance from their spouse's back to their employer.  
 
-## Analytics
-Many healthcare metrics are normalized using member months. Usually you'll see spend metrics using member months directly as a denominator in per member per month calculations (pmpm), broken out by different dimensions such as encounter type or different types of patient population. The other type of metric you'll see using member months are utilization metrics denoted as something like utilization per 1000 lives covered. Lives covered are equivalent to 12 member months for a year. So if you had 2 patients who each were covered in a plan for 6 months of the year, you would have the equivalent of 1 life covered for that year. Utilization metrics range from radiology imaging per 1000 lives to office visits or even flu shots per thousand lives. Any service or procedure provided by the healthcare system that can be counted can be normalized using this 1000 lives denonminator. Look in the PMPM section of Knowledge Base to learn more about analyzing pmpm and utilization metrics.
-### Trending Member Months 
-It is also useful to look at member months directly to analyze plan membership trends. Based on the tuva project member month table you can run the following query to produce a trend over time of member month counts per month.
-```sql
-select 
-    year_month
-    ,count(patient_id)
-from tuva_claims_demo_full.pmpm.intermediate_member_months
-group by year_month
-order by year_month;
-```
-The following is example output from the above query run on the Tuva Claims Demo dataset:
+Notice that there is no end date for the second enrollment span for patient A1234.  This isn't a data quality problem.  Rather, it's what's called an open enrollment span.  An open enrollment span is simply an enrollment span that has no end date.  It indicates the patient currently has insurance coverage.  It may be represented by a null value (as in the example above) in the enrollment_end_date, or it's also common to see this represented as 12-31-9999.
 
-![The Tuva Project](/img/member_months/plan_membership_trend_by_month.png)
+## Calculating Member Months
 
+The population of patients who are actively enrolled (i.e. have eligibility) in a given health insurance plan is always changing.  Patients gain and lose health insurance eligibility for a variety of reasons, including changes in employment, birth, and death.  It's important to normalize spend and utilization measures for these changes.  The standard approach to normalizing for patient population changes involves computing member months.
 
-### Membership Growth Rate
-Adding the growth rate to the membership trend allows you to benchmark and monitor the growth rate to make sure it is reasonable or in line with projections, etc. The growth rate calculation takes the difference between the number of patients enrolled in a plan at the beginning of a time period and the end of that time period and divides that difference by the number of patients in the plan at the beginning of the same time period. Using the tuva project member month table, you can run the following query to get a basic member growth rate per month. 
+To calculate member months, you need to convert each patient's eligibility record (with start and end dates) into multiple records, with one record for each month of eligibility.  Let's take the same example given above and let's assume today's date is 01-31-2023.  Here's the table again:
 
-```sql
-select 
-    year_month
-    ,count(patient_id) as cnt_patients
-    ,count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0) as overall_monthly_growth
-    ,round(100*(count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0))/count(patient_id),2)||'%' as overall_monthly_growth_rate
-from tuva_claims_demo_full.pmpm.intermediate_member_months
-group by year_month
-order by year_month;
-```
+| patient_id | payer | enrollment_start_date | enrollment_end_date |
+| --- | --- | --- | --- |
+| A1234 | Aetna | 01-01-2022 | 06-15-2022 |
+| A1234 | Aetna | 08-10-2022 | |
+| B2468 | Aetna | 01-01-2022 | 12-31-2022 |
 
-The following is example output from the above query run on the Tuva Claims Demo dataset. You can see for each month the change in the number of patients in the plan and the rate of growth or decline.
+In this example, patient B2468 has an enrollment span with 12 months of continuous eligibility, and so should be given 12 member months.  On the other hand, A1234 should also be given 12 member months, but the assignment isn't as straightforward.  To unpack it, we need to take a brief detour into partial eligibility.
 
-![The Tuva Project](/img/member_months/membership_growth_rate.png)
+Partial eligibility occurs whenever a patient does not have eligibility for an entire month.  A1234 has partial eligibility for the months of June 2022 and August 2022.  There are multiple methods for handling partial eligibility when computing member months, but the most common method is to assume full eligibility for the entire month.  Not every type of health insurance coverage works like this, but the majority do. In the example above we would give A1234 a full member month for both June 2022 and August 2022, following this method.  
 
-### Churn and other Drivers of Membership Growth Rate
+After converting the above enrollment spans to member months (e.g. by using the SQL at the end of this section), the data would look like this:
 
-The above membership growth rate doesn't take into account cohorts, or in other words, specific patients staying in the plan over time or coming and going. It just shows directionally whether the plan is increasing or decreasing in membership over time. A more complete analysis includes looking at how many patients left a plan and how many new patients are added to a plan during a time period so we can see whether high churn is being masked by high growth in membership at the same time. We may also want to see whether patients are leaving and then coming back, etc. To do this, we'll use window functions in sql and follow a few steps to analyze churn to get to a more complete picture. 
+| patient_id | year_month | payer | 
+| --- | --- | --- | 
+| A1234 | 2022-01 | Aetna | 
+| A1234 | 2022-02 | Aetna | 
+| A1234 | 2022-03 | Aetna | 
+| A1234 | 2022-04 | Aetna | 
+| A1234 | 2022-05 | Aetna | 
+| A1234 | 2022-06 | Aetna | 
+| A1234 | 2022-08 | Aetna | 
+| A1234 | 2022-09 | Aetna | 
+| A1234 | 2022-10 | Aetna | 
+| A1234 | 2022-11 | Aetna | 
+| A1234 | 2022-12 | Aetna | 
+| A1234 | 2023-01 | Aetna | 
+| B2468 | 2022-01 | Aetna | 
+| B2468 | 2022-02 | Aetna | 
+| B2468 | 2022-03 | Aetna | 
+| B2468 | 2022-04 | Aetna | 
+| B2468 | 2022-05 | Aetna | 
+| B2468 | 2022-06 | Aetna | 
+| B2468 | 2022-07 | Aetna | 
+| B2468 | 2022-08 | Aetna | 
+| B2468 | 2022-09 | Aetna | 
+| B2468 | 2022-10 | Aetna | 
+| B2468 | 2022-11 | Aetna | 
+| B2468 | 2022-12 | Aetna | 
 
-Step 1: To make it simler to analyze over time, we'll associate simple integer time periods with each member month so we can add and subtract time periods easily. Below is a sample output of this first part of the query:
+Notice that the last member month given to patient A1234 was for January 2023.  This is based on the current date when we calculated member months, which in this example was February 1, 2023.
+
+**Data Quality Problems**
+In order to correctly compute member months, it's important to take potential data quality issues into account, for example:
+
+- Overlapping enrollment periods 
+- Enrollment end dates before enrollment start dates
+- Duplicate enrollment records
+- Null values in enrollment start date
+- Missing payer information 
+- Double counting member months for any patient whose patient_id has changed due to change in employment, insurance product, or other eligibility status changes
+
+## Membership Growth / Churn Analytics
+
+When performing membership growth / churn analytics, it's important to look at how many patients lost eligibility and how many new patients gained eligibility separately, so we can see whether high churn is being masked by high growth in membership at the same time. We may also want to see whether patients are leaving and then coming back, etc. 
+
+The SQL further below includes a set of CTEs broken out into steps that you can run separately.  Immediately below we describe each step in detail.
+
+**Step 1:** To make it simler to analyze over time, we'll associate simple integer time periods with each member month so we can add and subtract time periods easily. Below is a sample output of this first part of the query:
 
 ![The Tuva Project](/img/member_months/year_month_time_periods.png)
 
-Step 2: We create a cte that shows for each member per month the previous month where they were enrolled in the plan, and the next month where they were enrolled in the plan. We'll also include the gap size between these months. This will allow us to tell if there are any gaps in enrollment indicating churn and/or returning patients. Below is a sample output of this second part of the query:
+**Step 2:** In this step we calculate for each member and for each month of eligibility, we calculate whether the patient had eligibility the previous month and whether the patient had eligibility the following month. We also calculate the gap size between these months. This will allow us to tell if there are any gaps in enrollment indicating churn and/or returning patients. Below is a sample output of this second part of the query:
 
 ![The Tuva Project](/img/member_months/next_and_previous_gap_sizes.png)
 
-Step 3: We can use the previous output to calculate whether a patient is new, already active, or returning after at least a month with no enrollment to a plan. We use logic about their previous gap sizes to calculate these. In addition, we use logic about the next month active gap size on these same records to determine wether the patient will churn during the following month. In this third step we start to group counts of patients in these different buckets. You'll notice in the output that there are multiple rows for active, new, and returning patients per month. This is because some of these are records with churn and some are records without churn. No worries. We account for this in the final grouping and aggregation. Below is a sample output of this third part of the query:
+Step 3: We can use the previous output to calculate whether a patient is new, already active, or returning after at least a month with no eligibility. We use logic about their previous gap sizes to calculate these. In addition, we use logic about the next month active gap size on these same records to determine wether the patient will churn during the following month. In this third step we start to group counts of patients in these different buckets. You'll notice in the output that there are multiple rows for active, new, and returning patients per month. This is because some of these are records with churn and some are records without churn. No worries. We account for this in the final grouping and aggregation. Below is a sample output of this third part of the query:
 
 ![The Tuva Project](/img/member_months/calculating_churn.png)
 
@@ -98,7 +109,7 @@ Step 4: Finally we put it all together by summing up the counts for each categor
 with distinct_member_months as
 (
     select distinct year_month
-    from tuva_claims_demo_full.pmpm.intermediate_member_months
+    from pmpm.intermediate_member_months
     order by year_month
 )
 ,member_month_time_periods as
@@ -118,7 +129,7 @@ from distinct_member_months
         ,mmtp2.year_month as next_calendar_year_month
         ,lag(mmtp.time_period,1) over (partition by imm.patient_id order by imm.patient_id, mmtp.time_period) as previous_time_period_active
         ,lead(mmtp.time_period,1) over (partition by imm.patient_id order by imm.patient_id, mmtp.time_period) as next_time_period_active
-    from tuva_claims_demo_full.pmpm.intermediate_member_months imm
+    from pmpm.intermediate_member_months imm
     inner join member_month_time_periods mmtp on imm.year_month = mmtp.year_month
     left join member_month_time_periods mmtp2 on mmtp.time_period + 1 = mmtp2.time_period
 )
@@ -187,6 +198,140 @@ Here's some sample output of the whole query put together based on the tuva proj
 
 ![The Tuva Project](/img/member_months/grouped_churn_counts_per_month.png)
 
-This final example is based on the tuva project demo dataset and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
+This final example is based on the tuva project demo dataset, and is not toally realistic, but you can see how this chart might help you monitor churn in your real populations.
 
 ![The Tuva Project](/img/member_months/churn_graph.png)
+
+## Tuva Project Queries
+The following queries will run on any dataset that is running on the latest Tuva Project data model.
+
+<details><summary>Calculating Member Months</summary>
+
+```sql
+with src as (
+select
+    patient_id,
+    enrollment_start_date as start_date,
+    enrollment_end_date as end_date,
+    payer,
+    payer_type
+from claims_data_model.eligibility
+)
+
+, months as (
+    select 1 as month
+    union all 
+    select 2 as month
+    union all 
+    select 3 as month
+    union all 
+    select 4 as month
+    union all 
+    select 5 as month
+    union all 
+    select 6 as month
+    union all 
+    select 7 as month
+    union all 
+    select 8 as month
+    union all 
+    select 9 as month
+    union all 
+    select 10 as month
+    union all 
+    select 11 as month
+    union all 
+    select 12 as month
+)
+
+, years as (
+    select 2013 as year
+    union all 
+    select 2014 as year
+    union all 
+    select 2015 as year
+    union all 
+    select 2016 as year
+    union all 
+    select 2017 as year
+    union all 
+    select 2018 as year
+    union all 
+    select 2019 as year
+    union all 
+    select 2020 as year
+    union all 
+    select 2021 as year
+    union all 
+    select 2022 as year
+    union all 
+    select 2023 as year
+)
+
+, dates as (
+select
+    year
+,   month
+,   cast((cast(year as TEXT)||'-'||cast(month as TEXT)||'-01') as date) as month_start
+,   cast(dateadd(day,-1,dateadd(month,1,date_trunc('month', cast((cast(year as TEXT)||'-'||cast(month as TEXT )||'-01') as date)))) as date) as month_end
+from years
+cross join months
+)
+select distinct
+    patient_id,
+    concat(cast(year as TEXT ),lpad(cast(month as TEXT),2,'0')) as year_month,
+    payer,
+    payer_type
+from src
+inner join dates
+    on src.start_date <= dates.month_end 
+    and  src.end_date >= dates.month_start
+```
+
+</details>
+
+<details><summary>Trending Member Months</summary>
+
+```sql
+select 
+    year_month
+,   count(1) as members
+from pmpm.intermediate_member_months
+group by 1
+order by 1
+```
+The following is example output from the above query run on the Tuva Claims Demo dataset:
+![The Tuva Project](/img/member_months/plan_membership_trend_by_month.png)
+</details>
+
+<details><summary>Membership Growth Rate</summary>
+This simple example does not separate out new members from churning members, like the section above on membership growth / churn analytics.
+
+```sql
+select 
+    year_month
+,   count(patient_id) as cnt_patients
+,   count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0) as overall_monthly_growth
+,   round(100*(count(patient_id) - coalesce(lag(count(patient_id)) over (order by year_month), 0))/count(patient_id),2)||'%' as overall_monthly_growth_rate
+from pmpm.intermediate_member_months
+group by 1
+order by 1
+```
+The following is example output from the above query run on the Tuva Claims Demo dataset. You can see for each month the change in the number of patients in the plan and the rate of growth or decline.
+
+![The Tuva Project](/img/member_months/membership_growth_rate.png)
+</details>
+
+<details><summary>Members with Overlapping Enrollment Spans</summary>
+You can query the member months table in the PMPM data mart to check whether any patient has more than one record for any particular month.  This query should return zero records unless you have patients with overlapping enrollment spans.  Note: this query awesomes each patient belongs to one and only one health plan at a time.
+
+```sql
+select 
+    patient_id
+,   year_month
+,   count(1)
+from pmpm.intermediate_member_months
+group by 1,2
+having count(1) > 1
+```
+</details>
