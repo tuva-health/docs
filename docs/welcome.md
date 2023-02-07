@@ -10,7 +10,7 @@ Right now the main focus of the Tuva Project is claims data, so a lot of the con
 
 - **Getting Started:** Learn how to get started with [dbt](https://www.getdbt.com/) and the Tuva Project.
 
-- **Claims Data Fundamentals:** Learn the fundamentals about claims data e.g. what is is, how it's generated, and basic concepts that are important for analytics.
+- **Claims Data Fundamentals:** Learn the fundamentals about claims data e.g. what is it, how it's generated, and basic concepts that are important for analytics.
 
 - **Claims Data Analytics:** Learn how to analyze claims data with example SQL queries you can run directly against the Tuva Project data model.
 
