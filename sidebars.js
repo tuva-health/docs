@@ -2,57 +2,123 @@
 const sidebars = {
     docsSidebar: [ 
       "intro",
+      
       {
         type: "category",
-        label: "Getting Started",
-        items: ["getting-started/dbt", "getting-started/the-tuva-project"]
+        label: "1. Setup",
+        link: {
+          type: 'doc',
+          id: "setup/setup",
+        },
+        items: ["setup/the-tuva-project"]
       },
-      {
-        type: "category",
-        label: "Claims Data Fundamentals",
-        items: ["fundamentals/introduction",
-                "fundamentals/claims-data-elements",
-                "fundamentals/claims-data-quality",
-                "fundamentals/eligibility",
-                "fundamentals/encounters",
 
-                "fundamentals/payments",
-                "fundamentals/prescription-drugs",
-                "fundamentals/providers",
-                "fundamentals/service-categories",
-              ]
-      },
       {
         type: "category",
-        label: "Claims Data Analytics",
-        items: ["analytics/overview",
-                "analytics/chronic-conditions",
+        label: "2. Data Model",
+        link: {
+          type: 'doc',
+          id: "data-model/data-model",
+        },
+        items: [                
                 {
-                  type: "category",
-                  label: "Hospital Measures",
-                  items: ["analytics/mortality",
-                          "analytics/readmissions",
+                type: "category",
+                label: "Staging",
+                items: [
+                          {
+                            type: "category",
+                            label: "Claims",
+                            items: ["data-model/staging/claims/eligibility",
+                                    "data-model/staging/claims/medical-claim",
+                                    "data-model/staging/claims/pharmacy-claim"]
+                          }
                         ]
                 },
-                "analytics/patient-demographics",
-                "analytics/spend-and-utilization",
+                {
+                  type: "category",
+                  label: "Data Profiling",
+                  items: [
+                          "data-model/data-profiling/summary"]
+                },
+                {
+                  type: "category",
+                  label: "Core",
+                  items: [
+                          "data-model/core/condition",
+                          "data-model/core/eligibility",
+                          "data-model/core/encounter",
+                          "data-model/core/medical-claim",
+                          "data-model/core/patient",
+                          "data-model/core/pharmacy-claim",
+                          "data-model/core/procedure",
+                          "data-model/core/provider"]
+                },
+                {
+                  type: "category",
+                  label: "Data Marts",
+                  items: [
+                          "data-model/data-marts/cms-chronic-conditions",
+                          "data-model/data-marts/cms-readmissions",
+                          "data-model/data-marts/pmpm"]
+                }
               ]
       },
+
       {
         type: "category",
-        label: "Claims Data Warehousing",
-        items: ["claims-data-warehouse/platform-architecture", 
-                "claims-data-warehouse/data-acquisition",
-                "claims-data-warehouse/mapping-guide",
-                "claims-data-warehouse/maintenance",]
+        label: "3. Terminology",
+        link: {
+          type: 'doc',
+          id: "terminology/terminology",
+        },
+        items: [
+                "terminology/medications",
+                "terminology/providers"]
       },
+
       {
         type: "category",
-        label: "How to Contribute",
-        items: ["how-to-contribute/building-knowledge","how-to-contribute/edit-github"]
-      },  
-          ],
-        };
+        label: "4. Claims Data",
+        link: {
+          type: 'doc',
+          id: "claims-data/claims-data",
+        },
+        items: [
+                {
+                  type: "category",
+                  label: "Fundamentals",
+                  items: ["claims-data/fundamentals/introduction",
+                          "claims-data/fundamentals/claims-data-elements",
+                          "claims-data/fundamentals/eligibility",
+                          "claims-data/fundamentals/payments"]
+                },
+                "claims-data/data-profiling",
+                {
+                  type: "category",
+                  label: "Preprocessing",
+                  items: ["claims-data/preprocessing/service-categories",
+                          "claims-data/preprocessing/encounters",
+                          "claims-data/preprocessing/pmpm"]
+                },
+              ]
+      },
+
+      {
+        type: "category",
+        label: "5. Measures + Groupers",
+        items: ["measures-groupers/chronic-conditions",
+                "measures-groupers/readmissions"]
+      },
+
+      {
+        type: "category",
+        label: "Appendix",
+        items: ["appendix/dbt",
+                "appendix/mapping-guide"]
+      },
+      
+  ]
+};
 
 module.exports = sidebars;
 

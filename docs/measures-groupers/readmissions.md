@@ -1,6 +1,6 @@
 ---
 id: readmissions
-title: "Readmissions"
+title: "CMS Readmissions"
 ---
 
 <details><summary>How do I calculate basic readmissin statistics for my patient population?</summary>

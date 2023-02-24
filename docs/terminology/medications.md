@@ -1,6 +1,6 @@
 ---
-id: prescription-drugs
-title: "Prescription Drugs"
+id: medications
+title: "Medications"
 ---
 This section provides an overview of prescription drug information contained in claims data and how you can use reference terminologies to make analysis of prescription drug data easier.
 

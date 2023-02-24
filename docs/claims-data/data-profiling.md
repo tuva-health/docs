@@ -1,6 +1,6 @@
 ---
-id: claims-data-quality
-title: "Claims Data Quality"
+id: data-profiling
+title: "Data Profiling"
 ---
 This section describes common data qualty issues present in claims data and how you can use the Tuva Project to identify these issues in your claims data.
 

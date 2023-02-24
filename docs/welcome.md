@@ -2,44 +2,21 @@
 id: intro
 title: "Welcome"
 ---
-Welcome to Knowledge Base!  Knowledge Base is an open source repository of knowledge about how to work with and analyze healthcare data.  Healthcare data requires a lot of specialized knowledge in order to work with and analyze it.  Today, most of this knowledge isn't written down.  For example, if you try Googling a topic like "how to merge healthcare claims into acute inpatient visits", you'll find very few results, despite this being a common problem for almost everyone analyzing healthcare claims data.  
-
-As a consequence, you end up having to work in healthcare data for 3-5 years just to learn the ropes before you can be an effective analyst.  The goal of Knowledge Base is to make it easier for healthcare data practitioners to acquire this specialized knowledge and also give them a place where they can contribute their knowledge for the benefit of all healthcare data practitioners.
-
-Right now the main focus of the Tuva Project is claims data, so a lot of the content in Knowledge Base is about working with and analyzing claims data.  The main sections of Knowledge Base are as follows:
-
-- **Getting Started:** Learn how to get started with [dbt](https://www.getdbt.com/) and the Tuva Project.
-
-- **Claims Data Fundamentals:** Learn the fundamentals about claims data e.g. what is it, how it's generated, and basic concepts that are important for analytics.
-
-- **Claims Data Analytics:** Learn how to analyze claims data with example SQL queries you can run directly against the Tuva Project data model.
-
-- **Claims Data Warehousing:** Learn best practices for building and operating a claims data warehouse and health data platform.
+Welcome to the Tuva Project's Knowledge Base!  Knowledge Base is where you can learn about the Tuva Project and how to use it to convert your healthcare data into data ready for analytics and machine learning.
 
 ## What is the Tuva Project
 
-The Tuva Project is a set of open source healthcare data models, data marts, data quality tests and terminology sets built on top of [dbt](https://www.getdbt.com/).  
+The Tuva Project is an open source library of **data models, data marts, terminology sets, and data quality tests** for cleaning and transforming healthcare data so that it's ready for analytics and machine learning.  For years we've seen healthcare data teams (includidng our former teams) building and re-building these healthcare data transformation tools from scratch.  Our goal is to stop re-inventing the wheel and start enabling healthcare data teams to generate high-quality healthcare analytics faster!
 
-
-![The Tuva Project](/img/tuva_claims_data_stack.jpg)
-
-- **Claims Data Model (CDM)**: A common data model that is easy to map raw claims data into and is specifically designed for doing healthcare analytics.
-
-- **Data Marts**: Higher-level concepts that include things like measures, groupers, and risk models, built on top of the Claims Data Model.
-
-- **Data Profiling**: A set of claims-data-specific data quality tests that run on the Claims Data Model.
-
-- **Terminology**: Reference terminology datasets that are necessary for doing healthcare analytics (e.g. ICD-10, DRG, NPI, RxNorm, etc.).
+![The Tuva Project](/img/the-tuva-project.jpg)
 
 ## Who is Tuva Health
 
-Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem by bringing knowledge and code out into the open.  Being a for-profit company is extremely important to the long-term success of our mission because it enables us to make significantly larger R+D investments in the open source over time compared to a not-for-profit corporate structure.  The larger investment increases the probability that we'll achieve our mission of solving this problem for the entire industry.
+Tuva Health is the for-profit company behind the Tuva Project.  We're a team of healthcare data engineers and data scientists totally focused on solving the messy healthcare data problem.  Being a for-profit company is extremely important to the long-term success of our mission because it enables us to make significantly larger R+D investments in the open source over time compared to a not-for-profit corporate structure.  The larger investment increases the probability that we'll achieve our mission of solving this problem for the entire healthcare industry.
 
-Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2.  Individuals and organizations are free to try out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However some organizations need help adopting the Tuva Project, either because they lack the expertise or people to implement it.  That's where we come in.  We do everything from helping organizations get up and running to fully managing the Tuva Project for them, all within their cloud environment.
+Our business model is to support organizations in adopting the Tuva Project.  The Tuva Project is open source and licensed under Apache 2, one of the most permissive open source licenses.  Individuals and organizations are free to test out, adopt, or fork (customize) any part of the Tuva Project for any reason.  However, some organizations may need or want help setting up the Tuva Project.  That's where we come in.
 
-
-
-## Why Tuva
+## Why the Name Tuva
 
 The name Tuva is a reference to the country of Tuva in the former Soviet Union.  For more than a decade before his death, [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  During the cold war getting visas for this journey was no easy feat.  Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
 
