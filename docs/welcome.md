@@ -2,11 +2,15 @@
 id: intro
 title: "Welcome"
 ---
-Welcome to the Tuva Project's Knowledge Base!  Knowledge Base is where you can learn about the Tuva Project and how to use it to convert your healthcare data into data ready for analytics and machine learning.
+Welcome to the Tuva Project's Knowledge Base!  Knowledge Base is where you can learn about the Tuva Project and how to use it, and also learn about healthcare data in general.
 
 ## What is the Tuva Project
 
-The Tuva Project is an open source library of **data models, data marts, terminology sets, and data quality tests** for cleaning and transforming healthcare data so that it's ready for analytics and machine learning.  For years we've seen healthcare data teams (includidng our former teams) building and re-building these healthcare data transformation tools from scratch.  Our goal is to stop re-inventing the wheel and start enabling healthcare data teams to generate high-quality healthcare analytics faster!
+The Tuva Project is an open source library of **data models, datasets, and data marts** for transforming and enriching raw healthcare data (e.g. claims, medical records) so that it's ready for analytics and machine learning.  Healthcare data is difficult to work with because it requires an insane amount of transformation and enrichment before you can do any data analysis.  Further, significant subject matter expertise is required to know _how_ to properly transform and enrich healthcare data.  
+
+For years we've seen healthcare data teams (includidng our former teams) working to solve this problem from scratch.  That's partially because existing vendors have focused too much on building analytics applications, dashboards and machine learning models, while largely ignoring the healthcare data quality problem.
+
+Our goal is to enable healthcare data teams to generate high-quality healthcare data, so that they can focus on using that data to answer important questions that impact patient health and healthcare.
 
 ![The Tuva Project](/img/the-tuva-project.jpg)
 
