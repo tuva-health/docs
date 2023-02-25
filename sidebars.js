@@ -84,21 +84,13 @@ const sidebars = {
           id: "claims-data/claims-data",
         },
         items: [
-                {
-                  type: "category",
-                  label: "Fundamentals",
-                  items: ["claims-data/fundamentals/introduction",
-                          "claims-data/fundamentals/claims-data-elements",
-                          "claims-data/fundamentals/eligibility",
-                          "claims-data/fundamentals/payments"]
-                },
+
                 "claims-data/data-profiling",
                 {
                   type: "category",
                   label: "Preprocessing",
                   items: ["claims-data/preprocessing/service-categories",
-                          "claims-data/preprocessing/encounters",
-                          "claims-data/preprocessing/pmpm"]
+                          "claims-data/preprocessing/encounters"]
                 },
               ]
       },
@@ -107,13 +99,23 @@ const sidebars = {
         type: "category",
         label: "5. Measures + Groupers",
         items: ["measures-groupers/chronic-conditions",
-                "measures-groupers/readmissions"]
+                "measures-groupers/readmissions",
+                "claims-data/preprocessing/pmpm"]
       },
+      "notebooks",
 
       {
         type: "category",
         label: "Appendix",
         items: ["appendix/dbt",
+        {
+          type: "category",
+          label: "B. Intro to Claims Data",
+          items: ["appendix/fundamentals/introduction",
+                  "appendix/fundamentals/claims-data-elements",
+                  "appendix/fundamentals/eligibility",
+                  "appendix/fundamentals/payments"]
+        },     
                 "appendix/mapping-guide"]
       },
       

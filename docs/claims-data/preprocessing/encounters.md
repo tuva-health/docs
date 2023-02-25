@@ -1,6 +1,6 @@
 ---
 id: encounters
-title: "Encounters"
+title: "Encounter Grouper"
 ---
 This section explains how to group claims into encounters (i.e. distinct visits).
 

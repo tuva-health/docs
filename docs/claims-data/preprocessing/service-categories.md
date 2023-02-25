@@ -1,6 +1,6 @@
 ---
 id: service-categories
-title: "Service Categories"
+title: "Service Category Grouper"
 
 # Display h2 to h5 headings 
 toc_min_heading_level: 2

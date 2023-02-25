@@ -2,15 +2,15 @@
 id: intro
 title: "Welcome"
 ---
-Welcome to the Tuva Project's Knowledge Base!  Knowledge Base is where you can learn about the Tuva Project and how to use it, and also learn about healthcare data in general.
+Welcome to the Tuva Project!  This is where you can learn what the Tuva Project is and how to use it in your healthcare data platform.
 
 ## What is the Tuva Project
 
-The Tuva Project is an open source library of **data models, datasets, and data marts** for transforming and enriching raw healthcare data (e.g. claims, medical records) so that it's ready for analytics and machine learning.  Healthcare data is difficult to work with because it requires an insane amount of transformation and enrichment before you can do any data analysis.  Further, significant subject matter expertise is required to know _how_ to properly transform and enrich healthcare data.  
+The Tuva Project is an open source library of tools for transforming raw healthcare data (e.g. claims, medical records) and doing analytics.  Healthcare data is difficult to analyze with because it requires an insane amount of transformation and enrichment before you can do any data analysis.  Further, significant subject matter expertise is required to know _how_ to properly transform and enrich healthcare data.
 
-For years we've seen healthcare data teams (includidng our former teams) working to solve this problem from scratch.  That's partially because existing vendors have focused too much on building analytics applications, dashboards and machine learning models, while largely ignoring the healthcare data quality problem.
+For years we've seen healthcare data teams (includidng our former teams) working to solve this problem from scratch.  Unfortunately this is a massive challenge, because it requires a laundry-list of tools: syntatic and semantic normalization, data profiling, reference terminology, measures and groupers, etc.  Some of these tools already exist and are open source.  Unfortunately they are usually written in SAS or not available as code.  We're converting these to code that runs in the modern data platform and we're building the tools that don't yet exist as well.
 
-Our goal is to enable healthcare data teams to generate high-quality healthcare data, so that they can focus on using that data to answer important questions that impact patient health and healthcare.
+Our goal is to enable healthcare data teams to generate high-quality analytics faster, and we believe open source is the key to doing that.  The diagram below is our picture of the universe of tools and capabilities that every modern healthcare data platform should have.  The rest of this website describes these tools in detail, including how you can use them in your healthcare data platform.
 
 ![The Tuva Project](/img/the-tuva-project.jpg)
 
