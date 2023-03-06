@@ -107,7 +107,8 @@ const sidebars = {
       {
         type: "category",
         label: "Appendix",
-        items: ["appendix/dbt",
+        items: [
+        "appendix/dbt",
         {
           type: "category",
           label: "B. Intro to Claims Data",
@@ -115,7 +116,8 @@ const sidebars = {
                   "appendix/fundamentals/claims-data-elements",
                   "appendix/fundamentals/eligibility",
                   "appendix/fundamentals/payments"]
-        },     
+        },   
+        "appendix/medicare-lds",  
                 "appendix/mapping-guide"]
       },
       
