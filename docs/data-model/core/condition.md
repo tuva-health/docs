@@ -3,6 +3,8 @@ id: condition
 title: "Condition"
 ---
 
+import { JsonTable } from '@site/src/components/JsonTable';
+
 ## Description
 A condition is any sort of symptom, problem, complaint, admitting diagnosis, or billing diagnosis as reported by the patient, a clinician, or as otherwise generated (e.g. by the billing process).  Key ancillary data related to condition includes the date it was reported, it's rank (i.e. primary or secondary), and whether or not it was present during admission for an acute inpatient encounter.
 
@@ -22,3 +24,6 @@ Conditions can only be generated during encounters (i.e. every condition must ha
 | diagnosis_rank | int | no | The order of diagnosis codes (applies to discharge diagnoses only, 1 indicates primary discharge diagnosis) |
 | present_on_admit | varchar | [yes](https://github.com/tuva-health/terminology/blob/main/terminology/present_on_admission.csv) | Indicates whether the condition was present on admission for discharge diagnosis codes |
 | data_source | varchar | no | Indicates the name of the source dataset (e.g. Medicare Claims) |
+
+
+<JsonTable jsonUrl="https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json" jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__condition.columns" />
