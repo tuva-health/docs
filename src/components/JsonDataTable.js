@@ -26,7 +26,7 @@ export function JsonDataTable({ jsonPath }) {
             ordering: false,
             fixedHeader: {
               header: true,
-              headerOffset: $('.navbar').outerHeight()+50
+              headerOffset: $('.navbar').outerHeight()
             }
 
           });
