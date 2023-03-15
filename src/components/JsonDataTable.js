@@ -28,16 +28,15 @@ export function JsonDataTable({ jsonPath }) {
               header: true,
               headerOffset: $('.navbar').outerHeight()
             }
-
           });
+      $(window).on('resize', function () {
+        // Trigger responsive recalculation
+        table.responsive.recalc();
 
-            window.addEventListener('resize', function() {
-            if (isSidebarCollapsed()) {
-              // The sidebar is currently collapsed
-              // Trigger any code or event you want to run, such as redrawing the DataTable
-              myDataTable.draw();
-            }
-  });
+        // Trigger FixedHeader update
+        table.fixedHeader.adjust();
+      });
+
         });
         console.log('NavbarHeight: ',$('.navbar').outerHeight())
       } catch (error) {
