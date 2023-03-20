@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
-
+import $ from "jquery";
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import 'datatables.net-dt/js/dataTables.dataTables.min.js';
 import 'datatables.net-fixedheader-dt';
@@ -8,7 +8,7 @@ import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 import DataTable from "datatables.net-dt";
-import $ from "jquery";
+
 
 
 export function CSVDataTable({csvUrl}) {
@@ -28,12 +28,12 @@ export function CSVDataTable({csvUrl}) {
                 $(document).ready(() => {
                     const myDataTable = $(tableRef.current).DataTable({
                         responsive: true,
-                        paging: false,
-                        ordering: false,
-                        fixedHeader: {
-                            header: true,
-                            headerOffset: $('.navbar').outerHeight()
-                        },
+                        paging: true,
+                        ordering: true,
+                        // fixedHeader: {
+                        //     header: true,
+                        //     headerOffset: $('.navbar').outerHeight()
+                        // },
                         //   "columns": [
                         //     { "width": "20px" },
                         //     null,
