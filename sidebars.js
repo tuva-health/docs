@@ -10,7 +10,8 @@ const sidebars = {
           type: 'doc',
           id: "setup/setup",
         },
-        items: ["setup/the-tuva-project"]
+        items: ["setup/the-tuva-project",
+                "setup/terminology"]
       },
 
       {
@@ -102,7 +103,6 @@ const sidebars = {
                 "measures-groupers/readmissions",
                 "claims-data/preprocessing/pmpm"]
       },
-      "notebooks",
 
       {
         type: "category",

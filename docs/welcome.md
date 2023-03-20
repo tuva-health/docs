@@ -7,11 +7,11 @@ title: "Welcome"
 
 Welcome to the Tuva Project!  The Tuva Project is an open source library of tools for transforming and doing analytics on raw healthcare data (e.g. claims, medical records).  
 
-Healthcare data is difficult to analyze because it requires an insane amount of transformation before you can do any data analysis.  For years we've seen healthcare data teams (includidng our former teams) working to solve this problem from scratch.  This is a massive challenge because it requires building a laundry-list of tools: syntatic and semantic normalization, data profiling, reference terminology, measures and groupers, etc.  Some of these tools already exist and are open source.  Unfortunately they are often written in out-dated languages (e.g. SAS) or not available as code.  We're converting these tools to code that runs in the modern data platform and we're also building the tools that don't yet exist.
-
-Our goal is to enable healthcare data teams to generate high-quality analytics faster, and we believe open source is the right approach to enable this.  The diagram below represents the universe of tools and capabilities that every modern healthcare data platform needs to have.  The rest of this website describes these tools in detail, including how you can use them in your healthcare data platform.
-
 ![The Tuva Project](/img/the-tuva-project.jpg)
+
+Our goal is to enable healthcare data teams to generate high-quality analytics faster, and we believe open source is the right approach to enable this.  The diagram above represents the universe of tools and capabilities that every modern healthcare data platform needs to have, which we are building into the Tuva Project.  The rest of this website describes these tools in detail, including how you can use them in your healthcare data platform.
+
+Healthcare data is difficult to analyze because it requires an insane amount of transformation before you can do any data analysis.  For years we've seen healthcare data teams (includidng our former teams) working to solve this problem from scratch.  This is a massive challenge because it requires building a laundry-list of tools: syntatic and semantic normalization, data profiling, reference terminology, measures and groupers, etc.  Some of these tools already exist and are open source.  Unfortunately they are often written in out-dated languages (e.g. SAS) or not available as code.  We're converting these tools to code that runs in the modern data platform and we're also building the tools that don't yet exist.
 
 ## Who is Tuva Health
 
