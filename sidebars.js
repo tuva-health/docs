@@ -1,17 +1,18 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
     docsSidebar: [
-        "intro",
+      "intro",
 
-        {
-            type: "category",
-            label: "1. Setup",
-            link: {
-                type: 'doc',
-                id: "setup/setup",
-            },
-            items: ["setup/the-tuva-project"]
+      {
+        type: "category",
+        label: "1. Setup",
+        link: {
+          type: 'doc',
+          id: "setup/setup",
         },
+        items: ["setup/the-tuva-project",
+                "setup/terminology"]
+      },
 
         {
             type: "category",
@@ -141,8 +142,7 @@ const sidebars = {
             items: ["measures-groupers/chronic-conditions",
                 "measures-groupers/readmissions",
                 "claims-data/preprocessing/pmpm"]
-        },
-        "notebooks",
+      },
 
         {
             type: "category",
