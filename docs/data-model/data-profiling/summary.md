@@ -1,8 +1,9 @@
 ---
-sidebar_position: 4
+id: summary
+title: "Summary"
 ---
 
-import { JsonTable } from '@site/src/components/JsonTable';
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 # Summary
 
@@ -10,4 +11,4 @@ import { JsonTable } from '@site/src/components/JsonTable';
 
 ## Data Dictionary
 
-<JsonTable jsonPath="nodes.model\.data_profiling\.data_profiling__summary.columns" />
+<JsonDataTable jsonPath="nodes.model\.data_profiling\.data_profiling__summary.columns" />

@@ -22,6 +22,7 @@
     "clsx": "^1.1.1",
     "datatables.net-dt": "^1.13.3",
     "datatables.net-fixedheader-dt": "^3.3.1",
+    "datatables.net-plugins": "^1.13.4",
     "datatables.net-responsive-dt": "^2.4.0",
     "datatables.net-scroller-dt": "^2.1.0",
     "docusaurus-plugin-image-zoom": "^0.1.1",

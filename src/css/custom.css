@@ -75,4 +75,13 @@ table.dataTable thead th {
 
 table.dataTable {
   width: 100%;
+  border-collapse: collapse;
 }
+
+
+/*table.dataTable thead tr th:first-child,*/
+/*table.dataTable tbody tr td:first-child {*/
+/*  max-width: 300px;*/
+/*  overflow: hidden;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
