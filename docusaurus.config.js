@@ -36,11 +36,11 @@ const config = {
 
   presets: [
     [
-      'classic',
+       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: "/docs",
+          routeBasePath: "/",
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -75,23 +75,35 @@ const config = {
           src: 'img/TheTuvaProjectLogo.png',
         },
         items: [
+        //   {
+        //     type: 'doc',
+        //     docId: 'intro',
+        //     position: 'left',
+        //     label: 'Knowledge',
+        //   },
+          // {
+          //   to: 'https://github.com/tuva-health',
+          //   label: 'Code',
+          //   position: 'left',
+          //   target: null,
+          // },
+          // {
+          //   to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+          //   label: 'Community',
+          //   position: 'left',
+          //   target: null,
+          // },
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Knowledge',
+            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+            position: 'right',
+            className: 'header-slack-link',
+            'aria-label': 'Slack Community',
           },
           {
-            to: 'https://github.com/tuva-health',
-            label: 'Code',
-            position: 'left',
-            target: null,
-          },
-          {
-            to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
-            label: 'Community',
-            position: 'left',
-            target: null,
+            href: 'https://github.com/tuva-health',
+            position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
 

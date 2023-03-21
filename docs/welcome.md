@@ -1,6 +1,7 @@
 ---
 id: intro
 title: "Welcome"
+slug: /
 ---
 
 **You can access the complete and up-to-date Tuva Project Roadmap [here](https://docs.google.com/spreadsheets/d/1rqFcyoYtspNZ1PRnwaTx29jGoIyw9r3aHUE-I2Xn6KM/edit?usp=sharing).**
