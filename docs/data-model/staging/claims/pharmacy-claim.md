@@ -3,7 +3,7 @@ id: pharmacy-claim
 title: "Pharmacy Claim"
 ---
 
-import { JsonDataTablePage } from '@site/src/components/JsonDataTablePage';
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 ## Description
 The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.
@@ -48,4 +48,4 @@ The pharmacy_claim table is at the claim-line grain.
 [//]: # (| data_source | varchar | no | User-configured field that indicates the data source &#40;e.g. typically named after the payer and state "BCBS Tennessee"&#41;. |)
 
 
-<JsonDataTablePage jsonPath="nodes.model\.claims_data_model\.pharmacy_claim.columns" />
+<JsonDataTable jsonPath="nodes.model\.claims_data_model\.pharmacy_claim.columns" />

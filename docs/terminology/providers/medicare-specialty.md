@@ -1,5 +1,5 @@
 ---
-id: medicareSpecialty
+id: medicare-specialty
 title: "Medicare Specialty"
 ---
 

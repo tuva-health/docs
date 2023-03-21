@@ -1,5 +1,5 @@
 ---
-id: ATC
+id: atc
 title: "ATC"
 ---
 

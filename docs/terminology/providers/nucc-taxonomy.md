@@ -1,5 +1,5 @@
 ---
-id: NuccTaxonomy
+id: nucc-taxonomy
 title: "NUCC Taxonomy"
 ---
 

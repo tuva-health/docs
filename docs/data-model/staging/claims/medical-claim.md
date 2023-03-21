@@ -3,7 +3,7 @@ id: medical-claim
 title: "Medical Claim"
 ---
 
-import { JsonDataTableScroll } from '@site/src/components/JsonDataTableScroll';
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 ## Description
 The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers.  It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  
@@ -15,4 +15,4 @@ A typical medical claims dataset includes claims header information and claims l
 
 ## Data Dictionary
 
-<JsonDataTableScroll jsonPath="nodes.model\.claims_data_model\.medical_claim.columns" />
+<JsonDataTable jsonPath="nodes.model\.claims_data_model\.medical_claim.columns" />

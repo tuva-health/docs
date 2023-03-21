@@ -1,5 +1,5 @@
 ---
-id: admitSource
+id: admit-source
 title: "Admit Source"
 ---
 

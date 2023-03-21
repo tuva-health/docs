@@ -1,5 +1,5 @@
 ---
-id: test_detail
+id: test-detail
 title: "Test Detail"
 ---
 

@@ -40,9 +40,9 @@ const sidebars = {
                     label: "Data Profiling",
                     items: [
                         "data-model/data-profiling/summary",
-                        "data-model/data-profiling/test_detail",
-                        "data-model/data-profiling/test_result",
-                        "data-model/data-profiling/use_case"]
+                        "data-model/data-profiling/test-detail",
+                        "data-model/data-profiling/test-result",
+                        "data-model/data-profiling/use-case"]
                 },
                 {
                     type: "category",
@@ -77,30 +77,81 @@ const sidebars = {
                 id: "terminology/terminology",
             },
             items: [
-
-
                 {
                     type: "category",
                     label: "Administrative Codes",
-                    link: {
-                        type: 'doc',
-                        id: "terminology/administrativeCodes",
-                    },
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/administrative-codes",
+                    // },
                     items: [
-                        "terminology/administrativeCodes/admitSource"]
+                        "terminology/administrative-codes/admit-source",
+                        "terminology/administrative-codes/admit-type",
+                        "terminology/administrative-codes/bill-type",
+                        "terminology/administrative-codes/discharge-disposition",
+                        "terminology/administrative-codes/medicare-dual-eligibility",
+                        "terminology/administrative-codes/medicare-status",
+                        "terminology/administrative-codes/place-of-service",
+                        "terminology/administrative-codes/present-on-admission",
+                        "terminology/administrative-codes/revenue-center"
+
+                    ]
                 },
                 {
                     type: "category",
-                    label: "Providers",
+                    label: "Conditions and Procedures",
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/conditions-and-procedures",
+                    // },
+                    items: [
+                        "terminology/conditions-and-procedures/apr-drg",
+                        "terminology/conditions-and-procedures/betos",
+                        "terminology/conditions-and-procedures/ccsr",
+                        "terminology/conditions-and-procedures/hcpcs-level-2",
+                        "terminology/conditions-and-procedures/icd-10-cm",
+                        "terminology/conditions-and-procedures/icd-10-pcs",
+                        "terminology/conditions-and-procedures/mdc",
+                        "terminology/conditions-and-procedures/ms-drg",
+                        "terminology/conditions-and-procedures/snomed-ct"
+
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Demographics",
                     link: {
                         type: 'doc',
-                        id: "terminology/providers",
+                        id: "terminology/demographics",
                     },
                     items: [
-                        "terminology/providers/medicareSpecialty",
-                        "terminology/providers/NPPES",
-                        "terminology/providers/NuccTaxonomy",
-                        "terminology/providers/providerData"
+                        "terminology/demographics/ethnicity",
+                        "terminology/demographics/gender",
+                        "terminology/demographics/race"
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Geography",
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/geography",
+                    // },
+                    items: [
+                        "terminology/geography/fips-county",
+                        "terminology/geography/fips-state",
+                        "terminology/geography/ssa-state"
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Lab",
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/lab",
+                    // },
+                    items: [
+                        "terminology/lab/loinc"
                     ]
                 },
                 {
@@ -111,9 +162,48 @@ const sidebars = {
                         id: "terminology/medications",
                     },
                     items: [
-                        "terminology/medications/ATC",
-                        "terminology/medications/NDC",
-                        "terminology/medications/RXNorm"]
+                        "terminology/medications/atc",
+                        "terminology/medications/ndc",
+                        "terminology/medications/rx-norm"
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Miscellaneous",
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/miscellaneous",
+                    // },
+                    items: [
+                        "terminology/miscellaneous/calendar"
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Providers",
+                    link: {
+                        type: 'doc',
+                        id: "terminology/providers",
+                    },
+                    items: [
+                        "terminology/providers/medicare-specialty",
+                        "terminology/providers/nppes",
+                        "terminology/providers/nucc-taxonomy",
+                        "terminology/providers/provider-data"
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Tuva Concepts",
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/tuva-concepts",
+                    // },
+                    items: [
+                        "terminology/tuva-concepts/claim-type",
+                        "terminology/tuva-concepts/code-type",
+                        "terminology/tuva-concepts/encounter-type",
+                        "terminology/tuva-concepts/payer-type"]
                 }]
         },
 

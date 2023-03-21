@@ -1,5 +1,5 @@
 ---
-id: providerData
+id: provider-data
 title: "Provider Data"
 ---
 

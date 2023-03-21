@@ -7,7 +7,13 @@ import 'datatables.net-fixedheader-dt';
 import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
-import DataTable from "datatables.net-dt";
+// import jszip from 'jszip';
+// import pdfmake from 'pdfmake';
+import DataTable from 'datatables.net-dt';
+// import 'datatables.net-buttons-dt';
+// import 'datatables.net-buttons/js/buttons.colVis.mjs';
+// import 'datatables.net-buttons/js/buttons.html5.mjs';
+// import 'datatables.net-buttons/js/buttons.print.mjs';
 
 
 
@@ -21,15 +27,15 @@ export function CSVDataTable({csvUrl}) {
                 Papa.parse(csvUrl, {
                     download: true,
                     header: true,
+                    skipEmptyLines: true,
                     complete: (results) => {
                         setData(results.data);
-                    }
-                });
                 $(document).ready(() => {
                     const myDataTable = $(tableRef.current).DataTable({
                         responsive: true,
                         paging: true,
                         ordering: true,
+                        // buttons: [ 'copy', 'csv', 'excel' ],
                         // fixedHeader: {
                         //     header: true,
                         //     headerOffset: $('.navbar').outerHeight()
@@ -61,6 +67,8 @@ export function CSVDataTable({csvUrl}) {
                     //         // Trigger FixedHeader update
                     //         myDataTable.fixedHeader.adjust();
                     //     }, 250); // Adjust the delay time as needed
+                });
+                    }
                 });
 
                 // });
@@ -122,10 +130,10 @@ export function CSVDataTable({csvUrl}) {
     //   backgroundColor: 'white'
     // };
     return (
-
-        <table ref={tableRef} id="DataTable" className="display" style={{width: `100%`}}>
-            <thead>
-            <tr>
+        <div style={{ width: '100%' }}>
+        <table ref={tableRef} id="DataTable" className="display" style={{ width: '100%' }}>
+            <thead style={{ width: '100%' }}>
+            <tr style={{ width: '100%' }}>
                 {data[0] && Object.keys(data[0]).map((key) => (
                     <th key={key}>{key}</th>
                 ))}
@@ -140,7 +148,7 @@ export function CSVDataTable({csvUrl}) {
                 </tr>
             ))}
             </tbody>
-        </table>
+        </table></div>
     );
 };
 

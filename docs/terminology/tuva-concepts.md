@@ -1,5 +1,5 @@
 ---
-id: tuvaConcepts
+id: tuva-concepts
 title: "Tuva Concepts"
 ---
 

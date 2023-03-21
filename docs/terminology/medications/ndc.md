@@ -1,5 +1,5 @@
 ---
-id: NDC
+id: ndc
 title: "NDC"
 ---
 

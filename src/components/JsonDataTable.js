@@ -121,12 +121,15 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
 
         const result = {
             name: key,
-            description: value.description
+            description: value.description,
+            data_type: value.data_type
         };
 
         if (value.meta && value.meta.terminology) {
             result.terminology = value.meta.terminology;
         }
+
+        // if (value.data_type) { result.data_type = value.data_type}
 
         return result;
 
@@ -140,7 +143,7 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
         // console.log('catObj: ',catObj)
         parsedData[i] = {
             name: manObj ? manObj.name : parsedDataCat[i].name,
-            type: parsedDataCat[i].type,
+            type: manObj && manObj.data_type ? manObj.data_type : ( ( parsedDataCat[i].type === "TEXT") ? "varchar" : parsedDataCat[i].type.toLowerCase() ),
             description: manObj ? manObj.description : undefined,
             terminology: manObj && manObj.terminology ? manObj.terminology : undefined
         }

@@ -1,5 +1,5 @@
 ---
-id: use_case
+id: use-case
 title: "Use Case"
 ---
 

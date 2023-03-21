@@ -1,5 +1,5 @@
 ---
-id: administrativeCodes
+id: administrative-codes
 title: "Administrative Codes"
 ---
 
