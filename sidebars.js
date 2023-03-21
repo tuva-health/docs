@@ -24,7 +24,7 @@ const sidebars = {
         items: [                
                 {
                 type: "category",
-                label: "Staging",
+                label: "Input Layer",
                 items: [
                           {
                             type: "category",
@@ -79,7 +79,19 @@ const sidebars = {
 
       {
         type: "category",
-        label: "4. Claims Data",
+        label: "4. Value Sets",
+        link: {
+          type: 'doc',
+          id: "value-sets/service-categories",
+        },
+        items: [
+                "terminology/medications",
+                "terminology/providers"]
+      },
+
+      {
+        type: "category",
+        label: "5. Claims Data",
         link: {
           type: 'doc',
           id: "claims-data/claims-data",
@@ -98,7 +110,7 @@ const sidebars = {
 
       {
         type: "category",
-        label: "5. Measures + Groupers",
+        label: "6. Measures + Groupers",
         items: ["measures-groupers/chronic-conditions",
                 "measures-groupers/readmissions",
                 "claims-data/preprocessing/pmpm"]
@@ -117,7 +129,6 @@ const sidebars = {
                   "appendix/fundamentals/eligibility",
                   "appendix/fundamentals/payments"]
         },   
-        "appendix/medicare-lds",  
                 "appendix/mapping-guide"]
       },
       
