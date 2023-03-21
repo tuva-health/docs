@@ -7,7 +7,7 @@ This section describes the Tuva Data Model.  There are 4 main layers of the Tuva
 
 ![The Tuva Project Data Model](/img/the-tuva-project-data-model.jpg)
 
-1. **Staging:** Staging is the first layer of data tables in the Tuva Data Model.  There are staging tables for claims data and for medical record data.  The claims data tables are similar in structure to raw claims datasets you are probably familiar with.  The medical record tables are a relational form of FHIR r4.  The purpose of Staging is to convert your claims and medical record data, which may come a variety of schemas, into a standard schema.
+1. **Input Layer:** The Input Layer is the first layer of data tables in the Tuva Data Model.  There are Input Layer tables for both claims data and for medical record data.  The claims data tables are similar in structure to raw claims datasets you are probably familiar with.  The medical record tables are a relational form of FHIR r4.  The purpose of Staging is to convert your claims and medical record data, which may come a variety of schemas, into a standard schema.
 
 2. **Data Profiling:** Data Profiling is the second layer of data tables in the Tuva Data Model.  It includes a set of data tables that summarize and pin-point data quality problems in your raw data.  It runs on data that has been mapped to Staging.
 

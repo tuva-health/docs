@@ -1,8 +1,8 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-    docsSidebar: [
+    docsSidebar: [ 
       "intro",
-
+      
       {
         type: "category",
         label: "1. Setup",
@@ -23,10 +23,10 @@ const sidebars = {
             },
             items: [
                 {
-                    type: "category",
-                    label: "Staging",
-                    items: [
-                        {
+                type: "category",
+                label: "Input Layer",
+                items: [
+                          {
                             type: "category",
                             label: "Claims",
                             items: ["data-model/staging/claims/eligibility",
@@ -207,14 +207,26 @@ const sidebars = {
                 }]
         },
 
-        {
-            type: "category",
-            label: "4. Claims Data",
-            link: {
-                type: 'doc',
-                id: "claims-data/claims-data",
-            },
-            items: [
+      {
+        type: "category",
+        label: "4. Value Sets",
+        link: {
+          type: 'doc',
+          id: "value-sets/service-categories",
+        },
+        items: [
+                "terminology/medications",
+                "terminology/providers"]
+      },
+
+      {
+        type: "category",
+        label: "5. Claims Data",
+        link: {
+          type: 'doc',
+          id: "claims-data/claims-data",
+        },
+        items: [
 
                 "claims-data/data-profiling",
                 {
@@ -226,28 +238,27 @@ const sidebars = {
             ]
         },
 
-        {
-            type: "category",
-            label: "5. Measures + Groupers",
-            items: ["measures-groupers/chronic-conditions",
+      {
+        type: "category",
+        label: "6. Measures + Groupers",
+        items: ["measures-groupers/chronic-conditions",
                 "measures-groupers/readmissions",
                 "claims-data/preprocessing/pmpm"]
       },
 
+      {
+        type: "category",
+        label: "Appendix",
+        items: [
+        "appendix/dbt",
         {
-            type: "category",
-            label: "Appendix",
-            items: [
-                "appendix/dbt",
-                {
-                    type: "category",
-                    label: "B. Intro to Claims Data",
-                    items: ["appendix/fundamentals/introduction",
-                        "appendix/fundamentals/claims-data-elements",
-                        "appendix/fundamentals/eligibility",
-                        "appendix/fundamentals/payments"]
-                },
-                "appendix/medicare-lds",
+          type: "category",
+          label: "B. Intro to Claims Data",
+          items: ["appendix/fundamentals/introduction",
+                  "appendix/fundamentals/claims-data-elements",
+                  "appendix/fundamentals/eligibility",
+                  "appendix/fundamentals/payments"]
+        },
                 "appendix/mapping-guide"]
         },
 
