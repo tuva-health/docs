@@ -3,9 +3,9 @@ id: pmpm
 title: "PMPM"
 ---
 
-import { JsonTable } from '@site/src/components/JsonTable';
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 ## Data Dictionary
 
 
-<JsonTable jsonPath="nodes.model\.pmpm\.pmpm__pmpm_builder.columns" />
+<JsonDataTable jsonPath="nodes.model\.pmpm\.pmpm__pmpm_builder.columns" />
