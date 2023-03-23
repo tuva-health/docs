@@ -25,15 +25,15 @@ const sidebars = {
                 {
                 type: "category",
                 label: "Input Layer",
-                items: [
-                          {
-                            type: "category",
-                            label: "Claims",
+                // items: [
+                //           {
+                //             type: "category",
+                //             label: "Claims",
                             items: ["data-model/staging/claims/eligibility",
                                 "data-model/staging/claims/medical-claim",
                                 "data-model/staging/claims/pharmacy-claim"]
-                        }
-                    ]
+                        // }
+                    // ]
                 },
                 {
                     type: "category",
@@ -210,13 +210,29 @@ const sidebars = {
       {
         type: "category",
         label: "4. Value Sets",
-        link: {
-          type: 'doc',
-          id: "value-sets/service-categories",
-        },
-        items: [
-                "terminology/medications",
-                "terminology/providers"]
+        // link: {
+        //   type: 'doc',
+        //   id: "value-sets/service-categories",
+        // },
+        items: ["value-sets/cms-chronic-conditions",
+                {
+                    type: "category",
+                    label: "Readmissions",
+                    items: [
+                        "value-sets/readmissions/acute-diagnosis-ccs",
+                        "value-sets/readmissions/acute-diagnosis-icd-10-cm",
+                        "value-sets/readmissions/always-planned-css-diagnosis-category",
+                        "value-sets/readmissions/always-planned-css-procedure-category",
+                        "value-sets/readmissions/exclusion-ccs-diagnosis-category",
+                        "value-sets/readmissions/icd-10-cm-to-ccs",
+                        "value-sets/readmissions/icd-10-pcs-to-ccs",
+                        "value-sets/readmissions/potentially-planned-css-procedure-category",
+                        "value-sets/readmissions/potentially-planned-icd-10-pcs",
+                        "value-sets/readmissions/specialty-cohort",
+                        "value-sets/readmissions/surgery-gynecology-cohort",
+
+                    ]},
+                "value-sets/tuva-chronic-conditions"]
       },
 
       {

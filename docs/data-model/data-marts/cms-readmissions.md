@@ -5,18 +5,15 @@ title: "CMS Readmissions"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+There are two main output tables from this data mart:
+- **Readmission Summary:** A table including all encounters that were not disqualified
+- **Encounter Augmented:** A table with basic information for all encounters as well as extra readmission related metrics 
+
 ## Readmission Summary
 
-### Description
 The readmission summary table is the output table from the readmissions data mart.  It contains all the columns needed to do hospital readmission analytics in a single table.
 
-### Mapping Guidelines
-Once your data is mapped to core you can run the readmissions mart automatically.
-
-### Data Dictionary
-
-
-<JsonDataTable  jsonPath="nodes.model\.readmissions\.readmissions__readmission_summary.columns" tableid="cc_wide" />
+<JsonDataTable  jsonPath="nodes.model\.readmissions\.readmissions__readmission_summary.columns"  />
 
 
 [//]: # (| Column Name | Data Type | Normalized Terminology | Description |)
@@ -87,13 +84,7 @@ Once your data is mapped to core you can run the readmissions mart automatically
 
 ## Encounter Augmented
 
-### Description
-A table detailing all encounters with extra information related to the encoutner, and flags for infromation that might readmission affect the readmission calculations. 
-
-### Mapping Guidelines
-Once your data is mapped to core you can run the readmissions mart automatically.
-
-### Data Dictionary
+A table detailing all encounters with extra information related to the encoutner, and flags for infromation that might readmission affect the readmission calculations.
 
 
 <JsonDataTable  jsonPath="nodes.model\.readmissions\.readmissions__encounter_augmented.columns"  />

@@ -12,23 +12,15 @@ There are two main output tables from this data mart:
 
 ## CMS Chronic Conditions Long
 
-### Description
 This table contains one record per patient per chronic condition.  For example, if a patient has 3 chronic conditions they will have 3 records in this table.  Each record includes the condition category, condition, date of onset, most recent diagnosis, and the total count of diagnosis codes that were recorded that are relevant for the condition.
 
-### Mapping Guidelines
 This table is created by running the CMS chronic conditions data mart on data that's been mapped to the core data model.
-
-### Data Dictionary
 
 <JsonDataTable  jsonPath="nodes.model\.cms_chronic_conditions\.cms_chronic_conditions__cms_chronic_conditions_long.columns" />
 
 ## CMS Chronic Conditions Wide
 
-### Description
 This table contains a single record per patient with separate binary (i.e. 0 or 1) columns for every chronic condition.  If a patient has a particular chronic condition they will have a 1 in that particular column and 0 otherwise.
-
-### Mapping Guidelines
-This table is created by running the chronic conditions data mart on data that's been mapped to the core data model.  All patients will appear in this table, regardless of if they have any chronic conditions.
 
 ### Data Dictionary
 
