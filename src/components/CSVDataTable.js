@@ -21,6 +21,8 @@ export function CSVDataTable({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
+    const tableId = `table-${hashCode(csvUrl)}`;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -131,7 +133,7 @@ export function CSVDataTable({csvUrl}) {
     // };
     return (
         <div style={{ width: '100%' }}>
-        <table ref={tableRef} id="DataTable" className="display" style={{ width: '100%' }}>
+        <table ref={tableRef} id={tableId} className="display" style={{ width: '100%' }}>
             <thead style={{ width: '100%' }}>
             <tr style={{ width: '100%' }}>
                 {data[0] && Object.keys(data[0]).map((key) => (
@@ -153,3 +155,17 @@ export function CSVDataTable({csvUrl}) {
 };
 
 // export default CSVDataTable;
+
+
+function hashCode(str) {
+  let hash = 0;
+  if (str.length == 0) {
+    return hash;
+  }
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
+}

@@ -12,6 +12,8 @@ export function JsonDataTable({jsonPath, tableid}) {
     const [tableData, setTableData] = useState([]);
     const tableRef = useRef(null);
 
+    const tableId = `table-${hashCode(jsonPath)}`;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,15 +29,18 @@ export function JsonDataTable({jsonPath, tableid}) {
                         responsive: true,
                         paging: false,
                         ordering: false,
-                        fixedHeader: {
-                            header: true,
-                            headerOffset: $('.navbar').outerHeight()
-                        },
+                        // fixedHeader: {
+                        //     header: true,
+                        //     headerOffset: $('.navbar').outerHeight()
+                        // },
+
                         columnDefs: [{
                             "targets": 0,
                             render: DataTable.render.ellipsis( 40 )
                             // width: '10%'
                         }]
+
+
                         //   "columns": [
                         //     { "width": "20px" },
                         //     null,
@@ -43,12 +48,21 @@ export function JsonDataTable({jsonPath, tableid}) {
                         //     null
                         //   ]
                     });
+
+         const myFixedHeader = new $.fn.dataTable.FixedHeader(myDataTable, {
+            header: true,
+            headerOffset: $(".navbar").outerHeight(),
+          });
+
+
+
+                    //// return myDataTable
                     $(window).on('resize', function () {
                         // Trigger responsive recalculation
-                        myDataTable.responsive.recalc();
+                        $(`#${tableId}`).DataTable().responsive.recalc();
 
                         // Trigger FixedHeader update
-                        myDataTable.fixedHeader.adjust();
+                    myFixedHeader.update();
                     });
 
 
@@ -72,11 +86,16 @@ export function JsonDataTable({jsonPath, tableid}) {
             }
         };
         fetchData();
+     return () => {
+      // Dispose of DataTables and FixedHeader instances
+      myFixedHeader.destroy();
+      myDataTable.destroy();
+    };
     }, [jsonPath]);
 
     return (
         <div>
-            <table ref={tableRef} id="DataTable" className="display"  style={{width: `100%`}}>
+            <table ref={tableRef} id={tableId} className="display"  style={{width: `100%`}}>
                 <thead>
                 <tr>
                     <th>Column</th>
@@ -155,3 +174,15 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
     return parsedData;
 }
 
+function hashCode(str) {
+  let hash = 0;
+  if (str.length == 0) {
+    return hash;
+  }
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
+}
