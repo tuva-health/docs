@@ -5,10 +5,7 @@ title: "Summary"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-# Summary
 
-## Description
-
-## Data Dictionary
+A high level overview of all test failures. Shows aggregated counts of issues for every table and category of test.
 
 <JsonDataTable jsonPath="nodes.model\.data_profiling\.data_profiling__summary.columns" />

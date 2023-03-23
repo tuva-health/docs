@@ -106,14 +106,14 @@ const sidebars = {
                     // },
                     items: [
                         "terminology/conditions-and-procedures/apr-drg",
-                        "terminology/conditions-and-procedures/betos",
-                        "terminology/conditions-and-procedures/ccsr",
+                        // "terminology/conditions-and-procedures/betos",
+                        // "terminology/conditions-and-procedures/ccsr",
                         "terminology/conditions-and-procedures/hcpcs-level-2",
                         "terminology/conditions-and-procedures/icd-10-cm",
                         "terminology/conditions-and-procedures/icd-10-pcs",
                         "terminology/conditions-and-procedures/mdc",
-                        "terminology/conditions-and-procedures/ms-drg",
-                        "terminology/conditions-and-procedures/snomed-ct"
+                        "terminology/conditions-and-procedures/ms-drg"
+                        // "terminology/conditions-and-procedures/snomed-ct"
 
                     ]
                 },
