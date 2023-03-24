@@ -56,14 +56,14 @@
   width: 24px;
   height: 24px;
   display: flex;
-  background: url("/img/slack-logo-black.svg");
+  background: url("/img/slack-logo.svg");
   background-size: 24px 24px; /* set the size of the background image */
 }
 
-[data-theme='dark'] .header-slack-link::before {
-  background: url("/img/slack-logo-white.svg");
-  background-size: 24px 24px; /* set the size of the background image */
-}
+/*[data-theme='dark'] .header-slack-link::before {*/
+/*  background: url("/img/slack-logo-white.svg");*/
+/*  background-size: 24px 24px; !* set the size of the background image *!*/
+/*}*/
 
 table.dataTable tbody td, table.dataTable thead th {
   border: none;
@@ -71,6 +71,11 @@ table.dataTable tbody td, table.dataTable thead th {
 
 table.dataTable thead th {
   background-color: #ffffff
+}
+
+
+[data-theme='dark'] table.dataTable thead th {
+  background-color: #1b1b1d
 }
 
 table.dataTable {

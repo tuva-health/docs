@@ -439,17 +439,6 @@ pattern = '.*/ssa_fips_state\.csv.*';
 <TabItem value="redshift" label="Redshift">
 
 ```
-/* Initial first-run setup:
- - create tuva database (only required if it does not already exist)
- - change context to tuva
- - create the terminology schema */
-
-
---create database tuva;
-----with owner <user>;
-
-/* change context to tuva database */
-
 create schema if not exists terminology;
 -- with owner <user>;
 
@@ -467,8 +456,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.admit_source owner to <User>;
 copy terminology.admit_source
   from 's3://tuva-public-resources/terminology/admit_source.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -486,8 +475,48 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.admit_type owner to <User>;
 copy terminology.admit_type
   from 's3://tuva-public-resources/terminology/admit_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
+  csv
+  gzip
+  region 'us-east-1';
+
+
+
+DROP TABLE IF EXISTS terminology.ansi_fips_state CASCADE;
+CREATE TABLE terminology.ansi_fips_state
+(
+	ansi_fips_state_code VARCHAR(256)   ENCODE lzo
+	,ansi_fips_state_abbreviation VARCHAR(256)   ENCODE lzo
+	,ansi_fips_state_name VARCHAR(256)   ENCODE lzo
+)
+DISTSTYLE AUTO
+;
+-- ALTER TABLE terminology.ansi_fips_state owner to <User>;
+copy terminology.ansi_fips_state
+  from 's3://tuva-public-resources/terminology/ansi_fips_state.csv'
+  access_key_id ''
+  secret_access_key ''
+  csv
+  gzip
+  region 'us-east-1';
+
+
+
+DROP TABLE IF EXISTS terminology.apr_drg CASCADE;
+CREATE TABLE terminology.apr_drg
+(
+	apr_drg_code VARCHAR(256)   ENCODE lzo
+	,severity VARCHAR(256)   ENCODE lzo
+	,apr_drg_description VARCHAR(256)   ENCODE lzo
+)
+DISTSTYLE AUTO
+;
+-- ALTER TABLE terminology.apr_drg owner to <User>;
+copy terminology.apr_drg
+  from 's3://tuva-public-resources/terminology/apr_drg.csv'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -507,8 +536,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.bill_type owner to <User>;
 copy terminology.bill_type
   from 's3://tuva-public-resources/terminology/bill_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -525,8 +554,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.claim_type owner to <User>;
 copy terminology.claim_type
   from 's3://tuva-public-resources/terminology/claim_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -543,8 +572,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.code_type owner to <User>;
 copy terminology.code_type
   from 's3://tuva-public-resources/terminology/code_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -562,8 +591,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.discharge_disposition owner to <User>;
 copy terminology.discharge_disposition
   from 's3://tuva-public-resources/terminology/discharge_disposition.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -580,8 +609,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.encounter_type owner to <User>;
 copy terminology.encounter_type
   from 's3://tuva-public-resources/terminology/encounter_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -599,8 +628,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.ethnicity owner to <User>;
 copy terminology.ethnicity
   from 's3://tuva-public-resources/terminology/ethnicity.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -619,28 +648,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.fips_county owner to <User>;
 copy terminology.fips_county
   from 's3://tuva-public-resources/terminology/fips_county.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
-  csv
-  gzip
-  region 'us-east-1';
-
-
-
-DROP TABLE IF EXISTS terminology.fips_state CASCADE;
-CREATE TABLE terminology.fips_state
-(
-	fips_code VARCHAR(256)   ENCODE lzo
-	,abbreviation VARCHAR(256)   ENCODE lzo
-	,description VARCHAR(256)   ENCODE lzo
-)
-DISTSTYLE AUTO
-;
--- ALTER TABLE terminology.fips_state owner to <User>;
-copy terminology.fips_state
-  from 's3://tuva-public-resources/terminology/fips_state.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -657,8 +666,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.gender owner to <User>;
 copy terminology.gender
   from 's3://tuva-public-resources/terminology/gender.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -679,8 +688,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.hcpcs_level_2 owner to <User>;
 copy terminology.hcpcs_level_2
   from 's3://tuva-public-resources/terminology/hcpcs_level_2.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -700,8 +709,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.icd_10_cm owner to <User>;
 copy terminology.icd_10_cm
   from 's3://tuva-public-resources/terminology/icd_10_cm.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -721,8 +730,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.icd_10_pcs owner to <User>;
 copy terminology.icd_10_pcs
   from 's3://tuva-public-resources/terminology/icd_10_pcs.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -740,8 +749,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.mdc owner to <User>;
 copy terminology.mdc
   from 's3://tuva-public-resources/terminology/mdc.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -759,8 +768,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.medicare_dual_eligibility owner to <User>;
 copy terminology.medicare_dual_eligibility
   from 's3://tuva-public-resources/terminology/medicare_dual_eligibility.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -778,8 +787,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.medicare_status owner to <User>;
 copy terminology.medicare_status
   from 's3://tuva-public-resources/terminology/medicare_status.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -801,8 +810,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.ms_drg owner to <User>;
 copy terminology.ms_drg
   from 's3://tuva-public-resources/terminology/ms_drg.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -823,8 +832,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.other_provider_taxonomy owner to <User>;
 copy terminology.other_provider_taxonomy
   from 's3://tuva-public-resources/terminology/other_provider_taxonomy.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -841,8 +850,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.payer_type owner to <User>;
 copy terminology.payer_type
   from 's3://tuva-public-resources/terminology/payer_type.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -860,8 +869,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.place_of_service owner to <User>;
 copy terminology.place_of_service
   from 's3://tuva-public-resources/terminology/place_of_service.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -879,8 +888,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.present_on_admission owner to <User>;
 copy terminology.present_on_admission
   from 's3://tuva-public-resources/terminology/present_on_admission.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -911,8 +920,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology."provider" owner to <User>;
 copy terminology.provider
   from 's3://tuva-public-resources/terminology/provider.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -930,8 +939,8 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.race owner to <User>;
 copy terminology.race
   from 's3://tuva-public-resources/terminology/race.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
@@ -949,31 +958,30 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.revenue_center owner to <User>;
 copy terminology.revenue_center
   from 's3://tuva-public-resources/terminology/revenue_center.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
 
 
 
-DROP TABLE IF EXISTS terminology.ssa_state_codes CASCADE;
-CREATE TABLE terminology.ssa_state_codes
+DROP TABLE IF EXISTS terminology.ssa_fips_state CASCADE;
+CREATE TABLE terminology.ssa_fips_state
 (
-	fips_code VARCHAR(256)   ENCODE lzo
-	,state VARCHAR(256)   ENCODE lzo
+	ssa_fips_state_code VARCHAR(256)   ENCODE lzo
+	,ssa_fips_state_name VARCHAR(256)   ENCODE lzo
 )
 DISTSTYLE AUTO
 ;
--- ALTER TABLE terminology.ssa_state_codes owner to <User>;
-copy terminology.ssa_state_codes
-  from 's3://tuva-public-resources/terminology/ssa_state_codes.csv'
-  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
-  secret_access_key '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'
+-- ALTER TABLE terminology.ssa_fips_state owner to <User>;
+copy terminology.ssa_fips_state
+  from 's3://tuva-public-resources/terminology/ssa_fips_state.csv'
+  access_key_id ''
+  secret_access_key ''
   csv
   gzip
   region 'us-east-1';
-
 
 ```
 
@@ -981,7 +989,411 @@ copy terminology.ssa_state_codes
 <TabItem value="bigquery" label="BigQuery">
 
 ```
-sql go here
+create schema if not exists terminology;
+
+
+CREATE OR REPLACE TABLE `terminology.admit_source`
+(
+  admit_source_code STRING,
+  admit_source_description STRING,
+  newborn_description STRING
+);
+load data into terminology.admit_source
+from files (format = 'csv',
+uris = ['gs://tuva-public-resources/terminology/admit_source.csv*'],
+compression = 'GZIP',
+quote = '"',
+null_marker = '\\N'
+);
+
+CREATE OR REPLACE TABLE `terminology.admit_type`
+(
+  admit_type_code STRING,
+  admit_type_description STRING
+);
+load data into terminology.admit_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/admit_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.ansi_fips_state`
+(
+  ansi_fips_state_code STRING,
+  ansi_fips_state_abbreviation STRING,
+  ansi_fips_state_name STRING
+);
+load data into terminology.ansi_fips_state
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/ansi_fips_state.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.apr_drg`
+(
+  apr_drg_code STRING,
+  severity STRING,
+  apr_drg_description STRING
+);
+load data into terminology.apr_drg
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/apr_drg.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.bill_type`
+(
+  bill_type_code STRING,
+  bill_type_description STRING,
+  deprecated INT64,
+  deprecated_date DATE
+);
+load data into terminology.bill_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/bill_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+CREATE OR REPLACE TABLE `terminology.claim_type`
+(
+  claim_type STRING
+);
+load data into terminology.claim_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/claim_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.code_type`
+(
+  code_type STRING
+);
+load data into terminology.code_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/code_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.discharge_disposition`
+(
+  discharge_disposition_code STRING,
+  discharge_disposition_description STRING
+);
+load data into terminology.discharge_disposition
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/discharge_disposition.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.encounter_type`
+(
+  encounter_type STRING
+);
+load data into terminology.encounter_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/encounter_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.ethnicity`
+(
+  code STRING,
+  description STRING
+);
+load data into terminology.ethnicity
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/ethnicity.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.fips_county`
+(
+  fips_code STRING,
+  county STRING,
+  state STRING
+);
+load data into terminology.fips_county
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/fips_county.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.gender`
+(
+  gender STRING
+);
+load data into terminology.gender
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/gender.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.hcpcs_level_2`
+(
+  hcpcs STRING,
+  seqnum STRING,
+  recid STRING,
+  long_description STRING,
+  short_description STRING
+);
+load data into terminology.hcpcs_level_2
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/hcpcs_level_2.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.icd_10_cm`
+(
+  icd_10_cm STRING,
+  valid_flag STRING,
+  short_description STRING,
+  long_description STRING
+);
+load data into terminology.icd_10_cm
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/icd_10_cm.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.icd_10_pcs`
+(
+  icd_10_pcs STRING,
+  valid_flag STRING,
+  short_description STRING,
+  long_description STRING
+);
+load data into terminology.icd_10_pcs
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/icd_10_pcs.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.mdc`
+(
+  mdc_code STRING,
+  mdc_description STRING
+);
+load data into terminology.mdc
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/mdc.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.medicare_dual_eligibility`
+(
+  dual_status_code STRING,
+  dual_status_description STRING
+);
+load data into terminology.medicare_dual_eligibility
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/medicare_dual_eligibility.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.medicare_status`
+(
+  medicare_status_code STRING,
+  medicare_status_description STRING
+);
+load data into terminology.medicare_status
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/medicare_status.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.ms_drg`
+(
+  ms_drg_code STRING,
+  mdc_code STRING,
+  medical_surgical STRING,
+  ms_drg_description STRING,
+  deprecated INT64,
+  deprecated_date DATE
+);
+load data into terminology.ms_drg
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/ms_drg.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.other_provider_taxonomy`
+(
+  npi STRING,
+  taxonomy_code STRING,
+  medicare_specialty_code STRING,
+  description STRING,
+  primary_flag INT64
+);
+load data into terminology.other_provider_taxonomy
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/other_provider_taxonomy.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.payer_type`
+(
+  payer_type STRING
+);
+load data into terminology.payer_type
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/payer_type.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.place_of_service`
+(
+  place_of_service_code STRING,
+  place_of_service_description STRING
+);
+load data into terminology.place_of_service
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/place_of_service.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.present_on_admission`
+(
+  present_on_admit_code STRING,
+  present_on_admit_description STRING
+);
+load data into terminology.present_on_admission
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/present_on_admission.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.provider`
+(
+  npi STRING,
+  entity_type_code STRING,
+  entity_type_description STRING,
+  primary_taxonomy_code STRING,
+  primary_specialty_description STRING,
+  provider_name STRING,
+  parent_organization_name STRING,
+  practice_address_line_1 STRING,
+  practice_address_line_2 STRING,
+  practice_city STRING,
+  practice_state STRING,
+  practice_zip_code STRING,
+  last_updated DATE,
+  deactivation_date DATE,
+  deactivation_flag STRING
+);
+load data into terminology.provider
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/provider.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.race`
+(
+  code STRING,
+  description STRING
+);
+load data into terminology.race
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/race.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.revenue_center`
+(
+  revenue_center_code STRING,
+  revenue_center_description STRING
+);
+load data into terminology.revenue_center
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/revenue_center.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.ssa_fips_state`
+(
+  ssa_fips_state_code STRING,
+  ssa_fips_state_name STRING
+);
+load data into terminology.ssa_fips_state
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/ssa_fips_state.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
 ```
 
 </TabItem>
