@@ -6,49 +6,32 @@ title: "Just Terminology"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Our terminology sets can be loaded independently of the rest of The Tuva Project, either without dbt using standalone sql script, or with dbt (either as a project or as a package)
+There are two ways to load our terminology code set into your data warehouse without using dbt:  SQL script and data shares. 
 
-## Using dbt
+If you would rather use dbt, all terminology codes will automatically be loaded if you run The Tuva Project.  Terminology can be loaded via dbt as a standalone project, as a standalone package, or as part of `the_tuva_project`.   Please refer to our section ‘Setting Up The Tuva Project’ for more information.
 
-The Tuva Project Terminology sets can be loaded in dbt either as a standalone project, or as a package in your project
+## Load via SQL script
 
-#### As a project
+### Step 1: Prerequisites
 
-Clone our [Terminology Repo](https://github.com/tuva-health/terminology).  Update the profile in `dbt_project.yml` to the profile you are using.
+To load terminology via SQL, there are two requirements:
 
-#### As a package
+1. Access to one of the three data warehouses we support:  Snowflake, Redshift, or BigQuery
+2. A database called `tuva`
 
-Include our package in your packages.yml:
-```
-packages:
-  - package: "tuva-health/terminology"
-    version: [">=0.1.0", "<0.2.0"]
-```
-Run `dbt deps` to pull the package into your project.  To use our recommended schema naming convention, include this code in your `dbt_project.yml` file. 
-``` 
-dispatch:
-  - macro_namespace: dbt
-    search_order: [ 'the_tuva_project', 'dbt']
-```
+### Step 2:  Copy and paste the SQL script for you data warehouse
 
-### Configuration
-By default, the terminology package/project will write terminology files to a `TUVA` database and `TERMINOLOGY` schema.  To overwrite either of these defaults, add the following configurations to the `vars` section of your dbt_project.yml:
-```
-vars:
-  terminology_database: my_database
-  terminology_schema: my_schema
-```
+In the dropdown below, there are tabs labeled with each supported data warehouse.  Within that tab is the SQL that will import terminology.  Copy and paste that SQL into your console of choice.
 
-### Loading
-Run `dbt seed` to load the terminology sets.  If you are using terminology as a package and only want to load the tuva terminology seeds not your own, run `dbt seed --select terminology`
+### Step 3:  Execute the SQL
 
+Run the SQL script in your data warehouse.  When execution completes, the `tuva` database will populate with all the terminology code sets.
 
-## Without dbt
-
-You can load the terminology files to your warehouse using only sql scripts.  We currently support Snowflake, Redshift, and Bigquery. These scripts will load your data to a `TUVA` database and `TERMINOLOGY` schema; please update them if you wish to load to a custom location.
 
 <Tabs groupId="load_scripts">
 <TabItem value="snowflake" label="Snowflake">
+
+<details><summary>Snowflake Load Script</summary>
 
 ```
 create schema if not exists TERMINOLOGY;
@@ -434,9 +417,13 @@ copy into TERMINOLOGY.SSA_FIPS_STATE
 pattern = '.*/ssa_fips_state\.csv.*';
 ```
 
+</details>
+
 </TabItem>
 
 <TabItem value="redshift" label="Redshift">
+
+<details><summary>Redshift Load Script</summary>
 
 ```
 create schema if not exists terminology;
@@ -985,8 +972,13 @@ copy terminology.ssa_fips_state
 
 ```
 
+</details>
+
 </TabItem>
 <TabItem value="bigquery" label="BigQuery">
+
+
+<details><summary>BigQuery Load Script</summary>
 
 ```
 create schema if not exists terminology;
@@ -1395,6 +1387,8 @@ from files (format = 'csv',
     null_marker = '\\N'
     );
 ```
+
+</details>
 
 </TabItem>
 </Tabs>
