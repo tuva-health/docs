@@ -67,17 +67,17 @@ export function JsonDataTable({jsonPath, tableid}) {
 
 
                     // Add the sidebar toggle event listener
-                    $('.navbar__toggle').on('click', function () {
-                        // Use setTimeout to delay the adjustment slightly,
-                        // allowing the sidebar to finish its collapsing/expanding animation
-                        setTimeout(function () {
-                            // Trigger responsive recalculation
-                            myDataTable.responsive.recalc();
+                    // $('.navbar__toggle').on('click', function () {
+                    //     // Use setTimeout to delay the adjustment slightly,
+                    //     // allowing the sidebar to finish its collapsing/expanding animation
+                    //     setTimeout(function () {
+                    //         // Trigger responsive recalculation
+                    //         myDataTable.responsive.recalc();
 
-                            // Trigger FixedHeader update
-                            myDataTable.fixedHeader.adjust();
-                        }, 250); // Adjust the delay time as needed
-                    });
+                    //         // Trigger FixedHeader update
+                    //         myDataTable.fixedHeader.adjust();
+                    //     }, 250); // Adjust the delay time as needed
+                    // });
 
                 });
                 // console.log('NavbarHeight: ', $('.navbar').outerHeight())
