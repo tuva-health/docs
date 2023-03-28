@@ -3,7 +3,7 @@ id: readmissions
 title: "CMS Readmissions"
 ---
 
-<details><summary>How do I calculate basic readmissin statistics for my patient population?</summary>
+<details><summary>How do I calculate basic readmission statistics for my patient population?</summary>
 
 ```sql
 -- Simple readmission statistics

@@ -1,6 +1,6 @@
 ---
 id: tuva-chronic-conditions
-title: "TUVA Chronic Conditions"
+title: "Tuva Chronic Conditions"
 ---
 
 
