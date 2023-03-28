@@ -1,6 +1,6 @@
 ---
 id: chronic-conditions
-title: "CMS Chronic Conditions"
+title: "Chronic Conditions"
 ---
 
 import Tabs from '@theme/Tabs';

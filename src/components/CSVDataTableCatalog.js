@@ -17,7 +17,7 @@ import DataTable from 'datatables.net-dt';
 
 
 
-export function CSVDataTable({csvUrl}) {
+export function CSVDataTableCatalog({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
@@ -32,44 +32,45 @@ export function CSVDataTable({csvUrl}) {
                     skipEmptyLines: true,
                     complete: (results) => {
                         setData(results.data);
-                $(document).ready(() => {
-                    const myDataTable = $(tableRef.current).DataTable({
-                        responsive: true,
-                        paging: true,
-                        ordering: true,
-                        // buttons: [ 'copy', 'csv', 'excel' ],
-                        // fixedHeader: {
-                        //     header: true,
-                        //     headerOffset: $('.navbar').outerHeight()
-                        // },
-                        //   "columns": [
-                        //     { "width": "20px" },
-                        //     null,
-                        //     null,
-                        //     null
-                        //   ]
-                    });
-                    $(window).on('resize', function () {
-                    //     // Trigger responsive recalculation
-                        myDataTable.responsive.recalc();
-                    // //
-                    // //     // Trigger FixedHeader update
-                    //     myDataTable.fixedHeader.adjust();
-                    });
+                        $(document).ready(() => {
+                            const myDataTable = $(tableRef.current).DataTable({
+                                responsive: true,
+                                // paging: true,
+                                ordering: true,
+                                // buttons: [ 'copy', 'csv', 'excel' ],
+                                fixedHeader: {
+                                    header: true,
+                                    headerOffset: $('.navbar').outerHeight()
+                                },
+                                // "columns": [
+                                //   { "width": "20px" },
+                                //   null,
+                                //   null,
+                                //   null,
+                                //     null
+                                // ]
+                            });
+                            $(window).on('resize', function () {
+                                //     // Trigger responsive recalculation
+                                myDataTable.responsive.recalc();
+                                //
+                                //     // Trigger FixedHeader update
+                                myDataTable.fixedHeader.adjust();
+                            });
 
 
-                    // Add the sidebar toggle event listener
-                    // $('.navbar__toggle').on('click', function () {
-                    //     // Use setTimeout to delay the adjustment slightly,
-                    //     // allowing the sidebar to finish its collapsing/expanding animation
-                    //     setTimeout(function () {
-                    //         // Trigger responsive recalculation
-                    //         myDataTable.responsive.recalc();
-                    //
-                    //         // Trigger FixedHeader update
-                    //         myDataTable.fixedHeader.adjust();
-                    //     }, 250); // Adjust the delay time as needed
-                });
+                            // Add the sidebar toggle event listener
+                            // $('.navbar__toggle').on('click', function () {
+                            //     // Use setTimeout to delay the adjustment slightly,
+                            //     // allowing the sidebar to finish its collapsing/expanding animation
+                            //     setTimeout(function () {
+                            //         // Trigger responsive recalculation
+                            //         myDataTable.responsive.recalc();
+                            //
+                            //         // Trigger FixedHeader update
+                            //         myDataTable.fixedHeader.adjust();
+                            //     }, 250); // Adjust the delay time as needed
+                        });
                     }
                 });
 
@@ -131,27 +132,29 @@ export function CSVDataTable({csvUrl}) {
     //   top: 0,
     //   backgroundColor: 'white'
     // };
-    return (
-        <div style={{ width: '100%' }}>
-        <table ref={tableRef} id={tableId} className="display" style={{ width: '100%' }}>
-            <thead style={{ width: '100%' }}>
-            <tr style={{ width: '100%' }}>
-                {data[0] && Object.keys(data[0]).map((key) => (
+    console.log("table data:", data);
+return (
+    <div style={{width: '100%'}}>
+        <table ref={tableRef} id={tableId} className="display" style={{width: '100%'}}>
+            <thead style={{width: '100%'}}>
+            <tr style={{width: '100%'}}>
+                {data[0] && Object.keys(data[0]).filter((key, index) => index !== 5).map((key) => (
                     <th key={key}>{key}</th>
                 ))}
             </tr>
             </thead>
             <tbody>
-            {data.map((row, i) => (
+            {data.filter(row => row[Object.keys(row)[5]]).map((row, i) => (
                 <tr key={i}>
-                    {Object.values(row).map((value, j) => (
-                        <td key={j}>{value}</td>
+                    {Object.entries(row).filter(([, value], index) => index !== 5).map(([key, value], j) => (
+                        <td key={j}>{j === 1 ? <a href={row[Object.keys(row)[5]]}>{value}</a> : value}</td>
                     ))}
                 </tr>
             ))}
             </tbody>
-        </table></div>
-    );
+        </table>
+    </div>
+);
 };
 
 // export default CSVDataTable;
