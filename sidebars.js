@@ -214,10 +214,10 @@ const sidebars = {
       {
         type: "category",
         label: "4. Value Sets",
-        // link: {
-        //   type: 'doc',
-        //   id: "value-sets/service-categories",
-        // },
+            link: {
+                type: 'doc',
+                id: "value-sets/value-sets",
+            },
         items: ["value-sets/cms-chronic-conditions",
                 {
                     type: "category",

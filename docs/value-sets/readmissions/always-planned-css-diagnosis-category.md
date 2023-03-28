@@ -1,6 +1,6 @@
 ---
 id: always-planned-css-diagnosis-category
-title: "Always Planned CSS Diagnosis category"
+title: "Always Planned CSS Diagnosis Category"
 ---
 
 
