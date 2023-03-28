@@ -1,6 +1,6 @@
 ---
 id: terminology
-title: "Just Terminology"
+title: "Terminology + Value Sets"
 ---
 
 import Tabs from '@theme/Tabs';

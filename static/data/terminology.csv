@@ -1,0 +1,39 @@
+Category,Code Set, Maintainer, Last updated, Last updated Tuva,path
+Administrative Codes,Admit Source,National Uniform Billing Committee,,,"terminology/administrative-codes/admit-source"
+Administrative Codes,Admit Type,National Uniform Billing Committee,,,"terminology/administrative-codes/admit-type"
+Administrative Codes,Bill Type,National Uniform Billing Committee,,,"terminology/administrative-codes/bill-type"
+Administrative Codes,Discharge Disposition,National Uniform Billing Committee,,,"terminology/administrative-codes/discharge-disposition"
+Administrative Codes,Medicare Dual Eligibility,CMS,,,"terminology/administrative-codes/medicare-dual-eligibility"
+Administrative Codes,Medicare Status,CMS,,,"terminology/administrative-codes/medicare-status"
+Administrative Codes,Place of Service,Centers for Medicare & Medicaid Services (CMS),,,"terminology/administrative-codes/place-of-service"
+Administrative Codes,Present on Admission,Centers for Medicare & Medicaid Services (CMS),,,"terminology/administrative-codes/present-on-admission"
+Administrative Codes,Revenue Center,National Uniform Billing Committee,,,"terminology/administrative-codes/revenue-center"
+Conditions and Procedures,APR-DRG,3M,,,terminology/conditions-and-procedures/apr-drg
+Conditions and Procedures,RBCS,Centers for Medicare & Medicaid Services (CMS),2022,,
+Conditions and Procedures,CCSR Dx and Px,HCUP,,,
+Conditions and Procedures,HCPCS Level II,Centers for Medicare & Medicaid Services (CMS),,,terminology/conditions-and-procedures/hcpcs-level-2
+Conditions and Procedures,ICD-10-CM,Centers for Disease Control and Prevention (CDC),,,terminology/conditions-and-procedures/icd-10-cm
+Conditions and Procedures,ICD-10-PCS,Centers for Medicare & Medicaid Services (CMS),,,terminology/conditions-and-procedures/icd-10-pcs
+Conditions and Procedures,MDC,CMS,,,terminology/conditions-and-procedures/mdc
+Conditions and Procedures,MS-DRG,Centers for Medicare & Medicaid Services (CMS),,,terminology/conditions-and-procedures/ms-drg
+Conditions and Procedures,SNOMED-CT,International Health Terminology Standards Organisation (IHTSDO),,,
+Demographics,Ethnicity,,,,terminology/demographics/ethnicity
+Demographics,Gender,,,,terminology/demographics/gender
+Demographics,Race,,,,terminology/demographics/race
+Geography,ANSI FIPS County,,,,terminology/geography/ansi-fips-county
+Geography,ANSI FIPS State,,,,terminology/geography/ansi-fips-state
+Geography,SSA FIPS State,,,,terminology/geography/ssa-fips-state
+Lab,LOINC,Regenstrief Institute,February 2023,,
+Medications,ATC,World Health Organization (WHO),,,
+Medications,NDC,Federal Drug Administration (FDA),,,
+Medications,RxNorm,NLM,,,
+Calendar,Calendar,Tuva,,,
+Provider Data,Medicare Specialty,CMS,,,
+Provider Data,NPPES,CMS,,,
+Provider Data,NUCC Taxonomy,NUCC,,,
+Provider Data,Provider,Tuva,,,terminology/providers/provider
+Provider Data,Other Provider Taxonomy,Tuva,,,terminology/providers/other-provider-taxonomy
+Tuva Concepts,Claim Type,Tuva,,,terminology/tuva-concepts/claim-type
+Tuva Concepts,Code Type,Tuva,,,terminology/tuva-concepts/code-type
+Tuva Concepts,Encounter Type,Tuva,,,terminology/tuva-concepts/encounter-type
+Tuva Concepts,Payer Type,Tuva,,,terminology/tuva-concepts/payer-type
