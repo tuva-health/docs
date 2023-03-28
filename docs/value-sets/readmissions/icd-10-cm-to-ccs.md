@@ -4,11 +4,20 @@ title: "ICD 10 CM to CCS"
 ---
 
 
+:::info
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+This data set is too large to display.  Please see our [setup guide](/setup/terminology) for more information on how to load it into your data warehouse.
 
-<JsonDataTable  jsonPath="nodes.seed\.readmissions\.readmissions__icd_10_cm_to_ccs.columns" />
+:::
 
+
+[//]: # ()
+[//]: # (import { JsonDataTable } from '@site/src/components/JsonDataTable';)
+
+[//]: # ()
+[//]: # (<JsonDataTable  jsonPath="nodes.seed\.readmissions\.readmissions__icd_10_cm_to_ccs.columns" />)
+
+[//]: # ()
 
 [//]: # (import { CSVDataTable } from '@site/src/components/CSVDataTable';)
 
