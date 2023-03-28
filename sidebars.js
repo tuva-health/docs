@@ -41,8 +41,9 @@ const sidebars = {
                     items: [
                         "data-model/data-profiling/summary",
                         "data-model/data-profiling/test-detail",
-                        "data-model/data-profiling/test-result",
-                        "data-model/data-profiling/use-case"]
+                        "data-model/data-profiling/test-result"
+                        // "data-model/data-profiling/use-case"
+                    ]
                 },
                 {
                     type: "category",
@@ -251,8 +252,9 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Preprocessing",
-                    items: ["claims-data/preprocessing/service-categories",
-                        "claims-data/preprocessing/encounters"]
+                    items: ["claims-data/preprocessing/service-categories"
+                        // "claims-data/preprocessing/encounters"
+                    ]
                 },
             ]
         },
