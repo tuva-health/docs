@@ -1,6 +1,6 @@
 ---
 id: always-planned-css-procedure-category
-title: "Always Planned CSS Procedure category"
+title: "Always Planned CSS Procedure Category"
 ---
 
 

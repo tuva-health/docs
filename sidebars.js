@@ -41,8 +41,9 @@ const sidebars = {
                     items: [
                         "data-model/data-profiling/summary",
                         "data-model/data-profiling/test-detail",
-                        "data-model/data-profiling/test-result",
-                        "data-model/data-profiling/use-case"]
+                        "data-model/data-profiling/test-result"
+                        // "data-model/data-profiling/use-case"
+                    ]
                 },
                 {
                     type: "category",
@@ -120,10 +121,10 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Demographics",
-                    link: {
-                        type: 'doc',
-                        id: "terminology/demographics",
-                    },
+                    // link: {
+                    //     type: 'doc',
+                    //     id: "terminology/demographics",
+                    // },
                     items: [
                         "terminology/demographics/ethnicity",
                         "terminology/demographics/gender",
@@ -138,44 +139,44 @@ const sidebars = {
                     //     id: "terminology/geography",
                     // },
                     items: [
-                        "terminology/geography/fips-county",
-                        "terminology/geography/fips-state",
-                        "terminology/geography/ssa-state"
+                        "terminology/geography/ansi-fips-county",
+                        "terminology/geography/ansi-fips-state",
+                        "terminology/geography/ssa-fips-state"
                     ]
                 },
+                // {
+                //     type: "category",
+                //     label: "Lab",
+                //     // link: {
+                //     //     type: 'doc',
+                //     //     id: "terminology/lab",
+                //     // },
+                //     items: [
+                //         "terminology/lab/loinc"
+                //     ]
+                // },
+                // {
+                //     type: "category",
+                //     label: "Medications",
+                //     link: {
+                //         type: 'doc',
+                //         id: "terminology/medications",
+                //     },
+                //     items: [
+                //         "terminology/medications/atc",
+                //         "terminology/medications/ndc",
+                //         "terminology/medications/rx-norm"
+                //     ]
+                // },
                 {
                     type: "category",
-                    label: "Lab",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/lab",
-                    // },
-                    items: [
-                        "terminology/lab/loinc"
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "Medications",
-                    link: {
-                        type: 'doc',
-                        id: "terminology/medications",
-                    },
-                    items: [
-                        "terminology/medications/atc",
-                        "terminology/medications/ndc",
-                        "terminology/medications/rx-norm"
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "Miscellaneous",
+                    label: "Calendar",
                     // link: {
                     //     type: 'doc',
                     //     id: "terminology/miscellaneous",
                     // },
                     items: [
-                        "terminology/miscellaneous/calendar"
+                        "terminology/calendar/calendar"
                     ]
                 },
                 {
@@ -186,10 +187,13 @@ const sidebars = {
                         id: "terminology/providers",
                     },
                     items: [
-                        "terminology/providers/medicare-specialty",
-                        "terminology/providers/nppes",
-                        "terminology/providers/nucc-taxonomy",
-                        "terminology/providers/provider-data"
+                        // "terminology/providers/medicare-specialty",
+                        // "terminology/providers/nppes",
+                        // "terminology/providers/nucc-taxonomy",
+                        "terminology/providers/provider",
+                        "terminology/providers/other-provider-taxonomy"
+                        // "terminology/providers/provider-data"
+
                     ]
                 },
                 {
@@ -210,10 +214,10 @@ const sidebars = {
       {
         type: "category",
         label: "4. Value Sets",
-        // link: {
-        //   type: 'doc',
-        //   id: "value-sets/service-categories",
-        // },
+            link: {
+                type: 'doc',
+                id: "value-sets/value-sets",
+            },
         items: ["value-sets/cms-chronic-conditions",
                 {
                     type: "category",
@@ -248,8 +252,9 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Preprocessing",
-                    items: ["claims-data/preprocessing/service-categories",
-                        "claims-data/preprocessing/encounters"]
+                    items: ["claims-data/preprocessing/service-categories"
+                        // "claims-data/preprocessing/encounters"
+                    ]
                 },
             ]
         },

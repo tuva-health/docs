@@ -17,7 +17,7 @@ import DataTable from 'datatables.net-dt';
 
 
 
-export function CSVDataTable({csvUrl}) {
+export function CSVDataTableCCC({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
@@ -34,25 +34,31 @@ export function CSVDataTable({csvUrl}) {
                         setData(results.data);
                 $(document).ready(() => {
                     const myDataTable = $(tableRef.current).DataTable({
-                        responsive: true,
+                        responsive: {
+                                details: {
+                                    type: 'column',
+                                    target: 'tr'
+                                }
+                            },
                         paging: true,
                         ordering: true,
-                        // buttons: [ 'copy', 'csv', 'excel' ],
-                        // fixedHeader: {
-                        //     header: true,
-                        //     headerOffset: $('.navbar').outerHeight()
-                        // },
-                        //   "columns": [
-                        //     { "width": "20px" },
-                        //     null,
-                        //     null,
-                        //     null
-                        //   ]
+                            columnDefs: [
+                        { responsivePriority: 100, targets: 0 },
+                        { responsivePriority: 2, targets: 1 },
+                        { responsivePriority: 6, targets: 2 },
+                        { responsivePriority: 3, targets: 3 },
+                        { responsivePriority: 4, targets: 4 },
+                        { responsivePriority: 102, targets: 5 },
+                        { responsivePriority: 103, targets: 6 },
+                        { responsivePriority: 104, targets: 7 },
+                        { responsivePriority: 105, targets: 8 },
+                        { responsivePriority: 1, targets: 9 }
+    ]
                     });
                     $(window).on('resize', function () {
                     //     // Trigger responsive recalculation
                         myDataTable.responsive.recalc();
-                    // //
+                    //
                     // //     // Trigger FixedHeader update
                     //     myDataTable.fixedHeader.adjust();
                     });

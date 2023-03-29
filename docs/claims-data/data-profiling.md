@@ -2,6 +2,9 @@
 id: data-profiling
 title: "Data Profiling"
 ---
+
+import { CSVDataTable } from '@site/src/components/CSVDataTable';
+
 This section describes common data qualty issues present in claims data and how you can use the Tuva Project to identify these issues in your claims data.
 
 The Tuva Project's Data Profiling data mart includes approximately 100 data quality tests that are specific to healthcare claims data.  It summarizes the results into a few tables that make it easy to drill into the underlying drivers of your data quality problems.
@@ -44,6 +47,9 @@ from data_profiling.summary
 order by 1,3
 ```
 
+
+
+
 ![Data Profiling Summary](/img/data_profiling_summary.jpg)
 
 In the example output above, you can see summary results of data quality for each table (column 1)  and each test category.  For example, on row 8 you can see that 8,235 claims from medical_claim had invalid values.  On row 10 you can see 66,196 claims had no data quality issues of any sort (i.e. their test category label was 'good').  
@@ -69,3 +75,8 @@ select *
 from data_profiling.test_detail
 where test_name = 'ms_drg_code invalid'
 ```
+
+
+### Test Catalog
+
+<CSVDataTable csvUrl="https://raw.githubusercontent.com/tuva-health/data_profiling/main/seeds/data_profiling__test_catalog.csv" />

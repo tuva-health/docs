@@ -1,6 +1,6 @@
 ---
-id: fips-county
-title: "FIPS County"
+id: ansi-fips-county
+title: "ANSI FIPS County"
 ---
 
 import { CSVDataTable } from '@site/src/components/CSVDataTable';
