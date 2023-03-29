@@ -6,10 +6,6 @@ const sidebars = {
       {
         type: "category",
         label: "1. Setup",
-        link: {
-          type: 'doc',
-          id: "setup/setup",
-        },
         items: ["setup/the-tuva-project",
                 "setup/terminology"]
       },
@@ -25,15 +21,9 @@ const sidebars = {
                 {
                 type: "category",
                 label: "Input Layer",
-                // items: [
-                //           {
-                //             type: "category",
-                //             label: "Claims",
-                            items: ["data-model/staging/claims/eligibility",
-                                "data-model/staging/claims/medical-claim",
-                                "data-model/staging/claims/pharmacy-claim"]
-                        // }
-                    // ]
+                items: ["data-model/staging/claims/eligibility",
+                        "data-model/staging/claims/medical-claim",
+                        "data-model/staging/claims/pharmacy-claim"]
                 },
                 {
                     type: "category",
@@ -42,7 +32,6 @@ const sidebars = {
                         "data-model/data-profiling/summary",
                         "data-model/data-profiling/test-detail",
                         "data-model/data-profiling/test-result"
-                        // "data-model/data-profiling/use-case"
                     ]
                 },
                 {
@@ -81,10 +70,6 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Administrative Codes",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/administrative-codes",
-                    // },
                     items: [
                         "terminology/administrative-codes/admit-source",
                         "terminology/administrative-codes/admit-type",
@@ -99,12 +84,15 @@ const sidebars = {
                     ]
                 },
                 {
+                  type: "category",
+                  label: "Calendar",
+                  items: [
+                      "terminology/calendar/calendar"
+                  ]
+              },
+                {
                     type: "category",
                     label: "Conditions and Procedures",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/conditions-and-procedures",
-                    // },
                     items: [
                         "terminology/conditions-and-procedures/apr-drg",
                         // "terminology/conditions-and-procedures/betos",
@@ -121,10 +109,6 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Demographics",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/demographics",
-                    // },
                     items: [
                         "terminology/demographics/ethnicity",
                         "terminology/demographics/gender",
@@ -134,10 +118,6 @@ const sidebars = {
                 {
                     type: "category",
                     label: "Geography",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/geography",
-                    // },
                     items: [
                         "terminology/geography/ansi-fips-county",
                         "terminology/geography/ansi-fips-state",
@@ -168,17 +148,7 @@ const sidebars = {
                 //         "terminology/medications/rx-norm"
                 //     ]
                 // },
-                {
-                    type: "category",
-                    label: "Calendar",
-                    // link: {
-                    //     type: 'doc',
-                    //     id: "terminology/miscellaneous",
-                    // },
-                    items: [
-                        "terminology/calendar/calendar"
-                    ]
-                },
+
                 {
                     type: "category",
                     label: "Providers",
@@ -241,31 +211,18 @@ const sidebars = {
 
       {
         type: "category",
-        label: "5. Claims Data",
+        label: "5. Data Marts",
         link: {
           type: 'doc',
-          id: "claims-data/claims-data",
+          id: "data-marts/data-marts",
         },
-        items: [
-
-                "claims-data/data-profiling",
-                {
-                    type: "category",
-                    label: "Preprocessing",
-                    items: ["claims-data/preprocessing/service-categories"
-                        // "claims-data/preprocessing/encounters"
-                    ]
-                },
+        items: ["data-marts/chronic-conditions",
+                "data-marts/claims-preprocessing",
+                "data-marts/data-profiling",
+                "data-marts/pmpm",
+                "data-marts/readmissions",            
             ]
         },
-
-      {
-        type: "category",
-        label: "6. Measures + Groupers",
-        items: ["measures-groupers/chronic-conditions",
-                "measures-groupers/readmissions",
-                "claims-data/preprocessing/pmpm"]
-      },
 
       {
         type: "category",
