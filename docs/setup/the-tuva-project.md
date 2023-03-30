@@ -2,7 +2,7 @@
 id: the-tuva-project
 title: "The Entire Tuva Project"
 ---
-# Setting Up The Tuva Project
+This section walks you through how to setup the entire Tuva Project on your healthcare data.
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
   <iframe src="https://www.loom.com/embed/c6ac1645ced94463ada69a54ab112819" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
@@ -13,7 +13,7 @@ title: "The Entire Tuva Project"
 To get started with the Tuva Project, you will need:
 
 1. Dbt version 1.3 or greater installed on your machine.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
-2. Access to one of the data warehouses we support (Snowflake, Redshift, and BigQuery)
+2. Access to one of the data warehouses currently supported by the Tuva Project (i.e. Snowflake, Redshift, and BigQuery)
 
 ## Step 2: Map Your Data
 

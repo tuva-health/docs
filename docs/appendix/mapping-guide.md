@@ -1,6 +1,6 @@
 ---
 id: mapping-guide
-title: "D. Claims Mapping Guide"
+title: "C. Claims Mapping Guide"
 ---
 
 Once you have acquired and ingested raw claims data into your data warehouse, the next step is mapping it to a common data model.  **Adopting a common data model is important for a couple reasons:**

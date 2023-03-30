@@ -4,7 +4,7 @@ title: "Welcome"
 slug: /
 ---
 
-**You can access the complete and up-to-date Tuva Project Roadmap [here](https://docs.google.com/spreadsheets/d/1rqFcyoYtspNZ1PRnwaTx29jGoIyw9r3aHUE-I2Xn6KM/edit?usp=sharing).**
+**You can access the complete and up-to-date Tuva Project Roadmap [here](https://tuvahealth.notion.site/The-Tuva-Project-Roadmap-aa4dfa56da2a48e99c5dfc98f604daca).**
 
 Welcome to the Tuva Project!  The Tuva Project is an open source library of tools for transforming and doing analytics and machine learning on raw healthcare data (e.g. claims, medical records).  
 
