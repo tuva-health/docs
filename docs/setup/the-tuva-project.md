@@ -2,7 +2,7 @@
 id: the-tuva-project
 title: "The Tuva Project"
 ---
-This section walks you through how to setup the entire Tuva Project on your healthcare data.
+This section walks you through how to setup the entire Tuva Project on your healthcare data.  Setting up the entire Tuva Project will download every terminology set and value set and run every data mart on your healthcare data, building the entire Tuva Data Model inside your data warehouse.
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
   <iframe src="https://www.loom.com/embed/c6ac1645ced94463ada69a54ab112819" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>

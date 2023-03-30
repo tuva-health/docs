@@ -5,11 +5,13 @@ title: "Data Profiling"
 
 import { CSVDataTable } from '@site/src/components/CSVDataTable';
 
-This section describes common data qualty issues present in claims data and how you can use the Tuva Project to identify these issues in your claims data.
+The Tuva Project's Data Profiling data mart includes approximately 250 data quality tests that are specific to healthcare claims data.  It summarizes the results into a few tables that make it easy to drill into the underlying drivers of your data quality problems.
 
-The Tuva Project's Data Profiling data mart includes approximately 100 data quality tests that are specific to healthcare claims data.  It summarizes the results into a few tables that make it easy to drill into the underlying drivers of your data quality problems.
+**Relevant Links:**
+- [Github Repo](https://github.com/tuva-health/data_profiling)
+- [Data Dictionary](../data-model/data-marts/data-profiling.md)
 
-## Common Claims Data Quality Issues
+## Claims Data Quality Issues
 
 The process of generating claims data is heterogeneous and highly variable in nature.  As a result, the claims data you are using for analysis tends to suffer from many different types of data quality issues.  We've found that it's helpful to group the various types of data quality issues into 5 main categories: 
 
@@ -36,7 +38,7 @@ Many fields in claims data have specific reference terminology that determines t
 ### Missing Values
 Missing values are very common in claims data.  It's important to use the claim type to determine whether a value should be missing or not.  For example, bill_type_code should not be populated on professional claims, so a missing value in this case is expected, but it should always be populated on institutional claims.
 
-## Identifying Data Quality Issues with the Tuva Project
+## Using Data Profiling
 
 ### Summary
 The Data Profiling data mart executes approximately 100 data quality tests against your claims data.  Each test is categorized into 1 of the 5 categories listed above.  After you successfully run the Data Profiling data mart on your claims data, start by using the query below to get a high-level summary of your claims data quality issues.  
@@ -46,9 +48,6 @@ select *
 from data_profiling.summary
 order by 1,3
 ```
-
-
-
 
 ![Data Profiling Summary](/img/data_profiling_summary.jpg)
 
@@ -76,7 +75,8 @@ from data_profiling.test_detail
 where test_name = 'ms_drg_code invalid'
 ```
 
+## Data Profiling Test Catalog
 
-### Test Catalog
+The table below lists the data quality tests that are included in the Data Profiling repo.
 
 <CSVDataTable csvUrl="https://raw.githubusercontent.com/tuva-health/data_profiling/main/seeds/data_profiling__test_catalog.csv" />

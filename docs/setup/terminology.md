@@ -6,27 +6,14 @@ title: "Terminology + Value Sets"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-There are two ways to load our terminology code set into your data warehouse without using dbt:  SQL script and data shares. 
+Terminology sets and value sets are code sets that we maintain and distribute as part of the Tuva Project.  If you run the entire Tuva Project, terminology sets and value sets will be loaded into to your data warehouse automatically.  Alternatively, if you don't want to run the entire Tuva Project you can load terminology and value sets by following the steps below.
 
-If you would rather use dbt, all terminology codes will automatically be loaded if you run The Tuva Project.  Terminology can be loaded via dbt as a standalone project, as a standalone package, or as part of `the_tuva_project`.   Please refer to our section ‘Setting Up The Tuva Project’ for more information.
+The Tuva Project currently supports direct download of terminology and value sets to the following data warehouses:
+- Snowflake
+- Redshift
+- BigQuery
 
-## Load via SQL script
-
-### Step 1: Prerequisites
-
-To load terminology via SQL, there are two requirements:
-
-1. Access to one of the three data warehouses we support:  Snowflake, Redshift, or BigQuery
-2. A database called `tuva`
-
-### Step 2:  Copy and paste the SQL script for you data warehouse
-
-In the dropdown below, there are tabs labeled with each supported data warehouse.  Within that tab is the SQL that will import terminology.  Copy and paste that SQL into your console of choice.
-
-### Step 3:  Execute the SQL
-
-Run the SQL script in your data warehouse.  When execution completes, the `tuva` database will populate with all the terminology code sets.
-
+Before running the SQL below you need to create a database called `tuva`.  Once you've done this, copy and paste and execute the SQL below in your data warehouse.  This will automatically download all the terminology and value sets from the Tuva Project and load them into your data warehouse.
 
 <Tabs groupId="load_scripts">
 <TabItem value="snowflake" label="Snowflake">

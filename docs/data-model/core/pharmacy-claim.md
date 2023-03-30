@@ -5,13 +5,7 @@ title: "Pharmacy Claim"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Description
-This table contains information on prescriptions from claims data.
-
-## Mapping Guidelines
-This table is intended to store medication information from pharmacy claims data.
-
-## Data Dictionary
+The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.  The pharmacy_claim table is at the claim-line grain.
 
 <JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__pharmacy_claim_enhanced.columns" />
 

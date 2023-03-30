@@ -25,9 +25,9 @@ const sidebars = {
                 {
                 type: "category",
                 label: "Input Layer",
-                items: ["data-model/staging/claims/eligibility",
-                        "data-model/staging/claims/medical-claim",
-                        "data-model/staging/claims/pharmacy-claim"]
+                items: ["data-model/input-layer/eligibility",
+                        "data-model/input-layer/medical-claim",
+                        "data-model/input-layer/pharmacy-claim"]
                 },
                 {
                     type: "category",
@@ -48,18 +48,9 @@ const sidebars = {
                     items: [
                         "data-model/data-marts/cms-chronic-conditions",
                         "data-model/data-marts/cms-readmissions",
-                        "data-model/data-marts/tuva-chronic-conditions",
-                        "data-model/data-marts/pmpm",
                         "data-model/data-marts/data-profiling",
-                //         {
-                //     type: "category",
-                //     label: "Data Profiling",
-                //     items: [
-                //         "data-model/data-profiling/summary",
-                //         "data-model/data-profiling/test-detail",
-                //         "data-model/data-profiling/test-result"
-                //     ]
-                // },
+                        "data-model/data-marts/pmpm",
+                        "data-model/data-marts/tuva-chronic-conditions",
                     ]
                 }
             ]

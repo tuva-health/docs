@@ -2,7 +2,6 @@
 id: data-model
 title: "2. Data Model"
 ---
-## Overview
 This section describes the Tuva Data Model.  There are 3 main layers of the Tuva Data Model.
 
 ![The Tuva Project Data Model](/img/the-tuva-project-data-model.jpg)

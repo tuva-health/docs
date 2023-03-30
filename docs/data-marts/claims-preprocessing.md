@@ -1,35 +1,30 @@
 ---
 id: claims-preprocessing
 title: "Claims Preprocessing"
-
-# Display h2 to h5 headings 
-toc_min_heading_level: 2
-toc_max_heading_level: 4
 ---
 
+Claims data includes bills for thousands of services for every type of healthcare encounter.  Because of this variety it can be difficult to analyze raw claims.  To solve this problem we created the Claims Preprocessing data mart, which generates important concepts such as:
 
-Modern healthcare consists of a few broad categories of activity. Healthcare providers diagnose, treat, and help patients make decisions by educating patients about their health and about the possible healthcare services. When a patient comes to a healthcare facility or provider, their visit can be described in terms of where the visit occurs, who was there, what diagnosis if any can be applied to the patient during the visit, and what products and services (hereafter referred to just as services) were provided during the visit. All of these factors affect the payment of healthcare claims relating to the visit, but the services rendered are the main driver of payment with the other factors mostly modifying, adjusting, or qualifying payments for services rendered. As such, in order to understand payments in a healthcare system, it's important to analysis payment and utilization information over the dimension of what types of services were rendered. To do this effectively, we need to group the thousands and thousands of possible services into meaningful categories.
+- **Service Categories:** Claims are grouped into 1 of 21 service categories.
+- **Encounters**: Professional and institutional claims are merged into acute inpatient and ED encounters (i.e. visits).
 
-# Definitions and Methodology for The Tuva Project Service Category Grouper
+Claims Preprocessing also transforms claims data from the Input Layer into the Core Layer of the Tuva Data Model.
 
-In the Tuva Project, we've created a service category grouper to help us analyze payment and utilization metrics. We use it to categorize medical claim lines. Pharmacy, dental, and vision claims are not included. 
+**Relevant Links:**
+- [GitHub Repo](https://github.com/tuva-health/claims_preprocessing)
+- [Value Set](../value-sets/service-category.md)
 
-## Data Elements
+## Service Category Grouper
+
+In the Tuva Project, we've created a service category grouper to help us analyze payment and utilization metrics. We use it to categorize medical claim lines.
+
+**Data Elements**
 The data elements that we use to create this grouper are as follows:
 - **bill_type_code:** Bill type code for the claim (institutional claims only).
 - **revenue_center_code:** Revenue center code for the claim line (institutional only and typically multiple codes per claim).
 - **ms_drg_code:** MS-DRG for the claim (inpatient claims only).
 - **place_of_service_code:** Place of service for the claim (professional claims only).
 - **hcpcs_code:** HCPCS level 1 or level 2 code for the claim line.
-
-## Constraints
-- **cardinality is palatable:** If there were hundreds of catogories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
-- **mutually exclusive and exaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the the sum of all payments for each individual claim.
-- **the "other" category isn't too large:** In order to make the grouper exaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
-- **hierarchical:** It's a balancing act to try to create groups with low cardinality but providing enough homogeneity inside each group for analysis to be actionable. This often leads us to create hierarchical groupers so that you can see high level groups first and then drill in to get more specific while still keeping the broader context simple.
-- **feasible:** Any categorization grouper is only useful if you're able to group things into the categories using data elements that are readily available and populated reasonably consistently.
-
-## Tuva Service Category Grouper
 
 The Tuva Project Service Category Grouper has two levels in a hierarchy with the each subcategory rolling up to a high level category. Because all subcategories roll up to one and only one higher level category, the sum of all the logic for each subcategory in a category is the same as the logic for the category. As such, we'll describe the higher level categories conceptually without codes, and then we'll define each subcategory sharing the code sets. See image below for a quick view of the categories and subcategories:
 
@@ -56,6 +51,13 @@ The Tuva Project Service Category Grouper has two levels in a hierarchy with the
 | Ancillary | DME |
 | Ancillary | Lab |
 | Other | Other |
+
+When developing any grouper we keep the following principles in mind:
+- **Cardinality is Palatable:** If there were hundreds of catogories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
+- **Mutually Exclusive and Exaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the the sum of all payments for each individual claim.
+- **The "Other" Category Isn't Too Large:** In order to make the grouper exaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
+- **Hierarchical:** It's a balancing act to try to create groups with low cardinality but providing enough homogeneity inside each group for analysis to be actionable. This often leads us to create hierarchical groupers so that you can see high level groups first and then drill in to get more specific while still keeping the broader context simple.
+- **Feasible:** Any categorization grouper is only useful if you're able to group things into the categories using data elements that are readily available and populated reasonably consistently.
 
 The Tuva Project Service Category Grouper categorizes most institutional claims at the claim level using the bill type code for each claim. However, ancillary services are sometimes coded and charged on individual claim lines where the rest of the claim would be grouped in a different category. To avoid grouping to many ancillary services in the wrong categories, we first use HCPCS level 2 codes to find institutional claim lines with some ancillary services and we pull those claim lines out of the rest of the grouping. After pulling out those ancillary services, we then group the rest of the institutional claims with their remaining lines into the rest of the categories and subcategories.
 

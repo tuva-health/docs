@@ -5,14 +5,9 @@ title: "Medical Claim"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers.  It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  
 
-## Description
-During a typical healthcare encounter clinicians will perform multiple services for the patient.  This can include anything from a physician consult, to therapy (e.g. respiratory therapy), to administering intravenous medications.  These services are recorded for billing purposes using revenue center codes and HCPCS codes and provide a useful record of care.  Each service receives it's own separate record.
-
-## Mapping Guidelines
-The grain of this table is at the encounter-service level (i.e. one record per encounter per service).
-
-## Data Dictionary
+The medical_claim table in core has been enhanced with concepts like service category and encounter that are useful for analytics.
 
 <JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__medical_claim_core.columns" />
 

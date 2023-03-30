@@ -5,11 +5,7 @@ title: "Eligibility"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Description
 The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member).  Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.
-
-## Data Dictionary
-
 
 <JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__eligibility_enhanced.columns" />
 
