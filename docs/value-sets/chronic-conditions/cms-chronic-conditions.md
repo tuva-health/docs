@@ -6,7 +6,7 @@ title: "CMS Chronic Conditions"
 
 import { CSVDataTableCCC } from '@site/src/components/CSVDataTableCCC';
 
-## CMS Chronnic Condition Hierarchy
+## CMS Chronic Condition Hierarchy
 
 A hierarchy provided by CMS to identify chronic conditions and allow classification of conditions into chronic conditions and 
 

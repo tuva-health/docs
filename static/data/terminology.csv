@@ -27,7 +27,7 @@ Lab,LOINC,Regenstrief Institute,February 2023,,
 Medications,ATC,World Health Organization (WHO),,,
 Medications,NDC,Federal Drug Administration (FDA),,,
 Medications,RxNorm,NLM,,,
-Calendar,Calendar,Tuva,,,
+Calendar,Calendar,Tuva,,,terminology/calendar/calendar
 Provider Data,Medicare Specialty,CMS,,,
 Provider Data,NPPES,CMS,,,
 Provider Data,NUCC Taxonomy,NUCC,,,

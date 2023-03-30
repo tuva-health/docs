@@ -3,6 +3,8 @@ id: patient
 title: "Patient"
 ---
 
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
 ## Description
 The patient table describes the attributes of a patient that are unchanging over time (e.g. biological sex, birth date, etc.).  The vast majority of healthcare analytics use cases involve analyzing things that happen to patients, so it's critical to have a clean patient table that contains this information.
 
@@ -10,6 +12,10 @@ The patient table describes the attributes of a patient that are unchanging over
 The patient table is intended to store a single unique record per patient.  If you're dealing with multiple healthcare datasets with overlapping patients these datasets should be mastered (e.g. merged) upstream from this table.  A few concepts in the patient table need to be normalized (e.g. gender, race, etc.).  You can see exactly which concepts these are in the data dictionary below.
 
 ## Data Dictionary
+
+
+<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__patient.columns" />
+
 
 [//]: # (| Column Name | Data Type | Terminology | Description |)
 
