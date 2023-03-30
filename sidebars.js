@@ -27,15 +27,6 @@ const sidebars = {
                 },
                 {
                     type: "category",
-                    label: "Data Profiling",
-                    items: [
-                        "data-model/data-profiling/summary",
-                        "data-model/data-profiling/test-detail",
-                        "data-model/data-profiling/test-result"
-                    ]
-                },
-                {
-                    type: "category",
                     label: "Core",
                     items: [
                         "data-model/core/condition",
@@ -54,7 +45,18 @@ const sidebars = {
                         "data-model/data-marts/cms-chronic-conditions",
                         "data-model/data-marts/cms-readmissions",
                         "data-model/data-marts/tuva-chronic-conditions",
-                        "data-model/data-marts/pmpm"]
+                        "data-model/data-marts/pmpm",
+                        "data-model/data-marts/data-profiling",
+                //         {
+                //     type: "category",
+                //     label: "Data Profiling",
+                //     items: [
+                //         "data-model/data-profiling/summary",
+                //         "data-model/data-profiling/test-detail",
+                //         "data-model/data-profiling/test-result"
+                //     ]
+                // },
+                    ]
                 }
             ]
         },
@@ -188,8 +190,14 @@ const sidebars = {
                 type: 'doc',
                 id: "value-sets/value-sets",
             },
-        items: ["value-sets/cms-chronic-conditions",
+        items: [
                 {
+                    type: "category",
+                    label: "Chronic Conditions",
+                    items: [
+                        "value-sets/chronic-conditions/cms-chronic-conditions",
+                        "value-sets/chronic-conditions/tuva-chronic-conditions"
+                    ]},{
                     type: "category",
                     label: "Readmissions",
                     items: [
@@ -206,7 +214,9 @@ const sidebars = {
                         "value-sets/readmissions/surgery-gynecology-cohort",
 
                     ]},
-                "value-sets/tuva-chronic-conditions"]
+
+                        "value-sets/service-category"
+                ]
       },
 
       {

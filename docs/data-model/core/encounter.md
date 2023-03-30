@@ -3,6 +3,8 @@ id: encounter
 title: "Encounter"
 ---
 
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
 ## Description
 The encounter table is intended to store information that represents a unique patient interaction with the healthcare system.  It's intended to be synonymous with a healthcare visit (e.g. hospital admission, office visit, etc.).  All healthcare analytics use cases involving utilization require an encounter concept.  Not only is it important to know about each unique encounter a patient has with the healthcare system, but it's also important to know the type of visit (e.g. acute inpatient, ED, office visit, inpatient rehab, etc.), the start and end dates for the visit, the total amount paid for the visit, and other pieces of information about the visit.  The encounter table stores all of this important information in a single table.
 
@@ -10,6 +12,8 @@ The encounter table is intended to store information that represents a unique pa
 Each record in the encounter table is supposed to be a unique encounter (i.e. visit).  The encounter_type field (which is a normalized field) indicates the type of visit (e.g. acute inpatient).  If the data source is claims data, you can use [claims preprocessing](https://github.com/tuva-health/claims_preprocessing_snowflake) to create this concept.
 
 ## Data Dictionary
+
+<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__encounter.columns" />
 
 [//]: # (| Column Name | Data Type | Terminology | Description |)
 
@@ -52,5 +56,3 @@ Each record in the encounter table is supposed to be a unique encounter (i.e. vi
 [//]: # (| data_source |	varchar | no | Indicates the name of the source dataset &#40;e.g. Medicare Claims&#41; |)
 
 [//]: # ()
-
-<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__encounter.columns" />
