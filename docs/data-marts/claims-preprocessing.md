@@ -1,6 +1,6 @@
 ---
-id: service-categories
-title: "Service Category Grouper"
+id: claims-preprocessing
+title: "Claims Preprocessing"
 
 # Display h2 to h5 headings 
 toc_min_heading_level: 2
