@@ -6,6 +6,10 @@ const sidebars = {
       {
         type: "category",
         label: "1. Setup",
+        link: {
+            type: 'doc',
+            id: "setup/setup",
+        },
         items: ["setup/the-tuva-project",
                 "setup/terminology"]
       },

@@ -1,6 +1,6 @@
 ---
 id: the-tuva-project
-title: "The Entire Tuva Project"
+title: "The Tuva Project"
 ---
 This section walks you through how to setup the entire Tuva Project on your healthcare data.
 
