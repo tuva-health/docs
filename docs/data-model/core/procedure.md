@@ -3,6 +3,9 @@ id: procedure
 title: "Procedure"
 ---
 
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+
 ## Description
 Procedures are treatments performed by clinicians for patients to help manage or alleviate conditions.  Important ancillary data related to procedures includes the date performed and the performing clinician.  Common procedure codes include ICD-10-PCS and HCPCS.
 
@@ -10,6 +13,10 @@ Procedures are treatments performed by clinicians for patients to help manage or
 This grain of this table is the encounter and procedure level.  Every procedure must have a corresponding encounter during which the procedure was performed.
 
 ## Data Dictionary
+
+
+<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__procedure.columns" />
+
 
 [//]: # (| Column Name | Data Type | Terminology | Description |)
 
@@ -31,5 +38,3 @@ This grain of this table is the encounter and procedure level.  Every procedure 
 
 [//]: # (| data_source | varchar | no | Indicates the name of the source dataset &#40;e.g. Medicare Claims&#41; |)
 
-
-<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__procedure.columns" />
