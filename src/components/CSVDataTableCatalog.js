@@ -7,6 +7,7 @@ import 'datatables.net-fixedheader-dt';
 import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
+import CSVDataTable from "./CSVDataTable";
 // import jszip from 'jszip';
 // import pdfmake from 'pdfmake';
 // import DataTable from 'datatables.net-dt';
@@ -172,3 +173,4 @@ function hashCode(str) {
   }
   return hash;
 }
+export default CSVDataTableCatalog;

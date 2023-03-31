@@ -175,3 +175,5 @@ function hashCode(str) {
   }
   return hash;
 }
+
+export default CSVDataTableCCC;
