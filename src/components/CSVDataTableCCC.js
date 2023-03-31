@@ -9,7 +9,7 @@ import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 // import jszip from 'jszip';
 // import pdfmake from 'pdfmake';
-import DataTable from 'datatables.net-dt';
+// import DataTable from 'datatables.net-dt';
 // import 'datatables.net-buttons-dt';
 // import 'datatables.net-buttons/js/buttons.colVis.mjs';
 // import 'datatables.net-buttons/js/buttons.html5.mjs';

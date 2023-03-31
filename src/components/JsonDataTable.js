@@ -6,7 +6,7 @@ import 'datatables.net-fixedheader-dt';
 import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
-import DataTable from "datatables.net-dt";
+// import DataTable from "datatables.net-dt";
 
 export function JsonDataTable({jsonPath, tableid}) {
     const [tableData, setTableData] = useState([]);
