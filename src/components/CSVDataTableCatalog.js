@@ -26,56 +26,51 @@ function isClient() {
 }
 
 export function CSVDataTableCatalog({csvUrl}) {
-    const [data, setData] = useState([]);
-    const tableRef = useRef(null);
+  const [data, setData] = useState([]);
+  const tableRef = useRef(null);
 
-    const tableId = `table-${hashCode(csvUrl)}`;
-    if (isClient()) {
-        useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    Papa.parse(csvUrl, {
-                        download: true,
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: (results) => {
-                            setData(results.data);
-                            $(document).ready(() => {
-                                const myDataTable = $(tableRef.current).DataTable({
-                                    responsive: true,
-                                    // paging: true,
-                                    ordering: true,
-                                    // buttons: [ 'copy', 'csv', 'excel' ],
-                                    fixedHeader: {
-                                        header: true,
-                                        headerOffset: $('.navbar').outerHeight()
-                                    },
+  const tableId = `table-${hashCode(csvUrl)}`;
 
-                                });
-                                $(window).on('resize', function () {
-                                    //     // Trigger responsive recalculation
-                                    myDataTable.responsive.recalc();
-                                    //
-                                    //     // Trigger FixedHeader update
-                                    myDataTable.fixedHeader.adjust();
-                                });
+  useEffect(() => {
+    if (!isClient()) return;
 
+    const fetchData = async () => {
+      try {
+        Papa.parse(csvUrl, {
+          download: true,
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => {
+            setData(results.data);
 
-                            });
-                        }
-                    });
-
-                } catch (error) {
-                    console.error(error);
-                }
-
-
+            const dataTableOptions = {
+              responsive: true,
+              ordering: true,
+              fixedHeader: {
+                header: true,
+                // Replace the following line with a non-jQuery alternative for getting the navbar height
+                headerOffset: document.querySelector('.navbar').offsetHeight
+              },
             };
-            fetchData();
-        }, [csvUrl]);
-    }
 
-return (
+            const myDataTable = DataTable(tableRef.current, dataTableOptions);
+
+            // Replace the following line with a non-jQuery alternative for handling window resize events
+            window.addEventListener('resize', () => {
+              myDataTable.responsive.recalc();
+              myDataTable.fixedHeader.adjust();
+            });
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [csvUrl]);
+
+  return (
     <div style={{width: '100%'}}>
         <table ref={tableRef} id={tableId} className="display" style={{width: '100%'}}>
             <thead style={{width: '100%'}}>
@@ -96,7 +91,7 @@ return (
             </tbody>
         </table>
     </div>
-);
+ );
 };
 
 
