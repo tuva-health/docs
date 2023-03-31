@@ -17,7 +17,7 @@ import DataTable from 'datatables.net-dt';
 
 
 
-export function CSVDataTableCatalog({csvUrl}) {
+export default function CSVDataTableCatalog({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
@@ -132,7 +132,7 @@ export function CSVDataTableCatalog({csvUrl}) {
     //   top: 0,
     //   backgroundColor: 'white'
     // };
-    console.log("table data:", data);
+    // console.log("table data:", data);
 return (
     <div style={{width: '100%'}}>
         <table ref={tableRef} id={tableId} className="display" style={{width: '100%'}}>

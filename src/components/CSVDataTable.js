@@ -17,7 +17,7 @@ import DataTable from 'datatables.net-dt';
 
 
 
-export function CSVDataTable({csvUrl}) {
+export default function CSVDataTable({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
