@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
-import $ from "jquery";
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import 'datatables.net-dt/js/dataTables.dataTables.min.js';
-import 'datatables.net-fixedheader-dt';
-import 'datatables.net-responsive-dt';
-import 'datatables.net-scroller-dt';
+import DataTable from 'datatables.net';
+import FixedHeader from 'datatables.net-fixedheader';
+import Responsive from 'datatables.net-responsive';
+import Scroller from 'datatables.net-scroller';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
 
