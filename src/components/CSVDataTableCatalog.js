@@ -2,10 +2,10 @@ import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import DataTable from 'datatables.net';
-import FixedHeader from 'datatables.net-fixedheader';
 import Responsive from 'datatables.net-responsive';
-import Scroller from 'datatables.net-scroller';
-import 'datatables.net-plugins/dataRender/ellipsis.mjs';
+import FixedHeader from 'datatables.net-fixedheader';
+
+// import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
 
 function hashCode(str) {
@@ -36,6 +36,8 @@ export function CSVDataTableCatalog({csvUrl}) {
 
     const fetchData = async () => {
       try {
+
+        // console.log( document.querySelector('.navbar').offsetHeight);
         Papa.parse(csvUrl, {
           download: true,
           header: true,
@@ -53,7 +55,7 @@ export function CSVDataTableCatalog({csvUrl}) {
               },
             };
 
-            const myDataTable = DataTable(tableRef.current, dataTableOptions);
+            const myDataTable =  new DataTable(tableRef.current, dataTableOptions);
 
             // Replace the following line with a non-jQuery alternative for handling window resize events
             window.addEventListener('resize', () => {
