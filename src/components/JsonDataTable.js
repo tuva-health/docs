@@ -8,7 +8,7 @@ import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 import DataTable from "datatables.net-dt";
 
-export  function JsonDataTable({jsonPath, tableid}) {
+export function JsonDataTable({jsonPath, tableid}) {
     const [tableData, setTableData] = useState([]);
     const tableRef = useRef(null);
 
