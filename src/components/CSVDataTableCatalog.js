@@ -9,57 +9,72 @@ import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
 
+function hashCode(str) {
+  let hash = 0;
+  if (str.length == 0) {
+    return hash;
+  }
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
+}
 
-
+function isClient() {
+  return typeof window !== 'undefined';
+}
 
 export function CSVDataTableCatalog({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
     const tableId = `table-${hashCode(csvUrl)}`;
+    if (isClient()) {
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    Papa.parse(csvUrl, {
+                        download: true,
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: (results) => {
+                            setData(results.data);
+                            $(document).ready(() => {
+                                const myDataTable = $(tableRef.current).DataTable({
+                                    responsive: true,
+                                    // paging: true,
+                                    ordering: true,
+                                    // buttons: [ 'copy', 'csv', 'excel' ],
+                                    fixedHeader: {
+                                        header: true,
+                                        headerOffset: $('.navbar').outerHeight()
+                                    },
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                Papa.parse(csvUrl, {
-                    download: true,
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: (results) => {
-                        setData(results.data);
-                        $(document).ready(() => {
-                            const myDataTable = $(tableRef.current).DataTable({
-                                responsive: true,
-                                // paging: true,
-                                ordering: true,
-                                // buttons: [ 'copy', 'csv', 'excel' ],
-                                fixedHeader: {
-                                    header: true,
-                                    headerOffset: $('.navbar').outerHeight()
-                                },
+                                });
+                                $(window).on('resize', function () {
+                                    //     // Trigger responsive recalculation
+                                    myDataTable.responsive.recalc();
+                                    //
+                                    //     // Trigger FixedHeader update
+                                    myDataTable.fixedHeader.adjust();
+                                });
+
 
                             });
-                            $(window).on('resize', function () {
-                                //     // Trigger responsive recalculation
-                                myDataTable.responsive.recalc();
-                                //
-                                //     // Trigger FixedHeader update
-                                myDataTable.fixedHeader.adjust();
-                            });
+                        }
+                    });
+
+                } catch (error) {
+                    console.error(error);
+                }
 
 
-                        });
-                    }
-                });
-
-            } catch (error) {
-                console.error(error);
-            }
-
-
-        };
-        fetchData();
-    }, [csvUrl]);
+            };
+            fetchData();
+        }, [csvUrl]);
+    }
 
 return (
     <div style={{width: '100%'}}>
@@ -86,16 +101,4 @@ return (
 };
 
 
-function hashCode(str) {
-  let hash = 0;
-  if (str.length == 0) {
-    return hash;
-  }
-  for (let i = 0; i < str.length; i++) {
-    let char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash;
-}
 export default CSVDataTableCatalog;
