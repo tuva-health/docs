@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import DataTable from 'datatables.net';
-import FixedHeader from 'datatables.net-fixedheader';
-import Responsive from 'datatables.net-responsive';
-import Scroller from 'datatables.net-scroller';
-import 'datatables.net-plugins/dataRender/ellipsis.mjs';
+// import DataTable from 'datatables.net';
+// import FixedHeader from 'datatables.net-fixedheader';
+// import Responsive from 'datatables.net-responsive';
+// import Scroller from 'datatables.net-scroller';
+// import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
 function hashCode(str) {
   let hash = 0;
@@ -32,6 +32,12 @@ export function CSVDataTableCCC({ csvUrl }) {
 
   useEffect(() => {
     if (!isClient()) return;
+
+    const DataTable = require('datatables.net');
+    const FixedHeader = require('datatables.net-fixedheader');
+    const Responsive = require('datatables.net-responsive');
+    const Scroller = require('datatables.net-scroller');
+
     const fetchData = async () => {
       try {
         Papa.parse(csvUrl, {

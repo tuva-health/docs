@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import DataTable from 'datatables.net';
-import FixedHeader from 'datatables.net-fixedheader';
-import Responsive from 'datatables.net-responsive';
-import Scroller from 'datatables.net-scroller';
+// import DataTable from 'datatables.net';
+// import FixedHeader from 'datatables.net-fixedheader';
+// import Responsive from 'datatables.net-responsive';
+// import Scroller from 'datatables.net-scroller';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
 
@@ -88,6 +88,13 @@ export function JsonDataTable({ jsonPath, tableid }) {
 
   useEffect(() => {
     if (!isClient()) return;
+
+
+    const DataTable = require('datatables.net');
+    const FixedHeader = require('datatables.net-fixedheader');
+    const Responsive = require('datatables.net-responsive');
+    const Scroller = require('datatables.net-scroller');
+
     const fetchData = async () => {
       try {
         const responseMan = await fetch('https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json');

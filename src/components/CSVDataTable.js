@@ -32,6 +32,12 @@ export function CSVDataTable({ csvUrl }) {
 
   useEffect(() => {
     if (!isClient()) return;
+
+    // const DataTable = require('datatables.net');
+    // const FixedHeader = require('datatables.net-fixedheader');
+    // const Responsive = require('datatables.net-responsive');
+    // const Scroller = require('datatables.net-scroller');
+
     const fetchData = async () => {
       try {
         Papa.parse(csvUrl, {
@@ -40,7 +46,7 @@ export function CSVDataTable({ csvUrl }) {
           skipEmptyLines: true,
           complete: (results) => {
             setData(results.data);
-            const myDataTable = new DataTable(tableRef.current, {
+            const myDataTable = new window.$.fn.DataTable(tableRef.current, {
               responsive: true,
               paging: true,
               ordering: true,

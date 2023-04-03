@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import DataTable from 'datatables.net';
-import Responsive from 'datatables.net-responsive';
-import FixedHeader from 'datatables.net-fixedheader';
+// import DataTable from 'datatables.net';
+// import Responsive from 'datatables.net-responsive';
+// import FixedHeader from 'datatables.net-fixedheader';
 
 // import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 
@@ -33,6 +33,11 @@ export function CSVDataTableCatalog({csvUrl}) {
 
   useEffect(() => {
     if (!isClient()) return;
+
+    const DataTable = require('datatables.net');
+    const FixedHeader = require('datatables.net-fixedheader');
+    const Responsive = require('datatables.net-responsive');
+    const Scroller = require('datatables.net-scroller');
 
     const fetchData = async () => {
       try {
