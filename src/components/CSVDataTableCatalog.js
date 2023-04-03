@@ -15,7 +15,8 @@ import DataTable from 'datatables.net-dt';
 // import 'datatables.net-buttons/js/buttons.html5.mjs';
 // import 'datatables.net-buttons/js/buttons.print.mjs';
 
-
+window.jQuery = $;
+window.$ = $;
 
 export function CSVDataTableCatalog({csvUrl}) {
     const [data, setData] = useState([]);
