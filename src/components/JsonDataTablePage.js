@@ -23,7 +23,7 @@ export function JsonDataTablePage({ jsonPath }) {
           $('#myTable').DataTable({
             responsive: true,
             ordering: false,
-            scrollY: "400px",
+            scrollY: "100px",
             scrollCollapse: true
           });
         });
@@ -111,4 +111,3 @@ const parsedDataCat = Object.entries(dataCat).map(([key, value]) => ({
   console.log('lengthCat:',parsedDataCat.length)
   return parsedData;
 }
-

@@ -100,4 +100,3 @@ const parsedDataCat = Object.entries(dataCat).map(([key, value]) => ({
   console.log('lengthCat:',parsedDataCat.length)
   return parsedData;
 }
-

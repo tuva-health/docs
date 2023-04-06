@@ -7,11 +7,14 @@ import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 import DataTable from "datatables.net-dt";
+import useStickyHeader from "./useStickyHeader.js";
+import "./tableStyles.css";
 
-export function JsonDataTable({jsonPath, tableid}) {
+
+export function JsonDataTable({jsonPath, tableid, headers = ["Column","Data Type","Terminology","Description"]}) {
     const [tableData, setTableData] = useState([]);
-    const tableRef = useRef(null);
-
+    // const tableRef = useRef(null);
+    const { tableRef, isSticky } = useStickyHeader();
     const tableId = `table-${hashCode(jsonPath)}`;
 
     useEffect(() => {
@@ -24,99 +27,62 @@ export function JsonDataTable({jsonPath, tableid}) {
                 const data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
                 setTableData(data);
                 // Initialize DataTables plugin after data has been set
-                $(document).ready(() => {
-                    const myDataTable = $(tableRef.current).DataTable({
-                        responsive: true,
-                        paging: false,
-                        ordering: false,
-                        // fixedHeader: {
-                        //     header: true,
-                        //     headerOffset: $('.navbar').outerHeight()
-                        // },
-
-                        columnDefs: [{
-                            "targets": 0,
-                            render: DataTable.render.ellipsis( 40 )
-                            // width: '10%'
-                        }]
-
-
-                        //   "columns": [
-                        //     { "width": "20px" },
-                        //     null,
-                        //     null,
-                        //     null
-                        //   ]
-                    });
-
-         const myFixedHeader = new $.fn.dataTable.FixedHeader(myDataTable, {
-            header: true,
-            headerOffset: $(".navbar").outerHeight(),
-          });
-
-
-
-                    //// return myDataTable
-                    $(window).on('resize', function () {
-                        // Trigger responsive recalculation
-                        $(`#${tableId}`).DataTable().responsive.recalc();
-
-                        // Trigger FixedHeader update
-                    myFixedHeader.update();
-                    });
-
-
-                    // Add the sidebar toggle event listener
-                    // $('.navbar__toggle').on('click', function () {
-                    //     // Use setTimeout to delay the adjustment slightly,
-                    //     // allowing the sidebar to finish its collapsing/expanding animation
-                    //     setTimeout(function () {
-                    //         // Trigger responsive recalculation
-                    //         myDataTable.responsive.recalc();
-
-                    //         // Trigger FixedHeader update
-                    //         myDataTable.fixedHeader.adjust();
-                    //     }, 250); // Adjust the delay time as needed
-                    // });
-
-                });
-                // console.log('NavbarHeight: ', $('.navbar').outerHeight())
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
+                
+      } catch (error) {
+          console.error(error);
+      }
+  };
+  fetchData();
      return () => {
       // Dispose of DataTables and FixedHeader instances
-      myFixedHeader.destroy();
-      myDataTable.destroy();
-    };
-    }, [jsonPath]);
+      // myFixedHeader.destroy();
+      // myDataTable.destroy();
+      $(tableRef.current).DataTable().destroy();
 
-    return (
-        <div>
-            <table ref={tableRef} id={tableId} className="display"  style={{width: `100%`}}>
-                <thead>
-                <tr>
-                    <th>Column</th>
-                    <th>Data Type</th>
-                    <th>Terminology</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tableData.map((row, index) => (
-                    <tr key={index}>
-                        <td>{row.name}</td>
-                        <td>{row.type}</td>
-                        <td>{row.terminology ? <a href={row.terminology}>yes</a> : "no"}</td>
-                        <td>{row.description}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div>
-    );
+    };
+    }, [jsonPath, tableRef]);
+    // const headers =[" "]
+    const renderHeader = () => (
+    <thead>
+      <tr>
+        {headers.map((item) => (
+          <th key={item}>{item}</th>
+        ))}
+      </tr>
+    </thead>
+  );
+  return (
+      <div>
+        
+          <table ref={tableRef} id={tableId} className="display"  style={{width: `100%`}}>
+              {isSticky && (
+                <table
+                  className="sticky"
+                  style={{
+                    position: "fixed",
+                    top: 55,
+                    background: "white",
+                    width: "500px",
+                  }}
+                >
+                  {renderHeader()}
+                </table>
+              )}
+              {renderHeader()}
+              <tbody>
+              {tableData.map((row, index) => (
+                  <tr key={index}>
+                      <td>{row.name}</td>
+                      <td>{row.type}</td>
+                      <td>{row.terminology ? <a href={row.terminology}>yes</a> : "no"}</td>
+                      <td>{row.description}</td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
+          
+      </div>
+  );
 }
 
 

@@ -50,13 +50,13 @@ export function CSVDataTableCatalog({csvUrl}) {
                                 //     null
                                 // ]
                             });
-                            $(window).on('resize', function () {
-                                //     // Trigger responsive recalculation
-                                myDataTable.responsive.recalc();
-                                //
-                                //     // Trigger FixedHeader update
-                                myDataTable.fixedHeader.adjust();
-                            });
+                            // $(window).on('resize', function () {
+                            //     //     // Trigger responsive recalculation
+                            //     myDataTable.responsive.recalc();
+                            //     //
+                            //     //     // Trigger FixedHeader update
+                            //     myDataTable.fixedHeader.adjust();
+                            // });
 
 
                             // Add the sidebar toggle event listener
@@ -136,7 +136,7 @@ export function CSVDataTableCatalog({csvUrl}) {
 return (
     <div style={{width: '100%'}}>
         <table ref={tableRef} id={tableId} className="display" style={{width: '100%'}}>
-            <thead style={{width: '100%'}}>
+            <thead style={{width: '100%' }}>
             <tr style={{width: '100%'}}>
                 {data[0] && Object.keys(data[0]).filter((key, index) => index !== 5).map((key) => (
                     <th key={key}>{key}</th>
@@ -145,7 +145,7 @@ return (
             </thead>
             <tbody>
             {data.filter(row => row[Object.keys(row)[5]]).map((row, i) => (
-                <tr key={i}>
+                <tr key={i} >
                     {Object.entries(row).filter(([, value], index) => index !== 5).map(([key, value], j) => (
                         <td key={j}>{j === 1 ? <a href={row[Object.keys(row)[5]]}>{value}</a> : value}</td>
                     ))}

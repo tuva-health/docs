@@ -25,7 +25,11 @@ export function JsonDataTableScroll({ jsonPath }) {
             paging: false,
             ordering: false,
             scrollY: "700px",
-            scrollCollapse: true
+            scrollCollapse: true,
+            fixedHeader:{
+              header: true,
+              footer: true
+            }
           });
         });
         console.log('NavbarHeight: ',$('.navbar').outerHeight())
@@ -112,4 +116,3 @@ const parsedDataCat = Object.entries(dataCat).map(([key, value]) => ({
   console.log('lengthCat:',parsedDataCat.length)
   return parsedData;
 }
-
