@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
+
 const useStickyHeader = (defaultSticky = false) => {
   const [isSticky, setIsSticky] = useState(defaultSticky);
   const tableRef = useRef(null);
@@ -35,6 +36,6 @@ const useStickyHeader = (defaultSticky = false) => {
   }, [toggleStickiness]);
 
   return { tableRef, isSticky };
-};
+  };
 
 export default useStickyHeader;

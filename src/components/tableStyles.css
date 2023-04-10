@@ -10,8 +10,8 @@ table:not(.sticky) {
 }
 
 thead {
-  color: blue;
-  
+  /* color: blue; */
+  width: fit-content;
 }
 
 th {
