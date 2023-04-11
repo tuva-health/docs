@@ -1,9 +1,10 @@
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 
-const useStickyHeader = (defaultSticky = false) => {
-  const [isSticky, setIsSticky] = useState(defaultSticky);
-  const tableRef = useRef(null);
+function useStickyHeader (defaultSticky = false) {
+  var [isSticky, setIsSticky] = useState(defaultSticky);
+  var tableRef = useRef(null);
 
   const toggleStickiness = useCallback(
     ({ top, bottom }) => {
@@ -25,12 +26,17 @@ const useStickyHeader = (defaultSticky = false) => {
   );
 
   useEffect(() => {
+    
     const handleScroll = () => {
+      if (ExecutionEnvironment.canUseDOM){
       toggleStickiness(tableRef.current.getBoundingClientRect());
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-
+    if (ExecutionEnvironment.canUseDOM){
+      window.addEventListener("scroll", handleScroll);
+    }
     return () => {
+
       window.removeEventListener("scroll", handleScroll);
     };
   }, [toggleStickiness]);

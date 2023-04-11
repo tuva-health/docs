@@ -1,13 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
-// import $ from "jquery";
-// import 'datatables.net-dt/css/jquery.dataTables.min.css';
+import $ from "jquery";
+import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import 'datatables.net-dt/js/dataTables.dataTables.min.js';
 import 'datatables.net-fixedheader-dt';
 import 'datatables.net-responsive-dt';
 import 'datatables.net-scroller-dt';
 import 'datatables.net-plugins/dataRender/ellipsis.mjs';
 import DataTable from 'datatables.net-dt';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 
 
@@ -16,7 +17,7 @@ export function CSVDataTable({csvUrl}) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
 
-    const tableId = `table-${hashCode(csvUrl)}`;
+    const tableId = hashCode(csvUrl);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,19 +28,20 @@ export function CSVDataTable({csvUrl}) {
                     skipEmptyLines: true,
                     complete: (results) => {
                         setData(results.data);
-                $(document).ready(() => {
-                    const myDataTable = $(tableRef.current).DataTable({
-                        responsive: true,
-                        paging: true,
-                        ordering: true,
-                        // buttons: [ 'copy', 'csv', 'excel' ],
-                        fixedHeader: {
-                             header: true,
-                        //     headerOffset: $('.navbar').outerHeight()
-                        },
-                    });
-
-                });
+                        if(ExecutionEnvironment.canUseDOM){
+                            $(document).ready(() => {
+                                const myDataTable = $(tableRef.current).DataTable({
+                                    responsive: true,
+                                    paging: true,
+                                    ordering: true,
+                                    // buttons: [ 'copy', 'csv', 'excel' ],
+                                    fixedHeader: {
+                                         header: true,
+                                    //     headerOffset: $('.navbar').outerHeight()
+                                    },
+                                });
+                            });
+                        }
               }
             });
           } catch (error) {
