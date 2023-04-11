@@ -3,7 +3,7 @@ id: data-profiling
 title: "Data Profiling"
 ---
 
-import { CSVDataTable } from '@site/src/components/CSVDataTable';
+<!-- import { CSVDataTable } from '@site/src/components/CSVDataTable'; -->
 
 The Tuva Project's Data Profiling data mart includes approximately 250 data quality tests that are specific to healthcare claims data.  It summarizes the results into a few tables that make it easy to drill into the underlying drivers of your data quality problems.
 
@@ -79,4 +79,4 @@ where test_name = 'ms_drg_code invalid'
 
 The table below lists the data quality tests that are included in the Data Profiling repo.
 
-<CSVDataTable csvUrl="https://raw.githubusercontent.com/tuva-health/data_profiling/main/seeds/data_profiling__test_catalog.csv" />
+<!-- <CSVDataTable csvUrl="https://raw.githubusercontent.com/tuva-health/data_profiling/main/seeds/data_profiling__test_catalog.csv" /> -->
