@@ -1,20 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-// import 'datatables.net-dt/css/jquery.dataTables.min.css';
-// import 'datatables.net-dt/js/dataTables.dataTables.min.js';
-// import 'datatables.net-fixedheader-dt';
-// import 'datatables.net-responsive-dt';
-// import 'datatables.net-scroller-dt';
-// import 'datatables.net-plugins/dataRender/ellipsis.mjs';
-// import DataTable from "datatables.net-dt";
 import useStickyHeader from "./useStickyHeader.js";
 import "./tableStyles.css";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import { tableHeaders, newTableData } from './Data.js';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import { useTable } from 'react-table'
+
 
 
 
@@ -83,7 +74,7 @@ function renderHeader() {
       <thead>
         <tr>
           {tableHeaders.map((item) => (
-            <th style={{ width: '27.5%' }} key={item}>{item}</th>
+            <th style={{ minWidth: item==='Description'?'235px': '195px', maxWidth: item==='Description'?'235px': '195px' }} key={item}>{item}</th>
           ))}
         </tr>
       </thead>
@@ -149,10 +140,10 @@ export function JsonDataTable({jsonPath}) {
               <tbody>
               {tableData.map((row, index) => (
                   <tr key={index}>
-                      <td>{row.name}</td>
-                      <td>{row.type}</td>
-                      <td>{row.description}</td>
-                      <td>{row.terminology ? <a href={row.terminology}>yes</a> : "no"}</td>
+                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.name}</td>
+                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.type}</td>
+                      <td style={{ minWidth: '235px', maxWidth: '235px'}}>{row.description}</td>
+                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"}</td>
                   </tr>
               ))}
               </tbody>

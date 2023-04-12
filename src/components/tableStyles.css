@@ -35,3 +35,6 @@ td {
   font-size: 18px;
   padding: 25px 0;
 }
+tr:hover {
+  background-color: #F2F2F2 !important;
+}

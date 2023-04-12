@@ -36,7 +36,6 @@ function useStickyHeader (defaultSticky = false) {
       window.addEventListener("scroll", handleScroll);
     }
     return () => {
-
       window.removeEventListener("scroll", handleScroll);
     };
   }, [toggleStickiness]);
