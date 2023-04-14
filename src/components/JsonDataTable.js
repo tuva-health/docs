@@ -4,7 +4,9 @@ import "./tableStyles.css";
 import Table from 'react-bootstrap/Table';
 import { tableHeaders, newTableData } from './Data.js';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-import { useTable } from 'react-table'
+import { useTable } from 'react-table';
+import Form from 'react-bootstrap/Form';
+
 
 
 
@@ -86,6 +88,8 @@ function renderHeader() {
 export function JsonDataTable({jsonPath}) {
     var [tableData, setTableData] = useState([]);
     var { tableRef, isSticky } = useState(null);
+    var [searchedVal, setSearchedVal] = useState("");
+
 
     if (ExecutionEnvironment.canUseDOM){
       var { tableRef, isSticky } = useStickyHeader();
@@ -135,10 +139,18 @@ export function JsonDataTable({jsonPath}) {
                   {renderHeader()}
                 </Table>
               )}
+          <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} />
           <Table responsive ref={tableRef} id={tableId} className="display" >
               {renderHeader()}
               <tbody>
-              {tableData.map((row, index) => (
+              { tableData
+              .filter((row) => 
+                !searchedVal.length || row.name.toString()
+                .toString()
+                .toLowerCase()
+                .includes(searchedVal.toString().toLowerCase()) 
+              )
+                .map((row, index) => (
                   <tr key={index}>
                       <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.name}</td>
                       <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.type}</td>
