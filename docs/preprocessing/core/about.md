@@ -1,0 +1,5 @@
+---
+id: about
+title: "Core"
+---
+

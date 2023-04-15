@@ -48,8 +48,8 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          blogSidebarTitle: 'All Posts',
+          blogSidebarCount: 'ALL',
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
@@ -93,6 +93,7 @@ const config = {
           //   position: 'left',
           //   target: null,
           // },
+          {to: '/blog', label: 'Blog', position: 'right'},
           {
             href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
             position: 'right',
@@ -105,7 +106,7 @@ const config = {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
-          //{to: '/blog', label: 'Blog', position: 'left'},
+  
 
         ],
       },
