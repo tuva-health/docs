@@ -1,23 +1,52 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Papa from 'papaparse';
-import $ from "jquery";
-import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import 'datatables.net-dt/js/dataTables.dataTables.min.js';
-import 'datatables.net-fixedheader-dt';
-import 'datatables.net-responsive-dt';
-import 'datatables.net-scroller-dt';
-import 'datatables.net-plugins/dataRender/ellipsis.mjs';
-import DataTable from 'datatables.net-dt';
+import useStickyHeader from "./useStickyHeader.js";
+import "./tableStyles.css";
+import Table from 'react-bootstrap/Table';
+import { tableHeaders, csvTableHeaders } from './Data.js';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import Form from 'react-bootstrap/Form';
 
 
 
+function hashCode(str) {
+    let hash = 0;
+    if (str.length == 0) {
+      return hash;
+    }
+    for (let i = 0; i < str.length; i++) {
+      let char = str.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+  }
+  
+  function renderHeader() {
+    if (tableHeaders !== undefined) {
+        return (
+        <thead>
+            <tr>
+            {csvTableHeaders.map((item) => (
+            <th style={{ minWidth: '150px', maxWidth: '150px' }} key={item}>{item}
+            </th>
+            ))}
+            </tr>
+        </thead>
+        );
+    }
+    }
 
 export function CSVDataTable({csvUrl}) {
-    const [data, setData] = useState([]);
-    const tableRef = useRef(null);
+    var [tableData, setTableData] = useState([]);
+    var { tableRef, isSticky } = useState(null);
+    var [searchedVal, setSearchedVal] = useState("");
+    var [data, setData] = useState([]);
+    var tableId = hashCode(csvUrl);
 
-    const tableId = hashCode(csvUrl);
+    if (ExecutionEnvironment.canUseDOM){
+        var { tableRef, isSticky } = useStickyHeader();
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,20 +57,6 @@ export function CSVDataTable({csvUrl}) {
                     skipEmptyLines: true,
                     complete: (results) => {
                         setData(results.data);
-                        if(ExecutionEnvironment.canUseDOM){
-                            $(document).ready(() => {
-                                const myDataTable = $(tableRef.current).DataTable({
-                                    responsive: true,
-                                    paging: true,
-                                    ordering: true,
-                                    // buttons: [ 'copy', 'csv', 'excel' ],
-                                    fixedHeader: {
-                                         header: true,
-                                    //     headerOffset: $('.navbar').outerHeight()
-                                    },
-                                });
-                            });
-                        }
               }
             });
           } catch (error) {
@@ -53,40 +68,66 @@ export function CSVDataTable({csvUrl}) {
         fetchData();
     }, [csvUrl]);
     return (
-        <div style={{ width: '100%' }}>
-        <table ref={tableRef} id={tableId} className="display" style={{ width: '100%' }}>
-            <thead >
+        <div>
+        {isSticky && (
+            <Table responsive
+                className="sticky"
+                style={{
+                position: "fixed",
+                top: 55,
+                backgroundColor: "white",
+                }}
+            >
+                 <tr>
+                    {data[0] && Object.keys(data[0]).map((key) => (
+                        <th key={key}>{key}</th>
+                        ))}
+                </tr>
+            </Table>
+            )}
+          {/* <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} /> */}
+          <Table responsive ref={tableRef} id={tableId} className="display" >
             <tr>
-                {data[0] && Object.keys(data[0]).map((key) => (
-                    <th key={key}>{key}</th>
+            {data[0] && Object.keys(data[0]).map((key) => (
+                <th key={key}>{key}</th>
                 ))}
-            </tr>
-            </thead>
-            <tbody>
-            {data.map((row, i) => (
-                <tr key={i}>
-                    {Object.values(row).map((value, j) => (
-                        <td key={j}>{value}</td>
+           </tr>
+              <tbody>
+              {data.filter((row) => 
+                row[Object.keys(row)[0]].toLowerCase().includes(searchedVal.toLowerCase()) ||
+              row[Object.keys(row)[5]]).map((row, i) =>
+               (
+                <tr key={i} >
+                    {Object.entries(row).filter(([, value], index) => index !== 5).map(([key, value], j) => (
+                        <td style={{ minWidth: '195px', maxWidth: '195px'}} key={j}> {value}</td>
                     ))}
                 </tr>
             ))}
-            </tbody>
-        </table></div>
+              </tbody>
+          </Table>
+      </div>
+        // <div style={{ width: '100%' }}>
+        // <table ref={tableRef} id={tableId} className="display" style={{ width: '100%' }}>
+        //     <thead >
+        //     <tr>
+        //         {data[0] && Object.keys(data[0]).map((key) => (
+        //             <th key={key}>{key}</th>
+        //         ))}
+        //     </tr>
+        //     </thead>
+        //     <tbody>
+        //     {data.map((row, i) => (
+        //         <tr key={i}>
+        //             {Object.values(row).map((value, j) => (
+        //                 <td key={j}>{value}</td>
+        //             ))}
+        //         </tr>
+        //     ))}
+        //     </tbody>
+        // </table></div>
     );
 };
 
 // export default CSVDataTable;
 
 
-function hashCode(str) {
-  let hash = 0;
-  if (str.length == 0) {
-    return hash;
-  }
-  for (let i = 0; i < str.length; i++) {
-    let char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash;
-}
