@@ -4,7 +4,6 @@ import "./tableStyles.css";
 import Table from 'react-bootstrap/Table';
 import { tableHeaders, newTableData } from './Data.js';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-import { useTable } from 'react-table';
 import Form from 'react-bootstrap/Form';
 
 
@@ -93,7 +92,6 @@ export function JsonDataTable({jsonPath}) {
 
     if (ExecutionEnvironment.canUseDOM){
       var { tableRef, isSticky } = useStickyHeader();
-      console.log("ExecutionEnvironment.canUseDOM is true");
     }
     var tableId = hashCode(jsonPath);
 
@@ -118,11 +116,6 @@ export function JsonDataTable({jsonPath}) {
           
           };
         }, [jsonPath, tableRef]);
-  useEffect(() => {
-    console.log("TESTING");
-    console.log(tableRef);
-    console.log(tableHeaders);
-  })
   
 
   return (
