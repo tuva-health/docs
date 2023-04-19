@@ -80,26 +80,28 @@ export function CSVDataTable({csvUrl}) {
             >
                  <tr>
                     {data[0] && Object.keys(data[0]).map((key) => (
-                        <th key={key}>{key}</th>
+                        <th style={{ minWidth: '150px', maxWidth: '150px'}} key={key}>{key}</th>
                         ))}
                 </tr>
             </Table>
             )}
-          {/* <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} /> */}
+          <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} />
           <Table responsive ref={tableRef} id={tableId} className="display" >
             <tr>
             {data[0] && Object.keys(data[0]).map((key) => (
-                <th key={key}>{key}</th>
+                <th style={{ minWidth: '150px', maxWidth: '150px'}} key={key}>{key}</th>
                 ))}
            </tr>
               <tbody>
-              {data.filter((row) => 
-                row[Object.keys(row)[0]].toLowerCase().includes(searchedVal.toLowerCase()) ||
-              row[Object.keys(row)[5]]).map((row, i) =>
-               (
-                <tr key={i} >
-                    {Object.entries(row).filter(([, value], index) => index !== 5).map(([key, value], j) => (
-                        <td style={{ minWidth: '195px', maxWidth: '195px'}} key={j}> {value}</td>
+              {data
+              .filter((row) => 
+                !searchedVal.length || row[Object.keys(row)[0]]?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                row[Object.keys(row)[1]]?.toLowerCase().includes(searchedVal.toLowerCase()) || row[Object.keys(row)[2]]?.toLowerCase().includes(searchedVal.toLowerCase()) || row[Object.keys(row)[3]]?.toLowerCase().includes(searchedVal.toLowerCase()) || row[Object.keys(row)[4]]?.toLowerCase().includes(searchedVal.toLowerCase()) ||
+              row[Object.keys(row)[5]])
+              .map((row, i) =>
+               (<tr key={i} >
+                    {Object.entries(row).filter(([value], index) => index !== 5).map(([key, value], j) => (
+                        <td style={{ minWidth: '150px', maxWidth: '150px'}} key={j}> {value}</td>
                     ))}
                 </tr>
             ))}
