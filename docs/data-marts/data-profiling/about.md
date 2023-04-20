@@ -1,5 +1,5 @@
 ---
-id: data-profiling
+id: about
 title: "Data Profiling"
 ---
 

@@ -30,6 +30,70 @@ const sidebars = {
                         }
                     ]
                   },
+                  {
+                    type: "category",
+                    label: "Data Profiling",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/data-profiling/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/data-profiling/data-dictionary/summary",
+                                "data-marts/data-profiling/data-dictionary/test-result",
+                                "data-marts/data-profiling/data-dictionary/test-detail",
+                            ],
+                        },
+                        "data-marts/data-profiling/example-sql"
+                    ]
+                  },
+                  {
+                    type: "category",
+                    label: "Claims Preprocessing",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/claims-preprocessing/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/claims-preprocessing/data-dictionary/service-category-grouper",
+                                "data-marts/claims-preprocessing/data-dictionary/encounter-grouper",
+                            ],
+                        },
+                        "data-marts/claims-preprocessing/example-sql"
+                    ]
+                  },
+                  {
+                    type: "category",
+                    label: "Core",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/core/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/core/data-dictionary/condition",
+                                "data-marts/core/data-dictionary/eligibility",
+                                "data-marts/core/data-dictionary/encounter",
+                                "data-marts/core/data-dictionary/medical-claim",
+                                "data-marts/core/data-dictionary/patient",
+                                "data-marts/core/data-dictionary/pharmacy-claim",
+                                "data-marts/core/data-dictionary/procedure",
+                                "data-marts/core/data-dictionary/provider",
+                            ],
+                        },
+                        "data-marts/core/example-sql"
+                    ]
+                  },
                 ]
         },
         {
