@@ -1,6 +1,6 @@
 ---
 id: dbt
-title: "A. Intro to dbt"
+title: "Intro to dbt for Healthcare"
 ---
 The Tuva Project code base is built on top of dbt.  This means that the Tuva Project is essentially a set of dbt packages that you can run directly inside your dbt project and inside your data warehouse.  This section provides an overview of dbt and how it's transforming data engineering.
 

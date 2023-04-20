@@ -1,6 +1,6 @@
 ---
-id: the-tuva-project
-title: "The Tuva Project"
+id: quickstart
+title: "Quickstart"
 ---
 This section walks you through how to setup the entire Tuva Project on your healthcare data.  Setting up the entire Tuva Project will download every terminology set and value set and run every data mart on your healthcare data, building the entire Tuva Data Model inside your data warehouse.
 

@@ -1,5 +1,5 @@
 ---
-id: claims-preprocessing
+id: about
 title: "Claims Preprocessing"
 ---
 
@@ -160,3 +160,14 @@ The other category insures that the grouping catches all services provided so th
 - [National Library of Medicine published paper on identifying Emergency Department Visits](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5905698/)
 - [ResDac How to identify ED Visits](https://resdac.org/articles/how-identify-hospital-claims-emergency-room-visits-medicare-claims-data)
 - [Hospice Medicare Billing Codes Sheet](https://www.cgsmedicare.com/hhh/education/materials/pdf/hospice_medicare_billing_codes_sheet.pdf)
+
+## References 
+
+- [Methodology for Identifying Inpatient Admission Events](https://www.medinsight.milliman.com/en/healthcare-analytics/methodology-for-identifying-inpatient-admission-events)
+- [The impact of standardizing the definition of visits on the consistency of multi-database observational health research](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0001-6)
+- [How to Identify Hospital Claims for Emergency Room Visits in the Medicare Claims Data](https://resdac.org/articles/how-identify-hospital-claims-emergency-room-visits-medicare-claims-data)
+- [Identification of Emergency Department Visits in Medicare Administrative Claims: Approaches and Implications](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5905698/)
+- [Can Chemotherapy-Related Acute Care Visits Be Accurately Identified in Administrative Data?](https://ascopubs.org/doi/full/10.1200/JOP.2017.023697)
+- [A Revised Classification Algorithm for Assessing Emergency Department Visit Severity of Populations](https://www.ajmc.com/view/a-revised-classification-algorithm-for-assessing-emergency-department-visit-severity-of-populations)
+- [Validation of an algorithm to determine the primary care treatability of Emergency Department visits: supplementary methods and tables](https://bmjopen.bmj.com/content/bmjopen/6/8/e011739/DC3/embed/inline-supplementary-material-3.pdf?download=true)
+- [Early death after discharge from emergency departments: analysis of national US insurance claims data](https://www.bmj.com/content/356/bmj.j239)
