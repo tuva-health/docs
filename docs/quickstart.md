@@ -2,22 +2,27 @@
 id: quickstart
 title: "Quickstart"
 ---
-This section walks you through how to setup the entire Tuva Project on your healthcare data.  Setting up the entire Tuva Project will download every terminology set and value set and run every data mart on your healthcare data, building the entire Tuva Data Model inside your data warehouse.
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
   <iframe src="https://www.loom.com/embed/c6ac1645ced94463ada69a54ab112819" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
 </div>
 
-## Step 1: Prerequisites
+## Prerequisites
 
 To get started with the Tuva Project, you will need:
 
-1. Dbt version 1.3 or greater installed on your machine.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
-2. Access to one of the data warehouses currently supported by the Tuva Project (i.e. Snowflake, Redshift, and BigQuery)
+1. dbt version 1.3 or greater.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
+2. Healthcare data loaded into one of the data warehouses currently supported by the Tuva Project (i.e. Snowflake, Redshift, and BigQuery)
 
-## Step 2: Map Your Data
+## Step 1: Map Your Data
 
-After the prerequisites have been satisfied, you need to map your healthcare data to the Tuva Project Input Layer.  The Input Layer is the base data model for the Tuva Project on top of which all data transformation run.  Create dbt models that map your data to the Input Layer inside a dbt project.  
+The first step is mapping your healthcare data to the Tuva Project Input Layer.  The Input Layer is the base data model for the Tuva Project on top of which all other parts of the Tuva Project run.  You can find the data dictionary for the Input Layer in the Data Marts section of this website.  
+
+There are two ways to map your data to the Input Layer depending on the type of data you have:
+1. Custom Mapping
+2. Connectors
+
+If your healthcare data is not in one of the standard formats we've built connectorsCreate dbt models that map your data to the Input Layer inside a dbt project.  
 
 We’ve created dbt projects for standardized datasets that perform this mapping (we call these dbt projects “connectors”).  For example we have the following connectors already built:
 
