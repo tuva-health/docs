@@ -1,26 +1,7 @@
 ---
-id: pmpm
+id: about
 title: "PMPM"
 ---
-
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
-
-There are two main output tables from this data mart:
-- PMPM Builder
-- PMPM Trends
-
-## PMPM Builder
-
-A table at the member month grain with total, medical, and pharmacy paid amounts per patient. 
-
-<JsonDataTable jsonPath="nodes.model\.pmpm\.pmpm__pmpm_builder.columns" />
-
-## PMPM Trends
-
-Shows pmpm over time for different categories of spend.
-
-<JsonDataTable jsonPath="nodes.model\.pmpm\.pmpm__pmpm_trends.columns" />
-
 The PMPM data mart transforms claims data so it's ready for "per-member-per-month" analysis, which is frequently used to analyze payments and utilization.  This involves two important steps:
 
 1. Calculating Member Months
