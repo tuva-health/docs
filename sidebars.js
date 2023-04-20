@@ -3,6 +3,7 @@ const sidebars = {
     docsSidebar: [ 
         "intro",
         "quickstart",
+        "connectors",
         {
             type: "category",
             label: "Data Marts",
@@ -94,6 +95,99 @@ const sidebars = {
                         "data-marts/core/example-sql"
                     ]
                   },
+
+
+
+
+                {
+                    type: "category",
+                    label: "Chronic Conditions",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/chronic-conditions/about",
+                    },
+                    items: [
+                        {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/chronic-conditions/data-dictionary/cms-chronic-conditions-long",
+                            "data-marts/chronic-conditions/data-dictionary/cms-chronic-conditions-wide",
+                            "data-marts/chronic-conditions/data-dictionary/tuva-chronic-conditions-long",
+                            "data-marts/chronic-conditions/data-dictionary/tuva-chronic-conditions-wide",
+                        ]
+                        },
+                        {
+                            type: "category",
+                            label: "Value Sets",
+                            items: [
+                                "data-marts/chronic-conditions/value-sets/cms-chronic-conditions",
+                                "data-marts/chronic-conditions/value-sets/tuva-chronic-conditions",
+                            ]
+                            },
+                        "data-marts/chronic-conditions/example-sql"
+                    ]
+                },
+
+
+
+                {
+                    type: "category",
+                    label: "PMPM",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/pmpm/about",
+                    },
+                    items: [
+                    {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/pmpm/data-dictionary/pmpm-builder",
+                            "data-marts/pmpm/data-dictionary/pmpm-trends",
+                        ]
+                        },
+                        "data-marts/pmpm/example-sql"
+                    ]
+                },
+
+                {
+                    type: "category",
+                    label: "Readmissions",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/readmissions/about",
+                    },
+                    items: [
+                    {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/readmissions/data-dictionary/readmission-summary",
+                            "data-marts/readmissions/data-dictionary/encounter-augmented",
+                        ]
+                        },
+                        {
+                            type: "category",
+                            label: "Value Sets",
+                            items: [
+                                "data-marts/readmissions/value-sets/acute-diagnosis-ccs",
+                                "data-marts/readmissions/value-sets/acute-diagnosis-icd-10-cm",
+                                "data-marts/readmissions/value-sets/always-planned-css-diagnosis-category",
+                                "data-marts/readmissions/value-sets/always-planned-css-procedure-category",
+                                "data-marts/readmissions/value-sets/exclusion-ccs-diagnosis-category",
+                                "data-marts/readmissions/value-sets/icd-10-cm-to-ccs",
+                                "data-marts/readmissions/value-sets/icd-10-pcs-to-ccs",
+                                "data-marts/readmissions/value-sets/potentially-planned-css-procedure-category",
+                                "data-marts/readmissions/value-sets/potentially-planned-icd-10-pcs",
+                                "data-marts/readmissions/value-sets/specialty-cohort",
+                                "data-marts/readmissions/value-sets/surgery-gynecology-cohort",
+                            ]
+                            },
+                        "data-marts/readmissions/example-sql"
+                    ]
+                },
+
                 ]
         },
         {
@@ -188,7 +282,6 @@ const sidebars = {
                         "terminology/tuva-concepts/payer-type"]
                 }]
         },
-        "dbt",
         "help"
     ]
 };
