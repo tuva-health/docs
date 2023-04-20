@@ -8,6 +8,6 @@ Terminology includes reference terminology code sets that are necessary to perfo
 
 We're adding as many open source healthcare terminology sets as we can to the Tuva Project.  You can search through and learn about these terminologies in this section.  
 
-To learn how to download terminology sets directly to your data warehouse go [here](../setup/terminology.md).
+To learn how to download terminology sets directly to your data warehouse go [here](../quickstart.md).
 
 <CSVDataTableCatalog csvUrl="/data/terminology.csv" />

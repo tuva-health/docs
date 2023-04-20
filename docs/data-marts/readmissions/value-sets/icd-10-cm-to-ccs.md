@@ -6,7 +6,7 @@ title: "ICD 10 CM to CCS"
 
 :::info
 
-This data set is too large to display.  Please see our [setup guide](/setup/terminology) for more information on how to load it into your data warehouse.
+This data set is too large to display.  Please see our [quickstart guide](../quickstart.md) for more information on how to load it into your data warehouse.
 
 :::
 

@@ -10,10 +10,6 @@ Claims data includes bills for thousands of services for every type of healthcar
 
 Claims Preprocessing also transforms claims data from the Input Layer into the Core Layer of the Tuva Data Model.
 
-**Relevant Links:**
-- [GitHub Repo](https://github.com/tuva-health/claims_preprocessing)
-- [Value Set](../value-sets/service-category.md)
-
 ## Service Category Grouper
 
 In the Tuva Project, we've created a service category grouper to help us analyze payment and utilization metrics. We use it to categorize medical claim lines.

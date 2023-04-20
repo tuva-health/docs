@@ -9,7 +9,6 @@ The Tuva Project's Data Profiling data mart includes approximately 250 data qual
 
 **Relevant Links:**
 - [Github Repo](https://github.com/tuva-health/data_profiling)
-- [Data Dictionary](../data-model/data-marts/data-profiling.md)
 
 ## Claims Data Quality Issues
 

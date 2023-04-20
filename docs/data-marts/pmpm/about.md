@@ -9,7 +9,7 @@ The PMPM data mart transforms claims data so it's ready for "per-member-per-mont
 
 **Relevant Links:**
 - [GitHub Repo](https://github.com/tuva-health/pmpm)
-- [Data Dictionary](../data-model/data-marts/pmpm.md)
+
 
 ## Calculating Member Months
 
