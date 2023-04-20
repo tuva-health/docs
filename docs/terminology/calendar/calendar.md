@@ -5,7 +5,7 @@ title: "Calendar"
 
 :::info
 
-This data set is too large to display.  Please see our [quickstart guide](../quickstart.md) for more information on how to load it into your data warehouse.
+This data set is too large to display.  The best way to view this code set is by downloading it to your data warehouse by following the instructions in our quickstart guide.
 
 :::
 
