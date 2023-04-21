@@ -1,6 +1,0 @@
----
-id: catalog
-title: "Catalog"
----
-
-

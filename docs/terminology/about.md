@@ -1,6 +1,6 @@
 ---
-id: terminology
-title: "3. Terminology"
+id: about
+title: "Terminology"
 ---
 import { CSVDataTableCatalog } from '@site/src/components/CSVDataTableCatalog';
 

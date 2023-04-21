@@ -21,7 +21,7 @@ As an industry we've been working to realize this promise since claims data beca
 
 But more than success we've experienced failure and frustration. For example, it can take weeks to answer common questions like which patients are receiving standard of care treatment for a given disease. Worse, when you finally arrive at an answer serious questions about data quality and validity commonly call the results into question.
 
-So after several decades, healthcare data is in crisis, and to date we haven't focused on solving the problem.
+So after several decades, healthcare data is in crisis, and as an industry we haven't seriously focused on solving the problem.
 
 ### The Healthcare Data Transformation Problem
 
@@ -45,20 +45,21 @@ As an industry we've understood this for some time, but we've been busy solving 
 
 As an industry we've historically focused on data analysis (e.g. building dashboards, web apps, etc.) that make it easier to analyze healthcare data. Over the last few years, thanks to regulation changes and investment from a number of companies like Flexpa, Particle, Zus, Health Gorilla, Metriport, and others, the data access problem is getting closer to being solved.
 
-However, as an industry we've significantly under-invested in data transformation, leading to "garbage in, garbage out" data analysis. Today, the most common solution to data transformation is to "throw people at the problem". But this approach doesn't scale and leads to inconsistent results.
+However, as an industry we've significantly under-invested in data transformation, leading to "garbage in, garbage out" data analysis. Even worse, technology vendors and non-profit organizations that have invested in data transformation do so in a completely black-box manner. As a result, most organizations (and often even teams within the same organization) are doing data transformation in different ways.  It's no wonder the results we see from healthcare data are not generalizable.
 
 ### An Open Source Solution
 
-After working in healthcare data for more than a decade we decided to focus all of our attention on solving the healthcare data transformation problem.  After thinking about the problem deeply, we realized an open source approach was ideal because it enables two key things:
+After working in healthcare data for more than a decade we decided to focus all of our attention on solving the healthcare data transformation problem for the entire healthcare industry.  After thinking about the problem deeply, we realized the right approach needed 3 things to be successful.
 
-1. Peer review and contribution
-2. Frictionless adoption
+1. **Open Peer Review:** As previously mentioned, the status quo in our industry is a closed approach that prevents us from being able to compare different approaches.  Our goal is to figure out the best way to do healthcare data transformation, and the only way we will figure out the best way is through open peer review and feedback.  
 
-Open source enables transparent peer review by allowing anyone to review, comment on, and contribute to our code and methods.  Since our goal is to figure out the best way to do healthcare data transformation, this sort of open feedback and contribution is extremely important. 
+2. **Code that anyone can run:** Today the majority of methodologies are written in english (e.g. methodology PDFs, journal articles, etc.) and are not available as code.  For the ones that are available as code they are often written in archane languages like SAS.
 
-Open source also enables frictionless adoption by healthcare organizations because they can fork the open source and run it locally inside their private network.  This removes the need to sign a business associate agreement or perform lengthy security reviews, both of which are common barriers to adopting new technology in healthcare.
+3. **Contributions from anyone needed to benefit everyone:** Again, the closed status quo of our industry means that any time someone builds something new the vast majority of healthcare organizations do not benefit.
 
-The Tuva Project is our open source solution to the healthcare data transformation problem.  Our goal is to figure out the best way to do healthcare data transformation by working in an open and transparent way with the entire healthcare industry.  We're excited to work and partner with those in the healthcare industry that are committed to leveraging healthcare data to its fullest potential in an open and transparent manner for the benefit of patients, providers, and the entire ecosystem.
+Based on these principles it was immediately clear that an open source approach would be the only possible approach.
+
+The Tuva Project is our open source solution to the healthcare data transformation problem.  We're excited to work and partner with those in the healthcare industry that are committed to leveraging healthcare data to its fullest potential in an open and transparent manner for the benefit of patients, providers, and the entire ecosystem.
 
 ### About Tuva Health
 

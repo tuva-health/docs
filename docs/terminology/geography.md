@@ -1,6 +1,0 @@
----
-id: geography
-title: "Geography"
----
-
-

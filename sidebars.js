@@ -195,7 +195,7 @@ const sidebars = {
             label: "Terminology",
             link: {
                 type: 'doc',
-                id: "terminology/terminology",
+                id: "terminology/about",
             },
             items: [
                 {

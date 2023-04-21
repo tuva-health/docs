@@ -1,6 +1,0 @@
----
-id: lab
-title: "Lab"
----
-
-
