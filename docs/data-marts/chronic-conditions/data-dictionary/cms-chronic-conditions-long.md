@@ -9,4 +9,4 @@ This table contains one record per patient per chronic condition.  For example, 
 
 This table is created by running the CMS chronic conditions data mart on data that's been mapped to the core data model.
 
-<JsonDataTable  jsonPath="nodes.model\.cms_chronic_conditions\.cms_chronic_conditions__cms_chronic_conditions_long.columns" />
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__cms_chronic_conditions_long.columns" />

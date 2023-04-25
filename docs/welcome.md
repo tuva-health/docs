@@ -53,7 +53,7 @@ After working in healthcare data for more than a decade we decided to focus all 
 
 1. **Open peer review:** As previously mentioned, the status quo in our industry is a closed approach that prevents us from being able to compare different approaches.  Our goal is to figure out the best way to do healthcare data transformation, and the only way we will figure out the best way is through open peer review and feedback.  
 
-2. **Code that anyone can run:** Today the majority of methodologies are written in english (e.g. methodology PDFs, journal articles, etc.) and are not available as code.  For the ones that are available as code they are often written in archane languages like SAS.
+2. **Code that anyone can run:** Today the majority of healthcare knowledge is written in english (e.g. methodology PDFs, journal articles, etc.) or stored in the heads of subject matter experts and is not available as code.  The healthcare knowledge that is available as code is often written in archane languages like SAS.
 
 3. **Contributions from anyone should benefit everyone:** Again, the closed status quo of our industry means that any time someone builds something new the vast majority of healthcare organizations do not benefit.
 

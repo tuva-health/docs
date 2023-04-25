@@ -7,4 +7,4 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 This table contains a single record per patient with separate binary (i.e. 0 or 1) columns for every chronic condition.  If a patient has a particular chronic condition they will have a 1 in that particular column and 0 otherwise.
 
-<JsonDataTable  jsonPath="nodes.model\.cms_chronic_conditions\.cms_chronic_conditions__cms_chronic_conditions_wide.columns"  />
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__cms_chronic_conditions_wide.columns"  />

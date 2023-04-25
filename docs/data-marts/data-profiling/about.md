@@ -7,9 +7,6 @@ import { CSVDataTable } from '@site/src/components/CSVDataTable';
 
 The Tuva Project's Data Profiling data mart includes approximately 250 data quality tests that are specific to healthcare claims data.  It summarizes the results into a few tables that make it easy to drill into the underlying drivers of your data quality problems.
 
-**Relevant Links:**
-- [Github Repo](https://github.com/tuva-health/data_profiling)
-
 ## Claims Data Quality Issues
 
 The process of generating claims data is heterogeneous and highly variable in nature.  As a result, the claims data you are using for analysis tends to suffer from many different types of data quality issues.  We've found that it's helpful to group the various types of data quality issues into 5 main categories: 
@@ -36,43 +33,6 @@ Many fields in claims data have specific reference terminology that determines t
 
 ### Missing Values
 Missing values are very common in claims data.  It's important to use the claim type to determine whether a value should be missing or not.  For example, bill_type_code should not be populated on professional claims, so a missing value in this case is expected, but it should always be populated on institutional claims.
-
-## Using Data Profiling
-
-### Summary
-The Data Profiling data mart executes approximately 100 data quality tests against your claims data.  Each test is categorized into 1 of the 5 categories listed above.  After you successfully run the Data Profiling data mart on your claims data, start by using the query below to get a high-level summary of your claims data quality issues.  
-
-```sql
-select *
-from data_profiling.summary
-order by 1,3
-```
-
-![Data Profiling Summary](/img/data_profiling_summary.jpg)
-
-In the example output above, you can see summary results of data quality for each table (column 1)  and each test category.  For example, on row 8 you can see that 8,235 claims from medical_claim had invalid values.  On row 10 you can see 66,196 claims had no data quality issues of any sort (i.e. their test category label was 'good').  
-
-### Test Results
-
-Next, you can drill into the specific data quality test results by using the query below.  This table is populated for every test that had at least 1 failure.  For example, on row 11 you can see ms_drg has invalid values on 100% of claims.
-
-```sql
-select *
-from data_profiling.test_results
-order by 1,3,4
-```
-
-![Data Profiling Test Results](/img/data_profiling_test_results.jpg)]
-
-### Test Details
-
-Next, you can drill into the specific records (e.g. claims) that have data quality issues by querying the test_detail table.  For example, the following query will return all the claim_ids that had an invalid ms_drg_code value.  You can easily join from this table back to your actual claims data in medical_claim to see what values are the issue.
-
-```sql
-select *
-from data_profiling.test_detail
-where test_name = 'ms_drg_code invalid'
-```
 
 ## Data Profiling Test Catalog
 

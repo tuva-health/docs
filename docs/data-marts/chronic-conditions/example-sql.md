@@ -3,24 +3,7 @@ id: example-sql
 title: "Example SQL"
 ---
 
-<details><summary>What are the top 10 most prevalent chronic conditions in my patient population?</summary>
-<Tabs groupId="cc_package">
-<TabItem value="cms" label="CMS">
-
-```sql
-select
-    condition
-,   cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
-From cms_chronic_conditions.chronic_conditions_unioned
-group by 1
-order by 2 desc
-limit 10
-```
-The following is example output from this query from the Tuva Claims Demo dataset.  
-
-![CMS Condition Prevalence](/img/cms_condition_prevalence.jpg)
-</TabItem>
-<TabItem value="tuva" label="Tuva">
+<details><summary>Top 10 most prevalent chronic conditions</summary>
 
 ```sql
 select
@@ -34,45 +17,9 @@ limit 10
 The following is example output from this query from the Tuva Claims Demo dataset.  
 
 ![Tuva Condition Prevalence](/img/tuva_condition_prevalence.jpg)
-</TabItem>
-</Tabs >
 </details>
-<details><summary>How many new patients are diagnosed with type 2 diabetes each month?</summary>
-<Tabs groupId="cc_package">
-<TabItem value="cms" label="CMS">
 
-:::caution warning
-
-The CMS Condition grouper does not differentiate Type 1 and Type 2 diabetes.  The following query and graph show combined stats for both types of diabetes.  To run analytics a specific type of diabetes, use the Tuva Chronic Conditions data mart.
-
-:::
-
-```sql
-with first_month_diabetes as
-    (
-    select
-        PATIENT_ID,
-        CONDITION,
-        min(ENCOUNTER_START_DATE) as start_date
-        from CMS_CHRONIC_CONDITIONS.CHRONIC_CONDITIONS_UNIONED
-    where condition in ('Diabetes')
-    group by PATIENT_ID, CONDITION
-    )
-select condition,
-       year(start_date) as year,
-       month(start_date) as month,
-       count(*) as count
-From first_month_diabetes
-group by condition,year(start_date) , month(start_date)
-order by year(start_date) desc , month(start_date) desc
-
-```
-The following is example output from this query from the Tuva Claims Demo dataset.  
-
-![The Tuva Project](/img/chronic_conditions/CCC-new_diabetes_by_month.png)
-
-</TabItem>
-<TabItem value="tuva" label="Tuva">
+<details><summary>New patients diagnosed with type 2 diabetes by month</summary>
 
 ```sql
 with first_month_diabetes as
@@ -97,9 +44,8 @@ order by year(start_date) desc , month(start_date) desc
 The following is example output from this query from the Tuva Claims Demo dataset.  
 
 ![The Tuva Project](/img/chronic_conditions/TCC-new_diabetes_by_month.png)
-</TabItem>
-</Tabs>
 </details>
+
 <details><summary>How many patients have chronic kidney disease stratified by disease stage?</summary>
 <Tabs groupId="cc_package">
 <TabItem value="cms" label="CMS">

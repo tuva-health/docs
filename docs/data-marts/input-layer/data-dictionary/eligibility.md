@@ -14,4 +14,4 @@ Insurance eligibility information is usually formatted in 1 of 2 ways:
 
 The eligibility table uses the coverage format because this format is more common in raw claims data.  If your eligibility data is already in this format then you can map it directly (i.e. very little transformation should be needed).  However if your data is in the member months format you will first need to transform it into the coverage format.
 
-<JsonDataTable  jsonPath="nodes.model\.claims_data_model\.eligibility.columns" />
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.input_layer__eligibility.columns" />

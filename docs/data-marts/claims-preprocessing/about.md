@@ -3,12 +3,7 @@ id: about
 title: "Claims Preprocessing"
 ---
 
-Claims data includes bills for thousands of services for every type of healthcare encounter.  Because of this variety it can be difficult to analyze raw claims.  To solve this problem we created the Claims Preprocessing data mart, which generates important concepts such as:
-
-- **Service Categories:** Claims are grouped into 1 of 21 service categories.
-- **Encounters**: Professional and institutional claims are merged into acute inpatient and ED encounters (i.e. visits).
-
-Claims Preprocessing also transforms claims data from the Input Layer into the Core Layer of the Tuva Data Model.
+The Claims Preprocessing data mart includes a Service Category Grouper and Encounter Grouper.  It runs off data mapped to the Input Layer and populates Core.
 
 ## Service Category Grouper
 
@@ -156,9 +151,6 @@ The other category insures that the grouping catches all services provided so th
 - [National Library of Medicine published paper on identifying Emergency Department Visits](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5905698/)
 - [ResDac How to identify ED Visits](https://resdac.org/articles/how-identify-hospital-claims-emergency-room-visits-medicare-claims-data)
 - [Hospice Medicare Billing Codes Sheet](https://www.cgsmedicare.com/hhh/education/materials/pdf/hospice_medicare_billing_codes_sheet.pdf)
-
-## References 
-
 - [Methodology for Identifying Inpatient Admission Events](https://www.medinsight.milliman.com/en/healthcare-analytics/methodology-for-identifying-inpatient-admission-events)
 - [The impact of standardizing the definition of visits on the consistency of multi-database observational health research](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0001-6)
 - [How to Identify Hospital Claims for Emergency Room Visits in the Medicare Claims Data](https://resdac.org/articles/how-identify-hospital-claims-emergency-room-visits-medicare-claims-data)

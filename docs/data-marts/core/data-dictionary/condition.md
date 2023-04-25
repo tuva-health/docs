@@ -9,4 +9,4 @@ A condition is any sort of symptom, problem, complaint, admitting diagnosis, or 
 
 Conditions can only be generated during encounters (i.e. every condition must have an encounter_id).  
 
-<JsonDataTable jsonPath="nodes.model\.claims_preprocessing\.claims_preprocessing__condition.columns" />
+<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__condition.columns" />
