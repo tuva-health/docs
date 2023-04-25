@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
+// {
+//   plugins: [require.resolve("docusaurus-plugin-image-zoom")];
+// }
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -30,13 +32,15 @@ const config = {
     locales: ['en'],
   },
 
+  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+
   presets: [
     [
-      'classic',
+       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: "/docs",
+          routeBasePath: "/",
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -71,28 +75,42 @@ const config = {
           src: 'img/TheTuvaProjectLogo.png',
         },
         items: [
+        //   {
+        //     type: 'doc',
+        //     docId: 'intro',
+        //     position: 'left',
+        //     label: 'Knowledge',
+        //   },
+          // {
+          //   to: 'https://github.com/tuva-health',
+          //   label: 'Code',
+          //   position: 'left',
+          //   target: null,
+          // },
+          // {
+          //   to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+          //   label: 'Community',
+          //   position: 'left',
+          //   target: null,
+          // },
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Knowledge',
+            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+            position: 'right',
+            className: 'header-slack-link',
+            'aria-label': 'Slack Community',
           },
           {
-            to: 'https://github.com/tuva-health',
-            label: 'Code',
-            position: 'left',
-            target: null,
+            href: 'https://github.com/tuva-health',
+            position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
           },
-          {
-            to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
-            label: 'Community',
-            position: 'left',
-            target: null,
-          },
-          //{to: '/blog', label: 'Blog', position: 'left'},
+          //{to: '/blog', label: 'Blog', position: 'left'}
 
         ],
+
       },
+    
       footer: {
         style: 'light',
       //   links: [
@@ -142,6 +160,21 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+        zoom: {
+          selector: '.markdown :not(em) > img',
+          config: {
+            // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+            background: {
+              light: 'rgb(255, 255, 255)',
+              dark: 'rgb(50, 50, 50)'
+            }
+          }
+        },
+        docs: {
+          sidebar: {
+            hideable: true,
+          },
+        },
     }),
 };
 
