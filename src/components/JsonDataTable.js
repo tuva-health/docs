@@ -36,7 +36,7 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
             result.terminology = value.meta.terminology;
         }
         return result;
-  
+
     });
     var parsedData = [];
     for (let i = 0; i < parsedDataCat.length; i++) {
@@ -67,7 +67,7 @@ function hashCode(str) {
     }
     return hash;
   }
-  
+
 }
 function renderHeader() {
   if (tableHeaders !== undefined) {
@@ -113,14 +113,14 @@ export function JsonDataTable({jsonPath}) {
             };
         fetchData();
           return () => {
-          
+
           };
         }, [jsonPath, tableRef]);
-  
+
 
   return (
       <div>
-          {isSticky && (
+          {/* {isSticky && (
                 <Table responsive
                   className="sticky"
                   style={{
@@ -131,17 +131,17 @@ export function JsonDataTable({jsonPath}) {
                 >
                   {renderHeader()}
                 </Table>
-              )}
+              )} */}
           <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} />
           <Table responsive ref={tableRef} id={tableId} className="display" >
               {renderHeader()}
               <tbody>
               { tableData
-              .filter((row) => 
+              .filter((row) =>
                 !searchedVal.length || row.name.toString()
                 .toString()
                 .toLowerCase()
-                .includes(searchedVal.toString().toLowerCase()) 
+                .includes(searchedVal.toString().toLowerCase())
               )
                 .map((row, index) => (
                   <tr key={index}>
