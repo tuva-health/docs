@@ -29,7 +29,7 @@ Healthcare data is perhaps more complex than data from any other industry. This 
 
 The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable in how they capture data.
 
-The end result is that healthcare data is extremely heterogenous. There is a lot of syntactic variation (i.e. how the data is organized into tables and columns) and semantic variation (i.e. the meaning of the actual values of the data). This variation makes it impossible to perform data analysis on raw healthcare data.
+The end result is that healthcare data is extremely heterogeneous. There is a lot of syntactic variation (i.e. how the data is organized into tables and columns) and semantic variation (i.e. the meaning of the actual values of the data). This variation makes it impossible to perform data analysis on raw healthcare data.
 
 As an industry we've understood this for some time, but we've been busy solving other problems. To take a step back, there are 3 main steps in the healthcare analytics value chain, i.e. the process of going from raw healthcare data to using that data to answer important questions. These steps are:
 
@@ -51,13 +51,13 @@ However, as an industry we've significantly under-invested in data transformatio
 
 After working in healthcare data for more than a decade we decided to focus all of our attention on solving the healthcare data transformation problem for the entire healthcare industry.  After thinking about the problem deeply, we realized the right approach needed 3 things to be successful.
 
-1. **Open Peer Review:** As previously mentioned, the status quo in our industry is a closed approach that prevents us from being able to compare different approaches.  Our goal is to figure out the best way to do healthcare data transformation, and the only way we will figure out the best way is through open peer review and feedback.  
+1. **Open peer review:** As previously mentioned, the status quo in our industry is a closed approach that prevents us from being able to compare different approaches.  Our goal is to figure out the best way to do healthcare data transformation, and the only way we will figure out the best way is through open peer review and feedback.  
 
 2. **Code that anyone can run:** Today the majority of methodologies are written in english (e.g. methodology PDFs, journal articles, etc.) and are not available as code.  For the ones that are available as code they are often written in archane languages like SAS.
 
-3. **Contributions from anyone needed to benefit everyone:** Again, the closed status quo of our industry means that any time someone builds something new the vast majority of healthcare organizations do not benefit.
+3. **Contributions from anyone should benefit everyone:** Again, the closed status quo of our industry means that any time someone builds something new the vast majority of healthcare organizations do not benefit.
 
-Based on these principles it was immediately clear that an open source approach would be the only possible approach.
+From these principles it became clear that an open source approach would be the only possible approach.
 
 The Tuva Project is our open source solution to the healthcare data transformation problem.  We're excited to work and partner with those in the healthcare industry that are committed to leveraging healthcare data to its fullest potential in an open and transparent manner for the benefit of patients, providers, and the entire ecosystem.
 

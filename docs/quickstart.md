@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 
 This section describes how to setup the Tuva Project on your healthcare data.
 
-<div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
+<!-- <div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
   <iframe src="https://www.loom.com/embed/c6ac1645ced94463ada69a54ab112819" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
-</div>
+</div> -->
 
 ## Prerequisites
 
@@ -21,18 +21,17 @@ To get started with the Tuva Project, you will need:
 
 ## Step 1: Map Your Data
 
-The first step is mapping your data to the Input Layer.  The Input Layer is like the API for the Tuva Project.  Once your data has been mapped to the Input Layer you can run the entire project.  There are two options for mapping your data to the Input Layer, depending on the type of data you have.  
+The first step is mapping your data to the Input Layer.  The Input Layer is a data model that acts like an API for the Tuva Project.  Once your data has been mapped to the Input Layer data model you can run the entire project.  There are two options for mapping your data to the Input Layer, depending on the type of data you have.  
 
-**Standard Data Sources:** If you have a standard data source that we have a connector for, you can use one of these connectors to map your data.  We currently have connectors for the following standard data sources:
+**Standard Data Formats:** If your data source is a standard format that we have a connector for, you can use a connector to map your data.  A connector is just a dbt package that maps a standard data format to the Input Layer.  We currently have connectors for the following standard data sources:
 - [Medicare LDS](https://github.com/tuva-health/medicare_saf_connector)
 - [Medicare CCLF](https://github.com/tuva-health/medicare_cclf_connector)
-- [FHIR r4](https://github.com/tuva-health/FHIR_connector)
 
-**Custom Data Sources:** If you have a custom data source (i.e. any data source that we don't have a connector for) then you need to create SQL models in your dbt project that map your data to the Input Layer.  These data models need to match the definition of the Input Layer exactly (i.e. same table names, column names, and data types).
+**Custom Data Formats:** If your data source is in a custom format (i.e. any data source that we don't have a connector for) then you need to create SQL models in your dbt project that map your data to the Input Layer.  These data models need to match the definition of the Input Layer exactly (i.e. same table names, column names, and data types).
 
 If you need help mapping your data, feel free to post in [#buildersask](https://thetuvaproject.slack.com/archives/C03DET9ETK3) on Slack.
 
-## Step 2: Import the Tuva Project
+## Step 2: Import the Tuva Package
 
 The next step is to import the [Tuva](https://github.com/tuva-health/the_tuva_project) package into your dbt project.  A [package](https://docs.getdbt.com/docs/build/packages) is dbt’s version of a library for modularized code.  Follow these steps to import the package:
 
@@ -43,7 +42,7 @@ packages:
   - package: tuva-health/the_tuva_project
     version: 0.2.6
 ```
-3. Execute the command `dbt deps` from the command line to import the package into your project
+3. Execute the command `dbt deps` to import the package into your project
 
 ## Step 3: Execute dbt build
 
