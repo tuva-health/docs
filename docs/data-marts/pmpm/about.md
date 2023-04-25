@@ -7,10 +7,6 @@ The PMPM data mart transforms claims data so it's ready for "per-member-per-mont
 1. Calculating Member Months
 2. Assigning Claims to Member Months
 
-**Relevant Links:**
-- [GitHub Repo](https://github.com/tuva-health/pmpm)
-
-
 ## Calculating Member Months
 
 In this section we use an example to describe how the PMPM data mart calculates member months.
