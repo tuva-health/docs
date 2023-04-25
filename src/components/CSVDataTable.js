@@ -28,7 +28,7 @@ function hashCode(str) {
         <thead>
             <tr>
             {csvTableHeaders.map((item) => (
-            <th style={{ minWidth: '250px', maxWidth: '500px' }} key={item}>{item}
+            <th key={item}>{item}
             </th>
             ))}
             </tr>
@@ -81,7 +81,7 @@ export function CSVDataTable({csvUrl}) {
                 <thead>
                     <tr>
                         {data[0] && Object.keys(data[0]).map((key) => (
-                            <th style={{ minWidth: '150px', maxWidth: '500px'}} key={key}>{key}</th>
+                            <th key={key}>{key}</th>
                             ))}
                     </tr>
                 </thead>
@@ -92,7 +92,7 @@ export function CSVDataTable({csvUrl}) {
             <thead>
                 <tr>
                 {data[0] && Object.keys(data[0]).map((key) => (
-                    <th style={{ minWidth: '150px', maxWidth: '500px'}} key={key}>{key}</th>
+                    <th key={key}>{key}</th>
                     ))}
             </tr>
             </thead>
@@ -105,7 +105,7 @@ export function CSVDataTable({csvUrl}) {
             .map((row, i) =>
             (<tr key={i} >
                 {Object.entries(row).filter(([value], index) => index !== 5).map(([key, value], j) => (
-                    <td style={{ minWidth: '150px', maxWidth: '500px'}} key={j}> {value}</td>
+                    <td key={j}> {value}</td>
                 ))}
             </tr>
         ))}
