@@ -54,7 +54,7 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),          
+          customCss: require.resolve('./src/css/custom.css'),
         },
         gtag: {
           // Google Analytics 4 https://developers.google.com/analytics/devguides/collection/gtagjs/
@@ -108,30 +108,9 @@ const config = {
           //{to: '/blog', label: 'Blog', position: 'left'}
 
         ],
-        
+
       },
-      algolia: {
-        // The application ID provided by Algolia
-        appId: 'L6P3IKFH0A',
-        // Public API key: it is safe to commit it
-        apiKey: '1f6319a3d641117e237634af4e8b90da',
-        indexName: 'thetuvaproject',
-        // Optional: see doc section below
-        contextualSearch: true,
-
-        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        // externalUrlRegex: 'external\\.com|domain\\.com',
-
-        // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-        // replaceSearchResultPathname: {
-        //   from: '/docs/', // or as RegExp: /\/docs\//
-        //   to: '/',
-        // },
-        // Optional: Algolia search parameters
-        // searchParameters: {},
-        // Optional: path for search page that enabled by default (`false` to disable it)
-        // searchPagePath: 'search',
-    },
+    
       footer: {
         style: 'light',
       //   links: [
@@ -200,4 +179,3 @@ const config = {
 };
 
 module.exports = config;
-
