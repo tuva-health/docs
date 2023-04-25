@@ -23,6 +23,8 @@ th {
   line-height: 18px;
   font-weight: 600;
   text-transform: uppercase;
+  min-width: 195px;
+  max-width: 195px;
 }
 
 
@@ -34,7 +36,105 @@ th {
 td {
   font-size: 18px;
   padding: 25px 0;
+  min-width: 195px;
+  max-width: 195px;
 }
 tr:hover {
   background-color: #F2F2F2 !important;
+}
+
+/* responsive media queries for table width */
+
+@media only screen and (max-width: 481px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 100%;
+  } 
+}
+
+@media only screen and (max-width: 769px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 100%;
+  } 
+}
+
+@media only screen and (max-width: 1025px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 100%;
+  } 
+}
+@media only screen and (max-width: 1447px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 118%;
+  } 
+}
+@media only screen and (max-width: 1524px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 118%;
+  } 
+}
+@media only screen and (max-width: 1609px) {
+  td {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  th {
+    min-width: 195px;
+    max-width: 195px;
+  }
+  table {
+    width: 138%;
+  } 
+}
+@media only screen and (max-width: 2000px) {
+  td {
+    min-width: 250px;
+    max-width: 250px;
+  }
+  th {
+    min-width: 250px;
+    max-width: 250px;
+  }
+  table {
+    width: 138%;
+  } 
 }
