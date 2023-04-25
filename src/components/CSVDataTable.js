@@ -69,7 +69,7 @@ export function CSVDataTable({csvUrl}) {
     }, [csvUrl]);
     return (
         <div>
-        {isSticky && (
+        {/* {isSticky && (
             <Table responsive
                 className="sticky"
                 style={{
@@ -86,7 +86,7 @@ export function CSVDataTable({csvUrl}) {
                     </tr>
                 </thead>
             </Table>
-            )}
+            )} */}
           <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} />
           <Table responsive ref={tableRef} id={tableId} className="display" >
             <thead>
