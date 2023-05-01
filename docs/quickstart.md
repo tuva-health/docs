@@ -55,7 +55,7 @@ If you only want to download terminology from our S3 bucket to your data warehou
 - Redshift
 - BigQuery
 
-Before running the SQL below you need to create a database called `tuva`.  Once you've done this, copy and paste and execute the SQL below in your data warehouse.  This will automatically download all the terminology sets and load them into your data warehouse.
+Copy and paste and execute the SQL below in your data warehouse.  This will automatically download all the terminology sets and load them into your data warehouse.
 
 <Tabs groupId="load_scripts">
 <TabItem value="snowflake" label="Snowflake">
