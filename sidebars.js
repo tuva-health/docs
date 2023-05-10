@@ -228,6 +228,7 @@ const sidebars = {
                         "terminology/conditions-and-procedures/hcpcs-level-2",
                         "terminology/conditions-and-procedures/icd-10-cm",
                         "terminology/conditions-and-procedures/icd-10-pcs",
+                        "terminology/conditions-and-procedures/icd-9-cm",
                         "terminology/conditions-and-procedures/mdc",
                         "terminology/conditions-and-procedures/ms-drg"
                     ]
