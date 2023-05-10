@@ -294,6 +294,20 @@ copy into TERMINOLOGY.ICD_10_PCS
 pattern = '.*/icd_10_pcs\.csv.*';
 
 
+create or replace TABLE TERMINOLOGY.ICD_9_CM (
+	ICD_9_CM VARCHAR,
+	LONG_DESCRIPTION VARCHAR,
+	SHORT_DESCRIPTION VARCHAR
+);
+copy into TERMINOLOGY.ICD_9_CM
+    from s3://tuva-public-resources/terminology/
+    file_format = (type = CSV
+    compression = 'GZIP'
+    field_optionally_enclosed_by = '"'
+)
+pattern = '.*/icd_9_cm\.csv.*';
+
+
 create or replace TABLE TERMINOLOGY.MDC (
 	MDC_CODE VARCHAR,
 	MDC_DESCRIPTION VARCHAR
@@ -1012,6 +1026,27 @@ DISTSTYLE AUTO
 -- ALTER TABLE terminology.icd_10_pcs owner to <User>;
 copy terminology.icd_10_pcs
   from 's3://tuva-public-resources/terminology/icd_10_pcs.csv'
+  access_key_id 'AKIA2EPVNTV4FLAEBFGE'
+  secret_access_key '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'
+  csv
+  gzip
+  region 'us-east-1';
+
+
+
+DROP TABLE IF EXISTS terminology.icd_9_cm CASCADE;
+CREATE TABLE terminology.icd_9_cm
+(
+	icd_9_cm VARCHAR(256)   ENCODE lzo
+	,long_description VARCHAR(256)   ENCODE lzo
+	,short_description VARCHAR(256)   ENCODE lzo
+
+)
+DISTSTYLE AUTO
+;
+-- ALTER TABLE terminology.icd_9_cm owner to <User>;
+copy terminology.icd_9_cm
+  from 's3://tuva-public-resources/terminology/icd_9_cm.csv'
   access_key_id 'AKIA2EPVNTV4FLAEBFGE'
   secret_access_key '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'
   csv
@@ -1886,6 +1921,26 @@ load data into terminology.icd_10_pcs (
 )
 from files (format = 'csv',
     uris = ['gs://tuva-public-resources/terminology/icd_10_pcs.csv*'],
+    compression = 'GZIP',
+    quote = '"',
+    null_marker = '\\N'
+    );
+
+
+CREATE OR REPLACE TABLE `terminology.icd_9_cm`
+(
+  icd_9_cm STRING,
+  long_description STRING,
+  short_description STRING
+
+);
+load data into terminology.icd_9_cm (
+  icd_9_cm STRING,
+  short_description STRING,
+  long_description STRING
+)
+from files (format = 'csv',
+    uris = ['gs://tuva-public-resources/terminology/icd_9_cm.csv*'],
     compression = 'GZIP',
     quote = '"',
     null_marker = '\\N'
