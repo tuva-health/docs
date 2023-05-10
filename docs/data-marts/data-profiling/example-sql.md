@@ -23,7 +23,7 @@ In this query you can drill into the specific data quality test results.  This t
 
 ```sql
 select *
-from data_profiling.test_results
+from data_profiling.test_result
 order by 1,3,4
 ```
 

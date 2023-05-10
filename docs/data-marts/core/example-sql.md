@@ -141,8 +141,25 @@ order by 1,2
 
 <details><summary>Volume and Average Cost of Encounters by Type</summary>
 
+```sql
+select 
+  encounter_type
+, count(distinct encounter_id) as encounters
+, avg(total_cost_amount) as avg_cost
+from core.encounter
+group by 1
+```
+
 </details>
 
 <details><summary>Monthly Trends of Encounters by Type</summary>
 
+```sql
+select 
+  date_part(year, encounter_start_date) || lpad(date_part(month, encounter_start_date),2,0) as year_month
+, count(distinct encounter_id) as encounters
+from core.encounter
+group by 1
+order by 1
+```
 </details>
