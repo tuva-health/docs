@@ -1,11 +1,7 @@
 ---
 id: about
-title: "Claims Preprocessing"
+title: "Service Category Grouper"
 ---
-
-The Claims Preprocessing data mart includes a Service Category Grouper and Encounter Grouper.  It runs off data mapped to the Input Layer and populates Core.
-
-## Service Category Grouper
 
 In the Tuva Project, we've created a service category grouper to help us analyze payment and utilization metrics. We use it to categorize medical claim lines.
 

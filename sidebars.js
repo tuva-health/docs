@@ -33,7 +33,7 @@ const sidebars = {
                   },
                   {
                     type: "category",
-                    label: "Data Profiling",
+                    label: "Claims Profiling",
                     link: {
                         type: 'doc',
                         id: "data-marts/data-profiling/about",
@@ -53,21 +53,20 @@ const sidebars = {
                   },
                   {
                     type: "category",
-                    label: "Claims Preprocessing",
+                    label: "Service Category Grouper",
                     link: {
                         type: 'doc',
-                        id: "data-marts/claims-preprocessing/about",
+                        id: "data-marts/service-category-grouper/about",
                     },
                     items: [
                         {
                             type: "category",
                             label: "Data Dictionary",
                             items: [
-                                "data-marts/claims-preprocessing/data-dictionary/service-category-grouper",
-                                "data-marts/claims-preprocessing/data-dictionary/encounter-grouper",
+                                "data-marts/service-category-grouper/data-dictionary/service-category-grouper",
                             ],
                         },
-                        "data-marts/claims-preprocessing/example-sql"
+                        "data-marts/service-category-grouper/example-sql"
                     ]
                   },
                   {

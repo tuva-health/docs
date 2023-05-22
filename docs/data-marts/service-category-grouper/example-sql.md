@@ -12,7 +12,7 @@ select
   service_category_1
 , service_category_2
 , count(distinct claim_id) as distinct_claims
-from claims_preprocessing.service_categories
+from service_category_grouper.service_category_grouper
 group by 1,2
 order by 1,2
 ```
