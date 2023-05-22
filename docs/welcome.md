@@ -5,7 +5,7 @@ hide_title: true
 slug: /
 ---
 
-![The Tuva Project](/img/the-tuva-project.jpg)
+![The Tuva Project](/img/the_tuva_project.jpg)
 
 Welcome to the Tuva Project!  The Tuva Project is a collection of data marts and terminology code sets for transforming raw healthcare data into high-quality data that is ready for analytics and machine learning.
 
