@@ -3,7 +3,19 @@ const sidebars = {
     docsSidebar: [ 
         "intro",
         "quickstart",
-        "connectors",
+        {
+            type: "category",
+            label: "Claims Data Fundamentals",
+            link: {
+                type: 'doc',
+                id: "claims-data-fundamentals/about",
+            },
+            items: [
+                "claims-data-fundamentals/intro-to-claims",
+                "claims-data-fundamentals/claims-data-elements",
+                "claims-data-fundamentals/how-claims-are-paid",
+            ]
+          },
         {
             type: "category",
             label: "Data Marts",
