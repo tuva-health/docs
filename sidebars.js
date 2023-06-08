@@ -2,7 +2,7 @@
 const sidebars = {
     docsSidebar: [ 
         "intro",
-        "quickstart",
+        "setup",
         {
             type: "category",
             label: "Claims Data Fundamentals",
