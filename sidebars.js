@@ -2,6 +2,7 @@
 const sidebars = {
     docsSidebar: [ 
         "intro",
+        "demo",
         "setup",
         {
             type: "category",
@@ -24,91 +25,44 @@ const sidebars = {
                 id: "data-marts/about",
             },
             items: [
+
                 {
                     type: "category",
-                    label: "Input Layer",
+                    label: "Acute Inpatient",
                     link: {
                         type: 'doc',
-                        id: "data-marts/input-layer/about",
+                        id: "data-marts/acute-inpatient/about",
                     },
                     items: [
-                        {
-                            type: "category",
-                            label: "Data Dictionary",
-                            items: [
-                                "data-marts/input-layer/data-dictionary/eligibility",
-                                "data-marts/input-layer/data-dictionary/medical-claim",
-                                "data-marts/input-layer/data-dictionary/pharmacy-claim",
-                            ]
-                        }
+                    {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/acute-inpatient/data-dictionary/acute-inpatient-summary",
+                        ]
+                        },
+                        "data-marts/acute-inpatient/example-sql"
                     ]
-                  },
-                  {
+                },
+
+                {
                     type: "category",
-                    label: "Claims Profiling",
+                    label: "CCSR",
                     link: {
                         type: 'doc',
-                        id: "data-marts/data-profiling/about",
+                        id: "data-marts/ccsr/about",
                     },
                     items: [
                         {
                             type: "category",
                             label: "Data Dictionary",
                             items: [
-                                "data-marts/data-profiling/data-dictionary/summary",
-                                "data-marts/data-profiling/data-dictionary/test-result",
-                                "data-marts/data-profiling/data-dictionary/test-detail",
+                                "data-marts/ccsr/data-dictionary/long-condition-category",
                             ],
                         },
-                        "data-marts/data-profiling/example-sql"
+                        "data-marts/ccsr/example-sql"
                     ]
-                  },
-                  {
-                    type: "category",
-                    label: "Service Category Grouper",
-                    link: {
-                        type: 'doc',
-                        id: "data-marts/service-category-grouper/about",
-                    },
-                    items: [
-                        {
-                            type: "category",
-                            label: "Data Dictionary",
-                            items: [
-                                "data-marts/service-category-grouper/data-dictionary/service-category-grouper",
-                            ],
-                        },
-                        "data-marts/service-category-grouper/example-sql"
-                    ]
-                  },
-                  {
-                    type: "category",
-                    label: "Core",
-                    link: {
-                        type: 'doc',
-                        id: "data-marts/core/about",
-                    },
-                    items: [
-                        {
-                            type: "category",
-                            label: "Data Dictionary",
-                            items: [
-                                "data-marts/core/data-dictionary/condition",
-                                "data-marts/core/data-dictionary/eligibility",
-                                "data-marts/core/data-dictionary/encounter",
-                                "data-marts/core/data-dictionary/medical-claim",
-                                "data-marts/core/data-dictionary/patient",
-                                "data-marts/core/data-dictionary/pharmacy-claim",
-                                "data-marts/core/data-dictionary/procedure",
-                                "data-marts/core/data-dictionary/provider",
-                            ],
-                        },
-                        "data-marts/core/example-sql"
-                    ]
-                  },
-
-
-
+                },
 
                 {
                     type: "category",
@@ -140,7 +94,68 @@ const sidebars = {
                     ]
                 },
 
+                {
+                    type: "category",
+                    label: "Core",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/core/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/core/data-dictionary/condition",
+                                "data-marts/core/data-dictionary/encounter",
+                                "data-marts/core/data-dictionary/patient",
+                                "data-marts/core/data-dictionary/procedure",
+                                "data-marts/core/data-dictionary/provider",
+                            ],
+                        },
+                        "data-marts/core/example-sql"
+                    ]
+                },
 
+                {
+                    type: "category",
+                    label: "Data Profiling",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/data-profiling/about",
+                    },
+                    items: [
+                    {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/data-profiling/data-dictionary/summary",
+                            "data-marts/data-profiling/data-dictionary/test-result",
+                            "data-marts/data-profiling/data-dictionary/test-detail",
+                        ],
+                    },
+                    "data-marts/data-profiling/example-sql"
+                    ]
+                },
+
+                {
+                    type: "category",
+                    label: "Member Months",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/member-months/about",
+                    },
+                    items: [
+                    {
+                        type: "category",
+                        label: "Data Dictionary",
+                        items: [
+                            "data-marts/member-months/data-dictionary/member-months",
+                        ]
+                        },
+                        "data-marts/member-months/example-sql"
+                    ]
+                },
 
                 {
                     type: "category",
@@ -196,6 +211,25 @@ const sidebars = {
                             ]
                             },
                         "data-marts/readmissions/example-sql"
+                    ]
+                },
+
+                {
+                    type: "category",
+                    label: "Service Category Grouper",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/service-category-grouper/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/service-category-grouper/data-dictionary/service-category-grouper",
+                            ],
+                        },
+                        "data-marts/service-category-grouper/example-sql"
                     ]
                 },
 
