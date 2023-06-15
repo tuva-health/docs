@@ -1,11 +1,8 @@
 ---
 id: about
-title: "PMPM"
+title: "Member Months"
 ---
-The PMPM data mart transforms claims data so it's ready for "per-member-per-month" analysis, which is frequently used to analyze payments and utilization.  This involves two important steps:
-
-1. Calculating Member Months
-2. Assigning Claims to Member Months
+The Member Months data mart transforms eligibility claims data so it's in a member months format.
 
 ## Calculating Member Months
 

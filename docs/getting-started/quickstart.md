@@ -6,54 +6,42 @@ title: "Quickstart"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section describes how to setup the Tuva Project on your healthcare data.
+The Tuva Project is a collection of data marts and terminology sets.  There are 3 main ways to use the Tuva Project in your healthcare data warehouse:
 
-<!-- <div style={{position: 'relative', paddingBottom: '56.25%', height: 0}}>
-  <iframe src="https://www.loom.com/embed/c6ac1645ced94463ada69a54ab112819" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}></iframe>
-</div> -->
+- Single Data Mart
+- All Data Marts
+- Terminology Only
 
-## Prerequisites
+This setup guide walks through all 3 ways in detail.
 
-To get started with the Tuva Project, you will need:
+## Pre-requisites
+In order to run the Tuva Project you need dbt installed and healthcare data loaded inside a data warehouse that we support.
 
-1. dbt version 1.3 or greater.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
-2. Access to one of the data warehouses currently supported by the Tuva Project (i.e. Snowflake, Redshift, and BigQuery).
+- **dbt:** We currently support version 1.2.X or greater.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
+- **Data Warehouses:** We currently support Snowflake, BiqQuery, and Redshift
 
-## Step 1: Map Your Data
 
-The first step is mapping your data to the Input Layer.  The Input Layer is a data model that acts like an API for the rest of the Tuva Project.  Once your data has been mapped to the Input Layer data model you can run the entire Tuva Project.  There are two options for mapping your data to the Input Layer, depending on the type of data you have.  
+## Single Data Mart
+Every data mart in the Tuva Project can be run individually.  To run a single data mart complete the following steps.
 
-**Standard Data Formats:** If your data source is a standard format that we have a connector for, you can use a connector to map your data.  A connector is just a dbt package that maps a standard data format to the Input Layer.  We currently have connectors for the following standard data formats:
+1. **Package Import:** Add the Tuva Project to your `packages.yml` file inside your dbt project and run `dbt deps`.
+2. **Map to Staging:** Each data mart has it's own staging layer.  The staging layer is the set of models you need to create in order to run the data mart.  Each data mart has its own staging folder where you can find the exact models that need to be created.
+3. **Set Vars:** You need to enable the data mart you want to run.  Do this by setting the `var` for that data mart to true and all the other data marts to false.
+
+You're now ready to run this data mart.  The next time you run your dbt project, the staging models and data mart will run.  The output tables from that data mart will be available for analysis or can be used downstream in your DAG.
+
+## All Data Marts
+The main difference between running a single data mart and all data marts is the mapping.  To run all data marts you need to map the entire Claims Data Model and set the `all_tuva_data_marts` var to true.
+
+Mapping an entire data model can be tricky.  If you need help mapping your data, feel free to post in [#buildersask](https://thetuvaproject.slack.com/archives/C03DET9ETK3) on Slack.
+
+**Connectors:** If your data source is a standard format that we have a connector for, you can use a connector to map your data.  A connector is just a dbt package that maps a standard data format to the Claims Data Model.  We currently have connectors for the following standard data formats:
 - [Medicare LDS](https://github.com/tuva-health/medicare_saf_connector)
 - [Medicare CCLF](https://github.com/tuva-health/medicare_cclf_connector)
 
-**Custom Data Formats:** If your data source is in a custom format (i.e. any data source that we don't have a connector for) then you need to create SQL models in your dbt project that map your data to the Input Layer.  You can find the Input Layer data dictionary in the data marts section of these docs.  The mapping models need to match the definition of the Input Layer exactly (i.e. same table names, column names, and data types).
+## Terminology Only
 
-If you need help mapping your data, feel free to post in [#buildersask](https://thetuvaproject.slack.com/archives/C03DET9ETK3) on Slack.
-
-## Step 2: Import the Tuva Package
-
-The next step is to import [the Tuva Project](https://github.com/tuva-health/the_tuva_project) package into your dbt project.  A [package](https://docs.getdbt.com/docs/build/packages) is dbt’s version of a library for modularized code.  Follow these steps to import the package:
-
-1. Create a `packages.yml` file under the parent folder of your dbt project
-2. Add the following lines of code to the `packages.yml` file:
-```yml
-packages:
-  - package: tuva-health/the_tuva_project
-    version: 0.3.0
-```
-3. Execute the command `dbt deps` to import the package into your project
-
-## Step 3: Execute dbt build
-
-You're now ready to run the Tuva Project on your data.  Execute the command `dbt build`. This will build all models, load all seeds, and run all tests.
-
-## Optional: Terminology Only
-
-If you only want to download terminology from our S3 bucket to your data warehouse you can execute the SQL below.  We currently support direct download of terminology for the following data warehouses:
-- Snowflake
-- Redshift
-- BigQuery
+If you only want to download terminology from our S3 bucket to your data warehouse you can execute the SQL below.
 
 Copy and paste and execute the SQL below in your data warehouse.  This will automatically download all the terminology sets and load them into your data warehouse.
 

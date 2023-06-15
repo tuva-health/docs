@@ -2,8 +2,15 @@
 const sidebars = {
     docsSidebar: [ 
         "intro",
-        "demo",
-        "setup",
+        {
+            type: "category",
+            label: "Getting Started",
+            items: [
+                "getting-started/quickstart",
+                "getting-started/tutorial",
+            ]
+          },
+
         {
             type: "category",
             label: "Claims Data Fundamentals",
@@ -58,9 +65,13 @@ const sidebars = {
                             label: "Data Dictionary",
                             items: [
                                 "data-marts/ccsr/data-dictionary/long-condition-category",
+                                "data-marts/ccsr/data-dictionary/long-procedure-category",
+                                "data-marts/ccsr/data-dictionary/wide-condition-category",
+                                "data-marts/ccsr/data-dictionary/wide-procedure-category",
+                                "data-marts/ccsr/data-dictionary/singular-condition-category",
                             ],
                         },
-                        "data-marts/ccsr/example-sql"
+
                     ]
                 },
 
@@ -82,15 +93,27 @@ const sidebars = {
                             "data-marts/chronic-conditions/data-dictionary/tuva-chronic-conditions-wide",
                         ]
                         },
+                        "data-marts/chronic-conditions/example-sql"
+                    ]
+                },
+
+                {
+                    type: "category",
+                    label: "CMS-HCC",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/cms-hcc/about",
+                    },
+                    items: [
                         {
                             type: "category",
-                            label: "Value Sets",
+                            label: "Data Dictionary",
                             items: [
-                                "data-marts/chronic-conditions/value-sets/cms-chronic-conditions",
-                                "data-marts/chronic-conditions/value-sets/tuva-chronic-conditions",
-                            ]
-                            },
-                        "data-marts/chronic-conditions/example-sql"
+                                "data-marts/cms-hcc/data-dictionary/patient-risk-factors",
+                                "data-marts/cms-hcc/data-dictionary/patient-risk-scores",
+                            ],
+                        },
+
                     ]
                 },
 
@@ -153,7 +176,6 @@ const sidebars = {
                             "data-marts/member-months/data-dictionary/member-months",
                         ]
                         },
-                        "data-marts/member-months/example-sql"
                     ]
                 },
 
@@ -169,11 +191,10 @@ const sidebars = {
                         type: "category",
                         label: "Data Dictionary",
                         items: [
-                            "data-marts/pmpm/data-dictionary/pmpm-builder",
-                            "data-marts/pmpm/data-dictionary/pmpm-trends",
+                            "data-marts/pmpm/data-dictionary/pmpm",
+                            "data-marts/pmpm/data-dictionary/pmpm-prep",
                         ]
                         },
-                        "data-marts/pmpm/example-sql"
                     ]
                 },
 
@@ -193,43 +214,26 @@ const sidebars = {
                             "data-marts/readmissions/data-dictionary/encounter-augmented",
                         ]
                         },
-                        {
-                            type: "category",
-                            label: "Value Sets",
-                            items: [
-                                "data-marts/readmissions/value-sets/acute-diagnosis-ccs",
-                                "data-marts/readmissions/value-sets/acute-diagnosis-icd-10-cm",
-                                "data-marts/readmissions/value-sets/always-planned-css-diagnosis-category",
-                                "data-marts/readmissions/value-sets/always-planned-css-procedure-category",
-                                "data-marts/readmissions/value-sets/exclusion-ccs-diagnosis-category",
-                                "data-marts/readmissions/value-sets/icd-10-cm-to-ccs",
-                                "data-marts/readmissions/value-sets/icd-10-pcs-to-ccs",
-                                "data-marts/readmissions/value-sets/potentially-planned-css-procedure-category",
-                                "data-marts/readmissions/value-sets/potentially-planned-icd-10-pcs",
-                                "data-marts/readmissions/value-sets/specialty-cohort",
-                                "data-marts/readmissions/value-sets/surgery-gynecology-cohort",
-                            ]
-                            },
                         "data-marts/readmissions/example-sql"
                     ]
                 },
 
                 {
                     type: "category",
-                    label: "Service Category Grouper",
+                    label: "Service Category",
                     link: {
                         type: 'doc',
-                        id: "data-marts/service-category-grouper/about",
+                        id: "data-marts/service-category/about",
                     },
                     items: [
                         {
                             type: "category",
                             label: "Data Dictionary",
                             items: [
-                                "data-marts/service-category-grouper/data-dictionary/service-category-grouper",
+                                "data-marts/service-category/data-dictionary/service-category-grouper",
                             ],
                         },
-                        "data-marts/service-category-grouper/example-sql"
+                        "data-marts/service-category/example-sql"
                     ]
                 },
 
