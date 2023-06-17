@@ -24,6 +24,27 @@ const sidebars = {
                 "claims-data-fundamentals/how-claims-are-paid",
             ]
           },
+
+          {
+            type: "category",
+            label: "Claims Data Model",
+            link: {
+                type: 'doc',
+                id: "claims-data-model/about",
+            },
+            items: [
+                    {
+                    type: "category",
+                    label: "Data Dictionary",
+                    items: [
+                        "claims-data-model/data-dictionary/eligibility",
+                        "claims-data-model/data-dictionary/medical-claim",
+                        "claims-data-model/data-dictionary/pharmacy-claim",
+                    ]
+                    },
+                    "claims-data-model/claims-mapping-guide"
+            ]
+          },
         {
             type: "category",
             label: "Data Marts",
