@@ -17,7 +17,7 @@ This setup guide walks through all 3 ways in detail.
 ## Pre-requisites
 In order to run the Tuva Project you need dbt installed and healthcare data loaded inside a data warehouse that we support.
 
-- **dbt:** We currently support version 1.2.X or greater.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
+- **dbt:** We currently support version 1.3.X or greater.  You can use either [dbt cloud](https://cloud.getdbt.com/) or [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview).
 - **Data Warehouses:** We currently support Snowflake, BiqQuery, and Redshift
 
 
