@@ -4,8 +4,6 @@ title: "Readmissions"
 ---
 Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.  Here we provide a general overview of how to calculate a hospital readmission measure.
 
-<iframe width="750" height="500" src="https://www.youtube.com/embed/TCG_QCb63n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Overview
 
 There are many different ways to define hospital readmission measures.  However every readmission measure is built on two underlying concepts: the index admission and the readmission.  The index admission is a hospitalization that qualifies to be included in the readmission measure. Not all hospitalizations will meet the criteria to be index admissions and will therefore not be included in the readmission measure. For example, if a patient dies during a hospitalization, that hospitalization will not be an index admission, and will not be included in the readmission measure. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.  We explain each piece of logic further below.
