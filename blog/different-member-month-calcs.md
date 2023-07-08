@@ -9,4 +9,4 @@ date: 2023-07-01
 comments: true
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DV71dc8602c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="600" height="400" src="https://www.youtube.com/embed/y9toS1ErRXE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
