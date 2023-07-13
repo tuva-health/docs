@@ -10,3 +10,5 @@ comments: true
 ---
 
 <iframe width="600" height="400" src="https://www.youtube.com/embed/y9toS1ErRXE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+
+This video explains how the concept of "member-months" is commonly used in healthcare analytics to normalize reported spend and utilization. We also show how calculating member-months in different ways may lead to significant differences in the resulting PMPM spend and utilization.
