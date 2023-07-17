@@ -94,6 +94,12 @@ const config = {
           //   target: null,
           // },
           {
+            to: 'https://www.youtube.com/@tuvahealth',
+            position: 'left',
+            label: 'Vlog',
+            target: null,
+          },
+          {
             href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
             position: 'right',
             className: 'header-slack-link',
@@ -105,7 +111,7 @@ const config = {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
-          {to: '/blog', label: 'Blog', position: 'left'}
+          // {to: '/blog', label: 'Blog', position: 'left'}
 
         ],
 
