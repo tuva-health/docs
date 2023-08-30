@@ -55,7 +55,7 @@ ICD-10-CM codes. Version 24 has been in use since 2020. Version 28 was released
 in 2024. CMS has finalized a phased transition from version 24 to 28, which will 
 be completed in 2026. CMS also performs model calibration based on diagnostic 
 and expenditure data. These changes can be found in the annual rate 
-announcements on [cms.gov](http://cms.gov/).
+announcements on [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents).
 
 These models generate risk scores by adding relative risk factors, demographics, 
 and disease information. Additionally, they use hierarchies where the most 
@@ -66,10 +66,10 @@ severe manifestation of a condition is considered for risk scores.
 Several resources are needed to calculate risk scores.
 
 - Annual Rate Announcements for the applicable payment year (found on 
-  [cms.gov](http://cms.gov/))
-- ICD-10-CM to HCC mapping (found on [cms.gov](http://cms.gov/))
+  [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents))
+- ICD-10-CM to HCC mapping (found on [cms.gov](https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/risk-adjustors))
 - Risk adjustment model software (CMS makes a SAS program available on 
-  [cms.gov](http://cms.gov/))
+  [cms.gov](https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/risk-adjustors))
 - Model Output Report (MOR) or claims data
 - Monthly Membership Detail Report or eligibility data
 
