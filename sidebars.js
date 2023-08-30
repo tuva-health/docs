@@ -135,7 +135,7 @@ const sidebars = {
                                 "data-marts/cms-hcc/data-dictionary/patient-risk-scores",
                             ],
                         },
-
+                        "data-marts/cms-hcc/example-sql"
                     ]
                 },
 
