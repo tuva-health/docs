@@ -51,11 +51,11 @@ The full list of models are:
 
 In addition to models for different populations, CMS has released versions of 
 these models over the years, which include new HCC mappings and added or removed 
-ICD-10-CM codes. Version 24 has been in use since 2020. Version 28 was released 
-in 2024. CMS has finalized a phased transition from version 24 to 28, which will 
-be completed in 2026. CMS also performs model calibration based on diagnostic 
-and expenditure data. These changes can be found in the annual rate 
-announcements on [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents).
+ICD-10-CM codes. Version 24 has been in use since 2020. An advanced notice of 
+Version 28 was published this year. CMS has finalized a phased transition 
+from version 24 to 28, which will begin in 2024 and be completed in 2026. CMS 
+also performs model calibration based on diagnostic and expenditure data. These 
+changes can be found in the annual rate announcements on [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents).
 
 These models generate risk scores by adding relative risk factors, demographics, 
 and disease information. Additionally, they use hierarchies where the most 
