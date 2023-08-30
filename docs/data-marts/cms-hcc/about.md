@@ -3,9 +3,9 @@ id: about
 title: "CMS-HCC"
 ---
 
-# Overview
+## Overview
 
-## What are HCCs?
+### What are HCCs?
 
 “HCC” stands for Hierarchical Condition Categories. They are sets of medical 
 codes linked to clinical diagnoses that represent costly acute and chronic 
@@ -13,7 +13,7 @@ health conditions. CMS designed this model to estimate future healthcare costs
 for patients. HCC coding relies on ICD-10-CM coding to assign risk scores to 
 patients.
 
-## What is risk adjustment?
+### What is risk adjustment?
 
 HCCs are part of a risk-adjustment model that CMS uses to calculate payments to 
 healthcare organizations for patients insured by Medicare Advantage, Accountable 
@@ -24,7 +24,7 @@ of an individual’s care based on demographic factors such as age and gender an
 their associated HCCs. This RAF score is then used to calculate payments or 
 reimbursements to these organizations.
 
-## How are risk scores used?
+### How are risk scores used?
 
 Patients with high-risk scores or multiple chronic conditions are reimbursed at 
 higher rates than those with low-risk scores because they are expected to 
@@ -32,7 +32,7 @@ require more costly medical interventions. By accounting for differences in
 patient complexity, quality and cost performance can be more appropriately 
 measured.
 
-## Risk Score Models
+### Risk Score Models
 
 CMS has implemented multiple models to address differences in program costs and 
 the beneficiary population. For example, Medicare Part C versus Medicare Part D 
@@ -61,7 +61,7 @@ These models generate risk scores by adding relative risk factors, demographics,
 and disease information. Additionally, they use hierarchies where the most 
 severe manifestation of a condition is considered for risk scores.
 
-## Risk Score Calculation
+### Risk Score Calculation
 
 Several resources are needed to calculate risk scores.
 
@@ -91,7 +91,7 @@ of the steps:
    payment year’s rate announcement document to calculate the normalized and 
    payment risk scores.
 
-# CMS HCC Mart in the Tuva Project
+## CMS HCC Mart in the Tuva Project
 
 As you can see, many resources must be gathered, and the steps to calculate HCCs 
 and risk scores are tedious. Most of this important information is not easy to 
@@ -108,7 +108,7 @@ demographic risk factors, disease risk factors, interaction factors, and
 hierarchical conditions. All you need to do is choose the payment year you want 
 to calculate and the model you want to use.
 
-## Data Requirements
+### Data Requirements
 
 **Eligibility:**
 
@@ -140,7 +140,7 @@ to calculate and the model you want to use.
 
 *Note: The Tuva Project will generate this table. You just need to run medical claims and eligibility through the project.*
 
-## Variables
+### Variables
 
 The data mart has two variables that allow you to choose which payment year you 
 want to calculate and which model you want to use to calculate the risk scores.
@@ -166,13 +166,13 @@ dbt command:
 dbt build --vars '{cms_hcc_payment_year: 2020}'
 ```
 
-## Data Mart Structure
+### Data Mart Structure
 
-### Staging
+#### Staging
 
 The staging tables show what tables and fields are used from the Core data model.
 
-### Intermediate
+#### Intermediate
 
 The intermediate tables contain the complex logic to prepare eligibility and 
 medical claims data, map to the risk factor seeds, and apply the condition 
@@ -181,7 +181,7 @@ the condition is found. The model `cms_hcc__int_hcc_mapping` (aliased as
 `_int_hcc_mapping`) shows all eligible conditions mapped to the HCCs before the 
 hierarchy is applied.
 
-### Final
+#### Final
 
 The final tables are `patient_risk_factors` and `patient_risk_scores`, along 
 with snapshots. 
