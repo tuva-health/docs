@@ -98,8 +98,8 @@ export function JsonDataTable({jsonPath}) {
     useEffect(() => {
         var fetchData = async () => {
             try {
-                var responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json");
-                var responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json");
+                var responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/docs_update/docs/manifest.json");
+                var responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/docs_update/docs/catalog.json");
                 var jsonDataMan = await responseMan.json();
                 var jsonDataCat = await responseCat.json();
                 var data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);

@@ -155,7 +155,7 @@ const sidebars = {
                                 "data-marts/core/data-dictionary/encounter",
                                 "data-marts/core/data-dictionary/patient",
                                 "data-marts/core/data-dictionary/procedure",
-                                "data-marts/core/data-dictionary/provider",
+                                "data-marts/core/data-dictionary/practitioner",
                             ],
                         },
                         "data-marts/core/example-sql"
