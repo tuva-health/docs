@@ -93,11 +93,17 @@ const config = {
           //   position: 'left',
           //   target: null,
           // },
+          // {
+          //   to: 'https://www.youtube.com/@tuvahealth',
+          //   position: 'left',
+          //   label: 'Videos',
+          //   target: null,
+          // },
           {
-            to: 'https://www.youtube.com/@tuvahealth',
-            position: 'left',
-            label: 'Vlog',
-            target: null,
+            href: 'https://www.youtube.com/@tuvahealth',
+            position: 'right',
+            className: 'header-youtube-link',
+            // 'aria-label': 'YouTube',
           },
           {
             href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',

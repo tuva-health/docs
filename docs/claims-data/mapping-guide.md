@@ -1,6 +1,6 @@
 ---
-id: claims-mapping-guide
-title: "Claims Mapping Guide"
+id: mapping-guide
+title: "Mapping Guide"
 ---
 
 Once you have acquired and ingested raw claims data into your data warehouse, the next step is mapping it to a common data model.  **Adopting a common data model is important for a couple reasons:**
@@ -9,6 +9,11 @@ Once you have acquired and ingested raw claims data into your data warehouse, th
 2. **Scale:** A common data model helps scale your data platform by enabling you to develop logic (e.g. for measures, cohorts, data quality tests, etc.) against a single schema, rather than re-writing the logic for each individual data source schema separately.
 
 The Tuva Project includes a common data model we call Claims Data Model (or CDM for short).  Once your claims data is mapped to the Tuva Claims Data Model, you can easily run the entire Tuva Project with a single command.
+
+Connectors are dbt packages that map standard data formats to the Tuva Input Layer.  Currently the Tuva Project has two connectors:
+
+- [Medicare LDS Claims Data](https://github.com/tuva-health/medicare_lds_connector)
+- [Medicare CCLF Claims Data](https://github.com/tuva-health/medicare_cclf_connector)
 
 ## Overview
 In this section we discuss how to map your raw claims data sources to the Tuva Claims Data Model.  Mapping raw claims data to any common data model can be tricky because claims data comes in many different formats.  For example, if you were to compare a claims dataset from United Healthcare to a claims dataset from Blue Cross Blue Shield, it’s likely to be very different (i.e. different tables and columns).  It’s even common for a single payer to use multiple data models and for these models to change over time.
