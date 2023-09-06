@@ -194,7 +194,34 @@ const sidebars = {
                     label: "Financial PMPM",
                     link: {
                         type: 'doc',
+<<<<<<< HEAD
                         id: "data-marts/financial-pmpm/about",
+=======
+                        id: "data-marts/core/about",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Data Dictionary",
+                            items: [
+                                "data-marts/core/data-dictionary/condition",
+                                "data-marts/core/data-dictionary/encounter",
+                                "data-marts/core/data-dictionary/patient",
+                                "data-marts/core/data-dictionary/procedure",
+                                "data-marts/core/data-dictionary/practitioner",
+                            ],
+                        },
+                        "data-marts/core/example-sql"
+                    ]
+                },
+
+                {
+                    type: "category",
+                    label: "Data Profiling",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/data-profiling/about",
+>>>>>>> 4424c176790f4a9f47251301354a5559d38f3b67
                     },
                     items: [
                     {

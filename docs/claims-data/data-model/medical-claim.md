@@ -11,4 +11,4 @@ The medical_claim table is at the claim-line grain i.e. it has one record per cl
 
 A typical medical claims dataset includes claims header information and claims line information.  Header information (e.g. DRG) only occurs once per claim whereas line information (e.g. revenue code) may occur many times per claim.  Some claims datasets have header and line information separated into distinct tables while other datasets have the information combined into a single table.  When you combine header and line information into a single table you need to repeat the values of the header data elements for every line on the claim.  
 
-<JsonDataTable  jsonPath="nodes.model\.integration_tests\.medical_claim.columns" />
+<JsonDataTable  jsonPath="nodes.model\.claims_data_model\.medical_claim.columns" />
