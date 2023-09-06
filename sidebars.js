@@ -77,7 +77,7 @@ const sidebars = {
                             id: "claims-data/preprocessing/encounter-grouper/about",
                         },
                         items: [
-                                "claims-data/preprocessing/data-profiling/summary",
+                                "claims-data/preprocessing/encounter-grouper/acute-inpatient-summary",
                             
                                 ]
                     },
@@ -89,7 +89,7 @@ const sidebars = {
                             id: "claims-data/preprocessing/service-category/about",
                         },
                         items: [
-                                "claims-data/preprocessing/data-profiling/summary",
+                                "claims-data/preprocessing/service-category/service-category-grouper",
                                 ]
                     },
             ]
@@ -135,19 +135,13 @@ const sidebars = {
                         id: "data-marts/ccsr/about",
                     },
                     items: [
-                        {
-                            type: "category",
-                            label: "Data Model",
-                            items: [
+
                                 "data-marts/ccsr/data-dictionary/long-condition-category",
                                 "data-marts/ccsr/data-dictionary/long-procedure-category",
                                 "data-marts/ccsr/data-dictionary/wide-condition-category",
                                 "data-marts/ccsr/data-dictionary/wide-procedure-category",
                                 "data-marts/ccsr/data-dictionary/singular-condition-category",
-                            ],
-                        },
-
-                    ]
+                            ]
                 },
                 {
                     type: "category",
@@ -157,18 +151,11 @@ const sidebars = {
                         id: "data-marts/chronic-conditions/about",
                     },
                     items: [
-                        {
-                        type: "category",
-                        label: "Data Model",
-                        items: [
                             "data-marts/chronic-conditions/data-dictionary/cms-chronic-conditions-long",
                             "data-marts/chronic-conditions/data-dictionary/cms-chronic-conditions-wide",
                             "data-marts/chronic-conditions/data-dictionary/tuva-chronic-conditions-long",
                             "data-marts/chronic-conditions/data-dictionary/tuva-chronic-conditions-wide",
-                        ]
-                        },
-                        "data-marts/chronic-conditions/example-sql"
-                    ]
+                            ]
                 },
                 {
                     type: "category",
@@ -178,60 +165,33 @@ const sidebars = {
                         id: "data-marts/cms-hcc/about",
                     },
                     items: [
-                        {
-                            type: "category",
-                            label: "Data Model",
-                            items: [
                                 "data-marts/cms-hcc/data-dictionary/patient-risk-factors",
                                 "data-marts/cms-hcc/data-dictionary/patient-risk-scores",
-                            ],
-                        },
-                        "data-marts/cms-hcc/example-sql"
-                    ]
+                            ]
                 },
                 {
                     type: "category",
                     label: "Financial PMPM",
                     link: {
                         type: 'doc',
-<<<<<<< HEAD
                         id: "data-marts/financial-pmpm/about",
-=======
-                        id: "data-marts/core/about",
                     },
                     items: [
-                        {
-                            type: "category",
-                            label: "Data Dictionary",
-                            items: [
-                                "data-marts/core/data-dictionary/condition",
-                                "data-marts/core/data-dictionary/encounter",
-                                "data-marts/core/data-dictionary/patient",
-                                "data-marts/core/data-dictionary/procedure",
-                                "data-marts/core/data-dictionary/practitioner",
-                            ],
-                        },
-                        "data-marts/core/example-sql"
-                    ]
-                },
-
-                {
-                    type: "category",
-                    label: "Data Profiling",
-                    link: {
-                        type: 'doc',
-                        id: "data-marts/data-profiling/about",
->>>>>>> 4424c176790f4a9f47251301354a5559d38f3b67
-                    },
-                    items: [
-                    {
-                        type: "category",
-                        label: "Data Dictionary",
-                        items: [
                             "data-marts/financial-pmpm/data-dictionary/pmpm",
                             "data-marts/financial-pmpm/data-dictionary/pmpm-prep",
-                        ]
-                        },
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Quality Measures",
+                    link: {
+                        type: 'doc',
+                        id: "data-marts/quality-measures/about",
+                    },
+                    items: [
+                            "data-marts/quality-measures/summary-long",
+                            "data-marts/quality-measures/summary-wide",
+                            "data-marts/quality-measures/summary-counts",
                     ]
                 },
                 {
@@ -242,15 +202,8 @@ const sidebars = {
                         id: "data-marts/readmissions/about",
                     },
                     items: [
-                    {
-                        type: "category",
-                        label: "Data Dictionary",
-                        items: [
                             "data-marts/readmissions/data-dictionary/readmission-summary",
                             "data-marts/readmissions/data-dictionary/encounter-augmented",
-                        ]
-                        },
-                        "data-marts/readmissions/example-sql"
                     ]
                 },
             ]
@@ -348,6 +301,7 @@ const sidebars = {
                         "terminology/tuva-concepts/payer-type"]
                 }]
         },
+        "example-sql",
         "help"
     ]
 };
