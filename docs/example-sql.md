@@ -61,7 +61,7 @@ order by 1
 
 ```sql
 select
-    gender
+    sex
 ,    count(1)
 from core.patient
 group by 1
