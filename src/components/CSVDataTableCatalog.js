@@ -86,11 +86,11 @@ return (
               <tbody>
               {data.filter((row) => 
                 row[Object.keys(row)[0]].toLowerCase().includes(searchedVal.toLowerCase()) ||
-              row[Object.keys(row)[5]]).map((row, i) =>
+              row[Object.keys(row)[2]]).map((row, i) =>
                (
                 <tr key={i} >
-                    {Object.entries(row).filter(([, value], index) => index !== 5).map(([key, value], j) => (
-                        <td style={{ minWidth: '150px', maxWidth: '150px'}} key={j}>{j === 1 ? <a href={row[Object.keys(row)[5]]}>{value}</a> : value}</td>
+                    {Object.entries(row).filter(([, value], index) => index !== 3).map(([key, value], j) => (
+                        <td style={{ minWidth: '300px', maxWidth: '300px'}} key={j}>{j === 0 ? <a href={row[Object.keys(row)[3]]}>{value}</a> : value}</td>
                     ))}
                 </tr>
             ))}

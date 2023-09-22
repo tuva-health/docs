@@ -253,6 +253,13 @@ const sidebars = {
                 },
                 {
                     type: "category",
+                    label: "Lab",
+                    items: [
+                        "terminology/lab/loinc"
+                    ]
+                },
+                {
+                    type: "category",
                     label: "Demographics",
                     items: [
                         "terminology/demographics/ethnicity",
