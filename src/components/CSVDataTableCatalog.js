@@ -28,7 +28,7 @@ if (tableHeaders !== undefined) {
     <thead>
         <tr>
         {csvTableHeaders.map((item) => (
-        <th style={{ minWidth: '150px', maxWidth: '150px' }} key={item}>{item}
+        <th style={{ minWidth: '300px', maxWidth: '300px' }} key={item}>{item}
         </th>
         ))}
         </tr>
