@@ -145,7 +145,7 @@ order by 1,2
 select 
   encounter_type
 , count(distinct encounter_id) as encounters
-, avg(total_cost_amount) as avg_cost
+, avg(paid_amount) as avg_cost
 from core.encounter
 group by 1
 ```
