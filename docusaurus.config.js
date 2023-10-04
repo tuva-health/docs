@@ -96,14 +96,14 @@ const config = {
           // {
           //   to: 'https://www.youtube.com/@tuvahealth',
           //   position: 'left',
-          //   label: 'Videos',
+          //   label: 'YouTube',
           //   target: null,
           // },
           {
             href: 'https://www.youtube.com/@tuvahealth',
             position: 'right',
             className: 'header-youtube-link',
-            // 'aria-label': 'YouTube',
+            'aria-label': 'YouTube',
           },
           {
             href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
@@ -185,6 +185,7 @@ const config = {
         docs: {
           sidebar: {
             hideable: true,
+            autoCollapseCategories: true
           },
         },
     }),

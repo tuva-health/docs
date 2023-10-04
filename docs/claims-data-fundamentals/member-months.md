@@ -1,6 +1,6 @@
 ---
-id: about
-title: "PMPM"
+id: member-months
+title: "Member Months"
 ---
 The PMPM data mart transforms claims data so it's ready for "per-member-per-month" analysis, which is frequently used to analyze payments and utilization.  It builds on top of the Member Months and Service Category data marts.
 

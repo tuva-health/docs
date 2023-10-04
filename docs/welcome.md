@@ -5,70 +5,44 @@ hide_title: true
 slug: /
 ---
 
-![The Tuva Project](/img/the_tuva_project.jpg)
+# Welcome
 
-Welcome to the Tuva Project!  The Tuva Project is a collection of data marts and terminology code sets for transforming raw healthcare data into high-quality data that is ready for analytics and machine learning.
+Welcome to the Tuva Project's Knowledge Base!  The single biggest barrier to analyzing healthcare data is the insane amount of domain knowledge it requires.  We created Knowledge Base to be the open source book on how to work with healthcare data.
+
+## What is the Tuva Project?
+
+The Tuva Project is our attempt to make healthcare data easier to work with.  It includes 3 main components:
+
+1. **Knowledge:** This website is our Knowledge Base - an open source book on how to work with healthcare data and do healthcare analytics and machine learning.
+
+2. **Code:** An open source core data model, data marts, terminology sets, and data quality tests available on [GitHub](https://github.com/tuva-health) for anyone to use.
+
+3. **Community:** A [Slack](https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q) community where healthcare data people can ask questions and share knowledge about our trials and tribulations working in healthcare data.
 
 ## The Tuva Project Manifesto
 
 _Healthcare data has been challenging to work with since the inception of claims data in the mid-90s. The Tuva Project is our attempt to fix it - Tuva or Bust._
 
-### Healthcare Data is in Crisis
+If you're reading this, you probably know about the awesome potential healthcare data has for discovering new treatments and lowering the cost and increasing the quality of healthcare.  But you're probably also familiar with the challenges of working with healthcare data that prevent most of us from realizing this potential.
 
-The healthcare industry has been talking about the promise of electronic health data for decades. Soon, experts say, analysis of medical records and claims data (so-called real world data) will lead to rapid increases in our understanding of diseases and the best way to treat them.
+**Here's the problem:** healthcare data is complex.  It's perhaps more complex than data from any other industry. Think about it: healthcare data attempts to capture human biology and the delivery of healthcare in a database. There are thousands (millions?) of body systems, diagnostic tests, diseases, and treatments, all of which are captured in healthcare data.
 
-As an industry we've been working to realize this promise since claims data became widely available in the mid-90s. This work accelerated in the early 2010s with broad adoption of electronic medical record systems. And to be sure, we've had some success. Exciting papers have been published and hospitals are using data to improve operations and avoid unnecessary patient harm.
+The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable in how they capture data.  The end result is that healthcare data is extremely heterogeneous and this makes it impossible to perform data analysis on raw healthcare data.
 
-But more than success we've experienced failure and frustration. For example, it can take weeks to answer common questions like which patients are receiving standard of care treatment for a given disease. Worse, when you finally arrive at an answer serious questions about data quality and validity commonly call the results into question.
+As an industry we've understood this for some time, but we've been busy solving other problems.  The first problem we solved in the late 2000s / early 2010s was making healthcare data electronic.  This was a big step because it's tough to do much analysis with paper records.
 
-So after several decades, healthcare data is in crisis, and as an industry we haven't seriously focused on solving the problem.
+The second problem we started solving a few years ago - interoperability.  Since becoming digital, healthcare data has been extremely silo'd and difficult to access.  But thanks to the 21st Century Cures Act and the regulations promulgated from it, this is changing, and it's now easier to access healthcare data than ever.  (Although if you're a vendor requesting claims data from a payer this is still a massive pain.)
 
-### The Healthcare Data Transformation Problem
+This brings us to the present and the single biggest problem that remains to be solved: data transformation.  Solving this problem is all about figuring out the best way to go from raw healthcare data sources (i.e. claims, medical records, and other clinical sources like labs) to enriched, quality-tested data that is ready for analysis and machine learning.
 
-Healthcare data is perhaps more complex than data from any other industry. This complexity is directly tied to the complexity of human biology. There are thousands of body systems, diagnostic tests, diseases, and treatments, all of which are captured in healthcare data.
+Every healthcare data person is familiar with the data transformation problem.  We've all been re-learning and re-inventing solutions to this problem for the past 30 years.  The goal of the Tuva Project is to solve the data transformation problem, and because this problem is fundamentally a knowledge problem, an open source approach is the only way we'll get there.
 
-The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable in how they capture data.
+If you're a healthcare data person, you have tremendous knowledge and expertise to contribute.  We hope you'll join us on this mission and help unlock the true potential of healthcare data to improve health and healthcare for all of us.
 
-The end result is that healthcare data is extremely heterogeneous. There is a lot of syntactic variation (i.e. how the data is organized into tables and columns) and semantic variation (i.e. the meaning of the actual values of the data). This variation makes it impossible to perform data analysis on raw healthcare data.
+## Why the Name Tuva
 
-As an industry we've understood this for some time, but we've been busy solving other problems. To take a step back, there are 3 main steps in the healthcare analytics value chain, i.e. the process of going from raw healthcare data to using that data to answer important questions. These steps are:
+We are massive [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) fans.  Feynman embodied so many great traits that are critical for deeply understanding a subject and doing science.
 
-1. Data Access
-2. Data Transformation
-3. Data Analysis
+The name Tuva is a reference to the country of Tuva in the former Soviet Union. For more than a decade before his death, Feynman and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  What started as a joke became a real mission - and it was challenging.  Getting a visa to Soviet Russia during the cold war was next to impossible. Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
 
-**Data Access:** Data access is the process of acquiring healthcare data. For example, if you're a provider you may only have a limited portion of the data for your patient population (i.e. from your EMR) and need access to more data to complete the picture (e.g. by tapping into an HIE).
-
-**Data Transformation** Data transformation is the process of syntactically and semantically normalizing atomic-level data, creating higher-level concepts on top of the normalized atomic data, and identifying data quality issues in the data.
-
-**Data Analysis** Data analysis involves using statistics and machine learning techniques to answer specific questions to gain insights from the transformed data.
-
-As an industry we've historically focused on data analysis (e.g. building dashboards, web apps, etc.) that make it easier to analyze healthcare data. Over the last few years, thanks to regulation changes and investment from a number of companies like Flexpa, Particle, Zus, Health Gorilla, Metriport, and others, the data access problem is getting closer to being solved.
-
-However, as an industry we've significantly under-invested in data transformation, leading to "garbage in, garbage out" data analysis. Even worse, technology vendors and non-profit organizations that have invested in data transformation do so in a completely black-box manner. As a result, most organizations (and often even teams within the same organization) are doing data transformation in different ways.  It's no wonder the results we see from healthcare data are not generalizable.
-
-### An Open Source Solution
-
-After working in healthcare data for more than a decade we decided to focus all of our attention on solving the healthcare data transformation problem for the entire healthcare industry.  After thinking about the problem deeply, we realized the right approach needed 3 things to be successful.
-
-1. **Open peer review:** As previously mentioned, the status quo in our industry is a closed approach that prevents us from being able to compare different approaches.  Our goal is to figure out the best way to do healthcare data transformation, and the only way we will figure out the best way is through open peer review and feedback.  
-
-2. **Code that anyone can run:** Today the majority of healthcare knowledge is written in english (e.g. methodology PDFs, journal articles, etc.) or stored in the heads of subject matter experts and is not available as code.  The healthcare knowledge that is available as code is often written in archane languages like SAS.
-
-3. **Contributions from anyone should benefit everyone:** Again, the closed status quo of our industry means that any time someone builds something new the vast majority of healthcare organizations do not benefit.
-
-From these principles it became clear that an open source approach would be the only possible approach.
-
-The Tuva Project is our open source solution to the healthcare data transformation problem.  We're excited to work and partner with those in the healthcare industry that are committed to leveraging healthcare data to its fullest potential in an open and transparent manner for the benefit of patients, providers, and the entire ecosystem.
-
-### About Tuva Health
-
-[Tuva Health](https://tuvahealth.com/) is the for-profit company behind the Tuva Project. We're a team of healthcare data engineers and data scientists totally focused on solving the healthcare data transformation problem.  Being a for-profit company is extremely important because over time it allows us to make significantly larger investments in the open source code base compared to a non-profit corporate structure.
-
-The Tuva Project is open source and licensed under Apache 2, one of the most permissive open source licenses. Individuals and organizations are free to test out, adopt, or fork (customize) any part of the Tuva Project for any reason. We also offer paid services to organizations that need help implementing and/or maintaining the Tuva Project on their healthcare data.
-
-The name Tuva is a reference to the country of Tuva in the former Soviet Union. For more than a decade before his death, [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva. During the cold war getting visas for this journey was no easy feat. Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
-
-We're massive Feynman fans and especially appreciate his strong values around intellectual honesty and curiosity. We believe these values and behavior are at the core of doing anything important in the world and we're centering the Tuva Project around them.
-
-Healthcare data has been challenging to work with since the inception of claims data in the mid-90s. The Tuva Project is our attempt to fix it - Tuva or Bust.
+Ralph helped pen a number of other books about Feynman which we highly recommend.  If you're new to Feynman start with [Surely You're Joking, Mr. Feynman](https://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041).

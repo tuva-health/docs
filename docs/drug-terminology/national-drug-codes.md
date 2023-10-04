@@ -1,6 +1,6 @@
 ---
-id: medications
-title: "Medications"
+id: national-drug-codes
+title: "National Drug Codes"
 ---
 This section provides an overview of prescription drug information contained in claims data and how you can use reference terminologies to make analysis of prescription drug data easier.
 

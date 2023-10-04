@@ -1,6 +1,6 @@
 ---
-id: about
-title: "Data Profiling"
+id: data-quality-issues
+title: "Data Quality Issues"
 ---
 
 import { CSVDataTable } from '@site/src/components/CSVDataTable';

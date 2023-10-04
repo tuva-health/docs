@@ -1,6 +1,6 @@
 ---
 id: intro-to-claims
-title: "Introduction"
+title: "Intro to Claims"
 ---
 Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this section we provide an overview of the healthcare entities and overall process involved in the creation of claims data.
 

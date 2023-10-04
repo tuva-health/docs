@@ -1,6 +1,6 @@
 ---
-id: about
-title: "Readmissions"
+id: hospital-readmissions
+title: "Hospital Readmissions"
 ---
 Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.  Here we provide a general overview of how to calculate a hospital readmission measure.
 
