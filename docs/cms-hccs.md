@@ -3,9 +3,7 @@ id: cms-hccs
 title: "CMS-HCCs"
 ---
 
-# CMS-HCCs
-
-### What are HCCs?
+## What are HCCs?
 
 “HCC” stands for Hierarchical Condition Categories. They are sets of medical 
 codes linked to clinical diagnoses that represent costly acute and chronic 
@@ -13,7 +11,7 @@ health conditions. CMS designed this model to estimate future healthcare costs
 for patients. HCC coding relies on ICD-10-CM coding to assign risk scores to 
 patients.
 
-### What is risk adjustment?
+## What is risk adjustment?
 
 HCCs are part of a risk-adjustment model that CMS uses to calculate payments to 
 healthcare organizations for patients insured by Medicare Advantage, Accountable 
@@ -24,7 +22,7 @@ of an individual’s care based on demographic factors such as age and gender an
 their associated HCCs. This RAF score is then used to calculate payments or 
 reimbursements to these organizations.
 
-### How are risk scores used?
+## How are risk scores used?
 
 Patients with high-risk scores or multiple chronic conditions are reimbursed at 
 higher rates than those with low-risk scores because they are expected to 
@@ -32,7 +30,25 @@ require more costly medical interventions. By accounting for differences in
 patient complexity, quality and cost performance can be more appropriately 
 measured.
 
-### Risk Score Models
+## MMR and MOR Reports
+
+The Monthly Membership Detail Report (MMR) and Model Output Report (MOR) are two types of files that CMS sends to Medicare Advantage organizations (MAOs). The files, in additional to other resources from CMS, are used to calculate the CMS HCC risk adjustment factor (RAF) scores.
+
+CMS shares these files through the Medicare Advantage Prescription Drug (MARx) system and through the Health Plan Management System (HPMS).
+
+MAOs can refer to the Plan Communications User Guide ([PCUG](https://www.cms.gov/files/document/plan-communications-user-guide-august-31-2023-v172.pdf)) for additional details on the files exchanged through the MARx system.
+
+### Monthly Membership Detail Report (MMR)
+
+The MMRs contain member eligibility, risk scores, and prospective payments the MAO receives for each member in the upcoming month. They also contain retroactive adjustments to prior months’ records. This file contains the data for both Part C and Part D members.
+
+### Model Output Report (MOR)
+
+Similar to MMRs, the MORs contain a record for each member. That record shows the Hierarchical Condition Codes (HCCs) for each member used by the Risk Adjustment System (RAS) to calculate Part C or Part D risk adjustment factors for each beneficiary. There are two varieties of MORs, for Parts C and D respectively, as each uses different models. 
+
+In addition to these monthly files, CMS issues “final” MORs once per year with updated information after the year has ended and planned runout data has been collected.
+
+## Risk Score Models
 
 CMS has implemented multiple models to address differences in program costs and 
 the beneficiary population. For example, Medicare Part C versus Medicare Part D 
@@ -61,7 +77,7 @@ These models generate risk scores by adding relative risk factors, demographics,
 and disease information. Additionally, they use hierarchies where the most 
 severe manifestation of a condition is considered for risk scores.
 
-### Risk Score Calculation
+## Risk Score Calculation
 
 Several resources are needed to calculate risk scores.
 
@@ -91,7 +107,7 @@ of the steps:
    payment year’s rate announcement document to calculate the normalized and 
    payment risk scores.
 
-## CMS HCC Mart in the Tuva Project
+## CMS-HCC Mart in the Tuva Project
 
 As you can see, many resources must be gathered, and the steps to calculate HCCs 
 and risk scores are tedious. Most of this important information is not easy to 
