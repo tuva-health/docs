@@ -60,6 +60,19 @@
   background-size: 24px 24px; /* set the size of the background image */
 }
 
+.header-youtube-link:hover {
+  opacity: 0.6;
+}
+
+.header-youtube-link::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background: url("/img/youtube-logo.svg");
+  background-size: 24px 24px; /* set the size of the background image */
+}
+
 /*[data-theme='dark'] .header-slack-link::before {*/
 /*  background: url("/img/slack-logo-white.svg");*/
 /*  background-size: 24px 24px; !* set the size of the background image *!*/

@@ -1,6 +1,6 @@
 ---
-id: providers
-title: "Providers"
+id: provider-data
+title: "Provider Data"
 ---
 This section describes provider information included in claims data - namely the National Provider Identity (NPI).
 
