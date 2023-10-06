@@ -10,7 +10,7 @@ Healthcare claims are created when a healthcare provider populates a claim form 
 - Also Known As: Professional claim
 - Electronic Version: 837P
 - Maintained By: National Uniform Claim Committee (NUCC)
-- Example Form: [https://nucc.org/images/stories/PDF/cms_1500_sample.pdf](https://nucc.org/images/stories/PDF/cms_1500_sample.pdf)
+- Example Form: [https://nucc.org/images/stories/PDF/1500_claim_form_2012_02.pdf](https://nucc.org/images/stories/PDF/1500_claim_form_2012_02.pdf)
 - Used By: Physicians, lab test companies, durable medical equipment companies, etc.
 
 **CMS-1450**
