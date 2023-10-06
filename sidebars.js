@@ -22,8 +22,6 @@ const sidebars =
             ]
         },
 
-        "cms-hccs",
-
         {
         type: "category",
         label: "Drug Terminology",
@@ -39,6 +37,15 @@ const sidebars =
         "hospital-readmissions",
 
         "provider-data",
+
+        {
+            type: "category",
+            label: "Risk Adjustment",
+            items: [
+                "risk-adjustment/cms-hccs",
+                "risk-adjustment/hhs-hccs",
+                ]
+            },
 
         "contributing",
 
