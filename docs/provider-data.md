@@ -8,7 +8,7 @@ This section describes provider information included in claims data - namely the
 
 Medical claims includes several fields containing information on providers. The information included varies based on the type of claim.
 
-Facility Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf) 
+**Facility Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):**
 Provider information in the header of facility claims. In addition to the facility billing the service, these claims contain several fields for up to four individual providers involved in the care.
 - 1 Billing Provider Name and Address
 - 2 Pay-to Proivder Name and Address
@@ -20,7 +20,7 @@ Provider information in the header of facility claims. In addition to the facili
 - 78 Other Physician
 - 79 Other Physician
 
-Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf): 
+**Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf):** 
 Professional claims track the provider who rendered each individual line item (i.e., CPT/HCPSCS code) in the claim. In addition, the claim header contains information on the organization submitting the claim. 
 - 17  Referring Provider
 - 24J Rendering Provider
