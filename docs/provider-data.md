@@ -4,9 +4,22 @@ title: "Provider Data"
 ---
 This section describes provider information included in claims data - namely the National Provider Identity (NPI).
 
-Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
+Medical claims includes several fields containing information on providers. The information included varies based on the type of claim.
+
+Facility Claims [UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):
+- 1 Provider Name and Address
+- 2 Pay-to Proivder Name and Address
+- 5  Federal Tax ID
+- 76 Attending Physician
+- 56 NPI
+- 57 Other Provider ID
+- 77 Operating Physician
+- 78 Other Physician
+- 79 Other Physician
 
 ## What is an NPI?
+
+Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
 
 - An NPI is a unique 10-digit numeric identifier for covered healthcare providers and organizations.
     - It is a HIPAA standard created to help send health information electronically.
