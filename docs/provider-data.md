@@ -5,6 +5,7 @@ title: "Provider Data"
 This section describes provider information included in claims data - namely the National Provider Identity (NPI).
 
 ## What provider data is included in claims?
+
 Medical claims includes several fields containing information on providers. The information included varies based on the type of claim.
 
 Facility Claims [UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):
