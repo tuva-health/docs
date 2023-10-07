@@ -19,6 +19,13 @@ Facility Claims [UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):
 - 78 Other Physician
 - 79 Other Physician
 
+Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf)
+- 17  Referring Provider
+- 24J Rendering Provider
+- 25 Federal Tax ID
+- 32 Service Facility Location Information
+- 33 Billing Provider
+
 ## What is an NPI?
 
 Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
