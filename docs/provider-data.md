@@ -8,18 +8,18 @@ This section describes provider information included in claims data - namely the
 
 Medical claims includes several fields containing information on providers. The information included varies based on the type of claim.
 
-Facility Claims [UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):
-- 1 Provider Name and Address
+Facility Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf): Provider information in the header of facility claims. In addition to the facility billing the service, these claims contain several fields for up to four individual providers involved in the care.
+- 1 Billing Provider Name and Address
 - 2 Pay-to Proivder Name and Address
 - 5  Federal Tax ID
 - 76 Attending Physician
-- 56 NPI
+- 56 Billing Provider NPI
 - 57 Other Provider ID
 - 77 Operating Physician
 - 78 Other Physician
 - 79 Other Physician
 
-Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf)
+Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf): Professional claims track the provider who rendered each individual line item (i.e., CPT/HCPSCS code) in the claim. In addition, the claim header contains information on the organization submitting the claim. 
 - 17  Referring Provider
 - 24J Rendering Provider
 - 25 Federal Tax ID
@@ -82,6 +82,7 @@ Individual provider and facility information is encoded in claims data via Natio
 - The taxonomy codes are updated twice a year (January and July).
 
 ## References
+- [Medicare Claims Processing Manual, Chapter 25 - Completing and Processing the Form CMS-1450 Data Set] (https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c25.pdf)
 - [Patient Attribution: Why the Method Matters](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6549236/)
 - [A Novel Approach to Attribute Responsible Physicians Using Inpatient Claims](https://www.ajmc.com/view/a-novel-approach-to-attribute-responsible-physicians-using-inpatient-claims)
 - [https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination)
