@@ -6,7 +6,7 @@ This section describes provider information included in claims data - namely the
 
 ## What provider data is included in claims?
 
-Medical claims includes several fields containing information on providers. The information included varies based on the type of claim.
+Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.
 
 **Facility Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):**
 Provider information in the header of facility claims. In addition to the facility billing the service, these claims contain several fields for NPIs from up to four individual providers involved in the care (e.g., Attending Physician).
@@ -82,6 +82,12 @@ Individual provider and facility information is encoded in claims data via Natio
 - The Health Care Provider Taxonomy code set is a collection of unique alphanumeric codes (e.g. 207KA0200X), ten characters in length, maintained by the National Uniform Claim Committee (NUCC).
 - Again, a separate terminology lookup data source is required to interpret this code which does not come with the NPPES data set.
 - The taxonomy codes are updated twice a year (January and July).
+
+## Why are TAX IDs included in claims?
+
+In addition to NPIs, federal tax IDs are required fields on both facility and professional claim forms. The tax ID can be either an employer identifier number (EIN), or an invidual's social security number.
+
+Most provider analyses are conducted using the NPIs recorded in claims. Tax IDs are used for some financial use cases, since network contracts are written at the TIN level. For example, network discounts are often analyzed by tax ID, since network contracts are written at the tax ID level [Example](https://us.milliman.com/-/media/milliman/importedfiles/uploadedfiles/insight/healthreform/pdfs/determining-discounts.ashx).
 
 ## References
 - [Medicare Claims Processing Manual, Chapter 25 - Completing and Processing the Form CMS-1450 Data Set] (https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c25.pdf)
