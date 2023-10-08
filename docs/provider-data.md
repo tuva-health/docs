@@ -87,7 +87,7 @@ Individual provider and facility information is encoded in claims data via Natio
 
 In addition to NPIs, federal tax IDs are required fields on both facility and professional claim forms. The tax ID can be either an employer identifier number (EIN), or an invidual's social security number.
 
-Most provider analyses are conducted using the NPIs recorded in claims. Tax IDs are used for some financial use cases, since network contracts are written at the TIN level. For example, network discounts are often analyzed by tax ID, since network contracts are written at the tax ID level [Example](https://us.milliman.com/-/media/milliman/importedfiles/uploadedfiles/insight/healthreform/pdfs/determining-discounts.ashx).
+Most provider analyses are conducted using the NPIs recorded in claims. Tax IDs are used for some financial use cases, since network contracts are written at the TIN level. For example, network discounts are often analyzed by tax ID, since network contracts are written at the tax ID level ([Example](https://us.milliman.com/-/media/milliman/importedfiles/uploadedfiles/insight/healthreform/pdfs/determining-discounts.ashx)).
 
 ## References
 - [Medicare Claims Processing Manual, Chapter 25 - Completing and Processing the Form CMS-1450 Data Set] (https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c25.pdf)
