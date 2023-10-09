@@ -8,10 +8,6 @@ const sidebars =
         {
         type: "category",
         label: "Claims Data Fundamentals",
-        link: {
-            type: 'doc',
-            id: "claims-data-fundamentals/about",
-        },
         items: [
             "claims-data-fundamentals/intro-to-claims",
             "claims-data-fundamentals/claims-data-elements",
@@ -25,10 +21,6 @@ const sidebars =
         {
         type: "category",
         label: "Drug Terminology",
-        link: {
-            type: 'doc',
-            id: "drug-terminology/about",
-        },
         items: [
             "drug-terminology/national-drug-codes",
             ]

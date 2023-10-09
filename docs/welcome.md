@@ -7,7 +7,9 @@ slug: /
 
 # Welcome
 
-Welcome to the Tuva Project's Knowledge Base!  The single biggest barrier to analyzing healthcare data is the insane amount of domain knowledge it requires.  We created Knowledge Base to be the open source book on how to work with healthcare data.
+Welcome to the Tuva Project's Knowledge Base!  The single biggest barrier to analyzing healthcare data is the insane amount of domain knowledge it requires.  Currently this knowledge isn't widely available (e.g. try Googling how to merge claims into acute inpatient encounters).  It lives within the minds of healthcare data people like us.
+
+We created Knowledge Base to be the open source book on how to work with and analyze healthcare data.  It's a place where we can contribute the knowledge we have and learn from the knowledge of others.
 
 ## What is the Tuva Project?
 
@@ -23,13 +25,13 @@ The Tuva Project is our attempt to make healthcare data easier to work with.  It
 
 _Healthcare data has been challenging to work with since the inception of claims data in the mid-90s. The Tuva Project is our attempt to fix it - Tuva or Bust._
 
-If you're reading this, you probably know about the awesome potential healthcare data has for discovering new treatments and lowering the cost and increasing the quality of healthcare.  But you're probably also familiar with the challenges of working with healthcare data that prevent most of us from realizing this potential.
+If you're reading this, you probably know about the awesome potential healthcare data has for discovering new treatments and lowering the cost and increasing the quality of healthcare.  But you're probably also familiar with the challenges working with healthcare data presents.
 
-**Here's the problem:** healthcare data is complex.  It's perhaps more complex than data from any other industry. Think about it: healthcare data attempts to capture human biology and the delivery of healthcare in a database. There are thousands (millions?) of body systems, diagnostic tests, diseases, and treatments, all of which are captured in healthcare data.
+**Here's the problem:** Healthcare data is complex.  It's perhaps more complex than data from any other industry. Think about it: healthcare data attempts to capture human biology and the delivery of healthcare in a database. There are thousands (millions?) of body systems, diagnostic tests, diseases, and treatments, all of which are captured in healthcare data.
 
-The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable in how they capture data.  The end result is that healthcare data is extremely heterogeneous and this makes it impossible to perform data analysis on raw healthcare data.
+The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable.  The end result is that healthcare data is extremely heterogeneous and this makes it impossible to perform data analysis on raw healthcare data.
 
-As an industry we've understood this for some time, but we've been busy solving other problems.  The first problem we solved in the late 2000s / early 2010s was making healthcare data electronic.  This was a big step because it's tough to do much analysis with paper records.
+As an industry we've understood this for some time, but we've been busy solving other problems.  The first problem we solved in the late 2000s / early 2010s was making healthcare data electronic.  This was a big step because it's tough to do analysis with paper records.
 
 The second problem we started solving a few years ago - interoperability.  Since becoming digital, healthcare data has been extremely silo'd and difficult to access.  But thanks to the 21st Century Cures Act and the regulations promulgated from it, this is changing, and it's now easier to access healthcare data than ever.  (Although if you're a vendor requesting claims data from a payer this is still a massive pain.)
 
@@ -43,6 +45,6 @@ If you're a healthcare data person, you have tremendous knowledge and expertise 
 
 We are massive [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) fans.  Feynman embodied so many great traits that are critical for deeply understanding a subject and doing science.
 
-The name Tuva is a reference to the country of Tuva in the former Soviet Union. For more than a decade before his death, Feynman and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  What started as a joke became a real mission - and it was challenging.  Getting a visa to Soviet Russia during the cold war was next to impossible. Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
+Tuva is an allegory for Feynman.  Tuva was formerly a country in the Soviet Union. For more than a decade before his death, Feynman and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  What started as a joke became a mission - and it was challenging.  Getting a visa to Soviet Russia during the cold war was next to impossible. Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
 
 Ralph helped pen a number of other books about Feynman which we highly recommend.  If you're new to Feynman start with [Surely You're Joking, Mr. Feynman](https://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041).

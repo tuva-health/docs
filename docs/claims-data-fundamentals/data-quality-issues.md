@@ -33,9 +33,3 @@ Many fields in claims data have specific reference terminology that determines t
 
 ### Missing Values
 Missing values are very common in claims data.  It's important to use the claim type to determine whether a value should be missing or not.  For example, bill_type_code should not be populated on professional claims, so a missing value in this case is expected, but it should always be populated on institutional claims.
-
-## Data Profiling Test Catalog
-
-The table below lists the data quality tests that are included in the Data Profiling repo.
-
-<CSVDataTable csvUrl="https://raw.githubusercontent.com/tuva-health/data_profiling/main/seeds/data_profiling__test_catalog.csv" />
