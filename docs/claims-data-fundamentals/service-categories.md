@@ -13,7 +13,7 @@ The data elements that we use to create this grouper are as follows:
 - **place_of_service_code:** Place of service for the claim (professional claims only).
 - **hcpcs_code:** HCPCS level 1 or level 2 code for the claim line.
 
-The Tuva Project Service Category Grouper has two levels in a hierarchy with the each subcategory rolling up to a high level category. Because all subcategories roll up to one and only one higher level category, the sum of all the logic for each subcategory in a category is the same as the logic for the category. As such, we'll describe the higher level categories conceptually without codes, and then we'll define each subcategory sharing the code sets. See image below for a quick view of the categories and subcategories:
+The Tuva Project Service Category Grouper has two levels in a hierarchy with each subcategory rolling up to a high level category. Because all subcategories roll up to one and only one higher level category, the sum of all the logic for each subcategory in a category is the same as the logic for the category. As such, we'll describe the higher level categories conceptually without codes, and then we'll define each subcategory sharing the code sets. See image below for a quick view of the categories and subcategories:
 
 | **Service Category 1** | **Service Category 2** |
 | --- | --- |
@@ -41,7 +41,7 @@ The Tuva Project Service Category Grouper has two levels in a hierarchy with the
 
 When developing any grouper we keep the following principles in mind:
 - **Cardinality is Palatable:** If there were hundreds of catogories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
-- **Mutually Exclusive and Exaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the the sum of all payments for each individual claim.
+- **Mutually Exclusive and Exaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the sum of all payments for each individual claim.
 - **The "Other" Category Isn't Too Large:** In order to make the grouper exaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
 - **Hierarchical:** It's a balancing act to try to create groups with low cardinality but providing enough homogeneity inside each group for analysis to be actionable. This often leads us to create hierarchical groupers so that you can see high level groups first and then drill in to get more specific while still keeping the broader context simple.
 - **Feasible:** Any categorization grouper is only useful if you're able to group things into the categories using data elements that are readily available and populated reasonably consistently.
@@ -70,7 +70,7 @@ For institutional claims, we define acute inpatient as all claim lines with bill
     '1000', '1001', '1002'
 ```
 , and the claim has a valid ms_drg code.
-For professional claims, we define acute inpatient as all claims with a place of serice code of 21.
+For professional claims, we define acute inpatient as all claims with a place of service code of 21.
 #### Skilled Nursing
 For institutional claims, we define skilled nursing as all claims with bill type codes of 21 or 22.
 For professional claims, we define skilled nursing as all claim lines with a place of service code of 31 or 32.
@@ -93,7 +93,7 @@ Outpatient healthcare is provided when a patient comes in to a facility to recei
 For institutional claims, we define emergency department care as all claims with bill type codes of 13, 71, or 73 if the claim also has an emergency department revenue code of 0450, 0451, 0452, 0459, or 0981 on any of the claim lines.
 For professional claims, we define emergency department care as all claim lines with a place of service code of 23.
 #### Urgent Care
-For institutional claims, we define urgent care as all claims with bill type codes of 13, 71, 0r 73 if the claim also has an urgent care revenue code of 0456.
+For institutional claims, we define urgent care as all claims with bill type codes of 13, 71, or 73 if the claim also has an urgent care revenue code of 0456.
 For professional claims, we define urgent care as all claim lines with a place of service code of 20.
 Note: The urgent care revenue code of 0456 is included in many published definitions for emergency department care. In the Tuva grouper, we first allow any emergency department revenue codes to classify a claim as an ED claim before saying that the claim is an urgent care claim if it has revenue code 0456.
 #### Outpatient Hospital/Clinic
@@ -107,7 +107,7 @@ For institutional claims, we don't have a clear enough set of codes to define ou
 For professional claims, we define outpatient rehabilitation as all claim lines with a place of service code of 62.
 #### Ambulatory Surgery
 For institutional claims, we don't have a clear enough set of codes to define ambulatory sergery. This is a current gap in this grouper. 
-Note: these claims end up in the outpatient hospital/clinic subcategory, but we don't have clear bill type codes to pull out the ambulatory surgeries. A bill type code of 13 is one bill type code that could denote ambulatory surgery services, but it also includes dme, home health visits, and FQHC services. In order to pull out the ambulatory surgery specifically, we would need to know what type of facility is submitting the claim. In addition, a bill type code of 83 could also denote ambulatory surgery services, but it could also include other services in a critical access hospital setting. Other information is needed to accurately pull out the ambulatory surgery services.
+Note: these claims end up in the outpatient hospital/clinic subcategory, but we don't have clear bill type codes to pull out the ambulatory surgeries. A bill type code of 13 is one bill type code that could denote ambulatory surgery services, but it also includes DME, home health visits, and FQHC services. In order to pull out the ambulatory surgery specifically, we would need to know what type of facility is submitting the claim. In addition, a bill type code of 83 could also denote ambulatory surgery services, but it could also include other services in a critical access hospital setting. Other information is needed to accurately pull out the ambulatory surgery services.
 For professional claims, we define ambulatory surgery as all claim lines with a place of service code of 24.
 #### Dialysis
 For institutional claims, we define dialysis as all claims with a bill type code of 72.
@@ -121,15 +121,15 @@ For professional claims, we define home health as all claim lines with a place o
 #### Other
 
 ### Office Visits
-Office visits are when patients make an appointment to see either primary care or specialty providers in an office setting. This implies that the care they receive is either diagnostic or very simple services that do not require hospital infrastructure. As such, office visits do not have a facility claim and are defined soley by their professional claims. We define office visits as all claims with a place of service code of 02 or 11. Currently, we don't break out office visits into subcategories for different specialties. This is a current gap in this grouper.
+Office visits are when patients make an appointment to see either primary care or specialty providers in an office setting. This implies that the care they receive is either diagnostic or very simple services that do not require hospital infrastructure. As such, office visits do not have a facility claim and are defined solely by their professional claims. We define office visits as all claims with a place of service code of 02 or 11. Currently, we don't break out office visits into subcategories for different specialties. This is a current gap in this grouper.
 ### Ancillary
 Ancillary products or services are those supporting services that are not provided by a hospital or acute care facility and not provided by a doctor or other medical clinician. Some examples of Ancillary services are durable medical equipment, laboratory work, and ambulance services.
 
 #### Ambulance
-For institutional claims, we define ambulance as all claim lines with hcpcs level 2 codes between A0425 and A0436.
+For institutional claims, we define ambulance as all claim lines with HCPCS level 2 codes between A0425 and A0436.
 For professional claims, we define ambulance as all claim lines with a place of service code between A0425 and A0436 or having a place of service code of 41 or 42.
 #### Durable Medical Equipment
-For both institutional and professional claims, we define durable medical equipment as all claim lines with hcpcs level 2 codes between E0100 and E8002.
+For both institutional and professional claims, we define durable medical equipment as all claim lines with HCPCS level 2 codes between E0100 and E8002.
 #### Laboratory
 For institutional claims, we define laboratory as all claims with a bill type code of 14.
 For professional claims, we define laboratory as all claim lines with a place of service code of 81.
