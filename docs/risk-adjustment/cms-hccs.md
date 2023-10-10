@@ -222,3 +222,6 @@ and payment risk score for the payment year.
 The snapshot tables are a "look back in time.” You can use these tables to see 
 the historical runs of the mart. This is helpful when you want to run multiple 
 payment years to compare and trend.
+
+## References 
+* https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
