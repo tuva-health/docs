@@ -46,6 +46,13 @@ The MMRs contain member eligibility, risk scores, and prospective payments the M
 * **Segment / Risk Model**: Depending on the risk adjustment model being used (most commonly v24 and v28), different co-efficients are used for the member based on if they are newly enrolled, are dual status, and their [medicare status code](https://resdac.org/cms-data/variables/medicare-status-code-january). This information needs to be gathered from the MMR to calculate risk adjustment
 * **Risk Scores**: The MMR will also disclose risk scores for a patient but only for certain time periods (start of the year, mid-year, and final). This can be used to understand funded premium, or validate calculated risk scores. 
 
+### MAO-004
+
+Not all medical claims are eligible for documenting HCCs for medicare risk adjustment. 
+To address this, CMS provides a  report called the MAO-004 which 
+will inform Medicare Advantage organizations if a given diagnosis code submitted is eligible for risk adjustment.
+This file can be helpful for tying out risk score calculations to the MMR.
+
 ### Model Output Report (MOR)
 
 Similar to MMRs, the MORs contain a record for each member. That record shows the Hierarchical Condition Codes (HCCs) for each member used by the Risk Adjustment System (RAS) to calculate Part C or Part D risk adjustment factors for each beneficiary. There are two varieties of MORs, for Parts C and D respectively, as each uses different models. 
