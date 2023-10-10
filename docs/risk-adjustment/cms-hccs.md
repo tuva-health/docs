@@ -30,7 +30,7 @@ require more costly medical interventions. By accounting for differences in
 patient complexity, quality and cost performance can be more appropriately 
 measured.
 
-## MMR and MOR Reports
+## CMS Risk Adjustment Files
 
 The Monthly Membership Detail Report (MMR) and Model Output Report (MOR) are two types of files that CMS sends to Medicare Advantage organizations (MAOs). The files, in additional to other resources from CMS, are used to calculate the CMS HCC risk adjustment factor (RAF) scores.
 
