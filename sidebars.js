@@ -11,6 +11,7 @@ const sidebars =
         items: [
             "claims-data-fundamentals/intro-to-claims",
             "claims-data-fundamentals/claims-data-elements",
+            "claims-data-fundamentals/claims-dates",
             "claims-data-fundamentals/how-claims-are-paid",
             "claims-data-fundamentals/data-quality-issues",
             "claims-data-fundamentals/service-categories",

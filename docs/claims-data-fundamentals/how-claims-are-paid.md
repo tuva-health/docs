@@ -1,14 +1,8 @@
 ---
 id: how-claims-are-paid
-title: "How Claims Are Paid"
+title: "Adjustments, Denials, and Reversals"
 ---
-Providers have contractual arrangements with health insurers that dictate how they are paid.  These terms vary by provider and by type of provider.  For example, a physician treating patients in a clinic is likely billing insurers using a CMS-1500 claim form and receiving payment for each HCPCS code they bill.  These codes are at the line-level of the CMS-1500 claim form, and therefore it's common  to see multiple payments on this sort of claim.  On the other hand, an acute care hospital will bill insurers using a UB-04 claim form and will be paid by insurers on a DRG (diagnosis related grouper).  The DRG is at the header-level, and therefore it's common to see one payment per claim.
-
-Nuances such as these in how claims are paid can dramatically impact how you perform spend analytics and therefore it's important to understand them in detail.  We go over these nuances in this section, along with a detailed look at claims adjustments, denials, and reversals, which can also significantly impact analysis and results.
-
-## Adjustments, Denials, and Reversals
-
-Raw healthcare claims data is often messy and suffers from many data quality issues, which impact analytics.  One of the most common types of issues is dealing with claims adjustments, denials, and reversals that are often hidden in raw claims datasets.  
+One of the most common types of data quality issues is dealing with claims adjustments, denials, and reversals that are often hidden in raw claims datasets.  
 
 Given a healthcare claims dataset, there are likely to be original, denied, reversed, and adjusted claims in the dataset.  Claims reversals and adjustments occur because payers allow providers to re-submit claims that have been submitted in error (e.g. wrong service was billed).  The result is often multiple claims for the same encounter are billed for different services and/or paid amounts.  Denied claims occur because the claim failed to pass some adjudication check performed by the payer.  The result is claims for services that may not have actually occurred.
 
