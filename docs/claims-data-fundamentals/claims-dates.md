@@ -31,7 +31,7 @@ There are 2 other date fields in medical claims.  They are claim_line_start_date
 - **birth_date:**  The date the patient was born.  
 - **death_date:**  The date the patient died (if applicable).  Just because a patient does not have a death date does not mean they aren't deceased!  Many deaths do not occur in a healthcare facility and therefore are not captured in claims.  Sometimes the death date is captured in eligibility data, but often it is inferred by discharge_disposition_code = 20 (this field is found in institutional claims). 
 
-## Data Quality Issues in Dates
+## Data Quality Issues
 
 As you might expect, the date fields in claims often suffer from data quality issues.  For example, date fields can be missing, or the dates can exist unnaturally far into the past or into the future.
 
