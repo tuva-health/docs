@@ -225,3 +225,4 @@ payment years to compare and trend.
 
 ## References 
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
+* https://www.cms.gov/files/document/2024-advance-notice-pdf.pdf
