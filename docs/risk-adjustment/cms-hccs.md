@@ -118,6 +118,33 @@ of the steps:
    payment year’s rate announcement document to calculate the normalized and 
    payment risk scores.
 
+### Sample Risk Score Calculation of a single patient
+
+Let's walk through a single example with a single patient as to how the risk score
+is calculated in the context of medicare advantage for the year 2024. 
+
+Here's some information about this patient.
+
+* Patient is Female ([BENE_SEX_CD](https://resdac.org/cms-data/variables/sex-beneficiary) = 2)
+* Patient is 76 years old
+* Patient is a partial dual patient ([DUAL_ELGBL_CD_01](https://resdac.org/cms-data/variables/medicare-medicaid-dual-eligibility-code-january) = 03)
+* Patient is aged without ESRD ([MDCR_STATUS_CODE_01](https://resdac.org/cms-data/variables/medicare-status-code-january) = 10)
+* Patient was originally disabled ([MDCR_OREC](https://resdac.org/cms-data/variables/medicare-original-reason-entitlement-code-orec) = 1)
+* Patient has the following diagnosis documented in medical claims submitted to cms:
+
+| Diagnosis Code | Description                                                                                                                    |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------|
+| E10641         | Type 1 diabetes mellitus with hypoglycemia with coma                                                                           |
+| E083293        | Diabetes mellitus due to underlying condition with mild nonproliferative diabetic retinopathy without macular edema, bilateral |
+| E139           | Other specified diabetes mellitus without complications                                                                        |
+
+Walking through the steps listed above:
+
+#### Identify demographic and enrollment information for each patient and cross-reference the risk factor value from the appropriate payment year’s rate announcement document.
+
+
+
+
 ## CMS-HCC Mart in the Tuva Project
 
 As you can see, many resources must be gathered, and the steps to calculate HCCs 
