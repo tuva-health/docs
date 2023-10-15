@@ -30,7 +30,7 @@ require more costly medical interventions. By accounting for differences in
 patient complexity, quality and cost performance can be more appropriately 
 measured.
 
-## MMR and MOR Reports
+## CMS Risk Adjustment Files
 
 The Monthly Membership Detail Report (MMR) and Model Output Report (MOR) are two types of files that CMS sends to Medicare Advantage organizations (MAOs). The files, in additional to other resources from CMS, are used to calculate the CMS HCC risk adjustment factor (RAF) scores.
 
@@ -45,6 +45,13 @@ The MMRs contain member eligibility, risk scores, and prospective payments the M
 * **Eligibility**: Understanding eligibility is a pre-requisite for modeling risk adjustment. The MMR has very detailed information regarding eligibility, including retrospective enrollments and disenrollment data. Just because a member exists in the MMR file, does not mean that they are eligible and should be included in risk adjustment. 
 * **Segment / Risk Model**: Depending on the risk adjustment model being used (most commonly v24 and v28), different co-efficients are used for the member based on if they are newly enrolled, are dual status, and their [medicare status code](https://resdac.org/cms-data/variables/medicare-status-code-january). This information needs to be gathered from the MMR to calculate risk adjustment
 * **Risk Scores**: The MMR will also disclose risk scores for a patient but only for certain time periods (start of the year, mid-year, and final). This can be used to understand funded premium, or validate calculated risk scores. 
+
+### MAO-004
+
+Not all medical claims are eligible for documenting HCCs for medicare risk adjustment. 
+To address this, CMS provides a  report called the MAO-004 which 
+will inform Medicare Advantage organizations if a given diagnosis code submitted is eligible for risk adjustment.
+This file can be helpful for tying out risk score calculations to the MMR.
 
 ### Model Output Report (MOR)
 
@@ -215,3 +222,6 @@ and payment risk score for the payment year.
 The snapshot tables are a "look back in time.” You can use these tables to see 
 the historical runs of the mart. This is helpful when you want to run multiple 
 payment years to compare and trend.
+
+## References 
+* https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared

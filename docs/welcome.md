@@ -9,7 +9,7 @@ slug: /
 
 Welcome to the Tuva Project's Knowledge Base!  The single biggest barrier to analyzing healthcare data is the insane amount of domain knowledge it requires.  Currently this knowledge isn't widely available (e.g. try Googling how to merge claims into acute inpatient encounters).  It lives within the minds of healthcare data people like us.
 
-We created Knowledge Base to be the open source book on how to work with and analyze healthcare data.  It's a place where we can contribute the knowledge we have and learn from the knowledge of others.
+We created Knowledge Base to be the open source book on how to work with and analyze healthcare data.  It's a place where we can contribute the knowledge we have and learn from the knowledge of others.  Hadley Wickham's awesome open source book [R for Data Science](https://r4ds.hadley.nz/) was and is our inspiration for this site.
 
 ## What is the Tuva Project?
 
@@ -41,7 +41,7 @@ Every healthcare data person is familiar with the data transformation problem.  
 
 If you're a healthcare data person, you have tremendous knowledge and expertise to contribute.  We hope you'll join us on this mission and help unlock the true potential of healthcare data to improve health and healthcare for all of us.
 
-## Why the Name Tuva
+## Why the Name Tuva?
 
 We are massive [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) fans.  Feynman embodied so many great traits that are critical for deeply understanding a subject and doing science.
 
