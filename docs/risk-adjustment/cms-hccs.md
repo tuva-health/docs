@@ -181,6 +181,16 @@ under "2024 Initial ICD-10 Mappings".
 When looking up the two diagnosis codes in the crosswalk, we see they are both valid and
 map to two HCCs for the 2024 v28 risk adjustment model (37 and 38).
 
+Next we need to check the hierarchy to drop HCCs that exist within the hierarchy. This
+hierarchy exists within the [announcement document](https://www.cms.gov/files/document/2024-announcement-pdf.pdf).
+
+![hcc_hierarchy_2024_final_rule](/img/cms_hccs/hcc_hierarchy_2024_final_rule.png)
+
+Based on this table, we see that HCC-37 is on the left hand side "If the Disease Group is listed in this column…"
+and on the right hand side "…Then drop the CMS-HCC listed in this column " there is a match on HCC-38.
+This means that we drop the HCC-38 and are left with a single remaining HCC (HCC-37) for this patient.
+
+
 
 
 
