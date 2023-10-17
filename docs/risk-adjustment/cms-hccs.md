@@ -123,6 +123,8 @@ of the steps:
 Let's walk through a single example with a single patient as to how the risk score
 is calculated in the context of medicare advantage for the year 2024. 
 
+![Overview](/img/cms_hccs/risk_adj_overview_single_patient_example.drawio.svg)
+
 Here's some information about this patient.
 
 * Patient is Female ([BENE_SEX_CD](https://resdac.org/cms-data/variables/sex-beneficiary) = 2)
