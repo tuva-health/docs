@@ -170,7 +170,8 @@ In the sample patient, the diagnosis codes for that patient are provided above f
 Not all diagnosis are accepted for risk adjustment, so in this example we will say the diagnosis
 E10.641, (Type 1 diabetes mellitus with hypoglycemia with coma) is not accepted when checking the
 MAO-004. That leaves two diagnosis of E08.3293 and E13.9. Even though E13.9 is present twice in 
-claims data, this has no effect on medicare risk adjustment.
+claims data, having more than one of the same accepted diagnosis code is the same as having
+a single instance of that diagnosis code being accepted. 
 
 Next we need to cross-reference the diagnosis codes to get the HCCs for the model. The crosswalk
 between diagnosis codes and HCCs can be found [here](https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/risk-adjustors/2024-model-software/icd-10-mappings)
@@ -190,9 +191,62 @@ Based on this table, we see that HCC-37 is on the left hand side "If the Disease
 and on the right hand side "…Then drop the CMS-HCC listed in this column " there is a match on HCC-38.
 This means that we drop the HCC-38 and are left with a single remaining HCC (HCC-37) for this patient.
 
+Once we have our remaining HCCs after the hierarchy is applied, we need to find the score related to HCC-37
+for this single patient example. If there was more than one HCC remaining, the values would be summed, 
+
+![disease_coefficients_v28_2024_announcement](/img/cms_hccs/disease_coefficients_v28_2024_announcement.png)
+
+For this patient the score is **0.166**.
+
+Next we need to evaluate disease interactions. Since we are left with only a single HCC, disease interactions
+don't apply for this specific example patient. However, please see below for the disease interactions
+that exist within the v28 model. This is also in the [announcement document](https://www.cms.gov/files/document/2024-announcement-pdf.pdf).
+
+![disease_interactions_2024_final_rule](/img/cms_hccs/disease_interactions_2024_final_rule.png)
+![disease_interaction_v28_2024_announcement](/img/cms_hccs/disease_interaction_v28_2024_announcement.png)
 
 
+Finally, we need to count the number of HCCs remaining after the application of the hierarchy. In
+this example, we only have a single HCC, so there is no additional score applied.
 
+![hcc_counts_2024_announcement](/img/cms_hccs/hcc_counts_2024_announcement.png)
+
+
+#### Bringing it all together
+
+We sum both the demographic score and the disease score to get the final raw raf for the patient.
+(0.588 + 0.166) = **0.754**. This score is the raw risk score for the patient. To get the final risk
+score for a patient, the formula is (raw_risk_score / normalization_factor).
+
+For 2024, the CMS-HCC risk adjustment model normalization factor is **1.015** meaning. For **medicare
+advantage** organizations, another Coding Pattern Difference Adjustment (aka Coding Intensity Factor CIF)
+of [5.9%](https://uscode.house.gov/view.xhtml?req=(title:42%20section:1395w-23%20edition:prelim)) 
+should be applied on top of the normalization factor. 
+
+So the final risk score for this single patient would be (0.754 / 1.015) * (1 - 0.059) = **0.699**
+
+
+#### But wait! There's more
+
+In the above example, it only looked the scores and weights for a single risk adjustment model, v28.
+However, for medicare advantage organizations in the year 2024, final funded risk is not based solely
+on the outputs of the v28 risk adjustment model. There is a transition period where risk will be 
+determined with a blended model, where 33% of the risk score will be weighted with the v28 model
+and 67% of the risk score will be weighted with the v24 risk adjustment model. 
+
+What does this mean? This means we have to go back and repeat the steps prior to "Brining it all together"
+for the v24 risk adjustment model, then apply the 33% and 67% weighting for v28 and v24 risk scores respectively,
+then apply normalization factor and CIF to get the final risk score for the patient.
+
+
+#### Additional notes
+
+* In this specific example, this was looking at the risk adjustment model for Medicare Advantage. Different
+programs and different use cases can use different risk adjustment models. 
+* Different years going forward (2025 and 2026) have different weighting of the v24 vs v28 risk adjustment models.
+* This can all be subject to change if there is new legislation or final rules for 2025 and 2026.
+* In the context of some CMMI programs, the terms of "coding intensity factor" and "normalization factor" can seem to 
+be the same as the Medicare Advantage definitions, but can be derived in different ways specific to that program.
 
 ## CMS-HCC Mart in the Tuva Project
 
