@@ -166,6 +166,21 @@ with MAO-004 report. This example will be looking at calculating risk from claim
 
 ![disease_score_calculation](/img/cms_hccs/risk_adj_disease_score_single_patient_example.drawio.svg)
 
+In the sample patient, the diagnosis codes for that patient are provided above from claims data.
+Not all diagnosis are accepted for risk adjustment, so in this example we will say the diagnosis
+E10.641, (Type 1 diabetes mellitus with hypoglycemia with coma) is not accepted when checking the
+MAO-004. That leaves two diagnosis of E08.3293 and E13.9. Even though E13.9 is present twice in 
+claims data, this has no effect on medicare risk adjustment.
+
+Next we need to cross-reference the diagnosis codes to get the HCCs for the model. The crosswalk
+between diagnosis codes and HCCs can be found [here](https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/risk-adjustors/2024-model-software/icd-10-mappings)
+under "2024 Initial ICD-10 Mappings".
+
+![diagnosis_to_hcc_crosswalk_example](/img/cms_hccs/diagnosis_to_hcc_crosswalk_example.png)
+
+When looking up the two diagnosis codes in the crosswalk, we see they are both valid and
+map to two HCCs for the 2024 v28 risk adjustment model (37 and 38).
+
 
 
 
