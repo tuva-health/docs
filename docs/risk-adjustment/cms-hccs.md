@@ -139,10 +139,32 @@ Here's some information about this patient.
 | E10641         | Type 1 diabetes mellitus with hypoglycemia with coma                                                                           |
 | E083293        | Diabetes mellitus due to underlying condition with mild nonproliferative diabetic retinopathy without macular edema, bilateral |
 | E139           | Other specified diabetes mellitus without complications                                                                        |
+| E139           | Other specified diabetes mellitus without complications                                                                        |
 
 Walking through the steps listed above:
 
-#### Identify demographic and enrollment information for each patient and cross-reference the risk factor value from the appropriate payment year’s rate announcement document.
+#### Calculate the demographic score
+
+To calculate the demographics portion of the risk score, we need to look at the demographics information for the patient
+provided above. Let's take a look at a table from the [2024 final rule](https://www.cms.gov/files/document/2024-announcement-pdf.pdf) 
+that contains the raw factors related to demographics.
+
+![2024_Final_Rule_Demographics_Table](/img/cms_hccs/Demographics_Score_2024_Final_Rule.png)
+
+* The demographic score for a female patient 76 years of age with partial dual status is 0.485.
+* Given the patient has been originally disabled, they get an additional 0.103.
+
+The final raw risk from demographics is (0.485 + 0.103) = **0.588**
+
+If the patient was an end stage renal disease (ESRD) patient, we would use a separate demographics 
+table that uses the ESRD risk adjustment model. 
+
+#### Calculate the Disease Score
+
+The disease score can be sourced from multiple places, either the MOR or claims data in combination
+with MAO-004 report. This example will be looking at calculating risk from claims data. 
+
+![disease_score_calculation](/img/cms_hccs/risk_adj_disease_score_single_patient_example.drawio.svg)
 
 
 
