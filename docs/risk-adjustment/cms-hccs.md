@@ -234,7 +234,7 @@ on the outputs of the v28 risk adjustment model. There is a transition period wh
 determined with a blended model, where 33% of the risk score will be weighted with the v28 model
 and 67% of the risk score will be weighted with the v24 risk adjustment model. 
 
-What does this mean? This means we have to go back and repeat the steps prior to "Brining it all together"
+What does this mean? This means we have to go back and repeat the steps prior to "Bringing it all together"
 for the v24 risk adjustment model, then apply the 33% and 67% weighting for v28 and v24 risk scores respectively,
 then apply normalization factor and CIF to get the final risk score for the patient.
 
