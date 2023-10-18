@@ -42,7 +42,7 @@ const sidebars =
             },
 
         "contributing",
-
+        "example-sql"
     ]
 };
 

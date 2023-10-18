@@ -3,6 +3,8 @@ id: example-sql
 title: "Example SQL"
 ---
 
+The following SQL examples are designed to run against the Tuva data model (core and data marts).  
+
 ## Patient Demographics
 
 <details><summary>Number of Unique Patients</summary>
