@@ -111,7 +111,7 @@ of the steps:
    and cross-reference the risk factor value from the appropriate payment year’s 
    rate announcement document.
 3. Identify additional relative and adjustment factors, such as disease and 
-   disabled interactions, and cross-reference the risk factor value from the 
+   disabled interactions, and total HCC counts per patient, and cross-reference the risk factor value from the 
    appropriate payment year’s rate announcement document.
 4. Calculate the raw risk scores for each patient, then apply the normalization 
    factors and the MA coding pattern adjustment factors from the appropriate 

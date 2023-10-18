@@ -93,12 +93,12 @@ const config = {
           //   position: 'left',
           //   target: null,
           // },
-          // {
-          //   to: 'https://www.youtube.com/@tuvahealth',
-          //   position: 'left',
-          //   label: 'YouTube',
-          //   target: null,
-          // },
+          {
+            href: 'https://www.tuvahealth.com',
+            position: 'right',
+            className: 'header-tuva-link',
+            'aria-label': 'Tuva Health',
+          },
           {
             href: 'https://www.youtube.com/@tuvahealth',
             position: 'right',
