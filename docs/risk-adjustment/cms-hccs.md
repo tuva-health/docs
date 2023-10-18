@@ -228,7 +228,7 @@ So the final risk score for this single patient would be (0.754 / 1.015) * (1 - 
 
 #### But wait! There's more
 
-In the above example, it only looked the scores and weights for a single risk adjustment model, v28.
+In the above example, it only looked at the scores and weights for a single risk adjustment model, v28.
 However, for medicare advantage organizations in the year 2024, final funded risk is not based solely
 on the outputs of the v28 risk adjustment model. There is a transition period where risk will be 
 determined with a blended model, where 33% of the risk score will be weighted with the v28 model
