@@ -41,6 +41,8 @@ const sidebars =
                 ]
             },
 
+        "quality-measures",
+
         "contributing",
         "example-sql"
     ]
