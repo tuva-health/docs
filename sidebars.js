@@ -32,6 +32,8 @@ const sidebars =
 
         "provider-data",
 
+        "quality-measures",
+
         {
             type: "category",
             label: "Risk Adjustment",
@@ -40,8 +42,6 @@ const sidebars =
                 "risk-adjustment/hhs-hccs",
                 ]
             },
-
-        "quality-measures",
 
         "contributing",
         "example-sql"
