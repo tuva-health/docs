@@ -32,6 +32,8 @@ const sidebars =
 
         "provider-data",
 
+        "quality-measures",
+
         {
             type: "category",
             label: "Risk Adjustment",
