@@ -64,7 +64,7 @@ quality measure using the Medicare LDS 5% data set.
 
 ![Breast Cancer Screening Sankey Diagram](/img/quality_measures/breast_cancer_screening_sankey_diagram.png)
 
-## The Quality Measures Data Mart in the Tuva Project
+## Quality Measures Data Mart
 
 *See it on [GitHub](https://github.com/tuva-health/the_tuva_project/tree/main/models/quality_measures).*
 
@@ -201,7 +201,7 @@ quality issues are listed below.
 - Mapping custom data from an EMR, such as observations and report or document 
   tags, to a proper code from the measure value set.
 
-## Quality Measure Introduction Video
+## Introduction Video
 
 In this video, we walk through the high-level concepts of the Breast Cancer 
 Screening quality measure and common data quality issues that may come up when 
