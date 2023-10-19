@@ -3,7 +3,7 @@ id: quality-measures
 title: "Quality Measures"
 ---
 
-# Overview
+## Overview
 
 Quality measures help us measure or quantify healthcare processes, outcomes, 
 patient perceptions, organizational structure, and systems. These measures are 
@@ -27,14 +27,14 @@ evidence. Measures are developed by:
 - Professional medical associations
 - Private groups
 
-# Components of a Quality Measure
+## Components of a Quality Measure
 
 Quality measures have many standard sections:
 
 - **Measure ID:** Measures can have several different identifiers. These are 
   created by the measure steward (i.e., the organization that authored and 
-  maintains the measure). For example, the identifiers for breast cancer 
-  screening are NQF 2372, MIPS Quality Number #112, and eCQM CMS125.
+  maintains the measure). For example, the identifiers for Breast Cancer 
+  Screening are NQF 2372, MIPS CQM Quality ID #112, and eCQM CMS125.
 - **Measure Description:** A brief description of the purpose of the measure.
 - **Denominator:** The population to which the measure applies (i.e., the number 
   of people who should have received a service or action such as a screening). 
@@ -53,7 +53,7 @@ Quality measures have many standard sections:
   in the measure. These codes are from standard systems such as ICD-10, CPT, 
   LOINC, RxNorm, SNOMED, etc.
 
-# Methodology
+## Methodology
 
 Below is a simplified flow chart for calculating a quality measure.
 
@@ -64,7 +64,7 @@ quality measure using the Medicare LDS 5% data set.
 
 ![Breast Cancer Screening Sankey Diagram](/img/quality_measures/breast_cancer_screening_sankey_diagram.png)
 
-# The Quality Measures Data Mart in the Tuva Project
+## The Quality Measures Data Mart in the Tuva Project
 
 *See it on [GitHub](https://github.com/tuva-health/the_tuva_project/tree/main/models/quality_measures).*
 
@@ -73,7 +73,7 @@ The Quality Measure data mart is a growing catalog of Clinical Quality Measures
 value sets and logic. You need only to map your data to the Claims and Clinical 
 Data Models and run the Tuva Project.
 
-## Data Requirements
+### Data Requirements
 
 **Condition:**
 
@@ -145,7 +145,7 @@ Data Models and run the Tuva Project.
 *Note: The Tuva Project will generate these Core tables. You just need to map 
 your data to the Claims or Clinical Data Models and run the project.*
 
-## Variables
+### Variables
 
 The data mart has one variable that allows you to choose a measurement period 
 end date. This variable can run older performance periods or a calendar 
@@ -153,34 +153,32 @@ year-end. The default is the current date.
 
 - `quality_measures_period_end`
 
-## Data Mart Structure
+### Data Mart Structure
 
-### Staging
+#### Staging
 
 The staging tables show what tables and fields are used from the Core data model.
 
-### Intermediate
+#### Intermediate
 
 The intermediate tables contain the complex logic for each quality measure. The 
 models are organized by denominator, numerator, and the various exclusions.
 
-### Final
+#### Final
 
 The final tables are an aggregated view of all quality measures and your 
 population.
 
-- **quality_measures__summary_counts:**  Reporting measure counts with 
-  performance rates.
-- **quality_measures__summary_long:**  Long view of the results for the 
-  reporting version of all measures. Each row represents the results a measure 
-  per patient. A null for the
-denominator indicates that the patient was not eligible for that measure.
-- **quality_measures__summary_wide:**  Wide view of the results for the 
-  reporting version of all measures. This model pivots measures on the patient 
-  level (i.e. one row per patient with flags for each measure. The false flags 
-  can be treated as care gaps as exclusions have been included in the pivot logic.
+- **Summary Counts:**  Reporting measure counts with performance rates.
+- **Summary Long:**  Long view of the results for the reporting version of all 
+  measures. Each row represents the results a measure per patient. A null for 
+  the denominator indicates that the patient was not eligible for that measure.
+- **Summary Wide:**  Wide view of the results for the reporting version of all 
+  measures. This model pivots measures on the patient level (i.e. one row per 
+  patient with flags for each measure. The false flags can be treated as care 
+  gaps as exclusions have been included in the pivot logic.
 
-# Data Quality Issues
+## Data Quality Issues
 
 Many organizations that have the technical staff needed to build the logic for 
 a quality measure may still run into data quality issues. Some common data 
@@ -203,10 +201,10 @@ quality issues are listed below.
 - Mapping custom data from an EMR, such as observations and report or document 
   tags, to a proper code from the measure value set.
 
-# Quality Measure Introduction Video
+## Quality Measure Introduction Video
 
 In this video, we walk through the high-level concepts of the Breast Cancer 
 Screening quality measure and common data quality issues that may come up when 
 calculating a measure.
 
-<iframe width="1229" height="707" src="https://www.youtube.com/embed/pjAqmlx7HIs" title="Quality Measures Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="640" height="400" src="https://www.youtube.com/embed/pjAqmlx7HIs" title="Quality Measures Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
