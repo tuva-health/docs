@@ -155,16 +155,16 @@ year-end. The default is the current date.
 
 ## Data Mart Structure
 
-**Staging**
+### Staging
 
 The staging tables show what tables and fields are used from the Core data model.
 
-**Intermediate**
+### Intermediate
 
 The intermediate tables contain the complex logic for each quality measure. The 
 models are organized by denominator, numerator, and the various exclusions.
 
-**Final**
+### Final
 
 The final tables are an aggregated view of all quality measures and your 
 population.
@@ -179,7 +179,6 @@ denominator indicates that the patient was not eligible for that measure.
   reporting version of all measures. This model pivots measures on the patient 
   level (i.e. one row per patient with flags for each measure. The false flags 
   can be treated as care gaps as exclusions have been included in the pivot logic.
-
 
 # Data Quality Issues
 
