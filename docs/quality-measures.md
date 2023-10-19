@@ -57,12 +57,12 @@ Quality measures have many standard sections:
 
 Below is a simplified flow chart for calculating a quality measure.
 
-![Quality Measure Methodology](img/quality_measures/quality_measure_methodology.jpg)
+![Quality Measure Methodology](/img/quality_measures/quality_measure_methodology.jpg)
 
 Below is an example of the concepts and logic in the Breast Cancer Screening 
 quality measure using the Medicare LDS 5% data set.
 
-![Breast Cancer Screening Sankey Diagram](img/quality_measures/breast_cancer_screening_sankey_diagram.png)
+![Breast Cancer Screening Sankey Diagram](/img/quality_measures/breast_cancer_screening_sankey_diagram.png)
 
 # The Quality Measures Data Mart in the Tuva Project
 
