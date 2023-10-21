@@ -111,12 +111,142 @@ of the steps:
    and cross-reference the risk factor value from the appropriate payment year’s 
    rate announcement document.
 3. Identify additional relative and adjustment factors, such as disease and 
-   disabled interactions, and cross-reference the risk factor value from the 
+   disabled interactions, and total HCC counts per patient, and cross-reference the risk factor value from the 
    appropriate payment year’s rate announcement document.
 4. Calculate the raw risk scores for each patient, then apply the normalization 
    factors and the MA coding pattern adjustment factors from the appropriate 
    payment year’s rate announcement document to calculate the normalized and 
    payment risk scores.
+
+### Sample Risk Score Calculation of a single patient
+
+Let's walk through a single example with a single patient as to how the risk score
+is calculated in the context of medicare advantage for the year 2024. 
+
+![Overview](/img/cms_hccs/risk_adj_overview_single_patient_example.drawio.svg)
+
+Here's some information about this patient.
+
+* Patient is Female ([BENE_SEX_CD](https://resdac.org/cms-data/variables/sex-beneficiary) = 2)
+* Patient is 76 years old
+* Patient is a partial dual patient ([DUAL_ELGBL_CD_01](https://resdac.org/cms-data/variables/medicare-medicaid-dual-eligibility-code-january) = 03)
+* Patient is aged without ESRD ([MDCR_STATUS_CODE_01](https://resdac.org/cms-data/variables/medicare-status-code-january) = 10)
+* Patient was originally disabled ([MDCR_OREC](https://resdac.org/cms-data/variables/medicare-original-reason-entitlement-code-orec) = 1)
+* Patient has the following diagnosis documented in medical claims submitted to cms:
+
+| Diagnosis Code | Description                                                                                                                    |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------|
+| E10641         | Type 1 diabetes mellitus with hypoglycemia with coma                                                                           |
+| E083293        | Diabetes mellitus due to underlying condition with mild nonproliferative diabetic retinopathy without macular edema, bilateral |
+| E139           | Other specified diabetes mellitus without complications                                                                        |
+| E139           | Other specified diabetes mellitus without complications                                                                        |
+
+Walking through the steps listed above:
+
+#### Calculate the demographic score
+
+To calculate the demographics portion of the risk score, we need to look at the demographics information for the patient
+provided above. Let's take a look at a table from the [2024 final rule](https://www.cms.gov/files/document/2024-announcement-pdf.pdf) 
+that contains the raw factors related to demographics.
+
+![2024_Final_Rule_Demographics_Table](/img/cms_hccs/Demographics_Score_2024_Final_Rule.png)
+
+* The demographic score for a female patient 76 years of age with partial dual status is 0.485.
+* Given the patient has been originally disabled, they get an additional 0.103.
+
+The final raw risk from demographics is (0.485 + 0.103) = **0.588**
+
+If the patient was an end stage renal disease (ESRD) patient, we would use a separate demographics 
+table that uses the ESRD risk adjustment model. 
+
+#### Calculate the Disease Score
+
+The disease score can be sourced from multiple places, either the MOR or claims data in combination
+with MAO-004 report. This example will be looking at calculating risk from claims data. 
+
+![disease_score_calculation](/img/cms_hccs/risk_adj_disease_score_single_patient_example.drawio.svg)
+
+In the sample patient, the diagnosis codes for that patient are provided above from claims data.
+Not all diagnosis are accepted for risk adjustment, so in this example we will say the diagnosis
+E10.641, (Type 1 diabetes mellitus with hypoglycemia with coma) is not accepted when checking the
+MAO-004. That leaves two diagnosis of E08.3293 and E13.9. Even though E13.9 is present twice in 
+claims data, having more than one of the same accepted diagnosis code is the same as having
+a single instance of that diagnosis code being accepted. 
+
+Next we need to cross-reference the diagnosis codes to get the HCCs for the model. The crosswalk
+between diagnosis codes and HCCs can be found [here](https://www.cms.gov/medicare/health-plans/medicareadvtgspecratestats/risk-adjustors/2024-model-software/icd-10-mappings)
+under "2024 Initial ICD-10 Mappings".
+
+![diagnosis_to_hcc_crosswalk_example](/img/cms_hccs/diagnosis_to_hcc_crosswalk_example.png)
+
+When looking up the two diagnosis codes in the crosswalk, we see they are both valid and
+map to two HCCs for the 2024 v28 risk adjustment model (37 and 38).
+
+Next we need to check the hierarchy to drop HCCs that exist within the hierarchy. This
+hierarchy exists within the [announcement document](https://www.cms.gov/files/document/2024-announcement-pdf.pdf).
+
+![hcc_hierarchy_2024_final_rule](/img/cms_hccs/hcc_hierarchy_2024_final_rule.png)
+
+Based on this table, we see that HCC-37 is on the left hand side "If the Disease Group is listed in this column…"
+and on the right hand side "…Then drop the CMS-HCC listed in this column " there is a match on HCC-38.
+This means that we drop the HCC-38 and are left with a single remaining HCC (HCC-37) for this patient.
+
+Once we have our remaining HCCs after the hierarchy is applied, we need to find the score related to HCC-37
+for this single patient example. If there was more than one HCC remaining, the values would be summed, 
+
+![disease_coefficients_v28_2024_announcement](/img/cms_hccs/disease_coefficients_v28_2024_announcement.png)
+
+For this patient the score is **0.166**.
+
+Next we need to evaluate disease interactions. Since we are left with only a single HCC, disease interactions
+don't apply for this specific example patient. However, please see below for the disease interactions
+that exist within the v28 model. This is also in the [announcement document](https://www.cms.gov/files/document/2024-announcement-pdf.pdf).
+
+![disease_interactions_2024_final_rule](/img/cms_hccs/disease_interactions_2024_final_rule.png)
+![disease_interaction_v28_2024_announcement](/img/cms_hccs/disease_interaction_v28_2024_announcement.png)
+
+
+Finally, we need to count the number of HCCs remaining after the application of the hierarchy. In
+this example, we only have a single HCC, so there is no additional score applied.
+
+![hcc_counts_2024_announcement](/img/cms_hccs/hcc_counts_2024_announcement.png)
+
+
+#### Bringing it all together
+
+We sum both the demographic score and the disease score to get the final raw raf for the patient.
+(0.588 + 0.166) = **0.754**. This score is the raw risk score for the patient. To get the final risk
+score for a patient, the formula is (raw_risk_score / normalization_factor).
+
+For 2024, the CMS-HCC risk adjustment model normalization factor is **1.015** meaning. For **medicare
+advantage** organizations, another Coding Pattern Difference Adjustment (aka Coding Intensity Factor CIF)
+of [5.9%](https://uscode.house.gov/view.xhtml?req=(title:42%20section:1395w-23%20edition:prelim)) 
+should be applied on top of the normalization factor. 
+
+So the final risk score for this single patient would be (0.754 / 1.015) * (1 - 0.059) = **0.699**
+
+
+#### But wait! There's more
+
+In the above example, it only looked at the scores and weights for a single risk adjustment model, v28.
+However, for medicare advantage organizations in the year 2024, final funded risk is not based solely
+on the outputs of the v28 risk adjustment model. There is a transition period where risk will be 
+determined with a blended model, where 33% of the risk score will be weighted with the v28 model
+and 67% of the risk score will be weighted with the v24 risk adjustment model. 
+
+What does this mean? This means we have to go back and repeat the steps prior to "Bringing it all together"
+for the v24 risk adjustment model, then apply the 33% and 67% weighting for v28 and v24 risk scores respectively,
+then apply normalization factor and CIF to get the final risk score for the patient.
+
+
+#### Additional notes
+
+* In this specific example, this was looking at the risk adjustment model for Medicare Advantage. Different
+programs and different use cases can use different risk adjustment models. 
+* Different years going forward (2025 and 2026) have different weighting of the v24 vs v28 risk adjustment models.
+* This can all be subject to change if there is new legislation or final rules for 2025 and 2026.
+* In the context of some CMMI programs, the terms of "coding intensity factor" and "normalization factor" can seem to 
+be the same as the Medicare Advantage definitions, but can be derived in different ways specific to that program.
 
 ## CMS-HCC Mart in the Tuva Project
 
@@ -225,3 +355,4 @@ payment years to compare and trend.
 
 ## References 
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
+* https://www.cms.gov/files/document/2024-advance-notice-pdf.pdf
