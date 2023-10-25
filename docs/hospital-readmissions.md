@@ -169,7 +169,7 @@ Here are the steps to implement the algorithm:
 
 Here is a diagram of the algorithm:
 
-![Planned Admission Algorithm](/img/readmissions/planned_admission_algorithm.png)
+![Planned Admission Algorithm](/img/planned_admission_algo.jpg)
 
 ### Unplanned Readmission Algorithm
 

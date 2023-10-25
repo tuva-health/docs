@@ -13,7 +13,7 @@ const sidebars =
             "claims-data-fundamentals/claims-forms",
             "claims-data-fundamentals/administrative-codes",
             "claims-data-fundamentals/claims-dates",
-            "claims-data-fundamentals/how-claims-are-paid",
+            "claims-data-fundamentals/adjustments-denials-reversals",
             "claims-data-fundamentals/data-quality-issues",
             "claims-data-fundamentals/service-categories",
             "claims-data-fundamentals/member-months",
