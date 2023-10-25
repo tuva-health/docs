@@ -5,7 +5,7 @@ hide_title: true
 slug: /
 ---
 
-# Welcome
+# 👋 Welcome
 
 Welcome to the Tuva Project's Knowledge Base!  The single biggest barrier to analyzing healthcare data is the insane amount of domain knowledge it requires.  Currently this knowledge isn't widely available (e.g. try Googling how to merge claims into acute inpatient encounters).  It lives within the minds of healthcare data people like us.
 
