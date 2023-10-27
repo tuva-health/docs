@@ -100,3 +100,20 @@ Revenue center codes are maintained by the National Uniform Billing Committee (N
 
 You can find a complete listing of revenue center codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__revenue_center.csv).
 
+## Additional Administrative Codes
+Not all of these administrative codes apply to medical claims, but could be seen in other medical claims data.
+
+| Standard Name                                           | Reporting Value | Additional Information                                                                                                                                   |
+|---------------------------------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| National Drug Code                                      | NDC             | [FDA NDC Background](https://www.fda.gov/drugs/development-approval-process-drugs/national-drug-code-database-background-information)                    |
+| Medicare Severity Diagnosis Related Groups              | MS-DRG          | [CMS DRGs](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/AcuteInpatientPPS/MS-DRG-Classifications-and-Software)                          |
+| Refined Diagnosis Related Groups                        | R-DRG           |                                                                                                                                                          |
+| Severity Diagnosis Related Groups                       | S-DRG           |                                                                                                                                                          |
+| All Patient, Severity-Adjusted Diagnosis Related Groups | APS-DRG         |                                                                                                                                                          |
+| All Patient Diagnosis Related Groups                    | AP-DRG          |                                                                                                                                                          |
+| All Patient Refined Diagnosis Related Groups            | APR-DRG         | [AHRQ documentation](https://www.hcup-us.ahrq.gov/db/nation/nis/APR-DRGsV20MethodologyOverviewandBibliography.pdf)                                       |
+| Ambulatory Payment Classifications                      | APC             | [APC background information](https://www.acep.org/administration/reimbursement/reimbursement-faqs/apc-ambulatory-payment-classifications-faq/#question0) |
+| Local Processing                                        | LOCAL           |                                                                                                                                                          |
+| Enhanced Ambulatory Patient Grouping                    | EAPG            | [EAPG](https://www.3m.com/3M/en_US/health-information-systems-us/drive-value-based-care/patient-classification-methodologies/enhanced-apgs/)             |
+| Health Insurance Prospective Payment System             | HIPPS           | [HIPPS](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/ProspMedicareFeeSvcPmtGen/HIPPSCodes)                                              |
+| Current Dental Terminology                              | CDT             | [CDT](https://www.ada.org/en/publications/cdt)                                                                                                           | 
