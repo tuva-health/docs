@@ -21,7 +21,9 @@ and you need to attribute patients to primary care providers?
 
 * How do you determine if a provider is a primary care provider?
 * Should a blood draw or lab count in the attribution process?
-* 
+* If a patient doesn't visit a provider in a long time, should they be attributed to a provider?
+* How do you handle if a patient is seeing multiple providers in a short period of time?
+* What data fields are available to you from medical claims data?
 
 
 ## Example attribution model from CMS:
@@ -46,7 +48,7 @@ Other sources of data are used as well for attribution in this model:
 ### Attribution model at a high level
 
 The attribution model CMS uses to attribute patients to providers is used in the context of primary care. 
-First CMS only looks at a subset of providers it deems as “primary care.” Then for a given patient, the attribution
+First CMS only looks at a subset of providers it deems as "primary care." Then for a given patient, the attribution
 model looks at medical claims data for this subset of primary care providers and looks at which provider that patient 
 has seen the most, with some weighting applied to give preference to more recently seen providers. Let’s walk through
 an example patient.
@@ -84,6 +86,9 @@ pdf. Some have a place of service code pre-requisite to be considered valid.
 5. **Apply weighting to allowed amounts and sum by provider. Claims in the earlier alignment period should be
 weighted by 1/3, and claims in the more recent alignment period should be weighted 2/3.**
 
+![example_alignment_periods](/img/provider_attribution/alignment_year_date_ranges.png)
+
+
 6. **In the case of a tie, choose the provider with the more recent claim.**
 
 
@@ -98,6 +103,14 @@ system and crosswalk not reflecting APPs providing specialist care.
 * This model might not be a timely reflection for attributing patients to providers. It may take up to two years for 
 a patient to get appropriately attributed to a provider after a change in provider. 
 
+## Things to consider when creating an attribution model
+
+* How are you going to use the model? Is your use care specific to primary care?
+* Does it make sense to use allowed amounts?
+* How should timing of visits be taken into account?
+* Is there other sources besides medical claims data that you have available to use?
+* How should APP visits be handled?
+* Does your model need to be straight forward and explainable to others?
 
 ## References 
 This page just took a look at a single attribution model. More attribution models exist.
