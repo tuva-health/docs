@@ -89,7 +89,8 @@ weighted by 1/3, and claims in the more recent alignment period should be weight
 ![example_alignment_periods](/img/provider_attribution/alignment_year_date_ranges.png)
 
 
-6. **In the case of a tie, choose the provider with the more recent claim.**
+6. **The provider with the most weighted dollars gets the patient attributed. 
+In the case of a tie, choose the provider with the more recent claim.**
 
 
 ### Issues that could be raised about the attribution model above.
