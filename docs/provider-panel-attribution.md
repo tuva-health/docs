@@ -16,7 +16,7 @@ all these programs).
 
 ## Before Reading Further
 
-Ask yourself, how should patients be attributed to patients? What if you only had medical claims data available to you,
+Ask yourself, how should patients be attributed to providers? What if you only had medical claims data available to you,
 and you need to attribute patients to primary care providers?
 
 * How do you determine if a provider is a primary care provider?
