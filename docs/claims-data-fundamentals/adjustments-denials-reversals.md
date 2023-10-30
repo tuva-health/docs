@@ -34,7 +34,7 @@ It’s easiest to illustrate how adjustments, denials, and reversals manifest by
 
 ![modeling_adr](/img/modeling_adr.jpg)
 
-Let's walk through each scenario in the image above.  As we do, pay care attention to how the cumulative amounts change from the original claim, to the reversal, to the adjustment claim.  Modeling the amounts this way is what enables both cashflow and population health analytics.
+Let's walk through each scenario in the image above.  As we do, pay careful attention to how the cumulative amounts change from the original claim, to the reversal, to the adjustment claim.  Modeling the amounts this way is what enables both cashflow and population health analytics.
 
 ### Scenario 1: Original Only
 This first scenario is the simplest.  There's only a single claim, with a single claim line, and it's the original claim (see claim_record_type) as you would expect.  This claim has been paid (see claim_status).  The billed, allowed, and paid amounts for this claim are equal to the cumulative amounts.  You'll see how these individual claim amounts and cumulative claim amounts differ in subsequent scenarios.
