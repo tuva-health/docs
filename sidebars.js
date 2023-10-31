@@ -32,6 +32,8 @@ const sidebars =
 
         "provider-data",
 
+        "provider-panel-attribution",
+
         "quality-measures",
 
         {
