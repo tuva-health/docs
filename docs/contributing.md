@@ -60,7 +60,8 @@ your local machine, follow the following steps.
 6. Select the repository with the name `knowledge_base`
 7. Select the branch main
 8. Select 8GB worth of RAM / 2 cores
-9. It may take a while to load, but it should start installing all the software onto the codespaces
+9. It may take a while to load, but it should start installing all the software onto the Codespaces. 
+You know you are in codespaces and not just the vscode env if the url changes at the top.
 
 ![navigate_to_forked_repo](/img/contributing/installing_requirements_example.png)
 
