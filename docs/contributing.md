@@ -77,3 +77,8 @@ You know you are in codespaces and not just the vscode env if the url changes at
 to use for free.
 You should not be required to put a credit card on file to use this service as of 10/30/2023.
 https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts
+
+## Troubleshooting and Tips
+
+* If you're using Codespaces and the page does not change on the forwarded port website, try refreshing the page
+* You can use `Cntl` + `C` to stop the server in the terminal, and use `yarn start` to start the server again.
