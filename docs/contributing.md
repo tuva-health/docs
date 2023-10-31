@@ -41,7 +41,7 @@ your local machine, follow the following steps.
 
 2. Navigate to your forked repository
    
-![navigate_to_forked_repo](/img/contributing/go_to_your_forks.png)
+![navigate_to_forked_repo](/img/contributing/go_to_your_fork.png)
 
 
 3. Press the period key. A vs code environment should appear. 
