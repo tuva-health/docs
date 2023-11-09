@@ -9,7 +9,7 @@ into health plans and make sure payers are compensated fairly for the illness bu
 models are used to calculate payments to healthcare organizations for patients insured by:
 * Medicare Advantage
 * Accountable Care Organizations
-* Most Affordable Care Act plans. [1]
+* Most Affordable Care Act plans. [[1]](#Footnotes)
 
 At a high level, if a patient is sicker or has higher predicted medical cost, the payer insuring that patient will be 
 compensated more. 
@@ -27,7 +27,7 @@ The most common risk adjustment models are:
 * CMS-HCC NON-ESRD
 * CMS-HCC ESRD
 * RxHCC
-* PACE [2]
+* PACE [[2]](#Footnotes)
 
 Each risk adjustment model has in common that it tries to predict medical expense using demographic 
 information and disease factors for patients.
@@ -77,7 +77,7 @@ predicted medical expenditure. These two things are correlated, but not necessar
 ## Resources
 
 
-### Footnotes
+## Footnotes
 
 [1] ACA health plans that are no subject to risk adjustment are Grandfathered plans, Short-term, limited-duration plans,
 Health Reimbursement Arrangements (HRAs), and plans offered by states that have received a waiver from HHS.
