@@ -1,5 +1,5 @@
 ---
-id: risk-adjustment-overview
+id: overview
 title: "Risk Adjustment Overview"
 ---
 # What is risk adjustment?

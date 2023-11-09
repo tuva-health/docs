@@ -40,7 +40,7 @@ const sidebars =
             type: "category",
             label: "Risk Adjustment",
             items: [
-                "risk-adjustment/risk-adjustment-overview",
+                "risk-adjustment/overview",
                 "risk-adjustment/cms-hccs",
                 "risk-adjustment/hhs-hccs",
                 ]
