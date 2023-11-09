@@ -1,6 +1,6 @@
 ---
 id: overview
-title: "Risk Adjustment Overview"
+title: "Overview"
 ---
 # What is risk adjustment?
 
