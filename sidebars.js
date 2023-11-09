@@ -7,7 +7,7 @@ const sidebars =
 
         {
         type: "category",
-        label: "Claims Data Fundamentals",
+        label: "1. Claims Data Fundamentals",
         items: [
             "claims-data-fundamentals/intro-to-claims",
             "claims-data-fundamentals/claims-forms",
@@ -15,26 +15,33 @@ const sidebars =
             "claims-data-fundamentals/claims-dates",
             "claims-data-fundamentals/adjustments-denials-reversals",
             "claims-data-fundamentals/data-quality-issues",
-            "claims-data-fundamentals/service-categories",
-            "claims-data-fundamentals/member-months",
             ]
         },
 
         {
-        type: "category",
-        label: "Drug Terminology",
-        items: [
-            "drug-terminology/national-drug-codes",
-            ]
+            type: "category",
+            label: "2. Financial PMPM",
+            items: [
+                "claims-data-fundamentals/member-months",
+                "claims-data-fundamentals/service-categories",
+                ]
         },
 
-        "hospital-readmissions",
+        {
+            type: "category",
+            label: "3. Emergency Department",
+            items: [
+                "emergency-department/grouping-claims",
+                ]
+        },
 
-        "provider-data",
-
-        "provider-panel-attribution",
-
-        "quality-measures",
+        {
+            type: "category",
+            label: "4. Acute Inpatient",
+            items: [
+                "hospital-readmissions",
+                ]
+        },
 
         {
             type: "category",
@@ -44,6 +51,24 @@ const sidebars =
                 "risk-adjustment/hhs-hccs",
                 ]
             },
+
+        {
+        type: "category",
+        label: "Drug Terminology",
+        items: [
+            "drug-terminology/national-drug-codes",
+            ]
+        },
+
+
+
+        "provider-data",
+
+        "provider-panel-attribution",
+
+        "quality-measures",
+
+
 
         "contributing",
         "example-sql"
