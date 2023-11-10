@@ -4,16 +4,16 @@ title: "Adjustments, Denials, and Reversals"
 ---
 
 ## Overview 
-One of the trickiest issues to deal with in claims data is adjustments, denials, and reversals (what we often refer to as "ADR").  There are three types of claim records (original, adjustment, and reversal) and two types of claim payment statuses (paid and denied).  How you model claim record types and payment statuses will impact the analytics you're able to perform on your claims data.
+One of the trickiest issues to deal with in claims data is adjustments, denials, and reversals (what we often refer to as "ADR").  There are three types of claim records (original, adjustment, and reversal) and three types of claim payment statuses (paid, denied, reversed).  How you model claim record types and payment statuses will impact the analytics you're able to perform on your claims data.
 
 Let's take a step back and think about the types of analytics we perform on claims data.  At the highest level, we think there are two categories of claims analytics:
 
 1. Cashflow analytics
 2. Population health analytics
 
-Cashflow analytics includes analyses like calculating Incurred But Not Reported (IBNR) claims.  This sort of calculation is done by an actuary for the purpose of measuring and managing cash reserves for an insurance company or health plan.  To perform this type of analysis you need to see every claim that occurred.  For example, if a claim was originally paid, then adjusted and reversed weeks later, you need to have full visibility into these payments and the dates when the payments occurred.
+Cashflow analytics includes analyses like calculating Incurred But Not Reported (IBNR) claims.  This sort of calculation is done by an actuary to measure and manage cash reserves for an insurance company or health plan.  To perform this type of analysis you need to see every iteration of a claim that occurred.  For example, if a claim was originally paid, then reversed and adjusted weeks later, you need to have full visibility into these payments and the dates when the payments occurred. Leveraging multiple iterations of a claim is also useful for the analytics team when it's necessary to align analytics with financial reporting, or when it's necessary to understand when a claim was first received or processed (the original claim received or paid date).
 
-Population health analytics includes analyses around the cost of care, diagnosis and treatment, utilization, and risk of a patient population.  This type of analysis is more concerned with the final amounts actually paid (rather than intermediate adjustments and reversals) and the dates when services were actually delivered (as opposed to paid dates).
+Population health analytics includes analyses around the cost of care, diagnosis and treatment, utilization, and risk of a patient population.  This type of analysis is more concerned with the final amounts paid (rather than intermediate adjustments and reversals) and the dates when services were delivered (as opposed to paid dates). 
 
 The trick is to model your claims data in such a way that supports both types of analyses, satisfying your cashflow analysis folks (e.g. actuaries and financial analysts) and your population health analysis folks (e.g. quality measures folks, data scientists, epidemiologists, also actuaries here too, etc.).
 
@@ -25,8 +25,9 @@ Let's quickly define the three different types of claim records:
 
 The two types of payment statuses are straightforward:
 
-- **Paid:** Indicates the claim was paid.
-- **Denied:** Indicates the claim was denied.
+- **Paid:** Indicates the claim was paid (positive paid amount)
+- **Denied:** Indicates the claim was denied (zero paid amount)
+- **Reversed:** Indicates the claim is reversed (negative paid amount)
 
 ## Modeling ADR
 
@@ -37,22 +38,22 @@ It’s easiest to illustrate how adjustments, denials, and reversals manifest by
 Let's walk through each scenario in the image above.  As we do, pay careful attention to how the cumulative amounts change from the original claim, to the reversal, to the adjustment claim.  Modeling the amounts this way is what enables both cashflow and population health analytics.
 
 ### Scenario 1: Original Only
-This first scenario is the simplest.  There's only a single claim, with a single claim line, and it's the original claim (see claim_record_type) as you would expect.  This claim has been paid (see claim_status).  The billed, allowed, and paid amounts for this claim are equal to the cumulative amounts.  You'll see how these individual claim amounts and cumulative claim amounts differ in subsequent scenarios.
+This first scenario is the simplest.  There's only a single claim, with a single claim line, and it's the original claim (see claim_record_type) as you would expect.  This claim has been paid (see claim_status).  The billed, allowed, and paid amounts for this claim are equal to the cumulative amounts.  You'll see how these individual and cumulative claims differ in subsequent scenarios.
 
 ### Scenario 2: Denied / Re-submitted
-In the second scenario the original claim was denied (see claim_status), so an adjustment claim was submitted and adjudicated.  The original claim could have been denied for any number of reasons.  The billed amount on the original claim was $100 and the allowed and paid amounts were $0 (no payment was allowed since the claim was denied).  
+In the second scenario, the original claim was denied (see claim_status), so an adjustment claim was submitted and adjudicated.  The original claim could have been denied for any number of reasons.  The billed amount on the original claim was $100 and the allowed and paid amounts were $0 (no payment was allowed since the claim was denied).  
 
 The billed, allowed, and paid amounts on the second claim (the adjustment claim) were $75, $25, and $10, respectively.  Now pay attention to the cumulative billed, allowed, and paid amount columns.  These columns sum up the current and previous claim billed, allowed, and paid amounts.
 
-There's one unusual thing about cumulative_billed_amount in this scenario.  For denied claims, you don't add the billed_amount to cumulative_billed_amount total.  Doing so would screw up the billed to allowed ratio.
+There's one unusual thing about cumulative_billed_amount in this scenario.  For denied claims, you don't add the billed_amount to cumulative_billed_amount total.  Doing so would screw up the billed-to-allowed ratio of the cumulative_billed_amount and cumulative_allowed_amount fields.
 
 Note that the adjustment claim gets a new claim_number and we associate this claim ID with the original claim via original_claim_number.
 
 ### Scenario 3: Full Reversal / Adjustment
-In this scenario the original claim was completely reversed and then an adjustment claim was subsequently submitted.  The cumulative billed, allowed, and paid amounts match the billed, allowed, and paid amounts from the final adjustment claim because the reversal claim negated the all the amounts from the original claim.
+In this scenario, the original claim was completely reversed and then an adjustment claim was subsequently submitted.  The cumulative billed, allowed, and paid amounts match the billed, allowed, and paid amounts from the final adjustment claim because the reversal claim negated all the amounts from the original claim.
 
 ### Scenario 4: Full Reversal / Adjustment (w/ multiple lines)
-This scenario is similar to the third scenario but provides and example of how a full reversal and adjustment will look with multiple claim lines.  Note that cumulative amounts are tracked at the line level.
+This scenario is similar to the third scenario but provides an example of how a full reversal and adjustment will look with multiple claim lines.  Note that cumulative amounts are tracked at the line level.
 
 ### Scenario 5: Partial Adjustment
 This final example shows how a claim may be partially adjusted, with an additional positive or sometimes negative payment amount.  
