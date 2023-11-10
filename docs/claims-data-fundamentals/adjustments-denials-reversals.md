@@ -15,7 +15,7 @@ Cashflow analytics includes analyses like calculating Incurred But Not Reported 
 
 Population health analytics includes analyses around the cost of care, diagnosis and treatment, utilization, and risk of a patient population.  This type of analysis is more concerned with the final amounts paid (rather than intermediate adjustments and reversals) and the dates when services were delivered (as opposed to paid dates). 
 
-The trick is to model your claims data in such a way that supports both types of analyses, satisfying your cashflow analysis folks (e.g. actuaries and financial analysts) and your population health analysis folks (e.g. quality measures folks, data scientists, epidemiologists, also actuaries here too, etc.).
+The trick is to model your claims data in such a way that supports both types of analyses, satisfying your cashflow analysis folks (e.g. actuaries and financial analysts) and your population health analysis folks (e.g. quality measures folks, data scientists, epidemiologists, also actuaries here too, etc.). This involves keeping the multiple iterations of the claim available for cashflow analytics while allowing population health and other analytics use cases to only worry about the final disposition, which we'll detail below.
 
 Let's quickly define the three different types of claim records:
 
@@ -23,7 +23,7 @@ Let's quickly define the three different types of claim records:
 - **Adjustment:** This claim record type is submitted if the original claim was denied or if the provider found an issue with the original claim they needed to correct.
 - **Reversals:** This claim record type is submitted if the original claim was paid, but then an adjustment was needed and the original claim needed to be backed out.
 
-The two types of payment statuses are straightforward:
+The three types of payment statuses are straightforward:
 
 - **Paid:** Indicates the claim was paid (positive paid amount)
 - **Denied:** Indicates the claim was denied (zero paid amount)
