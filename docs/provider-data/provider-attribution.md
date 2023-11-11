@@ -1,6 +1,6 @@
 ---
-id: provider-panel-attribution
-title: "Provider Panel Attribution"
+id: provider-attribution
+title: "Provider Attribution"
 ---
 
 Provider panel attribution is the means of attributing individual patients to a provider, usually a primary care 

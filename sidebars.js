@@ -31,6 +31,7 @@ const sidebars =
             label: "3. Emergency Department",
             items: [
                 "emergency-department/grouping-claims",
+                "emergency-department/ed-classification",
                 ]
         },
 
@@ -56,7 +57,7 @@ const sidebars =
         type: "category",
         label: "6. Quality Measures",
         items: [
-            "quality-measures",
+            "quality-measures/overview",
             ]
         },
 
@@ -70,9 +71,10 @@ const sidebars =
 
         {
             type: "category",
-            label: "8. Provider Attribution",
+            label: "8. Provider Data",
             items: [
-                "provider-panel-attribution",
+                "provider-data/provider-npi",
+                "provider-data/provider-attribution",
                 ]
         },
 
@@ -84,18 +86,19 @@ const sidebars =
                 ]
         },
 
-
-
-        "provider-data",
-
-
-
-
-
-
+        {
+            type: "category",
+            label: "Tuva Data",
+            items: [
+                "tuva-data/data-dictionaries",
+                "tuva-data/example-sql",
+                "tuva-data/synth-data",
+                "tuva-data/terminology-sets",
+                ]
+        },
 
         "contributing",
-        "example-sql"
+        "help",
     ]
 };
 
