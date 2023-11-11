@@ -1,9 +1,7 @@
 ---
-id: quality-measures
-title: "Quality Measures"
+id: overview
+title: "Overview"
 ---
-
-## Overview
 
 Quality measures help us measure or quantify healthcare processes, outcomes, 
 patient perceptions, organizational structure, and systems. These measures are 
