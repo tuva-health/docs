@@ -43,22 +43,22 @@ risk scores to patients. Not all risk adjustment models have to use HCCs, but al
 One way to separate HHS and CMS HCC models would be to call them respectively "commercial risk adjustment" (HHS) 
 and "Medicare risk adjustment" (CMS). These two main models are similar but are separate:
 
-| **HHS-HCC Model**                                                             | **CMS-HCC Model**                                                 |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Used for Medicare                                                             | Used for Affordable Healthcare Act (ACA) plans                    |
-| Base year informs next year's payment                                         | Current year diagnosis inform current year payment                |
-| Focused on patients 65 and older, but can include younger disabled population | Focused on all ages                                               |
-| Drug costs are carved out in separate model                                   | Drug costs are included                                           |
-| Has distinct model and break out for ESRD patients                            | Does not carve out ESRD in separate risk adjustment model         |
-| Is zero-sum between payers that participate in ACA                            | Is not a zero-sum payment system                                  |
-| Does NOT have Normalization Factor and Coding Pattern Difference Adjustment   | HAS Normalization Factor and Coding Pattern Difference Adjustment |
+| **CMS-HCC Model**                                                             | **HHS-HCC Model**                                                      |
+|-------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Used for Medicare                                                             | Used for Affordable Healthcare Act (ACA) plans                         |
+| Base year informs next year's payment                                         | Current year diagnoses inform current year payment                     |
+| Focused on patients 65 and older, but can include younger disabled population | Focused on all ages                                                    |
+| Drug costs are carved out in separate model                                   | Drug costs are included                                                |
+| Has distinct model and break out for ESRD patients                            | Does not carve out ESRD in separate risk adjustment model              |
+| Is not a zero-sum payment system                                              | Is zero-sum between payers that participate in ACA                     |
+| Has Normalization Factor and Coding Pattern Difference Adjustment             | Has final adjustment for CSR benefit curve and utilization differences |
 
 ## FAQ
 
 #### What does zero-sum mean?
 
 Zero-sum in the context of commercial risk adjustment (HHS-HCC Model) means that there is no government subsidization
-for private companies in the risk adjustment process. If the illness burden of a state in total increases from last 
+for private companies in the risk adjustment process. If the illness burden of a state in total increases from the prior 
 year, the government provides no additional funds. What happens during reconciliation is some health insurance 
 companies will have to pay into a pool because they have healthier than average patients. Some organizations will 
 get paid out from that pool because they have sicker than average patients. The total transfer of dollars adds up to $0.
