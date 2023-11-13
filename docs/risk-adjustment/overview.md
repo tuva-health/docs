@@ -43,15 +43,15 @@ risk scores to patients. Not all risk adjustment models have to use HCCs, but al
 One way to separate HHS and CMS HCC models would be to call them respectively "commercial risk adjustment" (HHS) 
 and "Medicare risk adjustment" (CMS). These two main models are similar but are separate:
 
-| **HHS-HCC Model**                                                             | **CMS-HCC Model**                                                 |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Used for Medicare                                                             | Used for Affordable Healthcare Act (ACA) plans                    |
-| Base year informs next year's payment                                         | Current year diagnosis inform current year payment                |
-| Focused on patients 65 and older, but can include younger disabled population | Focused on all ages                                               |
-| Drug costs are carved out in separate model                                   | Drug costs are included                                           |
-| Does not carve out ESRD in separate risk adjustment model                     | Has distinct model and break out for ESRD patients                |
-| Is zero-sum between payers that participate in ACA                            | Is not a zero-sum payment system                                  |
-| Has final adjustment for CSR benefit curve and utilization differences        | Has Normalization Factor and Coding Pattern Difference Adjustment |
+| **CMS-HCC Model**                                                             | **HHS-HCC Model**                                                      |
+|-------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Used for Medicare                                                             | Used for Affordable Healthcare Act (ACA) plans                         |
+| Base year informs next year's payment                                         | Current year diagnoses inform current year payment                     |
+| Focused on patients 65 and older, but can include younger disabled population | Focused on all ages                                                    |
+| Drug costs are carved out in separate model                                   | Drug costs are included                                                |
+| Has distinct model and break out for ESRD patients                            | Does not carve out ESRD in separate risk adjustment model              |
+| Is not a zero-sum payment system                                              | Is zero-sum between payers that participate in ACA                     |
+| Has Normalization Factor and Coding Pattern Difference Adjustment             | Has final adjustment for CSR benefit curve and utilization differences |
 
 ## FAQ
 
