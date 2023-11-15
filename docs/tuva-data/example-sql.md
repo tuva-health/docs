@@ -268,7 +268,7 @@ select
 from readmissions.readmission_summary
 where index_admission_flag = 1
 
-union
+union all
 
 select 
     2 as id
@@ -278,7 +278,7 @@ from readmissions.readmission_summary
 where index_admission_flag = 1 
     and unplanned_readmit_30_flag = 1
     
-union
+union all
 
 select 
     3 as id
@@ -288,7 +288,7 @@ from readmissions.readmission_summary
 where index_admission_flag = 1 
     and unplanned_readmit_30_flag = 1
 
-union
+union all
 
 select 
     4 as id
@@ -298,7 +298,7 @@ from readmissions.readmission_summary
 where index_admission_flag = 1 
     and unplanned_readmit_30_flag = 1
     
-union
+union all
 
 select 
     5 as id
@@ -308,7 +308,7 @@ from readmissions.readmission_summary
 where index_admission_flag = 1 
     and unplanned_readmit_30_flag = 1
     
-union
+union all
 
 select 
     6 as id
