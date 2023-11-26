@@ -3,102 +3,112 @@ const sidebars =
 {
     docsSidebar: 
     [ 
-        "intro",
+        {
+            type: "category",
+            label: "Getting Started",
+            items: [
+                "getting-started/introduction",
+                "getting-started/quickstart",
+                "getting-started/tutorial",
+                ]
+        },
 
         {
-        type: "category",
-        label: "1. Claims Data Fundamentals",
-        items: [
-            "claims-data-fundamentals/intro-to-claims",
-            "claims-data-fundamentals/claims-data-elements",
-            "claims-data-fundamentals/claims-mapping-guide",
-            "claims-data-fundamentals/data-quality-testing",
-            "claims-data-fundamentals/adjustments-denials-reversals",
+            type: "category",
+            label: "Connectors",
+            items: [
+                "connectors/overview",
+                "connectors/medicare-cclf",
+                "connectors/medicare-lds",
+                "connectors/fhir",
+                "connectors/elation",
+                ]
+        },
+
+        "claims-preprocessing-guide",
+        "geo-coding",
+
+        {
+            type: "category",
+            label: "Core Data Model",
+            items: [
+                "core-data-model/overview",
+                "core-data-model/condition",
+                "core-data-model/eligibility",
+                "core-data-model/encounter",
+                "core-data-model/lab-result",
+                "core-data-model/location",
+                "core-data-model/medical-claim",
+                "core-data-model/medication",
+                "core-data-model/observation",
+                "core-data-model/patient",
+                "core-data-model/pharmacy-claim",
+                "core-data-model/practitioner",
+                "core-data-model/procedure",             
             ]
         },
 
         {
             type: "category",
-            label: "2. Financial PMPM",
+            label: "Data Marts",
             items: [
-                "claims-data-fundamentals/member-months",
-                "claims-data-fundamentals/service-categories",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "3. Emergency Department",
-            items: [
-                "emergency-department/grouping-claims",
-                "emergency-department/ed-classification",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "4. Acute Inpatient",
-            items: [
-                "hospital-readmissions",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "5. Risk Adjustment",
-            items: [
-                "risk-adjustment/overview",
-                "risk-adjustment/cms-hccs",
-                "risk-adjustment/hhs-hccs",
-                ]
-        },
-
-        {
-        type: "category",
-        label: "6. Quality Measures",
-        items: [
-            "quality-measures/overview",
+                "data-marts/overview",
+                "data-marts/ccsr",
+                "data-marts/chronic-conditions",
+                "data-marts/claims-preprocessing",
+                "data-marts/cms-hccs",
+                "data-marts/ed-classification",
+                "data-marts/financial-pmpm",
+                "data-marts/quality-measures",
+                "data-marts/readmissions",
+                
             ]
         },
 
-        {
-            type: "category",
-            label: "7. Drug Terminology",
-            items: [
-                "drug-terminology/national-drug-codes",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "8. Provider Data",
-            items: [
-                "provider-data/provider-npi",
-                "provider-data/provider-attribution",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "9. Social Determinants",
-            items: [
-                "social-determinants/overview",
-                ]
-        },
-
-        {
-            type: "category",
-            label: "Tuva Data",
-            items: [
-                "tuva-data/data-dictionaries",
-                "tuva-data/example-sql",
-                "tuva-data/synth-data",
-                "tuva-data/terminology-sets",
-                ]
-        },
-
+        "reference-data",
+        "synthetic-data",
+        "terminology-sets",
         "contributing",
         "help",
+    ],
+
+    knowledgebaseSidebar: 
+    [ 
+        "knowledge-base/introduction",
+
+        {
+            type: "category",
+            label: "1. Claims Data Fundamentals",
+            items: [
+                "knowledge-base/claims-data-fundamentals/intro-to-claims",
+                "knowledge-base/claims-data-fundamentals/claims-data-elements",
+                "knowledge-base/claims-data-fundamentals/adjustments-denials-reversals",
+                "knowledge-base/claims-data-fundamentals/member-months",
+                "knowledge-base/claims-data-fundamentals/provider-npi",
+                "knowledge-base/claims-data-fundamentals/service-categories",
+                "knowledge-base/claims-data-fundamentals/encounter-groupers",
+            ]
+        },
+
+        {
+            type: "category",
+            label: "2. Risk Adjustment",
+            items: [
+                "knowledge-base/risk-adjustment/overview",
+                "knowledge-base/risk-adjustment/cms-hccs",
+                "knowledge-base/risk-adjustment/hhs-hccs",
+            ]
+        },
+
+        "knowledge-base/hospital-readmissions",
+        "knowledge-base/quality-measures",
+        "knowledge-base/provider-attribution",
+        "knowledge-base/national-drug-codes",
+    ],
+
+    usecaseSidebar: 
+    [
+        "use-cases/financial-pmpm",
     ]
 };
 
