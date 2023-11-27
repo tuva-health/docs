@@ -61,7 +61,7 @@ feel free to post in [#buildersask](https://thetuvaproject.slack.com/archives/C0
 
 ### Other Variables
 The Tuva Project relies on variables to set default behavior for the data marts.
-These defaults can be found in the package's [dbt_project.yml](./dbt_project.yml).
+These defaults can be found in the package's `dbt_project.yml`.
 You can change these values here or set them in the `dbt_project.yml` of your project.
 
 * **tuva_last_run:** The date and timestamp of the dbt run that will populate 
@@ -108,7 +108,7 @@ data mart complete the following steps.
     dbt build --select the_tuva_project 
     ```
 
-See [integration_tests](./integration_tests/dbt_project.yml) 
+See [integration_tests](https://github.com/tuva-health/the_tuva_project/blob/main/integration_tests/dbt_project.yml) 
 for more data mart variable examples.
 
 ## Terminology Only
@@ -127,7 +127,7 @@ the following steps.
     ```
 
 Alternatively, you can load all the terminology sets via SQL directly to your 
-database. Check out the SQL for doing this [here](terminology_sql).
+database. Check out the SQL for doing this [here](https://github.com/tuva-health/the_tuva_project/tree/main/terminology_sql).
 
 ## Tutorial
 
