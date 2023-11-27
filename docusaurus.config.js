@@ -94,7 +94,7 @@ const config = {
             position: 'left',
             label: 'Use Cases',
           },
-          { to: 'journal-club', label: 'Journal Club', position: 'left' },
+          // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
           // {

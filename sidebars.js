@@ -9,29 +9,28 @@ const sidebars =
             items: [
                 "getting-started/introduction",
                 "getting-started/quickstart",
-                "getting-started/tutorial",
-                ]
+            ]
         },
 
-        "claims-preprocessing-guide",
+        // "claims-preprocessing-guide",
 
-        {
-            type: "category",
-            label: "Connectors",
-            items: [
-                "connectors/overview",
-                "connectors/medicare-cclf",
-                "connectors/medicare-lds",
-                "connectors/fhir",
-                "connectors/elation",
-                ]
-        },
+        // {
+        //     type: "category",
+        //     label: "Connectors",
+        //     items: [
+        //         "connectors/overview",
+        //         "connectors/medicare-cclf",
+        //         "connectors/medicare-lds",
+        //         "connectors/fhir",
+        //         "connectors/elation",
+        //     ]
+        // },
 
         {
             type: "category",
             label: "Data Dictionaries",
             items: [
-                   // "data-dictionaries/input-layer", 
+                "data-dictionaries/input-layer", 
                 "data-dictionaries/core",
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
@@ -44,8 +43,8 @@ const sidebars =
             ]
         },
 
-        "geo-coding",
-        "reference-data",
+        // "geo-coding",
+        // "reference-data",
         "synthetic-data",
         "terminology-sets",
         "contributing",
@@ -88,7 +87,12 @@ const sidebars =
 
     usecaseSidebar: 
     [
+        "use-cases/acute-inpatient",
+        "use-cases/ed-visits",
         "use-cases/financial-pmpm",
+        "use-cases/population-characteristics",
+        "use-cases/risk-scores",
+
     ]
 };
 
