@@ -13,6 +13,8 @@ const sidebars =
                 ]
         },
 
+        "claims-preprocessing-guide",
+
         {
             type: "category",
             label: "Connectors",
@@ -25,46 +27,24 @@ const sidebars =
                 ]
         },
 
-        "claims-preprocessing-guide",
+        {
+            type: "category",
+            label: "Data Dictionaries",
+            items: [
+                   // "data-dictionaries/input-layer", 
+                "data-dictionaries/core",
+                "data-dictionaries/ccsr",
+                "data-dictionaries/chronic-conditions",
+                "data-dictionaries/claims-preprocessing",
+                "data-dictionaries/cms-hccs",
+                "data-dictionaries/ed-classification",
+                "data-dictionaries/financial-pmpm",
+                "data-dictionaries/quality-measures",
+                "data-dictionaries/readmissions",           
+            ]
+        },
+
         "geo-coding",
-
-        {
-            type: "category",
-            label: "Core Data Model",
-            items: [
-                "core-data-model/overview",
-                "core-data-model/condition",
-                "core-data-model/eligibility",
-                "core-data-model/encounter",
-                "core-data-model/lab-result",
-                "core-data-model/location",
-                "core-data-model/medical-claim",
-                "core-data-model/medication",
-                "core-data-model/observation",
-                "core-data-model/patient",
-                "core-data-model/pharmacy-claim",
-                "core-data-model/practitioner",
-                "core-data-model/procedure",             
-            ]
-        },
-
-        {
-            type: "category",
-            label: "Data Marts",
-            items: [
-                "data-marts/overview",
-                "data-marts/ccsr",
-                "data-marts/chronic-conditions",
-                "data-marts/claims-preprocessing",
-                "data-marts/cms-hccs",
-                "data-marts/ed-classification",
-                "data-marts/financial-pmpm",
-                "data-marts/quality-measures",
-                "data-marts/readmissions",
-                
-            ]
-        },
-
         "reference-data",
         "synthetic-data",
         "terminology-sets",

@@ -7,6 +7,6 @@ slug: /
 
 # 👋 Welcome
 
-![The Tuva Project Overview](/img/the_tuva_project_overview.jpg)
+![Tuva Project Overview](/img/tuva_project_overview.jpg)
 
-The Tuva Project is a collection of tools that transform healthcare data so that's it's ready for analytics and machine learning.  At the center of the project is the Core Data Model, which is a common data model designed for both claims and clinical data sources.  These docs describe how to install and contribute to each of the tools in the Tuva Project.  
+The Tuva Project is a collection of tools that transform raw healthcare data into quality-tested data that is ready for analysis and machine learning.  At the center of the project is the Tuva Data Model.  These docs describe how to install, use, and contribute to the Tuva Project.

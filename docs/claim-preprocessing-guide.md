@@ -1,6 +1,6 @@
 ---
 id: claims-preprocessing-guide
-title: "Claims Preprocessing Guide"
+title: "Claims Preprocessing"
 ---
 
 Raw claims data typically suffers from a number of challenges that make it difficult to analyze.  First, it is highly heterogeneous, both in terms of data format and terminology.  For example, even standard fields like ```bill_type_code``` that should only take on a specific set of values may have non-standard values.  
