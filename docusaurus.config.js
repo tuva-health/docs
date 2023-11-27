@@ -75,12 +75,34 @@ const config = {
           src: 'img/TheTuvaProjectLogo.png',
         },
         items: [
-        //   {
-        //     type: 'doc',
-        //     docId: 'intro',
-        //     position: 'left',
-        //     label: 'Knowledge',
-        //   },
+
+          {
+            type: 'doc',
+            docId: 'getting-started/introduction',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'knowledgebaseSidebar',
+            position: 'left',
+            label: 'Knowledge Base',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'usecaseSidebar',
+            position: 'left',
+            label: 'Use Cases',
+          },
+          // { to: 'journal-club', label: 'Journal Club', position: 'left' },
+          { to: 'manifesto', label: 'Manifesto', position: 'left' },
+
+          // {
+          //   type: 'doc',
+          //   sidebarId: 'journal-club',
+          //   position: 'left',
+          //   label: 'Use Cases',
+          // },
           // {
           //   to: 'https://github.com/tuva-health',
           //   label: 'Code',
