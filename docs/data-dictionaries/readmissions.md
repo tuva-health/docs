@@ -11,6 +11,10 @@ The Readmissions data model is designed to enable analysis of hospital readmissi
 
 **Primary Key:** encounter_id
 
+**Foreign Keys:**
+- encounter_id (join to core.encounter)
+- patient_id (join to core.patient)
+
 Each record in this table represents a unique acute inpatient admission.  Acute inpatient encounters are excluded from this table if they don't meet certain data quality requirements.  This table is the primary table that should be used for analyzing readmissions.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.readmissions__readmission_summary.columns"  />
