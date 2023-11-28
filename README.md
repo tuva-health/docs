@@ -1,9 +1,7 @@
-# The Tuva Project Knowledge Base
+# The Tuva Project Docs
 
-This repository contains all the code for generating the Tuva Project [Knowledge Base](https://thetuvaproject.com/).  Knowledge Base is an open source book about how to work with healthcare data and do healthcare analytics.
+This repository contains all the code for generating the Tuva Project [Docs](https://thetuvaproject.com/).  The site is built with [Docusaurus 2](https://docusaurus.io/).
 
-The website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+The Tuva Project Docs are licensed under Apache 2.0.
 
-Knowledge Base is licensed under Apache 2.0.
-
-For information on contributing, please go to the [Knowledge Base contributing page](https://thetuvaproject.com/contributing)
+For information on contributing, please see our [contributions page](https://thetuvaproject.com/contributing)
