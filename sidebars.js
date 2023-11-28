@@ -43,11 +43,11 @@ const sidebars =
             ]
         },
 
+        "quality-measures",
         // "geo-coding",
         // "reference-data",
         "synthetic-data",
         "terminology-sets",
-        "quality-measures",
         "contributing",
         "help",
     ],
