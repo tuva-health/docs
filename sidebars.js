@@ -47,7 +47,7 @@ const sidebars =
         // "reference-data",
         "synthetic-data",
         "terminology-sets",
-        "quality-measures-catalog",
+        "quality-measures",
         "contributing",
         "help",
     ],
