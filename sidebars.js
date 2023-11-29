@@ -44,8 +44,8 @@ const sidebars =
         },
 
         "quality-measures",
-        // "geo-coding",
-        // "reference-data",
+        "geo-coding",
+        "reference-data",
         "synthetic-data",
         "terminology-sets",
         "contributing",
@@ -84,6 +84,7 @@ const sidebars =
         "knowledge-base/quality-measures",
         "knowledge-base/provider-attribution",
         "knowledge-base/national-drug-codes",
+        "knowledge-base/sdoh",
     ],
 
     usecaseSidebar: 
