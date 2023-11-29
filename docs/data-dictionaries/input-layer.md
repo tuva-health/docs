@@ -25,12 +25,7 @@ which are needed to calculate measures like PMPM.
   * enrollment_start_date
   * enrollment_end_date
 
-<details>
-<summary>eligibility fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.eligibility.columns" />
-
-</details>
 
 ### medical_claim
 
@@ -48,12 +43,7 @@ underlying reason for the service (i.e. diagnosis).
   * patient_id
   * member_id
 
-<details>
-<summary>medical_claim fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.medical_claim.columns" />
-
-</details>
 
 ### pharmacy_claim
 
@@ -69,12 +59,7 @@ pharmacy, and paid by an insurer.
   * patient_id
   * member_id
 
-<details>
-<summary>pharmacy_claim fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
-
-</details>
 
 ## Clinical Input
 
@@ -90,12 +75,7 @@ patients have, including problems and billable diagnosis codes.
   * patient_id
   * encounter_id
 
-<details>
-<summary>condition fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.condition.columns" />
-
-</details>
 
 ### encounter
 
@@ -108,12 +88,7 @@ encounters).  This includes office visits from clinical sources.
 **Foreign Keys:**
   * patient_id
 
-<details>
-<summary>encounter fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.encounter.columns" />
-
-</details>
 
 ### lab_result
 
@@ -128,12 +103,7 @@ result.
   * patient_id
   * encounter_id
 
-<details>
-<summary>lab_result fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.lab_result.columns" />
-
-</details>
 
 ### location
 
@@ -146,12 +116,7 @@ where patients receive medical care.
 **Foreign Keys:**
   * patient_id
 
-<details>
-<summary>location fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.location.columns" />
-
-</details>
 
 ### medication
 
@@ -165,12 +130,7 @@ administered during a patient encounter.
   * patient_id
   * encounter_id
 
-<details>
-<summary>medication fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.medication.columns" />
-
-</details>
 
 ### observation
 
@@ -184,12 +144,7 @@ tests e.g. blood pressure, height, and weight.
   * patient_id
   * encounter_id
 
-<details>
-<summary>observation fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.observation.columns" />
-
-</details>
 
 ### patient
 
@@ -199,12 +154,7 @@ patients.
 **Primary Keys:**
   * patient_id
 
-<details>
-<summary>patient fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.patient.columns" />
-
-</details>
 
 ### practitioner
 
@@ -217,12 +167,7 @@ dataset e.g. physicians, physicians assistants, etc.
 **Foreign Keys:**
   * practice_affiliation
 
-<details>
-<summary>practitioner fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.practitioner.columns" />
-
-</details>
 
 ### procedure
 
@@ -237,9 +182,4 @@ on patients in the dataset.
   * encounter_id
   * practitioner_id
 
-<details>
-<summary>procedure fields</summary>
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.procedure.columns" />
-
-</details>
