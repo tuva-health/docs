@@ -8,20 +8,15 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 The Chronic Conditions data mart implements two versions for classifying chronic
 condition categories.
 
-**CMS:**
-
-This version uses the logic created by CMS. There are 30 CCW Chronic Condition 
+**CMS:** This version uses the logic created by CMS. There are 30 CCW Chronic Condition 
 categories, available for file years 2017 forward, and 40 other chronic health, 
 mental health, substance abuse, and potentially disabling condition categories 
 available for file years 2000 forward. These reference only ICD-10 diagnosis 
-codes and have modified look-back periods, qualifying claims, and codes.
+codes and have modified look-back periods, qualifying claims, and codes. You 
+can read more about CMS's logic [here](https://www2.ccwdata.org/web/guest/home/).
 
-You can read more about CMS's logic [here](https://www2.ccwdata.org/web/guest/home/).
-
-**Tuva:**
-
-A less strict interpretation of chronic conditions relying on Core Patient and 
-Condition only. 
+**Tuva:** A less strict interpretation of chronic conditions relying on Core 
+Patient and Condition only. 
 
 ## cms_chronic_conditions_long
 
