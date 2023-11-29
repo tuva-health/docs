@@ -113,9 +113,6 @@ where patients receive medical care.
 **Primary Keys:**
   * location_id
 
-**Foreign Keys:**
-  * patient_id
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.location.columns" />
 
 ### medication

@@ -86,9 +86,6 @@ where patients receive medical care.
 **Primary Keys:**
   * location_id
 
-**Foreign Keys:**
-  * patient_id
-
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__location.columns" />
 
 ## medical_claim
