@@ -19,6 +19,12 @@ synonym for member). Every claims dataset should include some sort of
 eligibility data, otherwise it's impossible to calculate member months, 
 which are needed to calculate measures like PMPM.
 
+**Primary Keys:**
+  * patient_id
+  * member_id
+  * enrollment_start_date
+  * enrollment_end_date
+
 <details>
 <summary>eligibility fields</summary>
 
@@ -34,6 +40,14 @@ insurers. It includes information on the provider who rendered the
 service, the amount paid for the service by the health insurer, and the 
 underlying reason for the service (i.e. diagnosis).
 
+**Primary Keys:**
+  * claim_id
+  * claim_line_number
+
+**Foreign Keys:**
+  * patient_id
+  * member_id
+
 <details>
 <summary>medical_claim fields</summary>
 
@@ -46,6 +60,14 @@ underlying reason for the service (i.e. diagnosis).
 The pharmacy_claim table includes information about retail and specialty 
 drug prescriptions that have been filled by a patient, billed by a 
 pharmacy, and paid by an insurer.
+
+**Primary Keys:**
+  * claim_id
+  * claim_line_number
+
+**Foreign Keys:**
+  * patient_id
+  * member_id
 
 <details>
 <summary>pharmacy_claim fields</summary>
@@ -61,6 +83,13 @@ pharmacy, and paid by an insurer.
 The condition table contains information related to medical conditions 
 patients have, including problems and billable diagnosis codes.
 
+**Primary Keys:**
+  * condition_id
+
+**Foreign Keys:**
+  * patient_id
+  * encounter_id
+
 <details>
 <summary>condition fields</summary>
 
@@ -72,6 +101,12 @@ patients have, including problems and billable diagnosis codes.
 
 The encounter table contains information about patients visits (i.e. 
 encounters).  This includes office visits from clinical sources.
+
+**Primary Keys:**
+  * encounter_id
+
+**Foreign Keys:**
+  * patient_id
 
 <details>
 <summary>encounter fields</summary>
@@ -86,6 +121,13 @@ The lab result table contains information about lab test results,
 including the LOINC code and description, units, reference range, and 
 result.
 
+**Primary Keys:**
+  * lab_result_id
+
+**Foreign Keys:**
+  * patient_id
+  * encounter_id
+
 <details>
 <summary>lab_result fields</summary>
 
@@ -97,6 +139,12 @@ result.
 
 The location table contains information on practice and facility locations 
 where patients receive medical care.
+
+**Primary Keys:**
+  * location_id
+
+**Foreign Keys:**
+  * patient_id
 
 <details>
 <summary>location fields</summary>
@@ -110,6 +158,13 @@ where patients receive medical care.
 The medication table contains information on medications ordered and/or 
 administered during a patient encounter.
 
+**Primary Keys:**
+  * medication_id
+
+**Foreign Keys:**
+  * patient_id
+  * encounter_id
+
 <details>
 <summary>medication fields</summary>
 
@@ -121,6 +176,13 @@ administered during a patient encounter.
 
 The observation table contains information on measurements other than lab 
 tests e.g. blood pressure, height, and weight.
+
+**Primary Keys:**
+  * observation_id
+
+**Foreign Keys:**
+  * patient_id
+  * encounter_id
 
 <details>
 <summary>observation fields</summary>
@@ -134,6 +196,9 @@ tests e.g. blood pressure, height, and weight.
 The patient table contains demographic and geographic information on 
 patients.
 
+**Primary Keys:**
+  * patient_id
+
 <details>
 <summary>patient fields</summary>
 
@@ -146,6 +211,12 @@ patients.
 The practitioner table contains information on the providers in the 
 dataset e.g. physicians, physicians assistants, etc.
 
+**Primary Keys:**
+  * practitioner_id
+
+**Foreign Keys:**
+  * practice_affiliation
+
 <details>
 <summary>practitioner fields</summary>
 
@@ -157,6 +228,14 @@ dataset e.g. physicians, physicians assistants, etc.
 
 The procedure table contains information on procedures that were performed 
 on patients in the dataset.
+
+**Primary Keys:**
+  * procedure_id
+
+**Foreign Keys:**
+  * patient_id
+  * encounter_id
+  * practitioner_id
 
 <details>
 <summary>procedure fields</summary>
