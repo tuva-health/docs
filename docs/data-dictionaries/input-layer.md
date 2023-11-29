@@ -164,9 +164,6 @@ dataset e.g. physicians, physicians assistants, etc.
 **Primary Keys:**
   * practitioner_id
 
-**Foreign Keys:**
-  * practice_affiliation
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.practitioner.columns" />
 
 ### procedure
