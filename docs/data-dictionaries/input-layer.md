@@ -113,9 +113,6 @@ where patients receive medical care.
 **Primary Keys:**
   * location_id
 
-**Foreign Keys:**
-  * patient_id
-
 <JsonDataTable jsonPath="nodes.model\.input_layer\.location.columns" />
 
 ### medication
@@ -163,9 +160,6 @@ dataset e.g. physicians, physicians assistants, etc.
 
 **Primary Keys:**
   * practitioner_id
-
-**Foreign Keys:**
-  * practice_affiliation
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.practitioner.columns" />
 
