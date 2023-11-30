@@ -9,13 +9,17 @@ We use three primary areas: County, Tract and Block Group.
 
 You can find the original file downloads from the Census [here](https://www.census.gov/cgi-bin/geo/shapefiles/index.php)
 
-For census tract and census block groups the Census provides this shapefiles on a state by state basis. 
-We want to create and use a single table for tracts and a sing table for block groups so we have combined
+For census tract and census block groups the Census provides shapefiles on a state by state basis. 
+We want to create and use a single table for tracts and a single table for block groups so we have combined
 the shape files to make it easier to create the tables. You can find the County, Tract and Block Group
-shapefiles [here](https://tuva-public-resources.s3.amazonaws.com/reference-data/2022+Census+Shapefiles/).
+shapefiles in our S3 reference bucket.
+- [County](https://tuva-public-resources.s3.amazonaws.com/reference-data/2022+Census+Shapefiles/us-census-counties.zip)
+- [Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/2022+Census+Shapefiles/us-census-tracts.zip)
+- [Block Group](https://tuva-public-resources.s3.amazonaws.com/reference-data/2022+Census+Shapefiles/us-census-block-groups.zip)
 
 For convenience, we also host the [CDC/ATSDR Social Vulnerability Index (SVI)](https://svi.cdc.gov/data-and-tools-download.html)
-in our [Reference Data](https://tuva-public-resources.s3.amazonaws.com/reference-data/SVI/) bucket. 
+here: [SVI Tracts](https://tuva-public-resources.s3.amazonaws.com/reference-data/SVI/SVI_2020_US.zip) &
+[SVI County](https://tuva-public-resources.s3.amazonaws.com/reference-data/SVI/SVI_2020_US_county.zip). 
 The SVI is a measure of the social vulnerability of a county or census tract. We have both files available.
 
 While we have schemas and queries for Neighborhood Atlas Area Deprivation Index (ADI), we do not host the data due
@@ -26,7 +30,9 @@ In some cases you might want to use zipcode as a grain. There is not a one-to-on
 and tracts but you can use the 
 [Census Zip Code Tabulation Areas (ZCTA)](https://www.census.gov/geographies/reference-maps/2010/geo/2010-zcta-rel.html)
 or the HUD [ZIP Code Crosswalk Files](https://www.huduser.gov/portal/datasets/usps_crosswalk.html). For convenience,
-we also host the crosswalks in our [reference bucket](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/)
+we also host the crosswalks in our reference bucket: 
+- [Zip to Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/ZIP_TRACT_032023.csv)
+- [Tract to Zip](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/TRACT_ZIP_032023.csv)
 
 ## FIPS
 For a full breakdown of ANSI FIPS codes, please see [here](https://www.census.gov/library/reference/code-lists/ansi.html).
