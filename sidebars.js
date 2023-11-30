@@ -18,7 +18,7 @@ const sidebars =
         //     type: "category",
         //     label: "Connectors",
         //     items: [
-        //         "connectors/overview",
+                "connectors/overview",
         //         "connectors/medicare-cclf",
         //         "connectors/medicare-lds",
         //         "connectors/fhir",
@@ -34,7 +34,6 @@ const sidebars =
                 "data-dictionaries/core",
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
-                "data-dictionaries/claims-preprocessing",
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
                 "data-dictionaries/financial-pmpm",
@@ -43,8 +42,8 @@ const sidebars =
             ]
         },
 
-        "quality-measures",
         "geo-coding",
+        "quality-measures",
         "reference-data",
         "synthetic-data",
         "terminology-sets",
