@@ -2,6 +2,7 @@
 id: quickstart
 title: "Quickstart"
 hide_title: true
+description: Quick and simple to follow instructions for getting started with the Tuva Project.
 ---
 
 import Tabs from '@theme/Tabs';
