@@ -87,6 +87,9 @@ Mapping an entire healthcare dataset to the `Input Layer` can take several hours
     ```
 
 ## Terminology and Reference Datasets
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJyuJ4XFYNI?si=2OqvRdcL9D9itUrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+
 If you just want to load the Terminology and Reference datasets and not worry about the Tuva data model, that's easy as well.  You can disable the data marts and just load the terminology seeds by completing 
 the following steps:
 
