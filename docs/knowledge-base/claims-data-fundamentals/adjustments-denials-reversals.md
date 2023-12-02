@@ -1,6 +1,7 @@
 ---
 id: adjustments-denials-reversals
 title: "Adjustments, Denials, and Reversals"
+description: This section describes how claims, adjustments, denials, and reversals occur in claims data and how you can identify / manage them in your claim dataset to enable financial and population health analytics.
 ---
 
 ## Overview 
