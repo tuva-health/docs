@@ -17,7 +17,7 @@ Our process has the following workflow:
 ![Generic AWS Geocoding Flow](/img/Generic_AWS_Geocoding_Flow.png)
 
 The terraform code for creating the infrastructure and python code for the lambda functions are 
-available in [this repo](https://github.com/tuva-health/customer_geocode) if you want to use this 
+available in [this repo](https://github.com/tuva-health/geo-coding) if you want to use this 
 same process. There is a README.md in the repo that details how to deploy. 
 
 We also have several geographic reference data sets available from public sources. 
