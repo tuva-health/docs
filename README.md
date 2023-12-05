@@ -26,11 +26,8 @@ changes, and the repo will automatically build a deploy preview using
 
 1. Install [Node.js](https://nodejs.org/en/download/).
 2. In your terminal, clone this repo and change your directory to the Docs repo. 
-3. Run `npm install`. 
-4. Run `npx docusaurus --version` to check that it was installed properly.  
-   Version `2.4.0` should have been installed. This is set in the 
-   docusaurus.config.js file. 
-5. Run `npm start` or `npx docusaurus start` to deploy the site locally and 
+3. Run `npm install`.
+4. Run `npm start` or `npx docusaurus start` to deploy the site locally and 
    see your changes.
 
 You can learn more about installing Docusaurus [here](https://docusaurus.io/docs/installation).
