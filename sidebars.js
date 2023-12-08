@@ -12,8 +12,6 @@ const sidebars =
             ]
         },
 
-        // "claims-preprocessing-guide",
-
         // {
         //     type: "category",
         //     label: "Connectors",
@@ -42,13 +40,18 @@ const sidebars =
             ]
         },
 
-        "geo-coding",
         "quality-measures",
         "reference-data",
         "synthetic-data",
         "terminology-sets",
         "contributing",
         "help",
+    ],
+
+    guidesSidebar: 
+    [
+        "guides/geospatial-analytics",
+
     ],
 
     knowledgebaseSidebar: 
@@ -83,7 +86,6 @@ const sidebars =
         "knowledge-base/quality-measures",
         "knowledge-base/provider-attribution",
         "knowledge-base/national-drug-codes",
-        "knowledge-base/sdoh",
     ],
 
     usecaseSidebar: 

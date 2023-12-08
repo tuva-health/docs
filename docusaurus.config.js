@@ -84,6 +84,12 @@ const config = {
           },
           {
             type: 'docSidebar',
+            sidebarId: 'guidesSidebar',
+            position: 'left',
+            label: 'Guides',
+          },
+          {
+            type: 'docSidebar',
             sidebarId: 'knowledgebaseSidebar',
             position: 'left',
             label: 'Knowledge Base',
@@ -97,24 +103,6 @@ const config = {
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
-          // {
-          //   type: 'doc',
-          //   sidebarId: 'journal-club',
-          //   position: 'left',
-          //   label: 'Use Cases',
-          // },
-          // {
-          //   to: 'https://github.com/tuva-health',
-          //   label: 'Code',
-          //   position: 'left',
-          //   target: null,
-          // },
-          // {
-          //   to: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
-          //   label: 'Community',
-          //   position: 'left',
-          //   target: null,
-          // },
           {
             href: 'https://www.tuvahealth.com',
             position: 'right',
