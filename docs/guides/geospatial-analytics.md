@@ -3,8 +3,6 @@ id: geospatial-analytics
 title: "Geospatial Analytics"
 ---
 
-- How do you actually kick-off the geo-coding process?
-
 ## Overview
 
 Geospatial analysis is commonly used in analyzing healthcare data to identify patterns that vary by geography.  In this guide we describe a process for transforming healthcare data to enable geospatial analysis of publicly available social determinants of health data.  Once you follow this guide it's very easy to perform geospatial analysis of any metric (e.g. cost, utilization, outcomes, risk, etc.).
@@ -23,13 +21,13 @@ Most of the work in geo-coding involves deploying and managing cloud infrastruct
 
 - **Snowflake:** Data warehouse that stores all patient data
 - **AWS S3:** Cloud storage location where we send outbound data (from Snowflake that needs to be geo-coded) and inbound data (that has been geo-coded and needs to be loaded back into Snowflake)
-- **Lambda Address Batcher:** Lambda function that breaks up outbound data into smaller batches so that AWS Location Services is more performant
-- **SQS:** Queuing service running on lambda that watches for outbound data ready to be coded and inbound data that is ready to be moved back to AWS S3
-- **AWS Location Services:** An AWS service that takes patient addresses and assigns them a latitude and longitude
+- **Lambda Address Batcher:** Lambda function that breaks up address data into smaller batches so that AWS Location Services is more performant and sends those batches to the SQS Queue
+- **SQS:** Queuing service that holds the batched address data for processing by Lambda and Location services
+- **Lambda Geo-coding:** Lambda function that reads messages from the SQS Queue, runs them through AWS Location Services, then writes them back to S3
 
 The [geo-coding](https://github.com/tuva-health/geo-coding) repository contains all the terraform code for creating the infrastructure and python code for the lambda functions upon which AWS Location Services will run.  Instructions for deploying this code can be found in the README of this repository.
 
-After setting up the infrastructure and lambda functions from the geo-coding repo, we need to create an AWS role that allows access to the S3 bucket you want to read from and write to (note the ARN).  Then you then need to create a storage integration in Snowflake that uses that role.  To create the storage integration: 
+After setting up the infrastructure and lambda functions from the geo-coding repo, we need to create an AWS role that allows access to the S3 bucket you want to read from and write to.  Full instructions for setting up the role are [here](https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration). Then you then need to create a storage integration in Snowflake that uses that role. To create the storage integration:
 
 ```sql
 create or replace storage integration <NAME>
@@ -80,7 +78,7 @@ HEADER = TRUE
 overwrite = TRUE
 ```
 
-Once the geo-coding process has finished (you can monitor this in the AWS Console -> SQS Queue) you can create a table for the raw geo-coded data and read it back in as follows:
+The S3 trigger created from the geo-coding repo automatically triggers the geo-coding process.  As soon as patient addresses land in the S3 bucket the lambda address batcher is triggered and processing begins.  Once the geo-coding process has finished (you can monitor this in the AWS Console -> SQS Queue) you can create a table for the raw geo-coded data and read it back in as follows:
 
 ```sql
 CREATE or replace TABLE tuva.geocoded.raw_geocoded (data VARIANT);
@@ -210,11 +208,11 @@ on st_contains(b.GEOGRAPHY, st_point(a.longitude, a.latitude))
 
 Now that we have transformed patient addresses into latitude and longitude and assigned each latitutde and longitude to a census tract and block group, we now need to join that data to the social determinants data we wish to analyze.  Social determinants of health are commonly analyzed using geospatial techniques because these metrics tend to vary geographically.  
 
-Two publicly available social determinants datasetes are the [Social Vulnerability Index (SVI)](/reference-data#social-vulnerability-index) and [Area Deprivation Index (ADI)](/reference-data#area-deprivation-index) datasets, which contain a variety of metrics calculated at the census tract and census block group levels, respectively.
+Two publicly available social determinants datasets are the [Social Vulnerability Index (SVI)](/reference-data#social-vulnerability-index) and [Area Deprivation Index (ADI)](/reference-data#area-deprivation-index) datasets, which contain a variety of metrics calculated at the census tract and census block group levels, respectively.
 
 We make the SVI available for download as part of the Tuva Project.  The ADI requires you to register and download it from the [Neighborhood Atlas](https://www.neighborhoodatlas.medicine.wisc.edu/).
 
-In order to load these files you need to download them from the reference dataset bucket, which you can find in the links above.  Once you've done that you need to load them to a stage (you can re-use the same stage from the census files above) and then load them into your data warehouse.
+In order to load these files you need to first download them.  You can download SVI from the reference dataset bucket, which you can find in the links above.  Once you've done that you need to load them to a stage (you can re-use the same stage from the census files above) and then load them into your data warehouse.
 ```sql
 PUT file:///Users/user/Downloads/SVI2020_US.csv @CENSUS_BG_STAGE AUTO_COMPRESS=FALSE;
 
@@ -273,7 +271,7 @@ File_format = (type = CSV FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 ## Ready for Analysis
 
-Now that you've 1) geo-coded patient addresses 2) assigned census tract and block groups and 3) loaded social determinants datasets, your data is ready for analysis.  There are a wide variety of visualization tools, from R and python libraries to dashboard tools, that make this sort of analysis easy.  We leave the choice of these tools to you as a next step.  But the fruits of this labor are obvious in the SQL statements below.  It's now very simple to join patients, geographic data, and social determinants date for analysis.
+Now that you've 1) geo-coded patient addresses 2) assigned census tract and block groups and 3) loaded social determinants datasets, your data is ready for geospatial analysis.  There are a wide variety of visualization tools, from R and python libraries to dashboards, that make this sort of analysis easy.  We leave the choice of these tools to you as a next step.  But the fruits of this labor are obvious in the SQL statements below.  It's now very simple to join patients, geographic data, and social determinants data for analysis.
 
 SVI:
 ```sql
