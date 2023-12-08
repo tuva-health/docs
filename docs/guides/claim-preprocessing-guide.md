@@ -1,5 +1,5 @@
 ---
-id: claims-preprocessing-guide
+id: claims-preprocessing
 title: "Claims Preprocessing"
 ---
 
