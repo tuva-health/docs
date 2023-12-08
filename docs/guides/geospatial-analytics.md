@@ -1,6 +1,7 @@
 ---
 id: geospatial-analytics
 title: "Geospatial Analytics"
+description: This guide walks you through how to transform patient data so it's ready for geospatial analytics using publicly available social determinants of health datasets.
 ---
 
 ## Overview
