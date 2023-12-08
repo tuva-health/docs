@@ -17,7 +17,6 @@ The eligibility table includes information about a patient's health insurance co
 
 **Primary Key:**
   * patient_id
-  * member_id
   * plan
   * enrollment_start_date
   * enrollment_end_date
