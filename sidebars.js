@@ -51,6 +51,7 @@ const sidebars =
     guidesSidebar: 
     [
         "guides/geospatial-analytics",
+        "guides/claim-preprocessing-guide",
 
     ],
 
