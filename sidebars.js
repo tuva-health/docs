@@ -50,9 +50,18 @@ const sidebars =
 
     guidesSidebar: 
     [
-        "guides/geospatial-analytics",
-        "guides/claim-preprocessing-guide",
+        {
+            type: "category",
+            label: "Claims Preprocessing",
+            items: [
+                "guides/claims-preprocessing/overview",
+                "guides/claims-preprocessing/eligibility",
+                "guides/claims-preprocessing/medical-claim",
+                "guides/claims-preprocessing/pharmacy-claim",
+            ]
+        },
 
+        "guides/geospatial-analytics"
     ],
 
     knowledgebaseSidebar: 
