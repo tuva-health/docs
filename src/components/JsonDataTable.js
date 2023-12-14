@@ -34,6 +34,9 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
         };
         if (value.meta && value.meta.terminology) {
             result.terminology = value.meta.terminology;
+        };
+        if (value.meta && value.meta.terminology_note) {
+            result.terminology_note = value.meta.terminology_note;
         }
         return result;
   
@@ -46,7 +49,8 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
             name: manObj ? manObj.name : parsedDataCat[i].name,
             type: manObj && manObj.data_type ? manObj.data_type : ( ( parsedDataCat[i].type === "TEXT") ? "varchar" : parsedDataCat[i].type.toLowerCase() ),
             description: manObj ? manObj.description : undefined,
-            terminology: manObj && manObj.terminology ? manObj.terminology : undefined
+            terminology: manObj && manObj.terminology ? manObj.terminology : undefined,
+            terminology_note: manObj && manObj.terminology_note ? manObj.terminology_note : undefined
         }
     }
     ;
@@ -98,8 +102,8 @@ export function JsonDataTable({jsonPath}) {
     useEffect(() => {
         var fetchData = async () => {
             try {
-                var responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/yaml_terminology_updates/docs/manifest.json");
-                var responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/yaml_terminology_updates/docs/catalog.json");
+                var responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json");
+                var responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json");
                 var jsonDataMan = await responseMan.json();
                 var jsonDataCat = await responseCat.json();
                 var data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
@@ -148,7 +152,7 @@ export function JsonDataTable({jsonPath}) {
                       <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.name}</td>
                       <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.type}</td>
                       <td style={{ minWidth: '235px', maxWidth: '235px'}}>{row.description}</td>
-                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"}</td>
+                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"} {row.terminology_note ? <span style={{ display: 'inline', fontSize: '75%', fontWeight: 'bold', lineHeight: '0' }}>{row.terminology_note}</span> : ""}</td>
                   </tr>
               ))}
               </tbody>
