@@ -1,11 +1,11 @@
 ---
-id: eligibility
+id: eligibility-old
 title: "Eligibility"
 hide_title: false
 description: This guide demonstrates
 ---
 
-This section describes how to map your raw claims data to the [eligibility](../../data-dictionaries/input-layer#eligibility) table in the Input Layer.  The eligibility table contains enrollment and demographic data of health plan members.
+The [eligibility](../../data-dictionaries/input-layer#eligibility) table contains enrollment and demographic data of health plan members.
 
 Raw eligibility data is typically modeled in one of two formats:
 
@@ -18,26 +18,71 @@ The Member Month Format includes one record per member per month of eligibility.
 
 Of these two formats the Enrollment Span Format is the most common format in raw claims data.  The eligibility table also uses the enrollment span format.  Thus it will likely be relatively straightforward to map your eligibility data if your data is in the Enrollment Span Format.  If your data is in the Member Month Format you'll need to convert it to the Enrollment Span Format, which is doable but can be a pain.
 
-## patient_id
+## patient_id and member_id
 
-#### Mapping
+`patient_id` is a unique identifier for an individual person.  If there are multiple data sources with an overlapping population, `patient_id` should unify the same individual.
 
-- **Description:** The `patient_id` is intended to represent a unique person.
-- **Data Type:** varchar
-- **Terminology:** N/A
-- **Expectations:**
-  - `patient_id` is populated for every row
-  - `patient_id` has the same value for all lines within the same `claim_id`
+`member_id` is an identifier for an individual that is specific to the data source.  If there are multiple data sources with an overlapping population, different `member_id` roll up to a single `patient_id`.
 
-#### Transformation
+### Mapping
+When mapping a raw data source to the input layer, we map the `member_id` from the raw data to both `patient_id` and `member_id` in the input layer. Later on, Tuva EMPI software will determine if people with different `patient_id`s are the same person and assign the same `patient_id` to those people.
 
-None.
+**Tables related to patient_id and member_id to build in the connector:**
 
-#### Data Quality
+If relevant, a crosswalk should be created in the connector to map multiple `member_id`s to `patient_id`. The dbt model should be called `[datasource]__int_member_crosswalk` in the connector and should look like this:
 
-## memebr_id
+**If this table was already created for medical_claim or pharmacy_claim, append additional identifiers to the existing table**
 
-## gender
+| data_source | member_id | patient_id |
+| --- | --- | --- |
+| aetna | 1234 | 1234 |
+| aetna | 3245 | 1234 |
+| aetna | 2353 | 5432 |
+
+This table is one-to-many, i.e. the same `patient_id` may be related to more than one `member_id`.  The primary key for this table is `member_id` and `data_source`.
+
+We should also report if any rows do not make it to the input layer because they do not have a `member_id` or do not have a unique `member_id`. We do this in a dbt model called `[datasource]__int_member_accounting` that looks like this:
+
+| Description | Number | Percent |
+| --- | --- | --- |
+| Claims in raw data | 1,340,235 | 100 |
+| Claims with no member_id | 0 | 0 |
+| Claims with non-unique member_id | 0 | 0 |
+| Claims with unique member_id | 1,340,235 | 100 |
+
+When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
+errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+
+**Expectations in the input layer:**
+
+- `patient_id` and `member_id` are populated for every row
+- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
+- `patient_id` is unique across all data sources
+
+**Transformations from the input layer to the normalized input layer:**
+
+- No transformations occur in The Tuva Project.
+
+**Expectations in the normalized layer:**
+
+- `patient_id` and `member_id` are populated for every row
+- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
+- `patient_id` is unique across all data sources
+
+**Data quality checks table**
+
+This table is calculated against the normalized input layer:
+
+| Description | Number | Percent |
+| --- | --- | --- |
+| Claim lines with no member_id | 0 | 0 |
+| Claim lines with no patient_id | 0 | 0 |
+| Claims with no member_id | 0 | 0 |
+| Claims with no patient_id | 0 | 0 |
+| Claims with non-unique member_id | 0 | 0 |
+| Claims with non-unique patient_id | 0 | 0 |
+
+### gender
 
 `gender` contains the biological sex of a member.
 
