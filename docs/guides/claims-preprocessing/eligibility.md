@@ -3,6 +3,7 @@ id: eligibility
 title: "Eligibility"
 hide_title: false
 description: This guide demonstrates
+toc_max_heading_level: 2
 ---
 
 This section describes how to map your raw claims data to the [eligibility](../../data-dictionaries/input-layer#eligibility) table in the Input Layer.  The eligibility table contains enrollment and demographic data of health plan members.
@@ -20,7 +21,7 @@ Of these two formats the Enrollment Span Format is the most common format in raw
 
 ## patient_id
 
-#### Mapping
+### Mapping
 
 - **Description:** The `patient_id` is intended to represent a unique person.
 - **Data Type:** varchar
@@ -29,11 +30,11 @@ Of these two formats the Enrollment Span Format is the most common format in raw
   - `patient_id` is populated for every row
   - `patient_id` has the same value for all lines within the same `claim_id`
 
-#### Transformation
+### Transformation
 
 None.
 
-#### Data Quality
+### Data Quality
 
 ## memebr_id
 
