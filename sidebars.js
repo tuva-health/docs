@@ -50,6 +50,7 @@ const sidebars =
 
     guidesSidebar: 
     [
+        "guides/acute-inpatient-analytics",
         "guides/geospatial-analytics",
 
     ],
