@@ -67,7 +67,7 @@ None.
 
 None.
 
-### race
+## race
 
 ### Mapping
 
@@ -80,7 +80,7 @@ None.
 
 None.
 
-### birth_date
+## birth_date
 
 ### Mapping
 
@@ -98,7 +98,7 @@ The Tuva Project will validate `birth_date` against the [calendar](https://githu
 table to confirm it is a valid value.
 
 
-### death_date
+## death_date
 
 ### Mapping
 
@@ -112,7 +112,7 @@ table to confirm it is a valid value.
 The Tuva Project will validate `death_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
 table to confirm it is a valid value.
 
-### death_flag
+## death_flag
 
 ### Mapping
 
@@ -128,7 +128,7 @@ table to confirm it is a valid value.
 
 None.
 
-### enrollment_start_date
+## enrollment_start_date
 
 ### Mapping
 
@@ -144,7 +144,7 @@ The Tuva Project will validate `enrollment_start_date` against the [calendar](ht
 table to confirm it is a valid value.
 
 
-### enrollment_end_date
+## enrollment_end_date
 
 ### Mapping
 
@@ -162,7 +162,7 @@ with the data provide then map `NULL` to the last day of the current year.
 The Tuva Project will validate `enrollment_end_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
 table to confirm it is a valid value.
 
-### payer
+## payer
 
 ### Mapping
 
@@ -175,7 +175,7 @@ table to confirm it is a valid value.
 
 None.
 
-### payer_type
+## payer_type
 
 ### Mapping
 
@@ -188,7 +188,7 @@ None.
 
 None.
 
-### plan
+## plan
 
 ### Mapping
 
@@ -201,7 +201,7 @@ None.
 
 None.
 
-### original_reason_entitlement_code
+## original_reason_entitlement_code
 
 ### Mapping
 
@@ -213,7 +213,7 @@ None.
 
 ### Transformation
 
-### dual_status_code
+## dual_status_code
 
 ### Mapping
 
@@ -227,7 +227,7 @@ None.
 
 None.
 
-### medicare_status_code
+## medicare_status_code
 
 ### Mapping
 
@@ -241,7 +241,7 @@ None.
 
 None.
 
-### first_name
+## first_name
 
 ### Mapping
 
@@ -253,7 +253,7 @@ None.
 
 None.
 
-### last_name
+## last_name
 
 ### Mapping
 
@@ -265,7 +265,7 @@ None.
 
 None.
 
-### address
+## address
 
 ### Mapping
 
@@ -278,7 +278,7 @@ None.
 
 None.
 
-### city
+## city
 
 ### Mapping
 
@@ -291,7 +291,7 @@ None.
 
 None.
 
-### state
+## state
 
 ### Mapping
 
@@ -304,7 +304,7 @@ None.
 
 None.
 
-### zip_code
+## zip_code
 
 ### Mapping
 
@@ -318,7 +318,7 @@ None.
 
 None.
 
-### phone
+## phone
 
 ### Mapping
 
@@ -329,7 +329,7 @@ None.
 
 None.
 
-### data_source
+## data_source
 
 ### Mapping
 
