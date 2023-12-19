@@ -1161,12 +1161,8 @@ This table is calculated against the normalized input layer:
 
 | Description | Number | Percent |
 | --- | --- | --- |
-| Claim lines with no member_id | 0 | 0 |
-| Claim lines with no patient_id | 0 | 0 |
-| Claims with no member_id | 0 | 0 |
-| Claims with no patient_id | 0 | 0 |
-| Claims with non-unique member_id | 0 | 0 |
-| Claims with non-unique patient_id | 0 | 0 |
+| Rows with no member_id | 0 | 0 |
+| Rows with no patient_id | 0 | 0 |
 
 ### gender
 

@@ -6,521 +6,339 @@ description: This guide demonstrates
 toc_max_heading_level: 2
 ---
 
-This section describes how to map your raw claims data to the [eligibility](../../data-dictionaries/input-layer#eligibility) table in the Input Layer.  The eligibility table contains enrollment and demographic data of health plan members.
+This section describes how to map your raw claims data to the [eligibility](../../data-dictionaries/input-layer#eligibility) 
+table in the Input Layer.  The eligibility table contains enrollment and demographic data of health plan members.
 
 Raw eligibility data is typically modeled in one of two formats:
 
 1. Enrollment Span Format
 2. Member Month Format
 
-The Enrollment Span Format includes one record per member per enrollment span.  An enrollment span is a specific time period, including start date and end date when a specific patient had health insurance coverage with a specific health plan.  Sometimes the enrollment end date is left blank or has a very distant future date (e.g. 12/31/9999) in the case enrollment has not ended.
+The Enrollment Span Format includes one record per member per enrollment span.  An enrollment span is a specific time period,
+including start date and end date when a specific patient had health insurance coverage with a specific health plan.  Sometimes 
+the enrollment end date is left blank or has a very distant future date (e.g. 12/31/9999) in the case enrollment has not ended.
 
-The Member Month Format includes one record per member per month of eligibility.  For example, if a patient had an enrollment span with start data of 1/1/2022 and end date of 6/30/2022, this would result in 6 records for that patient in the member month format, one record for each month of eligibility between January and June of 2022.  You can read more about member months on Knowledge Base [here](../../knowledge-base/claims-data-fundamentals/member-months).
-
-Of these two formats the Enrollment Span Format is the most common format in raw claims data.  The eligibility table also uses the enrollment span format.  Thus it will likely be relatively straightforward to map your eligibility data if your data is in the Enrollment Span Format.  If your data is in the Member Month Format you'll need to convert it to the Enrollment Span Format, which is doable but can be a pain.
+The Member Month Format includes one record per member per month of eligibility.  For example, if a patient had an enrollment 
+span with start data of 1/1/2022 and end date of 6/30/2022, this would result in 6 records for that patient in the member month format, 
+one record for each month of eligibility between January and June of 2022.  You can read more about member months on Knowledge Base [here](../../knowledge-base/claims-data-fundamentals/member-months).
 
 ## patient_id
 
 ### Mapping
 
-- **Description:** The `patient_id` is intended to represent a unique person.
+- **Description:** a unique identifier for each patient in the dataset.
 - **Data Type:** varchar
-- **Terminology:** N/A
 - **Expectations:**
-  - `patient_id` is populated for every row
-  - `patient_id` has the same value for all lines within the same `claim_id`
+  - `patient_id` is populated on every row
+  - `patient_id` is unique per `data_source`
+
+The need to crosswalk patient identifiers is obvious when working with multiple data sets that have an overlapping population.
+In this scenario, `patient_id` should unify the same person and different `member_id` roll up to the same `patient_id`.
+It is less clear if a crosswalk is needed when working with one data source.  A person may change plans which could generate
+a new identifier in the source system.  In this scenario, it's important to consult with the data provider and/or the data
+dictionary.
 
 ### Transformation
 
 None.
 
-### Data Quality
+## member_id
 
-## memebr_id
+### Mapping
+
+- **Description:** an identifier that links a patient to a particular insurance product or health plan.
+- **Data Type:** varchar
+- **Expectations:**
+  - `member_id` is populated on every row
+
+### Transformation
+
+None.
 
 ## gender
 
-`gender` contains the biological sex of a member.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** The biological sex of the patient.
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__gender.csv)**
 
-**Expectations in the input layer:**
+### Transformation
 
-- data type is string
-- `gender` is mapped to one of the values in Tuva’s [gender terminology file](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__gender.csv).
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformation occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- `gender` is mapped to one of the values in Tuva’s [gender terminology file](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__gender.csv).
+None.
 
 ### race
 
-`race`contains the race of a member.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** The race of the patient.
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__race.csv)**
 
-**Expectations in the input layer:**
 
-- data type is `string`
-- `race` is mapped to one of the values in Tuva’s [race terminology file](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__race.csv).
+### Transformation
 
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
-- `race` is mapped to one of the values in Tuva’s [race terminology file](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__race.csv).
+None.
 
 ### birth_date
 
-This field contains the birth date of a member. 
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** date the patient was born
+- **Data Type:** date
+- **Expectations:**
+  - `birth_date` is in the format `YYYY-MM-DD`
+- **Data Marts:**
+  - CMS Hierarchical Condition Categories (HCCs)
+  - Quality Measures
 
->💡 `birth_date`is required for the Mart below.  The Tuva project will still run but no data will be produced:
->- HCCs
->- Quality Measures
+### Transformation
 
+The Tuva Project will validate `birth_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
+table to confirm it is a valid value.
 
-**Expectations for birth_date in the input layer:**
-
-- data type is `date`
-- `birth_date` is in the format `YYYY-MM-DD`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `date`
-- `birth_date` is in the format `YYYY-MM-DD`
 
 ### death_date
 
-`death_date` contains the day a member died. 
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** date the patient died.
+- **Data Type:** date
+- **Expectations:**
+  - `death_date` is in the format `YYYY-MM-DD`
 
-**Expectations in the input layer:**
+### Transformation
 
-- data type is `date`
-- `death_date` is in the format `YYYY-MM-DD`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `date`
-- `death_date` is in the format `YYYY-MM-DD`
+The Tuva Project will validate `death_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
+table to confirm it is a valid value.
 
 ### death_flag
 
-`death_flag` contains a flag indicating if a member died; 1 for yes 0 for no.  
+### Mapping
 
-`death_flag` should be 1 if a `death_date` is populated.  `death_flag` can be 1 and `death_date` NULL if only an indicator is available in the source data.
+- **Description:** a 1 (yes) or 0 (no) to indicate whether the patient has died
+- **Data Type:** int
+- **Terminology:** N/A
+- **Expectations:**
+  - `death_flag` = 1 if `death_date` is populated
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+`death_flag` can also be equal to 1 if the source does not contain a `death_date` but provides a boolean instead.
 
-**Expectations in the input layer:**
+### Transformation
 
-- data type is int
-- `death_flag` is populated with a 1 or 0
+None.
 
-**Transformations from the input layer to the normalized input layer:**
+### enrollment_start_date
 
-- No transformations occur in The Tuva Project.
+### Mapping
 
-**Expectations in the normalized input layer:**
+- **Description:** depending on the grain, `enrollment_start_date` is the first day of one month of enrollment (i.e. member month) 
+or `enrollment_start_date` is the first month of an enrollment period (i.e. enrollment span)
+- **Data Type:** date
+- **Expectations:**
+  - `enrollment_start_date` is in the format `YYYY-MM-DD`
+  
+### Transformation
 
-- data type is int
-- `death_flag` is populated with a 1 or 0
-
-### enrollment_start_date and enrollment_end_date
-
-The grain of this table will affect how these fields are populated:
-
-- One row per member month - `enrollment_start_date` will be the beginning of the month and `enrollment_end_date` will be the last day of the month.
-  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-01-31
-- One row per enrollment span - `enrollment_start_date` will be the first day of enrollment and `enrollment_end_date will` be the last day of enrollment.
-  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-12-31
+The Tuva Project will validate `enrollment_start_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
+table to confirm it is a valid value.
 
 
-#### Mapping
+### enrollment_end_date
 
-In the source data, enrollment end date may be `NULL` to indicate that the member is actively enrolled.  After confirming 
-this with the data provider, `enrollment_end_date` should be populated with the last day of the current year.
+### Mapping
 
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** depending on the grain, `enrollment_end_date` is the first day of one month of enrollment (i.e. member month) 
+or `enrollment_end_date` is the first month of an enrollment period (i.e. enrollment span)
+- **Data Type:** date
+- **Expectations:**
+  - `enrollment_end_date` is in the format `YYYY-MM-DD`
 
-**Expectations in the input layer:**
+If the source field contains `NULL` this usually represents the member is actively enrolled.  Confirm this with assumpion
+with the data provide then map `NULL` to the last day of the current year. 
 
-- data type is `date`
-- `enrollment_start_date` and `enrollment_end_date` are populated in every row
-- `enrollment_start_date` and `enrollment_end_date` are populated in the format `YYYY-MM-DD`
+### Transformation
 
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `date`
-- `enrollment_start_date` and `enrollment_end_date` are populated in every row
-- `enrollment_start_date` and `enrollment_end_date` are populated in the format `YYYY-MM-DD`
-- `enrollment_start_date` ≤ `enrollment_end_date`
+The Tuva Project will validate `enrollment_end_date` against the [calendar](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__calendar.csv)
+table to confirm it is a valid value.
 
 ### payer
 
-`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
+### Mapping
 
-#### **Mapping**
+- **Description:** name of the payer (i.e. health insurer) providing coverage.
+- **Data Type:** varchar
+- **Expectations:**
+  - `payer` is populated on every row
 
-`payer` may not be available in the source data and should be hardcoded (e.g. `select 'aetna' as payer`
+### Transformation
 
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
-
-**Expectations in the input layer:**
-
-- `payer` is populated for every row
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- `payer` is populated for every row
-
-**Data Quality Checks:**
-
-This table is calculated against the normalized input layer:
-
-| Description | Number | Percent |
-| --- | --- | --- |
-| Claim lines with no payer | 0 | 0 |
-| Claims with no payer | 0 | 0 |
-| Claims with non-unique payer | 0 | 0 |
-
+None.
 
 ### payer_type
 
-`payer_type` contains the type of insurance provided by the payer.  It must be one of the values in Tuva’s [payer_type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__payer_type.csv) terminology file.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** type of payer (e.g. commercial, medicare, medicaid, etc.).
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__payer_type.csv)**
 
-**Expectations in the input layer:**
 
-- data type is `string`
-- `payer_type` is poopulated for every row
+### Transformation
 
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
-- `payer_type` is populated for every row
+None.
 
 ### plan
 
-`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
+### Mapping
 
-#### **Mapping**
+- **Description:** the plan (i.e. sub contract) providing coverage.
+- **Data Type:** varchar
+- **Expectations:**
+  - `payer` is populated on every row
 
-`plan` may not be available in the source data and should be hardcoded (e.g. `select 'aetna bronze 1' as plan` and it can be the same as the payer if no plan is needed for analytics.
+### Transformation
 
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
-
-**Expectations in the input layer:**
-
-- data type is `string`
-- `plan` is populated for every row
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
-- `plan` is populated for every row
-
-**Data quality checks:**
-
-This table is calculated against the normalized input layer:
-
-| Description | Number | Percent |
-| --- | --- | --- |
-| Claim lines with no payer | 0 | 0 |
-| Claim lines with no plan | 0 | 0 |
-| Claims with no payer | 0 | 0 |
-| Claims with no plan | 0 | 0 |
-| Claims with non-unique payer | 0 | 0 |
-| Claims with non-unique plan | 0 | 0 |
+None.
 
 ### original_reason_entitlement_code
 
-`original_reason_entitlement_code` contains a member’s original reason for Medicare entitlement.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the original reason a patient qualified for Medicare entitlement.
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__medicare_orec.csv)**
+- **Data Marts:**
+  - CMS Hierarchical Condition Categories (HCCs) - default value 'Aged'
 
->💡 `original_reason_entitlement_code` is needed for the CMS HCC mart. If unavailable, `medicare_status_code` is used.
-> If neither is available, the mart will use a default value of “Aged”.
-
-
-**Expectations in the input layer:**
-
-- data type is `string`
-- When available in the source data, `original_reason_entitlement_code` is one of the values in Tuva’s [OREC](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_orec.csv) terminology file.
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations for in the normalized input layer:**
-
-- data type is `string`
-- When available in the source data, `original_reason_entitlement_code` is one of the values in Tuva’s [OREC](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_orec.csv) terminology file.
+### Transformation
 
 ### dual_status_code
 
-`dual_status_code` indicates whether a member is enrolled in both Medicare and Medicaid.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** whether a patient is dually eligible for Medicare and Medicaid.
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__medicare_dual_eligibility.csv)**
+- **Data Marts:**
+  - CMS Hierarchical Condition Categories (HCCs) - default value 'Non'
 
->💡 `dual_status_code` is needed for the CMS HCC mart. If unavailable, the mart will use a default value of “Non” (i.e., non-dual).
+### Transformation
 
-**Expectations in the input layer:**
-
-- data type is `string`
-- When available in the source data, `dual_status_code` is one of the values in Tuva’s [dual status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_dual_eligibility.csv) terminology file.
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occurs in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
-- When available in the source data, `dual_status_code` is one of the values in Tuva’s [dual status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_dual_eligibility.csv) terminology file.
+None.
 
 ### medicare_status_code
 
-`medicare_status_code` indicates how a member currently qualifies for Medicare.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the current reason a patient qualifies for Medicare.
+- **Data Type:** varchar
+- **[Terminology](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__medicare_status.csv)**
+- **Data Marts:**
+  - CMS Hierarchical Condition Categories (HCCs)
 
->💡 `medicare_status_code` is needed for the CMS HCC mart. It’s used when `original_reason_entitlement_code` is missing.
+### Transformation
 
-**Expectations in the input layer:**
+None.
 
-- data type is `string`
-- When available in the source data, `medicare_status_code` is one of the values in Tuva’s [medicare status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_status.csv) terminology file.
+### first_name
 
-**Transformations from the input layer to the normalized input layer:**
+### Mapping
 
-- No transformations occurs in The Tuva Project.
+- **Description:** a patient's first name
+- **Data Type:** varchar
+- **Terminology:** N/A
 
-**Expectations in the normalized input layer:**
+### Transformation
 
-- data type is `string`
-- When available in the source data, `medicare_status_code` is one of the values in  Tuva’s [medicare status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_status.csv) terminology file.
+None.
 
-### first_name and last_name
+### last_name
 
-These fields are populated with the member’s name.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** a patient's last name
+- **Data Type:** varchar
+- **Terminology:** N/A
 
-**Expectations in the input layer:**
+### Transformation
 
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
+None.
 
 ### address
 
-`address` is populated with the house and street name of a member’s address.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the patient's street address
+- **Data Type:** varchar
+- **Data Marts:**
+  - Geocoding
 
-> 💡 `address` is required to geocode a patient’s location and link them to social determinants.
+### Transformation
 
-**Expectations for address in the input layer:**
-
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations for address in the normalized input layer:**
-
-- Value is a string
-- data type is `string`
+None.
 
 ### city
 
-`city` is populated with the city of a member’s address. 
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the patient's city
+- **Data Type:** varchar
+- **Data Marts:**
+  - Geocoding
 
->💡 `city` is required to geocode a patient’s location and link them to social determinants.
+### Transformation
 
-
-**Expectations in the input layer:**
-
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
+None.
 
 ### state
 
-`state` is populated with the state of a member’s address.  The value can be either the full state name or the code (e.g. Vermont or VT).
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the patient's state
+- **Data Type:** varchar
+- **Data Marts:**
+  - Geocoding
 
-> 💡 `state` is required to geocode a patient’s location and link them to social determinants.
+### Transformation
 
-
-**Expectations in the input layer:**
-
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
+None.
 
 ### zip_code
 
-`zip_code` is populated with the zip code of the member’s address.  The zip code can be 5 digits or 9 digits.
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the patient's zip code
+- **Data Type:** varchar
+- **Data Marts:**
+  - Geocoding
 
->💡 `zip_code` is required to geocode a patient’s location and link them to social determinants. 
-> In some de identified data sets, only the first 3 digits of a zip code may be available.  This can still be used but may not result in a location match.
+`zip_code` is preferably a zip or zip+4.  A three digit zip can be used but may not result in a location match.  
+### Transformation
 
-
-
-**Expectations in the input layer:**
-
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
+None.
 
 ### phone
 
-`phone` is populated with the member’s phone number.  
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** the patient's phone number
+- **Data Type:** varchar
 
->💡 `phone` is a helpful component in enterprise master patient index (EMPI) and should be populated if the data is available. 
-> Any format can be used.
+### Transformation
 
-
-**Expectations in the input layer:**
-
-- data type is `string`
-
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
+None.
 
 ### data_source
 
-`data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
+### Mapping
 
-#### Mapping
-When mapping to the input layer, the following expectations must be met or else The Tuva Project will not run and produce 
-errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+- **Description:** user-configured field that indicates the data source
+- **Data Type:** varchar
+- **Expectations:**
+  - unique per `data_source`
 
-**Expectations in the input layer:**
+### Transformation
 
-- data type is `string`
-- `data_source` is populated for every row
+None.
 
-**Transformations from the input layer to the normalized input layer:**
-
-- No transformations occur in The Tuva Project.
-
-**Expectations in the normalized input layer:**
-
-- data type is `string`
-- `data_source` is populated for every row
-
-**Data quality checks table:**
-
-This table is calculated against the normalized input layer:
-
-| Description | Number | Percent |
-| --- | --- | --- |
-| Claim lines with no data_source | 0 | 0 |
-| Claims with no data_source | 0 | 0 |
