@@ -1,99 +1,91 @@
 ---
 id: acute-inpatient-analytics
-title: "Acute Inpatient Analytics"
-description: This guide
+title: "Acute Inpatient Data Mart"
+description: This guide describes how to analyze acute inpatient hospital visits using claims data.
 toc_max_heading_level: 2
 ---
 
+This guide describes the acute inpatient data mart, including how it works and how to use it.  The data mart and guide are still under active development but everything released thus far is fully functioning.
+
+You can find the code for the data mart on GitHub here.
+
+We welcome questions and suggestions for improvement in Slack or GitHub.
+
 ## Overview
 
-Analyzing acute inpatient hospital stays is one of the most common uses of healthcare data.  For example, hospitals often want to understand how they are performing on metrics like:
+A significant portion of overall healthcare services and expenditure occur in the acute inpatient hospital setting.  As a result, analyzing how care is delivered during an acute inpatient stay and post-discharge are some of the most common and important analytic uses of claims data.
 
-- Mortality
-- Length of Stay
-- Readmssions
-- Cost
+Hospitals are commonly concerned with optimizing how care is delivered _during_ a hospital stay and the outcomes that result.  This sort of "within hospital stay" analysis typically boils down to figuring out which DRGs the hospital can improve on when it comes to mortality, length of stay, and cost.  Thanks to [CMS's Hospital Readmissions Reduction Program](https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp), which results in penalties for hospitals with high risk-adjusted readmission rates, hospitals also pay careful attention to readmissions.
 
-Health plans and organizations with value-based contracts often care about metrics like:
+Health plans and value-based care organizations tend to be more interested in what occurs _after_ a hospital stay (i.e. post-discharge).  While they have less of an ability to impact what occurs during a stay, they can impact transitions of care post-discharge, which can lead to better patient outcomes, reduced readmissions, and ultimately a lower total cost of care.
 
-- Inpatient Visits per 1,000 members
-- Inpatient Days per 1,000 members
+With both within-hospital and post-discharge types of analysis, it's critical to risk-adjust the measures of interest.  Otherwise it's impossible to accurately analyze differences across cohorts or changes over time.
 
-Analyzing acute inpatient hospital stays using claims data is complex, largely because the concept of an acute inpatient stay **doesn't exist in raw claims data**.  The analyst has to create this concept from raw claims data before actual analysis can begin and, as this guide explains, creating this concept is complex.
+But before any analysis can be done, a signficant amount of upfront data transformation must be performed.  This includes:
 
-This guide describes how to analyze acute inpatient hospital stays using raw claims data, including:
+- Identifying claims that occur in an acute inpatient care setting
+- Grouping acute inpatient claims into encounters (i.e. distinct visits)
+- Identifying and adjusting for data quality problems
+- Applying risk adjustment models
 
-- How to identify claims that are acute inpatient
-- How to group acute inpatient claims into encounters (i.e. visits or stays)
-- What data quality problems to look out for
-- How to prepare summary data tables that are ready for analysis
-- How to apply risk adjustment models to create patient-level benchmarks
-
-All of the associated code is available as part of the Tuva Project.
+This guide describes how we perform this data transformation in the Acute Inpatient data mart.  It also describes how you can use the data mart to analyze the types of questions outlined above.
 
 ## Identifying Acute Inpatient Claims
 
-The first step is identifying institutional and professional claims for services that occurred in an acute inpatient care setting.  We define acute inpatient as a short-term hospital stay in a standard hospital (e.g. community, tertiary, academic, critical access).  Acute inpatient stays do not include visits to psychiatric hospitals, inpatient rehab centers, or nursing facilities.
+Identifying which claims occurred in an acute inpatient care setting is the very step in going from raw claims data to data tables ready for acute inpatient analytics.  These are the claims we will group into distinct acute inpatient encounters, but to do that we must first identify them.  
+
+We define an acute inpatient visit as a short-term hospital stay in a standard acute care hospital (e.g. community, tertiary, academic, critical access).  We do not consider visits to psychiatric hospitals, inpatient rehab centers, or nursing facilities acute inpatient stays.
 
 ### Institutional Claims
 
-Every acute inpatient encounter occurs in a hospital and every hospital bills their insurer using institutional claims.  Therefore we use acute inpatient institutional claims as the foundation for our definition of acute inpatient encounters.
+Every acute inpatient encounter occurs in a hospital and every hospital bills the patient's primary health insurance using an institutional claim form.  Therefore we use acute inpatient institutional claims as the foundation for our definition of acute inpatient encounters.
 
-The trick is determining which institutional claims are for acute inpatient encounters.  There are many ways to do this.  We consider three criteria:
+To identify whether an institutional claim occurred in an acute inpatient setting we consider three criteria.  Namely, whether the claim had:
 
 1. Room and Board Revenue Codes
 2. Valid MS-DRG or APR-DRG
 3. Inpatient Bill Type Code
 
-**Room and Board Revenue Codes:** You can see the exact room and board revenue codes here.  While an acute inpatient claim should always have at least 1 claim line with a room and board revenue code, not every claim with a room and board revenue code will be acute inpatient.  For example, visits to psychiatric hospitals, inpatient rehab centers, and nursing facilities all commonly have room and board revenue codes.
+The diagram below describes the dbt models from the acute inpatient data mart which are used to define which institutional claims are acute inpatient.  Reviewing this diagram in detail is the best way to completely understand how this part of the data mart works.
 
-**Valid MS-DRG or APR-DRG:** Every acute inpatient institutional claim should have a valid MS-DRG or APR-DRG.  This is literally how every hospital is paid for acute inpatient encounters, so without this field they won't get paid.  
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVN-Gw0Bw=/?moveToViewport=-4642,-3174,7288,5093&embedId=549531298059" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
-**Inpatient Bill Type Code:** Bill type codes 11X and 12X are reserved for acute inpatient stays.  Every acute inpatient institutional claim should have one of these bill type codes.
+The most interesting model in this part of the data mart is the **aip_venn_diagram_summary** model.  This model summarizes the distinct count of institutional claims that meet different combinations of the criteria listed above.  
 
-The challenge is that these data elements aren't always available or consistently populated in every claims dataset.  We compared a variety of claims datasets and found significant variation in the reliability of these data elements.  
+![AIP Venn Diagram](/img/aip_venn_diagram.png)
 
-![acute ip claim tags](/img/acute_ip_inst_claim_tags.png)
+For example "rb" indicates claims that have a valid room and board revenue code, but do not have a valid DRG or inpatient bill type code.  And "drg" indicates claims that have a valid DRG but no room and board revenue code or inpatient bill type.  And so on for each combination of the criteria.  There are 7 combinations in total (2^3 = 8 however we ignore the empty set, therefore 7).
 
-These datasets represent a variety of population sizes and payer types:
+Claims datasets vary significantly in data quality.  You can query this table to figure out which combinations of criteria your claims meet based on its own data quality.
 
-- Dataset A: Medicare FFS
-- Dataset B: Medicare FFS
-- Dataset C: Medicare Advantage
-- Dataset D: Medicare Advantage
-- Dataset E: Commercial
-- Dataset F: Commercial
+![AIP Venn Diagram Example](/img/aip_venn_diagram_example.png)
 
-By using different combinations of the 3 criteria we arrive at different counts of acute inpatient institutional claims.  A couple important observations:
+These results, which are from the Tuva Synthetic dataset, show that there are 223 claims that meet all 3 criteria.  However there are 215 claims with a valid DRG and inpatient bill type that do not have a valid room and board revenue code.  If we require all three criteria in our definition, these 215 claims will not be considered acute inpatient, even though they have a valid DRG.  
 
-First, Datasets E and F are missing revenue center codes and/or DRGs.  
+The point is, you can use this information the determine the best way to define acute inpatient institutional claims for your specific dataset.  We use all 3 criteria by default in the acute inpatient data mart.  However, you can easily modify the logic in the **acute_inpatient_institutional_claims** model to suit your data.  The logic that you would modify exists in the second CTE in this model as shown in the image below.  For example, to change from using all three criteria to just DRG and inpatient bill type criteria you would change the WHERE statement to: ```where aa.drg_bill = 1```
 
-Second, while Datasets C and D have all the data elements necessary for a 3 criteria, the results vary dramatically based on which combination of criteria are applied.  For example, when we apply criteria 1 and 2 (Room and Board + DRG) the resulting set of institutional claims tagged as acute inpatient are 33% and 29% greater than when all 3 criteria (Room and Board + DRG + Inpatient Bill Type) are applied.  This is a significantly different number of claims!
+![Modify AIP Logic](/img/modify_aip_logic_example.png)
 
-- Dataset C: 140,287 / 100,388 = 1.33 or a 33% difference
-- Dataset D: 1,532 / 1,167 = 1.285 or a 29% difference
+#### Room and Board Revenue Codes
 
-However the difference between these two methods is negligible in Datasets A and B.
+As you get deeper into the weeds of your claims data it can be helpful to develop more intuition about room and board revenue codes.
 
-- Dataset A: 223 / 233 = 1.00 or a 0% difference
-- Dataset B: 433,807 / 433,802 = 0.999 or a negligible difference
+There are two other models that provide interesting data quality analytics related to room and board revenue codes:
+- **types_of_room_and_board_rev_codes_on_claims**
+- **distinct_room_and_board_rev_codes_per_claim**
 
-Like most things in healthcare data, there is no obvious answer.  The approach that works best for you will depend on your dataset and the data you have available.  Our standard approach is to use all 3 criteria, which is the most conservative approach.  Generally we feel this approach makes sense unless your dataset is missing one of the required fields or you have concerns that it isn't being populated correctly.
+In the acute inpatient data mart, we group room and board revenue codes into four categories:
+- Basic
+- Hospice
+- Leave of Absence
+- Behavioral
 
-Clearly it's important to understand which methodology you're using to identify acute inpatient institutional claims, as the choice of methodology can dramatically impact results.  Understanding this choice becomes even more important if you're comparing or working with multiple claims datasets.
+Only basic room and board codes are considered acute inpatient.  However it's possible for institutional claims to have different combinations of different types of room and board codes.  The **types_of_room_and_board_rev_codes_on_claims** model summarizes this.  For example, as the fourth row in the table in the image below shows, there are 11 claims that only have Hospice room and board codes.  These 11 claims will not be considered acute inpatient.  
 
-### Professional Claims
-
-## Grouping Claims into Stays
-
-## Preparing Analytics-ready Data Table
-
-## Applying Risk Adjustment Models
-
-## Doing Analysis
+![AIP Types of Room and Board Codes](/img/aip_types_of_room_and_board_codes.png)
 
 ## References
 
-- [Methodology for Identifying Inpatient Admission Events](https://medinsight.com/healthcare-data-analytics-resources/blog/methodology-for-identifying-inpatient-admission-events/)
 - [Administrative Healthcare Data](https://www.amazon.com/Administrative-Healthcare-Data-Content-Application/dp/1612908861)
-- [The impact of standardizing the definition of visits on the consistency of multi-database observational health research](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0001-6)
+- [The Impact of Standardizing the Definition of Visits on the Consistency of Multi-Database Observational Health Research](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0001-6)
+- [Methodology for Identifying Inpatient Admission Events](https://medinsight.com/healthcare-data-analytics-resources/blog/methodology-for-identifying-inpatient-admission-events/)

@@ -10,7 +10,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'The Tuva Project',
-  tagline: 'Open source software for cleaning and transforming raw healthcare data',
+  tagline: 'Open source software for transforming raw healthcare data',
   url: 'https://www.thetuvaproject.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -45,14 +45,14 @@ const config = {
           editUrl:
             'https://github.com/tuva-health/docs/edit/main/'
         },
-        blog: {
-          blogTitle: 'Decoding Healthcare Analytics',
-          blogDescription: 'A Docusaurus powered blog!',
-          postsPerPage: 'ALL',
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
-          showReadingTime: true,
-        },
+        // blog: {
+        //   blogTitle: 'Decoding Healthcare Analytics',
+        //   blogDescription: 'A Docusaurus powered blog!',
+        //   postsPerPage: 'ALL',
+        //   blogSidebarTitle: 'All posts',
+        //   blogSidebarCount: 'ALL',
+        //   showReadingTime: true,
+        // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
