@@ -88,16 +88,14 @@ The challenge in creating high-level concepts is they require a ton of subject m
 
 So why does this problem exist and what can we practically do about it?
 
-Like most things, I believe it ultimately boils down to incentives.  If the incentive were to have the highest quality healthcare system, then we'd already have the "learning healthcare system" we all talk about and solid data would be at the core.  
+Like most things, I believe it ultimately boils down to incentives.  If the incentive were to have the highest quality healthcare system, then we'd already have the "learning healthcare system" we all talk about and analytics-ready data would be at its core.  
 
-Instead, a lot of our collective energy is spent trying to get paid or deny payment for healthcare services.  Our electronic medical record systems are optimized for this, as opposed to accurate data capture.
+Instead, a lot of our energy is spent trying to get paid or deny payment for healthcare services, and our data collection systems (e.g. EHRs) have been optimized to do just that.
 
 Of course the problem is multi-faceted, but I believe that's the crux of it.
 
-To fix it, people like to say "let's re-engineer the EMR from scratch."  But that won't matter (or happen) unless incentives change.  And even if it does, data quality and high-level concepts won't be completely addressed by this.
+To fix it, people like to say "let's re-engineer the EHR from scratch."  But this won't matter (or happen) unless incentives change.  And even if it does, data quality and high-level concepts won't be completely addressed by this.
 
-Unfortunately I don't think there's an easy answer, which is why the problem has gone unaddressed for so long.
+Unfortunately I don't think there's an easy answer, which is why the problem has gone unaddressed for so long.  For better or worse, Coco and I started Tuva to solve this problem, which we're 100% dedicated to ([Tuva or Bust](../manifesto)).  
 
-For better or worse, Coco and I started Tuva to solve this problem, which we're 100% dedicated to ([Tuva or Bust](../manifesto#why-the-name-tuva)).  At Tuva, we're building a library of data marts that are normalized, with data quality tests and high-level concepts built-in.  And we're making them open source, which means they are built and tested not just by us, but by a community of healthcare data practitioners with a TON of collective healthcare data subject matter expertise.
-
-We're on a mission to solve this problem and accelerate high-quality research and analysis from healthcare data (or at least make it a little less frustrating).
+In future posts, I'll dive into each of these problems in more detail and talk about how we're solving them at Tuva.  In the meantime, check out the [thetuvaproject.com](https://thetuvaproject.com/) to explore the open source or [contact us](https://tuvahealth.com/contact/) at Tuva to learn how we can transform your organization's healthcare data to unlock advanced research and analysis.
