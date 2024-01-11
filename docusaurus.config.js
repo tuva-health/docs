@@ -127,7 +127,7 @@ const config = {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
-          // {to: '/blog', label: 'Blog', position: 'left'}
+          {to: '/blog', label: 'Blog', position: 'left'}
 
         ],
 
