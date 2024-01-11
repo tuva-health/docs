@@ -5,7 +5,7 @@ authors:
     title: Co-founder of the Tuva Project
     image: /img/messy-healthcare-data-warehouse.jpg
     url: https://github.com/aneiderhiser
-    image_url: https://avatars.githubusercontent.com/aneiderhiser
+    # image_url: https://avatars.githubusercontent.com/aneiderhiser
 date: 2024-01-11
 ---
 
