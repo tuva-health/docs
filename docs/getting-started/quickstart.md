@@ -2,7 +2,7 @@
 id: quickstart
 title: "Quickstart"
 hide_title: true
-description: Quick and simple to follow instructions for getting started with the Tuva Project.
+description: Quick and simple instructions for getting started with the Tuva Project.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,20 +10,34 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 Quickstart
 
-The Tuva Project is a large collection of tools for cleaning and transforming healthcare data.  But at it's core is a standard data model designed for analytics.  The Tuva data model, along with the code and terminology sets to create it, exists in a main repository called [the_tuva_project](https://github.com/tuva-health/the_tuva_project).  This section describes 3 different ways you can get started using this repo:
+The Tuva Project is a large collection of tools for cleaning and transforming healthcare data.  At it's core is a standard data model designed for healthcare analytics.  The Tuva Data Model, along with the code and terminology sets to create it, exists in a main repository called [the_tuva_project](https://github.com/tuva-health/the_tuva_project).  This section describes how you can get started using the Tuva Project.
 
-- Entire Tuva Data Model + Terminology and Reference Datasets
-- Single Data Mart
-- Terminology and Reference Datasets
+## Pre-requisites
 
-## Pre-reqs
+There are a couple pre-requisites for using the Tuva Project:
 
-In order to run the Tuva Project you need dbt installed and healthcare data loaded inside a data warehouse that we support.
+1. Install [dbt](https://docs.getdbt.com/docs/core/pip-install)
+2. Healthcare data (i.e. claims or clinical data) in a data warehouse
 
-Then you need to import the Tuva Project dbt package into an existing dbt project (or into a newly created one).
+The Tuva Project supports the following data warehouses:
+- Snowflake
+- Bigquery
+- Redshift
+- Databricks
+- DuckDB
 
-1. In an existing dbt project, add the Tuva Project to your `packages.yml` file, or create a packages.yml file if you 
-do not already have one. This should be created in the root of your dbt project.
+## Quickstart Tutorial
+
+We created this [demo project](https://github.com/tuva-health/the_tuva_project_demo) to make it easy for people to explore the Tuva Project, even if you don't have access to healthcare data.  The demo includes a 1,000 patient synthetic claims dataset based on Medicare claims data.  Follow the instructions below to load the dataset into your data warehouse and run the Tuva Project.
+
+**Steps:**
+
+1. Clone or fork the demo project repo
+2. Configure the demo project dbt project to your data warehouse
+3. Run the demo project
+
+## Entire Tuva Data Model + Terminology and Reference Datasets
+
 ```yml
 packages:
   - package: tuva-health/the_tuva_project
@@ -33,8 +47,6 @@ packages:
 ```console
   dbt deps
 ```
-
-## Entire Tuva Data Model + Terminology and Reference Datasets
 
 Here we describe how you can process a raw healthcare data source (e.g. a claims dataset) into the Tuva data model and also load all terminology and reference datasets into your data warehouse.
 
@@ -106,10 +118,4 @@ the following steps:
 
 Alternatively, you can load all the terminology sets via SQL directly to your data warehouse. Check out the SQL for doing this [here](https://github.com/tuva-health/the_tuva_project/tree/main/terminology_sql).
 
-## Tutorial
 
-We created this [demo project](https://github.com/tuva-health/the_tuva_project_demo) to make it easy for people to explore the Tuva Project, even if you don't have access to healthcare data.  The demo includes:
-
-- A 1,000 patient synthetic claims dataset based on Medicare claims data.
-- All the data marts in the Tuva project.
-- All the terminology sets in the Tuva Project.
