@@ -5,13 +5,14 @@ authors:
     title: Co-founder of the Tuva Project
     image: /img/messy-healthcare-data-warehouse.jpg
     url: https://github.com/aneiderhiser
-    # image_url: https://avatars.githubusercontent.com/aneiderhiser
 date: 2024-01-11
 ---
 
 This is not another blog post about the promise of real-world healthcare data.  We all know that post already.  It's also not a post on how much progress we've made over the past two decades, with the digitization of medical records and now, finally, interoperability.  
 
 This is a post about the problem that makes doing research and analysis with healthcare data extremely frustrating.
+
+<!--truncate-->
 
 My co-founder Coco and I have been confronting this problem for the better part of the last fifteen years.  And most days of the week, we talk to data analysts, researchers, and engineers from across the healthcare ecosystem - providers, payers, tech, and biopharma - who are all wrestling with the same problem.
 

@@ -197,6 +197,11 @@ const config = {
             hideable: true,
             autoCollapseCategories: true
           },
+
+        },
+        blog: {
+          // Use a custom truncate marker
+          truncateMarker: /<!-- truncate -->/,
         },
     }),
 };
