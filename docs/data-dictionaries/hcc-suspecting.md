@@ -8,14 +8,14 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 The HCC Suspecting mart contains concepts to identify suspecting conditions for 
 risk adjustment.
 
-## hcc_suspecting_list
+## list
 
 This final model displays the list of suspecting conditions per patient with 
 the reason and contributing factors.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_suspecting__list.columns" />
 
-## hcc_suspecting_summary
+## summary
 
 This final model displays a rollup of suspecting conditions per patient.
 
