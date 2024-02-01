@@ -26,9 +26,7 @@ repo on GitHub as an example of model naming and organization.
         - "cms_hcc" is the name of the mart and the parent folder of the model
         - "int" is the table prefix for models in an intermediate folder
         - "demographic_factors" is the name/description of the model
-        
         ![Mart Folder Example](/img/contributing/mart-folder-screenshot.png)
-        
 - Schema, table, and column names should be in lower snake case.
     - Every word or abbreviation should be separated by an underscore.
 - Schema names should reflect the parent folder name and be consistent 
@@ -74,32 +72,27 @@ repo on GitHub as an example of model naming and organization.
 - Do not optimize for fewer lines of code.  New lines should be used within 
   reason to produce code that is easily read.
 - Use leading commas with a space in your `select` statement.
-    
     ```sql
     select
         npi
       , provider_first_name
       , provider_last_name
     from provider
-    ```
-    
+    ``` 
 - When dealing with long `case` or `where` clauses, predicates should be 
   indented on a new line. For example:
-    
     ```sql
     where 
       npi is not null
       and deactivation_flag = 0
       and entity_type_code = 1
     ```
-    
 - Use all lowercase unless a specific scenario needs you to do otherwise. This 
   means that keywords, field names, function names, and file names should all be 
   lowercase.
 - The `as` keyword should be used when aliasing a field or table.
 - When aliasing a table, a descriptive name or abbreviation should be used 
   rather than something generic or unrelated. For example:
-    
     ```sql
     -- good
     select *
@@ -113,7 +106,6 @@ repo on GitHub as an example of model naming and organization.
     inner join provider b
       on a.provider_id = b.provider_id
     ```
-    
 - Aggregations should be executed as early as possible before joining to another 
   table.
 - Ordering and grouping by the column name is preferred over using numbers 
@@ -126,7 +118,6 @@ repo on GitHub as an example of model naming and organization.
   change which table you select `from` and which one you `join` to.
 - Joins should list the left table first (i.e., the table you're joining data 
   to). For example:
-    
     ```sql
     select
         medical_claim.*
@@ -212,7 +203,6 @@ select * from final
       main idea and not used by other macros outside of the file.
 - Use new lines to visually indicate logical blocks of Jinja or to enhance 
   readability. For example:
-    
     ```python
     {%- set orig_cols = adapter.get_columns_in_relation(ref('lab_orders')) %}
     
@@ -230,10 +220,8 @@ select * from final
     -- column difference
     {{ new_cols }}
     ```
-    
 - Use new lines within Jinja delimiters and arrays if there are multiple 
   arguments. For example:
-    
     ```python
     {%- dbt_utils.star(
           from=ref('core__lab_result'),
@@ -245,7 +233,6 @@ select * from final
           prefix='lab_'
     ) %}
     ```
-    
 - Variables within macros should be descriptive for readability. For example,
 `{%- for col in orig_cols %}` rather than `{%- for x in y %}`.
 - Use comment syntax to describe complicated blocks of code or dependencies. 
