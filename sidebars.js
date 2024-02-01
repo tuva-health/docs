@@ -35,6 +35,7 @@ const sidebars =
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
                 "data-dictionaries/financial-pmpm",
+                "data-dictionaries/hcc-suspecting",
                 "data-dictionaries/quality-measures",
                 "data-dictionaries/readmissions",           
             ]
