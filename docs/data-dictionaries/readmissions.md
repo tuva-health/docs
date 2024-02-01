@@ -23,7 +23,7 @@ Each record in this table represents a unique acute inpatient admission.  Acute 
 
 **Primary Key:** encounter_id
 
-Each record in this table represents a unique acute inpatient admission.  However, the main difference between this table and `readmission_summary` is that this table contains _every_ acute inpatient encounter found in `core.encounter` whereas `readmission_summary` filters out acute inpatient encounters that have data quality problems which prevent them from being included in readmission analytics.  A table detailing all encounters with extra information related to the encoutner, and flags for infromation that might readmission affect the readmission calculations.
+Each record in this table represents a unique acute inpatient admission.  However, the main difference between this table and `readmission_summary` is that this table contains _every_ acute inpatient encounter found in `core.encounter` whereas `readmission_summary` filters out acute inpatient encounters that have data quality problems which prevent them from being included in readmission analytics.  A table detailing all encounters with extra information related to the encounter, and flags for information that might affect the readmission calculations.
 
 This table includes columns for data quality tests related to readmissions, so you can see why admissions that are not in `readmission_summary` were excluded.
 
