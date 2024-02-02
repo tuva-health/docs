@@ -45,7 +45,16 @@ const sidebars =
         "reference-data",
         "synthetic-data",
         "terminology-sets",
-        "contributing",
+
+        {
+            type: "category",
+            label: "Contribution Guides",
+            items: [
+                "contribution-guides/contributing",
+                "contribution-guides/development-style-guide",
+            ]
+        },
+
         "help",
     ],
 
