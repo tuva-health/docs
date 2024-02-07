@@ -6,7 +6,9 @@ title: "HCC Suspecting"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 The HCC Suspecting mart contains concepts to identify suspecting conditions for 
-risk adjustment.
+risk adjustment. It also utilizes a map for SNOMED-CT to ICD-10-CM in order to 
+capture additional suspecting conditions coded in a system that is not part of the 
+CMS HCC model.
 
 ## list
 
