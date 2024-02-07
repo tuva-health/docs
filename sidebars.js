@@ -35,6 +35,7 @@ const sidebars =
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
                 "data-dictionaries/financial-pmpm",
+                "data-dictionaries/hcc-suspecting",
                 "data-dictionaries/quality-measures",
                 "data-dictionaries/readmissions",           
             ]
@@ -44,12 +45,22 @@ const sidebars =
         "reference-data",
         "synthetic-data",
         "terminology-sets",
-        "contributing",
+
+        {
+            type: "category",
+            label: "Contribution Guides",
+            items: [
+                "contribution-guides/contributing",
+                "contribution-guides/development-style-guide",
+            ]
+        },
+
         "help",
     ],
 
     guidesSidebar: 
     [
+        // "guides/acute-inpatient-analytics",
         "guides/geospatial-analytics",
         "guides/claim-preprocessing-guide",
 
