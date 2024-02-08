@@ -14,7 +14,7 @@ Every organization that deals with claims data develops their own process for de
 - Systematically identifying data quality issues
 - Systematically promoting data we can trust downstream for analytics
 
-This guide describes this process in full detail.
+This guide describes this process in detail.
 
 ## Overview
 
@@ -32,10 +32,12 @@ There are 5 distinct layers claims data flows through.  Each layer is a well-spe
 
 5. **Data Marts:** This layer is automatically created via code that transforms the Core Data Mart layer.
 
+This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) provides what column are needed for 
+the various data marts in The Tuva Project.  Not mapping to a column needed for a data mart will result in no data being produced.
+
+
 Other term(s) used throughout this document:
-
-**connector** - A connector is a dbt project that is created to map your raw source data to the Tuva data model that is required to run The Tuva Project.
-
+  - **connector** - A connector is a dbt project that is created to map your raw source data to the Tuva data model that is required to run The Tuva Project.
 
 ## Medical Claim
 
@@ -48,6 +50,8 @@ The `medical_claim` table contains the billing information submitted to the heal
 ### claim_id
 
 `claim_id` is a unique identifier for a set of services and supplies rendered by a healthcare provider that has been billed to insurance.  It is the most fundamental data element in the `medical_claim` table and every row should have a `claim_id`.  If the source data does not have claim IDs or is missing claim IDs for some rows in the data, then those rows should not be mapped to Tuva’s input layer.
+
+#### **Mapping**
 
 **Expectations in the input layer:**
 
@@ -191,8 +195,6 @@ If both professional-only and institutional-only fields are present on the same 
 
 **Expectations in the input layer**
 
-When mapping to the input layer, 
-
 - data type is `date` in the format `YYYY-MM-DD`
 
 
@@ -218,7 +220,7 @@ To map these fields to the input layer, there are three elements in the source d
 **Expectations for these header-level fields in the input layer:**
 
 - data type is `string`
-- values are mapped to Tuva’s terminology.
+- values are mapped to Tuva’s terminology:
     - [admit source](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__admit_source.csv)
     - [admit type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__admit_type.csv)
     - [discharge disposition](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__discharge_disposition.csv)
@@ -564,12 +566,6 @@ This field contains the birth date of a member.
 
 #### Mapping
 
-
->💡 `birth_date`is required for the Mart below.  The Tuva project will still run but no data will be produced:
->- HCCs
->- Quality Measures
-
-
 **Expectations in the input layer:**
 
 - data type is `date` in the format `YYYY-MM-DD`
@@ -626,7 +622,7 @@ this with the data provider, `enrollment_end_date` should be populated with the 
 
 #### **Mapping**
 
-`payer` may not be available in the source data and should be hardcoded (e.g. `select 'aetna' as payer`
+`payer` may not be available in the source data and should be hardcoded (e.g. `select 'aetna' as payer`)
 
 **Expectations in the input layer:**
 
@@ -666,8 +662,8 @@ this with the data provider, `enrollment_end_date` should be populated with the 
 
 #### Mapping
 
->💡 `original_reason_entitlement_code` is needed for the CMS HCC mart. If unavailable, `medicare_status_code` is used.
-> If neither is available, the mart will use a default value of “Aged”.
+>💡 `original_reason_entitlement_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+> If it's unavailable, `medicare_status_code` is used. If neither are available, the mart will use a default value of “Aged”.
 
 
 **Expectations in the input layer:**
@@ -681,7 +677,8 @@ this with the data provider, `enrollment_end_date` should be populated with the 
 
 #### Mapping
 
->💡 `dual_status_code` is needed for the CMS HCC mart. If unavailable, the mart will use a default value of “Non” (i.e., non-dual).
+>💡 `dual_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+> If unavailable, the mart will use a default value of “Non” (i.e., non-dual).
 
 **Expectations in the input layer:**
 
@@ -695,79 +692,13 @@ this with the data provider, `enrollment_end_date` should be populated with the 
 
 #### Mapping
 
->💡 `medicare_status_code` is needed for the CMS HCC mart. It’s used when `original_reason_entitlement_code` is missing.
+>💡 `medicare_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+> It’s used when `original_reason_entitlement_code` is missing.
 
 **Expectations in the input layer:**
 
 - data type is `string`
 - value is mapped to one of the values found to Tuva’s [medicare status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_status.csv) terminology file.
-
-
-### first_name and last_name
-
-These fields are populated with the member’s name.
-
-#### Mapping
-
-**Expectations in the input layer:**
-
-- data type is `string`
-
-
-### address
-
-`address` is populated with the house and street name of a member’s address.
-
-#### Mapping
-
-
-> 💡 `address` is required to geocode a patient’s location and link them to social determinants.
-
-### city
-
-`city` is populated with the city of a member’s address. 
-
-#### Mapping
-
-
->💡 `city` is required to geocode a patient’s location and link them to social determinants.
-
-
-### state
-
-`state` is populated with the state of a member’s address.  The value can be either the full state name or the code (e.g. Vermont or VT).
-
-#### Mapping
-
-
-> 💡 `state` is required to geocode a patient’s location and link them to social determinants.
-
-
-### zip_code
-
-`zip_code` is populated with the zip code of the member’s address.  The zip code can be 5 digits or 9 digits.
-
-#### Mapping
-
-
->💡 `zip_code` is required to geocode a patient’s location and link them to social determinants. 
-> In some deidentified data sets, only the first 3 digits of a zip code may be available.  This can still be used but may not result in a location match.
-
-
-### phone
-
-`phone` is populated with the member’s phone number.  
-
-#### Mapping
-
-
->💡 `phone` is a helpful component in enterprise master patient index (EMPI) and should be populated if the data is available. 
-> Any format can be used.
-
-
-**Expectations in the input layer:**
-
-- data type is `string`
 
 
 ### data_source
@@ -847,6 +778,8 @@ It allows for the linking and tracking of a patient’s healthcare journey acros
 
 `payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - `payer` is populated for every row
@@ -857,6 +790,8 @@ It allows for the linking and tracking of a patient’s healthcare journey acros
 `plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
 
 If no plan information is available, the payer should be populated in this field.  
+
+#### Mapping
 
 **Expectations in the input layer:**
 
@@ -869,6 +804,8 @@ If no plan information is available, the payer should be populated in this field
 
 The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) is used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public that is referenced in the [dbt_project.yml](https://github.com/tuva-health/the_tuva_project/blob/main/dbt_project.yml).)
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - data type is `string`
@@ -880,6 +817,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 
 The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) to used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public [S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/tuva-public-resources?region=us-east-1&prefix=provider_data/&showversions=false).)
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - data type is `string`
@@ -888,6 +827,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 ### dispensing_date
 
 `dispensing_date` is the date that the medication was given (i.e. filled).
+
+#### Mapping
 
 **Expectations in the input layer:**
 
@@ -901,38 +842,17 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 - Product (6-9) - The specific drug and it’s strength
 - Package (10-11) - The package size and type
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - data type is `string`
 
-
-### quantity
-
-`quantity` is the number of units that have been dispensed to the patient.  For example, if a provider prescribes a medication to a patient that is supposed to be taken 2x/day for 30 days, then the quantity would be 60.
-
-**Expectations in the input layer:**
-
-- data type is `integer`
-
-### days_supply
-
-`days_supply` is the number of days a prescribed medication is expected to last.
-
-**Expectations in the input layer:**
-
-- data type is `integer`
-
-### refills
-
-`refills` is the number of times a member can reorder a prescription without having to contact the provider for a new prescription.
-
-**Expectations in the input layer:**
-
-- data type is `integer`
-
 ### paid_date
 
 `paid_date` is the date that the health insurer processed the claim for payment.  It should coincide with the date that the pharmacy received reimbursement from the health insurer.
+
+#### Mapping
 
 **Expectations in the input layer:**
 
@@ -942,6 +862,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 
 `paid_amount` is the dollar amount that the health insurer paid for the covered medication.
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
@@ -949,6 +871,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 ### allowed_amount
 
 `allowed_amount` is the maximum dollar amount a health insurer will reimburse for a covered medication.
+
+#### Mapping
 
 **Expectations in the input layer:**
 
@@ -959,6 +883,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 
 `coinsurance_amount` is the dollar amount a member has paid for a covered medication as part of cost-sharing with the health insurance provider.  After a deductible is met, covered services may still require a member to pay for a percentage of the cost (e.g. 80/20 - 80% paid by the health insurer and 20% paid by the member)
 
+#### Mapping
+
 **Expectations in the input layer:**
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
@@ -966,6 +892,8 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 ### deductible_amount
 
 `deductible_amount` is the dollar amount a member has paid for a covered medication before the health insurer will pay the cost for covered services.
+
+#### Mapping
 
 **Expectations in the input layer:**
 
@@ -977,7 +905,6 @@ The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.g
 `data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
 
 #### Mapping
-
 
 **Expectations in the input layer:**
 
