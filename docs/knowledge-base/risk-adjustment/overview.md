@@ -79,7 +79,7 @@ predicted medical expenditure. These two things are correlated, but not necessar
 
 ## Footnotes
 
-[1] ACA health plans that are no subject to risk adjustment are Grandfathered plans, Short-term, limited-duration plans,
+[1] ACA health plans that are not subject to risk adjustment are Grandfathered plans, Short-term, limited-duration plans,
 Health Reimbursement Arrangements (HRAs), and plans offered by states that have received a waiver from HHS.
 
 [2] Program of All Inclusive Care for the Elderly
