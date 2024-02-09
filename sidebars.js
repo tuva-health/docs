@@ -61,8 +61,9 @@ const sidebars =
     guidesSidebar: 
     [
         // "guides/acute-inpatient-analytics",
-        "guides/claim-mapping-guide",
+        "guides/claims-mapping",
         "guides/geospatial-analytics",
+        "guides/setting-up-tuva",
     ],
 
     knowledgebaseSidebar: 
