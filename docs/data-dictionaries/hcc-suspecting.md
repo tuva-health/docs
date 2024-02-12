@@ -6,9 +6,13 @@ title: "HCC Suspecting"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 The HCC Suspecting mart contains concepts to identify suspecting conditions for 
-risk adjustment. It also utilizes a map for SNOMED-CT to ICD-10-CM in order to 
-capture additional suspecting conditions coded in a system that is not part of the 
-CMS HCC model.
+risk adjustment. 
+
+The terminology set SNOMED-CT to ICD-10-CM Map is used to capture additional 
+suspecting conditions coded in a system that is not part of the CMS HCC model. 
+This use-case follows the default mapping guidance from NLM which specifies 
+that the map priority rule of “TRUE” or “OTHERWISE TRUE” should be applied if 
+nothing further is known about the patient’s condition.
 
 ## list
 
