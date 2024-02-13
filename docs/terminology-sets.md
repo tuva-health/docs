@@ -332,8 +332,8 @@ OVERWRITE = TRUE;
 
 ## SNOMED-CT to ICD-10-CM Map
 
-This mapping is updated with each new SNOMED CT US Edition release (March and 
-September) and includes the annual ICD-10-CM update.
+This mapping is updated with each new relase of SNOMED CT US Edition which 
+happens in March and September, and includes the annual ICD-10-CM update.
 
 The mapping file can be found on the [SNOMED CT United States Edition](https://www.nlm.nih.gov/healthit/snomedct/us_edition.html)
 page. Click on the link to download the SNOMED CT to ICD-10-CM Mapping Resources
