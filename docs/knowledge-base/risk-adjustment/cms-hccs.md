@@ -22,11 +22,18 @@ The full list of models are:
 
 In addition to models for different populations, CMS has released versions of
 these models over the years, which include new HCC mappings and added or removed
-ICD-10-CM codes. Version 24 has been in use since 2020. An advanced notice of
-Version 28 was published this year. CMS has finalized a phased transition
-from version 24 to 28, which will begin in 2024 and be completed in 2026. CMS
-also performs model calibration based on diagnostic and expenditure data. These
-changes can be found in the annual rate announcements on [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents).
+ICD-10-CM codes. Version 24 has been in use since 2020. Version 28 will be phased
+in over a three-year period starting in 2024.
+
+* Payment year 2024 risk scores will be blended using 67% of the risk score 
+  calculated from v24 and 33% from v28.
+* Payment year 2025 risk scores will be blended using 33% of the risk score 
+  calculated from v24 and 67% from v28.
+* Beginning in payment year 2026 risk scores will be 100% from v28.
+
+
+CMS also performs model calibration based on diagnostic and expenditure data. 
+These changes can be found in the annual rate announcements on [cms.gov](https://www.cms.gov/Medicare/Health-Plans/MedicareAdvtgSpecRateStats/Announcements-and-Documents).
 
 These models generate risk scores by adding relative risk factors, demographics,
 and disease information. Additionally, they use hierarchies where the most
@@ -283,13 +290,11 @@ to calculate and the model you want to use.
 
 ### Variables
 
-The data mart has two variables that allow you to choose which payment year you 
-want to calculate and which model you want to use to calculate the risk scores.
+The data mart includes logic that allows you to choose which payment year you 
+want to use to calculate the risk scores.
 
 - `cms_hcc_payment_year` defaults to the current year
-- `cms_hcc_model_version` defaults to Version 24\* (CMS-HCC-V24)
-
-*Note: Version 28 will soon be added as an option.*
+- `snapshots_enabled` is an *optional* variable that can be enabled
 
 To run the data mart, simply update the payment year in your dbt_project.yml 
 file or use the `--vars` dbt command. See examples below.
@@ -325,7 +330,7 @@ hierarchy is applied.
 #### Final
 
 The final tables are `patient_risk_factors` and `patient_risk_scores`, along 
-with snapshots. 
+with optional snapshots. 
 
 Patient Risk Factors display the final contributing demographic and disease risk 
 factors, interactions, and HCCs for each enrollee in the payment year.
@@ -335,7 +340,8 @@ and payment risk score for the payment year.
 
 The snapshot tables are a "look back in time." You can use these tables to see 
 the historical runs of the mart. This is helpful when you want to run multiple 
-payment years to compare and trend.
+payment years to compare and trend. Snapshots are disabled by default. To enable
+them, add the variable `snapshots_enabled: true` to your dbt_project.yml file.
 
 ## References 
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
