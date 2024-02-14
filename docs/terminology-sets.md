@@ -328,3 +328,23 @@ OVERWRITE = TRUE;
 ```
 14. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column with the current date (above).
 15. Submit a pull request
+
+
+## SNOMED-CT to ICD-10-CM Map
+
+This mapping is updated with each new relase of SNOMED CT US Edition which 
+happens in March and September, and includes the annual ICD-10-CM update.
+
+The mapping file can be found on the [SNOMED CT United States Edition](https://www.nlm.nih.gov/healthit/snomedct/us_edition.html)
+page. Click on the link to download the SNOMED CT to ICD-10-CM Mapping Resources
+which includes the human-readable version that contains all required data 
+elements in a single TSV file.
+
+The only clean-up required for the Tuva project is to remove the formatting
+from the maptarget (ICD-10-CM code) field (e.g. `replace(maptarget,'.','')`).
+
+The HCC Suspecting data mart utilizes the default mapping guidance from NLM which
+specifies that the map priority rule of “TRUE” or “OTHERWISE TRUE” should be 
+applied if nothing further is known about the patient’s condition. Other 
+use-cases may need to further evaluate the map rules that consider a patient's
+age, gender, and comorbidities.
