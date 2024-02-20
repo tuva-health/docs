@@ -63,6 +63,7 @@ const sidebars =
         // "guides/acute-inpatient-analytics",
         "guides/claims-mapping",
         "guides/geospatial-analytics",
+        "guides/risk-analysis",
         "guides/setting-up-tuva",
     ],
 
