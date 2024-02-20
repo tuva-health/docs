@@ -81,12 +81,20 @@ dbt_project.yml:
 ```yaml
 vars:
     cms_hcc_payment_year: 2020
+    snapshots_enabled: true
 ```
 
 dbt command:
 
 ```bash
-dbt build --vars '{cms_hcc_payment_year: 2020}'
+# Uses defaults or vars from project yml, runs all marts
+dbt build
+
+# Runs only the CMS HCC mart using defaults or vars from project yml
+dbt build --select tag:cms_hcc
+
+# Overrides vars from project yml, executes snapshots
+dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_enabled: true}'
 ```
 
 ## Data Mart Structure
