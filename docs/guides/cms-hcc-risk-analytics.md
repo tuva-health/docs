@@ -1,6 +1,6 @@
 ---
-id: risk-analysis
-title: "Risk Analysis"
+id: cms-hcc-risk-analytics
+title: "CMS-HCC Risk Analytics"
 ---
 
 ## Overview

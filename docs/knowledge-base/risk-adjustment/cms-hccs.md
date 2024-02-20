@@ -243,4 +243,4 @@ be the same as the Medicare Advantage definitions, but can be derived in differe
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
 * https://www.cms.gov/files/document/2024-advance-notice-pdf.pdf
 
-Make sure to check out the [guide](/guides/risk-analysis) for using the CMS HCC data mart in The Tuva Project.
+Make sure to check out the [CMS-HCC Risk Analytics](/guides/cms-hcc-risk-analytics) guide.
