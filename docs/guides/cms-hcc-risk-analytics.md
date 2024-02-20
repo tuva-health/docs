@@ -29,16 +29,11 @@ year.
 
 ## Data Requirements
 
-**Condition\*:**
-- claim_id
-- patient_id
-- recorded_date
-- condition_type
-- normalized_code_type
-- normalized_code
-
 **Eligibility:**
 - patient_id
+- gender
+- birth_date
+- death_date
 - enrollment_start_date
 - enrollment_end_date
 - original_reason_entitlement_code
@@ -54,16 +49,10 @@ year.
 - claim_end_date
 - bill_type_code
 - hcpcs_code
+- diagnosis_code_type
+- diagnosis_code_1* 
 
-**Patient\*:**
-- patient_id
-- sex
-- birth_date
-- death_date
-
-
-*The Tuva Project will generate these tables. You just need to run mapped
-medical claims and eligibility through the project.*
+**Up to 25 diagnosis codes are allowable, but only 1 is required.*
 
 ## Variables
 
