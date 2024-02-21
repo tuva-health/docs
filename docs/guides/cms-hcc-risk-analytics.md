@@ -88,35 +88,7 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 
 ## Data Mart Structure
 
-### Staging
-
-The staging tables show what tables and fields are used from the Core data model.
-
-### Intermediate
-
-The intermediate tables contain the complex logic to prepare eligibility and 
-medical claims data, map to the risk factor seeds, and apply the condition 
-hierarchy where some conditions may be dropped if a more severe manifestation of 
-the condition is found. The model `cms_hcc__int_hcc_mapping` (aliased as 
-`_int_hcc_mapping`) shows all eligible conditions mapped to the HCCs before the 
-hierarchy is applied.
-
-### Final
-
-The final tables are `patient_risk_factors` and `patient_risk_scores`, along 
-with optional snapshots. 
-
-Patient Risk Factors display the final contributing demographic and disease risk 
-factors, interactions, and HCCs for each enrollee in the payment year.
-
-Patient Risk Scores show each enrollee's raw risk score (or blended risk score
-depending on the payment year used), normalized risk score, and payment risk 
-score for the payment year.
-
-The snapshot tables are a "look back in time." You can use these tables to see 
-the historical runs of the mart. This is helpful when you want to run multiple 
-payment years to compare and trend. Snapshots are disabled by default. To enable
-them, add the variable `snapshots_enabled: true` to your dbt_project.yml file.
+<iframe width="900" height="600" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 ## Analytics
 
