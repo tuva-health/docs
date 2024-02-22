@@ -51,7 +51,7 @@ The data mart includes logic that allows you to choose which payment year you wa
 - `cms_hcc_payment_year` defaults to the current year
 - `snapshots_enabled` is an *optional* variable that can be enabled
 
-To run the data mart, simply update the payment year in your dbt_project.yml file or use the `--vars` dbt command. See examples below.
+To run the data mart, simply update the payment year in your dbt_project.yml file or use the `--vars` dbt command, if you want to change the payment year from the current year default. See examples below.
 
 dbt_project.yml:
 
@@ -76,7 +76,7 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 
 ## Data Mart Structure
 
-The data mart is built on top of the [Core Data Model](../data-dictionaries/core).  If you map the data elements listed above the the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
+The data mart is built on top of the [Core Data Model](../data-dictionaries/core).  If you map the data elements listed above to the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
 
 In the diagram below we provide an overview explanation of how the data mart works.
 
