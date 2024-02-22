@@ -109,7 +109,7 @@ In addition to these monthly files, CMS issues “final” MORs once per year wi
 has ended, and planned runout data has been collected.
 
 
-### Sample Risk Score Calculation of a single patient
+## Sample Risk Score Calculation of a single patient
 
 Let's walk through a single example with a single patient as to how the risk score
 is calculated in the context of medicare advantage for the year 2024. 
@@ -134,7 +134,7 @@ Here's some information about this patient.
 
 Walking through the steps listed above:
 
-#### Calculate the demographic score
+### Calculate the demographic score
 
 To calculate the demographics portion of the risk score, we need to look at the demographics information for the patient
 provided above. Let's take a look at a table from the [2024 final rule](https://www.cms.gov/files/document/2024-announcement-pdf.pdf) 
@@ -150,7 +150,7 @@ The final raw risk from demographics is (0.485 + 0.103) = **0.588**
 If the patient was an end stage renal disease (ESRD) patient, we would use a separate demographics 
 table that uses the ESRD risk adjustment model. 
 
-#### Calculate the Disease Score
+### Calculate the Disease Score
 
 The disease score can be sourced from multiple places, either the MOR or claims data in combination
 with MAO-004 report. This example will be looking at calculating risk from claims data. 
@@ -203,7 +203,7 @@ this example, we only have a single HCC, so there is no additional score applied
 ![hcc_counts_2024_announcement](/img/cms_hccs/hcc_counts_2024_announcement.png)
 
 
-#### Bringing it all together
+### Bringing it all together
 
 We sum both the demographic score and the disease score to get the final raw raf for the patient.
 (0.588 + 0.166) = **0.754**. This score is the raw risk score for the patient. To get the final risk
@@ -217,7 +217,7 @@ should be applied on top of the normalization factor.
 So the final risk score for this single patient would be (0.754 / 1.015) * (1 - 0.059) = **0.699**
 
 
-#### But wait! There's more
+### But wait! There's more
 
 In the above example, it only looked at the scores and weights for a single risk adjustment model, v28.
 However, for medicare advantage organizations in the year 2024, final funded risk is not based solely
@@ -230,7 +230,7 @@ for the v24 risk adjustment model, then apply the 33% and 67% weighting for v28 
 then apply normalization factor and CIF to get the final risk score for the patient.
 
 
-#### Additional notes
+### Additional notes
 
 * In this specific example, this was looking at the risk adjustment model for Medicare Advantage. Different
 programs and different use cases can use different risk adjustment models. 
@@ -239,110 +239,8 @@ programs and different use cases can use different risk adjustment models.
 * In the context of some CMMI programs, the terms of "coding intensity factor" and "normalization factor" can seem to 
 be the same as the Medicare Advantage definitions, but can be derived in different ways specific to that program.
 
-## CMS-HCC Mart in the Tuva Project
-
-As you can see, many resources must be gathered, and the steps to calculate HCCs 
-and risk scores are tedious. Most of this important information is not easy to 
-find and use since it’s distributed yearly in PDFs from CMS. Many existing 
-tools, such as the SAS program or the open-source Python code, were built to 
-process one patient at a time. Not to mention that these tools require you to 
-have the patient data preprocessed in a certain way.
-
-The CMS HCC data mart is an easy-to-use data mart that can be run with standard 
-claims and eligibility data in your chosen data warehouse. We have done all the 
-work for you by converting the numerous rate announcement PDFs into CSV seed 
-files referenced by the data mart. We created logic to determine a patient's 
-demographic risk factors, disease risk factors, interaction factors, and 
-hierarchical conditions. All you need to do is choose the payment year you want 
-to calculate and the model you want to use.
-
-### Data Requirements
-
-**Eligibility:**
-
-- patient_id
-- gender
-- birth_date
-- enrollment_start_date
-- enrollment_end_date
-- dual_status_code
-- medicare_status_code
-
-**Medical claim:**
-
-- claim_id
-- claim_line_number
-- claim_type
-- patient_id
-- claim_start_date
-- claim_end_date
-- bill_type_code
-- hcpcs_code
-
-**Condition\*:**
-
-- claim_id
-- patient_id
-- normalized_code_type
-- normalized_code
-
-*Note: The Tuva Project will generate this table. You just need to run medical claims and eligibility through the project.*
-
-### Variables
-
-The data mart includes logic that allows you to choose which payment year you 
-want to use to calculate the risk scores.
-
-- `cms_hcc_payment_year` defaults to the current year
-- `snapshots_enabled` is an *optional* variable that can be enabled
-
-To run the data mart, simply update the payment year in your dbt_project.yml 
-file or use the `--vars` dbt command. See examples below.
-
-dbt_project.yml:
-
-```yaml
-vars:
-    cms_hcc_payment_year: 2020
-```
-
-dbt command:
-
-```bash
-dbt build --vars '{cms_hcc_payment_year: 2020}'
-```
-
-### Data Mart Structure
-
-#### Staging
-
-The staging tables show what tables and fields are used from the Core data model.
-
-#### Intermediate
-
-The intermediate tables contain the complex logic to prepare eligibility and 
-medical claims data, map to the risk factor seeds, and apply the condition 
-hierarchy where some conditions may be dropped if a more severe manifestation of 
-the condition is found. The model `cms_hcc__int_hcc_mapping` (aliased as 
-`_int_hcc_mapping`) shows all eligible conditions mapped to the HCCs before the 
-hierarchy is applied.
-
-#### Final
-
-The final tables are `patient_risk_factors` and `patient_risk_scores`, along 
-with optional snapshots. 
-
-Patient Risk Factors display the final contributing demographic and disease risk 
-factors, interactions, and HCCs for each enrollee in the payment year.
-
-Patient Risk Scores show each enrollee's raw risk score, normalized risk score, 
-and payment risk score for the payment year.
-
-The snapshot tables are a "look back in time." You can use these tables to see 
-the historical runs of the mart. This is helpful when you want to run multiple 
-payment years to compare and trend. Snapshots are disabled by default. To enable
-them, add the variable `snapshots_enabled: true` to your dbt_project.yml file.
-
-## References 
+## References
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
 * https://www.cms.gov/files/document/2024-advance-notice-pdf.pdf
+
+Make sure to check out the [CMS-HCC Risk Analytics](/guides/cms-hcc-risk-analytics) guide.

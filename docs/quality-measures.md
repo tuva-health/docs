@@ -11,14 +11,14 @@ on GitHub.
 
 | Measure Name                                                                                                               | Measure ID                                  | Status       | 
 |----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|--------------|
-| [Breast Cancer Screening](https://github.com/tuva-health/the_tuva_project/tree/main/models/quality_measures)               | CMS Star Rating C01, MIPS CQM 112, NQF 2372 | Released     |
-| [Colorectal Cancer Screening](https://github.com/tuva-health/the_tuva_project/tree/main/models/quality_measures)           | CMS Star Rating C02, MIPS CQM 113, NQF 0034 | Released     |
+| [Breast Cancer Screening](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)               | CMS Star Rating C01, MIPS CQM 112, NQF 2372 | Released     |
+| [Colorectal Cancer Screening](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)           | CMS Star Rating C02, MIPS CQM 113, NQF 0034 | Released     |
 | Controlling High Blood Pressure                                                                                            | CMS Star Rating C12, MIPS CQM 236           | Planned 2024 |
 | Diabetes: Eye Exam                                                                                                         | CMS Star Rating C09, MIPS CQM 117, NQF 0055 | Planned 2024 |
-| Diabetes: Hemoglobin A1c (HbA1c) Poor Control (> 9%)                                                                       | CMS Star Rating C11, MIPS CQM 001, NQF 0059 | Planned 2024 |
+| [Diabetes: Hemoglobin A1c (HbA1c) Poor Control (> 9%)](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)                                                                   | CMS Star Rating C11, MIPS CQM 001, NQF 0059 | Released     |
 | Diabetes: Medical Attention for Nephropathy                                                                                | CMS Star Rating C10, NQF 0062               | Planned 2024 |
 | Falls: Screening for Future Fall Risk                                                                                      | CMS Star Rating C13, MIPS CQM 318, NQF 0101 | Planned 2024 |
-| [Hospital-Wide All-Cause Readmission (HWR)](https://github.com/tuva-health/the_tuva_project/tree/main/models/readmissions) | MIPS CQM 479                                | Released     |
+| [Hospital-Wide All-Cause Readmission (HWR)](https://github.com/tuva-health/tuva/tree/main/models/readmissions) | MIPS CQM 479                                | Released     |
 | Influenza Immunization                                                                                                     | CMS Star Rating C03, MIPS CQM 110, NQF 0041 | Planned 2024 |
 | Medication Adherence for Cholesterol (Statins)                                                                             | CMS Star Rating D10, NQF 0541               | Planned 2024 |
 | Medication Adherence for Diabetes Medications                                                                              | CMS Star Rating D08, NQF 0541               | Planned 2024 |
