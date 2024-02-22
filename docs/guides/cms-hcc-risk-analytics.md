@@ -88,7 +88,7 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 
 ## Data Mart Structure
 
-<iframe width="900" height="600" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+<iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen="true"></iframe>
 
 ## Analytics
 
