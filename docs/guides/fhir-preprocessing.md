@@ -629,7 +629,7 @@ The next steps are to repeat the process and create configs for any resource typ
 
 
 
-## Implementing the solutiuon
+## Implementing the solution
 Now that we have the transformation configs built, it's time to put our solution into action.  Since our data is being delivered to an s3 bucket, will build a lambda function that will process the files. 
 Our function will primarily work by processing all resources for a patient for a particular file type, but it will also be built to be able to process file at a time triggered by an s3 event, if we decide to stream the messages in the future.
 It's going to use the return userOutputMode, so we can aggregate the bulk processed files and write them together.  
@@ -640,7 +640,7 @@ We will handle any updates to files by adding a staging model in our dbt project
 <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVNoLCUCI=/?moveToViewport=-462,-396,1536,720&embedId=78007405977" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 <details>
-<summary>Lambda function for pro</summary>
+<summary>Lambda function for FHIR Preprocessing</summary>
 
 ```python
 import boto3
