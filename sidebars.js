@@ -64,6 +64,7 @@ const sidebars =
         "guides/claims-mapping",
         "guides/cms-hcc-risk-analytics",
         "guides/geospatial-analytics",
+        "guides/fhir-preprocessing",
         "guides/setting-up-tuva",
     ],
 
