@@ -81,7 +81,7 @@ The following field should only be found on professional claims:
 
 - `place_of_service_code`
 
-Since this field should only be found on a professional claim, a value present in this field will indicate the `claim_type` should be mapped as `institutional`.
+Since this field should only be found on a professional claim, a value present in this field will indicate the `claim_type` should be mapped as `professional`.
 
 If both professional-only and institutional-only fields are present on the same claim, we do our best to come up with logic (specific to the data source) that determines the `claim_type` based on the presence of different institutional or professional fields. If it’s not possible to convincingly populate the correct `claim_type`, we map to `undetermined`. 
 
