@@ -81,7 +81,7 @@ The following field should only be found on professional claims:
 
 - `place_of_service_code`
 
-Since this field should only be found on a professional claim, a value present in this field will indicate the `claim_type` should be mapped as `institutional`.
+Since this field should only be found on a professional claim, a value present in this field will indicate the `claim_type` should be mapped as `professional`.
 
 If both professional-only and institutional-only fields are present on the same claim, we do our best to come up with logic (specific to the data source) that determines the `claim_type` based on the presence of different institutional or professional fields. If it’s not possible to convincingly populate the correct `claim_type`, we map to `undetermined`. 
 
@@ -228,25 +228,25 @@ layer.  If it is a person and it’s an professional claim then also map to `bil
 
 ### paid_amount
 
-`paid_amount` is the dollar amount that the health insurer paid for the covered medication.
+`paid_amount` is the dollar amount that the health insurer paid for the covered service.
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
 
 ### allowed_amount
 
-`allowed_amount` is the maximum dollar amount a health insurer will reimburse for a covered medication.
+`allowed_amount` is the maximum dollar amount a health insurer will reimburse for a covered service.
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
 
 ### coinsurance_amount
 
-`coinsurance_amount` is the dollar amount a member has paid for a covered medication as part of cost-sharing with the health insurance provider.  After a deductible is met, covered services may still require a member to pay for a percentage of the cost (e.g. 80/20 - 80% paid by the health insurer and 20% paid by the member)
+`coinsurance_amount` is the dollar amount a member has paid for a covered service as part of cost-sharing with the health insurance provider.  After a deductible is met, covered services may still require a member to pay for a percentage of the cost (e.g. 80/20 - 80% paid by the health insurer and 20% paid by the member)
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
 
 ### deductible_amount
 
-`deductible_amount` is the dollar amount a member has paid for a covered medication before the health insurer will pay the cost for covered services.
+`deductible_amount` is the dollar amount a member has paid for a covered service before the health insurer will pay the cost for covered services.
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
 
