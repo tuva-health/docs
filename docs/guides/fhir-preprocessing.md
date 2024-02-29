@@ -6,18 +6,24 @@ description: This guide walks you through how to transform FHIR data so its
 
 ## Overview
 
-Fast Healthcare Interoperability Resources (FHIR) is a standard for health care data exchange. 
+Fast Healthcare Interoperability Resources (FHIR) is a standard for healthcare data exchange. 
 FHIR data typically comes in complex, nested JSON formats, making it challenging to process and analyze effectively. 
 Data teams are often more comfortable and productive working with data in familiar, tabular formats. 
 Preprocessing converts this complex data into a more manageable format, facilitating easier data analysis and integration. Our tool simplifies this process, enhancing the usability of FHIR data in healthcare analytics.
 
+**miro embed style 1:** presentation mode
+<iframe width="768" height="432" src="https://miro.com/app/embed/uXjVNmt51Rk=/?pres=1&frameId=3458764580733969213&embedId=515434666082" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
+**miro embed style 2:** free navigation
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVNmt51Rk=/?moveToViewport=-270,722,1184,490&embedId=372290442366" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
 ### Introduction to fhir-inferno:
-[FHIR Inferno](https://github.com/tuva-health/FHIR_connector) is a Python-based utility designed for efficient FHIR data transformation. The core functionality focuses on flattening FHIR data, creating structured tables suitable for analysis and reporting. In this guide we walk through the basic setup, configuration, and of utilization process of tool.
+[FHIR Inferno](https://github.com/tuva-health/FHIR_inferno) is a Python-based utility designed for efficient FHIR data transformation. The core functionality focuses on flattening FHIR data, creating structured tables suitable for analysis and reporting. In this guide we walk through the basic setup, configuration, and of utilization process of tool.
 
 
 ## Getting Started
 
-#### System Requirements
+#### Prerequisites
  - Python 3.x
  - External libraries:
    - csv output mode: None
@@ -33,7 +39,7 @@ Basic syntax to import and call the function like this:
 ```python
 import parseFhir
 
-parseFhir.parse(r'config/config_Patient.ini', userInputPath='FHIR_Input/Patient_0001.json',userOutputPath='FHIR_output/Patient_0001.csv', userMissingPath='missing_paths/Patient_0001.csv',userOutputFormat='csv')
+parseFhir.parse(r'config/config_Patient.ini', inputPath='FHIR_Input/Patient_0001.json',outputPath='FHIR_output/Patient_0001.csv', missingPath='missing_paths/Patient_0001.csv',outputFormat='csv')
 
 ```
 ### Configuration
@@ -48,15 +54,15 @@ The config file has 2 required sections, and three optional sections that help w
    - **anchor_paths**: if checking for the existence of missing paths, and if using an anchor, defines all known paths in the anchor object
    - **ignore_paths**: another section of paths that will be ignored for missing path consideration, including their children 
 
-See the [readme](https://github.com/tuva-health/FHIR_connector/blob/main/README.md) for a more detailed breakdown on each section, as well as the functions available.
+See the [readme](https://github.com/tuva-health/FHIR_inferno/blob/main/README.md) for a more detailed breakdown on each section, as well as the functions available.
 
 ### Function Parameters
 - **configpath**: the path to the config file that defines the table structure
-- **userInputPath**: the path to the input FHIR resourced
-- **userOutputPath**: the output path (required for csv or parquet output format)
-- **userMissingPath**: optional: if present, function will compare paths present in the FHIR resource to those listed in the conifg, and write any that were missing to the file, so they can be reviewed and possibly added to the config
-- **userOutputFormat**: writes a `csv` or `parquet` to write a file to userOutputPath, or `return` to return a dataframe
-- **userParseMode**: `json` or `ndjson` depending on the input file format
+- **inputPath**: the path to the input FHIR resourced
+- **outputPath**: the output path (required for csv or parquet output format)
+- **missingPath**: optional: if present, function will compare paths present in the FHIR resource to those listed in the conifg, and write any that were missing to the file, so they can be reviewed and possibly added to the config
+- **outputFormat**: writes a `csv` or `parquet` to write a file to outputPath, or `return` to return a dataframe
+- **inputFormat**: `json` or `ndjson` depending on the input file format
 
 ### Helper Scripts and Examples
 In addition to the core fuinction, the fhir-inferno repo contains various helper scripts to help with the setup, configuration, and various processing of FHIR resourceds.  It contains scripts to analyze a batch of resources and create configuration files, scripts to build configuration files, and scripts on examples on how to fully implement the solution.
@@ -66,11 +72,15 @@ In addition to the core fuinction, the fhir-inferno repo contains various helper
 Great news, we're going to start receiving Health Gorilla data for our patient population!  This will give us access to healthcare records for our patients occurring outside of our healthcare organization, greatly expanding the volume of data we have access to, and enabling more robust and new types of analytics.  
 
 Fortunately and unfortunately, the data is being delivered in FHIR format.  FHIR is an industry standard becoming more and more widely adopted, but our analytics team works exclusively in sql and R, and our dashboards all use Snowflake as a backend.  We'll walk through how to use fhir-inferno to transform the data to a tabular format, load it to snowflake, and make sure that going forward can can catch any new fields that are added so we can tell if the format changed.
+We'll also guide you through the process of taking the raw flattened data and use Tuva's standard Health Gorilla connector and the Tuva packate transform it into analytics-ready data and pre-built data marts for enhanced data analysis.
 
-### Building Configs
-The first step it to build our configuration files, which will define the format of the tables we'll be loading to. Health Gorilla provides some sample synthetic resources based off of a sandbox environment, so we'll download those and start analyzing.  We can see that each resource is its own .json file, and the folder structure and naming convention is `<patient_id>/<resource_type>_<item_id>.json`
+## Transforming the FHIR data 
+To transform the FHIR data we need to build configs that define the output table, and set up processes to transform the incoming data and load the output to our warehouse.
 
-Let's start by building a config file for the Patient resources.  The [AnalyzeJson.py](https://www.example.com/addlinkhere) script can help; it will loop through all of the patient resources in the folder we point it to, collect all of the paths that appear in any resource, and write them to a well-structured config file in the format fhir-inferno expects.
+#### Building Configs
+The first step it to build our configuration files, which will define the format of the tables we'll be loading to.
+
+Let's start by building a config file for the Patient resources.  The [AnalyzeJson.py](https://github.com/tuva-health/FHIR_inferno/blob/main/helper_scripts/analyzeJson.py) script can help; it will loop through all of the patient resources in the folder we point it to, collect all of the paths that appear in any resource, and write them to a well-structured config file in the format fhir-inferno expects.
 It will also give us some basic array and metadata analytics, so we can make more informed decisions about whether or not we want to build additional tables from the patient resources. We'll start by running the script with these parameters:
 ```python
 # Configuration
@@ -80,16 +90,15 @@ anchor_path = ''  # If populated, the path to an array which will be the new pro
 ignore_list = [] # Any paths to ignore
 ```
 
-Since anchor_path and ignore_list are left blank, running this script will create a file called `config_Patient.ini, ` shown here, which when used with fhir-inferno, will produce one row per patient resource it is used to process.  The script also adds two extra columns to any config file for convenience: the filename that is being processed, and the datetime the file was processed.
+Since anchor_path and ignore_list are left blank, running this script will create a file called `config_Patient.ini,` shown here, which when used with fhir-inferno, will produce one row per patient resource it is used to process.  The script also adds two extra columns to any config file for convenience: the filename that is being processed, and the datetime the file was processed.
 <details>
 <summary>config_Patient.ini</summary>
 
 ```ini
 [GenConfig]
-inputpath = Patient.json
-outputpath = Patient.csv
-parsemode = json
-writemode = append
+outputPath = Patient.csv
+inputFormat = json
+writeMode = append
 
 [Struct]
 resourcetype = resourceType
@@ -182,10 +191,9 @@ address_4_period_end = address.1.period.end
 managingorganization_reference = managingOrganization.reference
 managingorganization_display = managingOrganization.display
 filename = Filename:
-processed_datetime: GetDate:
+processed_date: GetDate:
 
 [root_paths]
-
 resourcetype = resourceType
 id = id
 meta_versionid = meta.versionId
@@ -277,7 +285,8 @@ managingorganization_reference = managingOrganization.reference
 managingorganization_display = managingOrganization.display
 
 ```
-test
+
+Notes:
 
  - The `GenConfig` contains general configuration information about the transformation
  - The `Struct` section defines the structure of the output.  Every row here will be a column in the resulting file or object.  The paths here are the paths that will be extracted from the input FHIR resource
@@ -319,7 +328,9 @@ By defualt, AnalyzeJson will build the config where any iteration of any path in
 `telecom_2_system`,
 `telecom_2_value`, etc.
 
-Sometimes this might be reasonable to all have in one table, but as the counts of items in arrays increase, the number of columns in the resulting table can become untenable.  If we want to handle the elements of the array differently, we have a few options: we can create another table from the array, we can write the entire contents of the array to its own column in the base table, or we can ignore the array.  We'll go through all of the options for illustrative purposes.
+Sometimes this might be reasonable to all have in one table, but as the counts of items in arrays increase, the number of columns in the resulting table can become untenable.
+If we want to handle the elements of the array differently, we have a few options: we can create another table from the array, we can write the entire contents of the array to its own column in the base table, or we can ignore the array.
+We'll go through all of the options for illustrative purposes.
 
 Address seems like it should be the basis of its own table.  In our example resources there are up to 8 elements in each/row object, and some patients in our sample set have as many as 5 addresses, but we might expect that in the entire patient population some outliers may have many more.
 
@@ -340,10 +351,9 @@ This ini file, when applied to a patient resource, will write or return one row 
 
 ```ini
 [GenConfig]
-inputpath = Patient.json
-outputpath = Patient.csv
-parsemode = json
-writemode = append
+outputPath = Patient.csv
+inputFormat = json
+writeMode = append
 anchor = address
 
 [Struct]
@@ -357,7 +367,7 @@ country = Anchor:country
 period_start = Anchor:period.start
 period_end = Anchor:period.end
 filename = Filename:
-processed_datetime = GetDate:
+processed_date = GetDate:
 
 [anchor_paths]
 use = Anchor:use
@@ -424,13 +434,12 @@ managingorganization_display = managingOrganization.display
 
 
 ```
- - The `GenConfig` contains general configuration information about the transformation
- - The `Struct` section defines the structure of the output.  Every row here will be a column in the resulting file or object.  The paths here are the paths that will be extracted from the input FHIR resource
- - If missing path checks are turned on, the `root_paths` section is to compare any paths in future fhir resources that are processed with this configuration against the configured paths.  If any new or oherwise unknown paths are discovered, the filename, resource, anchor, and path will be written to the missing_paths file. 
+
+ - this version has an `[anchor_paths]` section as well, since we gave the script an anchor to start from
 
 </details>
 
-It also prints this to the console:
+It also prints the new array counts to the console:
 ```cmd
 --config_Patient_address.ini
 Number of root items: 50
@@ -439,9 +448,7 @@ Number of anchor items: 9
 --Max array counts:
 address.[*].line: 1
 ```
-This tells us a few things: 1) that without the address, the number of items in the root section dropped from 89 to 50, which is great, 2) that the patient_address table will have 9 columns from the fhir resource, plus the filename and processed date for a total of 11, which is reasonable, and 3) the only array in out new table is line which will only ever have two rows (think address line 1 and address line 2), which is reasonable to script in sql.
-
-Let's make one change: we could link the patient_address records back to the patient records by the filename, but it would be better practice to include the id column from the root object so we can link it back to the patient table that way.
+They are starting to look more reasonable. Let's make one change: we could link the patient_address records back to the patient records by the filename, but it would be better practice to include the id column from the root object so we can link it back to the patient table that way.
 The anchor config's struct section all have "Anchor:" prepending every value; that's how the processor knows to start the path from the anchor instead of the root. 
 
 We can add the id from the root by simply copying the id line from the root_paths area.  We can change the name of the column to something like Patient ID to make it more apparent by changing the key and leaving the value as is.
@@ -456,11 +463,16 @@ line_0 = Anchor:line.0
 ...
 ```
 
-We should be all set to process patient addresses.  For telecom, lets take a different approach.  We only really care about the first telecom record.  We want to store the rest for posterity, but they don't need their own table, and we don't need a column for every iteration of every telecom.
+We should be all set to process patient addresses. Now lets say we've decided we don't want to retain any extensions.  We know that some outliers might have hundreds of rows, and it's all metadata that we don't care about. 
+For this use case, you can add a value to an ignore_paths section in the config, and when the function is identifying any missing paths it will ignore that path and any of its children.  So it would ignore `extension.0.url`, `extension.0.value`, and `extension.0.value.0.code`, etc.
 
-For this use case, we can write the telecom array itself to a column.  The values will still be there if you want to see them.  Some warehouses, like snowflake, can even query them.  Others like redshift cannot, and if you wanted to parse the values out it would be trickier.
+The analyze Json script can add those in the correct format with the ignore_list parameter, and remove them from the Struct section.  Let's rerun the root Patient resource, but with two values in the ignore list: 
+ - `address` (because we are capturing it in a differnt table, and don't want to be notified in _this_ table if its missing
+ - `extension` (because we have analyzed that data and knwo we don't need to retain that info) 
 
-If we were to modify our config_Patient.ini file to refernece the path of the array itself like so,
+After we rerun analyzeJson and create an updated config, we'll want to make one more change for telecom. For telecom, we really only care about the first telecom record, but we still want to retain the rest of the records for posterity.
+For this use case, we can make a quick manual change to the output.  If we get rid of all of the secondary telecom rows, but add a row where the key and value are both `telecom`, the function will add the entire telecom array to a column called telecom. 
+For instance these changes: 
 ```ini
 ...
 name_0_given_0 = name.0.given.0
@@ -471,7 +483,7 @@ telecom = telecom                    # path to the telecom array
 gender = gender
 ...
 ```
-it would store the first telecom system, value, and use, as well as another column that has an array with all of the telecoms for that patient record.  It might looks something like:
+would store the first telecom system, value, and usu in their own columns, and add another column that has an array with all of the telecoms for that patient record.  It might look something like:
 ```python
 [{'system': 'phone','value': '1(555)867-5309','use': 'mobile'},{'system': 'phone','value': '1(877)527-7454','use': 'usual'}]
 ```
@@ -482,48 +494,18 @@ FROM PATIENT p
 , LATERAL FLATTEN(input => PARSE_JSON(TELECOM)) f
 ```
 
-That solves the problem with telecom.  Last, we have the option of ignoring any column we don't want.  For the purposes of this exercise, lets say we don't want to retain the extension array.  We know that some outliers might hav hundreds of rows, and it's all metadata that we don't care about. 
+Now lets just make one more change: lets add telecom to the `[ignore_paths]`.  That way we won't be notified if larger arrays or new elements are processed in the future, which is alright since we're storing the entire telecom array is retained in a column. 
 
-You can add a value to an ignore_paths section in the config, and when the function is identifying any missing paths, it will ignore that path and any of its children.  so it would ignore `extension.url`, `extension.value`, and `extension.value.0.code`.
-
-The analyze Json script can add those in the correct format with the ignore_list parameter.  Lets rerun the root Patient resource, but with three values in the ignore list: 
- - `address` (because we are capturing it in a differnt table, and don't want to be notified in _this_ table if its missing
- - `telecom` (because we are writing the entire telecom object to a column, and won't be missing anything even if a new child-of-telecom path shows up in a future resource)
- - `extension` (because we have analyzed that data and knwo we don't need to retain that info) 
-
-Running AnalyzeJson with these parameters:
-```python
-folder_path = r'FHIR_resource\sample_set_1' # Folder path with files to analyze 
-keyword = 'Patient' # Keyword in the filenames to search through, also the resource type
-anchor_path = ''  # If populated, the path to an array which will be the new processing root
-ignore_list =['extension','address','telecom'] # Any paths to ignore
-```
-
-outputs these details:
-```cmd
---config_Patient.ini
-Number of root items: 30
-
---Max array counts:
-meta.profile: 2
-identifier: 2
-identifier.0.type.coding: 1
-identifier.1.type.coding: 1
-name: 1
-name.0.given: 1
-```
-
-which seems like a much more reasonable table!  We'll add the telecom changes we detailed earlier, and arrive at the final version of our root level Patient resource config:
+Our final patient table only has 36 columns, which seems like a much more reasonable table!  Our final version of the root level Patient resource config now looks like this:
 
 <details>
 <summary>config_Patient.sql</summary>
 
 ```sql
 [GenConfig]
-inputpath = Patient.json
-outputpath = Patient.csv
-parsemode = json
-writemode = append
+outputPath = Patient.csv
+inputMode = json
+writeMode = append
 
 [Struct]
 resourcetype = resourceType
@@ -561,7 +543,7 @@ telecom = telecom
 managingorganization_reference = managingOrganization.reference
 managingorganization_display = managingOrganization.display
 filename = Filename:
-processed_datetime = GetDate:
+processed_date = GetDate:
 
 [root_paths]
 resourcetype = resourceType
@@ -608,19 +590,19 @@ And we're set!  A basic implementation might look like this:
 ```python
 import parseFhir
 
-parseFhir.parse(configpath=r'config\Patient.ini',
-                userInputPath=r'FHIR_resource\sample_set_1\Patient_000000000000000000000001.json',
-                userOutputPath=r'csvs\Patient\000000000000000000000001.csv',
-                userMissingPath=r'missing_paths.csv',
-                userOutputFormat=r'csv',
-                userParseMode=r'json')
+parseFhir.parse(configPath=r'config\Patient.ini',
+                inputPath=r'FHIR_resource\sample_set_1\Patient_000000000000000000000001.json',
+                outputPath=r'csvs\Patient\000000000000000000000001.csv',
+                missingPath=r'missing_paths.csv',
+                inputFormat=r'json',
+                outputFormat=r'csv')
 
-parseFhir.parse(configpath=r'config\Patient_address.ini',
-                userInputPath=r'FHIR_resource\sample_set_1\Patient_000000000000000000000001.json',
-                userOutputPath=r'csvs\Patient_address\000000000000000000000001.csv',
-                userMissingPath=r'missing_paths.csv',
-                userOutputFormat=r'csv',
-                userParseMode=r'json')
+parseFhir.parse(configPath=r'config\Patient_address.ini',
+                inputPath=r'FHIR_resource\sample_set_1\Patient_000000000000000000000001.json',
+                outputPath=r'csvs\Patient_address\000000000000000000000001.csv',
+                missingPath=r'missing_paths.csv',
+                inputFormat=r'json',
+                outputFormat=r'csv')
 ```
 
 There are other functionalities fhir-inferno can perform that can help format or cleanse the data, for instance joining elements of a value array (like all of the address lines) into one column column, or selecting a values from a particular element of an array, but those are beyond the scope of this exercise, which is focused on flattening the data for future transformation and cleansing in a warehouse.  Please see the readme for more information.
@@ -630,10 +612,11 @@ The next steps are to repeat the process and create configs for any resource typ
 
 
 ## Implementing the solution
-Now that we have the transformation configs built, it's time to put our solution into action.  Since our data is being delivered to an s3 bucket, will build a lambda function that will process the files. 
-Our function will primarily work by processing all resources for a patient for a particular file type, but it will also be built to be able to process file at a time triggered by an s3 event, if we decide to stream the messages in the future.
-It's going to use the return userOutputMode, so we can aggregate the bulk processed files and write them together.  
-It will then write the output in parquet to an s3 bucket, and manage the sqs queue if necessary.  We will then set up a snowpipe from our output s3 bucket, so files can flow into our snowflake environment in real time.  
+Now that we have the transformation configs built, it's time to put our solution into action.  Since our data is being delivered to an s3 bucket, we'll build a lambda function that will process the files. 
+Our function will primarily work by processing all resources for a patient for a particular file type, running once daily and procesing all of the patients who were added in the last day,
+but it will also be built to be able to process one file at a time when triggered by an s3 event, if we decide to stream the messages in the future.
+It's going to use the return outputMode, so we can aggregate the bulk processed files and write the data as parquet to a separate s3 bucket   
+It will then write the output as parquet to an s3 bucket, and manage the sqs queue if necessary.  We will then set up a snowpipe from our output s3 bucket, so files can flow into our snowflake environment in real time.  
 We will handle any updates to files by adding a staging model in our dbt project that takes the most recent version of each record based on the filename and processed date.
 
 
@@ -657,7 +640,7 @@ import pyarrow.parquet as pq
 from botocore.exceptions import ClientError
 
 logger = logging.getLogger()
-logger.setLevel(logging.WARN)
+logger.setLevel(logging.INFO)
 
 
 ## cleares the temp directory.  With multiple lambda invocations, this can contain resources from previous runs
@@ -670,7 +653,7 @@ def clear_tmp_directory():
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
         except Exception as e:
-            print(f'Failed to delete {file_path}. Reason: {e}')
+            logger.exception(f'Failed to delete {file_path}. Reason: {e}', exc_info=True)
 
 
 # function to call the fhir parse
@@ -679,17 +662,18 @@ def execute_parse(resourceType,filepath,outfiledir,anchors,par_dir,filename,agg)
     if agg:
         out_path_group = os.path.join(outfiledir, 'parquet_groups', resourceType, par_dir + '.parquet')
         os.makedirs(os.path.dirname(out_path_group), exist_ok=True)
-        outMissing = os.path.join(outfiledir,'missing_paths',par_dir, filename + '.csv')
+        # outMissing = os.path.join(outfiledir,'missing_paths',par_dir, filename + '.csv')
+        outMissing = os.path.join(outfiledir,'missing_paths', resourceType, par_dir + '.csv')
         os.makedirs(os.path.dirname(outMissing), exist_ok=True)
         dfs = []
         for dirpath, dirnames, filenames in os.walk('/tmp/input/'):
             for filename in filenames:
-                logger.info(f"file oslistdir inside exec: {dirpath} {filename}")
-                outMissing = os.path.join(outfiledir, 'missing_paths', par_dir, filename + '.csv')
-                os.makedirs(os.path.dirname(outMissing), exist_ok=True)
-                df = parseFhir.parse(r'config/config_'+ resourceType +'.ini', userInputPath=os.path.join(dirpath,filename), userOutputPath=out_path_group, userMissingPath=outMissing,userOutputFormat='return')
+                logger.debug(f"file oslistdir inside exec: {dirpath} {filename}")
+                # outMissing = os.path.join(outfiledir, 'missing_paths', par_dir, filename + '.csv')
+                # os.makedirs(os.path.dirname(outMissing), exist_ok=True)
+                df = parseFhir.parse(r'config/config_'+ resourceType +'.ini', inputPath=os.path.join(dirpath,filename),  missingPath=outMissing,outputFormat='return')
 
-                logger.info(f"DataFrame summary:\n{df.describe()}")
+                logger.debug(f"DataFrame summary:\n{df.describe()}")
                 dfs.append(df)
         aggregated_df = pd.concat(dfs, ignore_index=True)
 
@@ -705,8 +689,8 @@ def execute_parse(resourceType,filepath,outfiledir,anchors,par_dir,filename,agg)
                 for filename in filenames:
                     outMissing = os.path.join(outfiledir, 'missing_paths', par_dir, filename + '.csv')
                     os.makedirs(os.path.dirname(outMissing), exist_ok=True)
-                    df = parseFhir.parse(r'config/config_' + resourceType + '_' + anchor + '.ini', userInputPath=os.path.join(dirpath,filename),
-                                         userOutputPath=out_path_group, userMissingPath=outMissing,userOutputFormat='return')
+                    df = parseFhir.parse(r'config/config_' + resourceType + '_' + anchor + '.ini', inputPath=os.path.join(dirpath,filename),
+                                         missingPath=outMissing,outputFormat='return')
 
                     dfs.append(df)
             aggregated_df = pd.concat(dfs, ignore_index=True)
@@ -722,13 +706,13 @@ def execute_parse(resourceType,filepath,outfiledir,anchors,par_dir,filename,agg)
         outMissing = os.path.join(outfiledir,'missing_paths',par_dir, filename + '.csv')
         os.makedirs(os.path.dirname(outPath), exist_ok=True)
         os.makedirs(os.path.dirname(outMissing), exist_ok=True)
-        parseFhir.parse(r'config/config_'+ resourceType +'.ini', userInputPath=filepath, userOutputPath=outPath, userMissingPath=outMissing)
+        parseFhir.parse(r'config/config_'+ resourceType +'.ini', inputPath=filepath, outputPath=outPath, missingPath=outMissing,outputFormat='parquet')
         for anchor in anchors:
             outPath = os.path.join(outfiledir,'parquet_files',resourceType + '_' + anchor, par_dir, filename + '_' + anchor + '.parquet')
             outMissing = os.path.join(outfiledir,'missing_paths',par_dir, filename + '_' + anchor + '.csv')
             os.makedirs(os.path.dirname(outPath), exist_ok=True)
             os.makedirs(os.path.dirname(outMissing), exist_ok=True)
-            parseFhir.parse(r'config/config_' + resourceType + '_' + anchor + '.ini', userInputPath=filepath, userOutputPath=outPath,userMissingPath=outMissing)
+            parseFhir.parse(r'config/config_' + resourceType + '_' + anchor + '.ini', inputPath=filepath, outputPath=outPath,missingPath=outMissing,outputFormat='parquet')
 
 def choose_config(filepath,outfiledir,agg=False):
     path_parts = filepath.split(os.sep)
@@ -742,7 +726,7 @@ def choose_config(filepath,outfiledir,agg=False):
     outMissing = os.path.join(outfiledir,'missing_paths',par_dir, filename + '.parquet')
     os.makedirs(os.path.dirname(outMissing), exist_ok=True)
     resourceType = os.path.basename(filepath).split('_')[0]
-    logger.info(f"filepath:{filename} resourceType:{resourceType}")
+    logger.debug(f"\n--Choosing Congid\nFilepath:{filename}\nResource Type:{resourceType}")
 
     if resourceType == 'AllergyIntolerance':
         execute_parse(resourceType,filepath,outfiledir,[],par_dir,filename,agg)
@@ -798,11 +782,11 @@ def choose_config(filepath,outfiledir,agg=False):
 
 
 def lambda_handler(event, context):
-    logger.info(f"Starting: {json.dumps(event)}")
+    logger.debug(f"Starting: {json.dumps(event)}")
     try:
         clear_tmp_directory()
         s3_client = boto3.client('s3')
-       
+
 
         local_input_path = '/tmp/input/'
         local_output_path = '/tmp/output/'
@@ -818,8 +802,8 @@ def lambda_handler(event, context):
                 receipt_handle = event['Records'][0]['receiptHandle']
                 event_data = json.loads(body)
             except json.JSONDecodeError as e:
-                print("Error parsing SQS message body:", e)
-                raise e  # or handle the error
+                logger.error("fError parsing SQS message body: {e}")
+                raise e  # or handle the error as you see fit
         else:
             input_type = 'trigger'
             event_data = event
@@ -833,7 +817,7 @@ def lambda_handler(event, context):
         file_key = s3_event.get('object', {}).get('key')
 
 
-        logger.info(f"Bucket:{bucket_name}\nprefix:{prefix}\npattern{pattern}\nskip_count:{skip_count}\nrecursion_depth:{recursion_depth}\nagg:{agg}\nfile_key:{file_key}\nevent: {json.dumps(event)}")
+        logger.info(f"\n--Processing\nBucket:{bucket_name}\nprefix:{prefix}\npattern{pattern}\nskip_count:{skip_count}\nrecursion_depth:{recursion_depth}\nagg:{agg}\nfile_key:{file_key}")
 
 
         if agg:
@@ -856,19 +840,20 @@ def lambda_handler(event, context):
                     local_input_file = os.path.join(local_input_path, obj.key)
 
                     if obj.key.endswith('/'):  # Skip 'folders'
-                        logger.info(f"Skipping 'folder' key: {obj.key}")
+                        logger.debug(f"Skipping 'folder' key: {obj.key}")
                         continue
 
-                    # logger.info(f"Object key: {obj.key}, Local input file path: {local_input_file}")
+
                     if total_files_count < skip_count:
                         total_files_count += 1
+                        logger.debug(f"\n--Skipping\nObject key: {obj.key}, Local input file path: {local_input_file}")
                         continue  # Skip this file
-
+                    logger.debug(f"\n--Downloading\nObject key: {obj.key}, Local input file path: {local_input_file}")
                     try:
                         os.makedirs(os.path.dirname(local_input_file), exist_ok=True)
                         s3_client.download_file(bucket_name, obj.key, local_input_file)
                     except Exception as e:
-                        logger.error(f"Error occurred while processing {obj.key}: {e}")
+                        logger.exception(f"Error occurred while processing {obj.key}: {e}", exc_info=True)
                         continue
 
 
@@ -899,18 +884,18 @@ def lambda_handler(event, context):
                             ]
                         }
                         message_body = json.dumps(new_event)
-                        logging.info(f'Invoking sqs for {prefix} - {pattern}:{recursion_depth}')
+                        logging.info(f'\n--Invoking sqs\nPrefix: {prefix}\nPattern: {pattern}\nRecursion Depth: {recursion_depth}')
 
                         sqs.send_message(
-                            QueueUrl="https://sqs.us-east-1.amazonaws.com/123456789012/hg_connector_queue",
+                            QueueUrl="https://sqs.us-east-1.amazonaws.com/123456789012/health_gorilla_queue",
                             MessageBody=message_body
                         )
                         break
             if local_input_file is None:
-                logger.error("No valid input file found.")
+                logger.warning("No valid input file found.")
                 return {
-                    'statusCode': 400,
-                    'body': json.dumps('No valid input file found.')
+                    'statusCode': 204,
+                    'body': json.dumps(f'\nNo valid input file found.\nBucket:{bucket_name}\nprefix:{prefix}\npattern{pattern}\nskip_count:{skip_count}\nrecursion_depth:{recursion_depth}\nagg:{agg}\nfile_key:{file_key}')
                 }
             choose_config(local_input_file, local_output_path, True)
 
@@ -935,12 +920,12 @@ def lambda_handler(event, context):
             try:
                 sqs = boto3.client('sqs')
                 sqs.delete_message(
-                    QueueUrl="https://sqs.us-east-1.amazonaws.com/123456789012/hg_connector_queue",
+                    QueueUrl="https://sqs.us-east-1.amazonaws.com/123456789012/health_gorilla_queue",
                     ReceiptHandle=receipt_handle
                 )
             except Exception as e:
                 logger.error(f"Failed to remove message from queue: {e}")
-
+        logger.info(f"\nSuccessfully processed {processed_files_count} files. Total files examined: {total_files_count}\nBucket:{bucket_name}\nprefix:{prefix}\npattern{pattern}\nskip_count:{skip_count}\nrecursion_depth:{recursion_depth}\nagg:{agg}\nfile_key:{file_key}")
         return {
             'statusCode': 200,
             'body': json.dumps(f'Processed {processed_files_count} files. Total processed: {total_files_count}')
@@ -951,7 +936,7 @@ def lambda_handler(event, context):
 
 
 def upload_processed_files(local_output_path, s3_client,recursion_depth):
-    output_bucket_name = 'output_bucket_name'
+    output_bucket_name = 'output-bucket'
     for dirpath, dirnames, filenames in os.walk(local_output_path):
         for filename in filenames:
             file_path = os.path.join(dirpath, filename)
@@ -968,3 +953,37 @@ def upload_processed_files(local_output_path, s3_client,recursion_depth):
 ```
 
 </details>
+
+
+## Transforming the raw data to high-quality analytics-ready data
+
+There are two steps to transforming the raw data to our final tables:  transforming the raw data to the [Tuva Input Layer](https://thetuvaproject.com/data-dictionaries/input-layer),
+and running the [Tuva package](https://github.com/tuva-health/tuva).  Fortunately, because there is an existing [Health Gorilla Connector](https://github.com/tuva-health/health_gorilla_connector),
+we can do this out of the box in one step.
+
+### Prerequisites
+In order to get started, you'll need to have 
+ - the raw, flattened data loaded to your warehouse (snowflake, redshift, and bigquery are supported)
+ - dbt installed, and a profile set up pointing to your warehouse
+
+While the process is straightforward, ideally you should have a basic understanding of [dbt](https://www.getdbt.com/product/what-is-dbt).  We'll be using [dbt core](https://docs.getdbt.com/docs/core/installation-overview) for this walkthrough, but you could also use [dbt cloud](https://www.getdbt.com/product/dbt-cloud).
+[Here](https://docs.getdbt.com/guides/manual-install?step=1) is a quickstart walkthrough for dbt core.
+
+### Configuring the connector
+The first step is to clone the [Health Gorilla Connector](https://github.com/tuva-health/health_gorilla_connector) repo to our local environment.
+
+Once we have our own version of the connector we have a few things to configure, all in the [dbt_project.yml](https://github.com/tuva-health/health_gorilla_connector/blob/initial_push/dbt_project.yml) file:
+ - if our profile name is anything other than `default`, we need to change the `profile:` configuration to match what we set in our profiles.yml  
+ - we need to set the `input_database` var to the name of the database where our raw Health Gorilla data is
+ - we need to set the `input_schema` var to the name of the schema where our raw Health Gorilla data is
+
+Assuming our data is in the table structure provided by the [FHIR Inferno Health Gorilla Configs](https://github.com/tuva-health/FHIR_inferno/tree/main/configurations/configuration_Health_Gorilla), we should be good to go.
+If your data is in a different format, you'll have to tweak the macros to start from your source data, and end up in the [Tuva Input Layer format](https://thetuvaproject.com/data-dictionaries/input-layer)
+
+### Executing the connector
+From here it's as simple as running 
+
+```dbt build```
+
+The health gorilla project will execute the required models in the correct order to go from the raw data to the Tuva Input Layer.  
+The Tuva package will build the core data model from the input layer, and build out any marts that it is able to from clinical data.
