@@ -63,7 +63,7 @@ const sidebars =
         // "guides/acute-inpatient-analytics",
         "guides/claims-mapping",
         "guides/cms-hcc-risk-analytics",
-        "guides/fhir-preprocessing",
+        "guides/fhir-preprocessing-2",
         "guides/geospatial-analytics",
         "guides/setting-up-tuva",
     ],
