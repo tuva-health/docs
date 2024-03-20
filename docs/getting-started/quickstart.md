@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 Quickstart
 
-The Tuva Project is a large collection of tools for cleaning and transforming healthcare data.  At it's core is a standard data model designed for healthcare analytics.  The Tuva Data Model, along with the code and terminology sets to create it, exists in a main repository called [the_tuva_project](https://github.com/tuva-health/the_tuva_project).  This section describes how you can get started using the Tuva Project.
+The Tuva Project is a large collection of tools for cleaning and transforming healthcare data.  At it's core is a standard data model designed for healthcare analytics.  The Tuva Data Model, along with the code and terminology sets to create it, exists in a main repository called [tuva](https://github.com/tuva-health/the_tuva_project).  This section describes how you can get started using the Tuva Project.
 
 ## Pre-requisites
 
