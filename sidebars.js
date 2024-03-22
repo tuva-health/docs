@@ -3,49 +3,32 @@ const sidebars =
 {
     docsSidebar: 
     [ 
-        {
-            type: "category",
-            label: "Getting Started",
-            items: [
-                "getting-started/introduction",
-                "getting-started/quickstart",
-            ]
-        },
-
-        // {
-        //     type: "category",
-        //     label: "Connectors",
-        //     items: [
-                "connectors/overview",
-        //         "connectors/medicare-cclf",
-        //         "connectors/medicare-lds",
-        //         "connectors/fhir",
-        //         "connectors/elation",
-        //     ]
-        // },
-
+        "introduction",
+        "quickstart",
+        "core-data-model",
+        "clinical-concept-library",
+        "data-marts",
+        "terminology",
+        "reference-data",
+        "connectors/overview",
+        "synthetic-data",
         {
             type: "category",
             label: "Data Dictionaries",
             items: [
-                "data-dictionaries/input-layer", 
-                "data-dictionaries/core",
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
+                "data-dictionaries/claims-preprocessing",
+                "data-dictionaries/core",
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
                 "data-dictionaries/financial-pmpm",
                 "data-dictionaries/hcc-suspecting",
+                "data-dictionaries/input-layer",
                 "data-dictionaries/quality-measures",
                 "data-dictionaries/readmissions",           
             ]
         },
-
-        "quality-measures",
-        "reference-data",
-        "synthetic-data",
-        "terminology-sets",
-
         {
             type: "category",
             label: "Contribution Guides",
@@ -54,7 +37,6 @@ const sidebars =
                 "contribution-guides/development-style-guide",
             ]
         },
-
         "help",
     ],
 

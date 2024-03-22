@@ -86,11 +86,6 @@
   background-size: 24px 24px; /* set the size of the background image */
 }
 
-/*[data-theme='dark'] .header-slack-link::before {*/
-/*  background: url("/img/slack-logo-white.svg");*/
-/*  background-size: 24px 24px; !* set the size of the background image *!*/
-/*}*/
-
 table.dataTable tbody td, table.dataTable thead th {
   border: none;
 }
@@ -109,10 +104,7 @@ table.dataTable {
   border-collapse: collapse;
 }
 
-
-/*table.dataTable thead tr th:first-child,*/
-/*table.dataTable tbody tr td:first-child {*/
-/*  max-width: 300px;*/
-/*  overflow: hidden;*/
-/*  text-overflow: ellipsis;*/
-/*}*/
+.markdown table {
+  width: 100%; /* Make table width 100% of container */
+  table-layout: fixed; /* Optional: Adds equal column sizing */
+}
