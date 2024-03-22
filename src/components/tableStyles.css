@@ -36,8 +36,8 @@ th {
 td {
   font-size: 18px;
   padding: 25px 0;
-  min-width: 195px;
-  max-width: 195px;
+  min-width: 300px;
+  max-width: 300px;
 }
 tr:hover {
   background-color: #F2F2F2 !important;
