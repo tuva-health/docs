@@ -5,7 +5,7 @@ title: "Clinical Concept Library"
 
 ## Overview
 
-The Clinical Concept Library (CCL) is a collection of value sets defined using atomic-level healthcare terminologies (e.g. ICD-10-CM, RxNorm) that define clinical concepts important in research and analytics.  Here we describe the design, function, and policies that govern the CCL.
+The Clinical Concept Library (CCL) is a collection of value sets defined using atomic-level healthcare terminologies (e.g. ICD-10-CM, RxNorm, etc.) that define clinical concepts important in research and analytics.  Here we describe the design, function, and policies that govern the CCL.
 
 The policies articulated here are not (except where noted) intended to be rigidly followed, but rather, are guidelines intended to base the CCL on a firm foundation of clinical informatics and content management best practices and ensure a degree of consistency across the content scope even as the community of people working on this content grows over time.
 
