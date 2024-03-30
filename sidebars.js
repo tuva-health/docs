@@ -42,10 +42,9 @@ const sidebars =
 
     guidesSidebar: 
     [
-        // "guides/acute-inpatient-analytics",
         "guides/claims-mapping",
         "guides/cms-hcc-risk-analytics",
-        "guides/fhir-preprocessing-2",
+        "guides/fhir-preprocessing",
         "guides/geospatial-analytics",
         "guides/setting-up-tuva",
     ],
