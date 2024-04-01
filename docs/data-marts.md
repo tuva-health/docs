@@ -65,7 +65,7 @@ The HCC Suspecting data mart identifies patients that are suspected to have an H
 - [Data Dictionary](../data-dictionaries/quality-measures)
 - [Code](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
 
-The Quality Measures data mart is where we're building publicly available quality measurs.  We're adding as many publicly available measures as we can to the Tuva Project.  You can see the roadmap in this section. If there is a publicly available 
+The Quality Measures data mart is where we're building publicly available quality measures.  We're adding as many publicly available measures as we can to the Tuva Project.  You can see the roadmap in this section. If there is a publicly available 
 measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) 
 on GitHub.
 
