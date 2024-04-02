@@ -7,7 +7,22 @@ const sidebars =
         "quickstart",
         "core-data-model",
         "clinical-concept-library",
-        "data-marts",
+        {
+            type: "category",
+            label: "Data Marts",
+            items: [
+                "data-marts/overview",
+                "data-marts/ccsr",
+                "data-marts/chronic-conditions",
+                "data-marts/claims-preprocessing",
+                "data-marts/cms-hccs",
+                "data-marts/ed-classification",
+                "data-marts/financial-pmpm",
+                "data-marts/hcc-suspecting",
+                "data-marts/quality-measures",
+                "data-marts/readmissions",
+            ]
+        },
         "terminology",
         "reference-data",
         "connectors/overview",
@@ -63,7 +78,6 @@ const sidebars =
                 "knowledge-base/claims-data-fundamentals/member-months",
                 "knowledge-base/claims-data-fundamentals/provider-npi",
                 "knowledge-base/claims-data-fundamentals/service-categories",
-                "knowledge-base/claims-data-fundamentals/encounter-groupers",
             ]
         },
 
