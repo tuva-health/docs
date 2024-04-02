@@ -5,6 +5,16 @@ title: "Reference Data"
 
 The Tuva Project contains a variety of datasets that are useful for healthcare analytics.  We call these datasets reference datasets.  These reference datasets are hosted on a public AWS S3 bucket.
 
+| Reference Dataset | Description |
+| --------- | ----------------------------- |
+| [Calendar](#calendar) | Contains a record for every day of the year from 1900 through 2100 and a number of date-related concepts (e.g. is the day a weekday or weekend). |
+| [Census Shape Files](#census-shape-files) |  The U.S. Census provides geographic shape files for different grains of census areas including: County, Tract and Block Group. |
+| [FIPS](#fips) | ANSI FIPS codes identify specific geographic areas such as states and counties.  |
+| [Provider Data](#provider-data) |  Provider data is created from NPPES and NUCC Taxonomy. |
+| [Social Vulnerability Index](#social-vulnerability-index) | A variety of SDOH variables and composites. |
+| [Zip Codes](#zip-codes) | A list of all zip codes in the U.S.  |
+
+
 ## Calendar
 It's often useful to have a calendar table handy for analytics.  We provide a calendar data which includes one record for every date from January 1, 1900 through the year 2100.  For every date in the table we provide a variety of useful transformations such as:
 - year
@@ -19,9 +29,7 @@ It's often useful to have a calendar table handy for analytics.  We provide a ca
 - first_day_of_month
 - last_day_of_month
 
-## Geographic Data
-
-### Census Shape Files
+## Census Shape Files
 The U.S. Census provides geographic shape files for different grains of census areas.  We use three primary areas: County, Tract and Block Group.  You can find the original file downloads from the U.S. Census [here](https://www.census.gov/cgi-bin/geo/shapefiles/index.php).
 
 For census tract and block groups, the U.S. Census provides shapefiles on a state by state basis.  We have preprocessed these state files to create single shape files for the entire U.S.  You can find the County, Tract and Block Group shapefiles in our S3 reference bucket here:
@@ -64,7 +72,7 @@ The full documentation of data fields can be found [here](https://www2.census.go
 | INTPTLAT  | 11     | String | Current latitude of the internal point                                                          |
 | INTPTLON  | 12     | String | Current longitude of the internal point                                                         |
 
-### FIPS
+## FIPS
 We make several FIPS datasets available:
 - [State](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__ansi_fips_state.csv)
 - [County](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__fips_county.csv)
@@ -84,21 +92,10 @@ digit is the block group FIPS code.
 There are other codes and levels of granularity but these are the ones we use in The Tuva Project. For a full
 breakdown of GEOIDs please see [here](https://www.census.gov/programs-surveys/geography/guidance/geo-identifiers.html).
 
-### Zip Codes
-In some cases you might want to use zipcode as a grain. There is not a one-to-one relationship between zipcodes
-and tracts but you can use the 
-[Census Zip Code Tabulation Areas (ZCTA)](https://www.census.gov/geographies/reference-maps/2010/geo/2010-zcta-rel.html)
-or the HUD [ZIP Code Crosswalk Files](https://www.huduser.gov/portal/datasets/usps_crosswalk.html). For convenience,
-we also host the crosswalks in our reference bucket: 
-- [Zip to Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/ZIP_TRACT_032023.csv)
-- [Tract to Zip](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/TRACT_ZIP_032023.csv)
-
 ## Provider Data
 We include two provider datasets which we've created from NPPES and NUCC Taxonomy.  
 
-## Social Determinants
-
-### Social Vulnerability Index
+## Social Vulnerability Index
 SVI has 158 faw variables that are grouped into 15 measure. These measures are then grouped into 4 themes.
 The composite score of the 4 themes is the SVI score.
 
@@ -118,9 +115,18 @@ The [Social Vulnerability Index (SVI)](https://svi.cdc.gov/data-and-tools-downlo
 - [SVI Tracts](https://tuva-public-resources.s3.amazonaws.com/reference-data/SVI/SVI_2020_US.zip)
 - [SVI County](https://tuva-public-resources.s3.amazonaws.com/reference-data/SVI/SVI_2020_US_county.zip) 
 
-### Area Deprivation Index
+**Area Depreviation Index**
 Neighborhood Atlas ADI data is based on the Area Deprivation Index is developed by the University of Wisconsin. The ADI is a composite measure of socioeconomic status that includes variables for income, education, employment, and housing quality. 
 
 The ADI is calculated for each census tract in the United States and is then grouped into deciles.  The lower the ADI decile the more affluent the area. ADI provides nationwide score as well as state ranked scores. 
 
 We are not able to host the Area Deprivation Index data due to licensing restrictions.  You can find the ADI data [here](https://www.neighborhoodatlas.medicine.wisc.edu/). 
+
+## Zip Codes
+In some cases you might want to use zipcode as a grain. There is not a one-to-one relationship between zipcodes
+and tracts but you can use the 
+[Census Zip Code Tabulation Areas (ZCTA)](https://www.census.gov/geographies/reference-maps/2010/geo/2010-zcta-rel.html)
+or the HUD [ZIP Code Crosswalk Files](https://www.huduser.gov/portal/datasets/usps_crosswalk.html). For convenience,
+we also host the crosswalks in our reference bucket: 
+- [Zip to Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/ZIP_TRACT_032023.csv)
+- [Tract to Zip](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/TRACT_ZIP_032023.csv)

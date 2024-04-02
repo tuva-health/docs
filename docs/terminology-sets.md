@@ -2,9 +2,8 @@
 id: terminology
 title: "Terminology"
 description: The Tuva Project makes it easy to load useful terminology sets like ICD-10 codes directly into your data warehouse where you need them for analytics.
-hide_table_of_contents: true
 ---
-# Overview
+## Overview
 
 import { CSVDataTableCatalog } from '@site/src/components/CSVDataTableCatalog';
 
@@ -49,13 +48,13 @@ Most of the terminology sets are maintained on GitHub.  However some of the larg
 | [RxNorm to ATC](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__rxnorm_to_atc.csv)                                     | [CodeRx](https://coderx.io/)                     | 2/28/2024     | [Link](https://tuva-public-resources.s3.amazonaws.com/terminology/rxnorm_to_atc.csv_0_0_0.csv.gz)   
 | [SNOMED-CT to ICD-10-CM Map](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__snomed_icd_10_map.csv)                    | US National Library of Medicine                  | 9/1/2023     | [Link](https://tuva-public-resources.s3.amazonaws.com/terminology/snomed_icd_10_map.csv_0_0_0.csv.gz)         |
 
-# Maintenance
+## Maintenance
 The instructions to update each terminology file have been provided below.  Steps may differ based on how often codes are updated.
 For example, admit source is rarely updated so optional steps have been included.  This file is also small enough that a person
 can manually review the codes for changes.  On the other hand, ICD-10-CM codes are released yearly.  The file is too large 
 for manual review and should always be refreshed.
 
-## Admit Source Code
+### Admit Source Code
 1. Navigate to the [ResDac Inpatient website](https://resdac.org/cms-data/files/ip-ffs)
 2. Click "View Data Documentation" under the page title
 3. Locate and select the Variable Name "Claim Source Inpatient Admission Code"
@@ -82,7 +81,7 @@ OVERWRITE = TRUE;
 12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date.
 13. Submit a pull request
 
-## Admit Type Code
+### Admit Type Code
 1. Navigate to the [ResDac Inpatient website](https://resdac.org/cms-data/files/ip-ffs)
 2. Click "View Data Documentation" under the page title
 3. Locate and select the Variable Name "Claim Inpatient Admission Type Code"
@@ -109,7 +108,7 @@ OVERWRITE = TRUE;
 12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
 13. Submit a pull request
 
-## APR-DRG
+### APR-DRG
 1. Navigate to the [AHRQ HCUP website](https://hcup-us.ahrq.gov/)
 2. Click the header tab "Database Information"
 3. Click on the hyperlink "NIS Database Documentation"
@@ -131,7 +130,7 @@ OVERWRITE = TRUE;
 11. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
 12. Submit a pull request
 
-## Discharge Disposition Code
+### Discharge Disposition
 1. Navigate to the [ResDac Inpatient website](https://resdac.org/cms-data/files/ip-ffs)
 2. Click "View Data Documentation" under the page title
 3. Locate and select the Variable Name "Patient Discharge Status Code"
@@ -158,7 +157,7 @@ OVERWRITE = TRUE;
 12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
 13. Submit a pull request
 
-## ICD-10-CM
+### ICD-10-CM
 1. Navigate to the [CMS ICD 10 website](https://www.cms.gov/medicare/coding-billing/icd-10-codes)
 2. In the left hand menu, click the hyperlink for ICD-10-CM of the current fiscal year (e.g. 2024 ICD-10-CM)
 3. Under Downloads, click "Code Description in Tabular Order"
@@ -185,7 +184,7 @@ of the ICD-10-CM file in GitHub because it is a large file.**
 11. Alter the headers as needed in [ICD-10-CM file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_cm.csv)
 12. Submit a pull request
 
-## ICD-10-PCS
+### ICD-10-PCS
 1. Navigate to the [CMS ICD 10 website](https://www.cms.gov/medicare/coding-billing/icd-10-codes)
 2. In the left hand menu, click the hyperlink for ICD-10-PCS of the current fiscal year (e.g. 2024 ICD-10-PCS)
 3. Under Downloads, click "Code Description in Tabular Order"
@@ -210,7 +209,7 @@ of the ICD-10-PCS file in GitHub because it is a large file.**
 11. Alter the headers as needed in [ICD-10-PCS file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_pcs.csv)
 12. Submit a pull request
 
-## MDC
+### MDC
 1. Navigate to the [CMS MS DRG website](https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software)
 2. Under the section "MS-DRG Definitions and Manual and Software", click on "V41 Definitions and Manual Table of Contents - Full Titles - HTML Versions"
     - The version (e.g. V41) will change with each new release.    
@@ -238,7 +237,7 @@ OVERWRITE = TRUE;
 12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
 13. Submit a pull request
 
-## MS-DRG
+### MS-DRG
 On October 1st, CMS releases a list of MS-DRG codes that are valid for the fiscal year.  This list only contains valid codes
 and omits any that have been deprecated.  Tuva maintains these deprecated code so historical data can be analyzed.
 
@@ -332,7 +331,7 @@ OVERWRITE = TRUE;
 15. Submit a pull request
 
 
-## SNOMED-CT to ICD-10-CM Map
+### SNOMED-CT to ICD-10-CM Map
 
 This mapping is updated with each new relase of SNOMED CT US Edition which 
 happens in March and September, and includes the annual ICD-10-CM update.
