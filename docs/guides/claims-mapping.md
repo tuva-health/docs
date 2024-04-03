@@ -1,9 +1,9 @@
 ---
-id: claims-mapping
-title: "Claims Mapping"
+id: mapping
+title: "Mapping"
 ---
 
-This guide provides advice on how to map claims data to the Tuva [Input Layer](../data-dictionaries/input-layer).  
+Here we document rules that we follow for mapping raw data sources to the [Input Layer](../data-dictionaries/input-layer).
 
 This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) shows what columns in the Input Layer are needed for 
 the various Tuva data marts.  Not mapping to a column needed for a data mart will result in no data being produced in that mart.
