@@ -45,7 +45,7 @@ Then execute ```dbt deps``` from the command line to import Tuva.
 
 The next step is mapping your claims data to the Input Layer.  Every claims dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your claims schema to the Tuva Input Layer.  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format.
 
-Use the [Input Layer Data Dictionary](../data-dictionaries/input-layer) and [Claims Mapping Guide](../guides/claims-mapping) to guide you in doing this.
+Use the [Input Layer Data Dictionary](../data-dictionaries/input-layer) and [Claims Mapping Guide](../guides/mapping) to guide you in doing this.
 
 ## 4. Build
 
