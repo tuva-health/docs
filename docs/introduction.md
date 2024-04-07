@@ -7,18 +7,15 @@ slug: /
 
 # 👋 Welcome
 
-Welcome to the Tuva Project!  We started Tuva to accelerate the creation of population-scale research, analytics, and A.I. from healthcare data (i.e. claims, medical records, and other clinical data).
+Welcome to the Tuva Project!  The goal of the Tuva Project is to accelerate population-scale healthcare research, analytics, and A.I. by lowering the barrier to the tools and knowledge needed to work with healthcare data.
 
 ![Tuva Project Overview](/img/Tuva_Project_Overview4.jpg)
 
-So what's standing in our way?  Well, as an industry we:
+Doing population-scale healthcare research, analytics, and A.I. requires the tools shown in the diagram above.  Most healthcare data teams spend the majority of their time re-inventing and re-building these tools.  By open-sourcing these tools, we aim to:
 
-1. Spend most of our time re-inventing and re-building the healthcare analytics stack (see diagram above)
-2. Spend any remaining time doing research and analysis
-3. Spend zero time doing systematic data quality analysis
+1. Enable healthcare data teams to re-allocate their time and resources away from re-inventing these tools and instead focus on solving more complex problems
+2. Build the best set of tools possible by crowdsourcing improvements from across the industry
 
-The end-result is that we can't trust the few insights we generate.
+These docs describe the tools we've built, how to use them, and the use cases they support.
 
-We're open-sourcing the healthcare analytics stack to stop the cycle of re-inventing and re-building.  These docs describe the Tuva Project, how it's designed, how it works, and how to use it.
-
-We offer support for organizations that need help implementing / operating Tuva on their data.  [Contact us](https://tuvahealth.com/contact/) to learn more about these offerings.
+For organizations that need assistance transforming their data or doing analytics with Tuva, we offer services and support.  [Contact us](https://tuvahealth.com/contact/) to learn more about how we can help your organization.
