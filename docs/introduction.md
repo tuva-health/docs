@@ -2,6 +2,7 @@
 id: introduction
 title: "Welcome"
 hide_title: true
+image: /img/Tuva_Project_Overview4.jpg
 slug: /
 ---
 
