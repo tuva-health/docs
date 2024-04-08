@@ -34,10 +34,9 @@ Despite the complexity of this field, it's extremely useful.  'bill_type_code' i
 
 'bill_type_code' values are maintained by the National Uniform Billing Committee (NUBC).
 
-### Claim ID
+## Claim ID and Line Number
 `claim_id` is intended to be a unique identifier for a set of services and supplies rendered by a healthcare provider that has been billed to insurance.  It is the most fundamental data element in the `medical_claim` table and every row in the table must have a `claim_id` populated.  If certain records do not have a claim ID populated these records should not be mapped to the Input Layer.
 
-### Claim Line Number
 A claim is often made up of multiple records.  `claim_line_number` is intended to be a unique identifier within a claim that distinguishes these records (i.e. each distinct service, supply, or procedure rendered on the claim).
 
 Every record on a claim should have a unique `claim_line_number` and it should be a positive integer.  Generally speaking `claim_line_number` should be sequentially increasing starting with the number 1.  For example, a claim with 10 records with have `claim_line_number` populated starting a 1 and going up to 10 on the tenth record.  However we often encounter claims with strange line numbers e.g.:
@@ -53,7 +52,7 @@ This weirdness isn't ideal and can indicate other problems in the dataset (e.g. 
 row_number() over (partition by claim_id order by claim_end_date) as claim_line_number
 ```
 
-### Claim Type
+## Claim Type
 
 `claim_type` is the categorization of a claim based on the specific claim form used in billing i.e. institutional or professional.  It's an important field used in [Claims Preprocessing](../../data-marts/claims-preprocessing) to assign service categories and group claims into encounters.
 
@@ -81,7 +80,7 @@ If it’s not possible to determine the correct `claim_type`, we assign a `claim
 
 Whatever `claim_type` is assigned to a claim, it must be the same for all records (i.e. lines) within that claim.
 
-### Dates
+## Dates
 All dates should be formatted as `YYYY-MM-DD`.
 
 To understand the key date fields in medical claims, it's useful to consider an example of a patient who's been receiving care in a long-term care (i.e. skilled nursing) facility for 1 year, from January 1st to December 31st, and suppose the facility bills the insurer every month on the beginning of the month.
@@ -94,7 +93,7 @@ To understand the key date fields in medical claims, it's useful to consider an 
 
 There are 2 other date fields in medical claims.  They are `claim_line_start_date` and `claim_line_end_date`.  These date fields are less important - in fact we don't currently use them in any analytics in Tuva.
 
-### Discharge Disposition
+## Discharge Disposition
 
 'discharge_disposition_code' indicates where the patient was discharged following a stay at a facility.  The field only exists on institutional claims.  The field is sometimes called discharge status or patient status.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
@@ -106,12 +105,12 @@ The code is commonly used to identify things like:
 
 Discharge disposition codes are maintained by the National Uniform Billing Committee (NUBC).
 
-### DRG
+## DRG
 `ms_drg_code` is a classification system used by Medicare to categorize inpatient hospital stays and group them based on a patient’s diagnosis, procedures performed, age, sex, and complications or comorbidities.  It is necessary for Medicare reimbursement but often used by hospitals as a standard for all inpatient stays.
 
 `apr_drg_code` stands for "all patient refined DRG".  It was developed by 3M to extend DRGs to a more general patient population.
 
-### Financial Data
+## Financial Amounts
 
 `paid_amount` is the dollar amount that the health insurer paid for the covered service.
 
@@ -133,7 +132,7 @@ Discharge disposition codes are maintained by the National Uniform Billing Commi
 
 - data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
 
-### HCPCS
+## HCPCS
 
 HCPCS codes indicate the services and supplies rendered by providers to patients.  These codes are used in both institutional and professional claims forms.  These codes exist at the line-level, meaning there can be many HCPCS codes on a single claim.  There are codes for many different types of supplies and services including:
 - physician visits
@@ -154,59 +153,7 @@ A `hcpcs_modifier` can be an additional code to `hcpcs_code` that provides more 
 - 76 - service was repeated by the same physician on the same day
 - 77 - service was repeated by another physician on same day
 
-### Patient ID
-
-`patient_id` is a unique identifier that is designed to unify a patient’s records and provide a consistent reference for the specific individual.  It allows for the linking and tracking of a patient’s healthcare journey across different source data sets.
-
-`member_id` is an identifier specific to the health insurer or health plan.  It is assigned by the insurance company to uniquely identify a specific individual only within their system.
-
-- `patient_id` and `member_id` are populated for every row in the input layer `medical_claim` table.
-- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
-- `patient_id` is unique across all data sources
-
-### Payer and Plan
-`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc).  This field should can be populated manually if not available already as a field in the source data.
-
-`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
-
-`plan` may not be available in the source data and should be hardcoded (e.g. `select 'aetna bronze 1' as plan`) and it can be the same as the payer if no plan is needed for analytics.
-
-### Place of Service
-
-Place of service codes indicate the type of care setting professional claim services were delivered in.  This field only exists on professional claims.  Place of service is coded at the line-level to reflect the fact that services during a particular encounter can occur in different locations.  Because of this, a single professional claim can have multiple place of service codes.
-
-Place of service codes are used to assign claims to services categories.  For example, place of service code 11 indicates an office visit.
-
-CMS maintains place of service codes.
-
-`place_of_service_code` is contains a 2 digit code that specifies a specific location where the medical service was provided.  
-
-`place_of_service_code` is only found on `professional` claims and is a line-level field that should be populated on all claim lines.
-
-### Revenue Center
-
-Revenue center codes are used to account for the services and supplies rendered to patients in institutional care settings.  These codes are only used in institutional claims.  Typically these codes will correspond to a facility's chargemaster, which is a listing of all charges used by the institution in billing.  Although a hospital will use these codes to "charge" the health insurer, they have no bearing on the contracted payment amount, i.e., the amount paid to the provider by the payer.  The payment amount is entirely determined by MS-DRG for inpatient claims and often a per diem rate for skilled nursing.
-
-Many different categories of revenue center codes exist including for example:
-- Room and Board
-- Emergency
-- IV Therapy
-
-For a given institutional claim there may be dozens of revenue center codes used.  These codes are submitted at the line-level of the claim, so there is no limit to the number of revenue center codes that may be used on a given claim.
-
-Revenue center codes play an important role in identifying different types of insitutional claims, including acute inpatient, emergency department, and others.
-
-Revenue center codes are maintained by the National Uniform Billing Committee (NUBC).
-
-`revenue_center_code` is a 4 digit code that used to classify and identify different departments or units within a healthcare facility.
-
-`revenue_center_code` is only found on `institutional` claims and is a line-level field.  It is generally required for billing so payers understand the nature of a service and can determine proper reimbursement but it can be omitted from source data sets.
-
-
-
-
-
-### Diagnosis Codes
+## ICD Diagnosis Codes
 
 `diagnosis_code` represents the patient’s medical conditions and/or diagnosis and communicates information about the their health and why healthcare services were provided.
 
@@ -234,26 +181,13 @@ case
 - `diagnosis_code_type` is popualated when any `diagnosis_code` is populated
 - `diagnosis_code_type` is a value from Tuva’s [code type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__code_type.csv) terminology file
 
-### Present on Admission
-
-`diagnosis_poa` refers to the patient’s condition at the time they were admitted to the hospital.  It indicates whether the condition was already present and active or if it developed during their hospitalization.
-
-`diagnosis_poa` is a header-level field for all claim types which means they should be unique per claim.
-
-The number of `diagnosis_poa` fields available in the data will vary by source and data provider.  There can be up to 25 
-codes to describe each `diagnosis_code` but it is not unexpected to see only 1-5 codes or none at all.
-
-- data type is `string`
-
-### Procedure Codes
+## ICD Procedure Codes
 
 `procedure_code` represents inpatient surgical, diagnosis, or therapeutic procedures rendered during a patient’s visit.
 
 `procedure_code` is a header-level field for all claim types which means they should be unique per claim.
 
 The number of `procedure_code` fields available in the data will vary by source and data provider.  There can be up to 25 codes but it is not unexpected to see only 1-5 codes. 
-
-- data type is `string`
 
 `procedure_code_type` contains the coding system for the procedure codes contained on the claims.
 
@@ -266,13 +200,7 @@ case
 	else 'icd-10-pcs'
 ```
 
-- data type is `string`
-- `procedure_code_type` is populated when any `procedure_code` is populated
-- `diagnosis_code_type` is a value from Tuva’s [code type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__code_type.csv) terminology file
-
-### Procedure Dates
-
-This includes the following fields: `procedure_date_1`, …, `procedure_date_25`
+Procedure dates includes the following fields: `procedure_date_1`, …, `procedure_date_25`
 
 `procedure_date` represents the date the corresponding procedure occurred (e.g. `procedure_date_1` is the date for `procedure_code_1`).
 
@@ -280,9 +208,49 @@ This includes the following fields: `procedure_date_1`, …, `procedure_date_25`
 
 The number of `procedure_date` fields available in the data will vary by source and data provider.  There can be up to 25 codes but it is not unexpected to see only 1-5 codes. 
 
-- data type is `date` in the format `YYYY-MM-DD`
+Data type is `date` in the format `YYYY-MM-DD`
 
-### Provider NPI
+## Patient and Member ID
+
+`patient_id` is a unique identifier that is designed to unify a patient’s records and provide a consistent reference for the specific individual.  It allows for the linking and tracking of a patient’s healthcare journey across different source data sets.
+
+`member_id` is an identifier specific to the health insurer or health plan.  It is assigned by the insurance company to uniquely identify a specific individual only within their system.
+
+- `patient_id` and `member_id` are populated for every row in the input layer `medical_claim` table.
+- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
+- `patient_id` is unique across all data sources
+
+## Payer and Plan
+`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc).  This field should can be populated manually if not available already as a field in the source data.
+
+`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
+
+`plan` may not be available in the source data and should be hardcoded (e.g. `select 'aetna bronze 1' as plan`) and it can be the same as the payer if no plan is needed for analytics.
+
+## Place of Service
+
+Place of service codes indicate the type of care setting professional claim services were delivered in.  This field only exists on professional claims.  Place of service is coded at the line-level to reflect the fact that services during a particular encounter can occur in different locations.  Because of this, a single professional claim can have multiple place of service codes.
+
+Place of service codes are used to assign claims to services categories.  For example, place of service code 11 indicates an office visit.
+
+CMS maintains place of service codes.
+
+`place_of_service_code` is contains a 2 digit code that specifies a specific location where the medical service was provided.  
+
+`place_of_service_code` is only found on `professional` claims and is a line-level field that should be populated on all claim lines.
+
+## Present on Admission
+
+`diagnosis_poa` refers to the patient’s condition at the time they were admitted to the hospital.  It indicates whether the condition was already present and active or if it developed during their hospitalization.
+
+`diagnosis_poa` is a header-level field for all claim types which means they should be unique per claim.
+
+The number of `diagnosis_poa` fields available in the data will vary by source and data provider.  There can be up to 25 
+codes to describe each `diagnosis_code` but it is not unexpected to see only 1-5 codes or none at all.
+
+- data type is `string`
+
+## Provider NPI
 
 `rendering_npi`, `facility_npi`, and `billing_npi` is populated with the Nation Provider Identifier (NPI) for a provider.
 
@@ -298,7 +266,7 @@ layer.  If it is a person and it’s an professional claim then also map to `bil
 
 This section describes provider information included in claims data - namely the National Provider Identity (NPI).
 
-## What provider data is included in claims?
+**What provider data is included in claims?**
 
 Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.
 
@@ -322,7 +290,7 @@ Professional claims track the NPI of the provider who rendered each individual l
 - 32 Service Facility Location Information
 - 33 Billing Provider
 
-## What is an NPI?
+**What is an NPI?**
 
 Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
 
@@ -345,7 +313,7 @@ Individual provider and facility information is encoded in claims data via Natio
         - On the Professional CMS-1500 form, insert the main or billing Entity Type 2 NPI in Box 33a (Billing Provider). Insert the service facility Entity Type 2 NPI (if different from main or billing NPI) in Box 32a (Service Facility). Insert Entity Type 1 NPIs for rendering providers in Box 24J (Rendering Provider).
         - On the Institutional UB-04 form (aka CMS-1450), insert the main Entity Type 2 NPI in Box 56 (Billing Provider); insert Entity Type 1 NPIs for rendering providers in boxes 78-79 (Other Provider).
 
-## What is NPPES?
+**What is NPPES?**
 
 - CMS developed the National Plan and Provider Enumeration System (NPPES) to assign NPIs.
 - This information is publicly available and disclosed under FOIA.
@@ -370,25 +338,34 @@ Individual provider and facility information is encoded in claims data via Natio
         - It relies primarily on physicians voluntarily completing questionnaires to update information about their practice and location.
         - This data is publicly available for research.
 
-## What are provider taxonomies?
+**What are provider taxonomies?**
 
 - When providers register with NPPES they are required to provide one primary provider taxonomy code (and up to 14 additional taxonomies) which defines the health care service provider type, classification, and area of specialization.
 - The Health Care Provider Taxonomy code set is a collection of unique alphanumeric codes (e.g. 207KA0200X), ten characters in length, maintained by the National Uniform Claim Committee (NUCC).
 - Again, a separate terminology lookup data source is required to interpret this code which does not come with the NPPES data set.
 - The taxonomy codes are updated twice a year (January and July).
 
-## Why are TAX IDs included in claims?
+**Why are TAX IDs included in claims?**
 
 In addition to NPIs, federal tax IDs are required fields on both facility and professional claim forms. The tax ID can be either an employer identifier number (EIN), or an invidual's social security number.
 
 Most provider analyses are conducted using the NPIs recorded in claims. Tax IDs are used for some financial use cases, since network contracts are written at the TIN level. For example, network discounts are often analyzed by tax ID, since network contracts are written at the tax ID level ([Example](https://us.milliman.com/-/media/milliman/importedfiles/uploadedfiles/insight/healthreform/pdfs/determining-discounts.ashx)).
 
-## References
-- [Medicare Claims Processing Manual, Chapter 25 - Completing and Processing the Form CMS-1450 Data Set](https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c25.pdf)
-- [Patient Attribution: Why the Method Matters](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6549236/)
-- [A Novel Approach to Attribute Responsible Physicians Using Inpatient Claims](https://www.ajmc.com/view/a-novel-approach-to-attribute-responsible-physicians-using-inpatient-claims)
-- [https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination)
-- [https://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/csv-mainmenu-57](https://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/csv-mainmenu-57)
-- [https://www.cms.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/downloads/NPI-What-You-Need-To-Know.pdf](https://www.cms.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/downloads/NPI-What-You-Need-To-Know.pdf)
-- [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3983736/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3983736/)
+## Revenue Center
+Revenue center codes are used to account for the services and supplies rendered to patients in institutional care settings.  These codes are only used in institutional claims.  Typically these codes will correspond to a facility's chargemaster, which is a listing of all charges used by the institution in billing.  Although a hospital will use these codes to "charge" the health insurer, they have no bearing on the contracted payment amount, i.e., the amount paid to the provider by the payer.  The payment amount is entirely determined by MS-DRG for inpatient claims and often a per diem rate for skilled nursing.
+
+Many different categories of revenue center codes exist including for example:
+- Room and Board
+- Emergency
+- IV Therapy
+
+For a given institutional claim there may be dozens of revenue center codes used.  These codes are submitted at the line-level of the claim, so there is no limit to the number of revenue center codes that may be used on a given claim.
+
+Revenue center codes play an important role in identifying different types of insitutional claims, including acute inpatient, emergency department, and others.
+
+Revenue center codes are maintained by the National Uniform Billing Committee (NUBC).
+
+`revenue_center_code` is a 4 digit code that used to classify and identify different departments or units within a healthcare facility.
+
+`revenue_center_code` is only found on `institutional` claims and is a line-level field.  It is generally required for billing so payers understand the nature of a service and can determine proper reimbursement but it can be omitted from source data sets.
 
