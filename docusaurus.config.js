@@ -90,15 +90,15 @@ const config = {
           },
           {
             type: 'docSidebar',
-            sidebarId: 'knowledgebaseSidebar',
-            position: 'left',
-            label: 'Knowledge Base',
-          },
-          {
-            type: 'docSidebar',
             sidebarId: 'usecaseSidebar',
             position: 'left',
             label: 'Use Cases',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'knowledgebaseSidebar',
+            position: 'left',
+            label: 'Knowledge Base',
           },
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           { to: 'manifesto', label: 'Manifesto', position: 'left' },

@@ -1,37 +1,26 @@
 ---
-id: claims-mapping
-title: "Claims Mapping"
+id: medical-claims
+title: "Medical Claims"
 ---
 
-Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../data-dictionaries/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
+The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of this data.
 
-Every claims dataset is different.  Every health plan has their own data model they store their adjudicated claims data in.
-
-Mapping to the Input Layer involves creating dbt models (i.e. SQL statements in a dbt project).  While it is necessary to create a model for every table in the Input Layer, it is not necessary that you have source data to populate every table or column in the Input Layer.  For example, if you don't have pharmacy claims you still need to create the `pharmacy_claim` table in the Input Layer, but you can mapp null to every column.
-
-This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) shows what columns in the Input Layer are needed for the various Tuva Data Marts.  Not mapping to a column needed for a data mart will result in no data being produced in that mart.
-
-The notes that follow describe advice and heuristics for mapping claims data sources to the Input Layer.  Consult the Input Layer data dictionary (link above) for a complete list of fields in the Input Layer.
-
-## Medical Claim
-The `medical_claim` table contains the billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of data.
-
-### Admit Source and Type
+## Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
 `admit_type_code` is used in institutional claims to indicate the priority of admission, e.g., urgent, emergent, elective, etc.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
-Admit source, along with admit type, is generally not considered very reliable because the accuracy of the code is not verified during the claims adjudication process (other than verifying that the code is in fact a valid code).
+Admit source and admit type are generally not considered highly reliable because the accuracy of the codes is not verified during the claims adjudication process (other than verifying that the code is in fact a valid code).
 
-Despite this, it's possible to use admit source to help identify things like:
+Despite this, admit source is commonly used to identify things like:
 - transfers from another hospital
 - inpatient stays that came through the emergency department
 
-Admit type is commonly used to identify things like elective procedures.
+And admit type is commonly used to identify things like elective procedures.
 
 Admit source and type codes are maintained by the National Uniform Billing Committee (NUBC).
 
-### Bill Type
+## Bill Type
 'bill_type_code' is by far the most complex of the administrative codes in medical claims.  Each digit has a distinct purpose and meaning:
 
 - 1st digit: This is always "0" and often omitted.
@@ -66,7 +55,7 @@ row_number() over (partition by claim_id order by claim_end_date) as claim_line_
 
 ### Claim Type
 
-`claim_type` is the categorization of a claim based on the specific claim form used in billing i.e. institutional or professional.  It's an important field used in [Claims Preprocessing](../data-marts/claims-preprocessing) to assign service categories and group claims into encounters.
+`claim_type` is the categorization of a claim based on the specific claim form used in billing i.e. institutional or professional.  It's an important field used in [Claims Preprocessing](../../data-marts/claims-preprocessing) to assign service categories and group claims into encounters.
 
 Each `claim_id` must have a unique `claim_type` which should be one of these values:
 - **institutional:** For claims rendered using a UB-04 claim form
@@ -307,260 +296,99 @@ If only one NPI field is provided in the source data, then reference the NPI in 
 determine if it is a person or a place. If it is a person, then the NPI should be mapped to `rendering_npi` in the input 
 layer.  If it is a person and it’s an professional claim then also map to `billing_npi`.  If it is a location and the claim type is institutional, then map to`facility_npi`.
 
+This section describes provider information included in claims data - namely the National Provider Identity (NPI).
+
+## What provider data is included in claims?
+
+Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.
+
+**Facility Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):**
+Provider information in the header of facility claims. In addition to the facility billing the service, these claims contain several fields for NPIs from up to four individual providers involved in the care (e.g., Attending Physician).
+- Box 1 Billing Provider Name and Address
+- 2 Pay-to Proivder Name and Address
+- 5  Federal Tax ID
+- 76 Attending Physician
+- 56 Billing Provider NPI
+- 57 Other Provider ID
+- 77 Operating Physician
+- 78 Other Physician
+- 79 Other Physician
+
+**Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf):** 
+Professional claims track the NPI of the provider who rendered each individual line item (i.e., CPT/HCPSCS code) in the claim. In addition, the claim header contains information on the organization submitting the claim. 
+- Box 17  Referring Provider
+- 24J Rendering Provider
+- 25 Federal Tax ID
+- 32 Service Facility Location Information
+- 33 Billing Provider
+
+## What is an NPI?
+
+Individual provider and facility information is encoded in claims data via National Provider Identity (NPI) codes.  However, one needs to enhance individual provider NPI codes with specialty information and group facility provider NPI codes into distinct locations before this information is useful for analytics.
+
+- An NPI is a unique 10-digit numeric identifier for covered healthcare providers and organizations.
+    - It is a HIPAA standard created to help send health information electronically.
+    - An NPI won’t change even if a provider’s name, address, taxonomy (specialty), or other information changes. However, in some situations, an NPI may need to be deactivated or replaced, such as the retirement or death of an individual, disbandment of an organization, or fraudulent use of the NPI.
+- Who must get an NPI?
+    - All health care providers who are HIPAA-covered entities, individuals, or organizations.
+    - It is required for enrollment in Medicare and submitting claims.
+    - When a provider registers for an NPI, CMS attempts to verify only two things: (1) the provider's social security number and (2) that the provided business address is valid.
+        - CMS does not verify whether the provider actually works at the submitted business address, and CMS does not attempt to verify the provider's self-reported specialty.
+- NPI Entity Types
+    - Entity Type 1: Individual
+        - You may only get 1 NPI.
+        - If you’re an individual healthcare provider who’s incorporated, you may need to get an NPI for yourself (Type 1) and an NPI for your corporation (Type 2).
+    - Entity Type 2: Organization
+        - The main difference with type 2 NPI numbers is that organizations can have several NPI numbers rather than just one.
+        - Some organizations may have parts or locations that work independently from their parent organization, referred to as “subparts”. Each subpart can get its own NPI.
+    - Where are the NPIs found on claim forms?
+        - On the Professional CMS-1500 form, insert the main or billing Entity Type 2 NPI in Box 33a (Billing Provider). Insert the service facility Entity Type 2 NPI (if different from main or billing NPI) in Box 32a (Service Facility). Insert Entity Type 1 NPIs for rendering providers in Box 24J (Rendering Provider).
+        - On the Institutional UB-04 form (aka CMS-1450), insert the main Entity Type 2 NPI in Box 56 (Billing Provider); insert Entity Type 1 NPIs for rendering providers in boxes 78-79 (Other Provider).
+
+## What is NPPES?
+
+- CMS developed the National Plan and Provider Enumeration System (NPPES) to assign NPIs.
+- This information is publicly available and disclosed under FOIA.
+- The data is distributed to the public via monthly data file downloads or via the API.
+- The API has limitations. It’s useful for single-provider lookups but not for getting batch information.
+- Limitations with the NPPES data:
+    - The monthly file is a very large full replacement file that must be unzipped.
+    - Many fields are codes requiring a separate lookup file for human-readable descriptions. These code sets are not distributed via data files. They are instead in a PDF provided with the monthly download. The codes must be extracted and transformed before they are useful.
+    - Many pieces of information are in several columns that require logic to get any meaningful value out of them.
+    - Once a provider has an NPI, there are no scheduled requests for updated information; however, providers are instructed to update their information in NPPES within 30 days of a change of required data fields. The degree to which providers update their information is not fully known.
+    - There is no explicit penalty for a provider having out-of-date information in NPPES.
+    - This means the data in NPPES is not necessarily reliable but remains one of the few publicly available sources of provider data.
+- Other sources of provider data:
+    - PECOS (Provider Enrollment, Chain, and Ownership System)
+        - This is a registry of providers eligible to bill Medicare.
+        - PECOS gathers more detailed information than NPPES on the financial arrangement between an individual provider and a practice group or organization, as well as a number of other details about business ownership and history of adverse outcomes with malpractice claims.
+        - Providers are required to update their information every five years or whenever changes occur.
+        - Unfortunately, this is not publicly available for research.
+    - AMA (American Medical Association) Masterfile
+        - The Masterfile attempts to be a comprehensive registry of all physicians trained in the United States.
+        - It captures information from institutions on individuals at the time that they enter medical school or a graduate medical program in the United States.
+        - It relies primarily on physicians voluntarily completing questionnaires to update information about their practice and location.
+        - This data is publicly available for research.
+
+## What are provider taxonomies?
+
+- When providers register with NPPES they are required to provide one primary provider taxonomy code (and up to 14 additional taxonomies) which defines the health care service provider type, classification, and area of specialization.
+- The Health Care Provider Taxonomy code set is a collection of unique alphanumeric codes (e.g. 207KA0200X), ten characters in length, maintained by the National Uniform Claim Committee (NUCC).
+- Again, a separate terminology lookup data source is required to interpret this code which does not come with the NPPES data set.
+- The taxonomy codes are updated twice a year (January and July).
+
+## Why are TAX IDs included in claims?
+
+In addition to NPIs, federal tax IDs are required fields on both facility and professional claim forms. The tax ID can be either an employer identifier number (EIN), or an invidual's social security number.
+
+Most provider analyses are conducted using the NPIs recorded in claims. Tax IDs are used for some financial use cases, since network contracts are written at the TIN level. For example, network discounts are often analyzed by tax ID, since network contracts are written at the tax ID level ([Example](https://us.milliman.com/-/media/milliman/importedfiles/uploadedfiles/insight/healthreform/pdfs/determining-discounts.ashx)).
+
+## References
+- [Medicare Claims Processing Manual, Chapter 25 - Completing and Processing the Form CMS-1450 Data Set](https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c25.pdf)
+- [Patient Attribution: Why the Method Matters](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6549236/)
+- [A Novel Approach to Attribute Responsible Physicians Using Inpatient Claims](https://www.ajmc.com/view/a-novel-approach-to-attribute-responsible-physicians-using-inpatient-claims)
+- [https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination)
+- [https://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/csv-mainmenu-57](https://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/csv-mainmenu-57)
+- [https://www.cms.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/downloads/NPI-What-You-Need-To-Know.pdf](https://www.cms.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/downloads/NPI-What-You-Need-To-Know.pdf)
+- [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3983736/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3983736/)
 
-## Eligibility
-
-The eligibility table contains enrollment and demographic data of health plan members.  Eligibility data typically exists in one of two formats:
-
-- Enrollment Spans
-- Member Months
-
-The Tuva Input Layer Eligibility table uses the Enrollment Span format.  This is the most common format used in claims data.  If your eligibility data uses this format it will be relatively easy to complete the mapping.  If on the other hand your data uses the member months format, you'll need to convert it.
-
-The primary keys for this table are:
-
-- `patient_id`
-- `member_id`
-- `payer`
-- `plan`
-- `enrollment_start_date`
-- `enrollment_end_date`
-- `data_source`
-
-### Gender
-`gender` represents the biological sex of a member.  It is mapped to either male, female, or unknown.
-
-### Race
-`race` represents the physical race of a member.
-
-### Birth Date
-This field represents the birth date of a member. data type is `date` in the format `YYYY-MM-DD`
-
-### Death Date
-
-`death_date` contains the day a member died. 
-
-- data type is `date` in the format `YYYY-MM-DD`
-
-### death_flag
-
-`death_flag` contains a flag indicating if a member died; 1 for yes 0 for no.  
-
-`death_flag` should be 1 if a `death_date` is populated.  `death_flag` can be 1 and `death_date` NULL if only an indicator is available in the source data.
-
-- data type is int
-- `death_flag` is populated with a 1 or 0
-
-### enrollment_start_date and enrollment_end_date
-
-The grain of this table will affect how these fields are populated:
-
-- One row per member month - `enrollment_start_date` will be the beginning of the month and `enrollment_end_date` will be the last day of the month.
-  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-01-31
-- One row per enrollment span - `enrollment_start_date` will be the first day of enrollment and `enrollment_end_date will` be the last day of enrollment.
-  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-12-31
-
-In the source data, enrollment end date may be `NULL` to indicate that the member is actively enrolled.  After confirming 
-this with the data provider, `enrollment_end_date` should be populated with the last day of the current year.
-
-- data type is `date` in the format `YYYY-MM-DD`
-- `enrollment_start_date` and `enrollment_end_date` are populated in every row
-
-### payer
-
-`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
-
-`payer` may not be available in the source data and should be hardcoded (e.g. `select 'aetna' as payer`)
-
-- `payer` is populated for every row
-- data type is `string`
-
-### payer_type
-
-`payer_type` contains the type of insurance provided by the payer.
-
-- data type is `string`
-- `payer_type` is populated for every row
-- value is mapped to one of the values found to Tuva’s [payer_type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__payer_type.csv) terminology file.
-
-### plan
-
-`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
-
-`plan` may not be available in the source data and should be hardcoded (e.g. `select 'aetna bronze 1' as plan` and it can be the same as the payer if no plan is needed for analytics.
-
-- data type is `string`
-- `plan` is populated for every row
-
-### original_reason_entitlement_code
-
-`original_reason_entitlement_code` contains a member’s original reason for Medicare entitlement.
-
-- `original_reason_entitlement_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
-- If it's unavailable, `medicare_status_code` is used. If neither are available, the mart will use a default value of “Aged”.
-- data type is `string`
-- value is mapped to one of the values found to Tuva’s [OREC](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_orec.csv) terminology file.
-
-### dual_status_code
-
-`dual_status_code` indicates whether a member is enrolled in both Medicare and Medicaid.
-
-- `dual_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
-- If unavailable, the mart will use a default value of “Non” (i.e., non-dual).
-- data type is `string`
-- value is mapped to one of the values found to Tuva’s [dual status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_dual_eligibility.csv) terminology file.
-
-### medicare_status_code
-
-`medicare_status_code` indicates how a member currently qualifies for Medicare.
-
-- `medicare_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
-- It’s used when `original_reason_entitlement_code` is missing.
-- data type is `string`
-- value is mapped to one of the values found to Tuva’s [medicare status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_status.csv) terminology file.
-
-### data_source
-
-`data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
-
-- data type is `string`
-- `data_source` is populated for every row
-
-## Pharmacy Claim
-
-The pharmacy claim table contains the billing information submitted to the health insurer for medications dispensed to a member of the health plan.  The primary keys for this table are:
-
-- `claim_id`
-- `claim_line_number`
-- `data_source`
-
-### claim_id
-
-`claim_id` is a unique identifier for a set of services and supplies rendered by a healthcare provider that have been billed to insurance.  It is the most fundamental data element in the `pharmacy_claim` table, and every row in the `pharmacy_claim` table should have a `claim_id`.  If the source data does not have claim IDs or is missing claim IDs for some rows in the data, then those rows should not be mapped to Tuva’s input layer.
-
-- data type is `string`
-- `claim_id` is populated for every row
-- `claim_id` is unique across all data_sources
-- `claim_id` is unique across all lines within a claim
-
-### claim_line_number
-
-`claim_line_number` is a unique identifier within a claim that distinguishes each distinct service, supply, or procedure rendered.  
-
-Every row should have a `claim_line_number`; it must be a positive sequential integer.  `claim_line_number` can be created manually if it’s unavailable in the source data or if it’s not sequential positive integers.  For example:
-
-```sql
-row_number() over (partition by claim_id order by claim_end_date) as claim_line_number
-```
-
-The max(`claim_line_number`) for a given `claim_id` must be equal to the number of claim lines for that `claim_id`.
-
-When mapping to the input layer the following expectations must be met or else The Tuva Project will not run and produce errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
-
-**Expectations in the input layer:**
-
-- data type is `integer`
-- `claim_line_number` is populated for every row
-- `claim_line_number` is a positive
-- `claim_line_number` is sequential (1,2,3,…)
-- The maximum value of `claim_line_number` for is equal to the total number of lines in a claim
-
-### patient_id and member_id
-
-`patient_id` is a unique identifier that is designed to unify a patient’s records and provide a consistent reference for the specific individual.  
-It allows for the linking and tracking of a patient’s healthcare journey across different source data sets.
-
-`member_id` is an identifier specific to the health insurer or health plan.  It is assigned by the insurance company to uniquely identify a specific individual only within their system.
-
-- `patient_id` and `member_id` are populated for every row in the input layer `medical_claim` table.
-- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
-- `patient_id` is unique across all data sources
-
-### payer
-
-`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
-
-- `payer` is populated for every row
-- data type is `string`
-
-### plan
-
-`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
-
-If no plan information is available, the payer should be populated in this field.  
-
-- data type is `string`
-- `plan` is populated for every row
-
-### prescribing_provider_npi
-
-`precribing_provider_npi` is populated with the national provider identifier (NPI) of the provider who prescribed the medication.
-
-The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) is used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public that is referenced in the [dbt_project.yml](https://github.com/tuva-health/the_tuva_project/blob/main/dbt_project.yml).)
-
-- data type is `string`
-- `prescribing_provider_npi` is a value from Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file
-
-### dispensing_provider_npi
-
-`dispensing_provider_npi` is populated with the national provider identifier (NPI) of the provider who dispensed the medication.  This NPI may represent the pharmacist or the pharmacy.
-
-The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) to used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public [S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/tuva-public-resources?region=us-east-1&prefix=provider_data/&showversions=false).)
-
-- data type is `string`
-- `dispensing_provider_npi` is a value from Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file
-
-### dispensing_date
-
-`dispensing_date` is the date that the medication was given (i.e. filled).
-
-- data type is `date` in the format `YYYY-MM-DD`
-
-### ndc_code
-
-`ndc_code` is the National Drug Code assigned to prescription and over-the-counter drugs.  NDC can be a 10 or 11 digits, which are broken out into 3 segments:
-
-- Labeler (1-5) - The manufacturer or labeler of the drug
-- Product (6-9) - The specific drug and it’s strength
-- Package (10-11) - The package size and type
-
-- data type is `string`
-
-### paid_date
-
-`paid_date` is the date that the health insurer processed the claim for payment.  It should coincide with the date that the pharmacy received reimbursement from the health insurer.
-
-- data type is `date` in the format `YYYY-MM-DD`
-
-### paid_amount
-
-`paid_amount` is the dollar amount that the health insurer paid for the covered medication.
-
-- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
-
-### allowed_amount
-
-`allowed_amount` is the maximum dollar amount a health insurer will reimburse for a covered medication.
-
-- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
-
-
-### coinsurance_amount
-
-`coinsurance_amount` is the dollar amount a member has paid for a covered medication as part of cost-sharing with the health insurance provider.  After a deductible is met, covered services may still require a member to pay for a percentage of the cost (e.g. 80/20 - 80% paid by the health insurer and 20% paid by the member)
-
-- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
-
-### deductible_amount
-
-`deductible_amount` is the dollar amount a member has paid for a covered medication before the health insurer will pay the cost for covered services.
-
-- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
-
-
-### data_source
-
-`data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
-
-- data type is `string`
-- `data_source` is populated for every row
