@@ -58,10 +58,31 @@ const sidebars =
     guidesSidebar: 
     [
         "guides/overview",
+        {
+            type: "category",
+            label: "Claims Data",
+            items: [
+                "guides/claims-data/introduction",
+                "guides/claims-data/medical-claims",
+                "guides/claims-data/pharmacy-claims",
+                "guides/claims-data/eligibility",
+                "guides/claims-data/adr",
+            ]
+        },
         "guides/fhir-preprocessing",
-        "guides/mapping",
         "guides/geo-coding",
         "guides/setting-up-tuva",
+    ],
+
+    usecaseSidebar: 
+    [
+        "use-cases/overview",
+        "use-cases/acute-inpatient",
+        "use-cases/ed-visits",
+        "use-cases/financial-pmpm",
+        "use-cases/population-characteristics",
+        "use-cases/risk-scores",
+
     ],
 
     knowledgebaseSidebar: 
@@ -95,17 +116,8 @@ const sidebars =
         "knowledge-base/quality-measures",
         "knowledge-base/provider-attribution",
         "knowledge-base/national-drug-codes",
-    ],
-
-    usecaseSidebar: 
-    [
-        "use-cases/acute-inpatient",
-        "use-cases/ed-visits",
-        "use-cases/financial-pmpm",
-        "use-cases/population-characteristics",
-        "use-cases/risk-scores",
-
     ]
+    
 };
 
 module.exports = sidebars;
