@@ -55,7 +55,7 @@ row_number() over (partition by claim_id order by claim_end_date) as claim_line_
 
 ### Claim Type
 
-`claim_type` is the categorization of a claim based on the specific claim form used in billing i.e. institutional or professional.  It's an important field used in [Claims Preprocessing](../data-marts/claims-preprocessing) to assign service categories and group claims into encounters.
+`claim_type` is the categorization of a claim based on the specific claim form used in billing i.e. institutional or professional.  It's an important field used in [Claims Preprocessing](../../data-marts/claims-preprocessing) to assign service categories and group claims into encounters.
 
 Each `claim_id` must have a unique `claim_type` which should be one of these values:
 - **institutional:** For claims rendered using a UB-04 claim form
