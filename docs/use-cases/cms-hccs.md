@@ -1,7 +1,9 @@
 ---
-id: risk-scores
-title: "Risk Scores"
+id: cms-hccs
+title: "CMS-HCCs"
 ---
+
+CMS-HCC is the risk adjustment model used by CMS.  Analyzing risk scores based on the output of this model is an important use case for value-based care analytics.
 
 <details>
   <summary>Average CMS-HCC Risk Scores</summary>

@@ -1,22 +1,9 @@
 ---
-id: population-characteristics
-title: "Population Characteristics"
+id: demographics
+title: "Demographics"
 ---
 
-<details>
-  <summary>Chronic Disease Prevalence</summary>
-
-```sql
-select
-    condition
-,   count(distinct patient_id) as total_patients
-,   cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
-From chronic_conditions.tuva_chronic_conditions_long
-group by 1
-order by 2 desc
-```
-
-</details>
+Here we demonstrate the different types of patient demographics in Tuva and how you can use them in analysis.
 
 <details>
   <summary>Age Distribution</summary>
@@ -68,6 +55,20 @@ order by 1,2
 ```sql
 select
   sex
+, count(distinct patient_id) as count
+, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+from core.patient
+group by 1
+order by 1
+```
+</details>
+
+<details>
+  <summary>Race Distribution</summary>
+
+```sql
+select
+  race
 , count(distinct patient_id) as count
 , cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
 from core.patient
