@@ -77,12 +77,13 @@ const sidebars =
     usecaseSidebar: 
     [
         "use-cases/overview",
+        "use-cases/medical-pmpm",
         "use-cases/acute-inpatient",
         "use-cases/chronic-conditions",
         "use-cases/cms-hccs",
         "use-cases/demographics",
         "use-cases/ed-visits",
-        "use-cases/financial-pmpm",
+        
 
 
     ],
