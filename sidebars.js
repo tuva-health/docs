@@ -82,9 +82,9 @@ const sidebars =
         "use-cases/cms-hccs",
         "use-cases/demographics",
         "use-cases/ed-visits",
-        "use-cases/financial-pmpm",
-
-
+        "use-cases/medical-pmpm",
+        "use-cases/pharmacy-pmpm",
+        
     ],
 
     knowledgebaseSidebar: 

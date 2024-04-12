@@ -200,7 +200,7 @@ order by ed_classification_category
 The Tuva Project provides several ways of grouping diagnosis codes. 
 CCSR (AHRQ) provides a hierarchy grouping of diagnosis codes, and is useful for recognizing patterns of care by what the patient was diagnosed with at the ED.
 
-Chronic Conditions are from the are a way of grouping members by conditions that they have been diagnosed with (within the relevant timespan, usually the last 1 or 2 years.)
+Chronic Conditions are a way of grouping members by conditions that they have been diagnosed with (within the relevant timespan, usually the last 1 or 2 years.)
 
 <details>
   <summary>ED Visits by CCSR Category and Body System</summary>
