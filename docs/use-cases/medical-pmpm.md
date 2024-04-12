@@ -210,11 +210,17 @@ GROUP BY data_source
 , patient_id
 )
 
+, members as (
+select distinct patient_id
+,data_source
+from financial_pmpm.member_months
+)
+
 select mm.data_source
 ,sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
 ,count(*) as members
 ,sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
-from financial_pmpm.member_months mm
+from members mm
 left join medical_claims mc on mc.patient_id = mm.patient_id
 and
 mc.data_source = mm.data_source
@@ -237,6 +243,8 @@ from core.medical_claim mc
 left join financial_pmpm.member_months mm on mc.patient_id = mm.patient_id
 and
 mc.data_source = mm.data_source
+and
+to_char(mc.claim_start_date, 'YYYYMM') = mm.year_month
 GROUP BY mc.data_source
 ```
 </details>
