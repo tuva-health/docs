@@ -10,31 +10,39 @@ Analyzing ED claims data helps identify high utilizers of emergency services, of
   <summary>Trending ED Visit Volume, PKPY, and Cost</summary>
 
 ```sql
+
 with ed as (
 select 
-  data_source,
-  TO_CHAR(encounter_end_date, 'YYYYMM') AS year_month
+  data_source
+  ,TO_CHAR(encounter_end_date, 'YYYYMM') AS year_month
   ,COUNT(*) AS ed_visits
-  ,AVG(paid_amount) AS avg_paid_amount
+  ,AVG(paid_amount) as avg_paid_amount
+  ,sum(paid_amount) as total_paid_amount
 from core.encounter
 where encounter_type = 'emergency department'
-group by 1, 2
+group by data_source
+ ,TO_CHAR(encounter_end_date, 'YYYYMM') 
 )
+
 , member_months as (
 select
   data_source
 , year_month
 , count(1) as member_months
 from financial_pmpm.member_months
-group by 1,2
+group by 
+  data_source
+, year_month
+
 )
 select
   a.data_source
 , a.year_month
 , b.member_months
 , ed_visits
-, cast(ed_visits / member_months * 12000 as numeric(38,2)) as ed_visits_pkpy
-, cast(avg_paid_amount as numeric(38,2)) as avg_paid_amount
+, cast(ed_visits / member_months * 12000 as decimal(18,2)) as ed_visits_pkpy
+, cast(avg_paid_amount as decimal(18,2)) as avg_paid_amount
+, cast(total_paid_amount as decimal(18,2))as ed_total_paid_amount
 from  member_months b
 left join ed a
   on a.year_month = b.year_month
@@ -45,6 +53,25 @@ order by 1,2
 </details>
 
 <details>
+
+  <summary>ED Spend as Percent of Total Spend</summary>
+
+```sql
+select data_source
+,year_month
+,sum(emergency_department_paid) as ed_paid
+,sum(total_paid) as total_paid
+,cast(sum(emergency_department_paid) as decimal(18,2))/cast(sum(total_paid) as decimal(18,2)) as ed_percent_of_total_paid
+from financial_pmpm.pmpm_prep
+group by data_source
+,year_month
+order by data_source
+,year_month
+```
+</details>
+
+<details>
+
   <summary>ED Visits by Member and Year</summary>
 
 ```sql
@@ -112,6 +139,21 @@ order by ed_visits
 ```
 </details>
 
+<details>
+  <summary>Count of ED NPIs</summary>
+
+```sql
+
+select data_source
+ ,count(distinct facility_npi) as ed_facilities_count
+from core.encounter e
+where encounter_type = 'emergency department'
+group by 
+ data_source
+order by ed_facilities_count desc
+```
+</details>
+
 
 <details>
   <summary>Visit by Facility</summary>
@@ -159,6 +201,14 @@ ORDER BY ed_visits desc
 ## ED Classification
 The Tuva Project utilizes the NYU algorithm to classify ED visits, helping to identify care patterns that are not being met by primary care providers.
 
+
+Of the different classifications in the NYU algorithm, the categories usually classified as "potentially preventable" are:
+
+- Emergent, Primary Care Treatable
+- Non-Emergent
+- Emergent, ED Care Needed, Preventable/Avoidable
+
+
 <details>
   <summary>ED Classification</summary>
 
@@ -175,6 +225,51 @@ order by visit_count desc
 </details>
 
 <details>
+
+  <summary>Members with at least One Potentially Preventable ED Visit</summary>
+
+```sql
+with enc as 
+(
+select e.patient_id
+,left(year_month,4) as year_nbr
+,data_source
+,count(distinct e.encounter_id) as potentially_preventable
+,sum(e.paid_amount) as paid_amount
+from core.encounter e 
+inner join ed_classification.summary s on e.encounter_id = s.encounter_id
+where ed_classification_description in ('Emergent, Primary Care Treatable','Non-Emergent','Emergent, ED Care Needed, Preventable/Avoidable')
+group by e.patient_id
+,data_source
+,left(year_month,4) 
+)
+
+,member_year as (
+select distinct data_source
+,left(year_month,4) as year_nbr
+,patient_id
+from financial_pmpm.pmpm_prep pmpm
+)
+
+select my.data_source
+,my.year_nbr
+,sum(case when enc.potentially_preventable >=1 then 1 else 0 end) as members_with_potentially_preventable
+,count(*) as total_members
+,sum(case when enc.potentially_preventable >=1 then 1 else 0 end)/count(*) as potentially_preventable_percent_of_total
+,sum(enc.paid_amount)/sum(enc.potentially_preventable) as avg_cost_potentially_preventable
+from member_year my 
+left join enc on my.year_nbr = enc.year_nbr
+and
+enc.data_source = my.data_source
+and
+enc.patient_id = my.patient_id
+group by my.data_source
+,my.year_nbr
+```
+</details>
+
+<details>
+
   <summary>Primary Diagnosis Codes for Avoidable Categories</summary>
 
 ```sql
@@ -186,7 +281,7 @@ select coalesce(s.ed_classification_description,'Not Classified') as ed_classifi
 , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
 from core.encounter e 
 left join ed_classification.summary s on e.encounter_id = s.encounter_id
-where ed_classification_description in ('Emergent, Primary Care Treatable','Emergent, ED Care Needed, Not Preventable/Avoidable','Emergent, ED Care Needed, Preventable/Avoidable')
+where ed_classification_description in ('Emergent, Primary Care Treatable','Non-Emergent','Emergent, ED Care Needed, Preventable/Avoidable')
 group by coalesce(s.ed_classification_description,'Not Classified')
 , e.primary_diagnosis_code
 , e.primary_diagnosis_description
