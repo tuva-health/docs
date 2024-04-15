@@ -84,6 +84,7 @@ const sidebars =
         "use-cases/ed-visits",
         "use-cases/medical-pmpm",
         "use-cases/pharmacy-pmpm",
+        "use-cases/primary-care",
         
     ],
 
