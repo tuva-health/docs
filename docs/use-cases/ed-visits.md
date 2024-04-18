@@ -53,7 +53,6 @@ order by 1,2
 </details>
 
 <details>
-
   <summary>ED Spend as Percent of Total Spend</summary>
 
 ```sql
@@ -71,7 +70,6 @@ order by data_source
 </details>
 
 <details>
-
   <summary>ED Visits by Member and Year</summary>
 
 ```sql
@@ -154,7 +152,6 @@ order by ed_facilities_count desc
 ```
 </details>
 
-
 <details>
   <summary>Visit by Facility</summary>
 
@@ -201,13 +198,11 @@ ORDER BY ed_visits desc
 ## ED Classification
 The Tuva Project utilizes the NYU algorithm to classify ED visits, helping to identify care patterns that are not being met by primary care providers.
 
-
 Of the different classifications in the NYU algorithm, the categories usually classified as "potentially preventable" are:
 
 - Emergent, Primary Care Treatable
 - Non-Emergent
 - Emergent, ED Care Needed, Preventable/Avoidable
-
 
 <details>
   <summary>ED Classification</summary>
@@ -225,7 +220,6 @@ order by visit_count desc
 </details>
 
 <details>
-
   <summary>Members with at least One Potentially Preventable ED Visit</summary>
 
 ```sql
@@ -269,7 +263,6 @@ group by my.data_source
 </details>
 
 <details>
-
   <summary>Primary Diagnosis Codes for Avoidable Categories</summary>
 
 ```sql

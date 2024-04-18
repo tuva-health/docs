@@ -76,3 +76,18 @@ group by 1
 order by 1
 ```
 </details>
+
+<details>
+  <summary>Members by State and Zip Code</summary>
+
+```sql
+select state
+,zip_code
+,count(*) as member_count
+from core.patient
+group by 
+state
+,zip_code
+order by count(*) desc
+```
+</details>

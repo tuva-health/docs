@@ -260,35 +260,23 @@ The 30-day readmission rate is calculated by following CMS's readmission methodo
   <summary>30-day Readmission Rate by Month</summary>
 
 ```sql
--- readmission rate by month
-with index_admissions as (
+with readmit as 
+(
 select
-    date_part(year, discharge_date) || '-' || lpad(date_part(month, discharge_date),2,0) as year_month
-,   count(1) as index_admissions
+to_char(discharge_date, 'YYYYMM') as year_month
+, sum(case when index_admission_flag = 1 then 1 else 0 end) as index_admissions
+, sum(case when index_admission_flag = 1 and unplanned_readmit_30_flag = 1 then 1 else 0 end) as readmissions
 from readmissions.readmission_summary
-where index_admission_flag = 1
-group by 1
+group by to_char(discharge_date, 'YYYYMM')
 )
 
-, readmissions as (
 select 
-    date_part(year, discharge_date) || '-' || lpad(date_part(month, discharge_date),2,0) as year_month
-,   count(1) as readmissions
-from readmissions.readmission_summary
-where index_admission_flag = 1 
-    and unplanned_readmit_30_flag = 1
-group by 1
-)
-
-select
-    a.year_month
-,   a.index_admissions
-,   coalesce(b.readmissions,0) as readmissions
-,   cast(coalesce(b.readmissions,0) / a.index_admissions as numeric(38,2)) as readmission_rate
-from index_admissions a
-left join readmissions b
-    on a.year_month = b.year_month
-order by 1
+year_month
+,index_admissions
+,readmissions
+,case when index_admissions = 0 then 0 else readmissions / index_admissions end as readmission_rate
+from readmit
+order by year_month
 ```
 </details>
 
@@ -296,37 +284,111 @@ order by 1
   <summary>30-day Readmission Rate by MS-DRG</summary>
 
 ```sql
-with index_admissions as (
+with readmit as 
+(
 select
-    a.ms_drg_code 
-,   ms_drg_description
-,   count(1) as index_admissions
-from readmissions.readmission_summary a
-left join terminology.ms_drg b
-    on a.ms_drg_code = b.ms_drg_code
-where index_admission_flag = 1
-group by 1,2
+rs.ms_drg_code
+,drg.ms_drg_description
+, sum(case when index_admission_flag = 1 then 1 else 0 end) as index_admissions
+, sum(case when index_admission_flag = 1 and unplanned_readmit_30_flag = 1 then 1 else 0 end) as readmissions
+from readmissions.readmission_summary rs
+left join terminology.ms_drg drg on rs.ms_drg_code = drg.ms_drg_code
+group by 
+rs.ms_drg_code
+,drg.ms_drg_description
 )
 
-, readmissions as (
 select 
-    ms_drg_code
-,   count(1) as readmissions
-from readmissions.readmission_summary
-where index_admission_flag = 1 
-    and unplanned_readmit_30_flag = 1
-group by 1
+ms_drg_code
+,ms_drg_description
+,index_admissions
+,readmissions
+,case when readmissions = 0 then 0 else readmissions / index_admissions end as readmission_rate
+from readmit
+order by index_admissions desc
+```
+</details>
+
+## Readmissions Data Quality
+CMS's readmission methodology excludes certain encounters from the calculation if they are missing certain fields. Here we break these down to show the different reasons encounters were excluded.
+
+
+<details>
+  <summary>Disqualified Encounters</summary>
+Let's find how many encounters were disqualified.
+
+```sql
+select count(*) encounter_count
+from readmissions.encounter_augmented
+where disqualified_encounter_flag = 1
+```
+</details>
+
+<details>
+  <summary>Disqualification Reason</summary>
+We can see the reason(s) why an encounter was disqualified by unpivoting the disqualification reason column.
+
+```sql
+
+with disqualified_unpivot as (
+    select encounter_id
+    , disqualified_reason
+    , flagvalue
+    from readmissions.encounter_augmented
+    unpivot(
+        flagvalue for disqualified_reason in (
+            invalid_discharge_disposition_code_flag
+            , invalid_ms_drg_flag
+            , invalid_primary_diagnosis_code_flag
+            , missing_admit_date_flag
+            , missing_discharge_date_flag
+            , admit_after_discharge_flag
+            , missing_discharge_disposition_code_flag
+            , missing_ms_drg_flag
+            , missing_primary_diagnosis_flag
+            , no_diagnosis_ccs_flag
+            , overlaps_with_another_encounter_flag
+        )
+    ) as unpvt
 )
 
-select
-    a.ms_drg_code
-,   a.ms_drg_description
-,   a.index_admissions
-,   coalesce(b.readmissions,0) as readmissions
-,   cast(coalesce(b.readmissions,0) / a.index_admissions as numeric(38,2)) as readmission_rate
-from index_admissions a
-left join readmissions b
-    on a.ms_drg_code = b.ms_drg_code
-order by 3 desc
+
+select encounter_id
+, disqualified_reason
+, row_number () over (partition by encounter_id order by disqualified_reason) as disqualification_number
+from disqualified_unpivot
+where flagvalue = 1
+```
+</details>
+
+
+## Discharge Location
+
+Based on the discharge disposition field, it is often helpful to group these into the most common locations for analysis.
+
+<details>
+  <summary>Discharge Location</summary>
+
+```sql
+select case when discharge_disposition_code = '01' then 'Home'
+            when discharge_disposition_code = '03' then 'SNF'
+            when discharge_disposition_code = '06' then 'Home Health'
+            when discharge_disposition_code = '62' then 'Inpatient Rehab'
+            when discharge_disposition_code = '20' then 'Expired'
+            else 'Other'
+            end as discharge_location
+        ,count(*) as encounters
+        ,cast(sum(paid_amount) as decimal(18,2)) as total_paid_amount
+        ,cast(sum(paid_amount)/count(*) as decimal(18,2)) as paid_per_encounter
+from core.encounter
+group by 
+case when discharge_disposition_code = '01' then 'Home'
+            when discharge_disposition_code = '03' then 'SNF'
+            when discharge_disposition_code = '06' then 'Home Health'
+            when discharge_disposition_code = '62' then 'Inpatient Rehab'
+            when discharge_disposition_code = '20' then 'Expired'
+            else 'Other'
+            end 
+order by count(*) desc
 ```
 </details>
