@@ -1,4 +1,5 @@
 ---
+id: intro-dbt-for-healthcare
 title: Intro to dbt for Healthcare
 authors:
   - name: Aaron Neiderhiser
