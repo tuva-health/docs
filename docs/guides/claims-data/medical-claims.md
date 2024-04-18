@@ -5,6 +5,11 @@ title: "Medical Claims"
 
 The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of this data.
 
+## General mapping conventions
+### Claims missing eligibility
+  If there are claims in the data set without corresponding eligibility (i.e. the patient the claim is for does not have any 
+  enrollment information) then those claims should stay in the data set and not be filtered out.
+
 ## Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
