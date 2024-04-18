@@ -5,6 +5,12 @@ title: "Medical Claims"
 
 The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of this data.
 
+## General mapping conventions
+### Claims missing eligibility
+  If there are claims in the data set without corresponding eligibility (i.e. the patient the claim is for does not have any 
+  enrollment information) then those claims should stay in the data set and not be filtered out.
+
+
 ## Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
@@ -91,7 +97,10 @@ To understand the key date fields in medical claims, it's useful to consider an 
 - `discharge_date`:  The date the patient was discharged from the facility.  In the example above this date would be December 31st.  This field only exists on institutional claims, not professional.
 - `paid_date`:  The date the claim was paid by the insurance company.  This date could be any date after the claim_end_date.  Often this date is within a couple weeks of claim_end_date.
 
-There are 2 other date fields in medical claims.  They are `claim_line_start_date` and `claim_line_end_date`.  These date fields are less important - in fact we don't currently use them in any analytics in Tuva.
+If a dataset does not have an admission or discharge date then it may be tempting to map `claim_start_date` and `claim_end_date`
+to those fields (respectively) however this is not recommended.
+
+There are 2 other date fields in medical claims.  They are `claim_line_start_date` and `claim_line_end_date`.  These date fields are less important.
 
 ## Discharge Disposition
 
@@ -106,9 +115,24 @@ The code is commonly used to identify things like:
 Discharge disposition codes are maintained by the National Uniform Billing Committee (NUBC).
 
 ## DRG
-`ms_drg_code` is a classification system used by Medicare to categorize inpatient hospital stays and group them based on a patient’s diagnosis, procedures performed, age, sex, and complications or comorbidities.  It is necessary for Medicare reimbursement but often used by hospitals as a standard for all inpatient stays.
+`ms_drg_code` is a classification system used by Medicare to categorize inpatient hospital stays and group them based on a 
+patient’s diagnosis, procedures performed, age, sex, and complications or comorbidities.  It is necessary for Medicare reimbursement 
+but often used by hospitals as a standard for all inpatient stays.
 
 `apr_drg_code` stands for "all patient refined DRG".  It was developed by 3M to extend DRGs to a more general patient population.
+
+The MS DRG and APR DRG terminology contain codes that overlap but have different meanings.  For example MS DRG code 001 is
+"Heart Transplant or Implant of Heart Assist System with MCC" and APR DRG code 001 is "Lung Transplan and/or Intestinal Transplant".
+It is important not to get these two terminology mixed up which can occur if the source data set does not specify which DRG code is present.  
+Follow these methods to determine which code set is present:
+1. Ask the claims provider which code type is provided
+2. Check the data dictionary
+3. Look for a severity column - Severity is used as a modifier for APR DRG codes only
+4. Map the DRG to both the MS and APR terminology and review the top 10 most frequent codes/descriptions.  Analyze the results to 
+determine if any codes don't align with the membership population.
+   5. Let's use Medicare LDS as an example.  If the DRG codes are mapped to APR, Neonate Birth weight >2499 grams is the 7th most frequent
+code.  This code does not make sense as a high frequency usage since this data set only contains Medicare patients and they
+are generally 65+.
 
 ## Financial Amounts
 
@@ -247,6 +271,9 @@ CMS maintains place of service codes.
 
 The number of `diagnosis_poa` fields available in the data will vary by source and data provider.  There can be up to 25 
 codes to describe each `diagnosis_code` but it is not unexpected to see only 1-5 codes or none at all.
+
+If the source data contains an admitting diagnosis separately from the billing diagnosis do not populate
+POA if the admitting diagnosis matches a billing diagnosis.
 
 - data type is `string`
 

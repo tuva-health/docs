@@ -16,6 +16,7 @@ The notes that follow describe advice and heuristics for mapping claims data sou
 ## Medical Claim
 The `medical_claim` table contains the billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of data.
 
+
 ### Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
@@ -103,7 +104,10 @@ To understand the key date fields in medical claims, it's useful to consider an 
 - `discharge_date`:  The date the patient was discharged from the facility.  In the example above this date would be December 31st.  This field only exists on institutional claims, not professional.
 - `paid_date`:  The date the claim was paid by the insurance company.  This date could be any date after the claim_end_date.  Often this date is within a couple weeks of claim_end_date.
 
-There are 2 other date fields in medical claims.  They are `claim_line_start_date` and `claim_line_end_date`.  These date fields are less important - in fact we don't currently use them in any analytics in Tuva.
+If a dataset does not have an admission or discharge date then it may be tempting to map `claim_start_date` and `claim_end_date`
+to those fields (respectively) however this is **not** recommended.
+
+There are 2 other date fields in medical claims.  They are `claim_line_start_date` and `claim_line_end_date`.  These date fields are less important.
 
 ### Discharge Disposition
 
@@ -254,6 +258,9 @@ case
 The number of `diagnosis_poa` fields available in the data will vary by source and data provider.  There can be up to 25 
 codes to describe each `diagnosis_code` but it is not unexpected to see only 1-5 codes or none at all.
 
+If your source data contains an admitting diagnosis separately from the billing diagnosis do not attempt to populate
+POA if the admitting diagnosis matches a billing diagnosis.
+
 - data type is `string`
 
 ### Procedure Codes
@@ -338,7 +345,11 @@ This field represents the birth date of a member. data type is `date` in the for
 
 ### Death Date
 
-`death_date` contains the day a member died. 
+`death_date` contains the day a member died.
+
+If the source data does not contain explicit death dates do not use claims data (e.g. `discharge_disposition` and/or `claim_end_date`)
+to populate this column.
+
 
 - data type is `date` in the format `YYYY-MM-DD`
 

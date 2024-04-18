@@ -76,7 +76,7 @@ In our experience working across dozens of healthcare claims datasets, each scen
 Dealing with new claim IDs is the most difficult scenario because you are in effect trying to determine a linkage across claim IDs when there isn’t a piece of data that tells you this.  That is, you need to identify new Claim IDs that are related to the original Claim ID.  This can be tricky, but here are some steps you can follow to do this:
 
 1. Start by looking for patients with multiple claims (i.e. multiple claim IDs).  
-2. To identify reversals, look for claims where all the data elements match, except the paid amount and the paid date.  
+2. To identify reversals, look for claims with negative values in field that are numeric (e.g. paid_amount, charge_amount, service_unit_quantity, claim_line_number, etc. ) 
 3. To identify adjustments, look for claims that have a reversal, then look for subsequent claims where most of the information is the same but there may be minor differences (e.g. place of service code changed from 11 to 20).
 
 ### Scenario 2: Original Claim IDs for Each Adjustment/Reversal

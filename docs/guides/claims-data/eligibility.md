@@ -1,5 +1,5 @@
 ---
-id: eligibility
+id: Eligibility
 title: "Eligibility"
 ---
 
@@ -32,6 +32,9 @@ This field represents the birth date of a member. data type is `date` in the for
 ### Death Date
 
 `death_date` contains the day a member died. 
+
+If the source data does not contain explicit death dates do not use claims data (e.g. `discharge_disposition` and/or `claim_end_date`)
+to populate this column.
 
 - data type is `date` in the format `YYYY-MM-DD`
 
