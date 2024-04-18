@@ -20,18 +20,21 @@ The primary keys for this table are:
 - `enrollment_end_date`
 - `data_source`
 
-### Gender
+### gender
 `gender` represents the biological sex of a member.  It is mapped to either male, female, or unknown.
 
-### Race
+### race
 `race` represents the physical race of a member.
 
-### Birth Date
+### birth_date
 This field represents the birth date of a member. data type is `date` in the format `YYYY-MM-DD`
 
-### Death Date
+### death_date
 
 `death_date` contains the day a member died. 
+
+If the source data does not contain explicit death dates do not use claims data (e.g. `discharge_disposition` and/or `claim_end_date`)
+to populate this column.
 
 - data type is `date` in the format `YYYY-MM-DD`
 
