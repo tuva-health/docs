@@ -29,7 +29,7 @@ The pmpm table already breaks out pmpm by service category and groups it at the 
 
 ```sql
 select *
-from financial_pmpm.pmpm
+from financial_pmpm.pmpm_payer
 order by 1
 ```
 </details>

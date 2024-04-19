@@ -48,7 +48,7 @@ select pmpm.data_source
 ,cast(tc.total_paid as decimal(18,2)) as total_paid
 ,cast(pc.primary_care_paid_amount/tc.total_paid  as decimal(18,2)) primary_care_percent_of_total
 ,cast(pc.primary_care_paid_amount/pmpm.member_months as decimal(18,2)) as primary_care_pmpm
-from financial_pmpm.pmpm pmpm
+from financial_pmpm.pmpm_payer pmpm
 left join primary_care pc on pmpm.data_source = pc.data_source
 and
 pmpm.year_month = pc.year_month
@@ -111,6 +111,8 @@ my.patient_id = pc.patient_id
 group by 
 my.data_source
 ,my.year_nbr
+order by my.year_nbr
+,my.data_source
 ```
 </details>
 
@@ -162,6 +164,9 @@ my.patient_id = pc.patient_id
 group by 
 my.data_source
 ,my.year_nbr
+order by 
+year_nbr
+,data_source
 ;
 ```
 

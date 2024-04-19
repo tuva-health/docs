@@ -102,12 +102,17 @@ GROUP BY mc.data_source
   <summary>Prescibing Providers</summary>
 
 ```sql
-select prescribing_provider_npi
+select 
+data_source
+,prescribing_provider_npi
 ,sum(paid_amount) as pharmacy_paid_amount
 ,sum(days_supply) as pharmacy_days_supply
 from core.pharmacy_claim
-group by prescribing_provider_npi
+group by 
+data_source
+,prescribing_provider_npi
 order by pharmacy_paid_amount desc
+
 ```
 </details>
 
@@ -115,11 +120,14 @@ order by pharmacy_paid_amount desc
   <summary>Pharmacy Names</summary>
 
 ```sql
-select dispensing_provider_npi
+select 
+data_source
+,dispensing_provider_npi
 ,sum(paid_amount) as pharmacy_paid_amount
 ,sum(days_supply) as pharmacy_days_supply
 from core.pharmacy_claim
 group by dispensing_provider_npi
+,data_source
 order by pharmacy_paid_amount desc
 ```
 </details>
