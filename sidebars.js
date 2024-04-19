@@ -85,7 +85,7 @@ const sidebars =
         "use-cases/medical-pmpm",
         "use-cases/pharmacy-pmpm",
         "use-cases/primary-care",
-        
+
     ],
 
     knowledgebaseSidebar: 
