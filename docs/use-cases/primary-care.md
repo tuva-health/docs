@@ -111,6 +111,8 @@ my.patient_id = pc.patient_id
 group by 
 my.data_source
 ,my.year_nbr
+order by my.year_nbr
+,my.data_source
 ```
 </details>
 
@@ -162,6 +164,9 @@ my.patient_id = pc.patient_id
 group by 
 my.data_source
 ,my.year_nbr
+order by 
+year_nbr
+,data_source
 ;
 ```
 
