@@ -26,6 +26,7 @@ As noted above, a code should be included in a value set if it definitively impl
 ### Completeness
 
 Value sets should be curated such that, if any codes from a given standardized vocabulary are included for a given concept, then all appropriate codes from that vocabulary are included for that concept.
+It is acceptable for value sets to include codes that have been retired from a vocabulary (terms such as "deprecated", "inactive", etc. may also be used), in fact, such codes, if reliable sources for them are available and the codes themselves are clinically valid and coherent, should be included in a value set if they fall within the stated scope of the concept.
 
 ### Coding System Policies
 
