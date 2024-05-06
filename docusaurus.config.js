@@ -4,8 +4,8 @@
 //   plugins: [require.resolve("docusaurus-plugin-image-zoom")];
 // }
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/dist/index').github;
+const darkCodeTheme = require('prism-react-renderer/dist/index').dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {

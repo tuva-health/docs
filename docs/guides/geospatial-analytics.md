@@ -40,10 +40,10 @@ create or replace storage integration <NAME>
 ```
 
 Please make sure to replace: 
-- <NAME\>
-- <AWSACCOUNTNUM\>
-- <ROLENAME\>
-- <S3BUCKET\>
+- %lt;NAME%gt;
+- %lt;AWSACCOUNTNUM%gt;
+- %lt;ROLENAME%gt;
+- %lt;S3BUCKET%gt;
 
 Here is an example creation: 
 
