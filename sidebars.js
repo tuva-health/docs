@@ -78,6 +78,7 @@ const sidebars =
     [
         "use-cases/overview",
         "use-cases/acute-inpatient",
+        "use-cases/ahrq-measures",
         "use-cases/chronic-conditions",
         "use-cases/cms-hccs",
         "use-cases/demographics",
