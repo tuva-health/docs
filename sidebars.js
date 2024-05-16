@@ -34,6 +34,7 @@ const sidebars =
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
                 "data-dictionaries/claims-preprocessing",
+                "data-dictionaries/clinical-concept-library"
                 "data-dictionaries/core",
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
@@ -41,7 +42,10 @@ const sidebars =
                 "data-dictionaries/hcc-suspecting",
                 "data-dictionaries/input-layer",
                 "data-dictionaries/quality-measures",
-                "data-dictionaries/readmissions",           
+                "data-dictionaries/readmissions",
+                "data-dictionaries/reference-data",
+                "data-dictionaries/teminology",
+                "data-dictionaries/value-sets",
             ]
         },
         {
