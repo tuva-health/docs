@@ -44,7 +44,7 @@ const sidebars =
                 "data-dictionaries/quality-measures",
                 "data-dictionaries/readmissions",
                 "data-dictionaries/reference-data",
-                "data-dictionaries/teminology",
+                "data-dictionaries/terminology",
                 "data-dictionaries/value-sets",
             ]
         },
