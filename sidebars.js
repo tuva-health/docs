@@ -34,7 +34,7 @@ const sidebars =
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
                 "data-dictionaries/claims-preprocessing",
-                "data-dictionaries/clinical-concept-library"
+                "data-dictionaries/clinical-concept-library",
                 "data-dictionaries/core",
                 "data-dictionaries/cms-hccs",
                 "data-dictionaries/ed-classification",
