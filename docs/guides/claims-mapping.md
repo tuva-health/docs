@@ -360,8 +360,8 @@ The grain of this table will affect how these fields are populated:
 - One row per enrollment span - `enrollment_start_date` will be the first day of enrollment and `enrollment_end_date will` be the last day of enrollment.
   - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-12-31
 
-In the source data, enrollment end date may be `NULL` to indicate that the member is actively enrolled.  After confirming 
-this with the data provider, `enrollment_end_date` should be populated with the last day of the current month.
+Enrollment end date may be `NULL` or an obviously fake future date like `2199-12-31` to indicate that the member is actively enrolled.  After confirming 
+this with the data provider (when possible), `enrollment_end_date` should be populated with the last day of the current month.
 
 - data type is `date` in the format `YYYY-MM-DD`
 - `enrollment_start_date` and `enrollment_end_date` are populated in every row
