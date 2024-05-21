@@ -108,3 +108,12 @@ table.dataTable {
   width: 100%; /* Make table width 100% of container */
   table-layout: fixed; /* Optional: Adds equal column sizing */
 }
+[data-theme='dark'] .table-container thead.sticky th {
+    background-color: #333;
+    color: white;
+}
+
+/* Dark mode styles for row highlighting */
+[data-theme='dark'] .table-container tbody tr:hover {
+    background-color: #444;
+}

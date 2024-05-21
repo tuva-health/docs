@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTable } from 'react-table';
+import './tableStyles.css'; // Import your existing CSS file
 
 function ExpandableTable({ dataSourceUrl }) {
     const [data, setData] = useState([]);
@@ -24,10 +25,12 @@ function ExpandableTable({ dataSourceUrl }) {
         {
             Header: 'Concept Name',
             accessor: 'concept_name',
+            className: 'fixed-column' // Add a class for the first column
         },
         {
             Header: 'Concept Type',
             accessor: 'concept_type',
+            className: 'expandable-column' // Add a class for the second column
         }
     ], []);
 
@@ -62,12 +65,12 @@ function ExpandableTable({ dataSourceUrl }) {
                 placeholder="Search..."
                 style={{ marginBottom: '10px', width: '100%', padding: '8px' }}
             />
-            <table {...getTableProps()}>
+            <table {...getTableProps()} className="custom-expandable-table">
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                <th {...column.getHeaderProps()} className={column.className}>{column.render('Header')}</th>
                             ))}
                         </tr>
                     ))}
@@ -78,14 +81,16 @@ function ExpandableTable({ dataSourceUrl }) {
                         return (
                             <React.Fragment key={index}>
                                 <tr {...row.getRowProps()} onClick={() => toggleRow(index)}>
-                                    {row.cells.map(cell => {
-                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-                                    })}
+                                    {row.cells.map(cell => (
+                                        <td {...cell.getCellProps()} className={cell.column.className}>{cell.render('Cell')}</td>
+                                    ))}
                                 </tr>
                                 {expandedRow === index && (
                                     <tr>
                                         <td colSpan={columns.length}>
-                                            {row.original.concept_scope}
+                                            <pre style={{ whiteSpace: 'pre-wrap' }}>
+                                                {row.original.concept_scope}
+                                            </pre>
                                         </td>
                                     </tr>
                                 )}
