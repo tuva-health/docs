@@ -12,6 +12,7 @@ const sidebars =
             label: "Data Marts",
             items: [
                 "data-marts/overview",
+                "data-marts/ahrq-measures",
                 "data-marts/ccsr",
                 "data-marts/chronic-conditions",
                 "data-marts/claims-preprocessing",
@@ -31,6 +32,7 @@ const sidebars =
             type: "category",
             label: "Data Dictionaries",
             items: [
+                "data-dictionaries/ahrq-measures",
                 "data-dictionaries/ccsr",
                 "data-dictionaries/chronic-conditions",
                 "data-dictionaries/claims-preprocessing",
