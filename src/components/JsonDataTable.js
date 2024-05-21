@@ -99,8 +99,8 @@ export function JsonDataTable({ jsonPath }) {
     if (ExecutionEnvironment.canUseDOM) {
       const fetchData = async () => {
         try {
-          const responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/update_seed_descriptions/docs/manifest.json");
-          const responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/update_seed_descriptions/docs/catalog.json");
+          const responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/add_new_terminologies/docs/manifest.json");
+          const responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/add_new_terminologies/docs/catalog.json");
           const jsonDataMan = await responseMan.json();
           const jsonDataCat = await responseCat.json();
           const data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
