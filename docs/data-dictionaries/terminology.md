@@ -6,10 +6,6 @@ title: "Terminology"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 
-## ahfs_to_rxnorm
-
-<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__ahfs_to_rxnorm.columns" />
-
 ## claim_type
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__claim_type.columns" />
@@ -29,10 +25,6 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 ## ethnicity
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__ethnicity.columns" />
-
-## fips_county
-
-<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__fips_county.columns" />
 
 ## gender
 
