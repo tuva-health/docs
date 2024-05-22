@@ -10,10 +10,6 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__claim_type.columns" />
 
-## code_type
-
-<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__code_type.columns" />
-
 ## discharge_disposition
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__discharge_disposition.columns" />
