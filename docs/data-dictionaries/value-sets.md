@@ -192,3 +192,9 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 ### surgery_gynecology_cohort
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.readmissions__surgery_gynecology_cohort.columns" />
+
+
+## Service Categories
+
+### service_categories
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.service_category__service_categories.columns" />

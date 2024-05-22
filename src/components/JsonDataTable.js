@@ -134,6 +134,22 @@ export function JsonDataTable({ jsonPath }) {
       // Initial update
       updateTableBackgroundColor();
 
+      // Smooth scroll and anchor adjustment
+      const handleScrollToAnchor = () => {
+        const targetId = window.location.hash.substring(1);
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            setTimeout(() => {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }, 3000); // Adjust the timeout as needed
+          }
+        }
+      };
+
+      // Scroll to anchor after data fetch
+      handleScrollToAnchor();
+
       // Cleanup observer on unmount
       return () => observer.disconnect();
     }
