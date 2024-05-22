@@ -113,7 +113,3 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 ## snomed_icd_10_map
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__snomed_icd_10_map.columns" />
-
-## ssa_fips_state
-
-<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__ssa_fips_state.columns" />
