@@ -137,3 +137,7 @@ or the HUD [ZIP Code Crosswalk Files](https://www.huduser.gov/portal/datasets/us
 we also host the crosswalks in our reference bucket: 
 - [Zip to Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/ZIP_TRACT_032023.csv)
 - [Tract to Zip](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/TRACT_ZIP_032023.csv)
+
+## Data Dictionaries
+
+See the data dictionaries for our reference data [here](data-dictionaries/reference-data)
