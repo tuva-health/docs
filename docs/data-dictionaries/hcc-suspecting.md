@@ -26,3 +26,7 @@ the reason and contributing factors.
 This final model displays a rollup of suspecting conditions per patient.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_suspecting__summary.columns" />
+
+## value sets
+
+See the value set data dictionaries [here](value-sets#hcc-suspecting).

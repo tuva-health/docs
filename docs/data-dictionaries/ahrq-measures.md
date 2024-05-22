@@ -82,3 +82,8 @@ This model is designed to be useful for analytics on pqis in your claims data se
 </div>
 
 
+## value sets
+
+See the value set data dictionaries [here](value-sets#ahrq-measures).
+
+ 

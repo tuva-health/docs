@@ -18,3 +18,8 @@ This final model calculates the CMS HCC raw risk score, normalized risk score,
 and payment risk score for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores.columns" />
+
+
+## value sets
+
+See the value set data dictionaries [here](value-sets#cms-hcc).

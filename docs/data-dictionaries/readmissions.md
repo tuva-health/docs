@@ -28,3 +28,7 @@ Each record in this table represents a unique acute inpatient admission.  Howeve
 This table includes columns for data quality tests related to readmissions, so you can see why admissions that are not in `readmission_summary` were excluded.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.readmissions__encounter_augmented.columns"  />
+
+## value sets
+
+See the value set data dictionaries [here](value-sets#readmissions).
