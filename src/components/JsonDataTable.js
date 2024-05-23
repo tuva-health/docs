@@ -88,75 +88,110 @@ function renderHeader() {
   }
 
 
-export function JsonDataTable({jsonPath}) {
-    var [tableData, setTableData] = useState([]);
-    var { tableRef, isSticky } = useState(null);
-    var [searchedVal, setSearchedVal] = useState("");
+export function JsonDataTable({ jsonPath }) {
+  const [tableData, setTableData] = useState([]);
+  const [searchedVal, setSearchedVal] = useState("");
 
+  // Initialize sticky header hook unconditionally
+  const { tableRef, isSticky } = useStickyHeader();
 
-    if (ExecutionEnvironment.canUseDOM){
-      var { tableRef, isSticky } = useStickyHeader();
+  useEffect(() => {
+    if (ExecutionEnvironment.canUseDOM) {
+      const fetchData = async () => {
+        try {
+          const responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json");
+          const responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json");
+          const jsonDataMan = await responseMan.json();
+          const jsonDataCat = await responseCat.json();
+          const data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
+          if (data !== undefined) {
+            setTableData(data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchData();
+
+      // Set background color based on the current theme
+      const updateTableBackgroundColor = () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const stickyTable = document.querySelector('.sticky.table');
+        if (stickyTable) {
+          if (theme === 'dark') {
+            stickyTable.style.backgroundColor = '#333';
+          } else {
+            stickyTable.style.backgroundColor = 'white';
+          }
+        }
+      };
+
+      // Update background color on theme change
+      const observer = new MutationObserver(updateTableBackgroundColor);
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      // Initial update
+      updateTableBackgroundColor();
+
+      // Smooth scroll and anchor adjustment
+      const handleScrollToAnchor = () => {
+        const targetId = window.location.hash.substring(1);
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            setTimeout(() => {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }, 3000); // Adjust the timeout as needed
+          }
+        }
+      };
+
+      // Scroll to anchor after data fetch
+      handleScrollToAnchor();
+
+      // Cleanup observer on unmount
+      return () => observer.disconnect();
     }
-    var tableId = hashCode(jsonPath);
-
-    useEffect(() => {
-        var fetchData = async () => {
-            try {
-                var responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json");
-                var responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json");
-                var jsonDataMan = await responseMan.json();
-                var jsonDataCat = await responseCat.json();
-                var data = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
-                if (data !== undefined)
-                {
-                  setTableData(data);
-                }
-              } catch (error) {
-                  console.error(error);
-              }
-            };
-        fetchData();
-          return () => {
-          
-          };
-        }, [jsonPath, tableRef]);
-  
+  }, [jsonPath]);
 
   return (
-      <div>
-          {isSticky && (
-                <Table responsive
-                  className="sticky"
-                  style={{
-                    position: "fixed",
-                    top: 55,
-                    backgroundColor: "white",
-                  }}
-                >
-                  {renderHeader()}
-                </Table>
-              )}
-          <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{width:'100%', padding:'15px', borderRadius:'10px', border: "1px solid gray"}} />
-          <Table responsive ref={tableRef} id={tableId} className="display" >
-              {renderHeader()}
-              <tbody>
-              { tableData
-              .filter((row) => 
-                !searchedVal.length || row.name.toString()
+    <div className="table-container">
+      {isSticky && (
+        <Table responsive
+          className="sticky"
+          style={{
+            position: "fixed",
+            top: 55,
+            width: '100%', // Ensure it covers the full width
+          }}
+        >
+          {renderHeader()}
+        </Table>
+      )}
+      <Form.Control onChange={(e) => setSearchedVal(e.target.value)} size='lg' type='text' placeholder='Search' style={{ width: '100%', padding: '15px', borderRadius: '10px', border: "1px solid gray" }} />
+      <Table responsive ref={tableRef} className="display">
+        {renderHeader()}
+        <tbody>
+          {tableData
+            .filter((row) =>
+              !searchedVal.length || row.name.toString()
                 .toString()
                 .toLowerCase()
-                .includes(searchedVal.toString().toLowerCase()) 
-              )
-                .map((row, index) => (
-                  <tr key={index}>
-                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.name}</td>
-                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.type}</td>
-                      <td style={{ minWidth: '235px', maxWidth: '235px'}}>{row.description}</td>
-                      <td style={{ minWidth: '195px', maxWidth: '195px'}}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"} {row.terminology_note ? <span style={{ display: 'inline', fontSize: '75%', fontWeight: 'bold', lineHeight: '0' }}>{row.terminology_note}</span> : ""}</td>
-                  </tr>
-              ))}
-              </tbody>
-          </Table>
-      </div>
+                .includes(searchedVal.toString().toLowerCase())
+            )
+            .map((row, index) => (
+              <tr key={index}>
+                <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.name}</td>
+                <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.type}</td>
+                <td style={{ minWidth: '235px', maxWidth: '235px' }}>{row.description}</td>
+                <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"} {row.terminology_note ? <span style={{ display: 'inline', fontSize: '75%', fontWeight: 'bold', lineHeight: '0' }}>{row.terminology_note}</span> : ""}</td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+    </div>
   );
 }
+
+export default JsonDataTable;

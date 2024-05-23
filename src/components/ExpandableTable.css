@@ -1,0 +1,24 @@
+.expandable-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expandable-table th, .expandable-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.expandable-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+.expandable-table td:first-child {
+    width: 200px; /* Fixed width for the first column */
+}
+
+.expandable-table td:nth-child(2) {
+    width: calc(100% - 200px); /* Remaining width for the second column */
+}
