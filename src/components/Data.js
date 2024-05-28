@@ -1,4 +1,5 @@
-export const tableHeaders = ["Column","Data Type","Description", "Terminology"];
+export const tableHeaders = ["Column","Data Type","Description","Terminology"];
+export const tableHeadersNoTerm = ["Column","Data Type","Description"];
 
 export const csvTableHeaders = ["Code Set Name", "Maintainer", "Last updated"
 ]
