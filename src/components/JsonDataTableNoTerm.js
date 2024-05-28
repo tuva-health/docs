@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import useStickyHeader from "./useStickyHeader.js";
 import "./tableStyles.css";
 import Table from 'react-bootstrap/Table';
-import { tableHeaders, newTableData } from './Data.js';
+import { tableHeadersNoTerm, newTableData } from './Data.js';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Form from 'react-bootstrap/Form';
 
@@ -69,12 +69,12 @@ function hashCode(str) {
   }
 }
 function renderHeader() {
-  if (tableHeaders !== undefined) {
+  if (tableHeadersNoTerm !== undefined) {
     return (
       <thead>
         <tr>
-          {tableHeaders.map((item) => (
-            <th style={{ minWidth: item==='Description'?'235px': '195px', maxWidth: item==='Description'?'235px': '195px' }} key={item}>{item}</th>
+          {tableHeadersNoTerm.map((item) => (
+            <th style={{ minWidth: item==='Description'?'430px': '195px', maxWidth: item==='Description'?'430px': '195px' }} key={item}>{item}</th>
           ))}
         </tr>
       </thead>
@@ -82,7 +82,7 @@ function renderHeader() {
   }
 }
 
-export function JsonDataTable({ jsonPath, columns = tableHeaders }) {
+export function JsonDataTableNoTerm({ jsonPath, columns = tableHeadersNoTerm }) {
   const [tableData, setTableData] = useState([]);
   const [searchedVal, setSearchedVal] = useState("");
 
@@ -178,8 +178,7 @@ export function JsonDataTable({ jsonPath, columns = tableHeaders }) {
               <tr key={index}>
                 <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.name}</td>
                 <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.type}</td>
-                <td style={{ minWidth: '235px', maxWidth: '235px' }}>{row.description}</td>
-                <td style={{ minWidth: '195px', maxWidth: '195px' }}>{row.terminology ? <a href={row.terminology}>yes</a> : "no"} {row.terminology_note ? <span style={{ display: 'inline', fontSize: '75%', fontWeight: 'bold', lineHeight: '0' }}>{row.terminology_note}</span> : ""}</td>
+                <td style={{ minWidth: '430px', maxWidth: '430px' }}>{row.description}</td>
               </tr>
             ))}
         </tbody>
@@ -188,4 +187,4 @@ export function JsonDataTable({ jsonPath, columns = tableHeaders }) {
   );
 }
 
-export default JsonDataTable;
+export default JsonDataTableNoTerm;
