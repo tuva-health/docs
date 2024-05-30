@@ -10,131 +10,48 @@ table:not(.sticky) {
 }
 
 thead {
-  /* color: blue; */
-  width: fit-content;
+  background-color: #F2F2F2 !important;
+}
+
+[data-theme='dark'] thead {
+  background-color: #333; /* Dark mode */
+}
+
+th, td {
+  padding: 25px 0;
+  font-size: 16px;
+  line-height: 18px;
 }
 
 th {
-  padding: 25px 0;
   color: #fff;
   position: sticky;
   top:0;
-  font-size: 16px;
-  line-height: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  min-width: 195px;
-  max-width: 195px;
 }
 
-
-
-/* tbody tr:nth-last-of-type(odd) {
-  background-color: #f3f3f3;
-} */
-
-td {
-  font-size: 18px;
-  padding: 25px 0;
-  min-width: 300px;
-  max-width: 300px;
+[data-theme='dark'] th {
+  background-color: #333;
+  color: white;
 }
+
+.custom-expandable-table th.fixed-column,
+.custom-expandable-table td.fixed-column {
+  min-width: 195px !important;
+  max-width: 195px !important;
+  width: 195px !important;
+}
+
+.custom-expandable-table th.expandable-column,
+.custom-expandable-table td.expandable-column {
+  width: calc(100% - 195px) !important; /* Remaining width for the second column */
+}
+
 tr:hover {
   background-color: #F2F2F2 !important;
 }
 
-/* responsive media queries for table width */
-
-@media only screen and (max-width: 481px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 100%;
-  } 
-}
-
-@media only screen and (max-width: 769px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 100%;
-  } 
-}
-
-@media only screen and (max-width: 1025px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 100%;
-  } 
-}
-@media only screen and (max-width: 1447px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 118%;
-  } 
-}
-@media only screen and (max-width: 1524px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 118%;
-  } 
-}
-@media only screen and (max-width: 1609px) {
-  td {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  th {
-    min-width: 195px;
-    max-width: 195px;
-  }
-  table {
-    width: 138%;
-  } 
-}
-@media only screen and (max-width: 2000px) {
-  td {
-    min-width: 250px;
-    max-width: 250px;
-  }
-  th {
-    min-width: 250px;
-    max-width: 250px;
-  }
-  table {
-    width: 138%;
-  } 
+[data-theme='dark'] tr:hover {
+  background-color: #333 !important;
 }

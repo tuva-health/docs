@@ -16,6 +16,9 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -106,7 +109,6 @@ table.dataTable {
 
 .markdown table {
   width: 100%; /* Make table width 100% of container */
-  
 }
 
 
@@ -127,6 +129,10 @@ table.dataTable {
   width: 100%; 
   table-layout: auto; 
 }
+[data-theme='dark'] .table-container thead.sticky th {
+    background-color: #333;
+    color: white;
+}
 
 .wide-table th:nth-child(2),
 .wide-table td:nth-child(2) {
@@ -137,7 +143,6 @@ table.dataTable {
 /* data_dictionary_table */
 .data_dictionary_table {
   width: 100%;
-  
 }
 .data_dictionary_table th:nth-child(3),
 .data_dictionary_table td:nth-child(3) {
@@ -150,6 +155,8 @@ table.dataTable {
 }
 
 
-
-
+/* Dark mode styles for row highlighting */
+[data-theme='dark'] .table-container tbody tr:hover {
+    background-color: #444;
+}
 

@@ -62,3 +62,7 @@ ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
   * claim_id
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__singular_condition_category.columns" />
+
+## value sets
+
+See the value set data dictionaries [here](value-sets#ccsr).

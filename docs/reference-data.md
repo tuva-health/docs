@@ -5,14 +5,15 @@ title: "Reference Data"
 
 The Tuva Project contains a variety of datasets that are useful for healthcare analytics.  We call these datasets reference datasets.  These reference datasets are hosted on a public AWS S3 bucket.
 
-| Reference Dataset | Description |
-| --------- | ----------------------------- |
-| [Calendar](#calendar) | Contains a record for every day of the year from 1900 through 2100 and a number of date-related concepts (e.g. is the day a weekday or weekend). |
-| [Census Shape Files](#census-shape-files) |  The U.S. Census provides geographic shape files for different grains of census areas including: County, Tract and Block Group. |
-| [FIPS](#fips) | ANSI FIPS codes identify specific geographic areas such as states and counties.  |
-| [Provider Data](#provider-data) |  Provider data is created from NPPES and NUCC Taxonomy. |
-| [Social Vulnerability Index](#social-vulnerability-index) | A variety of SDOH variables and composites. |
-| [Zip Codes](#zip-codes) | A list of all zip codes in the U.S.  |
+| Reference Dataset                                         | Description                                                                                                                                      |
+|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Calendar](#calendar)                                     | Contains a record for every day of the year from 1900 through 2100 and a number of date-related concepts (e.g. is the day a weekday or weekend). |
+| [Census Shape Files](#census-shape-files)                 | The U.S. Census provides geographic shape files for different grains of census areas including: County, Tract and Block Group.                   |
+| [Code Type](#code-type)                                   | Tuva expected values for code type across marts                                                                                                  |
+| [FIPS](#fips)                                             | ANSI FIPS codes identify specific geographic areas such as states and counties.                                                                  |
+| [Provider Data](#provider-data)                           | Provider data is created from NPPES and NUCC Taxonomy.                                                                                           |
+| [Social Vulnerability Index](#social-vulnerability-index) | A variety of SDOH variables and composites.                                                                                                      |
+| [Zip Codes](#zip-codes)                                   | A list of all zip codes in the U.S.                                                                                                              |
 
 
 ## Calendar
@@ -72,6 +73,12 @@ The full documentation of data fields can be found [here](https://www2.census.go
 | INTPTLAT  | 11     | String | Current latitude of the internal point                                                          |
 | INTPTLON  | 12     | String | Current longitude of the internal point                                                         |
 
+## Code Type
+Records in Tuva can only be used in for analytics if the codes used to identify clinical elements are labeled
+in a standardized manner.  The values in found in the code_type reference data dictionary must be used in any
+'source_code_type` column in order for Tuva to use the codes in any downstream marts.
+
+
 ## FIPS
 We make several FIPS datasets available:
 - [State](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__ansi_fips_state.csv)
@@ -130,3 +137,7 @@ or the HUD [ZIP Code Crosswalk Files](https://www.huduser.gov/portal/datasets/us
 we also host the crosswalks in our reference bucket: 
 - [Zip to Tract](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/ZIP_TRACT_032023.csv)
 - [Tract to Zip](https://tuva-public-resources.s3.amazonaws.com/reference-data/Crosswalks/TRACT_ZIP_032023.csv)
+
+## Data Dictionaries
+
+See the data dictionaries for our reference data [here](data-dictionaries/reference-data)

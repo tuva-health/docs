@@ -28,7 +28,7 @@ function useStickyHeader (defaultSticky = false) {
   useEffect(() => {
     
     const handleScroll = () => {
-      if (ExecutionEnvironment.canUseDOM){
+      if (ExecutionEnvironment.canUseDOM && tableRef.current){
       toggleStickiness(tableRef.current.getBoundingClientRect());
       }
     };
