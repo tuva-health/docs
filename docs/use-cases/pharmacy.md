@@ -1,6 +1,6 @@
 ---
-id: pharmacy-pmpm
-title: "Pharmacy PMPM"
+id: pharmacy
+title: "Pharmacy"
 ---
 Examining retail pharmacy spend data is essential for understanding population health, as it reveals prescription trends, identifies potential gaps in care, and helps healthcare organizations develop targeted disease management programs.
 
@@ -99,7 +99,7 @@ GROUP BY mc.data_source
 ## Understanding Retail Pharmacy Utilization
 
 <details>
-  <summary>Prescibing Providers</summary>
+  <summary>Prescribing Providers</summary>
 
 ```sql
 select 
@@ -129,5 +129,111 @@ from core.pharmacy_claim
 group by dispensing_provider_npi
 ,data_source
 order by pharmacy_paid_amount desc
+```
+</details>
+
+## Brand vs Generic
+<details>
+  <summary>Brand Generic Dollar Opportunity</summary>
+  
+We can view the total dollar opportunity from switching brands to generics with this query.
+
+```sql
+select
+    data_source
+  , sum(generic_available_total_opportunity) as generic_available_total_opportunity
+from pharmacy.pharmacy_claim_expanded
+group by 
+    data_source
+
+```
+</details>
+<details>
+  <summary>Opportunity by Brand Name</summary>
+  
+To view the drugs that would yield the most savings by switching to generic, we can group by brand name and sort high to low on opportunity.
+
+```sql
+select
+    data_source
+  , brand_name
+  , sum(generic_available_total_opportunity) as generic_available_total_opportunity
+from pharmacy.pharmacy_claim_expanded
+where 
+  generic_available_total_opportunity > 0
+group by 
+    brand_name
+  , data_source
+order by generic_available_total_opportunity desc
+
+```
+</details>
+<details>
+  <summary>Generic NDCs Available</summary>
+  
+To view the generic ndcs that exist for a particular brand drug (Concerta in this example), we can join to the generic_available_list table.
+
+```sql
+select
+    e.data_source
+  , e.ndc_code
+  , e.ndc_description
+  , g.generic_ndc
+  , g.generic_ndc_description
+  , g.generic_prescribed_history
+  , g.brand_paid_per_unit
+  , g.generic_cost_per_unit
+  , sum(g.generic_available_total_opportunity) as generic_available_total_opportunity
+from pharmacy.pharmacy_claim_expanded as e
+inner join pharmacy.generic_available_list as g
+  on e.generic_available_sk = g.generic_available_sk
+where 
+  e.brand_name = 'Concerta'
+group by 
+    e.data_source
+  , e.ndc_code
+  , e.ndc_description
+  , g.generic_ndc
+  , g.generic_ndc_description
+  , g.generic_prescribed_history
+  , g.brand_paid_per_unit
+  , g.generic_cost_per_unit
+order by generic_available_total_opportunity desc
+
+```
+</details>
+<details>
+  <summary>Generics Available in Prescribed History</summary>
+  
+To view only the generics that have been prescribed in the pharmacy claims data history (for a given data source), we can set a filter in the where clause for the generic_prescribed_history flag.
+
+```sql
+select
+    e.data_source
+  , e.ndc_code
+  , e.ndc_description
+  , g.generic_ndc
+  , g.generic_ndc_description
+  , g.generic_prescribed_history
+  , g.brand_paid_per_unit
+  , g.generic_cost_per_unit
+  , sum(g.generic_available_total_opportunity) as generic_available_total_opportunity
+from pharmacy.pharmacy_claim_expanded as e
+inner join pharmacy.generic_available_list as g
+  on e.generic_available_sk = g.generic_available_sk
+where 
+  e.brand_name = 'Concerta'
+  and g.generic_prescribed_history = 1
+group by 
+    e.data_source
+  , e.ndc_code
+  , e.ndc_description
+  , g.generic_ndc
+  , g.generic_ndc_description
+  , g.generic_prescribed_history
+  , g.brand_paid_per_unit
+  , g.generic_cost_per_unit
+order by generic_available_total_opportunity desc
+
 ```
 </details>
