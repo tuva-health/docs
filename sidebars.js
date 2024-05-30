@@ -20,6 +20,7 @@ const sidebars =
                 "data-marts/ed-classification",
                 "data-marts/financial-pmpm",
                 "data-marts/hcc-suspecting",
+                "data-marts/pharmacy",
                 "data-marts/quality-measures",
                 "data-marts/readmissions",
             ]
@@ -43,6 +44,7 @@ const sidebars =
                 "data-dictionaries/financial-pmpm",
                 "data-dictionaries/hcc-suspecting",
                 "data-dictionaries/input-layer",
+                "data-dictionaries/pharmacy",
                 "data-dictionaries/quality-measures",
                 "data-dictionaries/readmissions",
                 "data-dictionaries/reference-data",
@@ -90,7 +92,7 @@ const sidebars =
         "use-cases/demographics",
         "use-cases/ed-visits",
         "use-cases/medical-pmpm",
-        "use-cases/pharmacy-pmpm",
+        "use-cases/pharmacy",
         "use-cases/primary-care",
         "use-cases/urgent-care",
 
