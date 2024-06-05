@@ -91,7 +91,7 @@ Here are the sub-algorithms used by the Hospital-wide Measure:
 2. Cohort Exclusion Algorithm
 3. Discharged Alive and Not Against Medical Advice
 4. Not a Transfer
-5. Not a Same Day Admission
+5. Not a Same Day Readmission
 6. Run-out
 
 If an inpatient admission meets the criteria from all of these sub-algorithms then it qualifies as an index admission.  Otherwise it does not.  Below we walk through each sub-algorithm.
@@ -145,7 +145,7 @@ A transfer is defined as occurring if a patient is discharged from an acute care
 
 ### Not a Same-day Readmission
 
-Inpatient admissions do not qualify as an index admission if the patient has a readmission to the same hospital on the same day as they were discharged for the previous admission for the same condition.  In this case the readmission does however qualify as an index admission.
+An inpatient admission is not considered an index admission if the patient is readmitted to the same hospital on the same day they were discharged from a previous admission for the same condition. In this situation, the readmission itself qualifies as the index admission.
 
 ### Run-out
 
@@ -161,9 +161,9 @@ Here are the steps to implement the algorithm:
 
 1. This algorithm requires mapping the primary ICD-10-CM code to the custom CCS diagnosis categories and all the ICD-10-PCS codes to the custom CCS procedure categories for each inpatient admission (terminology datasets #8 and #9).
 
-2. For each inpatient admission, check whether the CCS diagnosis and procedure categories fall under the always planned list of diagnoses and procedures (terminology datasets #4 and #5). If any match occurs, this is a planned admission.
+2. For each inpatient admission, check whether the CCS diagnosis and procedure categories fall under the "always planned" list of diagnoses and procedures (terminology datasets #4 and #5). If any match occurs, this is a planned admission.
 
-3. For each inpatient admission, check whether the CCS procedure categories and ICD-10-PCS codes fall under the list of potentially planned procedures (terminology dataset #6). If any match occurs, check whether this patient had any primary ICD-10-CM code or CCS diagnosis category that is considered always acute (terminology dataset #7). If the answer is no, this is a planned admission.
+3. For each inpatient admission, check whether the CCS procedure categories and ICD-10-PCS codes fall under the list of potentially planned procedures (terminology dataset #6). If any match occurs, check whether this patient had any primary ICD-10-CM code or CCS diagnosis category that is considered an "always acute" code (terminology dataset #7). If the answer is no, this is a planned admission.
 
 4. Inpatient admissions that do not qualify as planned admissions based on steps #2 and #3 above are considered unplanned.
 
