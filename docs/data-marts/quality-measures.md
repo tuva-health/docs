@@ -28,10 +28,10 @@ on GitHub.
 | Medication Adherence for Cholesterol (Statins)       | CMS Star D10, NQF 0541                   | *Planned 2024*                   |
 | Medication Adherence for Diabetes Medications        | CMS Star D08, NQF 0541                   | *Planned 2024*                   |
 | Medication Adherence for Hypertension (RAS antagonists)   | CMS Star D09, NQF 0541                   | *Planned 2024*                   |
-| Medication Reconciliation Post-Discharge                  | CMS Star C15, NQF 0097                   | *Planned 2024*                   |
+| Medication Reconciliation Post-Discharge                  | CMS Star C15, NQF 0097                   | **Released**                    |
 | Monitoring Physical Activity | CMS Star C04                             | *Planned 2024*                   |
 | Osteoporosis Management in Women Who Had a Fracture  | CMS Star C08, MIPS CQM 418, NQF/CBE 0053 | **Released**                     |
 | Reducing the Risk of Falling | CMS Star C12, NQF/CBE 0101               | *Planned 2024*                   |
-| Statin Therapy for the Prevention and Treatment of Cardiovascular Disease | CMS Star C16, MIPS CQM 438               | *Planned 2024*                   |
+| Statin Therapy for the Prevention and Treatment of Cardiovascular Disease | CMS Star C16, MIPS CQM 438               | **Released**                    |
 | Statin Use in Persons with Diabetes (SUPD)                                | CMS Star D12                             | *Planned 2024*                   |
 | Transitions of Care | CMS Star C17                             | *Planned 2024*                   |
