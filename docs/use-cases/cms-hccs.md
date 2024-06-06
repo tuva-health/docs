@@ -78,3 +78,12 @@ order by count(*) desc
 limit 10;
 ```
 </details>
+
+<details>
+  <summary>Risk Weighted by Member Months</summary>
+
+```sql
+select sum(payment_risk_score_weighted_by_months) / sum(member_months) as weighted_risk_total
+from cms_hcc.patient_risk_scores;
+```
+</details>
