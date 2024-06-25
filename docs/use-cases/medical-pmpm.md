@@ -25,6 +25,7 @@ order by data_source
 
 <details>
   <summary>Trending PMPM by Service Category</summary>
+
 The pmpm table already breaks out pmpm by service category and groups it at the member month level.
 
 ```sql
@@ -36,6 +37,7 @@ order by 1
 
 <details>
   <summary>Trending PMPM by Claim Type</summary>
+
 Here we calculate PMPM manually by counting member months and joining payments by claim type to them.
 
 ```sql
@@ -87,6 +89,7 @@ order by mm.data_source
 
 <details>
   <summary>PMPM by Chronic Condition</summary>
+
 Here we calculate PMPM by chronic condition. Since members can and do have more than one chronic condition, payments and members months are duplicated. This is useful for comparing spend across chronic conditions, but should be used with caution given the duplication across conditions.
 
 ```sql
@@ -230,6 +233,7 @@ group by mm.data_source
 
 <details>
   <summary>Claims with Enrollment</summary>
+  
   The inverse of the above. Ideally this number will be 100%, but there could be extenuating reasons why not all claims have a corresponding member with enrollment.
 
   ```sql

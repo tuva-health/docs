@@ -315,6 +315,7 @@ CMS's readmission methodology excludes certain encounters from the calculation i
 
 <details>
   <summary>Disqualified Encounters</summary>
+
 Let's find how many encounters were disqualified.
 
 ```sql
@@ -326,6 +327,7 @@ where disqualified_encounter_flag = 1
 
 <details>
   <summary>Disqualification Reason</summary>
+  
 We can see the reason(s) why an encounter was disqualified by unpivoting the disqualification reason column.
 
 ```sql

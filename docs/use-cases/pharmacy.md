@@ -77,6 +77,7 @@ group by mm.data_source
 
 <details>
   <summary>Pharmacy Claims with Enrollment</summary>
+  
   The inverse of the above. Ideally this number will be 100%, but there could be extenuating reasons why not all claims have a corresponding member with enrollment.
 
   ```sql
