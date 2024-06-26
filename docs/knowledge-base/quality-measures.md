@@ -73,72 +73,16 @@ Data Models and run the Tuva Project.
 
 ### Data Requirements
 
-**Condition:**
-
-- patient_id
-- claim_id
-- recorded_date
-- source_code_type
-- source_code
-- normalized_code_type
-- normalized_code
-
-**Encounter:**
-
-- patient_id
-- encounter_type
-- encounter_start_date
-- encounter_end_date
-
-**Medication:**
-
-- patient_id
-- dispensing_date
-- source_code_type
-- source_code
-- ndc_code
-- rxnorm_code
-
-**Observation:**
-
-- patient_id
-- observation_date
-- source_code_type
-- source_code
-- normalized_code_type
-- normalized_code
-
-**Patient:**
-
-- patient_id
-- sex
-- birth_date
-- death_date
-
-**Procedure:**
-
-- patient_id
-- procedure_date
-- source_code_type
-- source_code
-- normalized_code_type
-- normalized_code
-
-**Medical Claim:**
-
-- patient_id
-- claim_id
-- claim_start_date
-- claim_end_date
-- place_of_service_code
-- hcpcs_code
-
-**Pharmacy Claim:**
-
-- patient_id
-- dispensing_date
-- ndc_code
-- paid_date
+This data mart uses the following tables from the Tuva Core Data Model:
+- condition
+- encounter
+- lab_result
+- medication
+- observation
+- patient
+- procedure
+- medical_claim
+- pharmacy_claim
 
 *Note: The Tuva Project will generate these Core tables. You just need to map 
 your data to the Claims or Clinical Data Models and run the project.*
@@ -159,8 +103,11 @@ The staging tables show what tables and fields are used from the Core data model
 
 #### Intermediate
 
-The intermediate tables contain the complex logic for each quality measure. The 
-models are organized by denominator, numerator, and the various exclusions.
+The intermediate tables contain the logic for calculating each quality measure. 
+The subfolder for each quality measure contains that measure's specific logic for 
+calculating the denominator, numerator, and exclusions. Many measures use the 
+same logic for calculating exclusions, such as dementia or hospice. This shared 
+logic can be found in the shared exclusions subfolder.
 
 #### Final
 

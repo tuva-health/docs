@@ -11,6 +11,10 @@ quality measures. You can see the roadmap in this section. If there is a
 publicly available measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) 
 on GitHub.
 
+Check out the Knowledge Base [article](../knowledge-base/quality-measures)
+for an overview of the data mart and a walkthrough example for calculating a 
+quality measure.
+
 | Measure Name                                                                   | Measure ID                               | Specification                                                                                                                         | Status                           | 
 |--------------------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
 | Breast Cancer Screening                                                        | CMS Star C01, MIPS CQM 112, NQF/CBE 2372 | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/Claims-Registry-Measures/2023_Measure_112_MedicarePartBClaims.pdf) | **Released**                     |
