@@ -1,6 +1,6 @@
 ---
-id: development-style-guide
-title: "Development Style Guides"
+id: style-guide
+title: "Style Guides"
 ---
 
 ## dbt Style Guide

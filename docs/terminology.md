@@ -3,9 +3,11 @@ id: terminology
 title: "Terminology"
 description: The Tuva Project makes it easy to load useful terminology sets like ICD-10 codes directly into your data warehouse where you need them for analytics.
 ---
-## Overview
 
-import { CSVDataTableCatalog } from '@site/src/components/CSVDataTableCatalog';
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
+
+## Overview
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oJyuJ4XFYNI?si=2OqvRdcL9D9itUrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
 
@@ -351,3 +353,148 @@ specifies that the map priority rule of “TRUE” or “OTHERWISE TRUE” shoul
 applied if nothing further is known about the patient’s condition. Other 
 use-cases may need to further evaluate the map rules that consider a patient's
 age, gender, and comorbidities.
+
+## Data Dictionary
+
+
+
+## ansi_fips_state
+
+[FIPS state codes](https://www.census.gov/library/reference/code-lists/ansi.html) assigned by ANSI and used by the Census Bureau 
+
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__ansi_fips_state.columns" />
+
+## calendar
+
+A table containing every calendar day from 1/1/1900 through 1/12/2119, along with other helpful metadata like day of week and first/last day of month
+
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__calendar.columns" />
+
+
+## code_type
+
+A list of all standardized code type names used in the tuva project marts.  Input layer should
+use these values for source_code_type or normalized_code_type in order for codes to be recognized
+in marts.
+
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__code_type.columns" />
+
+## fips_county
+
+A dictionary of all fips county codes
+
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__fips_county.columns" />
+
+## ssa_fips_state
+
+A dictionary of all fips state codes maintained by the SSA
+
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__ssa_fips_state.columns" />
+
+## claim_type
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__claim_type.columns" />
+
+## discharge_disposition
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__discharge_disposition.columns" />
+
+## encounter_type
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__encounter_type.columns" />
+
+## ethnicity
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__ethnicity.columns" />
+
+## gender
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__gender.columns" />
+
+## hcpcs_level_2
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__hcpcs_level_2.columns" />
+
+## icd_10_cm
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__icd_10_cm.columns" />
+
+## icd_10_pcs
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__icd_10_pcs.columns" />
+
+## icd_9_cm
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__icd_9_cm.columns" />
+
+## icd_9_pcs
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__icd_9_pcs.columns" />
+
+## loinc
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__loinc.columns" />
+
+## loinc_deprecated_mapping
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__loinc_deprecated_mapping.columns" />
+
+## mdc
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__mdc.columns" />
+
+## medicare_dual_eligibility
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__medicare_dual_eligibility.columns" />
+
+## medicare_orec
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__medicare_orec.columns" />
+
+## medicare_status
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__medicare_status.columns" />
+
+## ms_drg
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__ms_drg.columns" />
+
+## ndc
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__ndc.columns" />
+
+## other_provider_taxonomy
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__other_provider_taxonomy.columns" />
+
+## payer_type
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__payer_type.columns" />
+
+## place_of_service
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__place_of_service.columns" />
+
+## present_on_admission
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__present_on_admission.columns" />
+
+## provider
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__provider.columns" />
+
+## race
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__race.columns" />
+
+## revenue_center
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__revenue_center.columns" />
+
+## rxnorm_to_atc
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__rxnorm_to_atc.columns" />
+
+## snomed_icd_10_map
+
+<JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__snomed_icd_10_map.columns" />

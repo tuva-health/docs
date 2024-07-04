@@ -1,9 +1,7 @@
 ---
-id: core-data-model
-title: "Core Data Model"
+id: overview
+title: "Overview"
 ---
-
-Check out the data dictionary [here](../data-dictionaries/core).
 
 ![Core Data Model](/img/core_data_model.jpg)
 

@@ -3,7 +3,7 @@ id: overview
 title: "Overview"
 ---
 
-Data marts are code (SQL) that runs on top of (or in the case of claims preprocessing before) the Core Data Model.  Data marts often use clinical concepts or other value sets to define concepts of interest.  
+Data marts are code (SQL) that automatically on top of the Core Data Model to compute measures, groupers, risk models, etc.  Data marts often use value sets to define concepts they use.
 
 <table class="wide-table">
   <thead>

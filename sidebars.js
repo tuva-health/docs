@@ -5,8 +5,34 @@ const sidebars =
     [ 
         "introduction",
         "quickstart",
-        "connectors/overview",
-        "core-data-model",
+        {
+            type: "category",
+            label: "Connectors",
+            items: [
+                "connectors/overview",
+                "connectors/input-layer",
+            ]
+        },
+
+        {
+            type: "category",
+            label: "Core Data Model",
+            items: [
+                "core-data-model/overview",
+                "core-data-model/condition",
+                "core-data-model/eligibility",
+                "core-data-model/encounter",
+                "core-data-model/lab-result",
+                "core-data-model/location",
+                "core-data-model/medical-claim",
+                "core-data-model/medication",
+                "core-data-model/observation",
+                "core-data-model/patient",
+                "core-data-model/pharmacy-claim",
+                "core-data-model/practitioner",
+                "core-data-model/procedure",
+            ]
+        },
 
         {
             type: "category",
@@ -26,32 +52,9 @@ const sidebars =
                 "data-marts/readmissions",
             ]
         },
-        "terminology",
-        "clinical-concept-library",
-        // {
-        //     type: "category",
-        //     label: "Data Dictionaries",
-        //     items: [
-        //         "data-dictionaries/ahrq-measures",
-        //         "data-dictionaries/ccsr",
-        //         "data-dictionaries/chronic-conditions",
-        //         "data-dictionaries/claims-preprocessing",
-        //         "data-dictionaries/clinical-concept-library",
-        //         "data-dictionaries/core",
-        //         "data-dictionaries/cms-hccs",
-        //         "data-dictionaries/ed-classification",
-        //         "data-dictionaries/financial-pmpm",
-        //         "data-dictionaries/hcc-suspecting",
-        //         "data-dictionaries/input-layer",
-        //         "data-dictionaries/pharmacy",
-        //         "data-dictionaries/quality-measures",
-        //         "data-dictionaries/readmissions",
-        //         "data-dictionaries/reference-data",
-        //         "data-dictionaries/terminology",
-        //         "data-dictionaries/value-sets",
-        //     ]
-        // },
 
+        "terminology",
+        "value-sets",
         "help",
     ],
 
@@ -62,8 +65,8 @@ const sidebars =
             type: "category",
             label: "Contributing",
             items: [
-                "contribution-guides/contributing",
-                "contribution-guides/development-style-guide",
+                "guides/contributing/contributing",
+                "guides/contributing/style-guide",
             ]
         },
         "guides/dbt-configuration",
@@ -79,6 +82,7 @@ const sidebars =
         },
         "guides/master-patient-index",
         "guides/normalization",
+        "guides/terminology",
     ],
 
     usecaseSidebar: 
