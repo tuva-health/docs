@@ -5,8 +5,9 @@ const sidebars =
     [ 
         "introduction",
         "quickstart",
+        "connectors/overview",
         "core-data-model",
-        "clinical-concept-library",
+
         {
             type: "category",
             label: "Data Marts",
@@ -26,40 +27,31 @@ const sidebars =
             ]
         },
         "terminology",
-        "reference-data",
-        "connectors/overview",
-        "synthetic-data",
-        {
-            type: "category",
-            label: "Data Dictionaries",
-            items: [
-                "data-dictionaries/ahrq-measures",
-                "data-dictionaries/ccsr",
-                "data-dictionaries/chronic-conditions",
-                "data-dictionaries/claims-preprocessing",
-                "data-dictionaries/clinical-concept-library",
-                "data-dictionaries/core",
-                "data-dictionaries/cms-hccs",
-                "data-dictionaries/ed-classification",
-                "data-dictionaries/financial-pmpm",
-                "data-dictionaries/hcc-suspecting",
-                "data-dictionaries/input-layer",
-                "data-dictionaries/pharmacy",
-                "data-dictionaries/quality-measures",
-                "data-dictionaries/readmissions",
-                "data-dictionaries/reference-data",
-                "data-dictionaries/terminology",
-                "data-dictionaries/value-sets",
-            ]
-        },
-        {
-            type: "category",
-            label: "Contribution Guides",
-            items: [
-                "contribution-guides/contributing",
-                "contribution-guides/development-style-guide",
-            ]
-        },
+        "clinical-concept-library",
+        // {
+        //     type: "category",
+        //     label: "Data Dictionaries",
+        //     items: [
+        //         "data-dictionaries/ahrq-measures",
+        //         "data-dictionaries/ccsr",
+        //         "data-dictionaries/chronic-conditions",
+        //         "data-dictionaries/claims-preprocessing",
+        //         "data-dictionaries/clinical-concept-library",
+        //         "data-dictionaries/core",
+        //         "data-dictionaries/cms-hccs",
+        //         "data-dictionaries/ed-classification",
+        //         "data-dictionaries/financial-pmpm",
+        //         "data-dictionaries/hcc-suspecting",
+        //         "data-dictionaries/input-layer",
+        //         "data-dictionaries/pharmacy",
+        //         "data-dictionaries/quality-measures",
+        //         "data-dictionaries/readmissions",
+        //         "data-dictionaries/reference-data",
+        //         "data-dictionaries/terminology",
+        //         "data-dictionaries/value-sets",
+        //     ]
+        // },
+
         "help",
     ],
 
@@ -68,18 +60,25 @@ const sidebars =
         "guides/overview",
         {
             type: "category",
-            label: "Claims Data",
+            label: "Contributing",
             items: [
-                "guides/claims-data/introduction",
-                "guides/claims-data/medical-claims",
-                "guides/claims-data/pharmacy-claims",
-                "guides/claims-data/eligibility",
-                "guides/claims-data/adr",
+                "contribution-guides/contributing",
+                "contribution-guides/development-style-guide",
             ]
         },
-        "guides/fhir-preprocessing",
+        "guides/dbt-configuration",
+        "guides/etl-automation",
         "guides/geo-coding",
-        "guides/setting-up-tuva",
+        {
+            type: "category",
+            label: "Mapping",
+            items: [
+                "guides/mapping/claims",
+                "guides/fhir",
+            ]
+        },
+        "guides/master-patient-index",
+        "guides/normalization",
     ],
 
     usecaseSidebar: 

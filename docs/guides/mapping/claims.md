@@ -1,46 +1,70 @@
 ---
-id: medical-claims
-title: "Medical Claims"
+id: claims
+title: "Claims"
 ---
 
-The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common source of this data.
+Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this guide we delve into the details of claims data, including what it is and how to map it to the Tuva [Input Layer](../../data-dictionaries/input-layer).
 
-## General mapping conventions
-### Claims missing eligibility
-  If there are claims in the data set without corresponding eligibility (i.e. the patient the claim is for does not have any 
-  enrollment information) then those claims should stay in the data set and not be filtered out.
+Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../../data-dictionaries/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
+
+Every claims dataset is different.  Every health plan has their own data model they store their adjudicated claims data in.
+
+Mapping to the Input Layer involves creating dbt models (i.e. SQL statements in a dbt project).  While it is necessary to create a model for every table in the Input Layer, it is not necessary that you have source data to populate every table or column in the Input Layer.  For example, if you don't have pharmacy claims you still need to create the `pharmacy_claim` table in the Input Layer, but you can mapp null to every column.
+
+This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) shows what columns in the Input Layer are needed for the various Tuva Data Marts.  Not mapping to a column needed for a data mart will result in no data being produced in that mart.
+
+The notes that follow describe advice and heuristics for mapping claims data sources to the Input Layer.  Consult the Input Layer data dictionary (link above) for a complete list of fields in the Input Layer.
+
+
+# Medical Claims
+
+The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common sources of this data.
+
+## General
+In this section we document any general conventions that should be followed when mapping medical claims data.
+
+#### Table Grain
+The grain (i.e. primary key) of the table is:
+- `claim_id`
+- `claim_line_number`
+- `data_source`
+
+One record in the table represents a single claim line within a single claim.  
+
+#### Claims Without Enrollment  
+If there are claims in the dataset without corresponding eligibility (i.e. the patient the claim is for does not have any enrollment information) then those claims should stay in the dataset and not be filtered out.  These claims are often excluded from financial analysis.  In fact, the [Financial PMPM](../data-marts/financial-pmpm) inner joins `medical_claim` and `eligibility`.  However, this is not the only use of claims data, so we do not filter out these claims by default.
 
 ## Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
 `admit_type_code` is used in institutional claims to indicate the priority of admission, e.g., urgent, emergent, elective, etc.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
-Admit source and admit type are generally not considered highly reliable because the accuracy of the codes is not verified during the claims adjudication process (other than verifying that the code is in fact a valid code).
+Admit source and admit type are generally not considered highly reliable because the accuracy of the codes is not verified during the claims adjudication process (other than verifying that the code is in fact a valid code).  For example, if the value for admit type is "elective", no one is actually verifying that the admission was actually elective and not emergent.
 
 Despite this, admit source is commonly used to identify things like:
-- transfers from another hospital
-- inpatient stays that came through the emergency department
+- Transfers from another hospital
+- Inpatient stays that came through the emergency department
 
 And admit type is commonly used to identify things like elective procedures.
 
 Admit source and type codes are maintained by the National Uniform Billing Committee (NUBC).
 
 ## Bill Type
-'bill_type_code' is by far the most complex of the administrative codes in medical claims.  Each digit has a distinct purpose and meaning:
+`bill_type_code` is one of the most complex administrative codes in medical claims.  Each digit has a distinct purpose and meaning:
 
 - 1st digit: This is always "0" and often omitted.
 - 2nd digit: Indicates the type of facility, e.g., skilled nursing facility 
 - 3rd digit: Indicates the type of care, e.g., inpatient part A
 - 4th digit: Indicates the sequence of the bill (also referred to as the frequency code)
 
-The thing that makes this code complex is that the possible values of the 3rd and 4th digits depend on the value of the 2nd digit.  As a result, some claims datasets will separate out the digits of bill type code into distinct fields.  However, we find it preferable to work with bill type code as a single field.
+The thing that makes this code complex is that the possible values of the 3rd and 4th digits depend on the value of the 2nd digit.  As a result, some claims datasets will separate out the digits of bill type code into distinct fields.  For example, CMS does this for Medicare claims.  However, we find it preferable to work with bill type code as a single field.
 
-Despite the complexity of this field, it's extremely useful.  'bill_type_code' is used extensively in the creation of service categories, including the identification of acute inpatient, outpatient, skilled nursing, and emergency department services, among many others.  The field is generally considered reliable because the accuracy and suitability of the code is verified during the claims adjudication process, i.e., a claim may be denied if the code doesn't make sense.
+`bill_type_code` is an extremely useful field.  For example, `bill_type_code` is used extensively in the creation of service categories, including the identification of acute inpatient, outpatient, skilled nursing, and emergency department services, among many others.  The field is generally considered reliable because the accuracy and suitability of the code is verified during the claims adjudication process, i.e., a claim may be denied if the code doesn't make sense.
 
-'bill_type_code' values are maintained by the National Uniform Billing Committee (NUBC).
+`bill_type_code` values are maintained by the National Uniform Billing Committee (NUBC).
 
 ## Claim ID and Line Number
-`claim_id` is intended to be a unique identifier for a set of services and supplies rendered by a healthcare provider that has been billed to insurance.  It is the most fundamental data element in the `medical_claim` table and every row in the table must have a `claim_id` populated.  If certain records do not have a claim ID populated these records should not be mapped to the Input Layer.
+`claim_id` is intended to represent a single claim.  It is the most fundamental data element in the `medical_claim` table and every row in the table must have a `claim_id` populated.  If certain records do not have a claim ID populated these records should not be mapped to the Input Layer.
 
 A claim is often made up of multiple records.  `claim_line_number` is intended to be a unique identifier within a claim that distinguishes these records (i.e. each distinct service, supply, or procedure rendered on the claim).
 
@@ -49,12 +73,12 @@ Every record on a claim should have a unique `claim_line_number` and it should b
 - Not sequential
 - Repeating numbers
 
-This weirdness isn't ideal and can indicate other problems in the dataset (e.g. duplicate records).  However it's not a problem in isolation.
+This weirdness isn't ideal and can indicate other problems in the dataset (e.g. duplicate records).  However it's not a problem in isolation, meaning it's possible for `claim_line_number` to exhibit this weirdness but the dataset doesn't have any other problems.
 
-`claim_line_number` can be created manually if it’s unavailable in the source data or if it’s not sequential positive integers.  For example:
+If `claim_line_number` has issues, e.g. it's not sequential or deson't start with 1, it should be mapped as-is.  It should be created manually if it’s unavailable in the source data.  For example:
 
 ```sql
-row_number() over (partition by claim_id order by claim_end_date) as claim_line_number
+row_number() over (partition by claim_id order by claim_end_date) as claim_line_number)
 ```
 
 ## Claim Type
@@ -393,3 +417,263 @@ Revenue center codes are maintained by the National Uniform Billing Committee (N
 
 `revenue_center_code` is only found on `institutional` claims and is a line-level field.  It is generally required for billing so payers understand the nature of a service and can determine proper reimbursement but it can be omitted from source data sets.
 
+# Pharmacy Claims
+
+The pharmacy claim table contains the billing information submitted to the health insurer for medications dispensed to a member of the health plan.  The primary keys for this table are:
+
+- `claim_id`
+- `claim_line_number`
+- `data_source`
+
+### claim_id
+
+`claim_id` is a unique identifier for a set of services and supplies rendered by a healthcare provider that have been billed to insurance.  It is the most fundamental data element in the `pharmacy_claim` table, and every row in the `pharmacy_claim` table should have a `claim_id`.  If the source data does not have claim IDs or is missing claim IDs for some rows in the data, then those rows should not be mapped to Tuva’s input layer.
+
+- data type is `string`
+- `claim_id` is populated for every row
+- `claim_id` is unique across all data_sources
+- `claim_id` is unique across all lines within a claim
+
+### claim_line_number
+
+`claim_line_number` is a unique identifier within a claim that distinguishes each distinct service, supply, or procedure rendered.  
+
+Every row should have a `claim_line_number`; it must be a positive sequential integer.  `claim_line_number` can be created manually if it’s unavailable in the source data or if it’s not sequential positive integers.  For example:
+
+```sql
+row_number() over (partition by claim_id order by claim_end_date) as claim_line_number
+```
+
+The max(`claim_line_number`) for a given `claim_id` must be equal to the number of claim lines for that `claim_id`.
+
+When mapping to the input layer the following expectations must be met or else The Tuva Project will not run and produce errors.  Any row of data that does not meet the requirements must be omitted from the input layer.
+
+**Expectations in the input layer:**
+
+- data type is `integer`
+- `claim_line_number` is populated for every row
+- `claim_line_number` is a positive
+- `claim_line_number` is sequential (1,2,3,…)
+- The maximum value of `claim_line_number` for is equal to the total number of lines in a claim
+
+### patient_id and member_id
+
+`patient_id` is a unique identifier that is designed to unify a patient’s records and provide a consistent reference for the specific individual.  
+It allows for the linking and tracking of a patient’s healthcare journey across different source data sets.
+
+`member_id` is an identifier specific to the health insurer or health plan.  It is assigned by the insurance company to uniquely identify a specific individual only within their system.
+
+- `patient_id` and `member_id` are populated for every row in the input layer `medical_claim` table.
+- `patient_id` and `member_id` have the same value for all lines within the same `claim_id`.
+- `patient_id` is unique across all data sources
+
+### payer
+
+`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
+
+- `payer` is populated for every row
+- data type is `string`
+
+### plan
+
+`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
+
+If no plan information is available, the payer should be populated in this field.  
+
+- data type is `string`
+- `plan` is populated for every row
+
+### prescribing_provider_npi
+
+`precribing_provider_npi` is populated with the national provider identifier (NPI) of the provider who prescribed the medication.
+
+The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) is used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public that is referenced in the [dbt_project.yml](https://github.com/tuva-health/the_tuva_project/blob/main/dbt_project.yml).)
+
+- data type is `string`
+- `prescribing_provider_npi` is a value from Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file
+
+### dispensing_provider_npi
+
+`dispensing_provider_npi` is populated with the national provider identifier (NPI) of the provider who dispensed the medication.  This NPI may represent the pharmacist or the pharmacy.
+
+The National Plan & Provider Enumeration System ([NPPES](https://nppes.cms.hhs.gov/#/)) to used to create Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file.  (This file is blank in GitHub due to its size.  The data is stored in a public [S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/tuva-public-resources?region=us-east-1&prefix=provider_data/&showversions=false).)
+
+- data type is `string`
+- `dispensing_provider_npi` is a value from Tuva’s [provider](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__provider.csv) terminology file
+
+### dispensing_date
+
+`dispensing_date` is the date that the medication was given (i.e. filled).
+
+- data type is `date` in the format `YYYY-MM-DD`
+
+### ndc_code
+
+`ndc_code` is the National Drug Code assigned to prescription and over-the-counter drugs.  NDC can be a 10 or 11 digits, which are broken out into 3 segments:
+
+- Labeler (1-5) - The manufacturer or labeler of the drug
+- Product (6-9) - The specific drug and it’s strength
+- Package (10-11) - The package size and type
+
+- data type is `string`
+
+### paid_date
+
+`paid_date` is the date that the health insurer processed the claim for payment.  It should coincide with the date that the pharmacy received reimbursement from the health insurer.
+
+- data type is `date` in the format `YYYY-MM-DD`
+
+### paid_amount
+
+`paid_amount` is the dollar amount that the health insurer paid for the covered medication.
+
+- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
+
+### allowed_amount
+
+`allowed_amount` is the maximum dollar amount a health insurer will reimburse for a covered medication.
+
+- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
+
+
+### coinsurance_amount
+
+`coinsurance_amount` is the dollar amount a member has paid for a covered medication as part of cost-sharing with the health insurance provider.  After a deductible is met, covered services may still require a member to pay for a percentage of the cost (e.g. 80/20 - 80% paid by the health insurer and 20% paid by the member)
+
+- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
+
+### deductible_amount
+
+`deductible_amount` is the dollar amount a member has paid for a covered medication before the health insurer will pay the cost for covered services.
+
+- data type is `numeric` with two decimal points (e.g. `numeric(38,2)`)
+
+
+### data_source
+
+`data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
+
+- data type is `string`
+- `data_source` is populated for every row
+
+
+# Eligibility
+
+The eligibility table contains enrollment and demographic data of health plan members.  Eligibility data typically exists in one of two formats:
+
+- Enrollment Spans
+- Member Months
+
+The Tuva Input Layer Eligibility table uses the Enrollment Span format.  This is the most common format used in claims data.  If your eligibility data uses this format it will be relatively easy to complete the mapping.  If on the other hand your data uses the member months format, you'll need to convert it.
+
+The primary keys for this table are:
+
+- `patient_id`
+- `member_id`
+- `payer`
+- `plan`
+- `enrollment_start_date`
+- `enrollment_end_date`
+- `data_source`
+
+### gender
+`gender` represents the biological sex of a member.  It is mapped to either male, female, or unknown.
+
+### race
+`race` represents the physical race of a member.
+
+### birth_date
+This field represents the birth date of a member. data type is `date` in the format `YYYY-MM-DD`
+
+### death_date
+
+`death_date` contains the day a member died. 
+
+If the source data does not contain explicit death dates do not use claims data (e.g. `discharge_disposition` and/or `claim_end_date`)
+to populate this column.
+
+- data type is `date` in the format `YYYY-MM-DD`
+
+### death_flag
+
+`death_flag` contains a flag indicating if a member died; 1 for yes 0 for no.  
+
+`death_flag` should be 1 if a `death_date` is populated.  `death_flag` can be 1 and `death_date` NULL if only an indicator is available in the source data.
+
+- data type is int
+- `death_flag` is populated with a 1 or 0
+
+### enrollment_start_date and enrollment_end_date
+
+The grain of this table will affect how these fields are populated:
+
+- One row per member month - `enrollment_start_date` will be the beginning of the month and `enrollment_end_date` will be the last day of the month.
+  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-01-31
+- One row per enrollment span - `enrollment_start_date` will be the first day of enrollment and `enrollment_end_date will` be the last day of enrollment.
+  - e.g. `enrollment_start_date` = 2023-01-01 `enrollment_end_date` = 2023-12-31
+
+In the source data, enrollment end date may be `NULL` to indicate that the member is actively enrolled.  After confirming 
+this with the data provider, `enrollment_end_date` should be populated with the last day of the current year.
+
+- data type is `date` in the format `YYYY-MM-DD`
+- `enrollment_start_date` and `enrollment_end_date` are populated in every row
+
+### payer
+
+`payer` contains the name of the health insurance payer of the claim (Aetna, Blue Cross Blue Shield, etc)
+
+`payer` may not be available in the source data and should be hardcoded (e.g. `select 'aetna' as payer`)
+
+- `payer` is populated for every row
+- data type is `string`
+
+### payer_type
+
+`payer_type` contains the type of insurance provided by the payer.
+
+- data type is `string`
+- `payer_type` is populated for every row
+- value is mapped to one of the values found to Tuva’s [payer_type](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__payer_type.csv) terminology file.
+
+### plan
+
+`plan` contains the specific health insurance plan or sub-contract the member is enrolled in (e.g. Aetna Gold, Aetna Bronze 4, BCBS Chicago, etc).
+
+`plan` may not be available in the source data and should be hardcoded (e.g. `select 'aetna bronze 1' as plan` and it can be the same as the payer if no plan is needed for analytics.
+
+- data type is `string`
+- `plan` is populated for every row
+
+### original_reason_entitlement_code
+
+`original_reason_entitlement_code` contains a member’s original reason for Medicare entitlement.
+
+- `original_reason_entitlement_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+- If it's unavailable, `medicare_status_code` is used. If neither are available, the mart will use a default value of “Aged”.
+- data type is `string`
+- value is mapped to one of the values found to Tuva’s [OREC](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_orec.csv) terminology file.
+
+### dual_status_code
+
+`dual_status_code` indicates whether a member is enrolled in both Medicare and Medicaid.
+
+- `dual_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+- If unavailable, the mart will use a default value of “Non” (i.e., non-dual).
+- data type is `string`
+- value is mapped to one of the values found to Tuva’s [dual status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_dual_eligibility.csv) terminology file.
+
+### medicare_status_code
+
+`medicare_status_code` indicates how a member currently qualifies for Medicare.
+
+- `medicare_status_code` is helpful for the CMS HCC mart to provide a more accurate risk score.
+- It’s used when `original_reason_entitlement_code` is missing.
+- data type is `string`
+- value is mapped to one of the values found to Tuva’s [medicare status](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__medicare_status.csv) terminology file.
+
+### data_source
+
+`data_source` is populated with the name of the entity providing the data.  It may come from the health insurer directly (e.g. Aetna, BCBS) or a third party (e.g. HealthVerity, Datavant).
+
+- data type is `string`
+- `data_source` is populated for every row

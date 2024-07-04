@@ -3,17 +3,6 @@ id: introduction
 title: "Introduction"
 description: This section describes how claims data is generated, including the entities and processes involved.
 ---
-Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this guide we delve into the details of claims data, including what it is and how to map it to the Tuva [Input Layer](../../data-dictionaries/input-layer).
-
-Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../../data-dictionaries/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
-
-Every claims dataset is different.  Every health plan has their own data model they store their adjudicated claims data in.
-
-Mapping to the Input Layer involves creating dbt models (i.e. SQL statements in a dbt project).  While it is necessary to create a model for every table in the Input Layer, it is not necessary that you have source data to populate every table or column in the Input Layer.  For example, if you don't have pharmacy claims you still need to create the `pharmacy_claim` table in the Input Layer, but you can mapp null to every column.
-
-This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) shows what columns in the Input Layer are needed for the various Tuva Data Marts.  Not mapping to a column needed for a data mart will result in no data being produced in that mart.
-
-The notes that follow describe advice and heuristics for mapping claims data sources to the Input Layer.  Consult the Input Layer data dictionary (link above) for a complete list of fields in the Input Layer.
 
 ## Healthcare Entities
 Healthcare claims are created by healthcare providers for the purpose of billing health insurance companies for the services and supplies they have rendered to patients.  The following types of entities play an important role in the claims data generation process:

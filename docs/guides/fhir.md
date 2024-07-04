@@ -1,6 +1,6 @@
 ---
-id: fhir-preprocessing
-title: "FHIR Preprocessing"
+id: fhir
+title: "FHIR"
 description: This guide walks you through how to transform data in FHIR format into the Tuva data model.
 ---
 
