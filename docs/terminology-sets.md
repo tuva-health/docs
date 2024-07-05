@@ -13,7 +13,7 @@ Terminology sets are reference code sets and descriptions used in healthcare ana
 
 We're adding as many open source healthcare terminology sets as we can to the Tuva Project so they are easily available for healthcare analytics in a data warehouse.  You can search through and learn about these terminologies in this section.  If there is a code set you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) on GitHub.
 
-Most of the terminology sets are maintained on GitHub.  However some of the larger sets are maintained on S3.  If you click a link below and it takes you to a file on GitHub that only has a header, that terminology set is maintained on S3.
+The terminology sets are maintained in S3. If you click a link below it takes you to a file on GitHub that only has a header for the corresponding terminology file, but the full terminology files are in S3.
 
 
 | Terminology Set                                                                                                                                     | Maintainer                                       | Last Updated | Download CSV                                                                                                  | 
