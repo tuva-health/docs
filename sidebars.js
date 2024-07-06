@@ -64,6 +64,7 @@ const sidebars =
                 "terminology/apr-drg",
                 "terminology/bill-type",
                 "terminology/calendar",
+                "terminology/census-shape-files",
                 "terminology/claim-type",
                 "terminology/code-type",
                 "terminology/discharge-disposition",
@@ -95,6 +96,7 @@ const sidebars =
                 "terminology/snomed-ct-transitive-closures",
                 "terminology/snomed-ct",  
                 "terminology/snomed-to-icd10-map",
+                "terminology/social-vulnerability-index",
                 "terminology/ssa-state-fips",
             ]
         },

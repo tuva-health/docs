@@ -32,7 +32,7 @@ The grain (i.e. primary key) of the table is:
 One record in the table represents a single claim line within a single claim.  
 
 #### Claims Without Enrollment  
-If there are claims in the dataset without corresponding eligibility (i.e. the patient the claim is for does not have any enrollment information) then those claims should stay in the dataset and not be filtered out.  These claims are often excluded from financial analysis.  In fact, the [Financial PMPM](../data-marts/financial-pmpm) inner joins `medical_claim` and `eligibility`.  However, this is not the only use of claims data, so we do not filter out these claims by default.
+If there are claims in the dataset without corresponding eligibility (i.e. the patient the claim is for does not have any enrollment information) then those claims should stay in the dataset and not be filtered out.  These claims are often excluded from financial analysis.  In fact, the [Financial PMPM](../../data-marts/financial-pmpm) inner joins `medical_claim` and `eligibility`.  However, this is not the only use of claims data, so we do not filter out these claims by default.
 
 ## Admit Source and Type
 `admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.

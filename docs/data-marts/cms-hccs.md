@@ -19,7 +19,7 @@ Additionally, the new CMS-HCC model V28 will be phased in over three years, requ
 
 ## Data Requirements
 
-In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../data-dictionaries/input-layer).  These are the only data elements required.
+In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
 
 **Eligibility:**
 - patient_id
@@ -78,7 +78,7 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 
 ## Data Mart Architecture
 
-The data mart is built on top of the [Core Data Model](../data-dictionaries/core).  If you map the data elements listed above to the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
+The data mart is built on top of the [Core Data Model](../core-data-model/overview).  If you map the data elements listed above to the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
 
 In the diagram below we provide an overview explanation of how the data mart works.
 

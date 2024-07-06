@@ -68,7 +68,7 @@ It's a good practice to provide a data dictionary to your data provider to let t
 
 It's common for claims to be adjusted, denied, or reversed if there was a problem with how the claim was originally submitted.  For most analytics use cases you want to deal with final action claims and not any of these intermediary claims.  If you don't have a method for identifying and flagging adjustments, denials, and reversals it can throw off your analytics.
 
-We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../guides/claims-data/adr).  However to briefly summarize there are two approaches you should take.
+We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge-base/claims-data-fundamentals/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
 
 First, ask your claims data provider how you should identify these intermediary claims in the dataset they give you.  Payers and health plans are often good about providing this info.  However, in our experience it's usually only accurate 25% of the time.
 
@@ -108,7 +108,7 @@ Here are the main things you'll want to consider when choosing a common data mod
 
 **Customization:** You are going to have use cases that are somewhat to unique to your organization.  There is no perfect data model.  Make sure you choose a data model that you're able to modify to meet your unique needs.
 
-The [Core Data Model](../core-data-model) is the common data model in Tuva.  It's designed for both claims and clinical data sources and use cases.
+The [Core Data Model](../core-data-model/overview) is the common data model in Tuva.  It's designed for both claims and clinical data sources and use cases.
 
 ## Groupers
 

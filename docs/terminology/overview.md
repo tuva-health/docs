@@ -62,6 +62,12 @@ The following video demonstrates how to load all the terminology and value sets 
       <td><a></a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/census-shape-files">Census Shape Files</a></td>
+      <td></td>
+      <td></td>
+      <td><a></a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/claim-type">Claim Type</a></td>
       <td>Tuva</td>
       <td>11/4/2023</td>
@@ -230,7 +236,19 @@ The following video demonstrates how to load all the terminology and value sets 
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/0.8.2/snomed_icd_10_map.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/social-vulnerability-index">Social Vulnerability Index</a></td>
+      <td></td>
+      <td></td>
+      <td><a></a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/ssa-state-fips">SSA State FIPS</a></td>
+      <td></td>
+      <td></td>
+      <td><a></a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/zip-code">Zip Code</a></td>
       <td></td>
       <td></td>
       <td><a></a></td>
