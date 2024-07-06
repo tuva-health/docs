@@ -62,7 +62,7 @@ It's common for data providers to only share a subset of available data based on
 
 For example, is bill_type_code important?  Which use cases (e.g. metrics) can't I pursue if I don't get this field?  These are the types of questions you'll need to think through and be able to answer.
 
-It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](../data-dictionaries/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
+It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](../connectors/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
 
 ## Adjustments, Denials, and Reversals
 
@@ -121,7 +121,7 @@ Groupers have been around for decades solving this problem.  As you might guess,
 - Conditions
 - Procedures
 
-**Service Categories:** [Service categories](../data-marts/claims-preprocessing#service-categories) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
+**Service Categories:** [Service categories](../data-marts/claims-preprocessing) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
 
 **Encounters:** It's very common for certain types of visits (especially inpatient) to be billed as multiple claims, one for the facility and one for the physician.  In order to perform analysis at the visit level, these claims must be grouped together.  [Claims Preprocessing](../data-marts/claims-preprocessing) is where claims are grouped into encounters in Tuva.
 

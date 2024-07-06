@@ -3,9 +3,9 @@ id: claims
 title: "Claims"
 ---
 
-Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this guide we delve into the details of claims data, including what it is and how to map it to the Tuva [Input Layer](../../data-dictionaries/input-layer).
+Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this guide we delve into the details of claims data, including what it is and how to map it to the Tuva [Input Layer](../../connectors/input-layer).
 
-Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../../data-dictionaries/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
+Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../../connectors/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
 
 Every claims dataset is different.  Every health plan has their own data model they store their adjudicated claims data in.
 

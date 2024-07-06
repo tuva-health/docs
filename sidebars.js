@@ -141,7 +141,7 @@ const sidebars =
             label: "Mapping",
             items: [
                 "guides/mapping/claims",
-                "guides/fhir",
+                "guides/mapping/fhir",
             ]
         },
         "guides/master-patient-index",
