@@ -3,7 +3,7 @@ const sidebars =
 {
     docsSidebar: 
     [ 
-        "introduction",
+        "welcome",
         "quickstart",
         {
             type: "category",
@@ -53,8 +53,72 @@ const sidebars =
             ]
         },
 
-        "terminology",
-        "value-sets",
+        {
+            type: "category",
+            label: "Terminology",
+            items: [
+                "terminology/overview",
+                "terminology/admit-source",
+                "terminology/admit-type",
+                "terminology/ansi-fips-state",
+                "terminology/apr-drg",
+                "terminology/bill-type",
+                "terminology/calendar",
+                "terminology/claim-type",
+                "terminology/code-type",
+                "terminology/discharge-disposition",
+                "terminology/encounter-type",
+                "terminology/ethnicity",
+                "terminology/fips-county",
+                "terminology/gender",
+                "terminology/hcpcs-level-2",
+                "terminology/icd-9-cm",
+                "terminology/icd-9-pcs",
+                "terminology/icd-10-cm",
+                "terminology/icd-10-pcs",
+                "terminology/loinc-deprecated",
+                "terminology/loinc",
+                "terminology/mdc",
+                "terminology/medicare-dual-eligibility",
+                "terminology/medicare-orec",
+                "terminology/medicare-status",
+                "terminology/ms-drg",
+                "terminology/ndc",
+                "terminology/other-provider-taxonomy",
+                "terminology/payer-type",
+                "terminology/place-of-service",
+                "terminology/present-on-admission",
+                "terminology/provider",
+                "terminology/race",
+                "terminology/revenue-center",  
+                "terminology/rxnorm-to-atc",
+                "terminology/snomed-ct-transitive-closures",
+                "terminology/snomed-ct",  
+                "terminology/snomed-to-icd10-map",
+                "terminology/ssa-state-fips",
+            ]
+        },
+
+        {
+            type: "category",
+            label: "Value Sets",
+            items: [
+                "value-sets/overview",
+                "value-sets/ahrq-measures",
+                "value-sets/ccsr-groupers",
+                "value-sets/chronic-conditions",
+                "value-sets/clinical-concepts",
+                "value-sets/cms-hccs",
+                "value-sets/data-quality",
+                "value-sets/ed-classification",
+                "value-sets/hcc-suspecting",
+                "value-sets/quality-measures",
+                "value-sets/readmissions",
+                "value-sets/service-categories",
+
+            ]
+        },
+
         "help",
     ],
 
