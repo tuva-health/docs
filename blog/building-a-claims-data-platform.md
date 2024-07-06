@@ -62,13 +62,13 @@ It's common for data providers to only share a subset of available data based on
 
 For example, is bill_type_code important?  Which use cases (e.g. metrics) can't I pursue if I don't get this field?  These are the types of questions you'll need to think through and be able to answer.
 
-It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](../data-dictionaries/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
+It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](../connectors/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
 
 ## Adjustments, Denials, and Reversals
 
 It's common for claims to be adjusted, denied, or reversed if there was a problem with how the claim was originally submitted.  For most analytics use cases you want to deal with final action claims and not any of these intermediary claims.  If you don't have a method for identifying and flagging adjustments, denials, and reversals it can throw off your analytics.
 
-We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../guides/claims-data/adr).  However to briefly summarize there are two approaches you should take.
+We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge-base/claims-data-fundamentals/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
 
 First, ask your claims data provider how you should identify these intermediary claims in the dataset they give you.  Payers and health plans are often good about providing this info.  However, in our experience it's usually only accurate 25% of the time.
 
@@ -108,7 +108,7 @@ Here are the main things you'll want to consider when choosing a common data mod
 
 **Customization:** You are going to have use cases that are somewhat to unique to your organization.  There is no perfect data model.  Make sure you choose a data model that you're able to modify to meet your unique needs.
 
-The [Core Data Model](../core-data-model) is the common data model in Tuva.  It's designed for both claims and clinical data sources and use cases.
+The [Core Data Model](../core-data-model/overview) is the common data model in Tuva.  It's designed for both claims and clinical data sources and use cases.
 
 ## Groupers
 
@@ -121,7 +121,7 @@ Groupers have been around for decades solving this problem.  As you might guess,
 - Conditions
 - Procedures
 
-**Service Categories:** [Service categories](../data-marts/claims-preprocessing#service-categories) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
+**Service Categories:** [Service categories](../data-marts/claims-preprocessing) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
 
 **Encounters:** It's very common for certain types of visits (especially inpatient) to be billed as multiple claims, one for the facility and one for the physician.  In order to perform analysis at the visit level, these claims must be grouped together.  [Claims Preprocessing](../data-marts/claims-preprocessing) is where claims are grouped into encounters in Tuva.
 

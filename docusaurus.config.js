@@ -78,7 +78,7 @@ const config = {
 
           {
             type: 'doc',
-            docId: 'introduction',
+            docId: 'welcome',
             position: 'left',
             label: 'Docs',
           },

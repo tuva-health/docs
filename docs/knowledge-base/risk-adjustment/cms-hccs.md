@@ -242,5 +242,3 @@ be the same as the Medicare Advantage definitions, but can be derived in differe
 ## References
 * https://www.milliman.com/en/insight/medicare-advantage-and-the-encounter-data-processing-system-be-prepared
 * https://www.cms.gov/files/document/2024-advance-notice-pdf.pdf
-
-Make sure to check out the [CMS-HCC Risk Analytics](/guides/cms-hcc-risk-analytics) guide.

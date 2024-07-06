@@ -3,10 +3,37 @@ const sidebars =
 {
     docsSidebar: 
     [ 
-        "introduction",
+        "welcome",
         "quickstart",
-        "core-data-model",
-        "clinical-concept-library",
+        {
+            type: "category",
+            label: "Connectors",
+            items: [
+                "connectors/overview",
+                "connectors/input-layer",
+            ]
+        },
+
+        {
+            type: "category",
+            label: "Core Data Model",
+            items: [
+                "core-data-model/overview",
+                "core-data-model/condition",
+                "core-data-model/eligibility",
+                "core-data-model/encounter",
+                "core-data-model/lab-result",
+                "core-data-model/location",
+                "core-data-model/medical-claim",
+                "core-data-model/medication",
+                "core-data-model/observation",
+                "core-data-model/patient",
+                "core-data-model/pharmacy-claim",
+                "core-data-model/practitioner",
+                "core-data-model/procedure",
+            ]
+        },
+
         {
             type: "category",
             label: "Data Marts",
@@ -25,41 +52,75 @@ const sidebars =
                 "data-marts/readmissions",
             ]
         },
-        "terminology",
-        "reference-data",
-        "connectors/overview",
-        "synthetic-data",
+
         {
             type: "category",
-            label: "Data Dictionaries",
+            label: "Terminology",
             items: [
-                "data-dictionaries/ahrq-measures",
-                "data-dictionaries/ccsr",
-                "data-dictionaries/chronic-conditions",
-                "data-dictionaries/claims-preprocessing",
-                "data-dictionaries/clinical-concept-library",
-                "data-dictionaries/core",
-                "data-dictionaries/cms-hccs",
-                "data-dictionaries/ed-classification",
-                "data-dictionaries/financial-pmpm",
-                "data-dictionaries/hcc-suspecting",
-                "data-dictionaries/input-layer",
-                "data-dictionaries/pharmacy",
-                "data-dictionaries/quality-measures",
-                "data-dictionaries/readmissions",
-                "data-dictionaries/reference-data",
-                "data-dictionaries/terminology",
-                "data-dictionaries/value-sets",
+                "terminology/overview",
+                "terminology/admit-source",
+                "terminology/admit-type",
+                "terminology/ansi-fips-state",
+                "terminology/apr-drg",
+                "terminology/bill-type",
+                "terminology/calendar",
+                "terminology/census-shape-files",
+                "terminology/claim-type",
+                "terminology/code-type",
+                "terminology/discharge-disposition",
+                "terminology/encounter-type",
+                "terminology/ethnicity",
+                "terminology/fips-county",
+                "terminology/gender",
+                "terminology/hcpcs-level-2",
+                "terminology/icd-9-cm",
+                "terminology/icd-9-pcs",
+                "terminology/icd-10-cm",
+                "terminology/icd-10-pcs",
+                "terminology/loinc-deprecated",
+                "terminology/loinc",
+                "terminology/mdc",
+                "terminology/medicare-dual-eligibility",
+                "terminology/medicare-orec",
+                "terminology/medicare-status",
+                "terminology/ms-drg",
+                "terminology/ndc",
+                "terminology/other-provider-taxonomy",
+                "terminology/payer-type",
+                "terminology/place-of-service",
+                "terminology/present-on-admission",
+                "terminology/provider",
+                "terminology/race",
+                "terminology/revenue-center",  
+                "terminology/rxnorm-to-atc",
+                "terminology/snomed-ct-transitive-closures",
+                "terminology/snomed-ct",  
+                "terminology/snomed-to-icd10-map",
+                "terminology/social-vulnerability-index",
+                "terminology/ssa-state-fips",
             ]
         },
+
         {
             type: "category",
-            label: "Contribution Guides",
+            label: "Value Sets",
             items: [
-                "contribution-guides/contributing",
-                "contribution-guides/development-style-guide",
+                "value-sets/overview",
+                "value-sets/ahrq-measures",
+                "value-sets/ccsr-groupers",
+                "value-sets/chronic-conditions",
+                "value-sets/clinical-concepts",
+                "value-sets/cms-hccs",
+                "value-sets/data-quality",
+                "value-sets/ed-classification",
+                "value-sets/hcc-suspecting",
+                "value-sets/quality-measures",
+                "value-sets/readmissions",
+                "value-sets/service-categories",
+
             ]
         },
+
         "help",
     ],
 
@@ -68,18 +129,26 @@ const sidebars =
         "guides/overview",
         {
             type: "category",
-            label: "Claims Data",
+            label: "Contributing",
             items: [
-                "guides/claims-data/introduction",
-                "guides/claims-data/medical-claims",
-                "guides/claims-data/pharmacy-claims",
-                "guides/claims-data/eligibility",
-                "guides/claims-data/adr",
+                "guides/contributing/contributing",
+                "guides/contributing/style-guide",
             ]
         },
-        "guides/fhir-preprocessing",
+        "guides/dbt-configuration",
+        "guides/etl-automation",
         "guides/geo-coding",
-        "guides/setting-up-tuva",
+        {
+            type: "category",
+            label: "Mapping",
+            items: [
+                "guides/mapping/claims",
+                "guides/mapping/fhir",
+            ]
+        },
+        "guides/master-patient-index",
+        "guides/normalization",
+        "guides/terminology",
     ],
 
     usecaseSidebar: 

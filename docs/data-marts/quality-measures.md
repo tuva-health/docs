@@ -3,8 +3,9 @@ id: quality-measures
 title: "Quality Measures"
 ---
 
-- [Data Dictionary](../data-dictionaries/quality-measures)
-- [Code](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
+import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+[Code](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
 
 The Quality Measures data mart is where we are building publicly available 
 quality measures. You can see the roadmap in this section. If there is a 
@@ -37,3 +38,15 @@ quality measure.
 | Statin Use in Persons with Diabetes (SUPD)                                     | CMS Star D12                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf)                                                      | *Planned 2024 Q4*                |
 | Transitions of Care                                                            | CMS Star C17                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf)                                                      | *Planned 2024 Q4*                |
 | Urinary Incontinence *(substitute for Improving Bladder Control)*              | CMS Star C13, MIPS CQM 48                | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/CQM-Measures/2024_Measure_048_MIPSCQM.pdf)                         | *Planned 2024 Q3*                |
+
+## summary_counts
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_counts.columns"  />
+
+## summary_long
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_long.columns"  />
+
+## summary_wide
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_wide.columns"  />
