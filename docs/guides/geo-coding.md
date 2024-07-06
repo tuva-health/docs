@@ -103,9 +103,7 @@ from tuva.geocoded.raw_geocoded
 
 ## Census Tracts and Block Groups
 
-Now that our patient data is geo-coded, we can join it to other geographic datasets using geospatial queries.  Here we show how to assign patients to census block groups and census tracts using geospatial joins based on their latitude and longitude.  You can download the shape files in the [reference data section](../reference-data#census-shape-files).
-
-For detailed descriptions of the differences between State, County, Tract and Block Group and Zip Code please [see here](../reference-data#fips).
+Now that our patient data is geo-coded, we can join it to other geographic datasets using geospatial queries.  Here we show how to assign patients to census block groups and census tracts using geospatial joins based on their latitude and longitude.  You can download the census shape files [here](/../terminology/census-shape-files)
 
 In order to create the geospatial tables in Snowflake it requires a special user defined function (UDF). 
 
@@ -209,7 +207,7 @@ on st_contains(b.GEOGRAPHY, st_point(a.longitude, a.latitude))
 
 Now that we have transformed patient addresses into latitude and longitude and assigned each latitutde and longitude to a census tract and block group, we now need to join that data to the social determinants data we wish to analyze.  Social determinants of health are commonly analyzed using geospatial techniques because these metrics tend to vary geographically.  
 
-Two publicly available social determinants datasets are the [Social Vulnerability Index (SVI)](/reference-data#social-vulnerability-index) and [Area Deprivation Index (ADI)](/reference-data#area-deprivation-index) datasets, which contain a variety of metrics calculated at the census tract and census block group levels, respectively.
+Two publicly available social determinants datasets are the [Social Vulnerability Index (SVI)](../terminology/social-vulnerability-index) and Area Deprivation Index datasets, which contain a variety of metrics calculated at the census tract and census block group levels, respectively.
 
 We make the SVI available for download as part of the Tuva Project.  The ADI requires you to register and download it from the [Neighborhood Atlas](https://www.neighborhoodatlas.medicine.wisc.edu/).
 
