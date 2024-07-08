@@ -3,7 +3,7 @@ id: overview
 title: "Overview"
 ---
 
-Data marts are code (SQL) that automatically on top of the Core Data Model to compute measures, groupers, risk models, etc.  Data marts often use value sets to define concepts they use.
+Data marts are code (SQL) that automatically runs on top of the Core Data Model to compute measures, groupers, risk models, etc.  Data marts often use value sets to define concepts they use.
 
 <table class="wide-table">
   <thead>
