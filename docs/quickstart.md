@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 Quickstart
 
-We created this video to demonstrate how to get up and running with Tuva on your claims data.
+We created this video to demonstrate how to get up and running with Tuva on your claims data.  Although this video is specific to claims, you can follow a similar pattern for clinical data.
 
 <iframe width="760" height="440" src="https://www.youtube.com/embed/FWxbrt7Fgiw?si=dyo4uD_MTW4dmAGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
 
