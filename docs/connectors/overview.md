@@ -6,7 +6,7 @@ hide_title: false
 
 Connectors are dbt projects that transform standard healthcare data formats into the Tuva Input Layer.
 
-![Connectors](/img/connectors.jpg)
+![Connectors](/img/Connectors.jpg)
 
 The Tuva Input Layer acts like a staging layer for the entire project.  Once a data source has been properly mapped to the Input Layer the rest of Tuva can be executed with a single command: `dbt build`
 
