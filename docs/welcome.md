@@ -13,6 +13,10 @@ Welcome to the Tuva Project!  Our goal is to accelerate healthcare analytics, cl
 
 ![Tuva Project Overview](/img/the_tuva_project_6.jpg)
 
+This video provides a short intro to Tuva to get you up and running.
+
+<iframe width="760" height="515" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
+
 Doing healthcare analytics, clinical research, and A.I. at scale requires the tools shown in the diagram above.  Most healthcare data teams spend the majority of their time re-inventing and re-building these tools from scratch (we have done this many times).  By open-sourcing these tools, we aim to:
 
 1. Enable healthcare data teams to re-allocate their time and resources away from re-inventing these tools and instead focus on solving more complex problems
