@@ -24,4 +24,4 @@ Doing healthcare analytics, clinical research, and A.I. at scale requires the to
 
 These docs describe the tools we've built, how to use them, and the use cases they support.
 
-For organizations that need assistance transforming their data or doing analytics with Tuva, we offer services and support.  [Contact us](https://tuvahealth.com/contact/) to learn more about how we can help your organization.
+For organizations that need assistance transforming their data or doing analytics with Tuva, we offer services and support.  [Contact us](https://tuvahealth.com/request-a-demo/) to learn more about how we can help your organization.
