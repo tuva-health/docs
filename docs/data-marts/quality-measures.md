@@ -89,11 +89,11 @@ dbt build --select tag:quality_measures --vars '{quality_measures_period_end: "2
 
 ## Data Mart Structure
 
-### Staging
+**Staging**
 
 The staging tables show what tables and fields are used from the Core data model.
 
-### Intermediate
+**Intermediate**
 
 The intermediate tables contain the logic for calculating each quality measure. 
 The subfolder for each quality measure contains that measure's specific logic for 
@@ -101,7 +101,7 @@ calculating the denominator, numerator, and exclusions. Many measures use the
 same logic for calculating exclusions, such as dementia or hospice. This shared 
 logic can be found in the shared exclusions subfolder.
 
-### Final
+**Final**
 
 The final tables are an aggregated view of all quality measures and your 
 population.
