@@ -48,12 +48,16 @@ In order to run the CMS-HCC data mart you need to map the following data element
 
 ## Variables
 
-The data mart includes logic that allows you to choose which payment year you want to use to calculate the risk scores.
+The data mart includes logic that allows you to choose which payment year you 
+want to use to calculate the risk scores.
 
 - `cms_hcc_payment_year` defaults to the current year
-- `snapshots_enabled` is an *optional* variable that can be enabled
+- `snapshots_enabled` is an *optional* variable that can be enabled to allow
+  running the mart for multiple years
 
-To run the data mart, simply update the payment year in your dbt_project.yml file or use the `--vars` dbt command, if you want to change the payment year from the current year default. See examples below.
+To run the data mart, simply update the payment year in your dbt_project.yml 
+file or use the `--vars` dbt command, if you want to change the payment year 
+from the current year default. See examples below.
 
 dbt_project.yml:
 
