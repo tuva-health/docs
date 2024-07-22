@@ -39,6 +39,82 @@ quality measure.
 | Transitions of Care                                                            | CMS Star C17                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf) | *Planned 2024 Q4*                |
 | Urinary Incontinence *(substitute for Improving Bladder Control)*              | CMS Star C13, MIPS CQM 48                | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/CQM-Measures/2024_Measure_048_MIPSCQM.pdf) | *Planned 2024 Q3*                |
 
+## Data Requirements
+This data mart uses the following tables from the Tuva Core Data Model:
+- condition
+- encounter
+- lab_result
+- medication
+- observation
+- patient
+- procedure
+- medical_claim
+- pharmacy_claim
+
+*Note: The Tuva Project will generate these Core tables. You just need to map 
+your data to the Claims or Clinical Data Models and run the project.*
+
+## Variables
+The data mart includes logic that allows you to choose a measurement period 
+end date.
+
+- `quality_measures_period_end` defaults to the current year-end
+- `snapshots_enabled` is an *optional* variable that can be enabled to allow
+  running the mart for multiple years
+
+To run the data mart without the default, simply add the 
+`quality_measures_period_end` variable to your dbt_project.yml file 
+or use the `--vars` dbt command. See examples below.
+
+dbt_project.yml:
+
+```yaml
+vars:
+    quality_measures_period_end: "2020-12-31"
+    snapshots_enabled: true
+```
+
+dbt command:
+
+```bash
+# Uses defaults or vars from project yml, runs all marts
+dbt build
+
+# Runs only the Quality Mesures mart using defaults or vars from project yml
+dbt build --select tag:quality_measures
+
+# Overrides vars from project yml, executes snapshots
+dbt build --select tag:quality_measures --vars '{quality_measures_period_end: "2020-12-31", snapshots_enabled: true}'
+```
+
+## Data Mart Structure
+
+### Staging
+
+The staging tables show what tables and fields are used from the Core data model.
+
+### Intermediate
+
+The intermediate tables contain the logic for calculating each quality measure. 
+The subfolder for each quality measure contains that measure's specific logic for 
+calculating the denominator, numerator, and exclusions. Many measures use the 
+same logic for calculating exclusions, such as dementia or hospice. This shared 
+logic can be found in the shared exclusions subfolder.
+
+### Final
+
+The final tables are an aggregated view of all quality measures and your 
+population.
+
+- **Summary Counts:**  Reporting measure counts with performance rates.
+- **Summary Long:**  Long view of the results for the reporting version of all 
+  measures. Each row represents the results a measure per patient. A null for 
+  the denominator indicates that the patient was not eligible for that measure.
+- **Summary Wide:**  Wide view of the results for the reporting version of all 
+  measures. This model pivots measures on the patient level (i.e. one row per 
+  patient with flags for each measure. The false flags can be treated as care 
+  gaps as exclusions have been included in the pivot logic.
+
 ## summary_counts
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_counts.columns"  />
