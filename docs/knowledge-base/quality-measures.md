@@ -62,67 +62,6 @@ quality measure using the Medicare LDS 5% data set.
 
 ![Breast Cancer Screening Sankey Diagram](/img/quality_measures/breast_cancer_screening_sankey_diagram.png)
 
-## Quality Measures Data Mart
-
-*See it on [GitHub](https://github.com/tuva-health/the_tuva_project/tree/main/models/quality_measures).*
-
-The Quality Measure data mart is a growing catalog of Clinical Quality Measures 
-(CQMs). This mart provides structure to support many measures with overlapping 
-value sets and logic. You need only to map your data to the Claims and Clinical 
-Data Models and run the Tuva Project.
-
-### Data Requirements
-
-This data mart uses the following tables from the Tuva Core Data Model:
-- condition
-- encounter
-- lab_result
-- medication
-- observation
-- patient
-- procedure
-- medical_claim
-- pharmacy_claim
-
-*Note: The Tuva Project will generate these Core tables. You just need to map 
-your data to the Claims or Clinical Data Models and run the project.*
-
-### Variables
-
-The data mart has one variable that allows you to choose a measurement period 
-end date. This variable can run older performance periods or a calendar 
-year-end. The default is the current date.
-
-- `quality_measures_period_end`
-
-### Data Mart Structure
-
-#### Staging
-
-The staging tables show what tables and fields are used from the Core data model.
-
-#### Intermediate
-
-The intermediate tables contain the logic for calculating each quality measure. 
-The subfolder for each quality measure contains that measure's specific logic for 
-calculating the denominator, numerator, and exclusions. Many measures use the 
-same logic for calculating exclusions, such as dementia or hospice. This shared 
-logic can be found in the shared exclusions subfolder.
-
-#### Final
-
-The final tables are an aggregated view of all quality measures and your 
-population.
-
-- **Summary Counts:**  Reporting measure counts with performance rates.
-- **Summary Long:**  Long view of the results for the reporting version of all 
-  measures. Each row represents the results a measure per patient. A null for 
-  the denominator indicates that the patient was not eligible for that measure.
-- **Summary Wide:**  Wide view of the results for the reporting version of all 
-  measures. This model pivots measures on the patient level (i.e. one row per 
-  patient with flags for each measure. The false flags can be treated as care 
-  gaps as exclusions have been included in the pivot logic.
-
 ## Data Quality Issues
 
 Many organizations that have the technical staff needed to build the logic for 
