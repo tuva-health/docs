@@ -52,7 +52,7 @@ This data mart uses the following tables from the Tuva Core Data Model:
 - pharmacy_claim
 
 *Note: The Tuva Project will generate these Core tables. You just need to map 
-your data to the Claims or Clinical Data Models and run the project.*
+your data to the [input layer](../connectors/input-layer) and run the project.*
 
 ## Variables
 The data mart includes logic that allows you to choose a measurement period 
