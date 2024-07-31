@@ -51,7 +51,7 @@ repo on GitHub as an example of model naming and organization.
 ### Model Configurations
 
 - All model configurations for a data mart or connector are contained in their 
-  a YML file of one YML per model.
+  a YML file where each YML file represents a single model.
 - Use the `dbt-invoke` command to auto-generate documentation for newly created
   models. [[dbt-invoke package](https://github.com/Dashlane/dbt-invoke)]
 - The final models should be materialized as `table`.
