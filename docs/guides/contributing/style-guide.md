@@ -51,7 +51,9 @@ repo on GitHub as an example of model naming and organization.
 ### Model Configurations
 
 - All model configurations for a data mart or connector are contained in their 
-  own YML within the mart folder, e.g., `cms_hcc_models.yml`.
+  a YML file of one YML per model.
+- Use the `dbt-invoke` command to auto-generate documentation for newly created
+  models. [[dbt-invoke package](https://github.com/Dashlane/dbt-invoke)]
 - The final models should be materialized as `table`.
 - Intermediate models can be tables or views based on what’s needed for 
   performance.
