@@ -11,6 +11,13 @@ const sidebars =
             items: [
                 "connectors/overview",
                 "connectors/input-layer",
+                "connectors/athenahealth",
+                "connectors/cms-bcda",
+                "connectors/cms-cclf",
+                "connectors/cms-lds",
+                "connectors/elation",
+                "connectors/fhir-inferno",
+                "connectors/health-gorilla",
             ]
         },
 
