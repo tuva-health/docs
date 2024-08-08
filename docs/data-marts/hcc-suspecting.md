@@ -7,13 +7,14 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 [Code](https://github.com/tuva-health/tuva/tree/main/models/hcc_suspecting)
 
-The HCC Suspecting data mart identifies patients that are suspected to have an 
+The HCC Suspecting data mart identifies patients who are suspected to have an 
 HCC in the payment year but don't presently have one recorded based concepts 
 that evaluate historical conditions and problems, comorbidities, lab test 
 results, medications, and observations.
 
 The 2024 CMS HCC model has 115 HCCs. Each condition category requires suspecting
-logic definitions. So far, we have built out logic for the following conditions:
+logic definitions. So far, we have built out the logic for the following 
+conditions:
 
 * Chronic Kidney Disease
   * 326, ”Chronic Kidney Disease, Stage 5”
@@ -28,8 +29,8 @@ logic definitions. So far, we have built out logic for the following conditions:
   * 48, ”Morbid Obesity”
 
 The terminology set SNOMED-CT to ICD-10-CM Map is used to capture additional 
-suspecting conditions coded in a system that is not part of the CMS HCC model. 
-This use-case follows the default mapping guidance from NLM which specifies 
+suspecting conditions coded in a system not part of the CMS HCC model. 
+This use case follows the default mapping guidance from NLM, which specifies 
 that the map priority rule of “TRUE” or “OTHERWISE TRUE” should be applied if 
 nothing further is known about the patient’s condition.
 
