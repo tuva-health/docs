@@ -18,4 +18,4 @@ digit is the block group FIPS code.
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__fips_county.columns" />
 
-## Maintenance Instructions
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/fips_county.csv_0_0_0.csv.gz">Download CSV</a>

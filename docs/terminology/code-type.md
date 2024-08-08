@@ -12,4 +12,4 @@ in marts.
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__code_type.columns" />
 
-## Maintenance Instructions
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/code_type.csv_0_0_0.csv.gz">Download CSV</a>

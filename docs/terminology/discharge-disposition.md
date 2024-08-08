@@ -8,6 +8,8 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__discharge_disposition.columns" />
 
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/discharge_disposition.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## Maintenance Instructions
 
 1. Navigate to the [ResDac Inpatient website](https://resdac.org/cms-data/files/ip-ffs)

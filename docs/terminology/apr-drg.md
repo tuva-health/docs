@@ -6,6 +6,10 @@ title: "APR-DRG"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__apr_drg.columns" />
+
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/apr_drg.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## Maintenance Instructions
 
 1. Navigate to the [AHRQ HCUP website](https://hcup-us.ahrq.gov/)

@@ -6,8 +6,6 @@ title: "Claim Type"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
-## claim_type
-
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__claim_type.columns" />
 
-## Maintenance Instructions
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/claim_type.csv_0_0_0.csv.gz">Download CSV</a>

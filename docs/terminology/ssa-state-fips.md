@@ -10,4 +10,4 @@ A dictionary of all fips state codes maintained by the SSA.
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__ssa_fips_state.columns" />
 
-## Maintenance Instructions
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ssa_fips_state.csv_0_0_0.csv.gz">Download CSV</a>

@@ -8,6 +8,8 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__mdc.columns" />
 
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/mdc.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## Maintenance Instructions
 
 1. Navigate to the [CMS MS DRG website](https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software)

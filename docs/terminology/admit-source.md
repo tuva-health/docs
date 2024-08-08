@@ -6,6 +6,9 @@ title: "Admit Source"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
+<JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.terminology__admit_source.columns" />
+
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_source.csv_0_0_0.csv.gz">Download CSV</a>
 
 ## Maintenance Instructions
 

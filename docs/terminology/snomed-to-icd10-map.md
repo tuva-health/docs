@@ -8,6 +8,8 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__snomed_icd_10_map.columns" />
 
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/snomed_icd_10_map.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## Maintenance Instructions
 
 This mapping is updated with each new relase of SNOMED CT US Edition which 

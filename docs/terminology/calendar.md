@@ -10,4 +10,4 @@ A table containing every calendar day from 1/1/1900 through 1/12/2119, along wit
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.reference_data__calendar.columns" />
 
-## Maintenance Instructions
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/calendar.csv_0_0_0.csv.gz">Download CSV</a>
