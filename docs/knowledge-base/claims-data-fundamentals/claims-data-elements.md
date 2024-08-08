@@ -21,7 +21,7 @@ Despite this, it's possible to use admit source to help identify things like:
 
 Admit source codes are maintained by the National Uniform Billing Committee (NUBC).
 
-You can find a complete listing of admit source codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__admit_source.csv).
+You can find a complete listing of admit source codes and their descriptions [here](/terminology/admit-source).
 
 ### Admit Type
 Admit type code is used in institutional claims to indicate the priority of admission, e.g., urgent, emergent, elective, etc.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
@@ -32,7 +32,7 @@ Despite this, admit type is commonly used to identify things like elective proce
 
 Admit type codes are maintained by the National Uniform Billing Committee (NUBC).
 
-You can find a complete listing of admit type codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__admit_type.csv).
+You can find a complete listing of admit type codes and their descriptions [here](/terminology/admit-type).
 
 ### Bill Type
 Bill type code is by far the most complex of the administrative codes.  Each digit in the bill type code has a distinct purpose and meaning:
@@ -48,7 +48,7 @@ Despite the complexity of this field, it's extremely useful.  Bill type code is 
 
 Bill type codes are maintained by the National Uniform Billing Committee (NUBC).
 
-You can find a complete listing of bill type codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__bill_type.csv).
+You can find a complete listing of bill type codes and their descriptions [here](/terminology/bill-type).
 
 ### Discharge Disposition
 Discharge disposition code indicates where the patient was discharged following a stay at a facility.  The field only exists on institutional claims.  The field is sometimes called discharge status or patient status.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
@@ -61,7 +61,7 @@ The code is commonly used to identify things like:
 
 Discharge disposition codes are maintained by the National Uniform Billing Committee (NUBC).
 
-You can find a complete listing of discharge disposition codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__discharge_disposition.csv).
+You can find a complete listing of discharge disposition codes and their descriptions [here](/terminology/discharge-disposition).
 
 ### HCPCS
 HCPCS codes indicate the services and supplies rendered by providers to patients.  These codes are used in both institutional and professional claims forms.  These codes exist at the line-level, meaning there can be many HCPCS codes on a single claim.  There are codes for many different types of supplies and services including:
@@ -75,7 +75,7 @@ And many many other types of things.  There are thousands of HCPCS codes spread 
 
 Professional contracted rates between payers and providers are established using HCPCS codes.  These rates are referred to as a fee schedule.  Conversely, institutional rates are often paid on a per encounter (e.g. DRG) or per diem basis.
 
-You can find a complete listing of all level 2 HCPCS codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__hcpcs_level_2.csv).
+You can find a complete listing of all level 2 HCPCS codes and their descriptions [here](/terminology/hcpcs-level-2).
 
 ### Place of Service
 Place of service codes indicate the type of care setting professional claim services were delivered in.  This field only exists on professional claims.  Place of service is coded at the line-level to reflect the fact that services during a particular encounter can occur in different locations.  Because of this, a single professional claim can have multiple place of service codes.
@@ -84,7 +84,7 @@ Place of service codes are used to assign claims to services categories.  For ex
 
 CMS maintains place of service codes.
 
-You can find a complete listing of all place of service codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__place_of_service.csv).
+You can find a complete listing of all place of service codes and their descriptions [here](/terminology/place-of-service).
 
 ### Revenue Center Codes
 Revenue center codes are used to account for the services and supplies rendered to patients in institutional care settings.  These codes are only used in institutional claims.  Typically these codes will correspond to a facility's chargemaster, which is a listing of all charges used by the institution in billing.  Although a hospital will use these codes to "charge" the health insurer, they have no bearing on the contracted payment amount, i.e., the amount paid to the provider by the payer.  The payment amount is entirely determined by MS-DRG for inpatient claims and often a per diem rate for skilled nursing.
@@ -100,7 +100,7 @@ Revenue center codes play an important role in identifying different types of in
 
 Revenue center codes are maintained by the National Uniform Billing Committee (NUBC).
 
-You can find a complete listing of revenue center codes and their descriptions [here](https://github.com/tuva-health/the_tuva_project/blob/main/seeds/terminology/terminology__revenue_center.csv).
+You can find a complete listing of revenue center codes and their descriptions [here](/terminology/revenue-center).
 
 
 ## Dates
