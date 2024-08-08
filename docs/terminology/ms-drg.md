@@ -8,6 +8,8 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__ms_drg.columns" />
 
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ms_drg.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## Maintenance Instructions
 
 On October 1st, CMS releases a list of MS-DRG codes that are valid for the fiscal year.  This list only contains valid codes
