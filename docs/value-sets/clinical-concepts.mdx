@@ -58,10 +58,11 @@ The CCL is made up of 3 data tables:
 
 ## clinical_concepts
 
-The **clinical_concept** table contains one record per clinical concept (e.g. asthma, metformin, etc.).  Each clinical concept is expected to be associated with content from **value_set_members** that identifies the codes from one or more standardized clinical vocabularies that imply the concept.  If the concept represented by a clinical_concept row is felt no longer to be needed or valid, it should be changed to status “inactive” rather than deleted from the table.  
-
+The **clinical_concept** table contains one record per clinical concept (e.g. asthma, metformin, etc.).  Each clinical concept is expected to be associated with content from **value_set_members** that identifies the codes from one or more standardized clinical vocabularies that imply the concept.  If the concept represented by a clinical_concept row is felt no longer to be needed or valid, it should be changed to status “inactive” rather than deleted from the table.
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.clinical_concept_library__clinical_concepts.columns" />
+
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_value_sets/latest/tuva_clinical_concepts.csv_0_0_0.csv.gz">Download CSV</a>
 
 ## value_set_members
 
@@ -71,11 +72,12 @@ If the value set membership represented by a value_set_members row is felt no lo
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.clinical_concept_library__value_set_members.columns" />
 
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_value_sets/latest/tuva_value_set_members.csv_0_0_0.csv.gz">Download CSV</a>
+
 ## coding_systems
 
 Defines standardized clinical vocabularies with which value_set_members content is associated.  While nearly all standardized clinical vocabularies are updated regularly, individual versions are not specified in this table.  However, different “flavors” of standardized vocabularies (e.g. ICD-10-CM vs. the international version of ICD-10 published by the World Health Organization) should be represented by separate rows.
 
 <JsonDataTable  jsonPath="nodes.seed\.the_tuva_project\.clinical_concept_library__coding_systems.columns" />
 
-
-
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_value_sets/latest/tuva_coding_systems.csv_0_0_0.csv.gz">Download CSV</a>
