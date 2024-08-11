@@ -5,6 +5,8 @@ title: "AHRQ Measures"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+## Overview
+
 [Code](https://github.com/tuva-health/tuva/tree/main/models/ahrq_measures/)
 
 The Agency for Healthcare Research and Quality (AHRQ) develops and maintains various measures to assess the quality, safety, and effectiveness of healthcare services [(AHRQ QIs)](https://qualityindicators.ahrq.gov/measures/qi_resources). These measures include the Prevention Quality Indicators [(PQIs)](https://qualityindicators.ahrq.gov/measures/pqi_resources), Inpatient Quality Indicators [(IQIs)](https://qualityindicators.ahrq.gov/measures/iqi_resources), Patient Safety Indicators [(PSIs)](https://qualityindicators.ahrq.gov/measures/psi_resources), and Pediatric Quality Indicators [(PDIs)](https://qualityindicators.ahrq.gov/measures/pdi_resources). They are used by healthcare providers, policymakers, and researchers to identify issues, monitor progress, and compare performance to improve patient outcomes and reduce costs. 
@@ -73,7 +75,11 @@ The PQIs are available now in The Tuva Project. The individual measures and defi
   </tbody>
 </table>
 
-## pqi_denom_long
+## Instructions
+
+## Data Dictionary
+
+### pqi_denom_long
 
 This model contains a row for each patient and data_source combination that is eligible for each pqi each year.
 
@@ -87,7 +93,7 @@ This model contains a row for each patient and data_source combination that is e
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_denom_long.columns" />
 </div>
 
-## pqi_exclusion_long
+### pqi_exclusion_long
 
 This model contains a list of all the exclusions an encounter qualified for. An encounter can qualify for multiple exclusions for each pqi, which are listed here. Qualifying for an exclusion **does not necessarily** mean the encounter would have been in the numerator for the pqi, simply that it is excluded from being eligible to be in the numerator.
 
@@ -101,7 +107,7 @@ This model contains a list of all the exclusions an encounter qualified for. An 
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_exclusion_long.columns" />
 </div>
 
-## pqi_num_long
+### pqi_num_long
 
 This model contains a list of all encounters that qualified for a pqi. The patient_id and data_source are brought in for reference as well.
 
@@ -114,7 +120,7 @@ This model contains a list of all encounters that qualified for a pqi. The patie
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_num_long.columns" />
 </div>
 
-## pqi_rate
+### pqi_rate
 
 This model pre calculates the rate (as a per 100,000 members) for each pqi and year. The rate equals the numerator divided by denominator multiplied by 100,000. The AHRQ software typically calculates these as a per 100,000 population in a metropolitan area or county. However, when calculating for a population in a claims dataset, it can be useful to view the rates as a "per 100,000 members" instead.
 
@@ -127,7 +133,7 @@ This model pre calculates the rate (as a per 100,000 members) for each pqi and y
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_rate.columns" />
 </div>
 
-## pqi_summary
+### pqi_summary
 
 This model is designed to be useful for analytics on pqis in your claims data set. It joins in data about the encounter for summarization, such as facility, drg, encounter start date etc...
 
@@ -140,5 +146,7 @@ This model is designed to be useful for analytics on pqis in your claims data se
 <div class="data_dictionary_table">
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_summary.columns" />
 </div>
+
+## Analytics
 
 

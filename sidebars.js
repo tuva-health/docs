@@ -127,50 +127,39 @@ const sidebars =
 
             ]
         },
-
+        {
+            type: "category",
+            label: "Contributing",
+            items: [
+                "contributing/contributing",
+                "contributing/style-guide",
+            ]
+        },
         "help",
     ],
 
     guidesSidebar: 
     [
-        "guides/overview",
         {
             type: "category",
-            label: "Contributing",
+            label: "Data Source Setup",
             items: [
-                "guides/contributing/contributing",
-                "guides/contributing/style-guide",
+                "guides/data-source-setup/overview",
+                "guides/data-source-setup/ingestion",
+                "guides/data-source-setup/configuration",
+                "guides/data-source-setup/mapping",
+                "guides/data-source-setup/deployment",
+                "guides/data-source-setup/audit",
+                "guides/data-source-setup/union",
+                "guides/data-source-setup/customizations",
+                "guides/data-source-setup/upgrades",
             ]
         },
-        "guides/dbt-configuration",
         "guides/etl-automation",
         "guides/geo-coding",
-        {
-            type: "category",
-            label: "Mapping",
-            items: [
-                "guides/mapping/claims",
-                "guides/mapping/fhir",
-            ]
-        },
         "guides/master-patient-index",
         "guides/normalization",
         "guides/terminology",
-    ],
-
-    usecaseSidebar: 
-    [
-        "use-cases/overview",
-        "use-cases/acute-inpatient",
-        "use-cases/ahrq-measures",
-        "use-cases/chronic-conditions",
-        "use-cases/cms-hccs",
-        "use-cases/demographics",
-        "use-cases/ed-visits",
-        "use-cases/medical-pmpm",
-        "use-cases/pharmacy",
-        "use-cases/primary-care",
-        "use-cases/urgent-care",
 
     ],
 
@@ -205,8 +194,14 @@ const sidebars =
         "knowledge-base/quality-measures",
         "knowledge-base/provider-attribution",
         "knowledge-base/national-drug-codes",
-    ]
+    ],
     
+    communitySidebar: 
+    [ 
+        "community/community-guidelines",
+        "community/community-meetups",
+        "community/manifesto",
+    ]
 };
 
 module.exports = sidebars;

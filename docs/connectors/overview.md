@@ -33,4 +33,4 @@ We are building connectors for as many standard healthcare data sources as possi
 
 ## Custom Connectors
 
-The majority of healthcare data sources use non-standard data formats.  For example, most payer claims data sources are bespoke.  These sources require custom connectors to transform the data source into the Tuva Input Layer.  We provide guidance on how to create a custom connector in our guides -- for example the [claims mapping guide](../guides/mapping/claims)
+The majority of healthcare data sources use non-standard data formats.  For example, most payer claims data sources are bespoke.  These sources require custom connectors to transform the data source into the Tuva Input Layer.  We provide guidance on how to create a custom connector in our data source setup [guide](../guides/data-source-setup/overview).

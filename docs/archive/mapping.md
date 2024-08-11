@@ -1,53 +1,117 @@
 ---
-id: claims
-title: "Claims"
+id: mapping
+title: "Mapping Checklist"
 ---
 
-Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this guide we delve into the details of claims data, including what it is and how to map it to the Tuva [Input Layer](../../connectors/input-layer).
+Before you can run Tuva on a data source that data source must be mapped to the [Input Layer](../../connectors/input-layer).  The Input Layer acts as an API for Tuva.  Once a data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command i.e. `dbt build`.
 
-Claims mapping is the process of transforming raw claims data sources into Tuva by converting the data format to match the Tuva [Input Layer](../../connectors/input-layer).  The Input Layer acts as an API for Tuva.  Once a healthcare data source has been mapped to the Input Layer you can run all of Tuva on that data source with a single command: `dbt build`.
+Mapping involves writing SQL to transform the source data model into the Input Layer data model.  Because there are and endless number of healthcare data formats there is no perfect or single way to perform these transformations.  However, we can provide some general heuristics or rules of thumb for how to do this.  This is exactly what we attempt to do in this section.
 
-Every claims dataset is different.  Every health plan has their own data model they store their adjudicated claims data in.
+If your data source doesn't have every field in the Input Layer, that's okay.  Just map the fields that you have.  To see which fields are required for a given data mart check out the docs for that data mart in [this section](../../data-marts/overview).
 
-Mapping to the Input Layer involves creating dbt models (i.e. SQL statements in a dbt project).  While it is necessary to create a model for every table in the Input Layer, it is not necessary that you have source data to populate every table or column in the Input Layer.  For example, if you don't have pharmacy claims you still need to create the `pharmacy_claim` table in the Input Layer, but you can mapp null to every column.
+## Claims Input Layer
 
-This [spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) shows what columns in the Input Layer are needed for the various Tuva Data Marts.  Not mapping to a column needed for a data mart will result in no data being produced in that mart.
+### Medical Claim
 
-The notes that follow describe advice and heuristics for mapping claims data sources to the Input Layer.  Consult the Input Layer data dictionary (link above) for a complete list of fields in the Input Layer.
+<details>
+  <summary>Primary Key</summary>
+
+The primary key for the medical_claim table is claim_id, claim_line_number and data_source.  
+
+claim_id should be an alphanumeric value that represents a claim.  A claim can have multiple claim lines, so the same claim_id can appear on multiple records.
+
+claim_line_number is an integer that corresponds to the number of lines a claim has.  For example, a claim with 3 lines with have claim line numbers 1, 2, and 3 and have 3 total records in the medical_claim table.
+
+data_source is intended to represent the name of the data source e.g. "Medicare CCLF".
+
+</details>
+
+<details>
+  <summary>Claim Type</summary>
 
 
-# Medical Claims
+</details>
+
+<details>
+  <summary>Administrative Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Financial Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Date Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Diagnosis and Procedure Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Provider NPI Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Payer Fields</summary>
+
+
+</details>
+
+<details>
+  <summary>Claims Without Enrollment</summary>
+
+If there are claims in the dataset without corresponding eligibility (i.e. the patient the claim is for does not have any enrollment information) then those claims should stay in the dataset and not be filtered out.  These claims are often excluded from financial analysis.  In fact, the [Financial PMPM](../../data-marts/financial-pmpm) inner joins `medical_claim` and `eligibility`.  However, this is not the only use of claims data, so we do not filter out these claims by default.
+
+</details>
+
+
+
+
 
 The `medical_claim` table contains billing information submitted to health insurers for medical services, supplies, and/or procedures rendered to a member of the health plan.  Adjudicated claims from payers, health plans, self-insured employers, brokers, and third party administrators are the most common sources of this data.
 
-## General
-In this section we document any general conventions that should be followed when mapping medical claims data.
+One record in the table represents a single claim line within a single claim.
 
-#### Table Grain
 The grain (i.e. primary key) of the table is:
 - `claim_id`
 - `claim_line_number`
 - `data_source`
 
-One record in the table represents a single claim line within a single claim.  
+- claim_id and claim_line_number
+- patient_id and member_id
+- dates
+- claim type
+- place of service
+- bill type
+- discharge disposition
+- diagnosis codes
+- procedure codes
+- financial amounts
+- npi
+- misc
 
 #### Claims Without Enrollment  
-If there are claims in the dataset without corresponding eligibility (i.e. the patient the claim is for does not have any enrollment information) then those claims should stay in the dataset and not be filtered out.  These claims are often excluded from financial analysis.  In fact, the [Financial PMPM](../../data-marts/financial-pmpm) inner joins `medical_claim` and `eligibility`.  However, this is not the only use of claims data, so we do not filter out these claims by default.
+
+
+### Pharmacy Claim
+
+### Eligibility
+
+
 
 ## Admit Source and Type
-`admit_source_code` is used in institutional claims to indicate where the patient was located prior to admission.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
 
-`admit_type_code` is used in institutional claims to indicate the priority of admission, e.g., urgent, emergent, elective, etc.  The field does not exist in professional claims.  The field exists at the header-level, meaning there should be only 1 distinct value for this field per claim.
-
-Admit source and admit type are generally not considered highly reliable because the accuracy of the codes is not verified during the claims adjudication process (other than verifying that the code is in fact a valid code).  For example, if the value for admit type is "elective", no one is actually verifying that the admission was actually elective and not emergent.
-
-Despite this, admit source is commonly used to identify things like:
-- Transfers from another hospital
-- Inpatient stays that came through the emergency department
-
-And admit type is commonly used to identify things like elective procedures.
-
-Admit source and type codes are maintained by the National Uniform Billing Committee (NUBC).
 
 ## Bill Type
 `bill_type_code` is one of the most complex administrative codes in medical claims.  Each digit has a distinct purpose and meaning:
