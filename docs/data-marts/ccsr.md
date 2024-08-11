@@ -5,11 +5,17 @@ title: "CCSR"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+## Overview
+
 [Code](https://github.com/tuva-health/tuva/tree/main/models/ccsr)
 
 The CCSR data mart implements [AHRQ's Clinical Classifications Software Refined](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp) diagnosis and procedure grouper.  This is a very commonly used tool to group ICD-10-CM and ICD-10-PCS diagnosis and procedure codes into higher-level categories.
 
-## long_condition_category
+## Instructions
+
+## Data Dictionary
+
+### long_condition_category
 
 This model contains a mapping of individual condition ICD-10-CM diagnosis codes 
 to the CCSR's clinically meaningful diagnosis categories. Each row represents a 
@@ -29,7 +35,7 @@ Option 1 - Vertical File Output.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__long_condition_category.columns" />
 
-## long_procedure_category
+### long_procedure_category
 
 This model contains a mapping of individual condition ICD-10-PCS procedure codes 
 to the CCSR's clinically meaningful procedure categories. Each row represents a 
@@ -46,7 +52,7 @@ CCSR's Output Option 1 - Vertical File Output.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__long_procedure_category.columns" />
 
-## singular_condition_category
+### singular_condition_category
 
 This model contains only the CCSR's default category assignment for the 
 ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
@@ -60,3 +66,5 @@ ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
   * claim_id
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__singular_condition_category.columns" />
+
+## Analytics

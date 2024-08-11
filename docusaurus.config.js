@@ -88,20 +88,26 @@ const config = {
             position: 'left',
             label: 'Guides',
           },
-          {
-            type: 'docSidebar',
-            sidebarId: 'usecaseSidebar',
-            position: 'left',
-            label: 'Use Cases',
-          },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'usecaseSidebar',
+          //   position: 'left',
+          //   label: 'Use Cases',
+          // },
           {
             type: 'docSidebar',
             sidebarId: 'knowledgebaseSidebar',
             position: 'left',
-            label: 'Knowledge Base',
+            label: 'Knowledge',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'communitySidebar',
+            position: 'left',
+            label: 'Community',
           },
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
-          { to: 'manifesto', label: 'Manifesto', position: 'left' },
+          // { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
           {
             href: 'https://www.tuvahealth.com',
@@ -127,7 +133,7 @@ const config = {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
-          {to: '/blog', label: 'Blog', position: 'left'}
+          // {to: '/blog', label: 'Blog', position: 'left'}
 
         ],
 
