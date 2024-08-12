@@ -28,9 +28,10 @@ Below we provide a **Mapping Checklist** of things that are important to get rig
 <details>
   <summary>Claim Type</summary>
 
-- claim_type indicates whether the claim was a "professional" claim or "institutional" claim.
-- Professional claims are from CMS-1500 claim forms and typically used to bill for physician services, durable medical equipment, and some drugs.  Claims with place of service code populated should be considered professional claims, since this field is only present on CMS-1500 claim forms.  However some payers create their own place of service for institutional claims.
+- claim_type indicates whether the claim was a "professional" claim or "institutional" claim. Allowed values for this fied are: "professional", "institutional", "undetermined".
+- Professional claims are from CMS-1500 claim forms and typically used to bill for physician services, durable medical equipment, and some drugs.  In theory, claims with place of service code populated should be considered professional claims, since this field is only present on CMS-1500 claim forms.  However some payers create their own place of service for institutional claims, so we sometimes see place of service populated on institutional claims.
 - Institutional claims are from UB-04 claim forms and are used to be facility services.  You can identify institutional claims with bill type code and revenue center codes, since only institutional claims have these fields.
+- We label a claim as "institutional" if it has any of these 7 fields populated: bill_type_code, ms_drg_code, apr_drg_code, admit_type_code, admit_source_code, discharge_disposition_code, revenue_center_code. We label a claim as "professional" if none of the previous 7 fields are populated and it has at least one populated place_of_service_code. If neither of these two things is the case, we label the claim as "undetermined".
 - claim_type must be populated for every record.
 - Each claim_id should have one and only one claim_type.
 - Downstream concepts like service categories are derived in part via claim_type.
@@ -39,6 +40,11 @@ Below we provide a **Mapping Checklist** of things that are important to get rig
 
 <details>
   <summary>Administrative Fields</summary>
+
+- bill_type_code is a header-level field on institutional claims and should therefore have the same value for every line on a claim. Standard values for bill_type_code are 3 characters long, but sometimes raw data sources have 4 character values because they include a leading zero. In mapping to the input layer we remove the leading zero when the 4 character codes are present in the raw data.
+- admit_type_code and admit_source_code are one character standard codes. They are header-level fields on institutional claims, therefore every line on a given claim should have the same value of admit_type_code and admit_source_code.
+- discharge_disposition_code is a header-level field on institutional claims, therefore every line on a given claim should have the same value of discharge_disposition_code. These should be 2 character standard codes.
+- ms_drg_code and apr_drg_code are header-level fields on institutional claims and should therefore have the same value for every line on a claim. Only one of ms_drg_code or apr_drg_code should be populated for any given claim. Note that these fields are only populated on a subset of all institutional claims, so it will be null for the majority of claims. 
 
 
 </details>
@@ -52,11 +58,16 @@ Below we provide a **Mapping Checklist** of things that are important to get rig
 <details>
   <summary>Date Fields</summary>
 
+- claim_start_date and claim_end_date indicate the dates of service represented by the claim. They are header-level fields on all claims and should therefore have the same value for every line on a claim. They should be populated on both institutional and professional claims.
+- admission_date and discharge_date represent the dates a patient is admitted and discharged from a facility. They are header-level fields on institutional claims and should therefore have the same value for every line on an institutional claim.
+- claim_line_start_date and claim_line_end_date are line-level fields that indicate the dates of service representing each line on a claim. These dates may be different on different lines on a claim and should be populated for all lines on both institutional and professional claims when available.
 
 </details>
 
 <details>
   <summary>Diagnosis and Procedure Fields</summary>
+
+- These are header-level fields on both institutional and professional claims and should therefore have the same value for every line on a claim. They should be populated for both institutional and professional claims when available.
 
 
 </details>
