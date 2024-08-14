@@ -72,7 +72,7 @@ where index_admission_flag = 1 and unplanned_readmit_30_flag = 1) * 100
 -- The denominator is the number of encounters that are index admissions 
 -- (i.e. that are eligible to have a readmission count against them):
 (select count(*)
-from medicare_lds_five_percent.readmissions.readmission_summary
+from readmissions.readmission_summary
 where index_admission_flag = 1) as overall_readmission_rate
 ```
 </details>
