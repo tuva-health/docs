@@ -5,6 +5,8 @@ title: "Quality Measures"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+## Overview
+
 [Code](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
 
 The Quality Measures data mart is where we are building publicly available 
@@ -37,9 +39,11 @@ quality measure.
 | Statin Therapy for the Prevention and Treatment of Cardiovascular Disease      | CMS Star C16, MIPS CQM 438               | [Link](https://mdinteractive.com/files/uploaded/file/CMS2024/2024_Measure_438_MIPSCQM.pdf) | **Released**                     |
 | Statin Use in Persons with Diabetes (SUPD)                                     | CMS Star D12                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf#page=109) | *Planned 2024 Q4*                |
 | Transitions of Care                                                            | CMS Star C17                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf#page=65) | *Planned 2024 Q4*                |
-| Urinary Incontinence                                                           | CMS Star C13, MIPS CQM 48                | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/CQM-Measures/2024_Measure_048_MIPSCQM.pdf) | *Planned 2024 Q3*                |
+| Urinary Incontinence                                                           | CMS Star C13, MIPS CQM 48                | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/CQM-Measures/2024_Measure_048_MIPSCQM.pdf) | **Released**                |
 
-## Data Requirements
+## Instructions
+
+### Data Requirements
 This data mart uses the following tables from the Tuva Core Data Model:
 - condition
 - encounter
@@ -54,7 +58,7 @@ This data mart uses the following tables from the Tuva Core Data Model:
 *Note: The Tuva Project will generate these Core tables. You just need to map 
 your data to the [input layer](../connectors/input-layer) and run the project.*
 
-## Variables
+### Variables
 The data mart includes logic that allows you to choose a measurement period 
 end date.
 
@@ -87,7 +91,7 @@ dbt build --select tag:quality_measures
 dbt build --select tag:quality_measures --vars '{quality_measures_period_end: "2020-12-31", snapshots_enabled: true}'
 ```
 
-## Data Mart Structure
+### Data Mart Structure
 
 **Staging**
 
@@ -115,14 +119,59 @@ population.
   patient with flags for each measure. The false flags can be treated as care 
   gaps as exclusions have been included in the pivot logic.
 
-## summary_counts
+## Data Dictionary
+
+### summary_counts
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_counts.columns"  />
 
-## summary_long
+### summary_long
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_long.columns"  />
 
-## summary_wide
+### summary_wide
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_wide.columns"  />
+
+## Analytics
+
+<details>
+  <summary>Quality Measure Performance</summary>
+
+```sql
+select
+      measure_id
+    , measure_name
+    , performance_period_end
+    , performance_rate
+from quality_measures.summary_counts
+order by performance_rate desc
+```
+</details>
+
+<details>
+  <summary>Exclusion Reason Breakdown</summary>
+
+```sql
+select
+      measure_id
+    , exclusion_reason
+    , count(patient_id) as patient_count
+from quality_measures.summary_long
+where exclusion_flag = 1
+group by
+      measure_id
+    , exclusion_reason
+order by
+      measure_id
+    , exclusion_reason
+```
+</details>
+
+<details>
+  <summary>Patient Pivot</summary>
+
+```sql
+select * from quality_measures.summary_wide
+```
+</details>
