@@ -66,7 +66,7 @@ This table includes columns for data quality tests related to readmissions, so y
 -- and DID have an unplanned 30-day readmission:
 select 
 (select count(*)
-from medicare_lds_five_percent.readmissions.readmission_summary
+from readmissions.readmission_summary
 where index_admission_flag = 1 and unplanned_readmit_30_flag = 1) * 100
 /
 -- The denominator is the number of encounters that are index admissions 
