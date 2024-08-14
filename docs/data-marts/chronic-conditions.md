@@ -26,6 +26,42 @@ can read more about CMS's logic [here](https://www2.ccwdata.org/web/guest/home/)
 
 ## Instructions
 
+### Data Requirements
+
+The CMS grouper uses the following tables from the Tuva Core 
+Data Model:
+- condition
+- patient
+- procedure
+- medical_claim
+- pharmacy_claim
+
+The Tuva grouper uses the following tables from the Tuva Core 
+Data Model:
+- condition
+- patient
+
+*Note: The Tuva Project will generate these Core tables. You just need to map 
+your data to the [input layer](../connectors/input-layer) and run the project.*
+
+### dbt Examples
+
+```bash
+# Runs all marts
+dbt build
+
+# Runs only the Chronic Conditions mart
+dbt build --select tag:chronic_conditions
+
+# Runs only the CMS grouper
+dbt build --cms_chronic_conditions
+
+# Runs only the Tuva grouper
+dbt build --tuva_chronic_conditions
+
+```
+
+
 ## Data Dictionary
 
 ### cms_chronic_conditions_long
@@ -87,3 +123,77 @@ particular chronic condition they will have a 1 in that particular column and
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_wide.columns"  />
 
 ## Analytics
+
+<details>
+  <summary>Prevalence of Tuva Chronic Conditions</summary>
+
+In this query we show how often each chronic condition occurs in the patient population.
+
+```sql
+select
+  condition
+, count(distinct patient_id) as total_patients
+, cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+from chronic_conditions.tuva_chronic_conditions_long
+group by 1
+order by 3 desc
+```
+
+</details>
+
+<details>
+  <summary>Prevalence of CMS Chronic Conditions</summary>
+
+In this query we show how often each chronic condition occurs in the patient population.
+
+```sql
+select
+  condition_category
+, condition
+, count(distinct patient_id) as total_patients
+, cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+from chronic_conditions.cms_chronic_conditions_long
+group by 1,2
+order by 4 desc
+```
+
+</details>
+
+<details>
+  <summary>Distribution of Chronic Conditions</summary>
+
+In this query we show how many patients have 0 chronic conditions, how many patients have 1 chronic condition, how many patients have 2 chronic conditions, etc.
+
+```sql
+with patients as (
+select patient_id
+from core.patient
+)
+
+, conditions as (
+select distinct
+  a.patient_id
+, b.condition
+from patients a
+left join chronic_conditions.tuva_chronic_conditions_long b
+ on a.patient_id = b.patient_id
+)
+
+, condition_count as (
+select
+  patient_id
+, count(distinct condition) as condition_count
+from conditions
+group by 1
+)
+
+select 
+  condition_count
+, count(1)
+, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+from condition_count
+group by 1
+order by 1
+```
+
+</details>
