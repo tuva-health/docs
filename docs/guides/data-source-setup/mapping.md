@@ -96,7 +96,7 @@ If there are claims in the dataset without corresponding eligibility (i.e. the p
 
 </details>
 
-### Phmarcy Claims
+### Pharmacy Claims
 
 <details>
   <summary>Primary Key</summary>
