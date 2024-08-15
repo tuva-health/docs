@@ -55,6 +55,9 @@ This data mart uses the following tables from the Tuva Core Data Model:
 - medical_claim
 - pharmacy_claim
 
+Check out the [DAG](https://tuva-health.github.io/tuva/#!/model/model.the_tuva_project.hcc_suspecting__stg_core__condition)
+to see the list of fields used from each core table.
+
 *Note: The Tuva Project will generate these Core tables. You just need to map 
 your data to the [input layer](../connectors/input-layer) and run the project.*
 
@@ -69,6 +72,8 @@ end date.
 To run the data mart without the default, simply add the 
 `quality_measures_period_end` variable to your dbt_project.yml file 
 or use the `--vars` dbt command. See examples below.
+
+### dbt Examples
 
 dbt_project.yml:
 
@@ -91,47 +96,39 @@ dbt build --select tag:quality_measures
 dbt build --select tag:quality_measures --vars '{quality_measures_period_end: "2020-12-31", snapshots_enabled: true}'
 ```
 
-### Data Mart Structure
-
-**Staging**
-
-The staging tables show what tables and fields are used from the Core data model.
-
-**Intermediate**
-
-The intermediate tables contain the logic for calculating each quality measure. 
-The subfolder for each quality measure contains that measure's specific logic for 
-calculating the denominator, numerator, and exclusions. Many measures use the 
-same logic for calculating exclusions, such as dementia or hospice. This shared 
-logic can be found in the shared exclusions subfolder.
-
-**Final**
-
-The final tables are an aggregated view of all quality measures and your 
-population.
-
-- **Summary Counts:**  Reporting measure counts with performance rates.
-- **Summary Long:**  Long view of the results for the reporting version of all 
-  measures. Each row represents the results a measure per patient. A null for 
-  the denominator indicates that the patient was not eligible for that measure.
-- **Summary Wide:**  Wide view of the results for the reporting version of all 
-  measures. This model pivots measures on the patient level (i.e. one row per 
-  patient with flags for each measure. The false flags can be treated as care 
-  gaps as exclusions have been included in the pivot logic.
-
 ## Data Dictionary
 
 ### summary_counts
+
+Reporting measure counts with performance rates.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_counts.columns"  />
 
 ### summary_long
 
+Long view of the results for the reporting version of all measures. Each row 
+represents the results a measure per patient. A null for the denominator 
+indicates that the patient was not eligible for that measure.
+
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_long.columns"  />
 
 ### summary_wide
 
+Wide view of the results for the reporting version of all measures. This model 
+pivots measures on the patient level (i.e. one row per patient with flags for 
+each measure. The false flags can be treated as care gaps as exclusions have 
+been included in the pivot logic.
+
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_wide.columns"  />
+
+### Intermediate Tables
+
+The intermediate tables contain the logic for calculating each quality measure. 
+The subfolder for each quality measure contains that measure's specific logic 
+for calculating the denominator, numerator, and exclusions. Many measures use 
+the same logic for calculating exclusions, such as dementia or hospice. This 
+shared logic can be found in the shared exclusions subfolder.
+
 
 ## Analytics
 
