@@ -21,9 +21,16 @@ Additionally, the new CMS-HCC model V28 will be phased in over three years, requ
 
 ## Instructions
 
+The data mart is built on top of the [Core Data Model](../core-data-model/overview).
+In the diagram below we provide an overview explanation of how the data mart works.
+
+<iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
 ### Data Requirements
 
-In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
+In order to run the CMS-HCC data mart you need to map the following data 
+elements to the [Input Layer](../connectors/input-layer).  These are the only 
+data elements required.
 
 **Eligibility:**
 - patient_id
@@ -53,7 +60,9 @@ In order to run the CMS-HCC data mart you need to map the following data element
 ### Variables
 
 The data mart includes logic that allows you to choose which payment year you 
-want to use to calculate the risk scores.
+want to use to calculate the risk scores. You can also use the snapshot 
+functionality to capture the risk scores calculated for each payment, or 
+on a month-to-month basis.
 
 - `cms_hcc_payment_year` defaults to the current year
 - `snapshots_enabled` is an *optional* variable that can be enabled to allow
@@ -62,6 +71,8 @@ want to use to calculate the risk scores.
 To run the data mart, simply update the payment year in your dbt_project.yml 
 file or use the `--vars` dbt command, if you want to change the payment year 
 from the current year default. See examples below.
+
+### dbt Examples
 
 dbt_project.yml:
 
@@ -83,14 +94,6 @@ dbt build --select tag:cms_hcc
 # Overrides vars from project yml, executes snapshots
 dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_enabled: true}'
 ```
-
-### Data Mart Architecture
-
-The data mart is built on top of the [Core Data Model](../core-data-model/overview).  If you map the data elements listed above to the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
-
-In the diagram below we provide an overview explanation of how the data mart works.
-
-<iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 ## Data Dictionary
 
@@ -179,7 +182,7 @@ select
 </details>
 
 <details>
-  <summary>Top 10 CMS-HCC Conditions</summary>
+  <summary>Total HCC Conditions</summary>
 
 ```sql
 select
@@ -189,6 +192,5 @@ from cms_hcc.patient_risk_factors
 where factor_type = 'Disease'
 group by risk_factor_description
 order by count(*) desc
-limit 10;
 ```
 </details>
