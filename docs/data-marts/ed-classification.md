@@ -358,21 +358,20 @@ select
       p.ccsr_category
     , p.ccsr_category_description
     , p.ccsr_parent_category
-    , b.body_system
+    , p.body_system
     , count(*) as visit_count
     , sum(cast(e.paid_amount as decimal(18,2))) as paid_amount
     , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
 from core.encounter e
-    left join ccsr.dx_vertical_pivot p
-        on e.primary_diagnosis_code = p.Code
-        and p.ccsr_category_rank = 1
-    left join ccsr._value_set_dxccsr_v2023_1_body_systems b
-        on p.ccsr_parent_category = b.ccsr_parent_category
+    left join ccsr.long_condition_category p
+        on e.primary_diagnosis_code = p.normalized_code
+        and p.condition_rank = 1
+where e.encounter_type = 'emergency department'
 group by
       p.ccsr_category
     , p.ccsr_category_description
     , p.ccsr_parent_category
-    , b.body_system
+    , p.body_system
 order by visit_count desc;
 ```
 </details>
