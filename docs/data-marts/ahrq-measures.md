@@ -80,7 +80,7 @@ The PQIs are available now in The Tuva Project. The individual measures and defi
 
 ### Data Requirements
 
-The AHRQ mart runs on claims data, and pulls requires both the medical_claim and eligibility tables in the input layer to be populated. It requires the following fields to be populated with valid values:
+The AHRQ mart runs on claims data, and requires both the medical_claim and eligibility tables in the input layer to be populated. It requires the following fields to be populated with valid values:
 
 - ICD 10 diagnosis codes
 - ICD 10 procedure codes
