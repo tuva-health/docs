@@ -70,6 +70,8 @@ To run the data mart without the default, simply add the
 `quality_measures_period_end` variable to your dbt_project.yml file 
 or use the `--vars` dbt command. See examples below.
 
+### dbt Examples
+
 dbt_project.yml:
 
 ```yaml
