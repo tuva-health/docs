@@ -5,6 +5,8 @@ title: "CMS-HCCs"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+## Overview
+
 [Code](https://github.com/tuva-health/tuva/tree/main/models/cms_hcc)
 
 The CMS-HCC data mart implements v24 and v28 versions of the CMS-HCC risk model.
@@ -17,7 +19,9 @@ Additionally, the new CMS-HCC model V28 will be phased in over three years, requ
 * Payment year 2025 risk scores will be blended using 33% of the risk score calculated from V24 and 67% from V28.
 * Beginning in payment year 2026 risk scores will be 100% from V28.
 
-## Data Requirements
+## Instructions
+
+### Data Requirements
 
 In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
 
@@ -46,7 +50,7 @@ In order to run the CMS-HCC data mart you need to map the following data element
 
 **Up to 25 diagnosis codes are allowable, but only 1 is required.*
 
-## Variables
+### Variables
 
 The data mart includes logic that allows you to choose which payment year you 
 want to use to calculate the risk scores.
@@ -80,7 +84,7 @@ dbt build --select tag:cms_hcc
 dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_enabled: true}'
 ```
 
-## Data Mart Architecture
+### Data Mart Architecture
 
 The data mart is built on top of the [Core Data Model](../core-data-model/overview).  If you map the data elements listed above to the Input Layer and run Tuva, the Core Data Model will be created and you will be able to run the data mart.
 
@@ -88,16 +92,103 @@ In the diagram below we provide an overview explanation of how the data mart wor
 
 <iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
-## patient_risk_factors
+## Data Dictionary
+
+### patient_risk_factors
 
 This final model displays the contributing demographic and disease risk 
 factors, interactions, and HCCs for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_factors.columns" />
 
-## patient_risk_scores
+### patient_risk_scores
 
 This final model calculates the CMS HCC raw risk score, normalized risk score, 
 and payment risk score for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores.columns" />
+
+## Analytics
+
+<details>
+  <summary>Average CMS-HCC Risk Scores</summary>
+
+```sql
+select
+    count(distinct patient_id) as patient_count
+    , avg(blended_risk_score) as average_blended_risk_score
+    , avg(normalized_risk_score) as average_normalized_risk_score
+    , avg(payment_risk_score) as average_payment_risk_score
+from cms_hcc.patient_risk_scores
+```
+</details>
+
+<details>
+  <summary>Average CMS-HCC Risk Scores by Patient Location</summary>
+
+```sql
+select
+      patient.state
+    , patient.city
+    , patient.zip_code
+    , avg(risk.payment_risk_score) as average_payment_risk_score
+from cms_hcc.patient_risk_scores as risk
+    inner join core.patient as patient
+        on risk.patient_id = patient.patient_id
+group by
+      patient.state
+    , patient.city
+    , patient.zip_code;
+```
+</details>
+
+
+<details>
+  <summary>Distribution of CMS-HCC Risk Factors</summary>
+
+```sql
+select
+      risk_factor_description
+    , count(*) as total
+    , cast(100 * count(*)/sum(count(*)) over() as numeric(38,1)) as percent
+from cms_hcc.patient_risk_factors
+group by risk_factor_description
+order by 2 desc
+```
+</details>
+
+<details>
+  <summary>Risk Weighted by Member Months</summary>
+
+```sql
+select sum(payment_risk_score_weighted_by_months) / sum(member_months) as weighted_risk_total
+from cms_hcc.patient_risk_scores;
+```
+</details>
+
+<details>
+  <summary>Stratified CMS-HCC Risk Scores</summary>
+
+```sql
+select
+      (select count(*) from cms_hcc.patient_risk_scores where payment_risk_score <= 1.00) as low_risk
+    , (select count(*) from cms_hcc.patient_risk_scores where payment_risk_score = 1.00) as average_risk
+    , (select count(*) from cms_hcc.patient_risk_scores where payment_risk_score > 1.00) as high_risk
+    , (select avg(payment_risk_score) from cms_hcc.patient_risk_scores) as total_population_average;
+```
+</details>
+
+<details>
+  <summary>Top 10 CMS-HCC Conditions</summary>
+
+```sql
+select
+      risk_factor_description
+    , count(*) patient_count
+from cms_hcc.patient_risk_factors
+where factor_type = 'Disease'
+group by risk_factor_description
+order by count(*) desc
+limit 10;
+```
+</details>
