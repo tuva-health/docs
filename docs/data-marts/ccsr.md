@@ -13,6 +13,18 @@ The CCSR data mart implements [AHRQ's Clinical Classifications Software Refined]
 
 ## Instructions
 
+This mart builds off of the Core Condition and Procedure tables.
+
+### dbt Examples
+
+```bash
+# Runs all marts
+dbt build
+
+# Runs only the CCSR mart
+dbt build --select tag:ccsr
+```
+
 ## Data Dictionary
 
 ### long_condition_category
@@ -68,3 +80,107 @@ ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__singular_condition_category.columns" />
 
 ## Analytics
+
+<details>
+  <summary>Condition Count by Body System</summary>
+
+```sql
+select
+      body_system
+    , count(*)
+from ccsr.singular_condition_category
+group by body_system
+order by count(*) desc;
+```
+</details>
+
+<details>
+  <summary>Condition Count by CCSR Category</summary>
+
+```sql
+select
+      ccsr_category_description
+    , count(*)
+from ccsr.singular_condition_category
+group by ccsr_category_description
+order by count(*) desc;
+```
+</details>
+
+<details>
+  <summary>Procedure Count by Clinical Domain</summary>
+
+```sql
+select
+      clinical_domain
+    , count(*)
+from ccsr.long_procedure_category
+group by clinical_domain
+order by count(*) desc;
+```
+</details>
+
+<details>
+  <summary>Procedure Count by CCSR Category</summary>
+
+```sql
+select
+      ccsr_category_description
+    , count(*)
+from ccsr.long_procedure_category
+group by ccsr_category_description
+order by count(*) desc;
+```
+</details>
+
+<details>
+  <summary>Acute Inpatient Visits by CCSR Category and Body System</summary>
+
+```sql
+select
+      p.ccsr_category
+    , p.ccsr_category_description
+    , p.ccsr_parent_category
+    , p.body_system
+    , count(*) as visit_count
+    , sum(cast(e.paid_amount as decimal(18,2))) as paid_amount
+    , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
+from core.encounter e
+    left join ccsr.long_condition_category p
+        on e.primary_diagnosis_code = p.normalized_code
+        and p.condition_rank = 1
+where e.encounter_type = 'acute inpatient'
+group by
+      p.ccsr_category
+    , p.ccsr_category_description
+    , p.ccsr_parent_category
+    , p.body_system
+order by visit_count desc;
+```
+</details>
+
+<details>
+  <summary>ED Visits by CCSR Category and Body System</summary>
+
+```sql
+select
+      p.ccsr_category
+    , p.ccsr_category_description
+    , p.ccsr_parent_category
+    , p.body_system
+    , count(*) as visit_count
+    , sum(cast(e.paid_amount as decimal(18,2))) as paid_amount
+    , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
+from core.encounter e
+    left join ccsr.long_condition_category p
+        on e.primary_diagnosis_code = p.normalized_code
+        and p.condition_rank = 1
+where e.encounter_type = 'emergency department'
+group by
+      p.ccsr_category
+    , p.ccsr_category_description
+    , p.ccsr_parent_category
+    , p.body_system
+order by visit_count desc;
+```
+</details>
