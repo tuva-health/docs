@@ -60,7 +60,8 @@ below depicts the output of the `coverage` resource.  The key extension will be 
 
 ## Parse JSON files to create CSVs
 
-1. Open `BCDAConnector.py` in `fhir_inferno\configurations\configuration_bcda`
+1. Move  `parseFHIR.py` from `fhir_inferno` to `fhir_inferno\configurations\configuration_bcda`
+2. Open `BCDAConnector.py` in `fhir_inferno\configurations\configuration_bcda`
 2. If following these instructions, the configs in `BCDAConnector.py` should not have to be updated but can be if using a custom folder.
     1. `config_dir` - the location of the configration .ini files 
     2. `input_dir` - the location of the JSON files
@@ -92,3 +93,4 @@ py BCDAConnector.py
         1. When CMS sends enrollment data, it does not contain an explicit field with the year and month.  It is implied 
             that members present in the monthly coverage file are enrolled.  So the date that the file is sent needs to be stored in the database as a discreet field to be used for analytics.  This is done by parsing the filename which contains the date of the file.  FHIR inferno contains a filename field in every table and below is an example from coverage.  The string `fhir_input\\coverage_` needs to be removed from to parse out the date.  In my dbt_project.yml, my var will be `bcda_coverage_file_prefix: fhir_input\\\\coverage_` (there are 4 backslashes to escape the)
 ![filename](/img/bcda_connector/filename.png)
+![dbtprojectyml_example](/img/bcda_connector/dbtprojectyml_example.png)
