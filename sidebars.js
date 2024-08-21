@@ -157,6 +157,7 @@ const sidebars =
         },
         "guides/etl-automation",
         "guides/geo-coding",
+        "guides/bcda-connector",
         "guides/master-patient-index",
         "guides/normalization",
         "guides/terminology",
