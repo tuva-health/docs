@@ -155,10 +155,7 @@ const sidebars =
                 "guides/data-source-setup/upgrades",
             ]
         },
-        "guides/etl-automation",
         "guides/geo-coding",
-        "guides/master-patient-index",
-        "guides/normalization",
         "guides/terminology",
 
     ],
