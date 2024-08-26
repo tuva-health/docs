@@ -121,6 +121,12 @@ from Tuva into your data warehouse.
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/hcpcs_level_2.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/hcpcs-to-rbcs">HCPCS to RBCS</a></td>
+      <td>Centers for Medicare & Medicaid Services (CMS)</td>
+      <td>8/26/2022</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/hcpcs_to_rbcs.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/icd-9-cm">ICD-9-CM</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>5/10/2023</td>
@@ -179,6 +185,12 @@ from Tuva into your data warehouse.
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>11/3/2022</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/medicare_status.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/ms-drg-weights-los">MS DRG Weights and LOS</a></td>
+      <td>Centers for Medicare & Medicaid Services (CMS)</td>
+      <td>8/26/2022</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ms_drg_weights_los.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/ms-drg">MS-DRG</a></td>
