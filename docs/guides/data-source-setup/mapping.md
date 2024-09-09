@@ -315,7 +315,7 @@ code fields will be left null.
 
 The mapping audit checks that the value of each diagnosis code field
 is consistent across all lines for a given `claim_id`.
-The mapping audit does not check whether the value of this field is a
+The mapping audit does not check whether the values of these fields are
 valid value from terminology because if your raw data has invalid
 values you will map them to the input layer and Tuva's data quality
 intelligence will point out invalid values downstream from the input layer.
