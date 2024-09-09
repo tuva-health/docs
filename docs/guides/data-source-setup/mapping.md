@@ -43,6 +43,14 @@ Below we provide a **Mapping Checklist** of things that are important to get rig
 
 **Primary Key:** Composite primary key made up of
 `claim_id`, and `claim_line_number`.
+Note that when unioning data from multiple data sources, the
+`medical_claim` table could have collisions of `claim_id` values
+coming from different data sources, but since we always map one data source at a time
+to the Tuva input layer (and we only run the mapping audit for
+one data source at a time), you only need to make sure that
+`claim_id` and `claim_line_number` are unique and populated for all rows you map
+from your data source, and that is what the mapping audit will check for.
+
 
 The `medical_claim` table is where all institutional and professional medical
 claims go. This table is at the claim line grain, so there is one row
@@ -54,7 +62,7 @@ If there are claims in the dataset without corresponding eligibility
 dates for the claim)
 then those claims should stay in the dataset and not be
 filtered out. These claims are often excluded from financial
-analysis. In fact, the Financial PMPM inner joins `medical_claim` and
+analysis. In fact, the Financial PMPM mart inner joins `medical_claim` and
 `eligibility` to filter out claims without
 corresponding eligibility.
 However, this is not the only use of claims data, so we
@@ -123,17 +131,6 @@ consistent across all lines for a given `claim_id`.
 
 
 
-#### patient_id
-This field is a string that links each row to a given patient.
-This field should be populated for every row in the `medical_claim` table.
-It is a header-level field,
-so its value must be the same for all lines in a given claim.
-
-The mapping audit checks that every row in the `medical_claim` table
-has a populated `patient_id` and that 
-the value of this field is
-consistent across all lines for a given `claim_id`.
-
 
 #### member_id
 This field is a string that links each row to a given member.
@@ -146,18 +143,6 @@ has a populated `member_id` and that
 the value of this field is
 consistent across all lines for a given `claim_id`.
 
-
-#### payer
-This field is a string that links every row to
-the name of the payer (i.e. health insurer) providing coverage.
-This field should be populated for every row in the `medical_claim` table.
-It is a header-level field,
-so its value must be the same for all lines in a given claim.
-
-The mapping audit checks that every row in the `medical_claim` table
-has a populated `payer` and that 
-the value of this field is
-consistent across all lines for a given `claim_id`.
 
 
 #### plan
@@ -197,28 +182,6 @@ consistent across all lines for a given `claim_id`.
 
 
 
-#### admit_source_code
-This field is a single-character string that represents one of the
-standard amit source code values. This field should be populated for all
-institutional claims and is a header-level field, so its value must be
-the same for all rows in a given claim.
-
-The mapping audit checks that
-the value of this field is a single-character string and that it is
-consistent across all lines for a given `claim_id`.
-
-
-
-#### admit_type_code
-This field is a single-character string that represents one of the
-standard amit type code values. This field should be populated for all
-institutional claims and
-is a header-level field, so its value must be
-the same for all rows in a given claim.
-
-The mapping audit checks that
-the value of this field is a single-character string and that it is
-consistent across all lines for a given `claim_id`.
 
 
 #### discharge_disposition_code
@@ -231,6 +194,11 @@ the same for all rows in a given claim.
 The mapping audit checks that
 the value of this field is a two-character string and that it is
 consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
+
 
 
 #### place_of_service_code
@@ -241,6 +209,10 @@ so its value may be different for different lines in a given claim.
 
 The mapping audit checks that
 the value of this field is a two-character string.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 
@@ -257,6 +229,10 @@ the same for all rows in a given claim.
 The mapping audit checks that
 the value of this field is a three-character string and that it is
 consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 #### ms_drg_code
@@ -270,6 +246,11 @@ the same for all rows in a given claim.
 The mapping audit checks that
 the value of this field is a three-character string and that it is
 consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
+
 
 #### apr_drg_code
 This field is a three-character string that represents one of the
@@ -282,6 +263,10 @@ the same for all rows in a given claim.
 The mapping audit checks that
 the value of this field is a three-character string and that it is
 consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 #### revenue_center_code
@@ -292,6 +277,10 @@ so its value may be different for different lines in a given claim.
 
 The mapping audit checks that
 the value of this field is a four-character string.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 #### diagnosis_code_type
@@ -326,6 +315,10 @@ code fields will be left null.
 
 The mapping audit checks that the value of each diagnosis code field
 is consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 
@@ -360,6 +353,10 @@ code fields will be left null.
 
 The mapping audit checks that the value of each procedure code field
 is consistent across all lines for a given `claim_id`.
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 
@@ -434,16 +431,6 @@ be populated for every row in the `pharmacy_claim` table.
 The mapping audit checks that the values of `claim_line_number` are different
 for all lines within the same claim.
 
-#### patient_id
-This field is a string that links each row to a given patient.
-This field should be populated for every row in the `pharmacy_claim` table.
-It is a header-level field,
-so its value must be the same for all lines in a given claim.
-
-The mapping audit checks that every row in the `pharmacy_claim` table
-has a populated `patient_id` and that 
-the value of this field is
-consistent across all lines for a given `claim_id`.
 
 
 #### member_id
@@ -457,18 +444,6 @@ has a populated `member_id` and that
 the value of this field is
 consistent across all lines for a given `claim_id`.
 
-
-#### payer
-This field is a string that links every row to
-the name of the payer (i.e. health insurer) providing coverage.
-This field should be populated for every row in the `pharmacy_claim` table.
-It is a header-level field,
-so its value must be the same for all lines in a given claim.
-
-The mapping audit checks that every row in the `pharmacy_claim` table
-has a populated `payer` and that 
-the value of this field is
-consistent across all lines for a given `claim_id`.
 
 
 #### plan
@@ -516,6 +491,10 @@ The `ndc_code` field should should always be populated with 11-character strings
 
 The mapping audit checks that the `ndc_code` field is always populated
 and that it always has the correct length (11 characters).
+The mapping audit does not check whether the value of this field is a
+valid value from terminology because if your raw data has invalid
+values you will map them to the input layer and Tuva's data quality
+intelligence will point out invalid values downstream from the input layer.
 
 
 #### quantity
