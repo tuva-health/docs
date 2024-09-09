@@ -152,9 +152,6 @@ const sidebars =
                 "guides/data-source-setup/mapping",
                 "guides/data-source-setup/deployment",
                 "guides/data-source-setup/audit",
-                "guides/data-source-setup/union",
-                "guides/data-source-setup/customizations",
-                "guides/data-source-setup/upgrades",
             ]
         },
         "guides/geo-coding",
