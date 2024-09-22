@@ -1,6 +1,6 @@
 ---
-id: geo-coding
-title: "Geo-coding"
+id: geo-coding-sdoh
+title: "Geo-coding and SDOH"
 description: This guide walks you through how to transform patient data so it's ready for geospatial analytics using publicly available social determinants of health datasets.
 ---
 

@@ -14,7 +14,7 @@ quality measures. You can see the roadmap in this section. If there is a
 publicly available measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) 
 on GitHub.
 
-Check out the Knowledge Base [article](../knowledge-base/quality-measures)
+Check out the Knowledge Base [article](../knowledge/quality-measures)
 for an overview of the data mart and a walkthrough example for calculating a 
 quality measure.
 

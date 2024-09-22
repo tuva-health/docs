@@ -6,24 +6,19 @@ title: "CCSR"
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 ## Overview
-
-[Code](https://github.com/tuva-health/tuva/tree/main/models/ccsr)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ccsr)
 
 The CCSR data mart implements [AHRQ's Clinical Classifications Software Refined](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp) diagnosis and procedure grouper.  This is a very commonly used tool to group ICD-10-CM and ICD-10-PCS diagnosis and procedure codes into higher-level categories.
 
 ## Instructions
 
-This mart builds off of the Core Condition and Procedure tables.
+### Input Layer Field Requirements
 
-### dbt Examples
+This data mart can run on both claims and clinical data sources.
 
-```bash
-# Runs all marts
-dbt build
+### dbt Configuration
 
-# Runs only the CCSR mart
-dbt build --select tag:ccsr
-```
+No special dbt configurations are required to run this data mart.
 
 ## Data Dictionary
 
@@ -79,7 +74,7 @@ ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__singular_condition_category.columns" />
 
-## Analytics
+## Example SQL
 
 <details>
   <summary>Condition Count by Body System</summary>

@@ -6,7 +6,7 @@ hide_title: false
 
 ## Overview
 
-[Code](https://github.com/tuva-health/health_gorilla_connector)
+[Code on Github](https://github.com/tuva-health/health_gorilla_connector)
 
 [Health Gorilla](https://www.healthgorilla.com/) offers a FHIR API that connects to [CommonWell](https://www.commonwellalliance.org/), [Carequality](https://carequality.org/), and other nationwide health information exchange partners.
 

@@ -1,6 +1,6 @@
 ---
 id: input-layer
-title: "Input Layer"
+title: "Tuva Input Layer"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';

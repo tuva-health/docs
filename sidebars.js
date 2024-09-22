@@ -4,20 +4,48 @@ const sidebars =
     docsSidebar: 
     [ 
         "welcome",
-        "quickstart",
+        {
+            type: "category",
+            label: "Getting Started",
+            items: [
+                "getting-started/overview",
+                "getting-started/data-warehouse-support",
+                "getting-started/mapping-guide",
+                "getting-started/customizations",
+                "getting-started/terminology",
+            ]
+        },
         {
             type: "category",
             label: "Connectors",
             items: [
                 "connectors/overview",
                 "connectors/input-layer",
-                "connectors/athenahealth",
-                "connectors/cms-bcda",
-                "connectors/cms-cclf",
-                "connectors/cms-lds",
-                "connectors/elation",
-                "connectors/fhir-inferno",
-                "connectors/health-gorilla",
+                {
+                    type: "category",
+                    label: "Claims",
+                    items: [
+                        "connectors/cms-cclf",
+                        "connectors/cms-lds",
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "FHIR",
+                    items: [
+                        "connectors/fhir-inferno",
+                        "connectors/cms-bcda",
+                        "connectors/health-gorilla",
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "Medical Records",
+                    items: [
+                        "connectors/athenahealth",
+                        "connectors/elation",
+                    ]
+                },
             ]
         },
 
@@ -49,14 +77,27 @@ const sidebars =
                 "data-marts/ahrq-measures",
                 "data-marts/ccsr",
                 "data-marts/chronic-conditions",
-                "data-marts/claims-preprocessing",
+                "data-marts/claims-normalization",
                 "data-marts/cms-hccs",
                 "data-marts/ed-classification",
+                "data-marts/encounter-types",
                 "data-marts/financial-pmpm",
                 "data-marts/hcc-suspecting",
                 "data-marts/pharmacy",
                 "data-marts/quality-measures",
                 "data-marts/readmissions",
+                "data-marts/service-categories",
+            ]
+        },
+
+        {
+            type: "category",
+            label: "Data Quality",
+            items: [
+                "data-quality/overview",
+                "data-quality/mapping",
+                "data-quality/data-marts",
+                "data-quality/key-metrics",
             ]
         },
 
@@ -131,6 +172,13 @@ const sidebars =
         },
         {
             type: "category",
+            label: "Guides",
+            items: [
+                "guides/geo-coding-sdoh",
+            ]
+        },
+        {
+            type: "category",
             label: "Contributing",
             items: [
                 "contributing/contributing",
@@ -140,39 +188,25 @@ const sidebars =
         "help",
     ],
 
-    guidesSidebar: 
-    [
-        {
-            type: "category",
-            label: "Data Source Setup",
-            items: [
-                "guides/data-source-setup/overview",
-                "guides/data-source-setup/ingestion",
-                "guides/data-source-setup/configuration",
-                "guides/data-source-setup/mapping",
-                "guides/data-source-setup/deployment",
-                "guides/data-source-setup/audit",
-            ]
-        },
-        "guides/geo-coding",
-        "guides/terminology",
-
+    analyticsSidebar: 
+    [ 
+        "analytics/introduction",
     ],
 
-    knowledgebaseSidebar: 
+    knowledgeSidebar: 
     [ 
-        "knowledge-base/introduction",
+        "knowledge/introduction",
 
         {
             type: "category",
             label: "1. Claims Data Fundamentals",
             items: [
-                "knowledge-base/claims-data-fundamentals/intro-to-claims",
-                "knowledge-base/claims-data-fundamentals/claims-data-elements",
-                "knowledge-base/claims-data-fundamentals/adjustments-denials-reversals",
-                "knowledge-base/claims-data-fundamentals/member-months",
-                "knowledge-base/claims-data-fundamentals/provider-npi",
-                "knowledge-base/claims-data-fundamentals/service-categories",
+                "knowledge/claims-data-fundamentals/intro-to-claims",
+                "knowledge/claims-data-fundamentals/claims-data-elements",
+                "knowledge/claims-data-fundamentals/adjustments-denials-reversals",
+                "knowledge/claims-data-fundamentals/member-months",
+                "knowledge/claims-data-fundamentals/provider-npi",
+                "knowledge/claims-data-fundamentals/service-categories",
             ]
         },
 
@@ -180,16 +214,16 @@ const sidebars =
             type: "category",
             label: "2. Risk Adjustment",
             items: [
-                "knowledge-base/risk-adjustment/overview",
-                "knowledge-base/risk-adjustment/cms-hccs",
-                "knowledge-base/risk-adjustment/hhs-hccs",
+                "knowledge/risk-adjustment/overview",
+                "knowledge/risk-adjustment/cms-hccs",
+                "knowledge/risk-adjustment/hhs-hccs",
             ]
         },
 
-        "knowledge-base/hospital-readmissions",
-        "knowledge-base/quality-measures",
-        "knowledge-base/provider-attribution",
-        "knowledge-base/national-drug-codes",
+        "knowledge/hospital-readmissions",
+        "knowledge/quality-measures",
+        "knowledge/provider-attribution",
+        "knowledge/national-drug-codes",
     ],
     
     communitySidebar: 
