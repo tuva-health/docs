@@ -174,7 +174,7 @@ order by 1,2
 </details>
 
 ## Paid and Allowed Amounts
-If you have claims data, you can calculate the paid and allowed amounts spent on acute inpatient visits.  Because the encounter grouper in [Claims Preprocessing](../data-marts/claims-preprocessing) groups multiple claims into distinct visits, this allows you to analyze the paid and allowed amounts per visit, as opposed to per claim.
+If you have claims data, you can calculate the paid and allowed amounts spent on acute inpatient visits.  Because the encounter grouper in [Encounter Types](../data-marts/encounter-types) groups multiple claims into distinct visits, this allows you to analyze the paid and allowed amounts per visit, as opposed to per claim.
 
 <details>
   <summary>Total Paid and Allowed Amounts</summary>

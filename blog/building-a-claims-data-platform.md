@@ -68,7 +68,7 @@ It's a good practice to provide a data dictionary to your data provider to let t
 
 It's common for claims to be adjusted, denied, or reversed if there was a problem with how the claim was originally submitted.  For most analytics use cases you want to deal with final action claims and not any of these intermediary claims.  If you don't have a method for identifying and flagging adjustments, denials, and reversals it can throw off your analytics.
 
-We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge-base/claims-data-fundamentals/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
+We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge/claims-data-fundamentals/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
 
 First, ask your claims data provider how you should identify these intermediary claims in the dataset they give you.  Payers and health plans are often good about providing this info.  However, in our experience it's usually only accurate 25% of the time.
 
@@ -121,9 +121,9 @@ Groupers have been around for decades solving this problem.  As you might guess,
 - Conditions
 - Procedures
 
-**Service Categories:** [Service categories](../data-marts/claims-preprocessing) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
+**Service Categories:** [Service categories](../data-marts/service-categories) group claims into higher-level categories related to the type of service the claim was related to.  For example, was the claim inpatient, outpatient, or an office visit?  Very often service categories are used to stratify spend and utilization.  
 
-**Encounters:** It's very common for certain types of visits (especially inpatient) to be billed as multiple claims, one for the facility and one for the physician.  In order to perform analysis at the visit level, these claims must be grouped together.  [Claims Preprocessing](../data-marts/claims-preprocessing) is where claims are grouped into encounters in Tuva.
+**Encounters:** It's very common for certain types of visits (especially inpatient) to be billed as multiple claims, one for the facility and one for the physician.  In order to perform analysis at the visit level, these claims must be grouped together.  [Encounter Types](../data-marts/encounter-types) is where claims are grouped into encounters in Tuva.
 
 **Conditions:** ICD-10-CM codes make up the conditions in claims data.  That's more than 70,000 distinct codes.  In order to efficiently analyze different patient populations you need to group these codes into higher-level disease categories e.g. type 2 diabetes, chronic kidney disease, atrial fibrillation, etc.
 
