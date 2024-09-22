@@ -4,9 +4,9 @@ title: "CMS BCDA"
 hide_title: false
 ---
 
-[Check out the code on GitHub](https://github.com/tuva-health/bcda_connector)
-
 ## Overview
+
+[Code on GitHub](https://github.com/tuva-health/bcda_connector) 
 
 CMS provides access to claims data via a FHIR endpoint called the CMS Beneficiary Claims Data API (BCDA).  You can read about it [here](https://bcda.cms.gov/).
 
@@ -18,9 +18,11 @@ This process allows you to transforms data from CMS BCDA into the Tuva Data Mode
 
 We also created a demo project that leverages the sample CMS BCDA data [BCDA demo project](https://github.com/tuva-health/bcda_demo/).
 
-## Step 1: Flatten FHIR to CSVs
+## Instructions
 
-### Create configs for BCDA JSON files
+### Step 1: Flatten FHIR to CSVs
+
+#### Create configs for BCDA JSON files
 
 This step is only required if your BCDA files differ in format from the sample BCDA data.  Unfortunately there isn't a good way to tell if your data is structured differently until you attempt to run the connector.
 
@@ -65,7 +67,7 @@ as columns.  Decide which keys should be broken out into its own table to cut do
     3. Repeat step 9 for each resource
 10. Copy all config files to `fhir_inferno\configurations\configuration_bcda\config`
 
-### Parse JSON files to create CSVs
+#### Parse JSON files to create CSVs
 
 Now that you've generated the configs, which are the instructions for how to parse the JSON, it's time to actually run the parser.
 
@@ -83,11 +85,11 @@ py BCDAConnector.py
 ```
 4. Confirm CSVs have been created in the output_dir (e.g. `output_csv`)
 
-## Step 2: Load CSVs into Data Warehouse
+### Step 2: Load CSVs into Data Warehouse
 
 Now you need to load the CSVs into your data warehouse of choice (we'll trust you can take care of that).
 
-## Step 3: Import dbt Package
+### Step 3: Import dbt Package
 
 Now you're going to import the bcda_connector dbt package into your dbt project (create a new dbt project if you don't already have one).  This package will convert the CSVs into the Tuva Input Layer.
 

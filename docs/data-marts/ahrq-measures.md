@@ -5,9 +5,11 @@ title: "AHRQ Measures"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+
+
 ## Overview
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/ahrq_measures/)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ahrq_measures/)
 
 The Agency for Healthcare Research and Quality (AHRQ) develops and maintains various measures to assess the quality, safety, and effectiveness of healthcare services [(AHRQ QIs)](https://qualityindicators.ahrq.gov/measures/qi_resources). These measures include the Prevention Quality Indicators [(PQIs)](https://qualityindicators.ahrq.gov/measures/pqi_resources), Inpatient Quality Indicators [(IQIs)](https://qualityindicators.ahrq.gov/measures/iqi_resources), Patient Safety Indicators [(PSIs)](https://qualityindicators.ahrq.gov/measures/psi_resources), and Pediatric Quality Indicators [(PDIs)](https://qualityindicators.ahrq.gov/measures/pdi_resources). They are used by healthcare providers, policymakers, and researchers to identify issues, monitor progress, and compare performance to improve patient outcomes and reduce costs. 
 
@@ -75,36 +77,15 @@ The PQIs are available now in The Tuva Project. The individual measures and defi
   </tbody>
 </table>
 
+
 ## Instructions
 
+### Input Layer Field Requirements
+The AHRQ mart runs on claims data, and requires both the medical_claim and eligibility tables in the input layer to be populated.
 
-### Data Requirements
+### dbt Configuration
+No special variables or configurations are required to run this data mart.
 
-The AHRQ mart runs on claims data, and requires both the medical_claim and eligibility tables in the input layer to be populated. It requires the following fields to be populated with valid values:
-
-- ICD 10 diagnosis codes
-- ICD 10 procedure codes
-- MS_DRG codes
-- HCPC codes
-- Admit source codes
-- Facility_ID
-- Member birth date
-- Member sex
-
-
-The mart creates and uses the following seed files:
-- ahrq_measurse._value_set_pqi
-- ahrq_measures._value_set_pqi_measures
-
-### dbt Examples
-
-```bash
-# Runs all marts
-dbt build
-
-# Runs only the AHRQ mart.
-dbt build --select tag:ahrq_measures
-```
 ## Data Dictionary
 
 ### pqi_denom_long
@@ -175,8 +156,7 @@ This model is designed to be useful for analytics on pqis in your claims data se
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_summary.columns" />
 </div>
 
-## Analytics
-
+## Example SQL
 
 ### PQIs Summary
 To summarize and view the various locations of encounters that qualify for each PQI measure, we can start with the summary table below: 

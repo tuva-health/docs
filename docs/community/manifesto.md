@@ -1,6 +1,6 @@
 ---
 id: manifesto
-title: "Manifesto"
+title: "The Tuva Project Manifesto"
 hide_title: false
 ---
 

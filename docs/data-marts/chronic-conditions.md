@@ -7,7 +7,7 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 ## Overview
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/chronic_conditions)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/chronic_conditions)
 
 The Chronic Conditions data mart implements two different chronic condition groupers: one defined by [CMS](https://www2.ccwdata.org/web/guest/condition-categories-chronic) and the other defined by Tuva.  We started defining chronic conditions in Tuva after struggling to use the CMS logic, either because certain chronic conditions were missing (e.g. non-alcoholic fatty liver disease, MASH, etc.) or because existing definitions were unsatisfactory (e.g. type 1 and type 2 diabetes are considered the same condition by CMS).  
 
@@ -26,41 +26,13 @@ can read more about CMS's logic [here](https://www2.ccwdata.org/web/guest/home/)
 
 ## Instructions
 
-### Data Requirements
+### Input Layer Field Requirements
 
-The CMS grouper uses the following tables from the Tuva Core 
-Data Model:
-- condition
-- patient
-- procedure
-- medical_claim
-- pharmacy_claim
+This data mart is designed to run on either claims or clinical data sources.
 
-The Tuva grouper uses the following tables from the Tuva Core 
-Data Model:
-- condition
-- patient
+### dbt Configuration
 
-*Note: The Tuva Project will generate these Core tables. You just need to map 
-your data to the [input layer](../connectors/input-layer) and run the project.*
-
-### dbt Examples
-
-```bash
-# Runs all marts
-dbt build
-
-# Runs only the Chronic Conditions mart
-dbt build --select tag:chronic_conditions
-
-# Runs only the CMS grouper
-dbt build --cms_chronic_conditions
-
-# Runs only the Tuva grouper
-dbt build --tuva_chronic_conditions
-
-```
-
+No special dbt configurations are required to run this data mart.
 
 ## Data Dictionary
 
@@ -122,7 +94,7 @@ particular chronic condition they will have a 1 in that particular column and
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_wide.columns"  />
 
-## Analytics
+## Example SQL
 
 <details>
   <summary>Prevalence of Tuva Chronic Conditions</summary>

@@ -1,6 +1,6 @@
 ---
 id: terminology
-title: "Terminology and Value Sets"
+title: "Loading Terminology"
 ---
 
 This video describes how you can easily load Terminology and Value Sets into your data warehouse without worrying about other aspects of Tuva.

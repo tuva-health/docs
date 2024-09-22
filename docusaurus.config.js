@@ -40,11 +40,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
+          path: 'docs',
           routeBasePath: "/",
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/tuva-health/docs/edit/main/'
         },
+        
         // blog: {
         //   blogTitle: 'Decoding Healthcare Analytics',
         //   blogDescription: 'A Docusaurus powered blog!',
@@ -76,27 +78,21 @@ const config = {
         },
         items: [
 
-          {
-            type: 'doc',
-            docId: 'welcome',
-            position: 'left',
-            label: 'Docs',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'guidesSidebar',
-            position: 'left',
-            label: 'Guides',
-          },
           // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'usecaseSidebar',
+          //   type: 'doc',
+          //   docId: 'welcome',
           //   position: 'left',
-          //   label: 'Use Cases',
+          //   label: 'Docs',
           // },
           {
             type: 'docSidebar',
-            sidebarId: 'knowledgebaseSidebar',
+            sidebarId: 'analyticsSidebar',
+            position: 'left',
+            label: 'Analytics',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'knowledgeSidebar',
             position: 'left',
             label: 'Knowledge',
           },

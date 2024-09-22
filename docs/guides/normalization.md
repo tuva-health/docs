@@ -1,4 +1,0 @@
----
-id: normalization
-title: "Normalization"
----
