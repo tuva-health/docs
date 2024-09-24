@@ -115,19 +115,19 @@ table.dataTable {
 /* Adjust the font size for the second column in the ahrq-table */
 .ahrq-table th:nth-child(2),
 .ahrq-table td:nth-child(2) {
-  font-size: 0.95em; 
+  font-size: 0.95em;
 }
 
 .ahrq-table th:nth-child(3),
 .ahrq-table td:nth-child(3) {
-  width: 100%; 
-  font-size: 0.9em; 
+  width: 100%;
+  font-size: 0.9em;
 }
 
 /* New CSS rules to adjust the width of the entire table */
 .wide-table {
-  width: 100%; 
-  table-layout: auto; 
+  width: 100%;
+  table-layout: auto;
 }
 [data-theme='dark'] .table-container thead.sticky th {
     background-color: #333;
@@ -136,8 +136,8 @@ table.dataTable {
 
 .wide-table th:nth-child(2),
 .wide-table td:nth-child(2) {
-  width: 100%; 
-  font-size: 0.97em; 
+  width: 100%;
+  font-size: 0.97em;
 }
 
 /* data_dictionary_table */
