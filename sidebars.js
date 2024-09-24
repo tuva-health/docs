@@ -1,8 +1,8 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
-const sidebars = 
+const sidebars =
 {
-    docsSidebar: 
-    [ 
+    docsSidebar:
+    [
         "welcome",
         {
             type: "category",
@@ -141,10 +141,10 @@ const sidebars =
                 "terminology/present-on-admission",
                 "terminology/provider",
                 "terminology/race",
-                "terminology/revenue-center",  
+                "terminology/revenue-center",
                 "terminology/rxnorm-to-atc",
                 "terminology/snomed-ct-transitive-closures",
-                "terminology/snomed-ct",  
+                "terminology/snomed-ct",
                 "terminology/snomed-to-icd10-map",
                 "terminology/social-vulnerability-index",
                 "terminology/ssa-state-fips",
@@ -188,13 +188,13 @@ const sidebars =
         "help",
     ],
 
-    analyticsSidebar: 
-    [ 
-        "analytics/introduction",
-    ],
+    // analyticsSidebar:
+    // [
+    //     "analytics/introduction",
+    // ],
 
-    knowledgeSidebar: 
-    [ 
+    knowledgeSidebar:
+    [
         "knowledge/introduction",
 
         {
@@ -225,9 +225,9 @@ const sidebars =
         "knowledge/provider-attribution",
         "knowledge/national-drug-codes",
     ],
-    
-    communitySidebar: 
-    [ 
+
+    communitySidebar:
+    [
         "community/community-guidelines",
         "community/community-meetups",
         "community/manifesto",
@@ -235,4 +235,3 @@ const sidebars =
 };
 
 module.exports = sidebars;
-

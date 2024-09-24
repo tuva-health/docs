@@ -46,7 +46,7 @@ const config = {
           editUrl:
             'https://github.com/tuva-health/docs/edit/main/'
         },
-        
+
         // blog: {
         //   blogTitle: 'Decoding Healthcare Analytics',
         //   blogDescription: 'A Docusaurus powered blog!',
@@ -85,8 +85,8 @@ const config = {
           //   label: 'Docs',
           // },
           {
-            type: 'docSidebar',
-            sidebarId: 'analyticsSidebar',
+            type: 'doc',
+            docId: 'analytics/analyticsIntroduction',
             position: 'left',
             label: 'Analytics',
           },
@@ -134,7 +134,7 @@ const config = {
         ],
 
       },
-    
+
       footer: {
         style: 'light',
       //   links: [
@@ -208,4 +208,4 @@ const config = {
     }),
 };
 
-module.exports = config;
+module.exports = config
