@@ -78,12 +78,12 @@ const config = {
         },
         items: [
 
-          // {
-          //   type: 'doc',
-          //   docId: 'welcome',
-          //   position: 'left',
-          //   label: 'Docs',
-          // },
+          {
+            type: 'doc',
+            docId: 'welcome',
+            position: 'left',
+            label: 'Docs',
+          },
           {
             type: 'doc',
             docId: 'analytics/analyticsIntroduction',

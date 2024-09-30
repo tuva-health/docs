@@ -1,24 +1,22 @@
 ---
 id: encounter-types
-title: "Encounter Types"
+title: "Encounters"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
-[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/encounters)
 
-## Instructions
+### Inpatient
 
-### Input Layer Field Requirements
+### Outpatient
 
-### dbt Configuration
+### Office-based
 
-No special dbt configurations are required to run this data mart.
+### Other
 
 ## Data Dictionary
-
-## Methodology
 
 ## Example SQL

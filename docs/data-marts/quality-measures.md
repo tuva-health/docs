@@ -5,18 +5,13 @@ title: "Quality Measures"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/quality_measures)
 
-The Quality Measures data mart is where we are building publicly available 
-quality measures. You can see the roadmap in this section. If there is a 
-publicly available measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) 
-on GitHub.
+The Quality Measures data mart is where we are building publicly available quality measures. You can see the roadmap in this section. If there is a publicly available measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) on GitHub.
 
-Check out the Knowledge Base [article](../knowledge/quality-measures)
-for an overview of the data mart and a walkthrough example for calculating a 
-quality measure.
+Check out the Knowledge Base [article](../knowledge/quality-measures) for an overview of the data mart and a walkthrough example for calculating a quality measure.
 
 | Measure Name                                                                   | Measure ID                               | Specification                                                                 | Status                           | 
 |--------------------------------------------------------------------------------|------------------------------------------|-------------------------------------------------------------------------------|----------------------------------|
@@ -39,39 +34,13 @@ quality measure.
 | Statin Use in Persons with Diabetes (SUPD)                                     | CMS Star D12                             | [Link](https://www.cms.gov/files/document/2024-star-ratings-technical-notes.pdf#page=109) | *Planned 2024 Q4*                |
 | Urinary Incontinence                                                           | CMS Star C13, MIPS CQM 48                | [Link](https://qpp.cms.gov/docs/QPP_quality_measure_specifications/CQM-Measures/2024_Measure_048_MIPSCQM.pdf) | **Released**                     |
 
-## Instructions
-
-### Data Requirements
-This data mart uses the following tables from the Tuva Core Data Model:
-- condition
-- encounter
-- lab_result
-- medication
-- observation
-- patient
-- procedure
-- medical_claim
-- pharmacy_claim
-
-Check out the [DAG](https://tuva-health.github.io/tuva/#!/model/model.the_tuva_project.hcc_suspecting__stg_core__condition)
-to see the list of fields used from each core table.
-
-*Note: The Tuva Project will generate these Core tables. You just need to map 
-your data to the [input layer](../connectors/input-layer) and run the project.*
-
-### Variables
-The data mart includes logic that allows you to choose a measurement period 
-end date.
+The data mart includes logic that allows you to choose a measurement period end date.
 
 - `quality_measures_period_end` defaults to the current year-end
 - `snapshots_enabled` is an *optional* variable that can be enabled to allow
   running the mart for multiple years
 
-To run the data mart without the default, simply add the 
-`quality_measures_period_end` variable to your dbt_project.yml file 
-or use the `--vars` dbt command. See examples below.
-
-### dbt Examples
+To run the data mart without the default, simply add the `quality_measures_period_end` variable to your dbt_project.yml file or use the `--vars` dbt command. See examples below.
 
 dbt_project.yml:
 
@@ -79,19 +48,6 @@ dbt_project.yml:
 vars:
     quality_measures_period_end: "2020-12-31"
     snapshots_enabled: true
-```
-
-dbt command:
-
-```bash
-# Uses defaults or vars from project yml, runs all marts
-dbt build
-
-# Runs only the Quality Mesures mart using defaults or vars from project yml
-dbt build --select tag:quality_measures
-
-# Overrides vars from project yml, executes snapshots
-dbt build --select tag:quality_measures --vars '{quality_measures_period_end: "2020-12-31", snapshots_enabled: true}'
 ```
 
 ## Data Dictionary
@@ -128,7 +84,7 @@ the same logic for calculating exclusions, such as dementia or hospice. This
 shared logic can be found in the shared exclusions subfolder.
 
 
-## Analytics
+## Example SQL
 
 <details>
   <summary>Quality Measure Performance</summary>

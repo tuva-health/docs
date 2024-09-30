@@ -6,7 +6,7 @@ const sidebars =
         "welcome",
         {
             type: "category",
-            label: "Getting Started",
+            label: "How To Run Tuva",
             items: [
                 "getting-started/overview",
                 "getting-started/data-warehouse-support",
@@ -77,7 +77,6 @@ const sidebars =
                 "data-marts/ahrq-measures",
                 "data-marts/ccsr",
                 "data-marts/chronic-conditions",
-                "data-marts/claims-normalization",
                 "data-marts/cms-hccs",
                 "data-marts/ed-classification",
                 "data-marts/encounter-types",

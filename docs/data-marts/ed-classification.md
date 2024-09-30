@@ -5,18 +5,13 @@ title: "ED Classification"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/ed_classification)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ed_classification)
 
-The ED Classification data mart implements the 2017 update to the original 
-[NYU ED Classification Algorithm](https://wagner.nyu.edu/faculty/billings/nyued-background) to identify potentially preventable 
-ED visits.
+The ED Classification data mart implements the 2017 update to the original [NYU ED Classification Algorithm](https://wagner.nyu.edu/faculty/billings/nyued-background) to identify potentially preventable ED visits.
 
-## Instructions
-
-This mart builds off of the Core Encounter table and classifies 
-emergency department encounters into the following categories:
+This mart builds off of the Core Encounter table and classifies emergency department encounters into the following categories:
 
 |Classification| Description    |
 |----|----------------|
@@ -30,16 +25,6 @@ emergency department encounters into the following categories:
 |non_emergent|Non-Emergent|
 |unclassified|Not in a Special Category, and Not Classified|
 
-### dbt Examples
-
-```bash
-# Runs all marts
-dbt build
-
-# Runs only the ED Classification mart
-dbt build --select tag:ed_classification
-```
-
 ## Data Dictionary
 
 ### summary
@@ -48,11 +33,9 @@ ED Classification as a cube that can be summarized.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ed_classification__summary.columns"  />
 
-## Analytics
+## Example SQL
 
-Analyzing ED claims data helps identify high utilizers of emergency services, 
-often indicating overuse of EDs for conditions that can be managed with proper 
-primary care. 
+Analyzing ED claims data helps identify high utilizers of emergency services, often indicating overuse of EDs for conditions that can be managed with proper primary care. 
 
 <details>
   <summary>ED Classification</summary>
