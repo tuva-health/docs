@@ -5,11 +5,11 @@ title: "CMS-HCCs"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/cms_hcc)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/cms_hcc)
 
-The CMS-HCC data mart implements v24 and v28 versions of the CMS-HCC risk model.
+The CMS-HCC data mart implements v24 and v28 versions of the CMS-HCC risk model.  The full documentation of these models can be found on CMS's website.
 
 There are many tedious steps to map HCCs and calculate risk scores. Most of the critical information is not easy to use since CMS distributes rate announcements annually in PDFs and mappings in Excel files. Many existing tools, such as the SAS program from CMS, require you to have the patient data preprocessed.
 
@@ -19,18 +19,11 @@ Additionally, the new CMS-HCC model V28 will be phased in over three years, requ
 * Payment year 2025 risk scores will be blended using 33% of the risk score calculated from V24 and 67% from V28.
 * Beginning in payment year 2026 risk scores will be 100% from V28.
 
-## Instructions
-
-The data mart is built on top of the [Core Data Model](../core-data-model/overview).
 In the diagram below we provide an overview explanation of how the data mart works.
 
 <iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
-### Data Requirements
-
-In order to run the CMS-HCC data mart you need to map the following data 
-elements to the [Input Layer](../connectors/input-layer).  These are the only 
-data elements required.
+In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
 
 **Eligibility:**
 - patient_id
@@ -57,22 +50,13 @@ data elements required.
 
 **Up to 25 diagnosis codes are allowable, but only 1 is required.*
 
-### Variables
-
-The data mart includes logic that allows you to choose which payment year you 
-want to use to calculate the risk scores. You can also use the snapshot 
-functionality to capture the risk scores calculated for each payment, or 
-on a month-to-month basis.
+The data mart includes logic that allows you to choose which payment year you want to use to calculate the risk scores. You can also use the snapshot functionality to capture the risk scores calculated for each payment, or on a month-to-month basis.
 
 - `cms_hcc_payment_year` defaults to the current year
 - `snapshots_enabled` is an *optional* variable that can be enabled to allow
   running the mart for multiple years
 
-To run the data mart, simply update the payment year in your dbt_project.yml 
-file or use the `--vars` dbt command, if you want to change the payment year 
-from the current year default. See examples below.
-
-### dbt Examples
+To run the data mart, simply update the payment year in your dbt_project.yml file or use the `--vars` dbt command, if you want to change the payment year from the current year default.
 
 dbt_project.yml:
 
@@ -111,7 +95,7 @@ and payment risk score for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores.columns" />
 
-## Analytics
+## Example SQL
 
 <details>
   <summary>Average CMS-HCC Risk Scores</summary>

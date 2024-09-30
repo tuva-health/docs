@@ -5,27 +5,11 @@ title: "Financial PMPM"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/financial_pmpm)
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/financial_pmpm)
 
 The Financial PMPM data mart computes member months and stratifies population paid and allowed amounts by member months and service categories across various payers and plans.
-
-## Instructions
-
-This mart runs on claims data. You just need to map your data to 
-the [input layer](../connectors/input-layer) and run the project.
-
-### dbt Examples
-
-```bash
-# Runs all marts
-dbt build
-
-# Runs only the PMPM mart
-dbt build --select tag:financial_pmpm
-```
-
 
 ## Data Dictionary
 
@@ -64,7 +48,7 @@ A table that computes per member per month statistics for every service category
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.financial_pmpm__pmpm_payer.columns" />
 
-## Analytics
+## Example SQL
 
 <details>
   <summary>Calculate Member Months and Total Medical Spend</summary>

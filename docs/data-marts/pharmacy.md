@@ -5,9 +5,9 @@ title: "Pharmacy"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-[Code](https://github.com/tuva-health/tuva/tree/main/models/pharmacy/)
+## Methods
 
-## Overview
+[Code on Github](https://github.com/tuva-health/tuva/tree/main/models/pharmacy/)
 
 Understanding pharmacy spend in healthcare data is crucial for identifying cost trends and optimizing medication management. It allows healthcare providers and payers to track drug utilization, assess the efficacy of formulary decisions, and implement strategies to enhance patient care while controlling costs.
 
@@ -24,26 +24,9 @@ There are 3 final tables in the pharmacy mart:
 3. **generic_available_list**  
    This table lists all available generics at the NDC code level for each brand drug. It can be joined with the pharmacy_claim_expanded table using the generic_available_sk field.
 
-## Instructions
-
-### Data Requirements
-
-The pharmacy mart requires the input layer table 'pharmacy' to be populated. It also requires the NDC code column to have valid 11 digit values without any dashes.
-
 The mart creates and uses the following seed files:
 - terminology.rxnorm_brand_generic
 - pharmacy.rxnorm_generic_available
-
-### dbt Examples
-
-```bash
-# Runs all marts
-dbt build
-
-# Runs only the pharmacy mart.
-dbt build --select tag:pharmacy
-```
-
 
 ## Data Dictionary
 
@@ -85,8 +68,7 @@ This model contains a row for pharmacy claim and line. It includes the columns f
   <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.pharmacy__pharmacy_claim_expanded.columns" />
 </div>
 
-## Analytics
-
+## Example SQL
 
 ### Pharmacy Claims and Enrollment
 

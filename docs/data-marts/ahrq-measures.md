@@ -5,15 +5,15 @@ title: "AHRQ Measures"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-
-
-## Overview
+## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ahrq_measures/)
 
 The Agency for Healthcare Research and Quality (AHRQ) develops and maintains various measures to assess the quality, safety, and effectiveness of healthcare services [(AHRQ QIs)](https://qualityindicators.ahrq.gov/measures/qi_resources). These measures include the Prevention Quality Indicators [(PQIs)](https://qualityindicators.ahrq.gov/measures/pqi_resources), Inpatient Quality Indicators [(IQIs)](https://qualityindicators.ahrq.gov/measures/iqi_resources), Patient Safety Indicators [(PSIs)](https://qualityindicators.ahrq.gov/measures/psi_resources), and Pediatric Quality Indicators [(PDIs)](https://qualityindicators.ahrq.gov/measures/pdi_resources). They are used by healthcare providers, policymakers, and researchers to identify issues, monitor progress, and compare performance to improve patient outcomes and reduce costs. 
 
-The PQIs are available now in The Tuva Project. The individual measures and definitions as of the 2023 update are:
+Full documentation for these measures can be found on AHRQ's website via the links above.
+
+This data mart computes the PQIs. The individual measures and definitions as of the 2023 update are:
 
 <table class="ahrq-table">
   <thead>
@@ -76,15 +76,6 @@ The PQIs are available now in The Tuva Project. The individual measures and defi
     </tr>
   </tbody>
 </table>
-
-
-## Instructions
-
-### Input Layer Field Requirements
-The AHRQ mart runs on claims data, and requires both the medical_claim and eligibility tables in the input layer to be populated.
-
-### dbt Configuration
-No special variables or configurations are required to run this data mart.
 
 ## Data Dictionary
 

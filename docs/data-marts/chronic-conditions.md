@@ -5,34 +5,13 @@ title: "Chronic Conditions"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/chronic_conditions)
 
-The Chronic Conditions data mart implements two different chronic condition groupers: one defined by [CMS](https://www2.ccwdata.org/web/guest/condition-categories-chronic) and the other defined by Tuva.  We started defining chronic conditions in Tuva after struggling to use the CMS logic, either because certain chronic conditions were missing (e.g. non-alcoholic fatty liver disease, MASH, etc.) or because existing definitions were unsatisfactory (e.g. type 1 and type 2 diabetes are considered the same condition by CMS).  
+The Chronic Conditions data mart implements two different chronic condition groupers: one defined by [CMS](https://www2.ccwdata.org/web/guest/condition-categories-chronic) and the other defined by Tuva.  We started defining chronic conditions in Tuva after struggling to use the CMS logic, either because certain chronic conditions were missing (e.g. non-alcoholic fatty liver disease, MASH, etc.) or because existing definitions were unsatisfactory (e.g. type 1 and type 2 diabetes are considered the same condition by CMS) even though the pathology of the two is distinctly different.
 
-Tuva Chronic Conditions are defined and/or reviewed by medically-trained clinical informaticists.
-
-The Chronic Conditions data mart implements two groupers for classifying chronic condition categories:
-
-**CMS:** This version uses the logic created by CMS. There are 30 CCW Chronic Condition 
-categories, available for file years 2017 forward, and 40 other chronic health, 
-mental health, substance abuse, and potentially disabling condition categories 
-available for file years 2000 forward. These reference only ICD-10 diagnosis 
-codes and have modified look-back periods, qualifying claims, and codes. You 
-can read more about CMS's logic [here](https://www2.ccwdata.org/web/guest/home/).
-
-**Tuva:** Our own classification.  We were unsatisified with some of the CMS definitions and therefore created our own version with the input of medically trained clinical informaticists.
-
-## Instructions
-
-### Input Layer Field Requirements
-
-This data mart is designed to run on either claims or clinical data sources.
-
-### dbt Configuration
-
-No special dbt configurations are required to run this data mart.
+You can find the methods for CMS's methodology using the above link.  You can search exact codes used in the Tuva definition in the clinical concept library in our value sets.
 
 ## Data Dictionary
 

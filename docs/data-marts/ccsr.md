@@ -5,20 +5,10 @@ title: "CCSR"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ccsr)
 
-The CCSR data mart implements [AHRQ's Clinical Classifications Software Refined](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp) diagnosis and procedure grouper.  This is a very commonly used tool to group ICD-10-CM and ICD-10-PCS diagnosis and procedure codes into higher-level categories.
-
-## Instructions
-
-### Input Layer Field Requirements
-
-This data mart can run on both claims and clinical data sources.
-
-### dbt Configuration
-
-No special dbt configurations are required to run this data mart.
+The CCSR data mart implements [AHRQ's Clinical Classifications Software Refined](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp) diagnosis and procedure grouper.  This is a very commonly used tool to group ICD-10-CM and ICD-10-PCS diagnosis and procedure codes into higher-level categories.  Full documentation for this grouper can be found on AHRQ's website via the link above.
 
 ## Data Dictionary
 
