@@ -1,8 +1,10 @@
 ---
 id: overview
 title: "Overview"
-hide_title: false
+hide_title: true
 ---
+
+# Connectors
 
 Connectors are dbt projects and packages that transform standard healthcare data formats into the Tuva [Input Layer](input-layer.md).
 
