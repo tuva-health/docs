@@ -14,7 +14,7 @@ For each claims data table in the Tuva Input Layer we analyze several domains of
 - Date Fields
 - Diagnosis and Procedure Fields
 - Institutional Header Fields
-- Professional Line Fields
+- Claim Line Fields
 - Provider NPI Fields
 - Trended Claim Volume and Dollars
 - Data Loss
@@ -42,58 +42,73 @@ For each claims data table in the Tuva Input Layer we analyze several domains of
 
 ### Primary Key
 
-This is the most basic check that we need to perform on every table.  The primary key is comprised of 3 fields: claim_id, claim_line_number, and data_source.  Query the following table to check whether your data has any duplicate records.
+The most basic check we perform on any table is a primary key check.  This ensures the data in this table is at the proper grain.  Modern data warehouses (e.g. Snowflake) don't always enforce primary keys.  If the primary key isn't set properly this could cause downstream queries to explode in size and number of records.  
+
+The primary key on the `medical_claim` table is comprised of 3 fields: `claim_id`, `claim_line_number`, and `data_source`.  Query the following table to check whether your data has any duplicate records across these fields.  The `duplicate_records` column in this table should equal 0 for every table.  If it's not you have a primary key problem to fix.
 
 ```sql
 select *
-from data_quality.blah
+from data_quality.primary_key_check
 ```
 
 ### Patient ID
 
-The vast majority of analyses revolve around patients.  Therefore it's important that we check a few things related to patient_id on every claim, specifically:
+The vast majority of analyses involve analyzing patients.  Therefore it's important that we check a few things related to `patient_id` on every claim, specifically:
 
-- Is patient_id populated on every claim?
-- Is there more than 1 value for patient_id within a single claim (there shouldn't be)?
-- Does the patient_id indicated on the claim have corresponding valid eligibility?
+1. Does every line on each claim have a value for `patient_id` populated?
+2. Is there more than 1 value for `patient_id` within a single claim (there shouldn't be)?
+3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility?
 
-For the third data quality check listed above we check whether claim_start_date or claim_end_date falls within a valid enrollment date range (i.e. enrollment_start_date and enrollment_end_date) on the eligibility table.
+If a claim line does not have patient_id populated or if there are multiple patient_id values on a single claim, this will cause problems for a variety of analytics.  Steps should be taken to try to correct this in the mapping.
+
+For the third data quality check listed above we check whether either claim_start_date or claim_end_date falls within a valid enrollment date range (i.e. enrollment_start_date and enrollment_end_date) on the eligibility table.  Claims that don't meet this criteria are considered orphaned claims.
+
+None of these problems are severe enough that we would exclude claims with these problems from the dataset, but it's important to be aware of them.
 
 ```sql
 select *
-from data_quality.blah
+from data_quality.medical_claim_patient_id
 ```
 
 ### Date Fields
 
-Most analyses are longitudinal in nature, that is, they look at trends over time.  To facilitate these trends we need reliable date fields.  In medical claims the following fields are the important date fields:
+Most analyses are longitudinal in nature, that is, they look at trends or changes over time.  To make these sorts of analyses possible we need reliable date fields.  In medical claims the following fields are the important date fields:
 
-- claim_start_date
-- claim_end_date
-- claim_line_start_date
-- claim_line_end_date
-- admission_date
-- discharge_date
-- paid_date
+- `claim_start_date`
+- `claim_end_date`
+- `claim_line_start_date`
+- `claim_line_end_date`
+- `admission_date`
+- `discharge_date`
+- `paid_date`
 
-The following are some basic checks we perform on claim dates.
+We need to check these fields for the following problems:
 
-Claim start and end dates, as well as claim line start and end dates, and paid dates should be populated on every single claim line.  So we check to ensure they aren't missing.
+1. Every claim line should have a value populated for the following fields:
+- `claim_start_date`
+- `claim_end_date`
+- `claim_line_start_date`
+- `claim_line_end_date`
+- `paid_date`
 
-Additionally, admission and discharge dates should be populated on every institutional claim.
+2. `admission_date` and `discharge_date` fields should have a value populated on every claim line for institutional claims.
 
-And finally, claim start and end, paid, and admission and discharge dates should be the same for every single line of a claim, so we check to ensure they don't vary across claim lines within a single claim.
+3. Make sure there are not multiple values on claims for the following fields
+- `claim_start_date`
+- `claim_end_date`
+- `admission_date`
+- `discharge_date`
 
 ```sql
 select *
-from data_quality.blah
+from data_quality.medical_claim_date_checks
 ```
 
-Beyond these basic checks, we need to get a sense of if any of our date fields have problems over time.  For example, if we have a dataset that covers 3 calendar years, it's possible that claim_start_date is perfectly normal for the first two years, but then is completely missing thereafter.  The following query analyzes trends in each of the date fields by looking at the count of distinct claims over time for each date field:
+Beyond these basic checks, we need to check whether the values within our date fields are reasonable.  For example, if we have a dataset that covers 3 calendar years, it's possible that claim_start_date is perfectly normal for the first two years, but then is completely missing thereafter.  The following query analyzes trends in each of the date fields by looking at the count of distinct claims over time for each date field:
 
 ```sql
 select *
-from insights.count_claim_by_date_column
+from data_quality.medical_claim_date_trends
 order by 1
 ```
 
@@ -121,7 +136,6 @@ from data_quality.blah
 There are several key fields in claims data that we use to determine site of care and type of care delivered.  On institutional claims each of claim should have 1 and only 1 valid value for each of these fields:
 
 - bill_type_code
-- revenue_center_code
 - discharge_disposition_code
 - ms_drg_code
 - apr_drg_code
@@ -131,10 +145,11 @@ select *
 from data_quality.blah
 ```
 
-### Professional Line Fields
+### Claim Line Fields
 
 There are several key fields in claims data that we use to determine site of care and type of care delivered.  On professional claims each line should have 1 valid value for each of these fields:
 
+- revenue_center_code
 - place_of_service_code
 - hcpcs_code
 
@@ -156,4 +171,26 @@ Often when we map data we perform complex filtering and other types of transform
 
 ## Pharmacy Claim
 
+### Primary Key
+
+The most basic check we perform on any table is a primary key check.  This ensures the data in this table is at the proper grain.  Modern data warehouses (e.g. Snowflake) don't always enforce primary keys.  If the primary key isn't set properly this could cause downstream queries to explode in size and number of records.  
+
+The primary key on the `pharmacy_claim` table is comprised of 3 fields: `claim_id`, `claim_line_number`, and `data_source`.  Query the following table to check whether your data has any duplicate records across these fields.  The `duplicate_records` column in this table should equal 0 for every table.  If it's not you have a primary key problem to fix.
+
+```sql
+select *
+from data_quality.primary_key_check
+```
+
 ## Eligibility
+
+### Primary Key
+
+The most basic check we perform on any table is a primary key check.  This ensures the data in this table is at the proper grain.  Modern data warehouses (e.g. Snowflake) don't always enforce primary keys.  If the primary key isn't set properly this could cause downstream queries to explode in size and number of records.  
+
+The primary key on the `eligibility` table is comprised of 4 fields: `patient_id`, `enrollment_start_date`, `enrollment_end_date` and `data_source`.  Query the following table to check whether your data has any duplicate records across these fields.  The `duplicate_records` column in this table should equal 0 for every table.  If it's not you have a primary key problem to fix.
+
+```sql
+select *
+from data_quality.primary_key_check
+```
