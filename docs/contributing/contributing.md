@@ -3,7 +3,7 @@ id: contributing
 title: "Contributing"
 ---
 
-# 👋 Welcome
+# Contributing
 
 Hello and welcome! Thank you so much for taking the time to contribute to the Tuva Project. People like you are helping to build a community of healthcare data practitioners that shares knowledge and tools. Whether it’s fixing a bug, submitting an idea, updating the docs, or sharing your healthcare knowledge, you can make an impact!
 

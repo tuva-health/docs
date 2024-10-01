@@ -1,7 +1,10 @@
 ---
 id: overview
 title: "Overview"
+hide_title: true
 ---
+
+# Value Sets
 
 Value sets are lookup tables that define concepts that are useful for analytics.  For example: conditions, therapies, service categories, etc.  Many data marts leverage value sets e.g. quality measures, HCCs, chronic conditions, etc.
 

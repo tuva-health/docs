@@ -8,7 +8,7 @@ description: Instructions for getting started with the Tuva Project.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# 🏁 Overview
+# 🏁 How To Run Tuva
 
 We created this video to demonstrate how to get up and running with Tuva on your claims data.  Although this video is specific to claims, you can follow a similar pattern for clinical data.
 
