@@ -1,11 +1,14 @@
 ---
 id: overview
 title: "Overview"
+hide_title: true
 description: The Tuva Project makes it easy to load useful terminology sets like ICD-10 codes directly into your data warehouse where you need them for analytics.
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
+
+# Terminology
 
 Terminology sets are reference code sets and descriptions used in claims and medical record data.  These code sets are maintained by many different organizations, updated on various frequencies, and often distributed in ways that make it a pain to load them into your data warehouse.
 
