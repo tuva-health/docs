@@ -1,12 +1,14 @@
 ---
 id: service-categories
 title: "Service Categories"
+toc_min_heading_level: 2
+toc_max_heading_level: 4
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
-## Methods
+## Overview
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/service_category)
 
@@ -87,27 +89,28 @@ Professional claims are also defined at the claim line level.
 
 ### Inpatient
 
-Service Category 2 (Click to expand and see specific codes that make up each category)
+Service Category 2 (Click to expand and see specific codes that make up each category. Service category 3 is listed where applicable.)
+#### Acute Inpatient {#hidden-heading}
 <details>
 <summary><strong>Acute Inpatient</strong></summary>
 
 
-#### Institutional Claims
+##### Institutional Claims
 - **DRG Codes**:
   - Any valid Diagnosis-Related Group (MS-DRG or APR-DRG) code: These classify hospital cases into groups expected to have similar hospital resource use.
 - **Bill Type Codes**:
-  - **11x**: General Inpatient - Non-specialty care typically provided in a hospital setting.
-  - **12x**: Inpatient Psychiatric Services - Specialized care provided for psychiatric conditions.
+  - **11x**: General Inpatient 
+  - **12x**: Inpatient Psychiatric Services 
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
-  - **21**: Inpatient Hospital - Services are provided to admitted patients.
+  - **21**: Inpatient Hospital 
 
-#### Service Category 3
+##### Service Category 3
 - **Medical**: 
-  - DRGs designated as Medical per CMS DRG definition: Typically involves non-surgical treatment.
+  - DRGs designated as Medical per CMS DRG definition
 - **Surgical**: 
-  - DRGs designated as Surgical per CMS DRG definition: Involves operative procedures.
+  - DRGs designated as Surgical per CMS DRG definition
 - **Acute Inpatient**: 
   - Any other acute inpatient claims that don't roll up to other service categories.
 - **L/D Vaginal Delivery**:
@@ -139,11 +142,11 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Major Diagnostic Categories (MDC) Codes 14 or 15**: Pregnancy, Childbirth, the Puerperium, and Newborns & Other Neonates with Conditions Originating in the Perinatal Period, which do not fit into the other specified categories.
 
 </details>
-
+#### Inpatient Substance Use {#hidden-heading}
 <details>
 <summary><strong>Inpatient Substance Use</strong></summary>
 
-#### Institutional Claims
+###### Institutional Claims
 - **Taxonomy Codes**:
   - **324500000X**: Substance Abuse Rehabilitation Facility
   - **261QR0405X**: Substance Use Disorder Rehabilitation Facility
@@ -156,34 +159,34 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **SYM009**: Mental Health and Substance Use Assessment
   - **MBD034**: Drug Use Disorders
 
-#### Professional Claims
+###### Professional Claims
 - None
 
 </details>
-
+#### Inpatient Hospice {#hidden-heading}
 <details>
 <summary><strong>Inpatient Hospice</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
-  - In the range of **82x**: Specific to inpatient hospice services.
+  - **82x**: Inpatient hospice services
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **34**: Hospice facility
 
 </details>
 
-
+#### Inpatient Psychiatric {#hidden-heading}
 <details>
 <summary><strong>Inpatient Psychiatric</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Taxonomy Codes**:
   - **283Q00000X**: Psychiatric Hospital
   - **273R00000X**: Psychiatric Residential Treatment Facility
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Codes**:
   - **51**: Inpatient Psychiatric Facility
   - **55**: Residential Substance Abuse Treatment Facility
@@ -191,29 +194,30 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-
+#### Inpatient Rehabilitation {#hidden-heading}
 <details>
 <summary><strong>Inpatient Rehabilitation</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Taxonomy Codes**:
   - **283X00000X**: Rehabilitation Hospital
   - **273Y00000X**: Physical Medicine and Rehabilitation Facility
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **61**: Comprehensive Outpatient Rehabilitation Facility (CORF)
 
 </details>
-
+#### Skilled Nursing {#hidden-heading}
 <details>
 <summary><strong>Skilled Nursing</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
-  - In the range of **21x** and **22x**: These codes are typically used for skilled nursing facility services.
+  - **21x**: Inpatient Skilled Nursing (Part A)
+  - **22x**: Inpatient Skilled Nursing (Part B)
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Codes**:
   - **31**: Skilled Nursing Facility
   - **32**: Nursing Facility
@@ -222,26 +226,29 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 
 ### Outpatient
+#### Ambulatory Surgery Center {#hidden-heading}
 <details>
 <summary><strong>Ambulatory Surgery Center</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Revenue Codes**:
   - **0490**: Ambulatory Surgical Care - General classification
   - **0499**: Ambulatory Surgical Care - Other
 - **Taxonomy Code**:
   - **261QA1903X**: Ambulatory Surgical Center
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **24**: Ambulatory Surgical Center
 
 </details>
+#### Dialysis {#hidden-heading}
 <details>
 <summary><strong>Dialysis</strong></summary>
 
-#### Institutional Claims
-- **Bill Type Codes**: Includes bills starting with '72'.
+##### Institutional Claims
+- **Bill Type Codes**: 
+    -**72**: Independent Renal Dialysis Center
 - **Taxonomy Codes**:
   - **2472R0900X**: Nephrology Dialysis Technician
   - **163WD1100X**: Dialysis Registered Nurse
@@ -251,9 +258,15 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **91**: Procedures related to dialysis
   - **58**: Dialysis (renal)
   - **57**: Acute renal failure
-- **Revenue Center Codes**: Includes codes starting with '082', '083', '084', '085', '088', typically associated with specific dialysis-related services.
+- **Revenue Center Codes**:
+  - **082x**: Hemodialysis
+  - **083x**: Peritoneal Dialysis
+  - **084x**: Continuous Ambulatory Peritoneal Dialysis
+  - **085x**: Continuous Cycling Peritoneal Dialysis
+  - **088x**: Misc Dialysis
 
-#### Professional Claims
+
+##### Professional Claims
 - **Place of Service Code**:
   - **65**: End-Stage Renal Disease Treatment Facility
 - **CCS Category Codes**:
@@ -262,11 +275,11 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **57**: Acute renal failure
 
 </details>
-
+#### Emergency Department{#hidden-heading}
 <details>
 <summary><strong>Emergency Department</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Revenue Center Codes**:
   - **0450**: Emergency room - General
   - **0451**: Emergency room - Urgent care
@@ -285,7 +298,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **G0383**: Level 4 hospital emergency department visit
   - **G0384**: Level 5 hospital emergency department visit
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **23**: Emergency Room
 - **HCPCS Codes**:
@@ -301,43 +314,47 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **G0384**: Level 5 hospital emergency department visit
 
 </details>
+#### Home Health{#hidden-heading}
 <details>
 <summary><strong>Home Health</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
-  - Begins with '31', '32', or '33', typically associated with Home Health services.
+  - **31x**: Home Health Inpatient Part A
+  - **32x**: Home Health Inpatient Part B 
+  - **33x**: Home Health Outpatient
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **12**: Home
 
 </details>
+#### Observation {#hidden-heading}
 <details>
 <summary><strong>Observation</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Revenue Center Code**:
   - **0762**: Observation Room
 - **HCPCS Codes**:
   - **G0378**: Hospital observation service, per hour
   - **G0379**: Direct admission of patient for hospital observation care
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
   - **G0378**: Hospital observation service, per hour
   - **G0379**: Direct admission of patient for hospital observation care
 
 </details>
 
-
+#### Outpatient Hospice {#hidden-heading}
 <details>
 <summary><strong>Outpatient Hospice</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
-  - Begins with '81'.
-- **HCPCS Codes** (not applicable for bill types starting with '31', '32', or '33'):
+  - **81**: Hospice
+- **HCPCS Codes** (not applicable for bill types '31x', '32x', or '33x'):
   - **Q5001**: Hospice facility, under arrangement (non-hospital-based)
   - **Q5002**: Hospice facility, under arrangement (hospital-based)
   - **Q5003**: Hospice care provided in a nursing facility, under arrangement
@@ -346,7 +363,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **0651**: Hospice service (routine home care)
   - **0652**: Hospice service (continuous home care)
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
   - **Q5001**: Hospice facility, under arrangement (non-hospital-based)
   - **Q5002**: Hospice facility, under arrangement (hospital-based)
@@ -354,16 +371,20 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Q5009**: Hospice in a patient's home/residence
 
 </details>
+#### Outpatient Hospital or Clinic {#hidden-heading}
 <details>
 <summary><strong>Outpatient Hospital or Clinic</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
-  - Begins with '13', '71', or '73'.
+  - **13x**: Outpatient Hospital 
+  - **71x**: Clinic services
+  - **73x**: Outpatient Hospital/Clinic
+
 - **CCS Category**:
   - **227**: Consultation, evaluation, and preventative care
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Codes**:
   - **15**: Mobile Unit
   - **17**: Walk-in Retail Health Clinic
@@ -376,16 +397,16 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **72**: Rural Health Clinic
 
 </details>
-
+#### Outpatient Psychiatric {#hidden-heading}
 <details>
 <summary><strong>Outpatient Psychiatric</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Primary Taxonomy Codes**:
   - **283Q00000X**: Psychiatric Hospital
   - **273R00000X**: Psychiatric Residential Treatment Facility
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Codes**:
   - **52**: Psychiatric Facility - Partial Hospitalization
   - **53**: Community Mental Health Center
@@ -393,17 +414,17 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **58**: Residential Substance Abuse Treatment Facility
 
 </details>
-
+#### Outpatient PT/OT/ST {#hidden-heading}
 <details>
 <summary><strong>Outpatient PT/OT/ST</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **CCS Category Codes**:
   - **213**: Physical Therapy
   - **212**: Occupational Therapy
   - **215**: Speech Therapy
 
-#### Professional Claims (excluding claims with Place of Service code 11):
+##### Professional Claims (excluding claims with Place of Service code 11):
 - **CCS Category Codes**:
   - **213**: Physical Therapy
   - **212**: Occupational Therapy
@@ -420,19 +441,19 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Speech-Language Assistant**
 
 </details>
-
+#### Outpatient Radiology {#hidden-heading}
 <details>
 <summary><strong>Outpatient Radiology</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **HCPCS Codes**:
     - Part of the [NITOS list](https://www.neimanhpi.org/neiman-imaging-types-of-service-nitos/).
 
-#### Professional Claims (excluding claims with Place of Service code 11):
+##### Professional Claims (excluding claims with Place of Service code 11):
 - **HCPCS Codes**:
     - Part of the [NITOS list](https://www.neimanhpi.org/neiman-imaging-types-of-service-nitos/).
 
-### Service Category 3
+##### Service Category 3
 - **PET**:
   - **NITOS Modality Nuclear Medicine**: Includes positron emission tomography services.
 - **MRI**:
@@ -444,11 +465,11 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-
+#### Outpatient Rehabilitation {#hidden-heading}
 <details>
 <summary><strong>Outpatient Rehabilitation</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Primary Taxonomy Codes**:
   - **283X00000X**: Rehabilitation Hospital
   - **273Y00000X**: Physical Medicine & Rehabilitation (PM&R) Facility
@@ -463,16 +484,16 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **2081S0010X**: Sports Medicine (Physical Medicine & Rehabilitation)
   - **261QR0404X**: Rehabilitation, Physical Therapy Facility
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **62**: Comprehensive Outpatient Rehabilitation Facility (CORF) services
 
 </details>
-
+#### Outpatient Substance Use {#hidden-heading}
 <details>
 <summary><strong>Outpatient Substance Use</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Default CCSR Category Descriptions**:
   - **MBD026**: Substance Use Disorders
   - **SYM008**: Mental Health and Substance Use Interventions
@@ -484,7 +505,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **261QR0405X**: Substance Use Disorder Rehabilitation Facility
   - **101YA0400X**: Addiction (Substance Use Disorder)
 
-#### Professional Claims
+##### Professional Claims
 - **CCSR Category Codes**:
   - **MBD026**: Substance Use Disorders
   - **SYM008**: Mental Health and Substance Use Interventions
@@ -493,18 +514,19 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **MBD034**: Drug Use Disorders
 
 </details>
-
+#### Outpatient Surgery {#hidden-heading}
 <details>
 <summary><strong>Outpatient Surgery</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **CCS Categories**:
-  - Between '1' and '176' (encompassing a wide range of surgical procedures)
-  - Specifically include '229', '230', '231', '232', '244' (detailing specific types of surgeries or procedures not covered by the broader range)
+  - All categories between '1' and '176' 
+  - 229', '230', '231', '232', '244' 
 
-#### Professional Claims
+##### Professional Claims
 - **CCS Categories**:
-  - Same as institutional: between '1' and '176', and including '229', '230', '231', '232', '244'
+  - All categories between '1' and '176' 
+  - 229', '230', '231', '232', '244' 
 - **Limited to Place of Service Codes**:
   - **15**: Mobile Unit
   - **17**: Walk-in Retail Health Clinic
@@ -517,39 +539,39 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **72**: Rural Health Clinic
 
 </details>
-
+#### Pharmacy {#hidden-heading}
 <details>
 <summary><strong>Pharmacy</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Revenue Center Codes**:
-  - **025**, **026**, **063**, **089**: Generally associated with pharmacy and IV therapy services.
+  - **025x**, **026x**, **063x**, **089x**: Pharmacy and IV therapy services.
   - **0547**: Specific pharmacy-related service.
 - **CCS Category**:
   - **240**: Medications
 
-#### Professional Claims
+##### Professional Claims
 - **CCS Category**:
   - **240**: Medications
 
 </details>
-
+#### Urgent Care{#hidden-heading}
 <details>
 <summary><strong>Urgent Care</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Revenue Center Code**:
-  - **0456**: Specifically related to urgent care services, combined with bill types beginning with '13', '71', or '73'.
+  - **0456**: Specifically related to urgent care services, only with bill types with '13x', '71x', or '73x'.
 - **HCPCS Codes**:
   - **S9088**: Global fee for urgent care centers.
   - **99051**: Service(s) provided in the office during regularly scheduled evening, weekend, or holiday office hours, in addition to basic service.
   - **S9083**: Global fee for services typically provided in urgent care centers.
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
-  - **S9088**
-  - **99051**
-  - **S9083**
+  - **S9088**: Global fee for urgent care centers.
+  - **99051**: Service(s) provided in the office during regularly scheduled evening, weekend, or holiday office hours, in addition to basic service.
+  - **S9083**: Global fee for services typically provided in urgent care centers.
 - **Place of Service Code**:
   - **20**: Urgent Care Facility
 
@@ -557,24 +579,12 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 
 ### Office-based 
-Office based service categories are limited to professional claims with place of service 02, 10, and 11 only. There are no institutional claims associated with office based service categories. 
-
+office-based service categories are limited to professional claims with place of service 02, 10, and 11 only. There are no institutional claims associated with office-based service categories. 
+#### Office-Based PT/OT/ST {#hidden-heading}
 <details>
-<summary><strong>Office Based Other</strong></summary>
+<summary><strong>Office-Based PT/OT/ST</strong></summary>
 
-#### Professional Claims
-- **Place of Service Codes**:
-  - **02**: Telehealth provided other than in patient's home.
-  - **10**: Telehealth provided in patient's home.
-  - **11**: Office. 
-
-</details>
-
-
-<details>
-<summary><strong>Office Based PT/OT/ST</strong></summary>
-
-#### Professional Claims
+##### Professional Claims
 - **CCS Categories**:
   - **213**: Physical Therapy
   - **212**: Occupational Therapy
@@ -590,23 +600,23 @@ Office based service categories are limited to professional claims with place of
   - **Speech Language Pathologist**
   - **Speech-Language Assistant**
 - **Place of Service Code**:
-  - **11**: Office. 
+  - **11**: Office
 
 </details>
 
-
+#### Office-Based Radiology{#hidden-heading}
 <details>
-<summary><strong>Office Based Radiology</strong></summary>
+<summary><strong>Office-Based Radiology</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **HCPCS Codes**:
     - Part of the [NITOS list](https://www.neimanhpi.org/neiman-imaging-types-of-service-nitos/).
 
-#### Professional Claims:
+##### Professional Claims:
 - **HCPCS Codes**:
     - Part of the [NITOS list](https://www.neimanhpi.org/neiman-imaging-types-of-service-nitos/).
 
-#### Service Category 3
+##### Service Category 3
 - **PET**:
   - **NITOS Modality Nuclear Medicine**: Includes positron emission tomography services.
 - **MRI**:
@@ -617,49 +627,61 @@ Office based service categories are limited to professional claims with place of
   - **All other NITOS modalities**: Covers radiological services that do not fall specifically under PET, MRI, or CT modalities.
 
 </details>
-
+#### Office-Based Surgery {#hidden-heading}
 <details>
 <summary><strong>Office-Based Surgery</strong></summary>
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
-  - Ranges from **10021** to **69999**: Includes a variety of surgical procedures that can be performed in an office setting.
+  - Ranges from **10021** to **69999**: Surgical HCPC range
 
 </details>
 
-
+#### Office-Based Visit {#hidden-heading}
 <details>
 <summary><strong>Office-Based Visit</strong></summary>
 
-#### Professional Claims
+##### Professional Claims
 - **CCS Category**:
-  - **227**: Consultation, evaluation, and preventative care. (must be paired with POS code 11).
+  - **227**: Consultation, evaluation, and preventative care. (must be paired with POS code 11)
 
 
 </details>
+#### Office-Based Other {#hidden-heading}
+<details>
+<summary><strong>Office-Based Other</strong></summary>
 
+##### Professional Claims
+- **Place of Service Codes**:
+  - **02**: Telehealth provided other than in patient's home
+  - **10**: Telehealth provided in patient's home
+  - **11**: Office
+
+</details>
+#### Telehealth Visit{#hidden-heading}
 <details>
 <summary><strong>Telehealth Visit</strong></summary>
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Codes**:
-  - **02**: Telehealth provided other than in patient's home.
-  - **10**: Telehealth provided in patient's home.
+  - **02**: Telehealth provided other than in patient's home
+  - **10**: Telehealth provided in patient's home
 
 </details>
 
 ### Ancillary
+#### Ambulance {#hidden-heading}
 <details>
 <summary><strong>Ambulance</strong></summary>
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
   - Ranges from **A0425** to **A0436**: These codes are specific to various ambulance services such as mileage and different levels of ambulance service care.
 - **Place of Service Codes**:
   - **41**: Ambulance - Land
   - **42**: Ambulance - Air or Water
 
-#### Institutional Claims
+##### Institutional Claims
 - **HCPCS Codes**:
   - Ranges from **A0425** to **A0436**: Includes ambulance services ranging from basic life support to more specialized forms of transportation.
 - **Revenue Center Code**:
@@ -667,19 +689,20 @@ Office based service categories are limited to professional claims with place of
 
 </details>
 
+#### Durable Medical Equipment {#hidden-heading}
 <details>
-<summary><strong>Durable Medical Equipment (DME)</strong></summary>
+<summary><strong>Durable Medical Equipment</strong></summary>
 
-#### Professional Claims
+##### Professional Claims
 - **HCPCS Codes**:
   - Ranges from **E0100** to **E8002**: This includes a wide range of durable medical equipment (DME), such as wheelchairs, hospital beds, and other medical devices provided to patients for home use.
 
 </details>
-
+#### Lab {#hidden-heading}
 <details>
-<summary><strong>Lab Services</strong></summary>
+<summary><strong>Lab</strong></summary>
 
-#### Institutional Claims
+##### Institutional Claims
 - **Bill Type Codes**:
   - **14x**: Laboratory
 - **CCS Categories**:
@@ -687,7 +710,7 @@ Office based service categories are limited to professional claims with place of
   - **234**: Pathology
   - **235**: Other lab
 
-#### Professional Claims
+##### Professional Claims
 - **Place of Service Code**:
   - **81**: Independent Lab
 - **CCS Categories**:
@@ -703,4 +726,25 @@ Any claim/claim line that does not roll up to any of the previous categories. Th
 
 ## Data Dictionary
 
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.service_category__service_category_grouper.columns"  />
+
 ## Example SQL
+
+We can group payments by service category by querying the core.medical_claim table.
+
+
+<details>
+<summary><strong>Paid Amount by Service Category</strong></summary>
+
+```sql
+select 
+service_category_1
+,service_category_2
+,sum(paid_amount) as paid_amount
+from core.medical_claim
+group by service_category_1
+,service_category_2
+order by service_category_1
+,service_category_2
+```
+</details>
