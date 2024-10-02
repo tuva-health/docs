@@ -1,7 +1,10 @@
 ---
 id: overview
 title: "Overview"
+hide_title: true
 ---
+
+# Core Data Model
 
 ![Core Data Model](/img/core_data_model.jpg)
 

@@ -94,9 +94,8 @@ const sidebars =
             label: "Data Quality",
             items: [
                 "data-quality/overview",
-                "data-quality/mapping",
-                "data-quality/data-marts",
-                "data-quality/key-metrics",
+                "data-quality/atomic-level",
+                "data-quality/analytics-level",
             ]
         },
 
