@@ -6,7 +6,6 @@ toc_max_heading_level: 4
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
-import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
 ## Overview
 
