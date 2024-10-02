@@ -6,37 +6,7 @@ hide_title: false
 
 Atomic-level data quality is all about identifying problems in the raw data.  Some of these problems can result from how the data is mapped, so upon identifying any potential problem it's important to go back to the mapping and see if that is what is causing the problem.  Absent that, the problem is an artifact of the raw data.
 
-For each claims data table in the Tuva Input Layer we analyze several domains of data quality problems.
-
-**Medical Claim:**
-- Primary Key
-- Patient ID
-- Date Fields
-- Diagnosis and Procedure Fields
-- Institutional Header Fields
-- Claim Line Fields
-- Provider NPI Fields
-- Trended Claim Volume and Dollars
-- Data Loss
-
-**Pharmacy Claim:**
-- Primary Key
-- Patient ID
-- Date Fields
-- NDC
-- Other Drug Fields
-- NPI Fields
-- Trended Claim Volume and Dollars
-- Data Loss
-
-**Eligibility:**
-- Primary Key
-- Patient ID
-- Date Fields
-- Patient Demographics
-- Payer Info
-- Trended Enrollment Volume
-- Data Loss
+For each claims data table in the Tuva Input Layer we analyze several domains of data quality problems.  We have organized these domains in order of importance.
 
 ## Medical Claim
 
@@ -114,7 +84,7 @@ order by 1
 
 ### Diagnosis and Procedure Fields
 
-Most analyses we perform incorporate information about the condition of the patient and / or procedures performed on the patient.  Therefore it's critical that we have solid information on ICD-10-CM and ICD-10-PCS codes which encode this information.
+Most analyses we perform incorporate information about the patient's health conditions and / or procedures performed on the patient.  Therefore it's critical that we have solid information on ICD-10-CM and ICD-10-PCS codes which encode this information.
 
 For ICD-10-CM diagnosis codes we check the following properties.  To start with, every single claim should have 1 and only 1 valid primary diagnosis code (i.e. diagnosis_code_1).  So we check each claim to see whether diagnosis_code_1 is missing, is valid, and if there is more than 1.
 
@@ -128,7 +98,7 @@ The query below will display the results from each of these checks:
 
 ```sql
 select *
-from data_quality.blah
+from data_quality.dx_and_px
 ```
 
 ### Institutional Header Fields
@@ -142,32 +112,54 @@ There are several key fields in claims data that we use to determine site of car
 
 ```sql
 select *
-from data_quality.blah
+from data_quality.inst_header_fields
 ```
 
 ### Claim Line Fields
 
-There are several key fields in claims data that we use to determine site of care and type of care delivered.  On professional claims each line should have 1 valid value for each of these fields:
+There are a few key fields in claims data that we use to determine site of care and type of care delivered.  This includes 3 fields at the claim line level.  We check to make sure these fields are not missing and contain valid values.
 
 - revenue_center_code
 - place_of_service_code
 - hcpcs_code
 
+```sql
+select *
+from data_quality.claim_line_fields
+```
+
 ### Provider NPI Fields
 
-Often we wish to do analysis about the specific providers or facilities delivering care.  NPI is critical here.  Therefore we perform the following checks on NPI:
+Often we wish to do analysis about the specific providers or facilities delivering care.  NPI is critical here because it's how we identify providers, facilities, and health systemcs.  Therefore we perform the following checks on NPI:
 
-- Every claim should have 1 and only 1 billing_npi and it should be valid
-- Every claim should have 1 or more rendering_npi values and they should be valid
-- Every institutional claim should have 1 and only 1 facility_npi and it should be valid
+- Every claim should have 1 and only 1 `billing_npi` and it should be valid
+- Every claim should have 1 or more `rendering_npi` values and they should be valid
+- Every institutional claim should have 1 and only 1 `facility_npi` and it should be valid
+
+```sql
+select *
+from data_quality.medical_claim_npi
+```
 
 ### Trended Claim Volume and Dollars
 
 Often we see anomalies where claim volume or dollars can change unexpectedly over time, possibly indicating a data quality problem.  Therefore we need to check whether this is the case.
 
+```sql
+select *
+from data_quality.trended_medical_claim_volume_and_dollars
+```
+
 ### Data Loss
 
 Often when we map data we perform complex filtering and other types of transformation operations.  In these scenarios it can be easy for unintended data loss to occur.  Therefore we need to confirm some basic statistics between the raw source data and the Tuva Input Layer to ensure unintended data loss hasn't occurred.
+
+The table identified in the query below will only populate once you've created the data loss table in the Input Layer.  To create this table, you manually calculate the exact same metrics as the source data.
+
+```sql
+select *
+from data_quality.medical_claim_data_loss
+```
 
 ## Pharmacy Claim
 
@@ -182,6 +174,20 @@ select *
 from data_quality.primary_key_check
 ```
 
+### Patient ID
+
+### Date Fields
+
+### NDC
+
+### Prescription Details
+
+### NPI Fields
+
+### Trended Claim Volume and Dollars
+
+### Data Loss
+
 ## Eligibility
 
 ### Primary Key
@@ -194,3 +200,15 @@ The primary key on the `eligibility` table is comprised of 4 fields: `patient_id
 select *
 from data_quality.primary_key_check
 ```
+
+### Patient ID
+
+### Date Fields
+
+### Patient Demographics
+
+### Payer Info
+
+### Trended Enrollment Volume
+
+### Data Loss
