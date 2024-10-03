@@ -7,6 +7,9 @@ toc_max_heading_level: 4
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
+
+<div class="hide-h4">
+
 ## Overview
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/service_category)
@@ -25,6 +28,7 @@ The data elements that we use to create this grouper are as follows:
 
 
 The Tuva Project Service Category Grouper has three levels in a hierarchy with each subcategory rolling up to a high level category. Because all subcategories roll up to one and only one higher level category, the sum of all the logic for each subcategory in a category is the same as the logic for the category. As such, we'll describe the higher level categories conceptually without codes, and then we'll define each subcategory sharing the code sets. See table below for a quick view of the categories and subcategories:
+
 
 | SERVICE_CATEGORY_1 | SERVICE_CATEGORY_2 | SERVICE_CATEGORY_3 |
 | --- | --- | --- |
@@ -75,9 +79,9 @@ The Tuva Project Service Category Grouper has three levels in a hierarchy with e
 
 
 When developing any grouper we keep the following principles in mind:
-- **Cardinality is Palatable:** If there were hundreds of catogories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
-- **Mutually Exclusive and Exaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the sum of all payments for each individual claim.
-- **The "Other" Category Isn't Too Large:** In order to make the grouper exaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
+- **Cardinality is Palatable:** If there were hundreds of categories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
+- **Mutually Exclusive and Exhaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the sum of all payments for each individual claim.
+- **The "Other" Category Isn't Too Large:** In order to make the grouper Exhaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
 - **Hierarchical:** It's a balancing act to try to create groups with low cardinality but providing enough homogeneity inside each group for analysis to be actionable. This often leads us to create hierarchical groupers so that you can see high level groups first and then drill in to get more specific while still keeping the broader context simple.
 - **Feasible:** Any categorization grouper is only useful if you're able to group things into the categories using data elements that are readily available and populated reasonably consistently.
 
@@ -89,7 +93,9 @@ Professional claims are also defined at the claim line level.
 ### Inpatient
 
 Service Category 2 (Click to expand and see specific codes that make up each category. Service category 3 is listed where applicable.)
-#### Acute Inpatient {#hidden-heading}
+
+#### Acute Inpatient 
+
 <details>
 <summary><strong>Acute Inpatient</strong></summary>
 
@@ -141,7 +147,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Major Diagnostic Categories (MDC) Codes 14 or 15**: Pregnancy, Childbirth, the Puerperium, and Newborns & Other Neonates with Conditions Originating in the Perinatal Period, which do not fit into the other specified categories.
 
 </details>
-#### Inpatient Substance Use {#hidden-heading}
+
+#### Inpatient Substance Use 
+
 <details>
 <summary><strong>Inpatient Substance Use</strong></summary>
 
@@ -162,7 +170,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 - None
 
 </details>
-#### Inpatient Hospice {#hidden-heading}
+
+#### Inpatient Hospice 
+
 <details>
 <summary><strong>Inpatient Hospice</strong></summary>
 
@@ -176,7 +186,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Inpatient Psychiatric {#hidden-heading}
+
+#### Inpatient Psychiatric 
+
 <details>
 <summary><strong>Inpatient Psychiatric</strong></summary>
 
@@ -193,7 +205,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Inpatient Rehabilitation {#hidden-heading}
+
+#### Inpatient Rehabilitation 
+
 <details>
 <summary><strong>Inpatient Rehabilitation</strong></summary>
 
@@ -207,7 +221,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **61**: Comprehensive Outpatient Rehabilitation Facility (CORF)
 
 </details>
-#### Skilled Nursing {#hidden-heading}
+
+#### Skilled Nursing 
+
 <details>
 <summary><strong>Skilled Nursing</strong></summary>
 
@@ -225,7 +241,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 
 ### Outpatient
-#### Ambulatory Surgery Center {#hidden-heading}
+
+#### Ambulatory Surgery Center 
+
 <details>
 <summary><strong>Ambulatory Surgery Center</strong></summary>
 
@@ -241,7 +259,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **24**: Ambulatory Surgical Center
 
 </details>
-#### Dialysis {#hidden-heading}
+
+#### Dialysis 
+
 <details>
 <summary><strong>Dialysis</strong></summary>
 
@@ -274,7 +294,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **57**: Acute renal failure
 
 </details>
-#### Emergency Department{#hidden-heading}
+
+#### Emergency Department
+
 <details>
 <summary><strong>Emergency Department</strong></summary>
 
@@ -313,7 +335,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **G0384**: Level 5 hospital emergency department visit
 
 </details>
-#### Home Health{#hidden-heading}
+
+#### Home Health
+
 <details>
 <summary><strong>Home Health</strong></summary>
 
@@ -328,7 +352,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **12**: Home
 
 </details>
-#### Observation {#hidden-heading}
+
+#### Observation 
+
 <details>
 <summary><strong>Observation</strong></summary>
 
@@ -346,7 +372,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Hospice {#hidden-heading}
+
+#### Outpatient Hospice 
+
 <details>
 <summary><strong>Outpatient Hospice</strong></summary>
 
@@ -370,7 +398,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Q5009**: Hospice in a patient's home/residence
 
 </details>
-#### Outpatient Hospital or Clinic {#hidden-heading}
+
+#### Outpatient Hospital or Clinic 
+
 <details>
 <summary><strong>Outpatient Hospital or Clinic</strong></summary>
 
@@ -396,7 +426,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **72**: Rural Health Clinic
 
 </details>
-#### Outpatient Psychiatric {#hidden-heading}
+
+#### Outpatient Psychiatric 
+
 <details>
 <summary><strong>Outpatient Psychiatric</strong></summary>
 
@@ -413,7 +445,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **58**: Residential Substance Abuse Treatment Facility
 
 </details>
-#### Outpatient PT/OT/ST {#hidden-heading}
+
+#### Outpatient PT/OT/ST 
+
 <details>
 <summary><strong>Outpatient PT/OT/ST</strong></summary>
 
@@ -440,7 +474,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **Speech-Language Assistant**
 
 </details>
-#### Outpatient Radiology {#hidden-heading}
+
+#### Outpatient Radiology 
+
 <details>
 <summary><strong>Outpatient Radiology</strong></summary>
 
@@ -464,7 +500,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Rehabilitation {#hidden-heading}
+
+#### Outpatient Rehabilitation 
+
 <details>
 <summary><strong>Outpatient Rehabilitation</strong></summary>
 
@@ -488,7 +526,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **62**: Comprehensive Outpatient Rehabilitation Facility (CORF) services
 
 </details>
-#### Outpatient Substance Use {#hidden-heading}
+
+#### Outpatient Substance Use 
+
 <details>
 <summary><strong>Outpatient Substance Use</strong></summary>
 
@@ -513,7 +553,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **MBD034**: Drug Use Disorders
 
 </details>
-#### Outpatient Surgery {#hidden-heading}
+
+#### Outpatient Surgery 
+
 <details>
 <summary><strong>Outpatient Surgery</strong></summary>
 
@@ -538,7 +580,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **72**: Rural Health Clinic
 
 </details>
-#### Pharmacy {#hidden-heading}
+
+#### Pharmacy 
+
 <details>
 <summary><strong>Pharmacy</strong></summary>
 
@@ -554,7 +598,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
   - **240**: Medications
 
 </details>
-#### Urgent Care{#hidden-heading}
+
+#### Urgent Care
+
 <details>
 <summary><strong>Urgent Care</strong></summary>
 
@@ -577,9 +623,11 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 </details>
 
 
-### Office-based 
-office-based service categories are limited to professional claims with place of service 02, 10, and 11 only. There are no institutional claims associated with office-based service categories. 
-#### Office-Based PT/OT/ST {#hidden-heading}
+
+### Office-Based 
+Office-based service categories are limited to professional claims with place of service codes 02, 10, and 11 only. There are no institutional claims associated with office-based service categories. 
+#### Office-Based PT/OT/ST 
+
 <details>
 <summary><strong>Office-Based PT/OT/ST</strong></summary>
 
@@ -603,7 +651,9 @@ office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Office-Based Radiology{#hidden-heading}
+
+#### Office-Based Radiology
+
 <details>
 <summary><strong>Office-Based Radiology</strong></summary>
 
@@ -626,7 +676,9 @@ office-based service categories are limited to professional claims with place of
   - **All other NITOS modalities**: Covers radiological services that do not fall specifically under PET, MRI, or CT modalities.
 
 </details>
-#### Office-Based Surgery {#hidden-heading}
+
+#### Office-Based Surgery 
+
 <details>
 <summary><strong>Office-Based Surgery</strong></summary>
 
@@ -636,7 +688,9 @@ office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Office-Based Visit {#hidden-heading}
+
+#### Office-Based Visit 
+
 <details>
 <summary><strong>Office-Based Visit</strong></summary>
 
@@ -646,7 +700,9 @@ office-based service categories are limited to professional claims with place of
 
 
 </details>
-#### Office-Based Other {#hidden-heading}
+
+#### Office-Based Other 
+
 <details>
 <summary><strong>Office-Based Other</strong></summary>
 
@@ -657,7 +713,9 @@ office-based service categories are limited to professional claims with place of
   - **11**: Office
 
 </details>
-#### Telehealth Visit{#hidden-heading}
+
+#### Telehealth Visit
+
 <details>
 <summary><strong>Telehealth Visit</strong></summary>
 
@@ -669,7 +727,9 @@ office-based service categories are limited to professional claims with place of
 </details>
 
 ### Ancillary
-#### Ambulance {#hidden-heading}
+
+#### Ambulance 
+
 <details>
 <summary><strong>Ambulance</strong></summary>
 
@@ -688,7 +748,9 @@ office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Durable Medical Equipment {#hidden-heading}
+
+#### Durable Medical Equipment 
+
 <details>
 <summary><strong>Durable Medical Equipment</strong></summary>
 
@@ -697,7 +759,9 @@ office-based service categories are limited to professional claims with place of
   - Ranges from **E0100** to **E8002**: This includes a wide range of durable medical equipment (DME), such as wheelchairs, hospital beds, and other medical devices provided to patients for home use.
 
 </details>
-#### Lab {#hidden-heading}
+
+#### Lab 
+
 <details>
 <summary><strong>Lab</strong></summary>
 
@@ -747,3 +811,5 @@ order by service_category_1
 ,service_category_2
 ```
 </details>
+</div>
+
