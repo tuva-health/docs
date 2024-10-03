@@ -8,9 +8,7 @@ toc_max_heading_level: 4
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 
-<div class="hide-h4">
-
-## Overview
+## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/service_category)
 
@@ -94,6 +92,7 @@ Professional claims are also defined at the claim line level.
 
 Service Category 2 (Click to expand and see specific codes that make up each category. Service category 3 is listed where applicable.)
 
+
 #### Acute Inpatient 
 
 <details>
@@ -148,6 +147,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
+
 #### Inpatient Substance Use 
 
 <details>
@@ -170,6 +170,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 - None
 
 </details>
+
 
 #### Inpatient Hospice 
 
@@ -503,6 +504,7 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 #### Outpatient Rehabilitation 
 
+
 <details>
 <summary><strong>Outpatient Rehabilitation</strong></summary>
 
@@ -626,7 +628,9 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 ### Office-Based 
 Office-based service categories are limited to professional claims with place of service codes 02, 10, and 11 only. There are no institutional claims associated with office-based service categories. 
+
 #### Office-Based PT/OT/ST 
+
 
 <details>
 <summary><strong>Office-Based PT/OT/ST</strong></summary>
@@ -676,6 +680,7 @@ Office-based service categories are limited to professional claims with place of
   - **All other NITOS modalities**: Covers radiological services that do not fall specifically under PET, MRI, or CT modalities.
 
 </details>
+
 
 #### Office-Based Surgery 
 
@@ -728,7 +733,9 @@ Office-based service categories are limited to professional claims with place of
 
 ### Ancillary
 
+
 #### Ambulance 
+
 
 <details>
 <summary><strong>Ambulance</strong></summary>
@@ -759,6 +766,7 @@ Office-based service categories are limited to professional claims with place of
   - Ranges from **E0100** to **E8002**: This includes a wide range of durable medical equipment (DME), such as wheelchairs, hospital beds, and other medical devices provided to patients for home use.
 
 </details>
+
 
 #### Lab 
 
@@ -811,5 +819,4 @@ order by service_category_1
 ,service_category_2
 ```
 </details>
-</div>
 
