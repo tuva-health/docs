@@ -8,9 +8,8 @@ toc_max_heading_level: 4
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 
-<div class="hide-h4">
 
-## Overview
+## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/service_category)
 
@@ -94,7 +93,6 @@ Professional claims are also defined at the claim line level.
 
 Service Category 2 (Click to expand and see specific codes that make up each category. Service category 3 is listed where applicable.)
 
-#### Acute Inpatient 
 
 <details>
 <summary><strong>Acute Inpatient</strong></summary>
@@ -148,7 +146,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Inpatient Substance Use 
 
 <details>
 <summary><strong>Inpatient Substance Use</strong></summary>
@@ -171,7 +168,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Inpatient Hospice 
 
 <details>
 <summary><strong>Inpatient Hospice</strong></summary>
@@ -187,7 +183,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 </details>
 
 
-#### Inpatient Psychiatric 
 
 <details>
 <summary><strong>Inpatient Psychiatric</strong></summary>
@@ -206,7 +201,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 </details>
 
 
-#### Inpatient Rehabilitation 
 
 <details>
 <summary><strong>Inpatient Rehabilitation</strong></summary>
@@ -222,7 +216,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Skilled Nursing 
 
 <details>
 <summary><strong>Skilled Nursing</strong></summary>
@@ -242,7 +235,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 ### Outpatient
 
-#### Ambulatory Surgery Center 
 
 <details>
 <summary><strong>Ambulatory Surgery Center</strong></summary>
@@ -260,7 +252,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Dialysis 
 
 <details>
 <summary><strong>Dialysis</strong></summary>
@@ -295,7 +286,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Emergency Department
 
 <details>
 <summary><strong>Emergency Department</strong></summary>
@@ -336,7 +326,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Home Health
 
 <details>
 <summary><strong>Home Health</strong></summary>
@@ -353,7 +342,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Observation 
 
 <details>
 <summary><strong>Observation</strong></summary>
@@ -373,7 +361,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 </details>
 
 
-#### Outpatient Hospice 
 
 <details>
 <summary><strong>Outpatient Hospice</strong></summary>
@@ -399,7 +386,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Hospital or Clinic 
 
 <details>
 <summary><strong>Outpatient Hospital or Clinic</strong></summary>
@@ -427,7 +413,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Psychiatric 
 
 <details>
 <summary><strong>Outpatient Psychiatric</strong></summary>
@@ -446,7 +431,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient PT/OT/ST 
 
 <details>
 <summary><strong>Outpatient PT/OT/ST</strong></summary>
@@ -475,7 +459,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Radiology 
 
 <details>
 <summary><strong>Outpatient Radiology</strong></summary>
@@ -501,7 +484,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 </details>
 
 
-#### Outpatient Rehabilitation 
 
 <details>
 <summary><strong>Outpatient Rehabilitation</strong></summary>
@@ -527,7 +509,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Substance Use 
 
 <details>
 <summary><strong>Outpatient Substance Use</strong></summary>
@@ -554,7 +535,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Outpatient Surgery 
 
 <details>
 <summary><strong>Outpatient Surgery</strong></summary>
@@ -581,7 +561,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Pharmacy 
 
 <details>
 <summary><strong>Pharmacy</strong></summary>
@@ -599,7 +578,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 </details>
 
-#### Urgent Care
 
 <details>
 <summary><strong>Urgent Care</strong></summary>
@@ -626,7 +604,6 @@ Service Category 2 (Click to expand and see specific codes that make up each cat
 
 ### Office-Based 
 Office-based service categories are limited to professional claims with place of service codes 02, 10, and 11 only. There are no institutional claims associated with office-based service categories. 
-#### Office-Based PT/OT/ST 
 
 <details>
 <summary><strong>Office-Based PT/OT/ST</strong></summary>
@@ -652,7 +629,6 @@ Office-based service categories are limited to professional claims with place of
 </details>
 
 
-#### Office-Based Radiology
 
 <details>
 <summary><strong>Office-Based Radiology</strong></summary>
@@ -677,7 +653,6 @@ Office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Office-Based Surgery 
 
 <details>
 <summary><strong>Office-Based Surgery</strong></summary>
@@ -689,7 +664,6 @@ Office-based service categories are limited to professional claims with place of
 </details>
 
 
-#### Office-Based Visit 
 
 <details>
 <summary><strong>Office-Based Visit</strong></summary>
@@ -701,7 +675,6 @@ Office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Office-Based Other 
 
 <details>
 <summary><strong>Office-Based Other</strong></summary>
@@ -714,7 +687,6 @@ Office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Telehealth Visit
 
 <details>
 <summary><strong>Telehealth Visit</strong></summary>
@@ -728,7 +700,6 @@ Office-based service categories are limited to professional claims with place of
 
 ### Ancillary
 
-#### Ambulance 
 
 <details>
 <summary><strong>Ambulance</strong></summary>
@@ -749,7 +720,6 @@ Office-based service categories are limited to professional claims with place of
 </details>
 
 
-#### Durable Medical Equipment 
 
 <details>
 <summary><strong>Durable Medical Equipment</strong></summary>
@@ -760,7 +730,6 @@ Office-based service categories are limited to professional claims with place of
 
 </details>
 
-#### Lab 
 
 <details>
 <summary><strong>Lab</strong></summary>
@@ -811,5 +780,4 @@ order by service_category_1
 ,service_category_2
 ```
 </details>
-</div>
 
