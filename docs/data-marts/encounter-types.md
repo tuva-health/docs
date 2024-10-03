@@ -5,13 +5,14 @@ title: "Encounters"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Methods
+## Overview
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/encounters)
 
 The Tuva Project organizes claims into encounters, assigning each claim and claim line to exactly one encounter. An encounter represents the interaction between a patient and a healthcare provider. For inpatient encounters, this encompasses the entire duration of an inpatient stay, which spans multiple days. The Tuva Project consolidates all claims billed intermittently throughout a patient's stay into a single encounter, regardless of the number of claims involved. In most outpatient and office-based settings, an encounter typically spans one day and groups together all claims that occurred on that day within that specific setting.
 
 Encounters are summarized into encounter groups for organizational purposes. Below is an overview of the available encounter types and groups.
+
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      |
 |-----------------|-------------------------------------|
@@ -59,7 +60,9 @@ The core.encounter table has flags associated with each encounter making it easy
 - newborn
 - nicu
 
+
 To count the number of inpatient encounters where the patient was in observation status during the stay, you can sum the observation flags and count the encounter IDs.
+
 
 ```sql
 select sum(observation_flag) as encounters_with_observation
@@ -67,7 +70,6 @@ select sum(observation_flag) as encounters_with_observation
 from core.encounter
 where encounter_type = 'acute inpatient'
 ```
-
 
 The start of an encounter is defined by a claim of the service category anchor type (listed in tables in each encounter group section). An anchor can be either professional or institutional depending on the encounter type. 
 
@@ -116,10 +118,8 @@ These claims would not be joined together since the discharge code indicates the
 
 ### Outpatient
 
-Most outpatient encounters are formed with the combination of a patient_id, data_source, and date. 
+Most outpatient encounters are formed with the combination of a patient_id, data_source, and date, with the exception being radiology, which contains only the claim lines associated with a specific imaging code. This will group together the institutional claim for the imaging event, and the professional claim with the read. This can then be used for rate analysis and compared to other sites of service (including professional locations).
 
-
-Most use the patient/date combination to form an encounter, with the exception being radiology. The reason for this is so that radiology contains only the claim lines associated with a specific imaging code. This will group together the institutional claim for the imaging event, and the professional claim with the read. This can then be used for rate analysis and compared to other sites of service (including professional locations).
 
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      | Algorithm Type    | Service Category Anchor     | Anchor Claim Type |
@@ -139,10 +139,10 @@ Most use the patient/date combination to form an encounter, with the exception b
 | outpatient      | urgent care                         | patient/date      | urgent care                 | both prof and inst|
 
 
-
 ### Office-Based
 
 Office-based encounters use only professional claims as the anchor. Most use the patient/date combination to form an encounter, with the exception being radiology. The reason for this is so that radiology contains only the claim lines associated with a specific imaging code, which can then be used for rate analysis and compared to other sites of service.
+
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      | Algorithm Type    | Service Category Anchor         | Anchor Claim Type  |
 |-----------------|-------------------------------------|-------------------|---------------------------------|--------------------|
@@ -160,6 +160,7 @@ Office-based encounters use only professional claims as the anchor. Most use the
 Ambulance, DME (durable medical equipment), and lab are typically part of a higher level encounter (such as inpatient or emergency department). If an ambulance claim occured outside the dates of the inpatient encounter it isn't joined and doesn't become associated with the encounter. In this case, an encounter is created for the orphaned ambulance claim. 
 
 Other orphaned claims are claims that don't produce an anchor event on their own, and weren't attributed to one that does. This bucket is usually small, and if it is large is an indication of a data quality issue.
+
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      | Algorithm Type    | Service Category Anchor         | Anchor Claim Type  |
 |-----------------|-------------------------------------|-------------------|---------------------------------|--------------------|

@@ -237,3 +237,49 @@ select * from final
 `{%- for col in orig_cols %}` rather than `{%- for x in y %}`.
 - Use comment syntax to describe complicated blocks of code or dependencies. 
   For example, `{#- this is a comment #}`.
+
+# Notes for MS Fabric compatibility:
+
+Keywords as column names are not supported without quotes. Identified instances include: 
+
+- plan
+- procedure
+- proc
+
+There is a macro called `quote_column`you can use that will automatically quote these columns where the DW requires it and leave them as is if not. Here is an example using it for for the column `plan` : 
+
+```sql
+select distinct
+    a.patient_id
+  , year_month
+  , a.payer
+  , a.{{ quote_column('plan') }}
+  , data_source
+  , '{{ var('tuva_last_run')}}' as tuva_last_run
+from {{ ref('core__eligibility') }} a
+inner join month_start_and_end_dates b
+  on a.enrollment_start_date <= b.month_end_date
+  and a.enrollment_end_date >= b.month_start_date
+```
+
+The following SQL operators and functions are not supported: 
+
+- lpad
+- ||
+- limit
+- extract
+- current_date
+- group by 1
+- date_part
+- regex_like
+- TRUE and FALSE data types
+- boolean
+- nulls last
+- union distinct
+- using
+- length
+
+Some important notes:
+
+- If you use varchar() it defaults to varchar(1)
+- *column names in fabric are CASE SENSITIVE*
