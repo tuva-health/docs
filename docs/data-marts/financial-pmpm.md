@@ -93,7 +93,7 @@ with member_month as (
           data_source
         , year_month
         , count(*) as member_months
-    from financial_pmpm.member_months
+    from core.member_months
     group by
           data_source
         , year_month
@@ -102,35 +102,36 @@ with member_month as (
 , medical_claims as (
     select
           mc.data_source
-        , to_char(claim_start_date, 'YYYYMM') AS year_month
-        , claim_type
-        , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
-    from core.medical_claim mc
-        inner join financial_pmpm.member_months mm
-            on mc.patient_id = mm.patient_id
-            and mc.data_source = mm.data_source
-            and to_char(mc.claim_start_date, 'YYYYMM') = mm.year_month
+        , to_char(mc.claim_start_date, 'yyyymm') as year_month
+        , mc.claim_type
+        , cast(sum(mc.paid_amount) as decimal(18, 2)) as paid_amount
+    from core.medical_claim as mc
+    inner join core.member_months as mm
+      on mc.patient_id = mm.patient_id
+      and mc.data_source = mm.data_source
+      and to_char(mc.claim_start_date, 'yyyymm') = mm.year_month
     group by
           mc.data_source
-        , to_char(claim_start_date, 'YYYYMM')
-        , claim_type
+        , to_char(mc.claim_start_date, 'yyyymm')
+        , mc.claim_type
 )
 
 select
-      member_month.data_source
-    , member_month.year_month
-    , medical_claims.claim_type
-    , medical_claims.paid_amount
-    , member_month.member_months
-    , cast(medical_claims.paid_amount / member_month.member_months as decimal(18,2)) as pmpm_claim_type
-from member_month
-    left join medical_claims
-        on member_month.data_source = medical_claims.data_source
-        and member_month.year_month = medical_claims.year_month
+      mm.data_source
+    , mm.year_month
+    , mc.claim_type
+    , mc.paid_amount
+    , mm.member_months
+    , cast(mc.paid_amount / mm.member_months as decimal(18, 2)) as pmpm_claim_type
+from member_month as mm
+left join medical_claims as mc
+  on mm.data_source = mc.data_source
+  and mm.year_month = mc.year_month
 order by
-      member_month.data_source
-    , member_month.year_month
-    , medical_claims.claim_type;
+      mm.data_source
+    , mm.year_month
+    , mc.claim_type;
+
 ```
 </details>
 
@@ -142,7 +143,8 @@ Here we calculate PMPM by chronic condition. Since members can and do have more 
 
 ```sql
 with chronic_condition_members as (
-    select distinct patient_id
+    select distinct
+        patient_id
     from chronic_conditions.tuva_chronic_conditions_long
 )
 
@@ -156,10 +158,10 @@ with chronic_condition_members as (
 
     select
           p.patient_id
-        , 'No Chronic Conditions' as Condition
-    from core.patient p
-        left join chronic_condition_members ccm
-            on p.patient_id=ccm.patient_id
+        , 'No Chronic Conditions' as condition
+    from core.patient as p
+    left join chronic_condition_members as ccm
+      on p.patient_id = ccm.patient_id
     where ccm.patient_id is null
 )
 
@@ -167,37 +169,37 @@ with chronic_condition_members as (
     select
           mc.data_source
         , mc.patient_id
-        , to_char(claim_start_date, 'YYYYMM') AS year_month
-        , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
-    from core.medical_claim mc
-        inner join financial_pmpm.member_months mm
-            on mc.patient_id = mm.patient_id
-            and mc.data_source = mm.data_source
-            and to_char(mc.claim_start_date, 'YYYYMM') = mm.year_month
+        , to_char(mc.claim_start_date, 'yyyymm') as year_month
+        , cast(sum(mc.paid_amount) as decimal(18, 2)) as paid_amount
+    from core.medical_claim as mc
+    inner join core.member_months as mm
+      on mc.patient_id = mm.patient_id
+      and mc.data_source = mm.data_source
+      and to_char(mc.claim_start_date, 'yyyymm') = mm.year_month
     group by
           mc.data_source
         , mc.patient_id
-        , to_char(claim_start_date, 'YYYYMM')
+        , to_char(mc.claim_start_date, 'yyyymm')
 )
 
 select
       mm.data_source
-    , mm.year_month
     , cc.condition
     , count(*) as member_months
     , sum(mc.paid_amount) as paid_amount
-    , cast(sum(mc.paid_amount) / count(*) as decimal(18,2)) as medical_pmpm
-from financial_pmpm.member_months mm
-    left join chronic_conditions cc
-        on mm.patient_id = cc.patient_id
-    left join medical_claims mc
-        on mm.patient_id = mc.patient_id
-        and mm.year_month = mc.year_month
-        and mm.data_source = mc.data_source
+    , cast(sum(mc.paid_amount) / count(*) as decimal(18, 2)) as medical_pmpm
+from core.member_months as mm
+left join chronic_conditions as cc
+  on mm.patient_id = cc.patient_id
+left join medical_claims as mc
+  on mm.patient_id = mc.patient_id
+  and mm.year_month = mc.year_month
+  and mm.data_source = mc.data_source
 group by
       mm.data_source
-    , mm.year_month
     , cc.condition
-order by member_months desc;
+order by
+    member_months desc;
+
 ```
 </details>
