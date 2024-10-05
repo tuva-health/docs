@@ -7,7 +7,6 @@ toc_max_heading_level: 4
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-
 ## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/service_category)
@@ -24,9 +23,7 @@ The data elements that we use to create this grouper are as follows:
 - **icd_diagnosis_code:** Typically referenced through [CCSR groupings](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp) instead of individual codes.
 - **npi:** Used to reference the taxonomy code of a facility NPI and a provider's specialty.
 
-
 The Tuva Project Service Category Grouper has three levels in a hierarchy with each subcategory rolling up to a high level category. Because all subcategories roll up to one and only one higher level category, the sum of all the logic for each subcategory in a category is the same as the logic for the category. As such, we'll describe the higher level categories conceptually without codes, and then we'll define each subcategory sharing the code sets. See table below for a quick view of the categories and subcategories:
-
 
 | SERVICE_CATEGORY_1 | SERVICE_CATEGORY_2 | SERVICE_CATEGORY_3 |
 | --- | --- | --- |
@@ -75,27 +72,22 @@ The Tuva Project Service Category Grouper has three levels in a hierarchy with e
 | ancillary | lab | lab |
 | other | other | other |
 
-
-When developing any grouper we keep the following principles in mind:
-- **Cardinality is Palatable:** If there were hundreds of categories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
+When developing the service category grouper we kept the following principles in mind:
+- **Cardinality is Key:** If there were hundreds of categories, it would be too hard for a human to make sense of what was going on. But if you only had 2 categories for example, it wouldn't be enlightening. Almost all insights would come from breaking it down further.
 - **Mutually Exclusive and Exhaustive:** Every healthcare claims can be grouped into one service category and only one service category. This implies that summing the total payments for all service categories would equal the sum of all payments for each individual claim.
 - **The "Other" Category Isn't Too Large:** In order to make the grouper Exhaustive, we group everything we can into meaningful categories and then put everything else in the "other" category. If this "other" category is too large, that means we need to break it out into additional meaningful categories.
 - **Hierarchical:** It's a balancing act to try to create groups with low cardinality but providing enough homogeneity inside each group for analysis to be actionable. This often leads us to create hierarchical groupers so that you can see high level groups first and then drill in to get more specific while still keeping the broader context simple.
 - **Feasible:** Any categorization grouper is only useful if you're able to group things into the categories using data elements that are readily available and populated reasonably consistently.
 
-The Tuva Project Service Category Grouper categorizes most institutional claims at the claim level using the bill type code for each claim. All inpatient institutional claims are defined at the claim level, while some outpatient institutional service categories are grouped at the line level (such as radiology which is defined using HCPC codes). 
+The Tuva Project Service Category Grouper categorizes most institutional claims at the claim level using the bill type code for each claim. All inpatient institutional claims are defined at the claim level, while some outpatient institutional service categories are grouped at the line level (such as radiology which is defined using HCPCS codes). 
 Professional claims are also defined at the claim line level.
-
-## Service Category Details
 
 ### Inpatient
 
 Service Category 2 (Click to expand and see specific codes that make up each category. Service category 3 is listed where applicable.)
 
-
 <details>
 <summary><strong>Acute Inpatient</strong></summary>
-
 
 ##### Institutional Claims
 - **DRG Codes**:
@@ -735,6 +727,8 @@ Office-based service categories are limited to professional claims with place of
 Any claim/claim line that does not roll up to any of the previous categories. This category exists to ensure every claim line is assigned a service category. When a claim is categorized as other, it typically indicates a data quality issue (an inpatient claim without a bill type code or professional claim without a place of service code).
 
 ## Data Dictionary
+
+The output of the service category grouper is the table below.  However, for analytics you'll find the service category columns in core.medical_claim and the Financial PMPM data mart.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.service_category__service_category_grouper.columns"  />
 

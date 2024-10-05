@@ -5,14 +5,13 @@ title: "Encounters"
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Overview
+## Methods
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/claims_preprocessing/encounters)
 
-The Tuva Project organizes claims into encounters, assigning each claim and claim line to exactly one encounter. An encounter represents the interaction between a patient and a healthcare provider. For inpatient encounters, this encompasses the entire duration of an inpatient stay, which spans multiple days. The Tuva Project consolidates all claims billed intermittently throughout a patient's stay into a single encounter, regardless of the number of claims involved. In most outpatient and office-based settings, an encounter typically spans one day and groups together all claims that occurred on that day within that specific setting.
+The Tuva encounter grouper organizes claims into encounters, assigning each claim and claim line to exactly one encounter. An encounter represents the interaction between a patient and a healthcare provider.  For inpatient encounters, this encompasses the entire duration of an inpatient stay, which spans multiple days.  Tuva consolidates all claims billed intermittently throughout a patient's stay into a single encounter, regardless of the number of claims involved.  In most outpatient and office-based settings, an encounter typically spans a single day and groups together all claims that occurred on that day within that specific care setting.
 
-Encounters are summarized into encounter groups for organizational purposes. Below is an overview of the available encounter types and groups.
-
+Encounters are summarized into encounter groups for organizational purposes.  Below is an overview of the available encounter types and groups.
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      |
 |-----------------|-------------------------------------|
@@ -46,8 +45,7 @@ Encounters are summarized into encounter groups for organizational purposes. Bel
 | other           | lab - orphaned                      |
 | other           | orphaned claim                      |
 
-
-The core.encounter table has flags associated with each encounter making it easy to find specific claims or claim lines that occurred during that encounter. Some flags apply only to specific encounter types, like delivery (acute inpatient). The available flags are:
+The output of the encounter grouper is the Encounter table in the Core Data Model.  The core.encounter table has flags associated with each encounter making it easy to find specific claims or claim lines that occurred during that encounter. Some flags apply only to specific encounter types, like delivery, which applies only to acute inpatient. The available flags are:
 
 - observation
 - lab 
@@ -60,9 +58,7 @@ The core.encounter table has flags associated with each encounter making it easy
 - newborn
 - nicu
 
-
 To count the number of inpatient encounters where the patient was in observation status during the stay, you can sum the observation flags and count the encounter IDs.
-
 
 ```sql
 select sum(observation_flag) as encounters_with_observation
@@ -71,7 +67,7 @@ from core.encounter
 where encounter_type = 'acute inpatient'
 ```
 
-The start of an encounter is defined by a claim of the service category anchor type (listed in tables in each encounter group section). An anchor can be either professional or institutional depending on the encounter type. 
+The start of an encounter is defined by an anchor claim that has been assigned to the same service category as the encounter type. An anchor can be either professional or institutional depending on the encounter type. 
 
 The date field used in the encounter algorithm is determined using the following priority of date fields (resulting in the first non null value):
 - **start_date** -> admission_date / claim_line_start_date / claim_start_date
@@ -172,6 +168,8 @@ Other orphaned claims are claims that don't produce an anchor event on their own
 
 
 ## Data Dictionary
+
+The output of the encounter grouper is the Encounter table in the Core Data Model, which we reproduce below for convenience.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.core__encounter.columns"  />
 
