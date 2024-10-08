@@ -10,7 +10,11 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 How To Run Tuva
 
-We created this video to demonstrate how to get up and running with Tuva on your claims data.  Although this video is specific to claims, you can follow a similar pattern for clinical data.
+The slides below describe our standard approach to setting up multiple data sources on Tuva.
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTXPpfaH0z89ses1ItouCa-pwZ643J8Sa5PTc5FoVPYIAIFZgkN4qI7E8rVhdwxscxeRTVUCG-kGisC/embed?start=false&loop=false&delayms=3000" frameborder="0" width="760" height="440" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+The video below includes a more thorough overview of how to setup your claims data using Tuva.
 
 <iframe width="760" height="440" src="https://www.youtube.com/embed/FWxbrt7Fgiw?si=dyo4uD_MTW4dmAGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
 
