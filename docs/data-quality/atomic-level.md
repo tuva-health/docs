@@ -270,9 +270,47 @@ select *
 from data_quality.primary_key_check
 ```
 
+![Primary Keys](/img/data_quality_primary_keys.jpg)
+
+In the example above the pharmacy_claim table has 100 distinct claims that have multiple records with the same values for the primary key fields.  If any result in this table is non-zero you need to correct the mapping to fix it.
+
 ### Patient ID
 
+Does every row of eligibility have a `patient_id` populated?
+
+The `eligibility_patient_id` table verifies whether any rows do not have a `patient_id`. You can query it as follows:
+
+```sql
+select *
+from data_quality.eligibility_patient_id
+```
+
+This query returns the number of rows in the eligibility table that do not have a `patient_id`. If this number is greater than 0, you need to correct the mapping to fix it.
+
+![Eligibility Patient ID](/img/data_quality_eligibility_patient_id.jpg)
+
+In the example table above we observe that all rows in the source data have a `patient_id`.
+
 ### Date Fields
+
+In eligibility, the following fields are the important date fields:
+
+- `enrollment_start_date`
+- `enrollment_end_date`
+
+We need to check these fields for the following problems:
+
+1. Every row in the eligibility input layer should have valid dates in these fields.
+2. `enrollment_start_date` should be less than or equal to `enrollment_end_date`.
+3. The latest `enrollment_end_date` value should be the last day of the current month when the tuva project was last run.
+4. Dates should be relatively recent e.g., no dates before 1900.
+
+The following table returns the count of eligibility rows that violate the rules outlined above.
+
+```sql
+select *
+from data_quality.eligibility_date_checks
+```
 
 ### Patient Demographics
 
