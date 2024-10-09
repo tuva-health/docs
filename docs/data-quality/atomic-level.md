@@ -4,18 +4,18 @@ title: "Atomic-level"
 hide_title: false
 ---
 
-Atomic-level data quality focuses on identifying data quality problems that are inherent in your raw data without respect to specific analytics use cases.  For example, invalid ICD-10-CM diagnosis codes are an atomic-level data quality problem.  Obviously invalid codes like this will also impact analytics use cases, but at the atomic-level we focus on identifying and summarizing these problems across the dataset without linking them to specific analytics use cases.
+Atomic-level data quality focuses on identifying problems inherent in your raw data, irrespective of specific analytics use cases.  For example, invalid ICD-10-CM diagnosis codes are an atomic-level data quality problem.  Obviously invalid codes like this will also impact analytics use cases, but at the atomic-level we focus on identifying and summarizing these problems across the dataset without linking them to specific analytics use cases.
 
 There are two types of atomic-level data quality problems:
 
 1. Mapping Problems
 2. Inherent Problems
 
-Mapping problems are data quality problems that are inadvertently introduced into the data when we transform it from source to the Tuva Data Model.  These problems can be corrected by fixing the mapping.
+Mapping problems are data quality problems that are inadvertently introduced when data is transformed from the source to the Tuva Data Model.  These problems can be corrected by fixing the mapping.
 
 Inherent problems are data quality problems that are artifacts of the raw data that were not introduced during mapping and cannot be corrected by mapping.  They can only be corrected by acquiring better data from the source.
 
-For each claims data table in the Tuva Input Layer we analyze several domains of data quality problems.  We have organized these domains in order of importance below.
+For each claims data table in the Tuva Input Layer, we analyze several domains of data quality problems.  We have organized these domains in order of importance below.
 
 ## Medical Claim
 
@@ -39,7 +39,7 @@ In the example above the pharmacy_claim table has 100 distinct claims that have 
 The patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `patient_id` field on every medical claim, specifically:
 
 1. Does every line on each claim have a value for `patient_id` populated?
-2. Is there more than 1 value for `patient_id` within a single claim (there shouldn't be)?
+2. Is there more than one value for `patient_id` within a single claim (there shouldn't be)?
 3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
 
 The `medical_claim_patient_id` table verifies whether any of these data quality problems occur in the `medical_claim` table.  You can query it as follows:
@@ -245,17 +245,147 @@ from data_quality.primary_key_check
 
 ### Patient ID
 
+Similar to the medical_claim table, the patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `patient_id` field on every pharmacy claim, specifically:
+
+1. Does every line on each claim have a value for `patient_id` populated?
+2. Is there more than 1 value for `patient_id` within a single claim (there shouldn't be)?
+3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
+
+The `pharmacy_claim_patient_id` table verifies whether any of these data quality problems occur in the `pharmacy_claim` table.  You can query it as follows:
+
+```sql
+select *
+from data_quality.pharmacy_claim_patient_id
+```
+
+This query returns the number of unique claim IDs that have each of these data quality problems.
+
+![Medical Claim Patient ID](/img/data_quality_medical_claim_patient_id.jpg)
+
+In the example table above we observe the following:
+
+1. patient_id is populated for every single record in the pharmacy_claim table 
+2. 50 claim IDs have more than 1 patient_id.  This can occur when two or more distinct lines on the claim have different values for patient_id.
+3. 1,000 claim IDs are considered "orphaned claims".  This means that the paid_date or the dispensing_date occurs during a month when the patient does not have insurance eligibility.
+
+If any of these problems occur in your data you should attempt to correct them in mapping.  However the specific techniques to do this will vary by dataset and it may not be possible to correct the problems.  If the problems can't be correct we still include these records in the dataset, but there will be limitations in terms of how useful they are for analytics.
+
 ### Date Fields
+
+The majority of analyses are longitudinal in nature, meaning they look at trends or changes over time.  To make these sorts of analyses possible we need reliable date fields.  In pharmacy claims the following fields are the important date fields:
+
+- `paid_date`
+- `dispensing_date`
+
+We need to check these fields to ensure they are populated for every claim and claim line:
+
+- `paid_date`
+- `dispensing_date`
+
+
+The following table returns the count of distinct claims that violate the rules outlined above.
+
+```sql
+select *
+from data_quality.pharmacy_claim_date_checks
+```
+
+![Pharmacy Claim Basic Dates](/img/data_quality_pharmacy_claim_basic_dates.jpg)
+
+In the example table above we can see that 1000 pharmacy claims are missing a dispensing_date while paid_date is always populated.
+
+Beyond these basic date checks, we need to check whether the values within our date fields are reasonable over time.  For example, if we have a dataset that covers 3 calendar years, it's possible that paid_date is perfectly normal for the first two years, but then is completely missing thereafter.  The following query analyzes trends in each of the date fields by looking at the count of distinct claims over time for each date field:
+
+```sql
+select *
+from data_quality.pharmacy_claim_date_trends
+order by 1
+```
+
+![Pharmacy Claim Date Trends](/img/data_quality_pharmacy_claim_date_trends.jpg)
+
+In the example table above we see that the first 3 months of 2021 have some small amount of claims with paid_dates. It is worth further investigation to see if we are missing dates for those claims, or if that is just ramp up in the pharmacy claims data we have received.
 
 ### NDC
 
+Every pharmacy claim should have an NDC (National Drug Code) on it. We check to see whether every claim and claim line has an NDC field that is populated, and whether that NDC is a valid NDC (meaning it is part of the published NDC list by the FDA). These checks are found here:
+
+```sql
+select *
+from data_quality.pharmacy_claim_ndc
+order by 1
+```
+
+![Pharmacy Claim NDC](/img/data_quality_pharmacy_ndc.jpg)
+
+Some invalid NDCs are expected, as there are often NDCs in pharmacy data for items like 'glucose test strips' that are not found on the FDA list.
+
+
 ### Prescription Details
+
+A pharmacy claim will have prescription details in these important fields:
+
+- `quantity`
+- `days supply`
+- `refills`
+
+We check each of these fields to ensure they are are populated. 
+
+```sql
+select *
+from data_quality.pharmacy_claim_prescription_details
+order by 1
+```
+![Pharmacy Prescription Details](/img/data_quality_pharmacy_prescription_details.jpg)
+
+Quantity is the most important of the fields, as it is used in the pharmacy mart to calculate the generic available opportunity.
 
 ### NPI Fields
 
+Pharmacy claims contain two important NPI fields:
+
+- `prescribing_npi`
+- `dispensing_npi`
+
+Of the two fields, prescribing npi is more important as it enables analysis around who is prescribing certain drugs and what type of practioners they are.
+
+We check these fields to ensure they are populated and valid NPIs. We also check to ensure the prescribing_npi is the expected entity type (an individual instead of an organization).
+
+```sql
+select *
+from data_quality.pharmacy_claim_npi
+```
+
+![Pharmacy NPI Details](/img/data_quality_pharmacy_claim_npi.jpg)
+
+
 ### Trended Claim Volume and Dollars
 
+Often we see anomalies where claim volume or dollars can change unexpectedly over time, possibly indicating a data quality problem.  Therefore we need to check whether this is the case.
+
+```sql
+select *
+from data_quality.trended_pharmacy_claim_volume_and_dollars
+```
+
+![Medical Claim Volume and Dollars](/img/data_quality_medical_claim_volume_and_dollars.jpg)
+
+In the example above we clearly have medical claims in the month of March 2021 but we have no paid amounts.
+
 ### Data Loss
+
+Often when we map data we perform complex filtering and other types of transformation operations.  In these scenarios it can be easy for unintended data loss to occur.  Therefore we need to confirm some basic statistics between the raw source data and the Tuva Input Layer to ensure unintended data loss hasn't occurred.
+
+The table identified in the query below will only populate once you've created the data loss table in the Input Layer.  To create this table, you manually calculate the exact same metrics as the source data and map these results to the data_loss table in the claims Input Layer.
+
+```sql
+select *
+from data_quality.claims_data_loss
+```
+
+![Data Loss](/img/data_quality_data_loss.jpg)
+
+In the example above we can compare several basic "table stakes" statistics for medical and pharmacy claims, as well as eligibility.  The highlighted rows all show data loss as we move from raw to input layer to core.  Some of this data loss might be expected and explainable.  You should work to understand any and all data loss that is not currently explainable before moving on.
 
 ## Eligibility
 
