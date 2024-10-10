@@ -5,6 +5,8 @@ hide_title: true
 toc: false
 ---
 
+[Code on Github](https://github.com/tuva-health/analytics_gallery)
+
 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '0px', padding: '20px 0', width: '100%' }}>
   <div style={{ textAlign: 'center', margin: '10px' }}>
     <a href="#" onClick={(e) => { window.open('https://app.powerbi.com/view?r=eyJrIjoiZDc2ODVlNmUtYmE2NC00ZmQ3LWI2MzYtOTEwNDM1YTQwOTcxIiwidCI6ImJiM2M3Y2U1LTI2MjgtNGM5MS04Y2VmLTgwMTdjNjExNTk3OCIsImMiOjZ9', '_blank'); e.preventDefault(); }}>
