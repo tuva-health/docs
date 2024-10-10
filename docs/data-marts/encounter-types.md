@@ -133,7 +133,7 @@ Most outpatient encounters are formed with the combination of a patient_id, data
 | outpatient      | outpatient psych                    | patient/date      | outpatient psychiatric      | both prof and inst|
 | outpatient      | outpatient pt/ot/st                 | patient/date      | outpatient pt/ot/st         | both prof and inst|
 | outpatient      | outpatient radiology                | patient/date/hcpc | outpatient radiology        | both prof and inst|
-| outpatient      | outpatient rehab                    | patient/date      | outpatient rehabilitation   | both prof and inst|
+| outpatient      | outpatient rehabilitation           | patient/date      | outpatient rehabilitation   | both prof and inst|
 | outpatient      | outpatient substance use            | patient/date      | outpatient substance use    | both prof and inst|
 | outpatient      | outpatient surgery                  | patient/date      | outpatient surgery          | both prof and inst|
 | outpatient      | urgent care                         | patient/date      | urgent care                 | both prof and inst|
