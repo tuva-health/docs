@@ -18,6 +18,7 @@ Encounters are summarized into encounter groups for organizational purposes.  Be
 | inpatient       | acute inpatient                     |
 | inpatient       | inpatient hospice                   |
 | inpatient       | inpatient psych                     |
+| inpatient       | inpatient rehabilitation            |
 | inpatient       | inpatient skilled nursing           |
 | inpatient       | inpatient substance use             |
 | outpatient      | ambulatory surgery center           |
@@ -30,7 +31,8 @@ Encounters are summarized into encounter groups for organizational purposes.  Be
 | outpatient      | outpatient psych                    |
 | outpatient      | outpatient pt/ot/st                 |
 | outpatient      | outpatient radiology                |
-| outpatient      | outpatient rehab                    |
+| outpatient      | outpatient rehabilitation           |
+| outpatient      | outpatient substance use            |
 | outpatient      | outpatient surgery                  |
 | outpatient      | urgent care                         |
 | office based    | office visit                        |
