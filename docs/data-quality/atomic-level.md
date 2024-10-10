@@ -248,7 +248,7 @@ from data_quality.primary_key_check
 Similar to the medical_claim table, the patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `patient_id` field on every pharmacy claim, specifically:
 
 1. Does every line on each claim have a value for `patient_id` populated?
-2. Is there more than 1 value for `patient_id` within a single claim (there shouldn't be)?
+2. Is there more than one value for `patient_id` within a single claim?
 3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
 
 The `pharmacy_claim_patient_id` table verifies whether any of these data quality problems occur in the `pharmacy_claim` table.  You can query it as follows:
@@ -258,7 +258,7 @@ select *
 from data_quality.pharmacy_claim_patient_id
 ```
 
-This query returns the number of unique claim IDs that have each of these data quality problems.
+This query returns a table with one row per check and the count of unique claim IDs that have that particular data quality issue
 
 ![Medical Claim Patient ID](/img/data_quality_medical_claim_patient_id.jpg)
 
