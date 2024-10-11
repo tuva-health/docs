@@ -9,24 +9,33 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/hcc_suspecting)
 
-The HCC Suspecting data mart identifies patients who are suspected to have an HCC in the payment year but don't presently have one recorded based concepts that evaluate historical conditions and problems, comorbidities, lab test 
-results, medications, and observations.
+The HCC Suspecting data mart identifies patients suspected of having a chronic 
+condition but doesn't have the HCC recorded in the payment year. We use 
+the following methods to identify these suspected conditions:
 
-The 2024 CMS HCC model has 115 HCCs. Each condition category requires logic to identify suspecting conditions. So far, we have built out the logic for the following conditions:
+**HCC Recapture:** uses billed claims history to evaluate whether recurring 
+diagnoses from prior years were captured during the current payment year.
 
-* Chronic Kidney Disease
-  * 326, "Chronic Kidney Disease, Stage 5"
-  * 327, "Chronic Kidney Disease, Severe (Stage 4)"
-  * 328, "Chronic Kidney Disease, Moderate (Stage 3B)"
-  * 329, "Chronic Kidney Disease, Moderate (Stage 3, Except 3B)"
-* Depression
-  * 155, "Major Depression, Moderate or Severe, without Psychosis"
-* Diabetes
-  * 37, "Diabetes with Chronic Complications"
-* Morbid Obesity
-  * 48, "Morbid Obesity"
+**HCC Capture/Discovery:** uses all available sources from clinical and claims data to 
+evaluate a patient's medical history, problems, comorbidities, lab results, 
+medications, or observations to capture new HCCs that have not been coded 
+before.
 
-The terminology set SNOMED-CT to ICD-10-CM Map is used to capture additional suspecting conditions coded in a system not part of the CMS HCC model. This use case follows the default mapping guidance from NLM, which specifies that the map priority rule of “TRUE” or “OTHERWISE TRUE” should be applied if nothing further is known about the patient’s condition.
+The 2024 CMS HCC model has 115 HCCs. Each condition category requires careful 
+logic to identify suspecting conditions for capture. So far, we have built out 
+the logic for the following conditions:
+
+* Chronic Kidney Disease (HCC 326-329) using eGFR lab results.
+* Depression (HCC 155) using medications and PHQ-9 assessments.
+* Diabetes (HCC 37) using comorbidity of CKD Stage 1 or 2.
+* Morbid Obesity (HCC 48) using a combination of vital signs and 
+  comorbidities Diabetes, Hypertension, or  Obstructive Sleep Apnea.
+
+**Coding System Map:** the terminology set SNOMED-CT to ICD-10-CM Map is used to 
+capture additional suspecting conditions coded in a system not part of the CMS 
+HCC model. This use case follows the default mapping guidance from NLM, which 
+specifies that the map priority rule of “TRUE” or “OTHERWISE TRUE” should be 
+applied if nothing further is known about the patient’s condition.
 
 ## Data Dictionary
 

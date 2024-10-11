@@ -86,7 +86,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'analytics/analyticsIntroduction',
+            docId: 'analytics/analytics-gallery',
             position: 'left',
             label: 'Analytics',
           },

@@ -226,9 +226,10 @@ const sidebars =
 
     communitySidebar:
     [
-        "community/community-guidelines",
-        "community/community-meetups",
         "community/manifesto",
+        // "community/community-guidelines",
+        "community/community-meetups",
+
     ]
 };
 
