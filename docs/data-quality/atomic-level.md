@@ -15,7 +15,14 @@ Mapping problems are data quality problems that are inadvertently introduced whe
 
 Inherent problems are data quality problems that are artifacts of the raw data that were not introduced during mapping and cannot be corrected by mapping.  They can only be corrected by acquiring better data from the source.
 
-For each claims data table in the Tuva Input Layer, we analyze several domains of data quality problems.  We have organized these domains in order of importance below.
+For each claims data table in the Tuva Input Layer, we analyze several domains of data quality problems.  We have organized these domains in order of importance below. To view a union of all the individual checks (ignoring date trend and other checks that are more complex) query the table below:
+
+```sql
+select *
+from data_quality.data_quality_test_summary
+order by result_count desc
+```
+
 
 ## Medical Claim
 
@@ -107,13 +114,13 @@ Beyond these basic date checks, we need to check whether the values within our d
 
 ```sql
 select *
-from data_quality.medical_claim_date_trends
+from data_quality.claim_date_trends
 order by 1
 ```
 
-![Medical Claim Date Trends](/img/data_quality_medical_claim_date_trends.jpg)
+![Claim Date Trends](/img/data_quality_claim_date_trends.jpg)
 
-In the example table above we see that the first 3 months of 2021 have claim start and end dates populated, but no admission, discharge, or paid dates.  This indicates we are missing date information on these fields during these months.
+In the example table above we see that the first 3 months of 2021 have claim start and end dates populated, but no admission, discharge, or paid dates.  This indicates we are missing date information on these fields during these months. 
 
 ### Diagnosis and Procedure Fields
 
@@ -159,7 +166,8 @@ The following code returns the results of these checks:
 
 ```sql
 select *
-from data_quality.inst_header_fields
+from data_quality.medical_claim_inst_header_fields
+order by result_count desc
 ```
 
 ![Inst Header Fields](/img/data_quality_inst_header_fields.jpg)
@@ -178,7 +186,8 @@ We need to check these fields to see if the values of these fields are missing o
 
 ```sql
 select *
-from data_quality.claim_line_fields
+from data_quality.medical_claim_claim_line_fields
+order by result_count desc
 ```
 
 ![Medical Claim Line Checks](/img/data_quality_medical_claim_line_checks.jpg)
@@ -196,7 +205,8 @@ Often we wish to do analysis about the specific providers or facilities deliveri
 
 ```sql
 select *
-from data_quality.medical_claim_npi
+from data_quality.medical_claim_provider_npi
+order by result_count desc
 ```
 
 ![Provider NPI](/img/data_quality_provider_npi.jpg)
@@ -207,7 +217,8 @@ Often we see anomalies where claim volume or dollars can change unexpectedly ove
 
 ```sql
 select *
-from data_quality.trended_medical_claim_volume_and_dollars
+from data_quality.medical_claim_volume_and_dollars
+order by year_month 
 ```
 
 ![Medical Claim Volume and Dollars](/img/data_quality_medical_claim_volume_and_dollars.jpg)
@@ -222,7 +233,7 @@ The table identified in the query below will only populate once you've created t
 
 ```sql
 select *
-from data_quality.claims_data_loss
+from data_quality.data_loss
 ```
 
 ![Data Loss](/img/data_quality_data_loss.jpg)
@@ -240,7 +251,7 @@ The primary key on the `pharmacy_claim` table is comprised of 3 fields: `claim_i
 
 ```sql
 select *
-from data_quality.primary_key_check
+from data_quality.primary_keys
 ```
 
 ### Patient ID
@@ -260,7 +271,7 @@ from data_quality.pharmacy_claim_patient_id
 
 This query returns a table with one row per check and the count of unique claim IDs that have that particular data quality issue
 
-![Medical Claim Patient ID](/img/data_quality_medical_claim_patient_id.jpg)
+![Medical Claim Patient ID](/img/data_quality_pharmacy_claim_patient_id.jpg)
 
 In the example table above we observe the following:
 
@@ -298,11 +309,11 @@ Beyond these basic date checks, we need to check whether the values within our d
 
 ```sql
 select *
-from data_quality.pharmacy_claim_date_trends
+from data_quality.claim_date_trends
 order by 1
 ```
 
-![Pharmacy Claim Date Trends](/img/data_quality_pharmacy_claim_date_trends.jpg)
+![Pharmacy Claim Date Trends](/img/data_quality_claim_date_trends.jpg)
 
 In the example table above we see that the first 3 months of 2021 have some small amount of claims with paid_dates. It is worth further investigation to see if we are missing dates for those claims, or if that is just ramp up in the pharmacy claims data we have received.
 
@@ -365,12 +376,12 @@ Often we see anomalies where claim volume or dollars can change unexpectedly ove
 
 ```sql
 select *
-from data_quality.trended_pharmacy_claim_volume_and_dollars
+from data_quality.pharmacy_claim_volume_and_dollars
 ```
 
-![Medical Claim Volume and Dollars](/img/data_quality_medical_claim_volume_and_dollars.jpg)
+![Pharmacy Claim Volume and Dollars](/img/data_quality_pharmacy_claim_volume_and_dollars.jpg)
 
-In the example above we clearly have medical claims in the month of March 2021 but we have no paid amounts.
+In the example above we clearly have pharmacy claims in the month of March 2021 but we have no paid amounts.
 
 ### Data Loss
 
@@ -380,7 +391,7 @@ The table identified in the query below will only populate once you've created t
 
 ```sql
 select *
-from data_quality.claims_data_loss
+from data_quality.data_loss
 ```
 
 ![Data Loss](/img/data_quality_data_loss.jpg)
@@ -447,6 +458,8 @@ select *
 from data_quality.eligibility_date_checks
 ```
 
+![Eligibility Date Checks](/img/data_quality_eligibility_date_checks.jpg)
+
 ### Patient Demographics
 Birth date and gender information about a member is crucial for some downstream analytics.  The `eligibility_demographics`
 table provides a count of eligibility spans that are missing this data.
@@ -474,6 +487,7 @@ Trending this count can surface abnormal drops and/or spikes in enrollment.
 ```sql
 select *
 from data_quality.eligibility_trend
+order by year_month 
 ```
 
 ![Eligibility Trend](/img/data_quality_eligibility_trend.png)
@@ -490,7 +504,7 @@ data_loss table in the claims Input Layer.
 
 ```sql
 select *
-from data_quality.claims_data_loss
+from data_quality.data_loss
 ```
 
 ![Data Loss](/img/data_quality_data_loss.jpg)
