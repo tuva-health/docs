@@ -261,23 +261,110 @@ from data_quality.primary_key_check
 
 ### Primary Key
 
-The most basic check we perform on any table is a primary key check.  This ensures the data in this table is at the proper grain.  Modern data warehouses (e.g. Snowflake) don't always enforce primary keys.  If the primary key isn't set properly this could cause downstream queries to explode in size and number of records.  
+The most basic check we perform on any table is a primary key check.  This ensures the data in this table is at the proper grain.  
+Modern data warehouses (e.g. Snowflake) don't always enforce primary keys.  If the primary key isn't set properly this could cause 
+downstream queries to explode in size and number of records.  
 
-The primary key on the `eligibility` table is comprised of 4 fields: `patient_id`, `enrollment_start_date`, `enrollment_end_date` and `data_source`.  Query the following table to check whether your data has any duplicate records across these fields.  The `duplicate_records` column in this table should equal 0 for every table.  If it's not you have a primary key problem to fix.
+The primary key on the `eligibility` table is comprised of 4 fields: `memner_id`, `payer`, `plan`, `enrollment_start_date`, and `enrollment_end_date`.  
+Query the following table to check whether your data has any duplicate records across these fields.  The `duplicate_records` 
+column in this table should equal 0 for every table.  If it's not you have a primary key problem to fix.
 
 ```sql
 select *
 from data_quality.primary_key_check
 ```
 
+![Primary Keys](/img/data_quality_primary_keys.jpg)
+
+In the example above the pharmacy_claim table has 100 distinct claims that have multiple records with the same values for the primary key fields.  If any result in this table is non-zero you need to correct the mapping to fix it.
+
 ### Patient ID
+
+Does every row of eligibility have a `patient_id` populated?
+
+The `eligibility_missing_patient_id` table verifies whether any rows do not have a `patient_id`. You can query it as follows:
+
+```sql
+select *
+from data_quality.eligibility_missing_patient_id
+```
+
+This query returns the number of rows in the eligibility table that do not have a `patient_id`. If this number is greater than 0, 
+you need to correct the mapping to fix it.
+
+![Eligibility Patient ID](/img/data_quality_eligibility_patient_id.jpg)
+
+In the example table above we observe that all rows in the source data have a `patient_id`.
 
 ### Date Fields
 
+In eligibility, the following fields are the important date fields:
+
+- `enrollment_start_date`
+- `enrollment_end_date`
+
+We need to check these fields for the following problems:
+
+1. Every row in the eligibility input layer should have valid dates in these fields.
+2. `enrollment_start_date` should be less than or equal to `enrollment_end_date`.
+3. The latest `enrollment_end_date` value should be the last day of the current month when the tuva project was last run.
+4. Dates should be relatively recent e.g., no dates before 1900.
+
+The following table returns the count of eligibility rows that violate the rules outlined above.
+
+```sql
+select *
+from data_quality.eligibility_date_checks
+```
+
 ### Patient Demographics
+Birth date and gender information about a member is crucial for some downstream analytics.  The `eligibility_demographics`
+table provides a count of eligibility spans that are missing this data.
 
+```sql
+select *
+from data_quality.eligibility_demographics
+```
+![Eligibility Demographics](/img/data_quality_eligibility_demographics.png)
 ### Payer Info
+The `eligibility_missing_payer` table provides a count of eligibility spans that are missing the following:
+- payer type (e.g. medicare, medicaid, commercial)
+- payer name (e.g. CMS)
+- invalid payer
 
+```sql
+select *
+from data_quality.eligibility_missing_payer
+```
+![Eligibility Missing Payer](/img/data_quality_eligibility_missing_payer.png)
 ### Trended Enrollment Volume
+The `eligibility_trend` table provides a count of eligibility spans that contain enrollment in the corresponding year and month.
+Trending this count can surface abnormal drops and/or spikes in enrollment.
+
+```sql
+select *
+from data_quality.eligibility_trend
+```
+
+![Eligibility Trend](/img/data_quality_eligibility_trend.png)
 
 ### Data Loss
+
+Often when we map data we perform complex filtering and other types of transformation operations.  In these scenarios it 
+can be easy for unintended data loss to occur.  Therefore we need to confirm some basic statistics between the raw source 
+data and the Tuva Input Layer to ensure unintended data loss hasn't occurred.
+
+The table identified in the query below will only populate once you've created the data loss table in the Input Layer.  
+To create this table, you manually calculate the exact same metrics as the source data and map these results to the 
+data_loss table in the claims Input Layer.
+
+```sql
+select *
+from data_quality.claims_data_loss
+```
+
+![Data Loss](/img/data_quality_data_loss.jpg)
+
+In the example above we can compare several basic "table stakes" statistics for medical and pharmacy claims, as well as 
+eligibility.  The highlighted rows all show data loss as we move from raw to input layer to core.  Some of this data loss
+might be expected and explainable.  You should work to understand any and all data loss that is not currently explainable before moving on.
