@@ -33,14 +33,14 @@ from data_quality.analytics_populated
 
 ## Chronic Conditions
 
-Chronic diseases follow a very predictable distribution in patient populations.  Here we check the prevalence of the top 10 most chronic conditions in the dataset to ensure it's approximately what we would expect.  We include Medicare FFS benchmarks for comparison.
+Chronic diseases follow a very predictable distribution in patient populations.  Here we check the prevalence of the top 10 most common chronic conditions in the dataset to ensure it's approximately what we would expect.  We include Medicare FFS benchmarks for comparison.
 
 ```sql
 select *
 from data_quality.chronic_condition_prevalence
 ```
 
-## Service Categories
+## Encounter Types and Service Categories
 
 Service categories provide insight into the distribution of healthcare services across different types of care. This section examines the utilization rates, costs, and trends associated with various service categories. Understanding these patterns helps identify potential areas of concern or opportunity in healthcare delivery.
 
