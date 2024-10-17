@@ -20,13 +20,25 @@ The analytics reference summary table unions together the various analytics meas
 ```sql
 select *
 from data_quality.analytics_reference_summary
+order by analytics_concept
+,analytics_measure
 ```
 
-The analytics checks summary table unions together the different data quality checks and the count of results for each of those checks. Some of the checks are seen as "never events," meaning any result greater than zero is a problem worth looking into. Others are checks where results aren't a problem. The two different types of checks are separated with the "data check zero flag" in the data.
+The analytics checks summary table unions together the different data quality checks and the count of results for each of those checks. Some of the checks are seen as "never events," meaning any result greater than zero is a problem worth looking into. Others are checks where results aren't a problem. The two different types of checks are separated with the "normally zero" in the data.
 
 ```sql
 select *
 from data_quality.analytics_checks_summary
+where normally_zero = 1
+order by result_count
+```
+
+
+```sql
+select *
+from data_quality.analytics_checks_summary
+where normally_zero = 0
+order by result_count
 ```
 
 ## Core Populated
