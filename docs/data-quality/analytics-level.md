@@ -4,12 +4,14 @@ title: "Analytics-level"
 hide_title: false
 ---
 
-Once you've completed the atomic-level data quality checks you're ready to move on the analytics-level.  Analytics-level data quality is all about understanding:
+Analytics-level data quality focuses on understanding the ability of your data to support specific analyses and whether the results generated from those analyses are reasonable. This level of data quality assessment goes beyond the basic integrity checks performed at the atomic level and examines the data from an analytical perspective.
 
-1. Which analyses your data is able to support 
-2. Are the results your data generates for those analyses reasonable
+There are two main aspects of analytics-level data quality:
 
-Analytics-level includes the most commonly used types of analyses, but it doesn't include every analysis (this is impossible).  Like atomic-level, the analytics-level checks below are intended to be used as a checklist.  Every check exists as a data table in the Tuva Data Model and the documentation below describes why the check is important and how to use these tables to perform the check.
+1. Assessing which analyses your data can support
+2. Determining if the results your data generates for those analyses are reasonable
+
+The analytics-level checks described below are intended to be used as a checklist. Each check exists as a data table in the Tuva Data Model, and the documentation below describes why the check is important and how to use these tables to perform the check.
 
 Since many of the analytics-level checks involve assessing reasonableness, it's important to have something to compare to.  For many of the checks we include reference data points based on Medicare FFS claims data.  While not perfect for comparing to commercial and Medicaid populations, it still adds directional value (e.g. is a reasonable PMPM closer to $400 or $4,000).
 
@@ -31,43 +33,115 @@ from data_quality.analytics_checks_summary
 
 ## Core Populated
 
-The most basic check we perform in the analytics-level is to confirm whether or not the Core Data Model is populated.  Sometimes Tuva will build all data tables in the data model but because of data quality problems a set of tables will end up with zero records (i.e. is not populated).  This check gives us a quick glance at whether or not this is happening in the Core Data Model.
+The most basic check we perform at the analytics level is to confirm whether or not the Core Data Model is populated. Sometimes The Tuva Project will build all data tables in the data model, but because of data quality problems, a set of tables will end up with zero records (i.e., is not populated). This check gives us a quick glance at whether or not this is happening in the Core Data Model.
 
 ```sql
 select *
 from data_quality.core_populated
 ```
 
+This query returns information about which tables in the Core Data Model are populated and which are not. If any tables are not populated, it may indicate upstream data quality issues that need to be addressed.
+
+![Core Populated](/img/data_quality_core_populated.png)
+
+In the above image, `core.pharmacy_claim` has returned 0 rows, indicating that the table is not populated. In this example, the user should see the [Pharmacy Claim](./atomic-level.md#pharmacy-claim) section to help identify the root cause of why `core.pharmacy_claim` is not populated.
+
 ## Analytics Populated
 
-On top of the Core Data Model are the Data Marts.  We use these Data Marts to perform analytics.  However sometimes the tables are not populated because of data quality issues.  This table let's us see if this is happening at a glance.
+On top of the Core Data Model are the Data Marts. We use these Data Marts to perform analytics. However, sometimes the tables are not populated because of data quality issues. This table lets us see if this is happening at a glance.
 
 ```sql
 select *
 from data_quality.analytics_populated
 ```
 
+This query provides information about which Data Mart tables are populated. If any tables are not populated, it may indicate issues with the data transformation process or upstream data quality problems.
+
+![Analytics Populated](/img/data_quality_analytics_populated.png)
+
+In the above image, `ed_visits` has returned 0 rows, indicating there is an issue with one of the fields used to create ED encounters or service categories. In this example, the user should go to the [Claim Line Fields](./atomic-level.md#Claim-Line-Fields) section to help identify the root cause of why `ed_visits` is not populated.
+
 ## Chronic Conditions
 
-Chronic diseases follow a very predictable distribution in patient populations.  Here we check the prevalence of the top 10 most common chronic conditions in the dataset to ensure it's approximately what we would expect.  We include Medicare FFS benchmarks for comparison.
+Chronic diseases follow a very predictable distribution in patient populations. Here we check the prevalence of the top 10 most common chronic conditions in Medicare FFS data and compare it to the prevalence in your data.
 
 ```sql
 select *
-from data_quality.chronic_condition_prevalence
+from data_quality.chronic_conditions_prevalence
 ```
+
+This query returns the prevalence rates of common chronic conditions in your population, along with benchmark comparisons. Significant deviations from expected prevalence rates may indicate issues with diagnosis coding or population differences that need to be understood.
+
+```sql
+select *
+from data_quality.chronic_conditions_none
+```
+
+The above query returns the percent of patients who have no chronic conditions, along with benchmark comparisons from the Medicare data. A significantly higher or lower number of members without chronic conditions may indicate issues with diagnosis coding or population differences that need to be understood. For example, commercial populations may have a higher percentage of members without chronic conditions due a generally younger and healthier group of enrollees.
+
+To confirm if an unexpected result is due to data quality issues with diagnosis codes, the user should reference the [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields) section of the atomic-level checks.
 
 ## Encounter Types and Service Categories
 
-Service categories provide insight into the distribution of healthcare services across different types of care. This section examines the utilization rates, costs, and trends associated with various service categories. Understanding these patterns helps identify potential areas of concern or opportunity in healthcare delivery.
-
-- Utilization rates per category
-- Cost per service category
-- Trend analysis of service category utilization
+Encounter types and service categories provide insight into the distribution of healthcare services across different types of care. This section examines the utilization rates, costs, and trends associated with various encounter types and service categories. Understanding these patterns helps identify potential areas of concern or opportunity in healthcare delivery.
 
 ```sql
 select *
-from data_quality.service_category_utilization
+from data_quality.encounters_missing_groups
 ```
+
+This query returns information about encounter gropus that are missing in the dataset. This is a high level check to ensure that all encounter groups are present in the data. If any encounter groups are missing, it may indicate issues with data mapping that needs to be addressed. The underlying issue could be in one of the following sections: [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields), [Institutional Header Fields](./atomic-level.md#institutional_header_fields), or [Claim Line Fields](./atomic-level.md#claim-line-fields).
+
+```sql
+select *
+from data_quality.encounters_cost_and_utilization_trend
+order by year_month
+```
+
+The above query provides trend data for encounter costs per unit and utilization (as PKPYs) over time. This information is valuable for identifying patterns in healthcare service delivery and costs, which can inform resource allocation and policy decisions. Additionally, we can ensure consistent trends across time periods and quickly identify potential data quality issues if data is suddenly missing. For example, if we ran this query:
+
+```sql
+select *
+from data_quality.encounters_cost_and_utilization_trend
+where encounter_type = 'acute inpatient'
+order by year_month
+```
+
+With these results:
+
+![Acute Inpatient Encounter Trend](/img/data_quality_encounter_trend.png)
+
+We can see that we have paid amounts for acute inpatient encounters in January and February (shown as very high paid per values for those months) but low volume (PKPY). This is a clear indication of a data quality issue as the values are significantly different for the rest of the year. In this case, the user should go to the [Institutional Header Fields](./atomic-level.md#institutional-header-fields) section of atomic-level data-quality to help identify the root cause of why acute inpatient encounters are not populated in the first two months.
+
+```sql
+select *
+from data_quality.encounters_cost_and_utilization
+```
+
+This query returns paid per encounter and PKPY data for different encounter types. Analyzing this information helps in understanding the distribution of healthcare resources across various service categories and can highlight areas of high cost or utilization that may require further investigation.
+
+If we ran the following query to specifically examine acute inpatient PKPY and cost pers relative to the Medicare data:
+
+```sql
+select *
+from data_quality.encounters_cost_and_utilization
+where analytics_measure = 'acute inpatient'
+```
+
+And got the following results:
+
+![Acute Inpatient Encounter Cost and Utilization](/img/data_quality_encounter_cost.png)
+
+It would raise some questions about the underlying dataset and potentially identify a data quality issue. For example, in the image above we see that the PKPY values are very similar (263.32 vs 258.68). However, the paid per encounter is less than half in our dataset ($7,998) vs ($16,134). 
+
+In order to better determine if this is true or the result of a data quality issue, it is important to take into account the other information we know about the dataset. Is it Medicare data? Commercial data? What is the age distribution of the population? What are their risk scores? What are the types of hospital procedures that are being performed? The answers to these questions can help us better understand the context of the data and potentially identify a data quality issue.
+
+```sql
+select *
+from data_quality.service_category_pmpm_trend
+```
+
+The query above shows the trend of per member per month (PMPM) costs for different service categories over time. This data is crucial for tracking changes in healthcare spending patterns and identifying potential cost drivers or areas for cost containment. Comparing this to industry benchmarks or historical data can give insights into overall cost trends and the efficiency of healthcare delivery in your population.
 
 ## Financial PMPM
 
@@ -223,25 +297,4 @@ Quality measures are essential for assessing the effectiveness and efficiency of
 
 ```sql
 select *
-from data_quality.data_quality_quality_measures
-```
-
-Here we check if the numerator or denominator of any of the measures are 0. While is is possible a population might have 0 in either category, it is unlikely, so we are flagging the number of quality measures that pertain to each, and recommend looking into possible reasons why that might be plausible or not.
-
-```sql
-select *
-from data_quality.data_quality_quality_measures_reference
-```
-
-Here we compare the percent (numerator / denominator) on each measure against the Medicare FFS claims data set. This can be helpful to compare the value for each measure to see reasonableness. Some measures might have a very low percent, while others a very high percent. If results in yours data are drastically different, it might indicate a data quality issue.
-
-**Atomic Checks** 
-The following atomic checks would be a good place to check for data quality issues if the analytics check surface any potential issues:
-
-- icd_diagnosis_code
-- enrollment_start_date
-- enrollment_end_Date
-- sex
-- birth_date
-- hcpcs_code
-- icd_procedure_code
+from data_quality.quality_measures
