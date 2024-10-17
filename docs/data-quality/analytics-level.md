@@ -279,7 +279,7 @@ select *
 from data_quality.data_quality_cms_hcc
 ```
 
-This table checks the average CMS HCC score for the data source and compares it to the average score from Medicare FFS claims data. This should be around 1 for Medicare populations. If there is significant deviance from 1 (<.7 or >1.5), this could inidicate a problem with your data. If a population is known to be very healthy or very sick, then that could explain the high variance. 
+This table checks the average CMS HCC score for the data source and compares it to the average score from Medicare FFS claims data. This should be around 1 for Medicare populations. If there is significant deviance from 1 `(<.7 or >1.5)`, this could inidicate a problem with your data. If a population is known to be very healthy or very sick, then that could explain the high variance. 
 
 For commercial and medicaid populations, the risk score is unable to be compared as the CMS-HCC risk algorhythm was specifically trained on Medicare populations and their specific conditions. 
 
