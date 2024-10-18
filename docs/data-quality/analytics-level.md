@@ -36,16 +36,9 @@ order by result_count
 ```
 
 
-```sql
-select *
-from data_quality.analytics_checks_summary
-where normally_zero = 0
-order by result_count
-```
-
 ## Core Populated
 
-The most basic check we perform at the analytics level is to confirm whether or not the Core Data Model is populated. Sometimes The Tuva Project will build all data tables in the data model, but because of data quality problems, a set of tables will end up with zero records (i.e., is not populated). This check gives us a quick glance at whether or not this is happening in the Core Data Model.
+The most basic check we perform at the analytics level is to confirm whether or not the Core Data Model is populated. Sometimes The Tuva Project builds all data tables in the data model, but because of data quality problems, a set of tables will end up with zero records (i.e., is not populated). This check gives us a quick glance at whether or not this is happening in the Core Data Model.
 
 ```sql
 select *
@@ -75,7 +68,7 @@ In the above image, `ed_visits` has returned 0 rows, indicating there is an issu
 
 ## Chronic Conditions
 
-Chronic diseases follow a very predictable distribution in patient populations. Here we check the prevalence of the top 10 most common chronic conditions in Medicare FFS data and compare it to the prevalence in your data.
+Chronic diseases follow a very predictable distribution in patient populations. Here we check the prevalence of the top 10 chronic conditions in Medicare FFS data and compare it to the prevalence in your data.
 
 ```sql
 select *
@@ -102,7 +95,7 @@ select *
 from data_quality.encounters_missing_groups
 ```
 
-This query returns information about encounter gropus that are missing in the dataset. This is a high level check to ensure that all encounter groups are present in the data. If any encounter groups are missing, it may indicate issues with data mapping that needs to be addressed. The underlying issue could be in one of the following sections: [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields), [Institutional Header Fields](./atomic-level.md#institutional_header_fields), or [Claim Line Fields](./atomic-level.md#claim-line-fields).
+This query returns information about encounter groups that are missing in the dataset. This is a high level check to ensure that all encounter groups are present in the data. If any encounter groups are missing, it may indicate issues with data mapping that needs to be addressed. The underlying issue could be in one of the following sections: [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields), [Institutional Header Fields](./atomic-level.md#institutional_header_fields), or [Claim Line Fields](./atomic-level.md#claim-line-fields).
 
 ```sql
 select *
@@ -157,16 +150,54 @@ The query above shows the trend of per member per month (PMPM) costs for differe
 
 ## Financial PMPM
 
-Per Member Per Month (PMPM) costs are a key metric in healthcare analytics. This section evaluates overall PMPM costs, as well as PMPM costs broken down by service category and specific chronic conditions. These analyses help in understanding the financial aspects of healthcare delivery and identifying cost drivers.
+Per Member Per Month (PMPM) costs are a key metric in healthcare analytics. As the previous sections examined PMPM at the service category and encounter levels, this section evaluates overall PMPM costs. This can be useful in identifying any high level issues with claim type mapping, or missing claims in general.
 
-- Overall PMPM costs
-- PMPM costs by service category
-- PMPM costs for specific chronic conditions
 
 ```sql
 select *
-from data_quality.financial_pmpm
+from data_quality.data_quality_financial_pmpm
+order by year_nbr
 ```
+
+A typical PMPM (Per Member Per Month) for various populations are outlined in the table below:
+
+| Payer Type                  | PMPM Range |
+|-----------------------------|------------|
+| Commercial                  | $300-$500    |
+| Medicare/Medicare Advantage | $800-$1200   |
+| Medicaid                    | $200-$400    |
+
+There are always exceptions to these rules, specifically if a population is higher risk than average for the payer type.
+
+A typical split based on claim type is listed below:
+
+| Claim Type           | Percent of Total Spend |
+|----------------------|------------------------|
+| Institutional        | 50% - 80%                  |
+| Professional         | 20% - 40%                  |
+| Pharmacy (if applicable) | 10% - 30%            |
+
+
+The claims data split by claim type can be viewed at the table here:
+
+```sql
+select *
+from data_quality.data_quality_claim_percent
+order by percent_of_total_paid
+```
+
+
+If spend falls outside of these ranges, it could indicate a mapping or data quality issue.
+
+
+
+**Atomic Checks** 
+The following atomic checks would be a good place to check for data quality issues if the analytics check surface any potential issues
+
+- place of service code
+- bill_type_code
+- revenue center code
+- ms_drg_code
 
 ## ED Visits
 
@@ -176,14 +207,14 @@ In this table we check to make sure each of the avoidable or non avoidable categ
 
 ```sql
 select *
-from dev_brad.data_quality.data_quality_ed_classification
+from data_quality.data_quality_ed_classification
 ```
 
-This table checks the distribution of each of the categories of the ED classification algorithm and compares it to the CMS FFS claims data distribution. If a larger portion of ED visits is "Not Classified" than the CMS data, it could indicate a data quality issue; specifically, with the primary diagnosis code.
+In the table below, we verify that each category of avoidable or non-avoidable emergency department use is populated. If one or more sections are missing from the data, a 1 will appear in the result_count column. This likely indicates an issue with diagnosis code mapping, as the classification algorithm is based on diagnosis codes.
 
 ```sql
 select *
-from dev_brad.data_quality.data_quality_ed_classification_reference
+from data_quality.data_quality_ed_classification_reference
 ```
 
 
@@ -196,31 +227,31 @@ The following atomic checks would be a good place to check for data quality issu
 
 ## Acute Inpatient Visits
 
-Acute inpatient visits represent a significant portion of healthcare costs and are an important indicator of population health. This section analyzes various aspects of inpatient care, including visit rates, length of stay, costs, mortality rates, and case mix complexity. These metrics help in understanding the intensity and quality of inpatient care delivery.
+Acute Inpatient Visits represent a significant portion of healthcare costs and serve as an important indicator of population health. This section analyzes various aspects of inpatient care, including visit rates, length of stay (ALOS), costs, mortality rates, and case mix complexity. These metrics provide insights into the intensity and quality of inpatient care delivery.
 
-- ALOS
-- Avg Mortality Rate
-- Top DRGs
+- ALOS (Average Length of Stay)
+- Average Mortality Rate
+- Top DRGs (Diagnosis-Related Groups)
 
-This table checks if any acute inpatient encouters don't have any matched professional claims associated with them. Professional claims are matched with institutional claims as part of the encounter building process. If there weren't any professional claims that could be matched (based on claim dates and patient_id) to institutional claims, they will be flagged here.
+The following table checks whether any acute inpatient encounters lack associated professional claims. Professional claims are matched with institutional claims as part of the encounter-building process. If no professional claims can be matched (based on claim dates and patient ID) to institutional claims, these cases will be flagged here.
 
 ```sql
 select *
 from data_quality.data_quality_acute_inpatient
 ```
 
-This table measures the average length of stay and mortality rate of inpatient encounters and compares it to the Medicare FFS claims data value. If there is any variance of +- 2 days on the length of stay, it warrants digging into the data to understand further. Mortality rate can vary based on the type of population.
+This table measures the average length of stay and mortality rate of inpatient encounters, comparing them to the Medicare FFS (Fee-for-Service) claims data. If there is a variance of ±2 days in the length of stay, it warrants further investigation to understand the cause. The mortality rate may vary depending on the population type.
 
 ```sql
 select *
 from data_quality.data_quality_acute_inpatient_reference
 ```
 
-This table measures the prevelence of the top 10 DRGs in the data and compares their preveleance to the top 10 DRGs in Medicare data. If the most common from Medicare are not found in the data_source it could indicate a problem with the data. It could also mean the population is different from the Medicare population.
+This table measures the prevalence of the top 10 DRGs in the data and compares their prevalence to the top 10 DRGs in Medicare data. If the most common DRGs from Medicare are not found in the data source, it could indicate a data issue. Alternatively, it could reflect differences in the population compared to the Medicare population.
 
 ```sql
 select *
-from data_quality.data_quality_acute_inpatient_prevelence
+from data_quality.data_quality_acute_inpatient_prevalence
 ```
 
 **Atomic Checks** 
@@ -242,14 +273,14 @@ Readmission rates are a key quality indicator in healthcare. This section focuse
 
 - 30-day readmission rate
 
-This table checks the various reasons inpatient encounters weren't eligibile to be an index admission (and therefore excluded from the readmissions calculation). Some amount of encounters with data quality issues is unavoidable in claims data, but if the number of encounters is higher than a few percentage points of total encounters, it is worth digging into the issue.
+The following table checks for various reasons why inpatient encounters were not eligible to be considered as index admissions (and were therefore excluded from the readmissions calculation). Some degree of encounters with data quality issues is unavoidable in claims data, but if the number of excluded encounters exceeds a few percentage points of the total, it is worth investigating further.
 
 ```sql
 select *
 from data_quality.data_quality_readmissions
 ```
 
-This table compares the readmission rate of the data_source with the readmission rate from the Medicare FFS claims data set. Normal variation of readmission rates are between 5% and 20%. Anything outside of that range is unusually high or low and should be researched further.
+This table compares the readmission rate in the data source to the readmission rate from the Medicare FFS (Fee-for-Service) claims data. Normal variation in readmission rates is between 5% and 20%. Any rates outside of this range are unusually high or low and should be researched further.
 
 
 ```sql
@@ -270,18 +301,18 @@ The following atomic checks would be a good place to check for data quality issu
 
 ## CMS-HCCs
 
-The CMS Hierarchical Condition Category (HCC) risk adjustment model is widely used to predict healthcare costs. This section examines risk scores, comorbidity rates, and trends in risk scores over time. These analyses help in understanding the health status and predicted resource utilization of the population.
+The CMS Hierarchical Condition Category (HCC) risk adjustment model is widely used to predict healthcare costs. This section analyzes risk scores, comorbidity rates, and trends in risk scores over time. These analyses provide insight into the health status of the population and its predicted resource utilization.
 
-This table checks that both the demographic factors and disease factors are present in the cms-hcc mart. If there is an issue with enrollment or diagnosis codes, this can cause either factor to not be populated. A result count of 1 means that the factor was missing from the data.
+This table checks whether both demographic factors and disease factors are present in the CMS-HCC mart. Issues with enrollment or diagnosis codes may cause one or both factors to be missing. A result count of 1 indicates that the factor was missing from the data.
 
 ```sql
 select *
 from data_quality.data_quality_cms_hcc
 ```
 
-This table checks the average CMS HCC score for the data source and compares it to the average score from Medicare FFS claims data. This should be around 1 for Medicare populations. If there is significant deviance from 1 `(<.7 or >1.5)`, this could inidicate a problem with your data. If a population is known to be very healthy or very sick, then that could explain the high variance. 
+This table compares the average CMS HCC score in the data source to the average score from Medicare FFS (Fee-for-Service) claims data. The expected score for Medicare populations is typically around 1. If there is significant deviation from 1 `(< 0.7 or > 1.5)`, it could indicate a problem with the data. However, if the population is known to be particularly healthy or very sick, this variance might be expected.
 
-For commercial and medicaid populations, the risk score is unable to be compared as the CMS-HCC risk algorhythm was specifically trained on Medicare populations and their specific conditions. 
+For commercial and Medicaid populations, the risk score cannot be directly compared, as the CMS-HCC risk adjustment algorithm was specifically trained on Medicare populations and their unique conditions.
 
 ```sql
 select *
@@ -301,12 +332,29 @@ The following atomic checks would be a good place to check for data quality issu
 
 ## Quality Measures
 
-Quality measures are essential for assessing the effectiveness and efficiency of healthcare delivery. This section looks at various quality measure rates, their trends over time, and gaps in care. These analyses provide insights into the quality of care being delivered and areas for potential improvement.
-
-- Measure rates
-- Trend analysis of measure rates
-- Gaps in care rates
+Quality measures are essential for assessing the effectiveness and efficiency of healthcare delivery. This section examines various quality measure rates, their trends over time, and gaps in care. These analyses provide insights into the quality of care being delivered and highlight areas for potential improvement.
 
 ```sql
 select *
-from data_quality.quality_measures
+from data_quality.data_quality_quality_measures
+```
+
+In this query, we check whether the numerator or denominator for any quality measure is 0. While it is possible for a population to have a 0 in either category, it is unlikely. Therefore, we flag the number of quality measures where this occurs and recommend investigating the possible reasons to determine if such results are plausible.
+
+```sql
+select *
+from data_quality.data_quality_quality_measures_reference
+```
+
+In this query, we compare the percentage of each measure (numerator/denominator) against the Medicare FFS (Fee-for-Service) claims data set. This comparison helps assess the reasonableness of the values for each measure. Some measures may naturally have very low percentages, while others may have very high percentages. If your data shows results that are drastically different, it could indicate a potential data quality issue.
+
+**Atomic Checks** 
+The following atomic checks would be a good place to check for data quality issues if the analytics check surface any potential issues:
+
+- icd_diagnosis_code
+- enrollment_start_date
+- enrollment_end_Date
+- sex
+- birth_date
+- hcpcs_code
+- icd_procedure_code
