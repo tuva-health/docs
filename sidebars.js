@@ -230,6 +230,13 @@ const sidebars =
         // "community/community-guidelines",
         "community/community-meetups",
 
+    ],
+    
+    videoSidebar:
+    [
+        "videos/guides",
+        "videos/knowledge",
+        "videos/community",
     ]
 };
 
