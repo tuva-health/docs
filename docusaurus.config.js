@@ -102,6 +102,12 @@ const config = {
             position: 'left',
             label: 'Community',
           },
+          {
+            type: 'docSidebar',
+            sidebarId: 'videoSidebar',
+            position: 'left',
+            label: 'Videos',
+          },
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           // { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
