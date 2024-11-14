@@ -85,7 +85,7 @@ this connector from our public resources bucket on AWS S3:
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/parta_diagnosis_code.csv">Part A Diagnosis Code File (CCLF4)</a>
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/partb_physicians.csv">Part B Physicians File (CCLF5)</a>
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/partb_dme.csv">Part B DME File (CCLF6)</a>
-* <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/partd_claims.csv">Part D File (CCLF7</a>
+* <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/partd_claims.csv">Part D File (CCLF7)</a>
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/beneficiary_demographics.csv">Beneficiary Demographics File (CCLF8)</a>
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/beneficiary_xref.csv">Beneficiary XREF File (CCLF9)</a>
 * <a href="https://tuva-public-resources.s3.amazonaws.com/cclf_synthetic_data/enrollment.csv">Custom Enrollment File (CCLF9)</a>
