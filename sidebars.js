@@ -12,6 +12,7 @@ const sidebars =
                 "getting-started/data-warehouse-support",
                 "getting-started/mapping-guide",
                 "getting-started/customizations",
+                "getting-started/customizations",
                 "getting-started/terminology",
             ]
         },
@@ -173,6 +174,7 @@ const sidebars =
             label: "Guides",
             items: [
                 "guides/geo-coding-sdoh",
+                "guides/terminology-normalization",
             ]
         },
         {
