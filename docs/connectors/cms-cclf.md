@@ -18,11 +18,11 @@ Working with CCLF data can be challenging. The data will be duplicated in many w
 
 This connector deduplicates your data following guidance from the [CCLF Information Packet](https://www.cms.gov/files/document/cclf-information-packet.pdf) with additional logic created by Tuva to fill in gaps or to clarify instructions that are not always clear in the documentation.
 
-### Step 1: Identify the most recent MBI
+**Step 1: Identify the most recent MBI**
 
 The first step is to identify the most recent Medicare Beneficiary Identifier (MBI) since this can change over time. The beneficiary XREF file (CCLF9) is used as a crosswalk between MBIs that are present on older claims and new MBIs that may have been issued after the claim was processed (*CCLF Information Packet, Section 5.1.1, Creation of the Most Recent MBI field (MR_MBI) for use in the Natural Key*). These files often contain conflicting information within the same file and across files. For this reason, we use a window function to partition and sort previous MBIs (prvs_num) to get the current MBI (crnt_num) and then ensure that we grab the most recent current MBI.
 
-### Step 2: Group related claims
+**Step 2: Group related claims**
 
 A single episode of care may include multiple claims: the original claim and any corresponding cancellation and adjustment claims. The next step is identifying natural keys for each claim type and then using those keys to group related claims (*CCLF Information Packet, Section 5.1.2, Natural Keys*).
 
@@ -45,7 +45,7 @@ Part D File:
   * CLM_LINE_RX_SRVC_RFRNC_NUM 
   * CLM_LINE_RX_FILL_NUM
 
-### Step 3: Sort related claims
+**Step 3: Sort related claims**
 
 Once the related claims are grouped, we use logic to sort them to get the latest ("final") version of that claim.  
 
@@ -53,7 +53,7 @@ Part A & Part B grouped claims are sorted by the latest CLM_EFCTV_DT and CUR_CLM
 
 Part D grouped claims are sorted by the CLM_ADJSMT_TYPE_CD code ("0" Original Claim, "1" Cancellation Claim, "2" Adjustment claim).
 
-### Step 4: Reverse dollar amounts for canceled claims
+**Step 4: Reverse dollar amounts for canceled claims**
 
 Payment amounts on each record are not "signed" to indicate whether the payment amount is a payment to the provider or
 a recovery from the provider. Therefore, it is necessary to use the CLM_ADJSMT_TYPE_CD to determine whether to "add" or "subtract" the payment amount from the running total.
@@ -62,7 +62,7 @@ Identify canceled claims using the CLM_ADJSMT_TYPE_CD ("1" Cancellation Claim) t
 
 (*CCLF Information Packet, Section 5.3.1, Calculating Total Part A and B Expenditures*)
 
-### Step 5: Sum dollar amounts and filter to final version of the claim
+**Step 5: Sum dollar amounts and filter to final version of the claim**
 
 For Part A claims, we sum the adjusted header amounts and add the claim line details, then logic is applied to determine if the claim line paid amounts should be attached to the claim. Per the CCLF docs, "The revenue center payment amounts should only be relied on if they sum to the header level payment amount. If the revenue center level payment amounts do not sum to the header level payment amount, then the revenue center level payment amounts should be ignored." (*CCLF Information Packet, Section 3.5, Part A Header Expenditures vs Part A Revenue Center Expenditures*)
 
