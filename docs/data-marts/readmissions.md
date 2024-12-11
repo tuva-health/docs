@@ -53,12 +53,12 @@ The Hospital-wide Measure can be implemented on either EHR data or claims data. 
 The data elements needed to process the readmission measure are listed below. 
 
 - patient
-    - patient_id
+    - person_id
     - gender
     - birth_date
 - encounter
     - encounter_id
-    - patient_id
+    - person_id
     - encounter_start_date
     - encounter_end_date
     - discharge_disposition_code
@@ -207,7 +207,7 @@ The `readmission_summary` table is at the encounter grain, but we exclude encoun
 
 **Foreign Keys:**
 - encounter_id (join to core.encounter)
-- patient_id (join to core.patient)
+- person_id (join to core.patient)
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.readmissions__readmission_summary.columns"  />
 

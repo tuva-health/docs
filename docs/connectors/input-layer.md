@@ -16,10 +16,13 @@ The `Input Layer` is designed to accomodate both claims and clinical data source
 The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member). Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.  Each record in the table is intended to represent a unique eligibility (i.e. enrollment) span for a patient with a specific health plan.
 
 **Primary Key:**
-  * patient_id
-  * plan
-  * enrollment_start_date
-  * enrollment_end_date
+   * person_id
+   * member_id
+   * enrollment_start_date
+   * enrollment_end_date
+   * payer
+   * plan
+   * data_source
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.eligibility.columns" />
 
@@ -32,7 +35,7 @@ The medical_claim table contains information on healthcare services and supplies
   * claim_line_number
 
 **Foreign Keys:**
-  * patient_id
+  * person_id
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.medical_claim.columns" />
@@ -46,7 +49,7 @@ The pharmacy_claim table includes information about retail and specialty drug pr
   * claim_line_number
 
 **Foreign Keys:**
-  * patient_id
+  * person_id
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
@@ -62,6 +65,7 @@ The condition table contains information related to medical conditions patients 
 
 **Foreign Keys:**
   * patient_id
+  * person_id
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.condition.columns" />
@@ -75,6 +79,7 @@ The encounter table contains information about patients visits (i.e. encounters)
 
 **Foreign Keys:**
   * patient_id
+  * person_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.encounter.columns" />
 
@@ -87,6 +92,7 @@ The lab result table contains information about lab test results, including the 
 
 **Foreign Keys:**
   * patient_id
+  * person_id
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.lab_result.columns" />
@@ -109,6 +115,7 @@ The medication table contains information on medications ordered and/or administ
 
 **Foreign Keys:**
   * patient_id
+  * person_id
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.medication.columns" />
@@ -122,6 +129,7 @@ The observation table contains information on measurements other than lab tests 
 
 **Foreign Keys:**
   * patient_id
+  * person_id
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.observation.columns" />
@@ -132,6 +140,7 @@ The patient table contains demographic and geographic information on patients.  
 
 **Primary Key:**
   * patient_id
+  * person_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.patient.columns" />
 
@@ -153,6 +162,7 @@ The procedure table contains information on procedures that were performed on pa
 
 **Foreign Keys:**
   * patient_id
+  * person_id
   * encounter_id
   * practitioner_id
 

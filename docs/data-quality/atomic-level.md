@@ -41,19 +41,19 @@ from data_quality.primary_key_check
 
 In the example above the pharmacy_claim table has 100 distinct claims that have multiple records with the same values for the primary key fields.  If any result in this table is non-zero you need to correct the mapping to fix it.
 
-### Patient ID
+### Person ID
 
-The patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `patient_id` field on every medical claim, specifically:
+The patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `person_id` field on every medical claim, specifically:
 
-1. Does every line on each claim have a value for `patient_id` populated?
-2. Is there more than one value for `patient_id` within a single claim (there shouldn't be)?
-3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
+1. Does every line on each claim have a value for `person_id` populated?
+2. Is there more than one value for `person_id` within a single claim (there shouldn't be)?
+3. Does the `person_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
 
-The `medical_claim_patient_id` table verifies whether any of these data quality problems occur in the `medical_claim` table.  You can query it as follows:
+The `medical_claim_person_id` table verifies whether any of these data quality problems occur in the `medical_claim` table.  You can query it as follows:
 
 ```sql
 select *
-from data_quality.medical_claim_patient_id
+from data_quality.medical_claim_person_id
 ```
 
 This query returns the number of unique claim IDs that have each of these data quality problems.
@@ -62,8 +62,8 @@ This query returns the number of unique claim IDs that have each of these data q
 
 In the example table above we observe the following:
 
-1. patient_id is populated for every single record in the medical_claim table 
-2. 50 claim IDs have more than 1 patient_id.  This can occur when two or more distinct lines on the claim have different values for patient_id.
+1. person_id is populated for every single record in the medical_claim table 
+2. 50 claim IDs have more than 1 person_id.  This can occur when two or more distinct lines on the claim have different values for person_id.
 3. 1,000 claim IDs are considered "orphaned claims".  This means that the claim_start_date or claim_end_date occur during a month when the patient does not have insurance eligibility.
 
 If any of these problems occur in your data you should attempt to correct them in mapping.  However the specific techniques to do this will vary by dataset and it may not be possible to correct the problems.  If the problems can't be correct we still include these records in the dataset, but there will be limitations in terms of how useful they are for analytics.
@@ -254,19 +254,19 @@ select *
 from data_quality.primary_keys
 ```
 
-### Patient ID
+### Person ID
 
-Similar to the medical_claim table, the patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `patient_id` field on every pharmacy claim, specifically:
+Similar to the medical_claim table, the patient is at the center of the vast majority of the analyses we're interested in.  Therefore it's important that we check a few things related to the `person_id` field on every pharmacy claim, specifically:
 
-1. Does every line on each claim have a value for `patient_id` populated?
-2. Is there more than one value for `patient_id` within a single claim?
-3. Does the `patient_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
+1. Does every line on each claim have a value for `person_id` populated?
+2. Is there more than one value for `person_id` within a single claim?
+3. Does the `person_id` value indicated on the claim have corresponding valid eligibility during the time period when claim was rendered?
 
-The `pharmacy_claim_patient_id` table verifies whether any of these data quality problems occur in the `pharmacy_claim` table.  You can query it as follows:
+The `pharmacy_claim_person_id` table verifies whether any of these data quality problems occur in the `pharmacy_claim` table.  You can query it as follows:
 
 ```sql
 select *
-from data_quality.pharmacy_claim_patient_id
+from data_quality.pharmacy_claim_person_id
 ```
 
 This query returns a table with one row per check and the count of unique claim IDs that have that particular data quality issue
@@ -275,8 +275,8 @@ This query returns a table with one row per check and the count of unique claim 
 
 In the example table above we observe the following:
 
-1. patient_id is populated for every single record in the pharmacy_claim table 
-2. 50 claim IDs have more than 1 patient_id.  This can occur when two or more distinct lines on the claim have different values for patient_id.
+1. person_id is populated for every single record in the pharmacy_claim table 
+2. 50 claim IDs have more than 1 person_id.  This can occur when two or more distinct lines on the claim have different values for person_id.
 3. 1,000 claim IDs are considered "orphaned claims".  This means that the paid_date or the dispensing_date occurs during a month when the patient does not have insurance eligibility.
 
 If any of these problems occur in your data you should attempt to correct them in mapping.  However the specific techniques to do this will vary by dataset and it may not be possible to correct the problems.  If the problems can't be correct we still include these records in the dataset, but there will be limitations in terms of how useful they are for analytics.
@@ -419,23 +419,23 @@ from data_quality.primary_key_check
 
 In the example above the pharmacy_claim table has 100 distinct claims that have multiple records with the same values for the primary key fields.  If any result in this table is non-zero you need to correct the mapping to fix it.
 
-### Patient ID
+### Person ID
 
-Does every row of eligibility have a `patient_id` populated?
+Does every row of eligibility have a `person_id` populated?
 
-The `eligibility_missing_patient_id` table verifies whether any rows do not have a `patient_id`. You can query it as follows:
+The `eligibility_missing_person_id` table verifies whether any rows do not have a `person_id`. You can query it as follows:
 
 ```sql
 select *
-from data_quality.eligibility_missing_patient_id
+from data_quality.eligibility_missing_person_id
 ```
 
-This query returns the number of rows in the eligibility table that do not have a `patient_id`. If this number is greater than 0, 
+This query returns the number of rows in the eligibility table that do not have a `person_id`. If this number is greater than 0, 
 you need to correct the mapping to fix it.
 
 ![Eligibility Patient ID](/img/data_quality_eligibility_patient_id.jpg)
 
-In the example table above we observe that all rows in the source data have a `patient_id`.
+In the example table above we observe that all rows in the source data have a `person_id`.
 
 ### Date Fields
 

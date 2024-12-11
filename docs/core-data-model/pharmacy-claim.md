@@ -12,9 +12,10 @@ paid by an insurer.  The pharmacy_claim table is at the claim-line grain.
 **Primary Keys:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
-  * patient_id
+  * person_id
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__pharmacy_claim.columns" />

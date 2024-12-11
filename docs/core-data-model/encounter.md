@@ -20,6 +20,6 @@ this important information in a single table.
   * encounter_id
 
 **Foreign Keys:**
-  * patient_id
+  * person_id
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__encounter.columns" />

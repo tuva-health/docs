@@ -97,7 +97,7 @@ order by reason;
 
 ```sql
 select
-      patient_id
+      person_id
     , patient_birth_date
     , patient_age
     , patient_sex

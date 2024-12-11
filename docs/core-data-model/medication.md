@@ -12,6 +12,7 @@ administered during a patient encounter.
   * medication_id
 
 **Foreign Keys:**
+  * person_id
   * patient_id
   * encounter_id
 

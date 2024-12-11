@@ -14,6 +14,8 @@ ICD-10-PCS and HCPCS.
   * procedure_id
 
 **Foreign Keys:**
+  * person_id
+  * member_id
   * patient_id
   * encounter_id
   * practitioner_id

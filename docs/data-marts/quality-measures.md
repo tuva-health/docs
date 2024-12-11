@@ -107,7 +107,7 @@ order by performance_rate desc
 select
       measure_id
     , exclusion_reason
-    , count(patient_id) as patient_count
+    , count(person_id) as patient_count
 from quality_measures.summary_long
 where exclusion_flag = 1
 group by

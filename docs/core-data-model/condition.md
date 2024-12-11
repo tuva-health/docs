@@ -19,6 +19,8 @@ have an encounter_id).
   * condition_id
 
 **Foreign Keys:**
+  * person_id
+  * member_id
   * patient_id
   * encounter_id
 

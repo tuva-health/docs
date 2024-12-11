@@ -17,9 +17,10 @@ category and encounter that are useful for analytics.
 **Primary Keys:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
-  * patient_id
+  * person_id
   * member_id
   * encounter_id
 

@@ -547,7 +547,7 @@ is consistent across all lines for a given `claim_id`.
 <details>
   <summary>Primary Key</summary>
 
-- The primary key for the pharmacy_claim table is patient_id, enrollment_start_date, enrollment_end_date, and data_source.  
+- The primary key for the pharmacy_claim table is person_id, member_id, enrollment_start_date, enrollment_end_date, and data_source.  
 - There are two commonly used data formats for eligibility (also known as enrollment) data: the eligibility span format and the member month format.
 - The eligibility span format has one record per member eligibility span.  An eligibility span is a time period when a member was enrolled with and therefore had insurance coverage by a health plan.  An eligibility span has a start date and an end date.  A person can have multiple eligibility spans.
 - The member month format has one record per member per month of enrollment.  For example, a person with a single eligibility span from 1/1/2020 through 3/31/2020 would have a single eligibility span record, but 3 member month records, one for each month.

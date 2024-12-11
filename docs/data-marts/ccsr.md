@@ -22,7 +22,7 @@ rows than the Tuva condition model. The model is equivalent to the CCSR's Output
 Option 1 - Vertical File Output.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * normalized_code
   * ccsr_category
 
@@ -40,7 +40,7 @@ mapping of an ICD-10 code to a CCSR category. The model is equivalent to the
 CCSR's Output Option 1 - Vertical File Output.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * normalized_code
   * ccsr_category
 
@@ -55,7 +55,7 @@ This model contains only the CCSR's default category assignment for the
 ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * ccsr_category
 
 **Foreign Keys:**

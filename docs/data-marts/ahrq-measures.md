@@ -84,7 +84,7 @@ This data mart computes the PQIs. The individual measures and definitions as of 
 This model contains a row for each patient and data_source combination that is eligible for each pqi each year.
 
 **Primary Key:**
-  * patient_id
+  * person_id
   * data_source
   * pqi_number
   * year_number
@@ -109,7 +109,7 @@ This model contains a list of all the exclusions an encounter qualified for. An 
 
 ### pqi_num_long
 
-This model contains a list of all encounters that qualified for a pqi. The patient_id and data_source are brought in for reference as well.
+This model contains a list of all encounters that qualified for a pqi. The person_id and data_source are brought in for reference as well.
 
 **Primary Key:**
   * data_source
@@ -241,7 +241,7 @@ with num as (
         data_source
       , year_number
       , pqi_number
-      , count(patient_id) as denom_count
+      , count(person_id) as denom_count
     from ahrq_measures.pqi_denom_long 
     group by
         data_source
