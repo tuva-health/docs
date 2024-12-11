@@ -145,6 +145,11 @@ consistent across all lines for a given `claim_id`.
 
 
 
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
+
 #### plan
 This field is a string that links every row to
 the name of the health plan.
@@ -446,6 +451,11 @@ consistent across all lines for a given `claim_id`.
 
 
 
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
+
 #### plan
 This field is a string that links every row to
 the name of the health plan.
@@ -543,6 +553,9 @@ is consistent across all lines for a given `claim_id`.
 
 
 ### eligibility
+
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
 
 <details>
   <summary>Primary Key</summary>

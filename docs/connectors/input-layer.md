@@ -54,6 +54,10 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
 
+### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
 ## Clinical Input
 
 ### condition
@@ -167,3 +171,6 @@ The procedure table contains information on procedures that were performed on pa
   * practitioner_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.procedure.columns" />
+
+### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
