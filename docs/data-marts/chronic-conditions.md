@@ -27,7 +27,7 @@ This table is created by running the CMS chronic conditions data mart on data
 that's been mapped to the core data model.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * condition
 
 **Foreign Keys:**
@@ -43,7 +43,7 @@ particular chronic condition they will have a 1 in that particular column and
 0 otherwise.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__cms_chronic_conditions_wide.columns"  />
 
@@ -56,7 +56,7 @@ recent diagnosis, and the total count of diagnosis codes that were recorded
 that are relevant for the condition.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * condition
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_long.columns" />
@@ -69,7 +69,7 @@ particular chronic condition they will have a 1 in that particular column and
 0 otherwise.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_wide.columns"  />
 
@@ -83,8 +83,8 @@ In this query we show how often each chronic condition occurs in the patient pop
 ```sql
 select
   condition
-, count(distinct patient_id) as total_patients
-, cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+, count(distinct person_id) as total_patients
+, cast(count(distinct person_id) * 100.0 / (select count(distinct person_id) from core.patient) as numeric(38,2)) as percent_of_patients
 from chronic_conditions.tuva_chronic_conditions_long
 group by 1
 order by 3 desc
@@ -101,8 +101,8 @@ In this query we show how often each chronic condition occurs in the patient pop
 select
   condition_category
 , condition
-, count(distinct patient_id) as total_patients
-, cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+, count(distinct person_id) as total_patients
+, cast(count(distinct person_id) * 100.0 / (select count(distinct person_id) from core.patient) as numeric(38,2)) as percent_of_patients
 from chronic_conditions.cms_chronic_conditions_long
 group by 1,2
 order by 4 desc
@@ -117,22 +117,22 @@ In this query we show how many patients have 0 chronic conditions, how many pati
 
 ```sql
 with patients as (
-select patient_id
+select person_id
 from core.patient
 )
 
 , conditions as (
 select distinct
-  a.patient_id
+  a.person_id
 , b.condition
 from patients a
 left join chronic_conditions.tuva_chronic_conditions_long b
- on a.patient_id = b.patient_id
+ on a.person_id = b.person_id
 )
 
 , condition_count as (
 select
-  patient_id
+  person_id
 , count(distinct condition) as condition_count
 from conditions
 group by 1
@@ -141,7 +141,7 @@ group by 1
 select 
   condition_count
 , count(1)
-, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+, cast(100 * count(distinct person_id)/sum(count(distinct person_id)) over() as numeric(38,1)) as percent
 from condition_count
 group by 1
 order by 1

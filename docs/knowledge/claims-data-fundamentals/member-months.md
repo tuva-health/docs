@@ -23,7 +23,7 @@ In this section we use an example to describe how to calculate member months.  T
 
 To calculate member months, you need to convert each patient's eligibility record (with start and end dates) into multiple records, with one record for each month of eligibility.  Let's take an example.  Suppose member A1234 has coverage from Aetna from January 1st to June 15th of 2022.  They lose coverage on June 16th and they regain coverage on August 10th.  Further suppose member B2468 has coverage from January 1st through the entire year of 2022.  These two members would have eligibility spans that look like the data below:
 
-| patient_id | payer | enrollment_start_date | enrollment_end_date |
+| person_id | payer | enrollment_start_date | enrollment_end_date |
 | --- | --- | --- | --- |
 | A1234 | Aetna | 01-01-2022 | 06-15-2022 |
 | A1234 | Aetna | 08-10-2022 | |
@@ -41,7 +41,7 @@ Partial eligibility occurs whenever a patient does not have eligibility for an e
 
 After converting the above enrollment spans to member months (e.g. by using the SQL at the end of this section), the data would look like this:
 
-| patient_id | year_month | payer | 
+| person_id | year_month | payer | 
 | --- | --- | --- | 
 | A1234 | 2022-01 | Aetna | 
 | A1234 | 2022-02 | Aetna | 

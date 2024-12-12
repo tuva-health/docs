@@ -46,12 +46,12 @@ The Hospital-wide Measure can be implemented on either EHR data or claims data. 
 The data elements needed to process the readmission measure are listed below. 
 
 - patient
-    - patient_id
+    - person_id
     - gender
     - birth_date
 - encounter
     - encounter_id
-    - patient_id
+    - person_id
     - encounter_start_date
     - encounter_end_date
     - discharge_disposition_code

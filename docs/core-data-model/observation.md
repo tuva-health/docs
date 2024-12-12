@@ -12,6 +12,7 @@ tests e.g. blood pressure, height, and weight.
   * observation_id
 
 **Foreign Keys:**
+  * person_id
   * patient_id
   * encounter_id
 

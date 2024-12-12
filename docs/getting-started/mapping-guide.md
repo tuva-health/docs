@@ -145,6 +145,11 @@ consistent across all lines for a given `claim_id`.
 
 
 
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
+
 #### plan
 This field is a string that links every row to
 the name of the health plan.
@@ -446,6 +451,11 @@ consistent across all lines for a given `claim_id`.
 
 
 
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
+
 #### plan
 This field is a string that links every row to
 the name of the health plan.
@@ -544,10 +554,13 @@ is consistent across all lines for a given `claim_id`.
 
 ### eligibility
 
+#### person_id
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
 <details>
   <summary>Primary Key</summary>
 
-- The primary key for the pharmacy_claim table is patient_id, enrollment_start_date, enrollment_end_date, and data_source.  
+- The primary key for the pharmacy_claim table is person_id, member_id, enrollment_start_date, enrollment_end_date, and data_source.  
 - There are two commonly used data formats for eligibility (also known as enrollment) data: the eligibility span format and the member month format.
 - The eligibility span format has one record per member eligibility span.  An eligibility span is a time period when a member was enrolled with and therefore had insurance coverage by a health plan.  An eligibility span has a start date and an end date.  A person can have multiple eligibility spans.
 - The member month format has one record per member per month of enrollment.  For example, a person with a single eligibility span from 1/1/2020 through 3/31/2020 would have a single eligibility span record, but 3 member month records, one for each month.

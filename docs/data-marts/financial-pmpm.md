@@ -15,10 +15,10 @@ The Financial PMPM data mart computes member months and stratifies population pa
 
 ### pmpm_prep
 
-A table that computes all the paid and allowed statistics for every patient_id and year_month combination.
+A table that computes all the paid and allowed statistics for every person_id and year_month combination.
 
 **Primary Keys:**
-  * patient_id 
+  * person_id 
   * year_month
   * plan 
   * data_source
@@ -107,7 +107,7 @@ with member_month as (
         , cast(sum(mc.paid_amount) as decimal(18, 2)) as paid_amount
     from core.medical_claim as mc
     inner join core.member_months as mm
-      on mc.patient_id = mm.patient_id
+      on mc.person_id = mm.person_id
       and mc.data_source = mm.data_source
       and to_char(mc.claim_start_date, 'yyyymm') = mm.year_month
     group by
@@ -144,41 +144,41 @@ Here we calculate PMPM by chronic condition. Since members can and do have more 
 ```sql
 with chronic_condition_members as (
     select distinct
-        patient_id
+        person_id
     from chronic_conditions.tuva_chronic_conditions_long
 )
 
 , chronic_conditions as (
     select
-          patient_id
+          person_id
         , condition
     from chronic_conditions.tuva_chronic_conditions_long
 
     union
 
     select
-          p.patient_id
+          p.person_id
         , 'No Chronic Conditions' as condition
     from core.patient as p
     left join chronic_condition_members as ccm
-      on p.patient_id = ccm.patient_id
-    where ccm.patient_id is null
+      on p.person_id = ccm.person_id
+    where ccm.person_id is null
 )
 
 , medical_claims as (
     select
           mc.data_source
-        , mc.patient_id
+        , mc.person_id
         , to_char(mc.claim_start_date, 'yyyymm') as year_month
         , cast(sum(mc.paid_amount) as decimal(18, 2)) as paid_amount
     from core.medical_claim as mc
     inner join core.member_months as mm
-      on mc.patient_id = mm.patient_id
+      on mc.person_id = mm.person_id
       and mc.data_source = mm.data_source
       and to_char(mc.claim_start_date, 'yyyymm') = mm.year_month
     group by
           mc.data_source
-        , mc.patient_id
+        , mc.person_id
         , to_char(mc.claim_start_date, 'yyyymm')
 )
 
@@ -190,9 +190,9 @@ select
     , cast(sum(mc.paid_amount) / count(*) as decimal(18, 2)) as medical_pmpm
 from core.member_months as mm
 left join chronic_conditions as cc
-  on mm.patient_id = cc.patient_id
+  on mm.person_id = cc.person_id
 left join medical_claims as mc
-  on mm.patient_id = mc.patient_id
+  on mm.person_id = mc.person_id
   and mm.year_month = mc.year_month
   and mm.data_source = mc.data_source
 group by

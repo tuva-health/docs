@@ -60,7 +60,7 @@ order by visit_count desc;
 ```sql
 with encounter as (
     select
-          e.patient_id
+          e.person_id
         , left(year_month,4) as year_nbr
         , data_source
         , count(distinct e.encounter_id) as potentially_preventable
@@ -73,7 +73,7 @@ with encounter as (
         , 'Non-Emergent'
         , 'Emergent, ED Care Needed, Preventable/Avoidable')
     group by
-          e.patient_id
+          e.person_id
         , data_source
         , left(year_month,4)
 )
@@ -82,7 +82,7 @@ with encounter as (
     select distinct
           data_source
         , left(year_month,4) as year_nbr
-        , patient_id
+        , person_id
     from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -97,7 +97,7 @@ from member_year as my
     left join encounter as enc
         on my.year_nbr = enc.year_nbr
         and enc.data_source = my.data_source
-        and enc.patient_id = my.patient_id
+        and enc.person_id = my.person_id
 group by
       my.data_source
     , my.year_nbr;
@@ -227,18 +227,18 @@ order by
 with visits as (
     select
           data_source
-        , patient_id
+        , person_id
         , count(*) as ed_visits
     from core.encounter
     where encounter_type = 'emergency department'
     group by
           data_source
-        , patient_id
+        , person_id
 )
 
 , members as (
     select distinct
-          patient_id
+          person_id
         , data_source
     from financial_pmpm.member_months
 )
@@ -250,12 +250,12 @@ with visits as (
 
 , members_with_visits as (
     select
-          m.patient_id
+          m.person_id
         , m.data_source
         , coalesce(v.ed_visits,0) as ed_visits
     from members m
         left join visits v
-            on m.patient_id = v.patient_id
+            on m.person_id = v.person_id
             and m.data_source = v.data_source
 )
 
@@ -367,23 +367,23 @@ Since members often have more than one chronic condition, encounters are duplica
 ```sql
 with chronic_condition_members as (
     select distinct
-    patient_id
+    person_id
     from chronic_conditions.tuva_chronic_conditions_long
 )
 
 , chronic_conditions as (
-    select patient_id
+    select person_id
     , condition
     from chronic_conditions.tuva_chronic_conditions_long
 
     union
 
-    select p.patient_id
+    select p.person_id
     , 'No Chronic Conditions' as condition
     from core.patient p
         left join chronic_condition_members ccm
-            on p.patient_id=ccm.patient_id
-    where ccm.patient_id is null
+            on p.person_id=ccm.person_id
+    where ccm.person_id is null
 )
 
 select
@@ -393,7 +393,7 @@ select
     , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
 from core.encounter e
     left join chronic_conditions cc
-        on e.patient_id = cc.patient_id
+        on e.person_id = cc.person_id
 where encounter_type = 'emergency department'
 group by cc.condition
 order by visit_count desc;

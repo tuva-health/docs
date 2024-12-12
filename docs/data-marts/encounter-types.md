@@ -77,7 +77,7 @@ The date field used in the encounter algorithm is determined using the following
 
 ### Inpatient
 
-Inpatient encounters are created when an institutional claim with the service category corresponding to one of the inpatient encounter types occurs. The Date/NPI continuity algorithm checks if a claim overlaps with another claim, with the same facility NPI, patient_id, and data_source. It also adds a specific check for the case where the end date and start date of two claims are within a day, checking if the discharge disposition code is 30 (still patient). This logic is in place to avoid grouping together claims where a patient is discharged and readmitted on the same day.
+Inpatient encounters are created when an institutional claim with the service category corresponding to one of the inpatient encounter types occurs. The Date/NPI continuity algorithm checks if a claim overlaps with another claim, with the same facility NPI, person_id, and data_source. It also adds a specific check for the case where the end date and start date of two claims are within a day, checking if the discharge disposition code is 30 (still patient). This logic is in place to avoid grouping together claims where a patient is discharged and readmitted on the same day.
 
 Each inpatient encounter type is listed below with the algorithm, anchor, and anchor claim type.
 
@@ -117,7 +117,7 @@ These claims would not be joined together since the discharge code indicates the
 
 ### Outpatient
 
-Most outpatient encounters are formed with the combination of a patient_id, data_source, and date, with the exception being radiology, which contains only the claim lines associated with a specific imaging code. This will group together the institutional claim for the imaging event, and the professional claim with the read. This can then be used for rate analysis and compared to other sites of service (including professional locations).
+Most outpatient encounters are formed with the combination of a person_id, data_source, and date, with the exception being radiology, which contains only the claim lines associated with a specific imaging code. This will group together the institutional claim for the imaging event, and the professional claim with the read. This can then be used for rate analysis and compared to other sites of service (including professional locations).
 
 
 

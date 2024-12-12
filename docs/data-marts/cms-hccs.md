@@ -26,7 +26,7 @@ In the diagram below we provide an overview explanation of how the data mart wor
 In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
 
 **Eligibility:**
-- patient_id
+- person_id
 - gender
 - birth_date
 - death_date
@@ -40,7 +40,7 @@ In order to run the CMS-HCC data mart you need to map the following data element
 - claim_id
 - claim_line_number
 - claim_type
-- patient_id
+- person_id
 - claim_start_date
 - claim_end_date
 - bill_type_code
@@ -117,7 +117,7 @@ payment year and collection period.
 
 ```sql
 select
-    count(distinct patient_id) as patient_count
+    count(distinct person_id) as patient_count
     , avg(blended_risk_score) as average_blended_risk_score
     , avg(normalized_risk_score) as average_normalized_risk_score
     , avg(payment_risk_score) as average_payment_risk_score
@@ -136,7 +136,7 @@ select
     , avg(risk.payment_risk_score) as average_payment_risk_score
 from cms_hcc.patient_risk_scores as risk
     inner join core.patient as patient
-        on risk.patient_id = patient.patient_id
+        on risk.person_id = patient.person_id
 group by
       patient.state
     , patient.city

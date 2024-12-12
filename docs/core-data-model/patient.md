@@ -11,6 +11,6 @@ analytics use cases involve analyzing things that happen to patients, so it's
 critical to have a clean patient table that contains this information.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__patient.columns" />

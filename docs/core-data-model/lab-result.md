@@ -13,6 +13,7 @@ result.
   * lab_result_id
 
 **Foreign Keys:**
+  * person_id
   * patient_id
   * encounter_id
 

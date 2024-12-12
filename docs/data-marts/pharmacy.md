@@ -81,22 +81,22 @@ with pharmacy_claim as
 (
 select 
   data_source
-  , patient_id
+  , person_id
   , to_char(paid_date, 'YYYYMM') AS year_month
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.pharmacy_claim
 GROUP BY data_source
-, patient_id
+, person_id
 , to_char(paid_date, 'YYYYMM')
 )
 
 select mm.data_source
 , mm.year_month
-, sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+, sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 , count(*) as total_member_months
-, cast(sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
+, cast(sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
 from core.member_months mm 
-left join pharmacy_claim mc on mm.patient_id = mc.patient_id
+left join pharmacy_claim mc on mm.person_id = mc.person_id
 and
 mm.data_source = mc.data_source
 and
@@ -115,25 +115,25 @@ order by data_source
 with pharmacy_claim as (
 select 
   data_source
-  , patient_id
+  , person_id
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.pharmacy_claim
 GROUP BY data_source
-, patient_id
+, person_id
 )
 
 , members as (
-select distinct patient_id
+select distinct person_id
 ,data_source
 from core.member_months
 )
 
 select mm.data_source
-,sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 ,count(*) as members
-,sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
 from members mm
-left join pharmacy_claim mc on mc.patient_id = mm.patient_id
+left join pharmacy_claim mc on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 group by mm.data_source
@@ -148,11 +148,11 @@ group by mm.data_source
   ```sql
 select 
   mc.data_source
-  , sum(case when mm.patient_id is not null then 1 else 0 end) as claims_with_enrollment
+  , sum(case when mm.person_id is not null then 1 else 0 end) as claims_with_enrollment
   , count(*) as claims
-  , cast(sum(case when mm.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
+  , cast(sum(case when mm.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
 from core.pharmacy_claim mc
-left join core.member_months mm on mc.patient_id = mm.patient_id
+left join core.member_months mm on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 and

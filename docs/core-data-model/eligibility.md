@@ -12,9 +12,12 @@ otherwise it's impossible to calculate member months, which are needed to
 calculate measures like PMPM.
 
 **Primary Keys:**
-  * patient_id
+  * person_id
   * member_id
   * enrollment_start_date
   * enrollment_end_date
+  * payer
+  * plan
+  * data_source
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__eligibility.columns" />
