@@ -88,12 +88,27 @@ factors, interactions, and HCCs for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_factors.columns" />
 
+### patient_risk_factors_monthly
+
+This final model displays the contributing demographic and disease risk factors, 
+interactions, and HCCs for each enrollee in the payment year and collection period.
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_factors_monthly.columns" />
+
 ### patient_risk_scores
 
 This final model calculates the CMS HCC raw risk score, normalized risk score, 
 and payment risk score for each enrollee in the payment year.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores.columns" />
+
+### patient_risk_scores_monthly
+
+This final model calculates the CMS HCC raw risk score, blended risk score,
+normalized risk score, and payment risk score for each enrollee in the 
+payment year and collection period.
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores_monthly.columns" />
 
 ## Example SQL
 
@@ -129,6 +144,24 @@ group by
 ```
 </details>
 
+<details>
+  <summary>Rolling Monthly Average CMS-HCC Risk Scores</summary>
+
+```sql
+select
+       collection_end_date
+     , payment_year
+     , avg(payment_risk_score) as average_payment_risk_score
+from cms_hcc.patient_risk_scores_monthly
+group by
+      collection_start_date
+    , collection_end_date
+    , payment_year
+order by
+      collection_end_date
+    , payment_year;
+```
+</details>
 
 <details>
   <summary>Distribution of CMS-HCC Risk Factors</summary>
