@@ -1,6 +1,6 @@
 ---
-id: patient
-title: "Patient"
+id: person_id_crosswalk
+title: "Person ID Crosswalk"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';

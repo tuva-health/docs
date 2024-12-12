@@ -63,6 +63,7 @@ const sidebars =
                 "core-data-model/medication",
                 "core-data-model/observation",
                 "core-data-model/patient",
+                "core-data-model/person_id_crosswalk",
                 "core-data-model/pharmacy-claim",
                 "core-data-model/practitioner",
                 "core-data-model/procedure",
