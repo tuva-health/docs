@@ -189,11 +189,6 @@ const sidebars =
         "help",
     ],
 
-    // analyticsSidebar:
-    // [
-    //     "analytics/introduction",
-    // ],
-
     knowledgeSidebar:
     [
         "knowledge/introduction",
@@ -234,13 +229,17 @@ const sidebars =
         "community/community-meetups",
 
     ],
-    
-    videoSidebar:
+
+    moreSidebar:
     [
-        "videos/guides",
-        "videos/knowledge",
-        "videos/community",
-    ]
+        "more/dashboards",
+        "more/videos",
+        {
+            type: 'link',
+            label: 'Blog', // This is the label for the sidebar entry
+            href: '/blog', // The route to your blog's main page
+        },     
+    ],
 };
 
 module.exports = sidebars;

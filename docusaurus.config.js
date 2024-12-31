@@ -74,7 +74,7 @@ const config = {
         title: '',
         logo: {
           alt: 'The Tuva Project',
-          src: 'img/TheTuvaProjectLogo.png',
+          src: 'img/the_tuva_project_logo_new.png' /*'img/TheTuvaProjectLogo.png',*/
         },
         items: [
 
@@ -83,12 +83,6 @@ const config = {
             docId: 'welcome',
             position: 'left',
             label: 'Docs',
-          },
-          {
-            type: 'doc',
-            docId: 'analytics/analytics-gallery',
-            position: 'left',
-            label: 'Analytics',
           },
           {
             type: 'docSidebar',
@@ -104,10 +98,16 @@ const config = {
           },
           {
             type: 'docSidebar',
-            sidebarId: 'videoSidebar',
+            sidebarId: 'moreSidebar',
             position: 'left',
-            label: 'Videos',
+            label: '+ More',
           },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'videoSidebar',
+          //   position: 'left',
+          //   label: 'Videos',
+          // },
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           // { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
