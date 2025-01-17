@@ -28,6 +28,7 @@ We are building connectors for as many standard healthcare data sources as possi
 **FHIR:**
 - [FHIR Inferno](fhir-inferno)
 - [Health Gorilla](health-gorilla)
+- [Metriport](metriport)
 
 **ADT:**
 - Bamboo (in progress)
