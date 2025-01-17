@@ -37,6 +37,7 @@ const sidebars =
                         "connectors/fhir-inferno",
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
+                        "connectors/metriport",
                     ]
                 },
                 {
