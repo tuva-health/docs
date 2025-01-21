@@ -37,9 +37,9 @@ First, we need to convert our FHIR json data to [NDJSON](https://docs.mulesoft.c
 
 Clone the [FHIR Inferno](https://github.com/tuva-health/FHIR_inferno).
 
-Use the `helper-scripts/create_table_create_csv.py` script to generate SQL scripts based on the [Metriport Configs](https://github.com/tuva-health/FHIR_inferno/tree/main/configurations/configuration_Metriport). We recommend naming your schema `RAW_DATA`, for consistency. Execute the resulting SQL scripts in your data warehouse to create tables in this schema.
+Use the `helper-scripts/create_table_create_csv.py` script to generate SQL scripts based on the [Metriport Configs](https://github.com/tuva-health/FHIR_inferno/tree/main/configurations/configuration_Metriport). We recommend naming your schema `RAW_DATA`, for consistency. Execute the resulting SQL scripts in your data warehouse to create resource-specific tables in this schema.
 
-Next, use `helper-scripts/parse_ndjson_bundle.py` to transform the NDJSON into relational CSV tables and load those CSVs into the data tables created in the previous step.
+Next, use `helper-scripts/parse_ndjson_bundle.py` to transform the NDJSON into relational CSV tables and load those CSVs into the data tables created in the previous step, in correspondence to their resource type.
 
 #### Step 3: Set up 'Metriport Connector'
 
