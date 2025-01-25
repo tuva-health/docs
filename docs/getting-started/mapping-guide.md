@@ -1,6 +1,6 @@
 ---
 id: mapping-guide
-title: "Mapping Guide"
+title: "Claims Mapping Guide"
 ---
 
 To run the Tuva Project on a new data source you need to map that data to
@@ -567,7 +567,3 @@ A new patient identifier field named `person_id` has been added to the Tuva data
 - The eligibility table follows the eligibility span format.
 
 </details>
-
-## Clinical Input Layer
-
-
