@@ -70,33 +70,6 @@ import React from 'react';
   </div>
 </div>
 
-<!--
-Claims Data Fundamentals
-
-- Claims Data Generation Process
-- Claims Data Tables and Columns
-- Key Data Elements for Analytics
-- Adjustments, Denials, and Reversals
-
-Medical Economics
-
-- Key Data Elements
-- Member Months
-- Calculating Spend PMPM
-- Grouping Claims: An Overview
-- Service Categories
-- Encounters
-- Condition Groups
-- Provider Specialty
-- Provider Attribution
-- Case Study: MSK
-- Case Study: Cardiology
-
-Risk Adjustment
-
-Quality Measures
--->
-
 </div>
 
 
@@ -124,25 +97,6 @@ Quality Measures
   </div>
 </div>
 
-<!--
-### Data Architecture Example
-
-### Mapping + Data Quality
-
-### Managing Data Refreshes
-
-### Managing Data Model Upgrades
-
-### Extending the Data Model
-
-### Customizing the Data Model
-
-### Geo-coding + Social Determinants
-
-### Vocab Normalization
-
-### Data Platform Architecture
--->
 </div>
 
 ## Community
@@ -162,5 +116,3 @@ Quality Measures
 </div>
 
 </div>
-
-
