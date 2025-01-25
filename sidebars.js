@@ -6,13 +6,11 @@ const sidebars =
         "welcome",
         {
             type: "category",
-            label: "How To Run Tuva",
+            label: "Getting Started",
             items: [
                 "getting-started/overview",
                 "getting-started/data-warehouse-support",
                 "getting-started/mapping-guide",
-                "getting-started/customizations",
-                "getting-started/customizations",
                 "getting-started/terminology",
             ]
         },

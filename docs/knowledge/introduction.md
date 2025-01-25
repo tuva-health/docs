@@ -1,6 +1,6 @@
 ---
 id: introduction
-title: "Introduction"
+title: "Welcome"
 hide_title: true
 ---
 

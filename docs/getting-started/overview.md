@@ -8,7 +8,7 @@ description: Instructions for getting started with the Tuva Project.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# 🏁 How To Run Tuva
+# 🏁 Getting Started
 
 The slides below describe our standard approach to setting up multiple data sources on Tuva.
 

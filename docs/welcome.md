@@ -24,4 +24,4 @@ Doing healthcare analytics requires the tools shown in the diagram above.  Most 
 
 These docs describe the tools we've built, how to use them, and the use cases they support.
 
-For organizations that need assistance transforming their data or doing analytics with Tuva, we offer services and support.  [Contact us](https://tuvahealth.com/request-a-demo/) to learn more about how we can help your organization.
+We offer a number of paid solutions built around the open-source.  [Contact us](https://tuvahealth.com/request-a-demo/) to learn more about how we can help your organization.
