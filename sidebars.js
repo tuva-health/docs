@@ -233,13 +233,15 @@ const sidebars =
 
     moreSidebar:
     [
-        "more/dashboards",
-        "more/videos",
         {
             type: 'link',
             label: 'Blog', // This is the label for the sidebar entry
             href: '/blog', // The route to your blog's main page
-        },     
+        },  
+        "more/dashboards",
+        // "more/data-stories",
+        "more/videos",
+   
     ],
 };
 
