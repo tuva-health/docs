@@ -1,13 +1,8 @@
 ---
 id: member-months
-title: "Member Months"
+title: "5. Member Months"
 description: This section describes 
 ---
-
-## Overview 
-<iframe width="640" height="400" src="https://www.youtube.com/embed/UNjUwevyBDk?si=yNpYxe90QLWR81lq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-<br></br>
-<br></br>
 
 When trending population level statistics such as claims payments or utilization, it's often best to normalize for changes in patient enrollment i.e. eligibility.  The common way to do this is by computing member months and using this as the denominator.  Statistics that have been normalized changes in members months are often reported as "per-member-per-month" or "PMPM".  For example, one would typically look at ED visits PMPM.
 
@@ -70,11 +65,3 @@ After converting the above enrollment spans to member months (e.g. by using the 
 
 Notice that the last member month given to patient A1234 was for January 2023, since we supposed the present date was January 31st 2023 in our example.
 
-## Data Quality Problems
-
-In order to correctly compute member months, it's important to take potential data quality issues into account, for example:
-
-- Members with overlapping enrollment periods 
-- Enrollment end dates before enrollment start dates
-- Duplicate enrollment records
-- Null values in enrollment start date

@@ -1,8 +1,10 @@
 ---
 id: claims-data-elements
-title: "Claims Data Elements"
+title: "2. Claims Data Elements"
 description: This section describes the fundamentals of many atomic-level claims data elements such as discharge disposition, bill type code, place of service code, and others.
 ---
+
+Claims data is made up of several data elements that are important to analytics.  Here we describe the key data elements in some detail.
 
 ## Administrative Codes
 
