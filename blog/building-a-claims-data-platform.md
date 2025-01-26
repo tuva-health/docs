@@ -68,7 +68,7 @@ It's a good practice to provide a data dictionary to your data provider to let t
 
 It's common for claims to be adjusted, denied, or reversed if there was a problem with how the claim was originally submitted.  For most analytics use cases you want to deal with final action claims and not any of these intermediary claims.  If you don't have a method for identifying and flagging adjustments, denials, and reversals it can throw off your analytics.
 
-We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge/claims-data-fundamentals/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
+We provide a longer discussion of claim adjustments, denials, and reversals, including tips for how to identify them [here](../knowledge/claims-data/adjustments-denials-reversals).  However to briefly summarize there are two approaches you should take.
 
 First, ask your claims data provider how you should identify these intermediary claims in the dataset they give you.  Payers and health plans are often good about providing this info.  However, in our experience it's usually only accurate 25% of the time.
 
