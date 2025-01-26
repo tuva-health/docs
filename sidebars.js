@@ -191,34 +191,37 @@ const sidebars =
     knowledgeSidebar:
     [
         "knowledge/introduction",
+        "knowledge/code-sets",
 
         {
             type: "category",
-            label: "1. Claims Data Fundamentals",
+            label: "Claims Data",
+            collapsed: false,
             items: [
-                "knowledge/claims-data-fundamentals/intro-to-claims",
-                "knowledge/claims-data-fundamentals/claims-data-elements",
-                "knowledge/claims-data-fundamentals/adjustments-denials-reversals",
-                "knowledge/claims-data-fundamentals/member-months",
-                "knowledge/claims-data-fundamentals/provider-npi",
-                "knowledge/claims-data-fundamentals/service-categories",
+                "knowledge/claims-data/intro-to-claims",
+                "knowledge/claims-data/claims-data-elements",
+                "knowledge/claims-data/adjustments-denials-reversals",
+                "knowledge/claims-data/providers",
+                "knowledge/claims-data/member-months",
+                "knowledge/claims-data/member-attribution",
+                "knowledge/claims-data/service-categories",
+                "knowledge/claims-data/encounters",
             ]
         },
 
         {
             type: "category",
-            label: "2. Risk Adjustment",
+            label: "Advanced Topics",
+            collapsed: false,
             items: [
-                "knowledge/risk-adjustment/overview",
-                "knowledge/risk-adjustment/cms-hccs",
-                "knowledge/risk-adjustment/hhs-hccs",
+                "knowledge/advanced-topics/risk-adjustment",
+                "knowledge/advanced-topics/hospital-readmissions",
             ]
         },
 
-        "knowledge/hospital-readmissions",
-        "knowledge/quality-measures",
-        "knowledge/provider-attribution",
-        "knowledge/national-drug-codes",
+
+
+
     ],
 
     communitySidebar:

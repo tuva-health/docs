@@ -11,7 +11,7 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
 The Quality Measures data mart is where we are building publicly available quality measures. You can see the roadmap in this section. If there is a publicly available measure you would like to see added you can [submit an issue](https://github.com/tuva-health/the_tuva_project/issues) on GitHub.
 
-Check out the Knowledge Base [article](../knowledge/quality-measures) for an overview of the data mart and a walkthrough example for calculating a quality measure.
+Check out the Knowledge Base [article](../knowledge/advanced-topics/quality-measures) for an overview of the data mart and a walkthrough example for calculating a quality measure.
 
 | Measure Name                                                                   | Measure ID                               | Specification                                                                 | Status                           | 
 |--------------------------------------------------------------------------------|------------------------------------------|-------------------------------------------------------------------------------|----------------------------------|

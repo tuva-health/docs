@@ -89,6 +89,7 @@ const config = {
             sidebarId: 'knowledgeSidebar',
             position: 'left',
             label: 'Knowledge',
+            collapsed: false,
           },
           {
             type: 'docSidebar',

@@ -1,10 +1,9 @@
 ---
 id: adjustments-denials-reversals
-title: "Adjustments, Denials, and Reversals"
+title: "3. Adjustments, Denials, and Reversals"
 description: This section describes how claims, adjustments, denials, and reversals occur in claims data and how you can identify / manage them in your claim dataset to enable financial and population health analytics.
 ---
 
-## Overview 
 One of the trickiest issues to deal with in claims data is adjustments, denials, and reversals (what we often refer to as "ADR").  There are three types of claim records (original, adjustment, and reversal) and three types of claim payment statuses (paid, denied, reversed).  How you model claim record types and payment statuses will impact the analytics you're able to perform on your claims data.
 
 Let's take a step back and think about the types of analytics we perform on claims data.  At the highest level, we think there are two categories of claims analytics:
