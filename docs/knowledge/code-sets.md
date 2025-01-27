@@ -3,17 +3,33 @@ id: code-sets
 title: "Code Sets"
 ---
 
-Healthcare code sets are the standard terminologies that form the foundation of healthcare data.  These code classify all the important things that happens in healthcare: conditions, procedures, services, care settings, drugs, etc.  Without a deep understanding of these code sets you can't effectively analyze healthcare data.
+Healthcare code sets are the standard terminologies that form the foundation of healthcare data.  These codes classify all the important things that happens in healthcare: conditions, procedures, services, care settings, drugs, etc.  Without a deep understanding of these code sets you can't effectively analyze healthcare data.
 
 These code sets are scattered all over the internet, maintained by different organizations, and updated on different frequencies.  The Tuva Project organizes and maintains these code sets so you don't have to.  When you run Tuva all ~50 code sets, along with other reference datasets and value sets, are loaded directly to your data warehouse.  
 
 Below we describe these code sets in detail.
 
+## HCPCS
+
+HCPCS stands for Healthcare Common Procedure Coding System (commonly pronounced "hick-picks").  It's used on both professional and institutional claims, however, it's used as the primary fee schedule for professional claims, so it's especially important for that claim type.
+
+There are two levels of HCPCS codes.  Level 1 is commonly referred to as CPT, or Current Procedure Terminology, and is maintained by the AMA, or American Medical Association.  Level 1 is used to represent services and procedures performed by physicians or other healthcare professionals.  For example, when you see your doctor in their office or in the emergency department, this is coded using a Level 1 code.  All CPT codes are 5-digit numeric.
+
+Level 2 is simply known as HCPCS Level 2 and is maintained by CMS.  Level 2 codes represent services not represented by Level 1, including durable medical equipment and ambulance services.  Level 2 codes are 4-digit numeric.
+
+The Level 2 codes are included in the Tuva Project Terminology code sets.  However, Level 1 is not publicly available and requires a license from the AMA to access.
+
+There are approximately 10,000 Level 1 and 8,000 Level 2 codes.  The Level 2 codes are available in the `terminology.hcpcs_level_2` table.
+
+**References**
+
+- [CMS HCPCS Level 2](https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system)
+
 ## NDC
 
-The National Drug Code (NDC) on a pharmacy claim identifies the actual drug being prescribed.  The NDC code set was first introduced in 1972 by the U.S. Food and Drug Administration (FDA).  
+NDC standards for National Drug Code.  The NDC on a pharmacy claim identifies the actual drug being prescribed.  The NDC code set was first introduced in 1972 by the U.S. Food and Drug Administration (FDA).  Today there are well over 800,000 distinct codes in circulation.  The exact number of codes isn't known because this terminology has not been well-managed over the years.
 
-The Tuva Project gets NDC, along with RxNorm and ATC, from CodeRx.  This data is pulled from the FDA and merged with a couple of other sources (because the FDA source is incomplete) and updated monthly.  The NDC dictionary is available in the terminology.ndc data table.
+The Tuva Project gets NDC, along with RxNorm and ATC, from CodeRx.  This data is pulled from the FDA and merged with a couple of other sources (because the FDA source is incomplete) and updated monthly.  The NDC dictionary is available in the `terminology.ndc` data table.
 
 The original NDC consisted of 10 digits broken up into 3 segments:
 
