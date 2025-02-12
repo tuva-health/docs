@@ -25,6 +25,8 @@ First things first, pull FHIR data from Metriport using whatever method you're c
 - See Metriport's [postman collection](https://www.postman.com/metriport/metriport-api/folder/7zl228v/medical).
 - See Metriport's [API docs](https://docs.metriport.com/home/welcome).
 
+Save the file to only contain the `Bundle.entry` array.
+
 #### Step 1: Convert FHIR JSON to NDJSON
 
 First, we need to convert our FHIR json data to [NDJSON](https://docs.mulesoft.com/dataweave/latest/dataweave-formats-ndjson#input). We recommend using the command line tool `jq` to do this - brew install it! Once it's installed, run the following command on the file, e.g. "metriport-fhir.json", in your terminal.
