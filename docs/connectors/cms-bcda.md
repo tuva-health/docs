@@ -4,8 +4,6 @@ title: "CMS BCDA"
 hide_title: false
 ---
 
-## Overview
-
 [Code on GitHub](https://github.com/tuva-health/bcda_connector) 
 
 CMS provides access to claims data via a FHIR endpoint called the CMS Beneficiary Claims Data API (BCDA).  You can read about it [here](https://bcda.cms.gov/).

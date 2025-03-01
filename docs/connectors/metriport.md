@@ -4,8 +4,6 @@ title: "Metriport"
 hide_title: false
 ---
 
-## Overview
-
 [Code on Github](https://github.com/tuva-health/metriport_connector)
 
 [Metriport](https://www.metriport.com/) offers clinical data from the largest health information networks in the country, via a single open-source API.

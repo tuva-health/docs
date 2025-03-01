@@ -4,9 +4,7 @@ title: "CMS LDS"
 hide_title: false
 ---
 
-## Overview
-
-[Code](https://github.com/tuva-health/medicare_cclf_connector)
+[Code on GitHub](https://github.com/tuva-health/medicare_cclf_connector)
 
 The CMS LDS Connector maps CMS's LDS data model to the Tuva [Input Layer](input-layer).  CMS provides robust documentation on LDS data [here](https://www.cms.gov/data-research/files-for-order/limited-data-set-lds-files).
 

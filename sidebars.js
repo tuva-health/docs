@@ -44,6 +44,14 @@ const sidebars =
                     items: [
                         "connectors/athenahealth",
                         "connectors/elation",
+                        "connectors/epic",
+                    ]
+                },
+                {
+                    type: "category",
+                    label: "ADT",
+                    items: [
+                        "connectors/bamboo",
                     ]
                 },
             ]
@@ -226,9 +234,9 @@ const sidebars =
 
     communitySidebar:
     [
+        "community/community-meetups",
         "community/manifesto",
         // "community/community-guidelines",
-        "community/community-meetups",
 
     ],
 

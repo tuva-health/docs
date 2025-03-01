@@ -2,38 +2,31 @@
 id: overview
 title: "Overview"
 hide_title: true
+toc: false
 ---
 
 # Connectors
 
-Connectors are dbt projects and packages that transform standard healthcare data formats into the Tuva [Input Layer](input-layer.md).
+Connectors are dbt projects that contain SQL code to transform raw healthcare data formats into the Tuva [Input Layer](input-layer.md).  The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly transformed into the Input Layer the rest of Tuva can be executed with a single command.
 
 ![Connectors](/img/Connectors.jpg)
 
-The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly mapped to the Input Layer the rest of Tuva can be executed with a single command: `dbt build`
-
-## Standard Connectors
-
 We are building connectors for as many standard healthcare data sources as possible.  We currently have connectors for the following standard data formats:
 
-**Claims:**
-- [CMS BCDA](cms-bcda)
+**Claims Flat Files:**
 - [CMS CCLF](cms-cclf)
 - [CMS LDS](cms-lds)
 
-**Medical Records:**
+**EHR Databases:**
 - [Athenahealth](athenahealth)
 - [Elation](elation)
+- [Epic](epic)
 
-**FHIR:**
+**FHIR (JSON):**
 - [FHIR Inferno](fhir-inferno)
+- [CMS BCDA](cms-bcda)
 - [Health Gorilla](health-gorilla)
 - [Metriport](metriport)
 
-**ADT:**
-- Bamboo (in progress)
-- Collective Medical (in progress)
-
-## Custom Connectors
-
-The majority of healthcare data sources use non-standard data formats.  For example, most payer claims data sources are bespoke.  These sources require custom connectors to transform the data source into the Tuva Input Layer.  We provide guidance on how to create a custom connector in our data source setup [guide](../guides/data-source-setup/overview).
+**ADT Flat Files:**
+- [Bamboo](bamboo)
