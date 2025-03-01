@@ -4,9 +4,7 @@ title: "CMS CCLF"
 hide_title: false
 ---
 
-## Overview
-
-[Code](https://github.com/tuva-health/medicare_cclf_connector)
+[Code on GitHub](https://github.com/tuva-health/medicare_cclf_connector)
 
 The Medicare CCLF Connector maps CMS's Claim and Claim Line Feed (CCLF) data model to the 
 Tuva [Input Layer](input-layer). CCLF data are claims data files that are made available to organizations that participate in value-based payment programs (e.g., the Medicare Shared Savings 

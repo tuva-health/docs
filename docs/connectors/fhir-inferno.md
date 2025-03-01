@@ -4,8 +4,6 @@ title: "FHIR Inferno"
 hide_title: false
 ---
 
-## Overview
-
 [Code on Github](https://github.com/tuva-health/FHIR_inferno)
 
 Fast Healthcare Interoperability Resources (FHIR) has become one of the most common standards for healthcare data exchange.  FHIR data typically comes in nested, hierarchical JSON formats, making it challenging to use for data analysis.

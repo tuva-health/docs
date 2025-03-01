@@ -1,26 +1,40 @@
 ---
 id: manifesto
-title: "The Tuva Project Manifesto"
+title: "Manifesto"
 hide_title: false
 ---
 
-_Healthcare data has been challenging to work with since the inception of claims data in the mid-90s. The Tuva Project is our attempt to fix it - Tuva or Bust._
+_Last Updated March 1, 2025_
 
-If you're reading this, you probably know about the awesome potential healthcare data has for discovering new treatments and lowering the cost and increasing the quality of healthcare.  But you're probably also familiar with the challenges working with healthcare data presents.
+**_In healthcare, we spend 99% of our time cleaning and transforming data and almost zero time generating insights. The Tuva Project is our attempt to fix this -- Tuva or Bust._**
 
-**Here's the problem:** Healthcare data is complex.  It's perhaps more complex than data from any other industry. Think about it: healthcare data attempts to capture human biology and the delivery of healthcare in a database. There are thousands (millions?) of body systems, diagnostic tests, diseases, and treatments, all of which are captured in healthcare data.
+Healthcare data has amazing potential in terms of what we can learn from it.  For example, it's possible to use healthcare data to answer questions like:
 
-The complexity of healthcare data is also related to the fact that the various systems (e.g. EMRs) that capture the data are highly variable.  The end result is that healthcare data is extremely heterogeneous and this makes it impossible to perform data analysis on raw healthcare data.
+- How common are adverse effects from new drugs like GLP-1s? 
+- Which doctors are the best at managing complex cardiovascular disease? 
+- How does cost and clinical quality vary across different providers and geographic locations?
 
-As an industry we've understood this for some time, but we've been busy solving other problems.  The first problem we solved in the late 2000s / early 2010s was making healthcare data electronic.  This was a big step because it's tough to do analysis with paper records.
+However, analyzing raw healthcare data requires first transforming it into analytics-ready data.  This includes:
+- **Normalization:** Standardizing the format and the values in the data so they are consistent across data sources.
+- **Enrichment:** Adding new tables and columns to the data e.g. service categories, encounter types, treatment periods.
+- **Data Quality:** Testing the data to identify problems that will impact analytic results.
 
-The second problem we started solving a few years ago - interoperability.  Since becoming digital, healthcare data has been extremely silo'd and difficult to access.  But thanks to the 21st Century Cures Act and the regulations promulgated from it, this is changing, and it's now easier to access healthcare data than ever.  (Although if you're a vendor requesting claims data from a payer this is still a massive pain.)
+This data transformation is necessary because population-scale healthcare data such as claims and medical records are stored in different formats, with tons of data quality problems, and completely lack higher-level concepts that analysts need to answer important questions like those listed above.
 
-This brings us to the present and the single biggest problem that remains to be solved: data transformation.  Solving this problem is all about figuring out the best way to go from raw healthcare data sources (i.e. claims, medical records, and other clinical sources like labs) to enriched, quality-tested data that is ready for analysis and machine learning.
+Doing this sort of data transformation requires a common set of healthcare data analytics tools.  Every data team we've ever worked with has spent enormous time developing the following tools:
+- **Common Data Model:** Most organizations deal with multiple data sources and need a common data model to standardize the schema so the data format is consistent and data analysis code is re-usable across data sources.
+- **Connectors:** Lots of time is wasted transforming raw EHR and claims data sources into the common data model.  For example, pretty much every EHR and claims data set has it's own format.  Connectors are the code for transforming these raw sources into a common data model.
+- **Terminology:** There are 50+ terminology and reference sets that are needed for healthcare analytics and they are spread all over the internet, maintained by different organizations, and updated on different frequencies.  Teams spend enormous time getting these code sets into their data warehouse and maintaining them over time.
+- **Data Marts:** Data analysts need high-level concepts computed on top of the raw data e.g. was this an acute inpatient visit, was it a readmission, does the patient have type 2 diabetes, etc.  Without these they can't answer interesting questions from the data.  The code for creating these concepts is commonly created in what is called a data mart.  
+- **Data Quality Testing:** There are numerous common data quality issues in raw healthcare data and the library of tests needed to catch them is common as well.
 
-Every healthcare data person is familiar with the data transformation problem.  We've all been re-learning and re-inventing solutions to this problem for the past 30 years.  The goal of the Tuva Project is to solve the data transformation problem, and because this problem is fundamentally a knowledge problem, an open source approach is the only way we'll get there.
+As an industry we spend 99% of our time building the tools listed above and using them to transform data.  There is hardly any time actually being spent analyzing data.  
 
-If you're a healthcare data person, you have tremendous knowledge and expertise to contribute.  We hope you'll join us on this mission and help unlock the true potential of healthcare data to improve health and healthcare for all of us.
+The goal of the Tuva Project is to fix this.  We're open-sourcing tools for transforming raw healthcare data into analytics-ready data.  And we're building these tools using modern data technologies that data teams know and love.  We want to make it trivial to transform raw healthcare data into analytics-ready data, so data teams can actually start answering interesting questions.
+
+Our vision is that the entire world uses Tuva to transform their data into the exact same analytics-ready format.  Not only will we dramatically reduce the amount of time and energy spent transforming data, but every analysis will be completely re-usable.  In the future anyone can publish a new analysis and that code will be completely re-usable by anyone else who has their data in the Tuva data model.
+
+As the amount of time and energy we spend transforming data decreases, and the amount of re-usable analyses increase, we think this will result in a dramatic (e.g. 1000x) increase in the amount of high-quality insights being generated from healthcare data.  And as data analysts and patients, this is an enormously exciting future that we're very motivated to work on and be part of.
 
 ## Why the Name Tuva?
 
@@ -29,3 +43,6 @@ We are massive [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) 
 Tuva is an allegory for Feynman.  Tuva was formerly a country in the Soviet Union. For more than a decade before his death, Feynman and his friend [Ralph Leighton](https://en.wikipedia.org/wiki/Ralph_Leighton) tried to travel to the country of Tuva.  What started as a joke became a mission - and it was challenging.  Getting a visa to Soviet Russia during the cold war was next to impossible. Ultimately Feynman died a few weeks before their visas came, but Ralph traveled to Tuva and chronicled the trip and their adventure trying to get there in his book [Tuva or Bust](https://www.amazon.com/Tuva-Bust-Richard-Feynmans-Journey/dp/0393320693).
 
 Ralph helped pen a number of other books about Feynman which we highly recommend.  If you're new to Feynman start with [Surely You're Joking, Mr. Feynman](https://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041).
+
+The Tuva Project is our attempt to fix healthcare data -- Tuva or Bust.
+

@@ -4,9 +4,7 @@ title: "Elation"
 hide_title: false
 ---
 
-## Overview
-
-[Code](https://github.com/tuva-health/elation_connector)
+[Code on GitHub](https://github.com/tuva-health/elation_connector)
 
 Elation is an electronic medical record system widely used in the ambulatory setting.  One of the great things about Elation is that they make the backend database available to their customers via Snowflake data share.  This makes it very easy to access data from Elation for analytics purposes.
 
