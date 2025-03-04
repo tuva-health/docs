@@ -9,7 +9,7 @@ slug: /
 
 # 👋 Welcome
 
-Welcome to the Tuva Project!  We are the community building the future of healthcare analytics -- a future that is open-source, transparent, and accessible by everyone.
+Welcome Paul!  We are the community building the future of healthcare analytics -- a future that is open-source, transparent, and accessible by everyone.
 
 ![Tuva Project Overview](/img/the_tuva_project_6.jpg)
 
