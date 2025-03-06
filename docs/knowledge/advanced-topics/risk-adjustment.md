@@ -1,6 +1,6 @@
 ---
 id: risk-adjustment
-title: "8. Risk Adjustment"
+title: "9. Risk Adjustment"
 ---
 
 ## What is risk adjustment?
