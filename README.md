@@ -16,7 +16,7 @@ can share their knowledge about doing healthcare analytics.  If you have ideas
 for improvements or find bugs, we highly encourage and welcome feedback! Feel 
 free to create an issue or ping us on Slack. 
 
-For information on contributing, please see our [contributions guide](https://thetuvaproject.com/contribution-guides/contributing).
+For information on contributing, please see our [contributions guide](https://thetuvaproject.com/contributing).
 
 ### Getting started with Docusaurus
 These instructions walk through how to get set up locally to test and preview 
