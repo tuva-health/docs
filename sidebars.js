@@ -224,6 +224,7 @@ const sidebars =
             items: [
                 "knowledge/advanced-topics/risk-adjustment",
                 "knowledge/advanced-topics/hospital-readmissions",
+                "knowledge/advanced-topics/benchmarking",
             ]
         },
 
