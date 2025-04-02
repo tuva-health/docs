@@ -291,5 +291,6 @@ Built-in file managers (e.g. Archive Utility on MacOS) may have some trouble dec
 One way to get around these errors is by using [`gzip`](https://www.gzip.org/), which will help you decompress these files without encountering the same unsupported file format errors you were seeing before.
 
 ```console
-gzip -d path/to/your/file/terminology_file.csv.gz # would extract terminology_file.csv to the same directory
+# would extract terminology_file.csv to the same directory
+gzip -d path/to/your/file/terminology_file.csv.gz 
 ```
