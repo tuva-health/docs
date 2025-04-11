@@ -103,6 +103,7 @@ const sidebars =
             label: "Data Quality",
             items: [
                 "data-quality/overview",
+                "data-quality/data-quality-dashboard",
                 "data-quality/atomic-level",
                 "data-quality/analytics-level",
             ]
