@@ -210,7 +210,7 @@ const config = {
         },
         blog: {
           // Use a custom truncate marker
-          truncateMarker: /<!-- truncate -->/,
+          //truncateMarker: /<!-- truncate -->/,
         },
     }),
 };
