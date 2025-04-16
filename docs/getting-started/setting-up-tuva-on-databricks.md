@@ -51,7 +51,7 @@ For a databricks project, you’ll need to install `dbt-core` and `dbt-databrick
 pip install dbt-core dbt-databricks
 ```
 
-### Step 4: Configure profiles.yml for a dbt <> Databricks connection
+### Step 4: Configure profiles.yml for a dbt-to-Databricks connection
 
 - `profiles.yml` file location: By default, dbt looks for a profiles file at the path `~/.dbt/profiles.yml`.
 - `profiles.yml` file contents: dbt offers two ways to connect to Databricks; the first is with a Personal Access Token (PAT), and the second is with an OAuth client. The [dbt docs](https://docs.getdbt.com/docs/core/connect-data-platform/databricks-setup?tokenoauth=token#examples) provide some helpful examples. Below is an example config for Personal Access Token (PAT).
