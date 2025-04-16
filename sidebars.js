@@ -12,6 +12,7 @@ const sidebars =
                 "getting-started/data-warehouse-support",
                 "getting-started/mapping-guide",
                 "getting-started/terminology",
+                "getting-started/setting-up-tuva-on-databricks",
             ]
         },
         {
