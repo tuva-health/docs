@@ -1,6 +1,6 @@
 ---
 id: data-warehouse-support
-title: "Data Warehouse Support"
+title: "Supported Data Warehouses"
 hide_title: false
 ---
 
