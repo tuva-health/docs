@@ -1,10 +1,12 @@
 ---
-id: setting-up-tuva-on-databricks
+id: tuva-databricks
 title: "Setting up Tuva on Databricks"
-hide_title: false
+hide_title: true
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=f074-6m2o3E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# Setting up The Tuva Project on Databricks
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f074-6m2o3E?si=TrIqrB7xLbxao1H8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Pre-requisites:
 
