@@ -9,7 +9,14 @@ const sidebars =
             label: "Getting Started",
             items: [
                 "getting-started/overview",
-                "getting-started/data-warehouse-support",
+                {
+                    type: "category",
+                    label: "Data Warehouse Support",
+                    items: [
+                        "getting-started/data-warehouse-support",
+                        "getting-started/tuva-databricks",
+                    ]
+                },
                 "getting-started/mapping-guide",
                 "getting-started/terminology",
             ]
