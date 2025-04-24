@@ -1,7 +1,9 @@
 ---
 id: tuva-empi
-title: "Tuva EMPI"
+title: "2. EMPI"
 ---
+
+# EMPI
 
 Tuva EMPI is an open-source enterprise master patient index (EMPI) software system that can help you easily add master patient IDs across all your data sources in the Tuva Data Model:
 

@@ -1,6 +1,6 @@
 ---
-id: terminology-normalization
-title: "Terminology Normalization"
+id: vocab-normalization
+title: "3. Vocabulary Normalization"
 ---
 
 ## Overview
