@@ -44,6 +44,7 @@ const sidebars =
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
                         "connectors/metriport",
+                        "connectors/zus",
                     ]
                 },
                 {
