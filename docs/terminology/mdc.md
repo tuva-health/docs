@@ -13,11 +13,10 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 ## Maintenance Instructions
 
 1. Navigate to the [CMS MS DRG website](https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software)
-2. Under the section "MS-DRG Definitions and Manual and Software", click on "V41 Definitions and Manual Table of Contents - Full Titles - HTML Versions"
-    - The version (e.g. V41) will change with each new release.    
-3. Click on the hyperlink "Appendix A List of MS-DRGs Version 41.0"
-4. Click on the hyperlink ["Design and development of the Diagnosis Related Group (DRGs)"](https://www.cms.gov/icd10m/FY2024-version41-fullcode-cms/fullcode_cms/Design_and_development_of_the_Diagnosis_Related_Group_(DRGs).pdf)
-5. Scroll through the PDF to find the "Major Diagnostic Categories" table
+2. Under the section "MS-DRG Definitions Manual and Software", click on "V42 Definitions Manual Table of Contents - Full Titles - HTML Version"
+    - The version (e.g. V42) will change with each new release.    
+3. Click on the hyperlink ["Design and Development of the Diagnosis Related Group (DRGs)"](https://www.cms.gov/icd10m/fy2025-version42.1-fullcode-cms/fullcode_cms/Design_and_Development_of_the_Diagnosis_Related_Group_(DRGs).pdf)
+4. Scroll through the PDF to find the "Major Diagnostic Categories" table
 
 Follow steps 5-11 if there are any changes.  Otherwise, skip to step 12
 
@@ -33,6 +32,10 @@ file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents
+of the mdc file in GitHub.**
+
 9. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
 10. Copy and paste the updated codes into the [MDC file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__mdc.csv)
 11. Submit a pull request

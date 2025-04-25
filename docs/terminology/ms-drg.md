@@ -12,18 +12,48 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 ## Maintenance Instructions
 
-On October 1st, CMS releases a list of MS-DRG codes that are valid for the fiscal year.  This list only contains valid codes
-and omits any that have been deprecated.  Tuva maintains these deprecated code so historical data can be analyzed.
+CMS releases a list of MS-DRG codes twice a year effective April 1 and October 1. This list only contains valid codes and omits any that have been deprecated. Tuva maintains these deprecated code so historical data can be analyzed.
 
 1. Navigate to the [CMS MS DRG website](https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/ms-drg-classifications-and-software)
-2. Under the section "MS-DRG Definitions and Manual and Software", click on "V41 Definitions and Manual Table of Contents - Full Titles - HTML Versions"
-    - The version (e.g. V41) will change with each new release.    
-3. Click on the hyperlink "Appendix A List of MS-DRGs Version 41.0"
-4. Click on the hyperlink ["List of MS-DRGs Version 41.0"](https://www.cms.gov/icd10m/FY2024-version41-fullcode-cms/fullcode_cms/P0380.html)
-5. Copy and paste the list of MS-DRGs into any text editor.
+2. Under the section "MS-DRG Definitions Manual and Software", click on "V42 Definitions Manual Table of Contents - Full Titles - HTML Version"
+    - The version (e.g. V42) will change with each new release.    
+3. Click on the hyperlink "Appendix A List of MS-DRGs Version 42.1"
+4. Click on the hyperlink ["List of MS-DRGs Version 42.1"](https://www.cms.gov/icd10m/fy2025-version42.1-fullcode-cms/fullcode_cms/P0385.html)
+5. Copy and paste the list of MS-DRGs into any text editor and save it as a text file.
 6. Format the file
    - Remove the text "MDC" from column 2
    - Wrap the description in column 4 with double quotes so commas are interpreted correctly
+  
+  ***Note**: you can use the below script to format the file as said in **number 6.***
+  ```python
+import pandas as pd
+
+def main():
+    input_filename = "your text file path"
+    output_filename = "output csv file path"  
+    
+    with open(input_filename, 'r') as f:
+        lines = f.readlines()
+
+    rows = []
+    for line in lines:
+        line = line.strip() 
+        if line:  # ignore empty lines
+            parts = line.split(",", 3)  # split only at the first 3 commas
+            rows.append(parts)
+    
+    df = pd.DataFrame(rows, columns=["Code", "Group", "Type", "Description"])
+
+    print(df.head())
+
+    # Clean the Group column (remove 'MDC ' if exists)
+    df["Group"] = df["Group"].str.replace("MDC ", "", regex=False).str.strip()
+
+    df.to_csv(output_filename, index=False, header=True)
+
+if __name__ == "__main__":
+    main()
+  ```
 7. Save the file
 8. Import the file into any data warehouse that also has the previous version of MS-DRG loaded
 9. Use the SQL below to populate the `deprecated` and `deprecated_date` columns.  The script does the following:
