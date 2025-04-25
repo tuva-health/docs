@@ -31,7 +31,7 @@ git clone https://github.com/tuva-health/zus_connector.git
 cd zus_connector
 ```
 
-## **Step 3: Create and Activate Virtual Environment**
+### **Step 3: Create and Activate Virtual Environment**
 
 It's highly recommended to use a Python virtual environment to manage project dependencies. This isolates the project's packages from your global Python installation.
 
@@ -55,7 +55,7 @@ This creates a venv directory within your project folder.
 
 You should see (venv) prepended to your command prompt, indicating the environment is active.
 
-## **Step 4: Install Python Dependencies** 
+### **Step 4: Install Python Dependencies** 
 
 With the virtual environment active, install the required Python packages, including dbt and the warehouse-specific dbt adapter (e.g. `dbt-snowflake`, `dbt-bigquery`).
 
