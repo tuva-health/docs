@@ -44,7 +44,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     </tr>
     <tr>
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
-      <td>3M</td>
+      <td>Solventum</td>
       <td>1/1/2024</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/apr_drg.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
@@ -109,7 +109,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/gender.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
-      <td><a href="../terminology/hcpcs-level-ii">HCPCS Level II</a></td>
+      <td><a href="../terminology/hcpcs-level-2">HCPCS Level II</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>4/19/2022</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/hcpcs_level_2.csv_0_0_0.csv.gz">Link</a></td>

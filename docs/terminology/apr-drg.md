@@ -12,23 +12,29 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 ## Maintenance Instructions
 
-1. Navigate to the [AHRQ HCUP website](https://hcup-us.ahrq.gov/)
-2. Click the header tab "Database Information"
-3. Click on the hyperlink "NIS Database Documentation"
-4. Under "Additional Resources for Data Elements" click on the hyperlink ["APR-DRGs Methodology Overview Version 31"](https://hcup-us.ahrq.gov/db/nation/nis/grp031_aprdrg_meth_ovrview.pdf)
-5. Scroll to the bottom of the PDF, copy and paste the codes found in "Appendix A - List of All Patient refined DRGs" into any text editor
-6. Format the codes as a CSV file and save
-7. Import the CSV file into any data warehouse
-8. Upload the CSV file from the data warehouse to S3 (credentials with write permissions to the S3 bucket are required)
+1. Navigate to the [Solventum APR DRG page](https://www.solventum.com/en-us/home/h/f/b5005024009/)
+2. Find the description files worded 'Solventum APR DRG descriptions'
+3. Open the latest description file, named 'APR DRG &lt;latestversion&gt; descriptions'
+4. Copy the code block from the file and paste it into a text editor.
+5. Format the codes as a CSV file and save
+    - You can paste it into Google Sheets or Excel
+    - Use the pipe symbol (`|`) as the custom delimiter
+    - Save/export the sheet as a `.csv` file
+6. Import the CSV file into your data warehouse
+    - Ensure that empty fields are imported as `null`, not blank strings (`''`)
+7. Transform the uploaded data to another table to match the Tuva Terminology standard:
+    - DRG → apr_drg_code
+    - Type → medical_surgical
+    - MDC → mdc_code
+    - Long Description → apr_drg_description
+8. Unload the table from the data warehouse to a CSV file in S3 (credentials with write permissions to the S3 bucket are required)
 ```sql
 -- example code for Snowflake
 copy into s3://tuva-public-resources/terminology/apr_drg.csv
 from [table_created_in_step_7]
 file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
-OVERWRITE = TRUE;
+overwrite = true;
 ```
-9. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-10. Copy and paste the CSV formatted code list into the [APR-DRG file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__apr_drg.csv)
-11. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
-12. Submit a pull request
+9. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
+10. Submit a pull request
