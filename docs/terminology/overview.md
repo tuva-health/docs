@@ -284,3 +284,13 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     </tr>
   </tbody>
 </table>
+
+# File Download/Extraction Help
+Built-in file managers (e.g. Archive Utility on MacOS) may have some trouble decompressing files downloaded directly from this terminology page. You may encounter an error complaining that the files are in an unsupported file format.
+
+One way to get around these errors is by using [`gzip`](https://www.gzip.org/), which will help you decompress these files without encountering the same unsupported file format errors you were seeing before.
+
+```console
+# would extract terminology_file.csv to the same directory
+gzip -d path/to/your/file/terminology_file.csv.gz 
+```
