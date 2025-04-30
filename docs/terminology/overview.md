@@ -29,14 +29,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/admit-source">Admit Source</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>1/1/2024</td>
+      <td>22/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_source.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/admit-type">Admit Type</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>1/1/2024</td>
+      <td>22/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
         <tr>
@@ -155,14 +155,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/icd-10-cm">ICD-10-CM</a></td>
       <td>Centers for Disease Control and Prevention (CDC)</td>
       <td>Annually occuring from Oct 1</td>
-      <td>1/1/2024</td>
+      <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_cm.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/icd-10-pcs">ICD-10-PCS</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Semi-annually occuring from (Oct 1 to Mar 31) and (Apr 1 to Sept 31)</td>
-      <td>1/1/2024</td>
+      <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -183,7 +183,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/mdc">MDC</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Annually occuring from April 1</td>
-      <td>1/1/2024</td>
+      <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/mdc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -218,7 +218,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/ms-drg">MS-DRG</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Semi-annually occuring from (Oct 1 to Mar 31) and (Apr 1 to Sept 31)</td>
-      <td>1/1/2024</td>
+      <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ms_drg.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -246,14 +246,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/place-of-service">Place of Service</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated periodically; no fixed schedule provided</td>
-      <td>4/19/2022</td>
+      <td>15/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/place_of_service.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/present-on-admission">Present on Admission</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated periodically; no fixed schedule provided.</td>
-      <td>4/19/2022</td>
+      <td>15/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/present_on_admission.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -274,7 +274,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/revenue-center">Revenue Center</a></td>
       <td>National Uniform Billing Committee</td>
       <td>Updated periodically; no fixed schedule provided.</td>
-      <td>6/23/2022</td>
+      <td>15/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/revenue_center.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
