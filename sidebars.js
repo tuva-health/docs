@@ -9,14 +9,22 @@ const sidebars =
             label: "Getting Started",
             items: [
                 "getting-started/overview",
-                "getting-started/data-warehouse-support",
+                {
+                    type: "category",
+                    label: "Data Warehouse Support",
+                    items: [
+                        "getting-started/data-warehouse-support",
+                        "getting-started/tuva-databricks",
+                    ]
+                },
                 "getting-started/mapping-guide",
                 "getting-started/terminology",
+                "getting-started/geo-coding-sdoh",
             ]
         },
         {
             type: "category",
-            label: "Connectors",
+            label: "1. Connectors",
             items: [
                 "connectors/overview",
                 "connectors/input-layer",
@@ -36,6 +44,7 @@ const sidebars =
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
                         "connectors/metriport",
+                        "connectors/zus",
                     ]
                 },
                 {
@@ -56,51 +65,11 @@ const sidebars =
                 },
             ]
         },
-
+        "tuva-empi",
+        "vocab-normalization",
         {
             type: "category",
-            label: "Core Data Model",
-            items: [
-                "core-data-model/overview",
-                "core-data-model/condition",
-                "core-data-model/eligibility",
-                "core-data-model/encounter",
-                "core-data-model/lab-result",
-                "core-data-model/location",
-                "core-data-model/medical-claim",
-                "core-data-model/medication",
-                "core-data-model/observation",
-                "core-data-model/patient",
-                "core-data-model/person_id_crosswalk",
-                "core-data-model/pharmacy-claim",
-                "core-data-model/practitioner",
-                "core-data-model/procedure",
-            ]
-        },
-
-        {
-            type: "category",
-            label: "Data Marts",
-            items: [
-                "data-marts/overview",
-                "data-marts/ahrq-measures",
-                "data-marts/ccsr",
-                "data-marts/chronic-conditions",
-                "data-marts/cms-hccs",
-                "data-marts/ed-classification",
-                "data-marts/encounter-types",
-                "data-marts/financial-pmpm",
-                "data-marts/hcc-suspecting",
-                "data-marts/pharmacy",
-                "data-marts/quality-measures",
-                "data-marts/readmissions",
-                "data-marts/service-categories",
-            ]
-        },
-
-        {
-            type: "category",
-            label: "Data Quality",
+            label: "4. Data Quality",
             items: [
                 "data-quality/overview",
                 "data-quality/data-quality-dashboard",
@@ -111,7 +80,7 @@ const sidebars =
 
         {
             type: "category",
-            label: "Terminology",
+            label: "5. Terminology",
             items: [
                 "terminology/overview",
                 "terminology/admit-source",
@@ -161,7 +130,7 @@ const sidebars =
 
         {
             type: "category",
-            label: "Value Sets",
+            label: "6. Value Sets",
             items: [
                 "value-sets/overview",
                 "value-sets/ahrq-measures",
@@ -178,14 +147,51 @@ const sidebars =
 
             ]
         },
+ 
+
+
         {
             type: "category",
-            label: "Guides",
+            label: "7. Core Data Model",
             items: [
-                "guides/geo-coding-sdoh",
-                "guides/terminology-normalization",
+                "core-data-model/overview",
+                "core-data-model/condition",
+                "core-data-model/eligibility",
+                "core-data-model/encounter",
+                "core-data-model/lab-result",
+                "core-data-model/location",
+                "core-data-model/medical-claim",
+                "core-data-model/medication",
+                "core-data-model/observation",
+                "core-data-model/patient",
+                "core-data-model/person_id_crosswalk",
+                "core-data-model/pharmacy-claim",
+                "core-data-model/practitioner",
+                "core-data-model/procedure",
             ]
         },
+
+        {
+            type: "category",
+            label: "8. Data Marts",
+            items: [
+                "data-marts/overview",
+                "data-marts/ahrq-measures",
+                "data-marts/ccsr",
+                "data-marts/chronic-conditions",
+                "data-marts/cms-hccs",
+                "data-marts/ed-classification",
+                "data-marts/encounter-types",
+                "data-marts/financial-pmpm",
+                "data-marts/hcc-suspecting",
+                "data-marts/pharmacy",
+                "data-marts/quality-measures",
+                "data-marts/readmissions",
+                "data-marts/service-categories",
+            ]
+        },
+        "risk-models",
+        "dashboards",
         {
             type: "category",
             label: "Contributing",
@@ -247,11 +253,10 @@ const sidebars =
             type: 'link',
             label: 'Blog', // This is the label for the sidebar entry
             href: '/blog', // The route to your blog's main page
-        },  
-        "more/dashboards",
+        },
         // "more/data-stories",
         "more/videos",
-   
+
     ],
 };
 

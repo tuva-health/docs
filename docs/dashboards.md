@@ -1,6 +1,6 @@
 ---
 id: dashboards
-title: "Dashboards"
+title: "10. Dashboards & Reports"
 hide_title: false
 toc: false
 ---
