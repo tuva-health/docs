@@ -74,7 +74,7 @@ This command reads packages.yml and downloads the necessary code into the dbt_pa
 
 ### **Step 7: Test the Connection**
 
-Before running transformations, verify that dbt can connect to Snowflake using your profiles.yml settings:
+Before running transformations, verify that dbt can connect to your data warehouse using your profiles.yml settings:
 ```Bash
 dbt debug
 ```
