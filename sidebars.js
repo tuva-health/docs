@@ -52,6 +52,7 @@ const sidebars =
                     label: "Medical Records",
                     items: [
                         "connectors/athenahealth",
+                        "connectors/canvas",
                         "connectors/elation",
                         "connectors/epic",
                     ]
