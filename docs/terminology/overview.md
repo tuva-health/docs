@@ -267,8 +267,8 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     <tr>
       <td><a href="../terminology/social-vulnerability-index">Social Vulnerability Index</a></td>
       <td>Centers for Disease Control and Prevention</td>
-      <td></td>
-      <td><a></a></td>
+      <td>2/18/2025</td>
+      <td><a href="TODO Need link from Tuva S3">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/ssa-state-fips">SSA State FIPS</a></td>
