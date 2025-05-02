@@ -81,7 +81,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 5. Upload the CSV file from the data warehouse to **S3** (credentials with write permissions to the S3 bucket are required)
 ```sql
 -- example code for Snowflake
-copy into s3://tuva-public-resources/terminology/icd_10_cm.csv
+copy into s3://tuva-public-resources/terminology/hcpcs_to_rbcs.csv
 from [table_created_in_step_7]
 file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
