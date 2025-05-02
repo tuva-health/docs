@@ -38,3 +38,9 @@ overwrite = true;
 ```
 9. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
 10. Submit a pull request
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents of the terminology file in GitHub.**
+
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Copy and paste the updated header into the [APR-DRG file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__apr_drg.csv)
+3. Submit a pull request

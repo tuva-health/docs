@@ -39,11 +39,17 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 copy into s3://tuva-public-resources/terminology/hcpcs_level_2.csv
 from 
 (  select hcpcs, seqnum, recid, substr(long_description, 1, 2000), short_description
-   from [table_created_in_step_7]
+   from [table_created_in_step_5]
 )
 file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 overwrite = true;
 ```
-9. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
-10. Submit a pull request
+7. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
+8. Submit a pull request
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents of the terminology file in GitHub.**
+
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Copy and paste the updated header into the [HCPCS Level II file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__hcpcs_level_2.csv)
+3. Submit a pull request

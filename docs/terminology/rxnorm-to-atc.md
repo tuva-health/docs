@@ -15,24 +15,24 @@ This is different from plain RxClass ATC code mapping because this goes to the p
 ## Maintenance Instruction
 
 1. We are sourcing data from [CodeRx](https://coderx.io/). Please check [atc_codes_to_rxnorm_products](https://coderxio.github.io/sagerx/#!/model/model.sagerx.atc_codes_to_rxnorm_products) dbt docs for detailed processes.
-2. We deduplicate rxcui field, taking one row for each distinct `rxcui` such that most ATCs column populated row is selected — i.e., the most complete row.
+2. We deduplicate the `rxcui` field by retaining one row per distinct `rxcui`, selecting the row with the most populated ATC columns (i.e., the most complete record). In cases where multiple rows have the same level of completeness, we use `atc_3_code` in descending order as a tie-breaker.
 
 Here's one way to do that
 
 ```sql
 create table rxcui_to_atc_processed as (
 
-select 
-    rxcui, 
-    rxnorm_description, 
-    atc_1_code, 
-    atc_1_name, 
-    atc_2_code, 
-    atc_2_name, 
-    atc_3_code, 
-    atc_3_name, 
-    atc_4_code, 
-    atc_4_name
+    select 
+        rxcui, 
+        rxnorm_description, 
+        atc_1_code, 
+        atc_1_name, 
+        atc_2_code, 
+        atc_2_name, 
+        atc_3_code, 
+        atc_3_name, 
+        atc_4_code, 
+        atc_4_name
     from [table_from_step_1]
     qualify row_number() over (
             partition by rxcui 
@@ -47,7 +47,7 @@ select
                     case when atc_3_name is not null then 1 else 0 end +
                     case when atc_4_code is not null then 1 else 0 end +
                     case when atc_4_name is not null then 1 else 0 end
-                ) desc
+                ) desc, atc_3_code desc
         ) = 1
 
 )
@@ -63,3 +63,9 @@ overwrite = true;
 ```
 4. Create a branch in [docs](https://github.com/tuva-health/docs). Update the `last_updated` column in the table above with the current date
 5. Submit a pull request
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents of the terminology file in GitHub.**
+
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Copy and paste the updated header into the [rxnorm to atc file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__rxnorm_to_atc.csv)
+3. Submit a pull request
