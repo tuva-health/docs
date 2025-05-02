@@ -14,6 +14,8 @@ Terminology sets are reference code sets and descriptions used in claims and med
 
 Most of the terminology sets are too large to maintain on GitHub so we maintain them on AWS S3.  You can download them using the links below or load them directly to your data warehouse using the Tuva package.
 
+*Last Updated* is the date the codeset was released by maintainer or if not available, the date we loaded it to Tuva.*
+
 <table>
   <thead>
     <tr>
@@ -48,9 +50,9 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     </tr>
     <tr>
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
-      <td>3M</td>
+      <td>Solventum</td>
       <td></td>
-      <td>1/1/2024</td>
+      <td>23/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/apr_drg.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -62,7 +64,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     </tr>
     <tr>
       <td><a href="../terminology/calendar">Calendar</a></td>
-      <td></td>
+      <td>Tuva</td>
       <td></td>
       <td></td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/calendar.csv_0_0_0.csv.gz">Link</a></td>
@@ -92,7 +94,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/discharge-disposition">Discharge Disposition</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>1/1/2024</td>
+      <td>22/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/discharge_disposition.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -124,10 +126,10 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/gender.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
-      <td><a href="../terminology/hcpcs-level-ii">HCPCS Level II</a></td>
+      <td><a href="../terminology/hcpcs-level-2">HCPCS Level II</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated quarterly: January, April, July, and October</td>
-      <td>4/19/2022</td>
+      <td>3/26/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/hcpcs_level_2.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -140,15 +142,15 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     <tr>
       <td><a href="../terminology/icd-9-cm">ICD-9-CM</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
-      <td></td>
-      <td>5/10/2023</td>
+      <td>No New Updates</td>
+      <td>22/04/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_9_cm.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/icd-9-pcs">ICD-9-PCS</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
-      <td></td>
-      <td>5/10/2023</td>
+      <td>No New Updates</td>
+      <td>22/04/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_9_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -169,14 +171,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/loinc">LOINC</a></td>
       <td>Regenstrief Institute</td>
       <td>Released twice a year, in February and August</td>
-      <td>9/18/2023</td>
+      <td>2/26/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/loinc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/loinc-deprecated-mapping">LOINC Deprecated Mapping</a></td>
       <td>Regenstrief Institute</td>
       <td>Released twice a year, in February and August</td>
-      <td>9/18/2023</td>
+      <td>2/26/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/loinc_deprecated_mapping.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -217,7 +219,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
     <tr>
       <td><a href="../terminology/ms-drg">MS-DRG</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
-      <td>Semi-annually occuring from (Oct 1 to Mar 31) and (Apr 1 to Sept 31)</td>
+      <td>Semi-annually, one effective for Oct 1 to Mar 31 and another for Apr 1 to Sept 31</td>
       <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ms_drg.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
@@ -225,14 +227,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/ndc">NDC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>4/24/2024</td>
+      <td>4/30/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ndc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/other-provider-taxonomy">Other Provider Taxonomy</a></td>
       <td>NUCC / CMS</td>
       <td>Monthly</td>
-      <td></td>
+      <td>1/5/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/other_provider_taxonomy_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -246,7 +248,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/place-of-service">Place of Service</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated periodically; no fixed schedule provided</td>
-      <td>15/4/2025</td>
+      <td>2/5/2024</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/place_of_service.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -260,7 +262,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/provider">Provider</a></td>
       <td>NPPES</td>
       <td>Monthly</td>
-      <td></td>
+      <td>1/5/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/provider_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -281,7 +283,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/rxnorm-to-atc">RxNorm to ATC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>4/24/2024</td>
+      <td>4/30/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/rxnorm_to_atc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
