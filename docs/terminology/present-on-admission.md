@@ -27,10 +27,11 @@ storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
 
+7. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
+8. Submit a pull request
+
 **The below steps are only required if the headers of the file need to be changed.  The Tuva Project does not store the contents of the present_on_admission file in GitHub.**
 
-7. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-8. Copy and paste the updated codes into the [present_on_admission file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__present_on_admission.csv)
-9. Submit a pull request
-10. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
-11. Submit a pull request
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Alter the headers as needed in [present_on_admission file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__present_on_admission.csv)
+3. Submit a pull request

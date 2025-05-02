@@ -22,16 +22,16 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 ```sql
 -- example code for Snowflake
 copy into s3://tuva-public-resources/terminology/place_of_service.csv
-from [table_created_in_step_5]
+from [table_created_in_step_6]
 file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
+8. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
+9. Submit a pull request
 
 **The below steps are only required if the headers of the file need to be changed.  The Tuva Project does not store the contents of the place_of_service file in GitHub.**
 
-8. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-9. Copy and paste the updated codes into the [place of service file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__place_of_service.csv)
-10. Submit a pull request
-11. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
-12. Submit a pull request
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Alter the headers as needed in [place of service file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__place_of_service.csv)
+3. Submit a pull request

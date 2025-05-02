@@ -26,11 +26,11 @@ file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
+7. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
+8. Submit a pull request
 
 **The below steps are only required if the headers of the file need to be changed.  The Tuva Project does not store the contents of the medicare_status file in GitHub.**
 
-9. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-10. Copy and paste the updated codes into the [medicare_status file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__medicare_status.csv)
-11. Submit a pull request
-12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
-13. Submit a pull request
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Alter the headers as needed in [medicare_status file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__medicare_status.csv)
+3. Submit a pull request

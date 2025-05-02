@@ -18,9 +18,12 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 4. Unzip the downloaded file and open “icd10pcs_codes_\{year}”
 5. Save the "icd10pcs_codes_\{year}" as a text file
 6. Load the text file into the below python script:
+
+*Since the text file contains fixed-length fields, the following Python script can be used to convert it into a CSV file.*
     ```python
     import pandas as pd
 
+    #This function converts the text file into a dataframe with single field 'Text'
     def text_to_dataframe(input_file):
         with open(input_file, 'r', encoding='utf-8') as file:
             lines = file.readlines()
@@ -34,6 +37,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
         
         df = text_to_dataframe(input_filename)
 
+        #Slices the single column dataframe into dataframe with required columns
         df['icd_10_pcs'] = df['Text'].str.slice(0,7)
         df['description'] = df['Text'].str.slice(7,)
         print(df[['icd_10_pcs','description']].head())
@@ -48,9 +52,8 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
         main()
     ```
     **Note**: *You might need to adjust the slicing indexes according to the length of your data field*
+
 7. Import the CSV file into any data warehouse and upload the CSV file from the data warehouse to S3 (credentials with write permissions to the S3 bucket are required)
-8. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
-9. Submit a pull request
 ```sql
 -- example code for Snowflake
 copy into s3://tuva-public-resources/terminology/icd_10_pcs.csv
@@ -59,9 +62,12 @@ file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
-**The below steps are only required if the headers of the file need to be changed.  The Tuva Project does not store the contents
+8. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
+9. Submit a pull request
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents
 of the ICD-10-PCS file in GitHub.**
 
-10. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-11. Alter the headers as needed in [ICD-10-PCS file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_pcs.csv)
-12. Submit a pull request
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Alter the headers as needed in [ICD-10-PCS file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_pcs.csv)
+3. Submit a pull request

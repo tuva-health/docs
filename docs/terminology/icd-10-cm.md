@@ -17,10 +17,13 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 3. Within the ICD-10-CM Files section, select the hyperlink titled "Code Descriptions in Tabular Order" to download the associated ZIP file
 4. Unzip the downloaded file and open "icd10cm_order_\{year}"
 5. Save the "icd10cm_order_\{year}" as a text file
-6. Load the text file into the below python script:
+6. Load the text file into the below python script and run:
+
+*Since the text file contains fixed-length fields, the following Python script can be used to convert it into a CSV file.*
     ```python
     import pandas as pd
 
+    #This function converts the text file into a dataframe with single field 'Text'
     def text_to_dataframe(input_file):
         with open(input_file, 'r', encoding='utf-8') as file:
             lines = file.readlines()
@@ -38,6 +41,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
         df = text_to_dataframe(input_filename)
         print(df.head())
 
+        #Slices the single column dataframe into dataframe with required columns
         df['SN'] = df['Text'].str.slice(0,6)
         df['icd_10_cm'] = df['Text'].str.slice(6,14)
         df['header_flag'] = df['Text'].str.slice(14,16)
@@ -56,6 +60,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
         main()
     ```
     **Note**: *You might need to adjust the slicing indexes according to the length of your data field*
+
 7. Import the CSV file into any data warehouse and upload the CSV file from the data warehouse to S3 (credentials with write permissions to the S3 bucket are required)
 
 ```sql
@@ -73,7 +78,7 @@ OVERWRITE = TRUE;
 of the ICD-10-CM file in GitHub.**
 
 
-10. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-11. Alter the headers as needed in [ICD-10-CM file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_cm.csv)
-12. Submit a pull request
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Alter the headers as needed in [ICD-10-CM file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_cm.csv)
+3. Submit a pull request
 
