@@ -12,7 +12,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 ## Maintenance Instructions
 
-FYI: Terminologies `Provider` and `Other Provider Taxonomy` both will be updated simultaneously from same source data
+FYI: Terminologies `Provider` and `Other Provider Taxonomy` both will be updated monthly simultaneously from same source data
 
 1. Download the latest source files from the following locations:
 
