@@ -113,7 +113,7 @@ const config = {
           // { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
           {
-            href: 'https://www.tuvahealth.com',
+            href: 'https://tuvahealth.com',
             position: 'right',
             className: 'header-tuva-link',
             'aria-label': 'Tuva Health',
