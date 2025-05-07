@@ -19,14 +19,16 @@ We are building connectors for as many standard healthcare data sources as possi
 
 **EHR Databases:**
 - [Athenahealth](athenahealth)
+- [Canvas](canvas)
 - [Elation](elation)
 - [Epic](epic)
 
-**FHIR (JSON):**
+**FHIR:**
 - [FHIR Inferno](fhir-inferno)
 - [CMS BCDA](cms-bcda)
 - [Health Gorilla](health-gorilla)
 - [Metriport](metriport)
+- [Zus](zus)
 
 **ADT Flat Files:**
 - [Bamboo](bamboo)
