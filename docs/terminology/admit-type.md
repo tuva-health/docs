@@ -32,8 +32,11 @@ file_format = (type = csv field_optionally_enclosed_by = '"')
 storage_integration = [integration_with_s3_write_permissions]
 OVERWRITE = TRUE;
 ```
-9. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-10. Copy and paste the updated codes into the [admit type file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__admit_type.csv)
-11. Submit a pull request
-12. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
-13. Submit a pull request
+9. Create a branch in [docs](https://github.com/tuva-health/docs).  Update the `last_updated` column in the table above with the current date
+10. Submit a pull request
+
+**The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents of the terminology file in GitHub.**
+
+1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
+2. Copy and paste the updated header into the [Admit type file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__admit_type.csv)
+3. Submit a pull request
