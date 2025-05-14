@@ -130,7 +130,6 @@ OVERWRITE = TRUE;
 **The below steps are only required if the headers of the file need to be changed.  The Tuva Project does not store the contents
 of the ICD-10-CM file in GitHub.**
 
-
 1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
 2. Alter the headers as needed in [ICD-10-CM file](https://github.com/tuva-health/tuva/blob/main/seeds/terminology/terminology__icd_10_cm.csv)
 3. Submit a pull request
