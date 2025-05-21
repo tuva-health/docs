@@ -2,6 +2,9 @@
 id: icd-10-cm
 title: "ICD-10-CM"
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 05-21-2025</em></small>
+</div>
 
 ## Data Dictionary
 

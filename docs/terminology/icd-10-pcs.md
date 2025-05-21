@@ -2,6 +2,10 @@
 id: icd-10-pcs
 title: "ICD-10-PCS"
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 05-21-2025</em></small>
+</div>
+
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
