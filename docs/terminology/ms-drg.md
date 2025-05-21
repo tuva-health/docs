@@ -10,7 +10,104 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ms_drg.csv_0_0_0.csv.gz">Download CSV</a>
 
-## Maintenance Instructions
+## What is MS-DRG?
+
+**MS-DRG** stands for *Medicare Severity Diagnosis Related Groups*. It is a classification system used by the Centers for Medicare & Medicaid Services (CMS) to categorize hospital inpatient stays into groups that are expected to have similar hospital resource use.
+
+MS-DRGs are the foundation of the **Inpatient Prospective Payment System (IPPS)** used by Medicare for reimbursing acute care hospitals.
+
+## Who Created MS-DRG?
+
+MS-DRGs were developed by the **Centers for Medicare & Medicaid Services (CMS)**, based on the original DRG system co-developed by Yale University and CMS in the 1980s. The MS-DRG system was introduced in FY 2008 to better reflect severity and complexity of modern inpatient care.
+
+## How are MS-DRG Codes related to ICD-10-CM and ICD-10-PCS codes?
+
+MS-DRG assignment depends on diagnosis and procedure codes:
+
+- **ICD-10-CM** diagnosis codes determine the principal diagnosis, secondary diagnoses, and comorbidities/complications.
+- **ICD-10-PCS** procedure codes capture surgical and non-surgical interventions.
+  
+These codes, along with patient demographics (e.g., discharge status, age, sex), flow through a CMS-designed **grouper logic** to assign a single MS-DRG to each inpatient claim.
+
+## On what kind of claims are MS-DRG Codes found?
+
+MS-DRG codes are found on **institutional inpatient claims**—specifically, **UB-04** forms (or their electronic equivalent) submitted by **acute care hospitals** for **Medicare Part A** beneficiaries.
+
+These claims typically cover:
+- Room and board
+- Ancillary services
+- Nursing care
+- Procedures performed during the inpatient stay
+
+## How are MS-DRG Codes related to cost?
+
+Each MS-DRG has an associated **relative weight**, which reflects the expected costliness of the average case in that group relative to other groups.
+
+- CMS assigns **payment rates** based on the MS-DRG weight, adjusted by local wage indices, teaching status, hospital type, and outlier criteria.
+- MS-DRGs thus play a **direct role** in determining Medicare reimbursement for hospital stays.
+
+## What to know about MS-DRG Versions?
+
+- CMS updates the MS-DRG definitions **annually**, usually in the **IPPS Final Rule** released each August.
+- Each version incorporates code changes, grouper logic updates, and new clinical insights.
+- The first MS-DRG version was **v25**, released in **2008**.
+- As of **FY 2025**, the current version is **MS-DRG v42** (effective October 1, 2024).
+
+## Code Structure
+
+MS-DRG codes are **three-digit numeric codes**, ranging from **001 to 999**.
+
+- Each code corresponds to a clinically coherent group of diagnoses and/or procedures.
+- Codes are grouped into **Major Diagnostic Categories (MDCs)** by organ system or medical specialty.
+
+Examples:
+- 064: Intracranial hemorrhage or cerebral infarction with MCC
+- 470: Major joint replacement or reattachment of lower extremity without MCC
+
+## Notes for Analysts
+
+- MS-DRGs are only available for **inpatient institutional claims**—they won’t appear on professional or outpatient claims.
+- Use MS-DRGs in conjunction with **discharge date** to apply the correct version year.
+- Be aware that DRG assignment **can vary** between software implementations or payer-customized versions.
+- For longitudinal analyses, **normalize across DRG versions** or use CMS-provided **crosswalks**.
+
+### When MS-DRGs May Be Missing from Inpatient Claims
+
+There are valid scenarios where an inpatient claim **does not have an MS-DRG assigned**, including:
+
+- **Hospital Exempt from IPPS**:
+  - Critical Access Hospitals (CAHs)
+  - Inpatient Psychiatric Facilities (IPFs)
+  - Inpatient Rehabilitation Facilities (IRFs)
+  - Long-Term Care Hospitals (LTCHs)
+  - Children’s and cancer hospitals
+
+- **Payer Does Not Use MS-DRG**:
+  - Medicaid, commercial plans, and other non-Medicare payers may use APR-DRGs or their own classification systems
+
+- **Claim Status Issues**:
+  - Claims still in processing or rejected/denied may lack a DRG assignment
+  - Invalid or mismatched diagnosis/procedure coding may prevent grouping
+
+- **Misclassified Observation Stays**:
+  - Short stays may be submitted as inpatient but not grouped into MS-DRGs if the payer treats them as observation
+
+**Tip**: To ensure you’re working with DRG-eligible claims:
+- Filter for **Medicare Part A**
+- Require **Type of Bill = 11X**
+- Ensure valid **ICD-10-CM** and **ICD-10-PCS** codes are present
+
+## Key Use Cases for MS-DRG Codes
+
+- **Reimbursement modeling** for Medicare inpatient care
+- **Hospital performance analysis** and benchmarking
+- **Risk adjustment** in cost and outcome studies
+- **Case mix analysis** to evaluate patient acuity
+- **Clinical quality reporting** and utilization review
+
+## Tuva Seed File Update Process
+
+Note: This is the maintenance process used by Tuva to maintain the current codeset in the Tuva package. Tuva users do not need to complete this step unless they are leveraging a different version of codes or are no longer updating to the current version of the project, but need an updated terminology set. 
 
 CMS releases a list of MS-DRG codes twice a year effective April 1 and October 1. This list only contains valid codes and omits any that have been deprecated. Tuva maintains these deprecated code so historical data can be analyzed.
 
