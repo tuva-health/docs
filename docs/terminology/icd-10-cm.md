@@ -80,10 +80,10 @@ Each ICD-10-CM code falls into one of two high-level categories:
 
 To distinguish billable diagnosis codes from non-billable headers, CMS’s official ICD-10-CM order files include a column Tuva has named "header_flag" indicating whether that code is a header or not:
 
-- `0` = **Billable code**  
+- `1` = **Billable code**  
   A specific, valid code that may be submitted on claims and used in clinical systems
 
-- `1` = **Non-billable header**  
+- `0` = **Non-billable header**  
   A grouping code for organizational purposes only
 
 This field is crucial for applications that need to filter for valid billing codes or build clinical user interfaces.
