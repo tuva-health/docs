@@ -227,7 +227,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/ndc">NDC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>4/30/2025</td>
+      <td>5/21/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ndc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -283,7 +283,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/rxnorm-to-atc">RxNorm to ATC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>4/30/2025</td>
+      <td>5/21/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/rxnorm_to_atc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
