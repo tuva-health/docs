@@ -31,14 +31,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/admit-source">Admit Source</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>22/4/2025</td>
+      <td>4/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_source.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/admit-type">Admit Type</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>22/4/2025</td>
+      <td>4/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
         <tr>
@@ -52,7 +52,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
       <td>Solventum</td>
       <td></td>
-      <td>23/4/2025</td>
+      <td>4/23/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/apr_drg.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -94,7 +94,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/discharge-disposition">Discharge Disposition</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
-      <td>22/4/2025</td>
+      <td>4/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/discharge_disposition.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -143,14 +143,14 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/icd-9-cm">ICD-9-CM</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>No New Updates</td>
-      <td>22/04/2025</td>
+      <td>04/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_9_cm.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/icd-9-pcs">ICD-9-PCS</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>No New Updates</td>
-      <td>22/04/2025</td>
+      <td>04/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_9_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -255,7 +255,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/present-on-admission">Present on Admission</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated periodically; no fixed schedule provided.</td>
-      <td>15/4/2025</td>
+      <td>04/15/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/present_on_admission.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
