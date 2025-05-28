@@ -72,7 +72,7 @@ always refer to the [project's README](https://github.com/tuva-health/tuva_dqi/b
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/tuva-health/tuva_dqi.git](https://github.com/tuva-health/tuva_dqi.git)
+    git clone https://github.com/tuva-health/tuva_dqi.git
     cd tuva_dqi
     ```
 2.  **Set up a Virtual Environment:** (Recommended to avoid dependency conflicts)
