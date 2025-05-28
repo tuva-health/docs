@@ -183,6 +183,7 @@ const sidebars =
                 "data-marts/cms-hccs",
                 "data-marts/ed-classification",
                 "data-marts/encounter-types",
+                "data-marts/fhir-preprocessing",
                 "data-marts/financial-pmpm",
                 "data-marts/hcc-suspecting",
                 "data-marts/pharmacy",
