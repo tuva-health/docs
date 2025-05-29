@@ -1,4 +1,8 @@
-# Cerner dbt Connector
+---
+id: cerner
+title: "Cerner"
+hide_title: false
+---
 
 **Welcome!** This is an early release of the Cerner connector.
 
