@@ -234,7 +234,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/other-provider-taxonomy">Other Provider Taxonomy</a></td>
       <td>NUCC / CMS</td>
       <td>Monthly</td>
-      <td>20/5/2025</td>
+      <td>05/20/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/other_provider_taxonomy_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -262,7 +262,7 @@ Most of the terminology sets are too large to maintain on GitHub so we maintain 
       <td><a href="../terminology/provider">Provider</a></td>
       <td>NPPES</td>
       <td>Monthly</td>
-      <td>20/5/2025</td>
+      <td>05/20/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/provider_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
