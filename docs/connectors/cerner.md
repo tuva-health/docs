@@ -3,6 +3,9 @@ id: cerner
 title: "Cerner"
 hide_title: false
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 05-29-2025</em></small>
+</div>
 
 **Welcome!** This is an early release of the Cerner connector.
 
