@@ -2,6 +2,9 @@
 id: icd-10-cm
 title: "ICD-10-CM"
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 05-21-2025</em></small>
+</div>
 
 ## Data Dictionary
 
@@ -48,7 +51,54 @@ Each **ICD-10-CM** code:
 > `S52.521A`  
 > → Displaced fracture of shaft of right radius, initial encounter for closed fracture
 
-## Key Use Cases
+## Diagnosis Headers and Code Categories
+
+ICD-10-CM codes are structured hierarchically, organizing thousands of detailed diagnostic codes under broader **diagnosis headers**. These headers serve as category groupings that help users navigate the code system and group related diagnoses.
+
+### What is a Diagnosis Header?
+
+A **diagnosis header** is a non-billable, non-specific entry in the ICD-10-CM tabular list. It typically corresponds to a three-character category, such as `E11` for **Type 2 diabetes mellitus**, under which billable subcodes like `E11.9` (Type 2 diabetes mellitus without complications) reside.
+
+Diagnosis headers:
+
+- Represent **categories** of related conditions  
+- Provide structure to the ICD-10-CM hierarchy  
+- Are **not valid for billing** or reporting purposes on their own  
+- Help organize the code set for analytic, clinical, and navigational use
+
+### Code Categories
+
+Each ICD-10-CM code falls into one of two high-level categories:
+
+- **Billable codes**  
+  These are complete, valid diagnosis codes that may be used in clinical documentation and claims (e.g., `E11.9`, `I10`).
+
+- **Non-billable headers**  
+  These are category headers used to group related billable codes (e.g., `E11`, `C50`, `I50`). They cannot be used alone for billing or reporting.
+
+### The `header_flag` Field
+
+To distinguish billable diagnosis codes from non-billable headers, CMS’s official ICD-10-CM order files include a column Tuva has named "header_flag" indicating whether that code is a header or not:
+
+- `1` = **Billable code**  
+  A specific, valid code that may be submitted on claims and used in clinical systems
+
+- `0` = **Non-billable header**  
+  A grouping code for organizational purposes only
+
+This field is crucial for applications that need to filter for valid billing codes or build clinical user interfaces.
+
+### Why Use Headers?
+
+Although headers are not directly used in claims, they serve multiple purposes:
+
+- **Navigation**: Help users locate and drill into detailed codes  
+- **Grouping**: Facilitate roll-up reporting and cohorting (e.g., for diabetes or cancer types)  
+- **Standardization**: Provide a predictable structure to ICD-10-CM across clinical tools and systems  
+- **Data modeling**: Improve interoperability across EHRs, analytics platforms, and decision support tools
+
+
+## Key Use Cases for ICD-10-CM Codes
 
 - **Billing & Reimbursement**: Required on all claims submitted to payers.
 - **Clinical Documentation Improvement (CDI)**: Ensures precise representation of patient conditions.
@@ -63,7 +113,7 @@ Each **ICD-10-CM** code:
 
 ## Tuva Seed File Update Process
 
-Note: This is the maintenance process used by Tuva to maintain the current codeset in the Tuva package. Tuva users do not need to complete this step unless they are leveraging a different version of ICD-10-CM codes or have forked the Tuva project and are no longer updating to the current version. 
+Note: This is the maintenance process used by Tuva to maintain the current codeset in the Tuva package. Tuva users do not need to complete this step unless they are leveraging a different version of codes or are no longer updating to the current version of the project, but need an updated terminology set. 
 
 1. Navigate to the [CMS ICD 10 website](https://www.cms.gov/medicare/coding-billing/icd-10-codes)
 2. Go to the ICD-10  Files section, click the section for ICD-10-CM & PCS files of the current fiscal year (e.g. 2025 ICD-10 CM & PCS)

@@ -53,6 +53,7 @@ const sidebars =
                     items: [
                         "connectors/athenahealth",
                         "connectors/canvas",
+                        "connectors/cerner",
                         "connectors/elation",
                         "connectors/epic",
                     ]
