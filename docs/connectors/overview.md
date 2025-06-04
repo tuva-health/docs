@@ -20,6 +20,7 @@ We are building connectors for as many standard healthcare data sources as possi
 **EHR Databases:**
 - [Athenahealth](athenahealth)
 - [Canvas](canvas)
+- [Cerner](cerner)
 - [Elation](elation)
 - [Epic](epic)
 
