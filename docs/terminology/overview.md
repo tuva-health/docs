@@ -14,7 +14,7 @@ Terminology sets are reference code sets and descriptions used in claims and med
 
 Most of the terminology sets are too large to maintain on GitHub so we maintain them on AWS S3.  You can download them using the links below or load them directly to your data warehouse using the Tuva package.
 
-*Last Updated* is the date the codeset was released by maintainer or if not available, the date we loaded it to Tuva.*
+The **Last Updated** date in the table below is the date the codeset was released by maintainer or if not available, the date we loaded it to Tuva.
 
 <table>
   <thead>

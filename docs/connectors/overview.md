@@ -7,7 +7,7 @@ toc: false
 
 # Connectors
 
-Connectors are dbt projects that contain SQL code to transform raw healthcare data formats into the Tuva [Input Layer](input-layer.md).  The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly transformed into the Input Layer the rest of Tuva can be executed with a single command.
+Connectors transform raw data sources into the Tuva data model.  More specifically, connectors are dbt projects that contain SQL models that transform raw healthcare data formats into the Tuva [Input Layer](input-layer.md).  The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly transformed into the Input Layer the rest of the Tuva data model can be created with a single command.
 
 ![Connectors](/img/Connectors.jpg)
 
