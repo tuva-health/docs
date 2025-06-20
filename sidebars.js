@@ -193,7 +193,16 @@ const sidebars =
                 "data-marts/service-categories",
             ]
         },
-        "risk-models",
+        {
+            type: "category",
+            label: "9. Predictive Models",
+            items: [
+                "predictive-models/overview",
+                "predictive-models/risk-adjusted-benchmarking",
+                "predictive-models/risk-stratification",
+            ]
+        },
+
         "dashboards",
         {
             type: "category",
