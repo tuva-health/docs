@@ -740,7 +740,7 @@ This query returns information about which tables in the Core Data Model are pop
 
 ![Core Populated](/img/data_quality_core_populated.png)
 
-In the above image, `core.pharmacy_claim` has returned 0 rows, indicating that the table is not populated. In this example, the user should see the [Pharmacy Claim](./atomic-level.md#pharmacy-claim) section to help identify the root cause of why `core.pharmacy_claim` is not populated.
+In the above image, `core.pharmacy_claim` has returned 0 rows, indicating that the table is not populated.
 
 #### Analytics Populated
 
@@ -755,7 +755,7 @@ This query provides information about which Data Mart tables are populated. If a
 
 ![Analytics Populated](/img/data_quality_analytics_populated.png)
 
-In the above image, `ed_visits` has returned 0 rows, indicating there is an issue with one of the fields used to create ED encounters or service categories. In this example, the user should go to the [Claim Line Fields](./atomic-level.md#Claim-Line-Fields) section to help identify the root cause of why `ed_visits` is not populated.
+In the above image, `ed_visits` has returned 0 rows, indicating there is an issue with one of the fields used to create ED encounters or service categories.
 
 #### Chronic Conditions
 
@@ -775,8 +775,6 @@ from data_quality.chronic_conditions_none
 
 The above query returns the percent of patients who have no chronic conditions, along with benchmark comparisons from the Medicare data. A significantly higher or lower number of members without chronic conditions may indicate issues with diagnosis coding or population differences that need to be understood. For example, commercial populations may have a higher percentage of members without chronic conditions due a generally younger and healthier group of enrollees.
 
-To confirm if an unexpected result is due to data quality issues with diagnosis codes, the user should reference the [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields) section of the atomic-level checks.
-
 #### Encounter Types and Service Categories
 
 Encounter types and service categories provide insight into the distribution of healthcare services across different types of care. This section examines the utilization rates, costs, and trends associated with various encounter types and service categories. Understanding these patterns helps identify potential areas of concern or opportunity in healthcare delivery.
@@ -786,7 +784,7 @@ select *
 from data_quality.encounters_missing_groups
 ```
 
-This query returns information about encounter groups that are missing in the dataset. This is a high level check to ensure that all encounter groups are present in the data. If any encounter groups are missing, it may indicate issues with data mapping that needs to be addressed. The underlying issue could be in one of the following sections: [Diagnosis and Procedure Fields](./atomic-level.md#diagnosis-and-procedure-fields), [Institutional Header Fields](./atomic-level.md#institutional_header_fields), or [Claim Line Fields](./atomic-level.md#claim-line-fields).
+This query returns information about encounter groups that are missing in the dataset. This is a high level check to ensure that all encounter groups are present in the data. If any encounter groups are missing, it may indicate issues with data mapping that needs to be addressed.
 
 ```sql
 select *
@@ -807,7 +805,7 @@ With these results:
 
 ![Acute Inpatient Encounter Trend](/img/data_quality_encounter_trend.png)
 
-We can see that we have paid amounts for acute inpatient encounters in January and February (shown as very high paid per values for those months) but low volume (PKPY). This is a clear indication of a data quality issue as the values are significantly different for the rest of the year. In this case, the user should go to the [Institutional Header Fields](./atomic-level.md#institutional-header-fields) section of atomic-level data-quality to help identify the root cause of why acute inpatient encounters are not populated in the first two months.
+We can see that we have paid amounts for acute inpatient encounters in January and February (shown as very high paid per values for those months) but low volume (PKPY). This is a clear indication of a data quality issue as the values are significantly different for the rest of the year. 
 
 ```sql
 select *
