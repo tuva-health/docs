@@ -5,6 +5,9 @@ hide_title: true
 ---
 
 # 9. Predictive Models
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-21-2025</em></small>
+</div>
 
 We are building a large library of predictive models that run on top of the Tuva data model.  These predictive models are classical machine learning models, such as logistic regression, random forrest, and xg-boost.  
 

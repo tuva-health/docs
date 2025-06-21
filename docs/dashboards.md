@@ -4,8 +4,11 @@ title: "10. Dashboards & Reports"
 hide_title: false
 toc: false
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-21-2025</em></small>
+</div>
 
-We are building an entire library of dashboards that run on top of the Tuva data model.  The following are example dashboards built using Power BI that run on the Tuva data model.  The code for these dashboards can be found [here](https://github.com/tuva-health/analytics_gallery).
+Dashboards & Reports are visualizations that run automatically on top of the Core Data Model and Data Marts.  The dashboards below are hosted by Tuva and run on synthetic datasets.  The code for these dashboards can be found [here](https://github.com/tuva-health/analytics_gallery).
 
 
 <div style={{ display: "flex", flexDirection: "column", gap: "50px" }}>

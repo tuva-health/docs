@@ -15,4 +15,4 @@ Welcome to the Tuva Project!  The goal of the Tuva Project is to democratize acc
 
 To learn more about why we started the Tuva Project read our manifesto [here](/community/manifesto).
 
-We sell Tuva Enterprise, a pre-orchestrated, turnkey version of Tuva installed inside your cloud.  It's for organizations that want the benefits of Tuva without the effort of operating the open-source.  Contact us [here](https://tuvahealth.com/request-a-demo/) to learn more.
+For organizations that need help installing and operating Tuva, we offer a pre-orchestrated, turnkey version called Tuva Enterprise, which we install and manage inside the organization's cloud environment.  Tuva Enterprise includes processing of data feeds and analytics consulting to help the organization get the most out of Tuva.  Contact us [here](https://tuvahealth.com/request-a-demo/) to learn more.

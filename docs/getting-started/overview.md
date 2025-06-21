@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 This video provides a short intro to Tuva to get you up and running.
 
-<iframe width="760" height="515" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
+<iframe width="760" height="440" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
 
 The slides below describe our standard approach to setting up multiple data sources on Tuva.
 
@@ -66,7 +66,7 @@ Next, run ```dbt build``` from the command line to build the entire project.  Th
 
 ### 5. Data Quality Audit
 
-Next you need to perform what we call the [Data Quality](../data-quality/overview) Audit.  The DQA is our systematic approach for validating that we've mapped the source data correctly, identifying atomic-level data quality problems, and understanding the impact of those problems on analytics.
+Next you need to run [Data Quality](../data-quality) to audit whether you mapped the data correctly.  Data Quality is our systematic approach for validating that we've mapped the source data correctly, identifying atomic-level data quality problems, and understanding the impact of those problems on analytics.
 
 ### 6. Explore Data and Docs
 

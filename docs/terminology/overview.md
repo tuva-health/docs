@@ -8,9 +8,12 @@ description: The Tuva Project makes it easy to load useful terminology sets like
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
-# Terminology
+# 5. Terminology
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-21-2025</em></small>
+</div>
 
-Terminology sets are reference code sets and descriptions used in claims and medical record data.  These code sets are maintained by many different organizations, updated on various frequencies, and often distributed in ways that make it a pain to load them into your data warehouse.
+Terminology sets are reference code sets and descriptions used in claims and medical record data.  These code sets are maintained by many different organizations, updated on various frequencies, and often distributed in ways that make it a pain to load them into your data warehouse.  We do this work and take care of it in Tuva.
 
 Most of the terminology sets are too large to maintain on GitHub so we maintain them on AWS S3.  You can download them using the links below or load them directly to your data warehouse using the Tuva package.
 

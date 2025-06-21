@@ -69,17 +69,7 @@ const sidebars =
         },
         "tuva-empi",
         "vocab-normalization",
-        {
-            type: "category",
-            label: "4. Data Quality",
-            items: [
-                "data-quality/overview",
-                "data-quality/data-quality-dashboard",
-                "data-quality/atomic-level",
-                "data-quality/analytics-level",
-            ]
-        },
-
+        "data-quality",
         {
             type: "category",
             label: "5. Terminology",
