@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 This video provides a short intro to Tuva to get you up and running.
 
-<iframe width="760" height="515" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
+<iframe width="760" height="440" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
 
 The slides below describe our standard approach to setting up multiple data sources on Tuva.
 

@@ -4,9 +4,14 @@ title: "Overview"
 hide_title: true
 ---
 
-# Value Sets
+# 6. Value Sets
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-21-2025</em></small>
+</div>
 
-Value sets are lookup tables that define concepts that are useful for analytics.  For example: conditions, therapies, service categories, etc.  Many data marts leverage value sets e.g. quality measures, HCCs, chronic conditions, etc.
+Value sets are lookup tables that define concepts that are useful for analytics.  For example: conditions, therapies, service categories, etc.  Many data marts leverage value sets (e.g. quality measures, HCCs, chronic conditions, etc).
+
+Like Terminology Sets, Value Sets are stored on S3 because they are too large for GitHub.
 
 <table>
   <thead>
