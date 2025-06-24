@@ -4,7 +4,7 @@ title: "Healthie"
 hide_title: false
 ---
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 05-29-2025</em></small>
+  <small><em>Last updated: 06-23-2025</em></small>
 </div>
 
 [Code on GitHub](https://github.com/tuva-health/healthie_connector.git)
