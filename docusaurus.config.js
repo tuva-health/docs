@@ -113,7 +113,7 @@ const config = {
           // { to: 'manifesto', label: 'Manifesto', position: 'left' },
 
           {
-            href: 'https://www.tuvahealth.com',
+            href: 'https://tuvahealth.com',
             position: 'right',
             className: 'header-tuva-link',
             'aria-label': 'Tuva Health',
@@ -125,7 +125,7 @@ const config = {
             'aria-label': 'YouTube',
           },
           {
-            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-16iz61187-G522Mc2WGA2mHF57e0il0Q',
+            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-35lhyb3as-moCo~~7A3el1oG1vSyIPHQ',
             position: 'right',
             className: 'header-slack-link',
             'aria-label': 'Slack Community',

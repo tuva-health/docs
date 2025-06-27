@@ -1,7 +1,10 @@
 ---
 id: encounter-types
-title: "Encounters"
+title: "Encounter Grouper"
 ---
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-21-2025</em></small>
+</div>
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
