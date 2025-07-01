@@ -13,7 +13,7 @@ We are building a large library of predictive models that run on top of the Tuva
 
 All the predictive models we are building fall into two categories:
 
-1. Risk-adusted Benchmarking Models
+1. Risk-adjusted Benchmarking Models
 2. Risk Stratification Models
 
 **Risk-adjusted Benchmarking Models** are used to create patient-level and encounter-level benchmarks that are adjusted for disease and demographic factors.  The models generate so-called expected values for cost, utilization, and outcome metrics.  For example, every patient in your claims dataset should have a medical PMPM.  With risk-adjusted benchmarks you can generate an expected medical PMPM for each patient.  You can then aggregate both the observed (i.e. actual) PMPM and compare to the expected PMPM aggregated across your patient population.

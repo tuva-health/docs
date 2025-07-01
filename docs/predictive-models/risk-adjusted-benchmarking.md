@@ -45,7 +45,7 @@ There are two basic types of predictive models:
 
 ## How to Interpret Benchmarking Results
 
-It's crucial to understand that benchmarking models make sense (and can guide decision making) in aggregate, but not at an individual level. They typically show good calibration (predicted/actual ratio very close to 100%), but will have high mean absolute error percentages (MAE% typically above 60%).
+It's important to understand that benchmarking models make sense (and can guide decision making) in aggregate, but not at an individual level. They typically show good calibration (predicted/actual ratio very close to 100%), but will have high mean absolute error percentages (MAE% typically above 60%).
 
 This means that while the models may accurately predict total costs for a large population, they will have significant errors when predicting for individual patients. This is expected and acceptable for benchmarking purposes, as the goal is to compare group performance fairly (risk stratification), not to predict individual patient costs perfectly.
 
@@ -72,3 +72,78 @@ The Tuva Project has developed a set of benchmarking models using Medicare data 
 Visit [The Tuva Project's page on Hugging Face](https://huggingface.co/tuva-ml-models/) to get started integrating these models with your own data. The page also provides detailed information about each model, including evaluation metrics and performance insights.
 
 In line with The Tuva Project's philosophy of openness and collaboration, we have initially made available models trained on CMS data. We encourage active participation from the community, inviting members to contribute their own models. Ultimately, our vision is to build a place where users can create and share machine learning models that leverage The Tuva Project’s data resources.
+Of course. Here is the final section listing the available models, formatted with the requested dropdowns for better organization and readability.
+
+---
+
+## Available Tuva Models
+
+The following models are currently available. They are all concurrent models trained on the 2023 CMS Limited Data Set (5% file) and are designed to run on the output of The Tuva Project's benchmarking data mart.
+
+<br />
+
+<details>
+  <summary><b>Denominator-Based: Spend and Utilization Models</b></summary>
+  
+  <br />
+  
+  These models predict total paid amounts and encounter counts for a member population over a given period.
+
+  **Paid Amount Model**
+  * Total Paid Amount
+
+  **Encounter Groups (Paid Amount and Encounter Counts)**
+  * Inpatient
+  * Outpatient
+  * Office-based
+  * Other
+
+  **Encounter Count Models by Type (Paid Amount and Encounter Counts)**
+  * Acute Inpatient
+  * Ambulatory Surgery Center
+  * Dialysis
+  * DME - Orphaned
+  * Emergency Department
+  * Home Health
+  * Inpatient Hospice
+  * Inpatient Long Term Acute Care
+  * Inpatient Psych
+  * Inpatient Rehabilitation
+  * Inpatient Skilled Nursing
+  * Inpatient Substance Use
+  * Lab - Orphaned
+  * Office Visit
+  * Office Visit - Injections
+  * Office Visit - Other
+  * Office Visit - PT/OT/ST
+  * Office Visit - Radiology
+  * Office Visit - Surgery
+  * Orphaned Claim
+  * Outpatient Hospital or Clinic
+  * Outpatient Hospice
+  * Outpatient Injections
+  * Outpatient Psych
+  * Outpatient PT/OT/ST
+  * Outpatient Radiology
+  * Outpatient Rehabilitation
+  * Outpatient Substance Use
+  * Outpatient Surgery
+  * Telehealth
+  * Urgent Care
+
+</details>
+
+<br />
+
+<details>
+  <summary><b>Encounter-Based: Acute Inpatient Models</b></summary>
+  
+  <br />
+
+  Given that a member has had an acute inpatient encounter, these models predict specific outcomes for that admission.
+
+  * **30-Day Readmission Risk:** The likelihood of a readmission within 30 days of discharge.
+  * **Length of Stay (LOS):** The predicted number of days for the inpatient stay.
+  * **Discharge Location:** The likelihood of being discharged to a specific setting (e.g., Home, Skilled Nursing Facility).
+
+</details>
