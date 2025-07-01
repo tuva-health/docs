@@ -25,7 +25,7 @@ This method is widely used in regulatory and actuarial contexts due to its trans
 - **Lower precision:** Group-level adjustments often fail to capture complex, patient-specific variation in risk.
 Predictive Modeling with Machine Learning
 
-A more targeted and scalable alternative is to use **predictive models that estimate expected values** based on a richer set of features, including demographics, chronic conditions, prior utilization, and social factors. These models are typically trained on historical data and generate patient-level predictions using techniques such as regularized regression, gradient-boosted trees (e.g., XGBoost), or other machine learning methods.
+A more targeted and scalable alternative is to use predictive models that estimate expected values based on a richer set of features, including demographics, chronic conditions, prior utilization, and social factors. These models are typically trained on historical data and generate patient-level predictions using techniques such as regularized regression, gradient-boosted trees (e.g., XGBoost), or other machine learning methods.
 
 This approach has several advantages:
 
@@ -40,9 +40,9 @@ Importantly, modern predictive models must be carefully calibrated and validated
 
 ---
 
-When building predictive models for benchmarking, the goal is not simply to maximize prediction accuracy. Instead, it’s to fairly compare outcomes across healthcare organizations by adjusting for differences in **patient risk**—not for differences in care delivery.
+When building predictive models for benchmarking, the goal is not simply to maximize prediction accuracy. Instead, it’s to fairly compare outcomes across healthcare organizations by adjusting for differences in patient risk.
 
-To do this effectively, your model should include only factors that are **outside the control of the health system**. This ensures that observed differences in cost, utilization, or outcomes reflect true differences in performance—not differences in patient mix.
+To do this effectively, your model should include only factors that are outside the control of the health system. This ensures that observed differences in cost, utilization, or outcomes reflect true differences in performance and not differences in patient mix.
 
 #### Include variables that reflect *inherent patient risk*:
 - **Demographics**: Age, sex, geography
@@ -57,23 +57,23 @@ These are factors providers cannot change, and they help level the playing field
 - Whether the patient has an assigned PCP
 - History of wellness visits or screenings
 
-These are **outcomes or engagement indicators** that health systems can (and should) influence. Including them in a risk adjustment model would essentially "credit" or "penalize" systems for their own performance—undermining the point of benchmarking.
+These are outcomes or engagement indicators that health systems can (and should) influence. Including them in a risk adjustment model would essentially "credit" or "penalize" systems for their own performance—undermining the point of benchmarking.
 
 ---
 
 #### Why this matters:
 
 Imagine a health system with strong primary care and care management. They've successfully reduced ED visits by 30%.  
-If your benchmarking model includes prior ED visits as a predictor, the system’s improved performance will be baked into the expected values—**making them appear average**, even though they’re outperforming peers.
+If your benchmarking model includes prior ED visits as a predictor, the system’s improved performance will be baked into the expected values—making them appear average, even though they’re outperforming peers.
 
 By excluding provider-driven variables, you ensure that:
-- Performance differences **remain visible**
-- Benchmarks are **fair and actionable**
+- Performance differences remain visible
+- Benchmarks are fair and actionable
 - The model encourages—not punishes—improvement
 
 ---
 
-In short, **benchmarking models are not about explaining everything—they’re about adjusting only for what’s outside the system’s control**, so that what remains can meaningfully reflect performance.
+In short, benchmarking models are not about explaining everything, but rather adjusting only for what’s outside the system’s control so that what remains can meaningfully reflect performance.
 
 
 ## Prospective vs. Concurrent Models
@@ -87,7 +87,7 @@ Predictive models in healthcare typically fall into two categories based on thei
 
 **Purpose:** Predict future outcomes based on historical data.
 
-These models use past or current-year patient data to estimate what is likely to happen in a future period. They are commonly used for **forward-looking activities**, such as care management targeting, financial forecasting, and value-based contract planning.
+These models use past or current-year patient data to estimate what is likely to happen in a future period. They are commonly used for forward-looking activities, such as care management targeting, financial forecasting, and value-based contract planning.
 
 - **Use case:** Identifying high-risk patients for intervention before costly events occur
 - **Example:** Use 2024 patient demographics and clinical history to predict 2025 medical expenditures
@@ -97,7 +97,7 @@ These models use past or current-year patient data to estimate what is likely to
 
 **Purpose:** Estimate expected performance for the current period, given current patient risk.
 
-These models use data from the same time period as the outcome of interest. They are typically used for **benchmarking and performance evaluation**, helping to explain current variation by adjusting for patient complexity.
+These models use data from the same time period as the outcome of interest. They are typically used for benchmarking and performance evaluation, helping to explain current variation by adjusting for patient complexity.
 
 - **Use case:** Comparing actual vs. expected costs for a population in 2024 to assess efficiency or variation
 - **Example:** Use 2024 data (age, conditions, etc.) to estimate what 2024 expenditures *should* have been
@@ -116,30 +116,30 @@ These models use data from the same time period as the outcome of interest. They
 
 ---
 
-Both types of models play an important role in a comprehensive analytics strategy. **Prospective models help organizations plan and act**, while **concurrent models help explain and improve performance**.
+Both types of models play an important role in a comprehensive analytics strategy. Prospective models help organizations plan and act, while concurrent models help explain and improve performance.
 
 
 ## How to Interpret Benchmarking Results
 ---
 
-Benchmarking models are designed to support **population-level insights**, not to make precise predictions for individual patients. This distinction is critical for understanding how to use model outputs effectively.
+Benchmarking models are designed to support population-level insights, not to make precise predictions for individual patients.
 
-In general, these models are well-calibrated **in aggregate**—meaning the total predicted cost or utilization across a large group closely matches the actual total. This is often reflected in a **predicted-to-actual ratio** near 100%.
+In general, these models are well-calibrated in aggregate. The total predicted cost or utilization across a large group closely matches the actual total. This is often reflected in a predicted-to-actual ratio near 100%.
 
-However, at the **individual level**, these models typically have a high degree of prediction error. A common metric for this is **Mean Absolute Error (MAE%)**, which often exceeds 60% for individual cost predictions. This is not a flaw—it’s expected.
+However, at the individual level, these models typically have a high degree of prediction error. A common metric for this is Mean Absolute Error (MAE%), which often exceeds 60% for individual cost predictions.
 
 #### Why this happens:
 
-- **Healthcare costs are highly variable** at the individual level and influenced by rare or random events (e.g., emergency surgery, new diagnoses).
-- Benchmarking models are built to capture **average expected outcomes**, not rare outliers.
-- The goal is to produce **fair comparisons** across populations or provider groups—not to predict exact values for each member.
+- Healthcare costs are highly variable at the individual level and influenced by rare or random events (e.g., emergency surgery, new diagnoses).
+- Benchmarking models are built to capture average expected outcomes, not rare outliers.
+- The goal is to produce fair comparisons across populations or provider groups.
 
 #### What this means in practice:
 
-- **Use model results in aggregate**: For example, to compare observed vs. expected PMPM across a provider group or patient cohort.
-- **Do not use model results to assess individual patients**: A single patient’s predicted vs. actual cost may differ significantly, and that’s normal.
+- Use model results in aggregate: For example, to compare observed vs. expected PMPM across a provider group or patient cohort.
+- Do not use model results to assess individual patients: A single patient’s predicted vs. actual cost may differ significantly, which is normal.
 
-By focusing on population-level comparisons, benchmarking models enable organizations to identify variation, measure performance, and support accountability in value-based care—without requiring perfect individual prediction.
+By focusing on population-level comparisons, benchmarking models enable organizations to identify variation, measure performance, and support accountability in value-based care, without requiring perfect individual prediction.
 
 
 ## Two Types of Benchmarking Models
