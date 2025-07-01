@@ -65,7 +65,18 @@ Dashboards & Reports are visualizations that run automatically on top of the Cor
   </div>
 </div>
 
+<div style={{ display: "flex", alignItems: "flex-start" }}> 
+    <a href="#" onClick={(e) => { window.open('https://app.powerbi.com/view?r=eyJrIjoiMmM2ZmFiNzAtOTdlNC00NzViLWE0NzYtN2U1Y2E4ZjlmNTBjIiwidCI6ImJiM2M3Y2U1LTI2MjgtNGM5MS04Y2VmLTgwMTdjNjExNTk3OCIsImMiOjZ9', '_blank'); e.preventDefault(); }}>
+      <img src="/img/risk_adjusted_benchmarks.png" alt="Video Thumbnail" style={{ width: "120px", height: "auto", cursor: "pointer", marginRight: "30px"}} />
+    </a>
 
+  <div>
+    <h3 style={{ margin: "0 20px" }}>Risk-adjusted Benchmarks</h3>
+    <p style={{ margin: "5px 20px", fontSize: "0.9em", lineHeight: "1.4em" }}>
+      This dashboard shows the expected values produced by the benchmarking mart and compares them to actual values for analysis.
+    </p>
+  </div>
+</div>
 
 </div>
 
