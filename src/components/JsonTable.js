@@ -6,10 +6,10 @@ export function JsonTable({  jsonPath }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/manifest.json");
-        // const responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/main/docs/catalog.json");
-        const responseMan = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/terminology_test/docs/manifest.json");
-        const responseCat = await fetch("https://raw.githubusercontent.com/tuva-health/the_tuva_project/terminology_test/docs/catalog.json");
+        // const responseMan = await fetch("https://tuva-health.github.io/tuva/manifest.json");
+        // const responseCat = await fetch("https://tuva-health.github.io/tuva/catalog.json");
+        const responseMan = await fetch("https://tuva-health.github.io/tuva/manifest.json");
+        const responseCat = await fetch("https://tuva-health.github.io/tuva/catalog.json");
         // console.log('ResponseMan: ', responseMan)
         // console.log('ResponseCat: ', responseCat)
         const jsonDataMan = await responseMan.json();
