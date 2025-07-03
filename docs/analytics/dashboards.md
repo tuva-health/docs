@@ -1,6 +1,6 @@
 ---
 id: dashboards
-title: "10. Dashboards & Reports"
+title: "Dashboards"
 hide_title: false
 toc: false
 ---
@@ -8,7 +8,7 @@ toc: false
   <small><em>Last updated: 06-21-2025</em></small>
 </div>
 
-Dashboards & Reports are visualizations that run automatically on top of the Core Data Model and Data Marts.  The dashboards below are hosted by Tuva and run on synthetic datasets.  The code for these dashboards can be found [here](https://github.com/tuva-health/analytics_gallery).
+Dashboards run automatically on top of the Core Data Model and Data Marts.  The dashboards below are hosted by Tuva and run on synthetic datasets.  The code for these dashboards can be found [here](https://github.com/tuva-health/analytics_gallery).
 
 
 <div style={{ display: "flex", flexDirection: "column", gap: "50px" }}>
