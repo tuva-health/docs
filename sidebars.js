@@ -56,6 +56,7 @@ const sidebars =
                         "connectors/cerner",
                         "connectors/elation",
                         "connectors/epic",
+                        "connectors/healthie",
                     ]
                 },
                 {

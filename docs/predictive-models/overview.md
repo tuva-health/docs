@@ -9,13 +9,31 @@ hide_title: true
   <small><em>Last updated: 06-21-2025</em></small>
 </div>
 
-We are building a large library of predictive models that run on top of the Tuva data model.  These predictive models are classical machine learning models, such as logistic regression, random forrest, and xg-boost.  
+The Tuva Project is building a large library of predictive models that run on top of the Tuva data model.  These models include classical machine learning models, such as logistic regression, random forrest, and xg-boost.  
 
 All the predictive models we are building fall into two categories:
 
-1. Risk-adusted Benchmarking Models
+1. Risk-adjusted Benchmarking Models
 2. Risk Stratification Models
 
-**Risk-adjusted Benchmarking Models** are used to create patient-level and encounter-level benchmarks that are adjusted for disease and demographic factors.  The models generate so-called expected values for cost, utilization, and outcome metrics.  For example, every patient in your claims dataset should have a medical PMPM.  With risk-adjusted benchmarks you can generate an expected medical PMPM for each patient.  You can then aggregate both the observed (i.e. actual) PMPM and compare to the expected PMPM aggregated across your patient population.
+**Risk-adjusted Benchmarking Models** 
+These models are used to estimate what should have happened, given a patient’s clinical and demographic profile. They are used to create "expected values" for outcomes like cost, utilization, or quality metrics and they are adjusted for patient-level risk factors.
 
-**Risk Stratification Models** are used to predict future events.  For example, what's the probability that a patient will be admitted to the hospital in the next 30 days.  They are called stratification models because in progress they are used to stratify (i.e. rank, order) a list of patients from highest to lowest risk.
+For example, every patient in a claims dataset has an observed medical cost (e.g., PMPM). A risk-adjusted benchmarking model estimates the expected PMPM based on factors like age, comorbidities, and other clinical history. This allows you to fairly compare providers, health systems, or populations by controlling for differences in patient mix.
+
+Think of it as answering:
+
+“Given this patient’s risk profile, what would we expect their cost/utilization/outcome to be?”
+You can then compare actual outcomes to these expected values to identify variation that may be due to practice patterns, quality of care, or other non-risk factors.
+
+
+**Risk Stratification Models** 
+These models are used to predict what will or might happen in the future. They estimate the probability of a specific event occurring, such as a hospital admission, ED visit, or high-cost status.
+
+The goal is to rank or prioritize patients based on their future risk, so that care teams can intervene proactively.
+
+For example, a stratification model might estimate the probability that a patient will be hospitalized in the next 30 days. Patients can then be sorted from highest to lowest predicted risk and flagged for care management or outreach.
+
+Think of it as answering:
+
+“Who is most likely to experience a costly or adverse outcome, so we can act now to prevent it?”
