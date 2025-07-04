@@ -314,7 +314,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/social-vulnerability-index">Social Vulnerability Index</a></td>
       <td>Centers for Disease Control and Prevention</td>
       <td></td>
-      <td>20/6/2025</td>
+      <td>06/20/2025</td>
       <td><a></a></td>
     </tr>
     <tr>
