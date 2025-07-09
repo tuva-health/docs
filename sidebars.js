@@ -193,8 +193,16 @@ const sidebars =
                 "predictive-models/risk-stratification",
             ]
         },
-
-        "dashboards",
+        {
+            type: "category",
+            label: "10. Analytics",
+            items: [
+                "analytics/overview",
+                "analytics/dashboards",
+                "analytics/streamlit",
+                "analytics/notebooks"
+            ]
+        },
         {
             type: "category",
             label: "Contributing",
