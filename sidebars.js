@@ -52,8 +52,11 @@ const sidebars =
                     label: "Medical Records",
                     items: [
                         "connectors/athenahealth",
+                        "connectors/canvas",
+                        "connectors/cerner",
                         "connectors/elation",
                         "connectors/epic",
+                        "connectors/healthie",
                     ]
                 },
                 {
@@ -67,17 +70,7 @@ const sidebars =
         },
         "tuva-empi",
         "vocab-normalization",
-        {
-            type: "category",
-            label: "4. Data Quality",
-            items: [
-                "data-quality/overview",
-                "data-quality/data-quality-dashboard",
-                "data-quality/atomic-level",
-                "data-quality/analytics-level",
-            ]
-        },
-
+        "data-quality",
         {
             type: "category",
             label: "5. Terminology",
@@ -182,6 +175,7 @@ const sidebars =
                 "data-marts/cms-hccs",
                 "data-marts/ed-classification",
                 "data-marts/encounter-types",
+                "data-marts/fhir-preprocessing",
                 "data-marts/financial-pmpm",
                 "data-marts/hcc-suspecting",
                 "data-marts/pharmacy",
@@ -190,7 +184,16 @@ const sidebars =
                 "data-marts/service-categories",
             ]
         },
-        "risk-models",
+        {
+            type: "category",
+            label: "9. Predictive Models",
+            items: [
+                "predictive-models/overview",
+                "predictive-models/risk-adjusted-benchmarking",
+                "predictive-models/risk-stratification",
+            ]
+        },
+
         "dashboards",
         {
             type: "category",

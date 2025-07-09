@@ -5,9 +5,13 @@ hide_title: true
 toc: false
 ---
 
-# Connectors
+# 1. Connectors
 
-Connectors are dbt projects that contain SQL code to transform raw healthcare data formats into the Tuva [Input Layer](input-layer.md).  The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly transformed into the Input Layer the rest of Tuva can be executed with a single command.
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 06-23-2025</em></small>
+</div>
+
+Connectors transform raw data sources into the Tuva data model.  More specifically, connectors are dbt projects that contain SQL models that transform raw healthcare data formats into the Tuva [Input Layer](input-layer.md).  The Tuva Input Layer acts like a staging layer for the entire Tuva Project.  Once a data source has been properly transformed into the Input Layer the rest of the Tuva data model can be created with a single command.
 
 ![Connectors](/img/Connectors.jpg)
 
@@ -19,14 +23,18 @@ We are building connectors for as many standard healthcare data sources as possi
 
 **EHR Databases:**
 - [Athenahealth](athenahealth)
+- [Canvas](canvas)
+- [Cerner](cerner)
 - [Elation](elation)
 - [Epic](epic)
+- [Healthie](healthie)
 
-**FHIR (JSON):**
+**FHIR:**
 - [FHIR Inferno](fhir-inferno)
 - [CMS BCDA](cms-bcda)
 - [Health Gorilla](health-gorilla)
 - [Metriport](metriport)
+- [Zus](zus)
 
 **ADT Flat Files:**
 - [Bamboo](bamboo)
