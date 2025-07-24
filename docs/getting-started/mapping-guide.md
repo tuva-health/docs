@@ -182,10 +182,6 @@ This field should be populated for every row in the `medical_claim` table.
 It is a header-level field,
 so its value must be the same for all lines in a given claim.
 
-Data Quality Intelligence checks that every row in the `medical_claim` table
-has a populated `member_id` and that the value of this field is
-consistent across all lines for a given `claim_id`.
-
 #### payer
 `payer` contains the name of the health insurance payer for the claim
 (Aetna, Blue Cross Blue Shield, etc). The source data may not contain this
@@ -565,7 +561,7 @@ from one of the accepted values ('icd-9-cm', 'icd-10-cm')
 and that the value of this field is consistent across
 all lines for the claim.
 
-#### diagnosis_code_1, diagnosis_code2, ... , diagnosis_code_25
+#### diagnosis_code_1, diagnosis_code_2, ... , diagnosis_code_25
 These fields are strings with the standard ICD diagnosis
 codes representing the diagnoses present on the claim. These values are header-level fields, so
 they must be the same for all lines in a given claim.
@@ -618,7 +614,7 @@ from one of the accepted values ('icd-9-pcs', 'icd-10-pcs')
 and that the value of this field is consistent across
 all lines for the claim.
 
-#### procedure_code_1, procedure_code2, ... , procedure_code_25
+#### procedure_code_1, procedure_code_2, ... , procedure_code_25
 These fields are strings with the standard ICD procedure
 codes representing the procedures present on the claim.
 
@@ -710,7 +706,7 @@ Keep in mind that the `pharmacy_claim` table is at the claim line grain, i.e.
 each row in the table corresponds to a unique claim line. If a given claim
 has N lines, there are N lines in the `pharmacy_claim` table with the same
 `claim_id` value (one for each line in the claim). The `claim_id` value
-is required to be populated for every row in the `medical_claim` table.
+is required to be populated for every row in the `pharmacy_claim` table.
 
 DQI checks that every row in the `pharmacy_claim` table has
 a populated claim_id.
@@ -895,7 +891,7 @@ We suggest mapping the name of the file, if available, to `file_name`. This migh
 #### file_date
 This field is a date, corresponding to the date associated with a particular claims file and typically representing the reporting period of the claims data.
 
-Carriers may name files according to a specific pattern (e.g. "CarrierName_Medical_Claims_YYYYMMDD.csv").
+Carriers may name files according to a specific pattern (e.g. "CarrierName_Pharmacy_Claims_YYYYMMDD.csv").
 In these cases, the `file_date` can be retrieved from the `file_name`. No matter how the information is represented, including it can be helpful, especially when tracking information across different claims files
 over time is relevant to your use cases.
 
@@ -980,10 +976,6 @@ enrollment (e.g. Aetna Gold, BCBS Chicago, etc).
 `plan` values may not come in the source data. This field
 should be hard-coded (e.g. `select 'aetna bronze 1' as plan`).
 
-Data Quality Intelligence ensures that every row in `medical_claim` has a populated
-value in `plan` and the value for this field is consistent across all claim lines for
-a given `claim_id`.
-
 #### original_reason_entitlement_code
 This field is a single-character string that contains a member's original reason for Medicare entitlement.
 When available, mapping this field is particularly helpful for providing a more accurate risk score.
@@ -1050,7 +1042,7 @@ We suggest mapping the name of the file, if available, to `file_name`. This migh
 #### file_date
 This field is a date, corresponding to the date associated with a particular claims file and typically representing the reporting period of the claims data.
 
-Carriers may name files according to a specific pattern (e.g. "CarrierName_Medical_Claims_YYYYMMDD.csv").
+Carriers may name files according to a specific pattern (e.g. "CarrierName_Eligibility_YYYYMMDD.csv").
 In these cases, the `file_date` can be retrieved from the `file_name`. No matter how the information is represented, including it can be helpful, especially when tracking information across different claims files
 over time is relevant to your use cases.
 
