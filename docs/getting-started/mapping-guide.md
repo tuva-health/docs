@@ -352,13 +352,18 @@ codes on a single claim.
 
 There are thousands of HCPCS codes spread across two levels:
 * Level 1 codes, also called CPT codes, are maintained by the American Medical Association (AMA). The
-Tuva Project does not have terminology for Level 1 codes for licensing reasons, but they may still be included in the input layer.
+Tuva Project does not have terminology for Level 1 codes for licensing reasons.
 * Level 2 codes, which are maintained by CMS. The Tuva Project has terminology for these codes.
 
-DQI checks that `hcpcs_code` values are not null on professional claims.
+DQI checks that `hcpcs_code` values are not null on professional claims and ensures
+that mapped codes are HCPCS Level 2 codes.
 
 When this is the case, strategies for handling these values can be use case-specific.
 Organizations may opt to backfill null `hcpcs_code` values with `99499`, a code used to report unlisted Evaluation and Management services when there is no other code that sufficiently corresponds to the services provided.
+
+The way HCPCS codes show up in claims data can vary: we've seen some carriers append a suffix to HCPCS codes,
+which makes them more than 5 characters. Like many of the other fields in your raw data, HCPCS codes may
+need some manipulation (e.g. stripping away a suffix) as you map them to the input layer.
 
 #### hcpcs_modifier_1, ... hcpcs_modifier_5
 This field is a string. HCPCS modifiers can provide more information about a particular `hcpcs_code` and the circumstances or details
