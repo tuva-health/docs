@@ -37,7 +37,7 @@ check out the docs for that data mart in [this section](../../data-marts/overvie
 
 Below we provide a **Mapping Checklist** of things that are important to get right in mapping.
 
-## Claims input layer
+## Claims Input Layer
 
 ### medical_claim
 
@@ -86,7 +86,7 @@ has N lines, there are N lines in the `medical_claim` table with the same
 `claim_id` value (one for each line in the claim). The `claim_id` value
 is required to be populated for every row in the `medical_claim` table.
 
-Data Quality Intelligence ensures that every row in the `medical_claim` table has
+Data Quality Intelligence (DQI) ensures that every row in the `medical_claim` table has
 a populated claim_id.
 
 
@@ -108,13 +108,13 @@ In this case, or when a `claim_line_number` is not present in the source data, `
 can be created manually:
 
 ```sql
-row_number() over (partition by claim_id order by claim_end_date) as claim_line_number
+row_number() over (partition by claim_id order by claim_start_date) as claim_line_number
 ```
 
 <!-- DQI checks that for all claims in the `medical_claim` table,
 the values of `claim_line_number` for different lines are sequential positive
 integers starting at 1. -->
-Data Quality Intelligence checks that the values of `claim_line_number` are different
+DQI checks that the values of `claim_line_number` are different
 for all lines within the same claim.
 
 
@@ -167,14 +167,14 @@ Then, later, the claim type determination can be made in a `case` statement, lik
   end as claim_type
 ```
 
-Data Quality Intelligence checks that every row in the `medical_claim` table
+DQI checks that every row in the `medical_claim` table
 has a populated `claim_type` from one of the accepted values
 for this field ('institutional', 'professional', 'undetermined')
 and that the value of this field is
 consistent across all lines for a given `claim_id`.
 
 #### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, `patient_id` for clinical).
 
 #### member_id
 This field is a string that links each row to a given member.
@@ -199,7 +199,7 @@ enrollment (e.g. Aetna Gold, BCBS Chicago, etc).
 `plan` values may not come in the source data. This field
 should be hard-coded (e.g. `select 'aetna bronze 1' as plan`).
 
-Data Quality Intelligence ensures that every row in `medical_claim` has a populated
+DQI ensures that every row in `medical_claim` has a populated
 value in `plan` and the value for this field is consistent across all claim lines for
 a given `claim_id`.
 
@@ -254,7 +254,7 @@ Along with `admit_source_code`, these codes are maintained by the National Unifo
 
 #### discharge_disposition_code
 This field is a two-character string that represents one of the
-standard discharge disposition code values. This field should be populated for all
+standard `discharge_disposition_code` values. This field should be populated for all
 institutional claims and is a header-level field, so its value must be
 the same for all rows in a given claim. Note that in source data
 this column might be called discharge status or patient status.
@@ -264,22 +264,27 @@ that it is consistent across all lines for a given `claim_id`.
 In addition, DQI checks whether the value of this field is a
 valid value from the `discharge_disposition_code` terminology set.
 
+Note that `place_of_service_code` values may have leading zeroes. Often,
+these leading zeroes are missing in the source data. This issue should
+be corrected during the mapping process, and one way to handle this could be the following:
+
+```sql
+lpad(discharge_disposition_code, 2, '0') as discharge_disposition_code
+```
 
 #### place_of_service_code
 This field is a two-character string that represents one of the
-standard place of service code values, which represent a specific
+standard `place_of_service_code` values, which represent a specific
 location where a medical service was provided. This field should be
 populated for professional claims and is a line-level field,
 so its value may be different for different lines in a given claim.
 
 DQI checks that the value of this field is a two-character string,
-but it does not check whether the value of this field is a
-valid value from terminology; if your raw data has invalid
-values, you will map them to the input layer DQI will point out
-invalid values downstream from the input layer.
+but it does not check whether the value is valid (i.e. that this field matches one of the `place_of_service_code` values in terminology). If your raw data has invalid
+values, DQI will identify them downstream of the input layer.
 
-DQI raises a warning if a professional claim has null place of service code values.
-In the case that place of service codes are null or not populated for some claim lines
+DQI raises a warning if a professional claim has null `place_of_service_code` values.
+In the case that `place_of_service_code`s are null or not populated for some claim lines
 in source data, these values may be backfilled with 99, which corresponds to
 "Other Place of Service."
 
