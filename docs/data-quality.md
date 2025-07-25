@@ -166,6 +166,14 @@ dbt test -s tag:dqi
 * `dqi_quality_measures`
 * `dqi_readmission`
 
+### List of severity level test tags
+
+* `tuva_dqi_sev_1`
+* `tuva_dqi_sev_2`
+* `tuva_dqi_sev_3`
+* `tuva_dqi_sev_4`
+* `tuva_dqi_sev_5`
+
 ### How to disable DQI
 
 Set the variable in your CLI or `dbt_project.yml` file `enable_input_layer_testing` to `false` and this will disable the
