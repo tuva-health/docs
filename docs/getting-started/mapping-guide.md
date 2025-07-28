@@ -35,6 +35,35 @@ all their columns, even if some or all of the columns on a table are filled with
 To see which fields are required for a given data mart
 check out the docs for that data mart in [this section](../../data-marts/overview).
 
+There are 3 stages provided in the input layer:
+
+**Staging**
+Model(s) with little transformation.
+- Convert non varchar/string column to the appropriate data types (e.g. dates, numbers)
+- Map source columns to the Tuva equivalent
+
+It's recommended that the ETL process dumps all of the fields as strings into the data warehouse.
+These columns then can be trimmed and nullified by adding this CTE at the top of your staging models:
+
+```
+with base as (
+select 
+  {% for column in adapter.get_columns_in_relation(source('<schema>', '<table name>')) %}
+    cast(nullif(trim({{ column.name }}), '') as {{ dbt.type_string() }}) as {{ column.name }}
+    {%- if not loop.last -%},{%- endif %}
+  {% endfor %}
+from {{ source('<schema>', '<table name>') }}
+)
+```
+
+**Intermediate**
+Model(s) that perform major transformation to the source data.
+- Deduplication of adjustment, denied and reversed claims
+
+**Final**
+Model(s) that are used by the Tuva Project (i.e. the Input Layer)
+- Convert all column to the required data types
+
 Below we provide a **Mapping Checklist** of things that are important to get right in mapping.
 
 ## Claims Input Layer
