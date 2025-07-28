@@ -7,7 +7,9 @@ To run the Tuva Project on a new data source you need to map that data to
 the Tuva [input layer](../../connectors/input-layer). Once this is done,
 the Tuva Project (which is a dbt package) will be able to call the
 input layer tables using ref statements and build the Tuva data model
-on your data. Mapping a data source
+on your data.
+
+Mapping a data source
 to the Tuva input layer means creating dbt models in your dbt project
 for each of the input layer tables. That means that if you have a claims
 data source you will create dbt models for each of the 3
@@ -17,7 +19,7 @@ will create dbt models for each of the 9
 [clinical input](../../connectors/input-layer#clinical-input)
 tables.
 
-In practice this is typically done in a dbt project where you have:
+In practice, this is typically done in a dbt project where you have:
 - Raw data tables as sources (left side of the DAG).
 - However many necessary intermediate transformation tables as dbt models (middle of the DAG).
 - The Tuva input layer tables as dbt models (right side of the DAG). Keep in mind that these
@@ -26,6 +28,8 @@ you must name them with the
 correct corresponding Tuva input layer
 table names (i.e., the names the input layer tables
 have [here](../../connectors/input-layer)).
+
+To help you get started mapping, we have created a [connector template](https://github.com/tuva-health/connector_template).
 
 If your data source doesn't have every field in the input layer, that's okay.
 Just map the fields that you have and leave the other fields empty (you still need
@@ -340,7 +344,7 @@ lpad(revenue_center_code, 4, '0') as revenue_center_code
 ```
 
 #### service_unit_quantity
-This is an integer that corresponds to the number of units associated with a particular
+This is a numeric that corresponds to the number of units associated with a particular
 `revenue_center_code`. In source data, this value can be negative. Appropriately applying
 Adjustments, Denials, and Reversals (ADR) logic to medical claims should yield positive
 values for this field.
@@ -399,8 +403,8 @@ That logic could look like this:
 select
 ...
 , case when p.entity_type_code = 1 then npi else null end as rendering_npi
-, case when p.entity_type_code = 1 and claim_type = 'professional' then p.npi end as billing_npi
-, case when p.entity_type_code = 2 and claim_type = 'institutional' then p.npi end as facility_npi
+, case when p.entity_type_code = 1 and claim_type = 'professional' then p.npi else null end as billing_npi
+, case when p.entity_type_code = 2 and claim_type = 'institutional' then p.npi else null end as facility_npi
 from source_data as sd
 left join {{ ref('terminology__provider') }} as p
 on p.npi = sd.npi
@@ -918,7 +922,7 @@ A new patient identifier field named `person_id` has been added to the Tuva data
 <details>
   <summary>Primary Key</summary>
 
-- The primary key for the pharmacy_claim table is person_id, member_id, enrollment_start_date, enrollment_end_date, and data_source.
+- The primary key for the eligibility table is person_id, member_id, enrollment_start_date, enrollment_end_date, and data_source.
 - There are two commonly used data formats for eligibility (also known as enrollment) data: the eligibility span format and the member month format.
 - The eligibility span format has one record per member eligibility span.  An eligibility span is a time period when a member was enrolled with and therefore had insurance coverage by a health plan.  An eligibility span has a start date and an end date.  A person can have multiple eligibility spans.
 - The member month format has one record per member per month of enrollment.  For example, a person with a single eligibility span from 1/1/2020 through 3/31/2020 would have a single eligibility span record, but 3 member month records, one for each month.
