@@ -61,16 +61,7 @@ the primary key prevents these collisions, and allows for consolidation across
 different sources of medical claims.
 
 
-If there are claims in the dataset without corresponding eligibility
-(i.e. the patient the claim is for does not have coverage during the
-dates for the claim)
-then those claims should stay in the dataset and not be
-filtered out. These claims are often excluded from financial
-analysis. In fact, the Financial PMPM mart inner joins `medical_claim` and
-`eligibility` to filter out claims without
-corresponding eligibility.
-However, this is not the only use of claims data, so we
-do not filter out these claims by default.
+Claims for members that do not have active coverage according to `eligibility` are not removed by default. These records correspond to claims for patients who do not have coverage for a given data source / payer / plan during the dates on the claim; we recommend leaving these claims in when mapping to `medical_claim`. Downstream, they can be excluded in financial analysis of members who did have eligibility. Indeed, our Financial PMPM mart restricts claims to only those members with corresponding eligibility records.
 
 When mapping claims to the `medical_claim` input layer table, you must take into
 account any logic (specific to your data source) to deal with
@@ -180,7 +171,7 @@ and that the value of this field is
 consistent across all lines for a given `claim_id`.
 
 #### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, `patient_id` for clinical).
+`person_id` is a required (string) field that ideally contains a person-level UUID (Universally Unique Identifier), if available. This can be populated from the Tuva EMPI Engine or with your own Master Patient Index identifier. If you don't have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims and `patient_id` for clinical).
 
 #### member_id
 This field is a string that links each row to a given member.
@@ -270,7 +261,7 @@ that it is consistent across all lines for a given `claim_id`.
 In addition, DQI checks whether the value of this field is a
 valid value from the `discharge_disposition_code` terminology set.
 
-Note that `place_of_service_code` values may have leading zeroes. Often,
+Note that `discharge_disposition_code` values may have leading zeroes. Often,
 these leading zeroes are missing in the source data. This issue should
 be corrected during the mapping process, and one way to handle this could be the following:
 
@@ -739,11 +730,13 @@ has 4 claim lines (i.e., 4 rows on the
 1, 2, 3, and 4, respectively. The `claim_line_number` field should
 be populated for every row in the `pharmacy_claim` table.
 
+Pharmacy claims datasets do not often have a `claim_line_number` field. In these cases, you can set `claim_line_number` = 1 for each `claim_id`. We include `claim_line_number` in the input layer for `pharmacy_claim` to handle the case where there may be multiple claim lines per `claim_id`, and for consistency with `medical_claim`.
+
 DQI checks that the values of `claim_line_number` are different
 for all lines within the same claim.
 
 #### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you have access to Tuva EMPI or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+`person_id` is a required (string) field that ideally contains a person-level UUID (Universally Unique Identifier), if available. This can be populated from the Tuva EMPI Engine or with your own Master Patient Index identifier. If you don't have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims and `patient_id` for clinical).
 
 #### member_id
 This field is a string that links each row to a given member.
@@ -919,7 +912,7 @@ same claim line present across multiple files, but the most recent version of th
 ### eligibility
 
 #### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+`person_id` is a required (string) field that ideally contains a person-level UUID (Universally Unique Identifier), if available. This can be populated from the Tuva EMPI Engine or with your own Master Patient Index identifier. If you don't have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims and `patient_id` for clinical).
 
 <details>
   <summary>Primary Key</summary>
