@@ -107,12 +107,11 @@ can be created manually:
 ```sql
 row_number() over (partition by claim_id order by claim_start_date) as claim_line_number
 ```
-
 <!-- DQI checks that for all claims in the `medical_claim` table,
 the values of `claim_line_number` for different lines are sequential positive
 integers starting at 1. -->
-DQI checks that the values of `claim_line_number` are different
-for all lines within the same claim.
+<!-- DQI checks that the values of `claim_line_number` are different
+for all lines within the same claim. -->
 
 
 #### claim_type
