@@ -33,9 +33,11 @@ correct corresponding Tuva input layer
 table names (i.e., the names the input layer tables
 have [here](../../connectors/input-layer)).
 
+To help you get started mapping, we have created a [connector template](https://github.com/tuva-health/connector_template).
+
+
 <iframe width="760" height="440" src="https://www.youtube.com/embed/RC-o-HvZ5fc?si=eqLv6q9epK0L74VC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-To help you get started mapping, we have created a [connector template](https://github.com/tuva-health/connector_template).
 
 If you're building a claims connector, we have written a [guide](https://thetuvaproject.com/knowledge/claims-data/adjustments-denials-reversals) on Adjustments, Denials, and Reversals that may be helpful to you during the mapping process.
 
