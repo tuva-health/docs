@@ -3,6 +3,10 @@ id: mapping-guide
 title: "Claims Mapping Guide"
 ---
 
+<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+  <small><em>Last updated: 08-06-2025</em></small>
+</div>
+
 To run the Tuva Project on a new data source you need to map that data to
 the Tuva [input layer](../../connectors/input-layer). Once this is done,
 the Tuva Project (which is a dbt package) will be able to call the
@@ -28,6 +32,8 @@ you must name them with the
 correct corresponding Tuva input layer
 table names (i.e., the names the input layer tables
 have [here](../../connectors/input-layer)).
+
+<iframe width="760" height="440" src="https://www.youtube.com/embed/RC-o-HvZ5fc?si=eqLv6q9epK0L74VC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 To help you get started mapping, we have created a [connector template](https://github.com/tuva-health/connector_template).
 
