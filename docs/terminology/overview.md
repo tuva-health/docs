@@ -8,7 +8,7 @@ description: The Tuva Project makes it easy to load useful terminology sets like
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
-# 5. Terminology
+# 5. Terminology Sets
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
   <small><em>Last updated: 06-21-2025</em></small>
 </div>

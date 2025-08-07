@@ -28,7 +28,7 @@
     "datatables.net-responsive-dt": "^3.0.2",
     "datatables.net-scroller-dt": "^2.4.2",
     "disqus-react": "^1.1.5",
-    "docusaurus-plugin-image-zoom": "^2.0.0",
+    "docusaurus-plugin-image-zoom": "^0.1.4",
     "jquery": "^3.7.1",
     "js-yaml": "^4.1.0",
     "jszip": "^3.10.1",

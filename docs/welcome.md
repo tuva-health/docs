@@ -11,7 +11,7 @@ slug: /
 
 Welcome to the Tuva Project!  The goal of the Tuva Project is to democratize access to high-quality healthcare analytics by open-sourcing the tools and knowledge needed to transform and analyze healthcare data.  We are currently focused on building for claims, EHR, FHIR, ADT, and lab data sources.  The tools we've built are shown in the diagram below and documented on this website.
 
-![Tuva Project Overview](/img/the-tuva-project.png)
+![Tuva Project Overview](/img/the-tuva-project-2.png)
 
 To learn more about why we started the Tuva Project read our manifesto [here](/community/manifesto).
 
