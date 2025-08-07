@@ -27,7 +27,7 @@ const sidebars =
             label: "1. Connectors",
             items: [
                 "connectors/overview",
-                "connectors/input-layer",
+    
                 {
                     type: "category",
                     label: "Claims",
@@ -73,7 +73,7 @@ const sidebars =
         "data-quality",
         {
             type: "category",
-            label: "5. Terminology",
+            label: "5. Terminology Sets",
             items: [
                 "terminology/overview",
                 "terminology/admit-source",
@@ -145,48 +145,60 @@ const sidebars =
 
         {
             type: "category",
-            label: "7. Core Data Model",
+            label: "7. Data Model",
             items: [
                 "core-data-model/overview",
-                "core-data-model/condition",
-                "core-data-model/eligibility",
-                "core-data-model/encounter",
-                "core-data-model/lab-result",
-                "core-data-model/location",
-                "core-data-model/medical-claim",
-                "core-data-model/medication",
-                "core-data-model/observation",
-                "core-data-model/patient",
-                "core-data-model/person_id_crosswalk",
-                "core-data-model/pharmacy-claim",
-                "core-data-model/practitioner",
-                "core-data-model/procedure",
+                "connectors/input-layer",
+                {
+                type: "category",
+                label: "Preprocessing",
+                items: [
+                    "data-marts/service-categories",
+                    "data-marts/encounter-types",
+                    ]
+                },
+                                {
+                type: "category",
+                label: "Core",
+                items: [
+                    "core-data-model/condition",
+                    "core-data-model/eligibility",
+                    "core-data-model/encounter",
+                    "core-data-model/lab-result",
+                    "core-data-model/location",
+                    "core-data-model/medical-claim",
+                    "core-data-model/medication",
+                    "core-data-model/observation",
+                    "core-data-model/patient",
+                    "core-data-model/person_id_crosswalk",
+                    "core-data-model/pharmacy-claim",
+                    "core-data-model/practitioner",
+                    "core-data-model/procedure",
+                    ]
+                },
+                                {
+                type: "category",
+                label: "Data Marts",
+                items: [
+                    "data-marts/ahrq-measures",
+                    "data-marts/ccsr",
+                    "data-marts/chronic-conditions",
+                    "data-marts/cms-hccs",
+                    "data-marts/ed-classification",
+                    "data-marts/fhir-preprocessing",
+                    "data-marts/financial-pmpm",
+                    "data-marts/hcc-suspecting",
+                    "data-marts/pharmacy",
+                    "data-marts/quality-measures",
+                    "data-marts/readmissions",
+                    ]
+                },
             ]
         },
 
         {
             type: "category",
-            label: "8. Data Marts",
-            items: [
-                "data-marts/overview",
-                "data-marts/ahrq-measures",
-                "data-marts/ccsr",
-                "data-marts/chronic-conditions",
-                "data-marts/cms-hccs",
-                "data-marts/ed-classification",
-                "data-marts/encounter-types",
-                "data-marts/fhir-preprocessing",
-                "data-marts/financial-pmpm",
-                "data-marts/hcc-suspecting",
-                "data-marts/pharmacy",
-                "data-marts/quality-measures",
-                "data-marts/readmissions",
-                "data-marts/service-categories",
-            ]
-        },
-        {
-            type: "category",
-            label: "9. Predictive Models",
+            label: "8. Predictive Models",
             items: [
                 "predictive-models/overview",
                 "predictive-models/risk-adjusted-benchmarking",
@@ -195,7 +207,7 @@ const sidebars =
         },
         {
             type: "category",
-            label: "10. Analytics",
+            label: "9. Analytics",
             items: [
                 "analytics/overview",
                 "analytics/dashboards",
