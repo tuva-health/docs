@@ -34,8 +34,8 @@ digit is the block group FIPS code.
 7. Format the file
     - Encode and Decode the non regular characters like "â€" to plain text
     - Concat `STATEFP` and `COUNTYFP` from raw data to generate `FIPS_CODE` field
-    - Truncate last part of `COUNTYNAME` field and map to `COUNTY` field and `STATE` to `STATE` itself.
-
+    - Truncate last part of `COUNTYNAME` field and map to `COUNTY` field
+    
 ***Note**: you can use the below script to format the file as said in **number 7.***
 ```python
 import re
@@ -67,12 +67,12 @@ def format_columns(raw_df):
 if __name__ == "__main__":
     input_file_location= "your csv file path"
     output_file_location = "your processed csv file path"
+    cleaning_list = ['parish', 'borough', 'census area', 'county', 'city and borough', 'municipio', 'island', 'municipality']
     read_df = pd.read_csv(f'{input_file_location}', dtype=str)
     column_formatted_df = format_columns(raw_df = read_df)
     for col in column_formatted_df.select_dtypes(include=['object']).columns:
         column_formatted_df[col] = column_formatted_df[col].apply(fix_and_normalize)
 
-    cleaning_list = ['parish', 'borough', 'census area', 'county', 'city and borough', 'municipio', 'island', 'municipality']
     # regex matches optional whitespace and trailing dots followed by any word from cleaning_list at the end of a string.
     pattern = r'\s*(?:{})(?:\s*\.*)?\s*$'.format("|".join(map(re.escape, cleaning_list)))
     column_formatted_df['COUNTY'] = column_formatted_df['COUNTY'].str.replace(pattern, '', regex=True, flags=re.IGNORECASE)
