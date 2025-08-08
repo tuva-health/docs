@@ -26,17 +26,15 @@ ANSI FIPS State code is a standarized two-digit numeric codes that represents ea
 
 ## Tuva Seed File Update Process
 
-Note: This is the maintenance process used by Tuva to maintain the current codeset in the Tuva package. Tuva users do not need to complete this step unless they are leveraging a different version of codes or are no longer updating to the current version of the project, but need an updated terminology set. 
-
 **The below description outlines the update process as it existed prior to changes in the ANSI site no longer publishing updates to this code set. Updates are currently on hold until a new source can be identified**
 
 1. Navigate to the [ANSI Census Website](https://www.census.gov/library/reference/code-lists/ansi.html)
 2. Select the latest available census year
 3. Navigate to **State and State Equivalent** section
-4. Click to the available data file link to download the latest avilable data
+4. Click to the available data file link to download the latest available data
 5. Copy and paste the code list into any text editor
 6. Find and replace all "|" with "," and save in a CSV file format
-7. Map the headers as follow
+7. Map the headers as follow:
 
     | Source Header | Expected Header              |
     |---------------|------------------------------|
