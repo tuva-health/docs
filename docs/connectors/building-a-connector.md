@@ -144,7 +144,7 @@ This ensures that:
 
 ---
 
-### Step 5: Clean Up the Models
+### Step 4: Clean Up the Models
 
 Inside `models/`, you’ll find:
 - `staging/`
@@ -165,7 +165,7 @@ Also clean up the corresponding `models/models.yml` file accordingly.
 
 ---
 
-### Step 6: Create a Virtual Environment
+### Step 5: Create a Virtual Environment
 
 Create and activate a Python virtual environment:
 
@@ -176,7 +176,7 @@ source .venv/bin/activate  # or `.venv\Scripts\activate` on Windows
 
 ---
 
-### Step 7: Install Requirements
+### Step 6: Install Requirements
 
 Install required Python packages (including dbt-core and Snowflake adapter):
 
@@ -188,7 +188,7 @@ If needed, update `requirements.txt` to match your environment.
 
 ---
 
-### Step 8: Configure and Test Your dbt Profile
+### Step 7: Configure and Test Your dbt Profile
 
 Ensure your `profiles.yml` (in `~/.dbt/`) is correctly configured for Snowflake.
 
@@ -200,7 +200,7 @@ dbt debug
 
 ---
 
-### Step 9: Install dbt Dependencies
+### Step 8: Install dbt Dependencies
 
 ```bash
 dbt deps
@@ -210,7 +210,7 @@ This installs any packages defined in `packages.yml` (such as `the_tuva_project`
 
 ---
 
-### Step 10: Begin Building Your Models
+### Step 9: Begin Building Your Models
 
 You now have a fully set-up connector repository, ready to convert raw claims data into Tuva’s standard input layer format. 
   - Your environment is set up
