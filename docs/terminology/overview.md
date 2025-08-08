@@ -318,10 +318,10 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a></a></td>
     </tr>
     <tr>
-      <td><a href="../terminology/ssa-state-fips">SSA State FIPS</a></td>
-      <td>Social Security Administration(National Bureau of Economic Research)</td>
-      <td>Update Anually</td>
-      <td>8/7/2025</td>
+      <td><a href="../terminology/ssa-state-fips">SSA FIPS State</a></td>
+      <td>Social Security Administration</td>
+      <td></td>
+      <td></td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ssa_fips_state.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
