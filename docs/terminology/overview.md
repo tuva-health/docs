@@ -48,7 +48,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/ansi-fips-state">ANSI FIPS State</a></td>
       <td>ANSI</td>
       <td></td>
-      <td></td>
+      <td>8/7/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ansi_fips_state.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -116,9 +116,9 @@ The **Last Updated** date in the table below is the date the codeset was release
     </tr>
     <tr>
       <td><a href="../terminology/fips-county">FIPS County</a></td>
-      <td>Tuva</td>
+      <td>ANSI</td>
       <td></td>
-      <td>4/19/2022</td>
+      <td>8/7/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/fips_county.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -319,9 +319,9 @@ The **Last Updated** date in the table below is the date the codeset was release
     </tr>
     <tr>
       <td><a href="../terminology/ssa-state-fips">SSA State FIPS</a></td>
-      <td>Social Security Administration</td>
-      <td></td>
-      <td></td>
+      <td>Social Security Administration(National Bureau of Economic Research)</td>
+      <td>Update Anually</td>
+      <td>8/7/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ssa_fips_state.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
