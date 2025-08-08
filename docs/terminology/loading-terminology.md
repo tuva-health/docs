@@ -1,5 +1,5 @@
 ---
-id: terminology
+id: loading-terminology
 title: "Loading Terminology"
 ---
 
