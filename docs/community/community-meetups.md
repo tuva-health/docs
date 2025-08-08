@@ -13,5 +13,3 @@ toc: false
 | 5 | 6-25-2025 | [Identifying Outlier Patients](https://youtu.be/KGcticEyBa0?si=GogH0oAq0ZJ1qIXs) | [Paul Jansen](https://www.linkedin.com/in/paul-jansen-1102678/) |
 | 6 | 7-9-2025 | [Risk-adjusted Benchmarking](https://youtu.be/Xj7LbQNZAz8?si=KFGwerePGmJwVlcn) | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Brad Montierth](https://www.linkedin.com/in/brad-montierth-055854103/) |
 | 7 | 8-13-2025 | Building a Scalable Claims Data Platform: Best Practices and Mapping to Tuva | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Krish Maypole](https://www.linkedin.com/in/krishmaypole/) |
-| 8 | 8-27-2025 | Deep-dive into Tuva’s Service Category Grouper | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) |
-| 9 | 9-10-2025 | Best Practices in Emergency Department Analytics | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) |

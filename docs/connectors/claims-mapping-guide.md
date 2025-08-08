@@ -1,5 +1,5 @@
 ---
-id: mapping-guide
+id: claims-mapping-guide
 title: "Claims Mapping Guide"
 ---
 

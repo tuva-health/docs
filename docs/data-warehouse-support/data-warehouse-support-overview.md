@@ -1,5 +1,5 @@
 ---
-id: data-warehouse-support
+id: data-warehouse-support-overview
 title: "Supported Data Warehouses"
 hide_title: false
 ---
