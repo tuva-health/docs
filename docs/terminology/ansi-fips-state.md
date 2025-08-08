@@ -36,7 +36,7 @@ ANSI FIPS State code is a standarized two-digit numeric codes that represents ea
 6. Find and replace all "|" with "," and save in a CSV file format
 7. Map the headers as follow:
 
-    | Source Header | Expected Header              |
+    | Source Column | Tuva Column                  |
     |---------------|------------------------------|
     | STATEFP       | ANSI_FIPS_STATE_CODE         |
     | STATE         | ANSI_FIPS_STATE_ABBREVIATION |
