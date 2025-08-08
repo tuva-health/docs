@@ -9,6 +9,9 @@ The `Input Layer` is like the API for the Tuva data model.  Once raw data source
 
 The `Input Layer` is designed to accomodate both claims and clinical data sources.
 
+A patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
+
 ## Claims Input
 
 ### eligibility
@@ -33,6 +36,7 @@ The medical_claim table contains information on healthcare services and supplies
 **Primary Key:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
   * person_id
@@ -47,16 +51,13 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 **Primary Key:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
   * person_id
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
-
-### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
-
 
 ## Clinical Input
 
@@ -171,6 +172,3 @@ The procedure table contains information on procedures that were performed on pa
   * practitioner_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.procedure.columns" />
-
-### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
