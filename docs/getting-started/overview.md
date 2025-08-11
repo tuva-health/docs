@@ -26,7 +26,8 @@ The video below includes a more thorough overview of how to setup your claims da
 
  You need to start with claims data in a data warehouse and have dbt installed.  dbt is easy to install using any package manager like pip or homebrew.  You also need to connect dbt to your data warehouse.  You do this by configuring your ```profile.yml``` file.  dbt has instructions for how to do this which you can find on their docs site.
 
-Ensure you're working with a data warehouse that Tuva supports.  We officially and unofficially support several data warehouses and you can find the latest up to date info [here](data-warehouse-support)
+Ensure you're working with a data warehouse that Tuva supports.  We officially and unofficially support several data warehouses and you can find the latest up to date info on our data warehouse support page
+
 
  ### 2. dbt Setup
 
@@ -58,7 +59,7 @@ Then execute ```dbt deps``` from the command line to import Tuva.
 
 ### 3. Map Your Data
 
-The next step is mapping your data to the [Tuva Input Layer](../connectors/input-layer).  Every claims and clinical dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format.  The [Mapping Guide](mapping-guide) provides rules of thumb for how to do this.
+The next step is mapping your data to the [Tuva Input Layer](../connectors/input-layer).  Every claims and clinical dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format.  The [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md) provides rules of thumb for how to do this, with a focus on the most common use-case, medical claims. 
 
 ### 4. dbt Build
 

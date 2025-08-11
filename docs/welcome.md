@@ -37,7 +37,7 @@ Beyond the data model, the Tuva Project includes a growing suite of tools that h
 To use the Tuva Data Model, you first need map your raw data into the *Tuva Input Layer*, a standardized schema designed for raw healthcare data. This mapping is done through *Connectors* - data pipelines that transform your source data into the Input Layer format.
 
 To get started:
-- Visit the [Connectors](/docs/connectors/) section of this site.
+- Visit the [Connectors](/docs/connectors/connectors-overview.md) section of this site.
 - Browse pre-built connectors for common data formats.
 - Or learn how to build a connector for your specific data sources.
 
