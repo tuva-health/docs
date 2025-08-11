@@ -58,5 +58,5 @@ OVERWRITE = TRUE;
 **The below steps are only required if the headers of the file need to be changed. The Tuva Project does not store the contents of the terminology file in GitHub.**
 
 1. Create a branch in [The Tuva Project](https://github.com/tuva-health/tuva)
-2. Copy and paste the updated header into the [ANSI FIPS State File](https://github.com/Nabin-Maitri/tuva/blob/main/seeds/reference_data/reference_data__ansi_fips_state.csv)
+2. Copy and paste the updated header into the [ANSI FIPS State File](https://github.com/tuva-health/tuva/blob/main/seeds/reference_data/reference_data__ansi_fips_state.csv)
 3. Submit a pull request
