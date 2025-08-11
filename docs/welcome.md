@@ -28,9 +28,9 @@ These questions are nearly impossible to answer directly from raw data, which la
 
 Beyond the data model, the Tuva Project includes a growing suite of tools that help you build a modern healthcare data platform. While these tools are designed to work seamlessly with the Tuva Data Model, some can also operate independently. For example:
 
-- **Tuva EMPI** is a standalone application for patient matching and deduplication across data sources. Although it integrates natively with the Tuva Data Model, it can also run independently.
+- [**Tuva EMPI**](/docs/tuva-empi.md) is a standalone application for patient matching and deduplication across data sources. Although it integrates natively with the Tuva Data Model, it can also run independently.
 
-- Other tools—such as  **predictive models**, **dashboards**, and **notebooks** depend on your data being in the Tuva Data Model, as they rely on the standardized concepts it provides.
+- Other tools—such as  [**predictive models**](/docs/predictive-models/overview.md), [**dashboards**](/docs//analytics/dashboards.md), and [**notebooks**](/docs/analytics/notebooks.md) depend on your data being in the Tuva Data Model, as they rely on the standardized concepts it provides.
 
 ## Getting Your Data Into the Tuva Data Model
 

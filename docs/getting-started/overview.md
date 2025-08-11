@@ -26,7 +26,7 @@ The video below includes a more thorough overview of how to setup your claims da
 
  You need to start with claims data in a data warehouse and have dbt installed.  dbt is easy to install using any package manager like pip or homebrew.  You also need to connect dbt to your data warehouse.  You do this by configuring your ```profile.yml``` file.  dbt has instructions for how to do this which you can find on their docs site.
 
-Ensure you're working with a data warehouse that Tuva supports.  We officially and unofficially support several data warehouses and you can find the latest up to date info on our data warehouse support page
+Ensure you're working with a data warehouse that Tuva supports. We officially and unofficially support several data warehouses and you can find the latest up to date info on our data warehouse support page.
 
 
  ### 2. dbt Setup
