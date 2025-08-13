@@ -18,7 +18,7 @@ To get started with a new data source in the Tuva Project, for which there is no
 
 ## Steps to Build A Custom Connector with the Tuva Connector Template
 
-This guide walks you through using our [connector template](https://github.com/tuva-health/connector-template) to create a custom connector for standardizing raw data into the Tuva Input Layer format.
+This guide walks you through using our [connector template](https://github.com/tuva-health/connector_template) to create a custom connector for standardizing raw data into the Tuva Input Layer format.
 
 <iframe 
 width="600" 
@@ -34,7 +34,7 @@ referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Step 1: Create a New Repository from the Template
 
-1. Visit the [connector template](https://github.com/tuva-health/connector-template) repository on GitHub.
+1. Visit the [connector template](https://github.com/tuva-health/connector_template) repository on GitHub.
 2. Click **"Use this template"**.
 3. Name your new repository (e.g., `my-connector`).
 4. Click **"Create repository"**.
