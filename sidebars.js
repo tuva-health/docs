@@ -164,21 +164,22 @@ const sidebars =
 
         {
             type: "category",
-            label: "8. Predictive Models",
-            items: [
-                "predictive-models/overview",
-                "predictive-models/risk-adjusted-benchmarking",
-                "predictive-models/risk-stratification",
-            ]
-        },
-        {
-            type: "category",
-            label: "9. Analytics",
+            label: "8. Analytics",
             items: [
                 "analytics/overview",
                 "analytics/dashboards",
                 "analytics/streamlit",
                 "analytics/notebooks"
+            ]
+        },
+        
+        {
+            type: "category",
+            label: "9. Predictive Models",
+            items: [
+                "predictive-models/overview",
+                "predictive-models/risk-adjusted-benchmarking",
+                "predictive-models/risk-stratification",
             ]
         },
         {
