@@ -11,6 +11,10 @@ toc: false
   <small><em>Last updated: 08-08-2025</em></small>
 </div>
 
+
+<iframe width="600" height="400" src="https://www.youtube.com/embed/dxH_qWgCoik?si=XB5D_-2p82IaJo8R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 The Tuva Data Model makes raw clinical and claims data useful in many ways, checking quality, restructuring data for easy calculations, and adding important features that improve interpretability like terminology, value sets and other clinical concepts. 
 
 The key to unlocking these features is mapping your data to the [Input Layer](input-layer.md). The Input Layer is nothing more than a set of data dictionaries to common healthcare data sources, like claims or EMR records. These data come in all different formats, with different numbers of columns, different column names, different data types, etc. 
