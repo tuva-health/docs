@@ -12,4 +12,4 @@ toc: false
 | 4 | 4-24-2025 | [Enterprise Master Patient Index](https://youtu.be/53MzefImwIs?si=MKeIMrtO2gx_q19_) | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Lucas Leblow](https://www.linkedin.com/in/lucas-leblow/) |
 | 5 | 6-25-2025 | [Identifying Outlier Patients](https://youtu.be/KGcticEyBa0?si=GogH0oAq0ZJ1qIXs) | [Paul Jansen](https://www.linkedin.com/in/paul-jansen-1102678/) |
 | 6 | 7-9-2025 | [Risk-adjusted Benchmarking](https://youtu.be/Xj7LbQNZAz8?si=KFGwerePGmJwVlcn) | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Brad Montierth](https://www.linkedin.com/in/brad-montierth-055854103/) |
-| 7 | 8-13-2025 | Building a Scalable Claims Data Platform: Best Practices and Mapping to Tuva | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Krish Maypole](https://www.linkedin.com/in/krishmaypole/) |
+| 7 | 8-13-2025 | [Building a Scalable Claims Data Platform: Best Practices and Mapping to Tuva](https://youtu.be/7nPK38UjgU4?si=vGCxjHmBBct4pajY) | [Coco Zuloaga](https://www.linkedin.com/in/jorge-zuloaga/) and [Krish Maypole](https://www.linkedin.com/in/krishmaypole/) |
