@@ -4,6 +4,8 @@ title: "Community Meetups"
 toc: false
 ---
 
+_Last Updated August 18, 2025_
+
 | # | Date | Topic | Presenters |
 |---|------|-------|----------|
 | 1 | 11-07-2024 | [Medical Economics: Service Categories and Encounters](https://youtu.be/Yza5z9lVfCs?si=VNBbMziqp_dLVRis) | [Tom Sherwood](https://www.linkedin.com/in/sherwoodtom/) and [Brad Montierth](https://www.linkedin.com/in/brad-montierth-055854103/) |
