@@ -6,63 +6,28 @@ const sidebars =
         "welcome",
         {
             type: "category",
-            label: "Getting Started",
-            items: [
-                "getting-started/overview",
-                {
-                    type: "category",
-                    label: "Data Warehouse Support",
-                    items: [
-                        "getting-started/data-warehouse-support",
-                        "getting-started/tuva-databricks",
-                    ]
-                },
-                "getting-started/mapping-guide",
-                "getting-started/terminology",
-                "getting-started/geo-coding-sdoh",
-            ]
-        },
-        {
-            type: "category",
             label: "1. Connectors",
             items: [
-                "connectors/overview",
-    
+                "connectors/connectors-overview",
+                "connectors/building-a-connector",
+                "connectors/claims-mapping-guide",
                 {
                     type: "category",
-                    label: "Claims",
+                    label: "Pre-Built Connectors",
                     items: [
                         "connectors/cms-cclf",
                         "connectors/cms-lds",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "FHIR",
-                    items: [
                         "connectors/fhir-inferno",
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
                         "connectors/metriport",
                         "connectors/zus",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "Medical Records",
-                    items: [
                         "connectors/athenahealth",
                         "connectors/canvas",
                         "connectors/cerner",
                         "connectors/elation",
                         "connectors/epic",
                         "connectors/healthie",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "ADT",
-                    items: [
                         "connectors/bamboo",
                     ]
                 },
@@ -76,6 +41,7 @@ const sidebars =
             label: "5. Terminology Sets",
             items: [
                 "terminology/overview",
+                "terminology/loading-terminology",
                 "terminology/admit-source",
                 "terminology/admit-type",
                 "terminology/ansi-fips-state",
@@ -198,7 +164,18 @@ const sidebars =
 
         {
             type: "category",
-            label: "8. Predictive Models",
+            label: "8. Analytics",
+            items: [
+                "analytics/overview",
+                "analytics/dashboards",
+                "analytics/streamlit",
+                "analytics/notebooks"
+            ]
+        },
+        
+        {
+            type: "category",
+            label: "9. Predictive Models",
             items: [
                 "predictive-models/overview",
                 "predictive-models/risk-adjusted-benchmarking",
@@ -207,20 +184,18 @@ const sidebars =
         },
         {
             type: "category",
-            label: "9. Analytics",
-            items: [
-                "analytics/overview",
-                "analytics/dashboards",
-                "analytics/streamlit",
-                "analytics/notebooks"
-            ]
-        },
-        {
-            type: "category",
             label: "Contributing",
             items: [
                 "contributing/contributing",
                 "contributing/style-guide",
+            ]
+        },
+        {
+            type: "category",
+            label: "Data Warehouse Support",
+            items: [
+                "data-warehouse-support/data-warehouse-support-overview",
+                "data-warehouse-support/tuva-databricks",
             ]
         },
         "help",
