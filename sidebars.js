@@ -130,6 +130,7 @@ const sidebars =
                     "core-data-model/condition",
                     "core-data-model/eligibility",
                     "core-data-model/encounter",
+                    "core-data-model/immunization",
                     "core-data-model/lab-result",
                     "core-data-model/location",
                     "core-data-model/medical-claim",
