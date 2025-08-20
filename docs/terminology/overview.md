@@ -94,6 +94,13 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/code_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/cvx">CVX</a></td>
+      <td>U.S. Centers for Disease Control and Prevention(CDC)</td>
+      <td>Regularly</td>
+      <td>08/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/cvx.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/discharge-disposition">Discharge Disposition</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>

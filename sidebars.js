@@ -51,6 +51,7 @@ const sidebars =
                 "terminology/census-shape-files",
                 "terminology/claim-type",
                 "terminology/code-type",
+                "terminology/cvx",
                 "terminology/discharge-disposition",
                 "terminology/encounter-type",
                 "terminology/ethnicity",
