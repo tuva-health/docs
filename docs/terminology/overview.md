@@ -44,12 +44,33 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td>4/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
-        <tr>
+    <tr>
       <td><a href="../terminology/ansi-fips-state">ANSI FIPS State</a></td>
       <td>ANSI</td>
       <td></td>
       <td></td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ansi_fips_state.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-cancellation-reason">Appointment Cancellation Reason</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-status">Appointment Status</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_status.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-type">Appointment Type</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
