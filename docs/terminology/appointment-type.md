@@ -10,7 +10,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__appointment_type.columns" />
 
-<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/terminology__appointment_type.csv.gz">Download CSV</a>
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv_0_0_0.csv.gz">Download CSV</a>
 
 ## What are appointment type codes?
 

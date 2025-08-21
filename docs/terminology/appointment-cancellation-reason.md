@@ -10,7 +10,7 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 <JsonDataTableNoTerm  jsonPath="nodes.seed\.the_tuva_project\.terminology__appointment_cancellation_reason.columns" />
 
-<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/terminology__appointment_cancellation_reason.csv.gz">Download CSV</a>
+<a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv_0_0_0.csv.gz">Download CSV</a>
 
 ## What are appointment cancellation codes?
 

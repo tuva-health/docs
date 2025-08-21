@@ -56,21 +56,21 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td>HL7</td>
       <td></td>
       <td></td>
-      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv.gz">Link</a></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/appointment-status">Appointment Status</a></td>
       <td>HL7</td>
       <td></td>
       <td></td>
-      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_status.csv.gz">Link</a></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_status.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/appointment-type">Appointment Type</a></td>
       <td>HL7</td>
       <td></td>
       <td></td>
-      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv.gz">Link</a></td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
