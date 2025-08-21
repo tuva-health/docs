@@ -32,38 +32,17 @@ Note: This is the maintenance process used by Tuva to maintain the current codes
 
 ```python
 import pandas as pd
-import unicodedata
 
-def fix_and_normalize(val):
-    """Normalize and clean string data."""
-    if isinstance(val, str):
-        try:
-            return unicodedata.normalize('NFKD', val.encode('latin1').decode('utf-8')) \
-                            .encode('ascii', 'ignore').decode('ascii')
-        except Exception:
-            return val
-    return val
-
-def clean_dataframe(df):
-    """Apply normalization and strip column names from each input dataframe."""
-    for col in df.select_dtypes(include='object'):
-        df[col] = df[col].apply(fix_and_normalize)
-    df.columns = df.columns.str.strip().str.lower()
-    return df
-
-
-def load_reference_class_types():
-    """Create reference DataFrame for class types."""
-    return pd.DataFrame({
-        'class_type': ['1', '2', '3', '4'],
-        'class_type_description': ['Laboratory', 'Clinical', 'Claims attachments', 'Surveys']
-    }, dtype=str)
-
-def load_loinc_data(loinc_path, part_path):
-    """Load LOINC and Part files."""
+def load_data(loinc_path, part_path):
+    '''Load the required data into DataFrame.'''
     loinc_df = pd.read_csv(loinc_path, dtype=str)
     part_df = pd.read_csv(part_path, dtype=str)
-    return clean_dataframe(loinc_df), clean_dataframe(part_df)
+    loinc_df.columns = loinc_df.columns.str.strip().str.lower()
+    part_df.columns = part_df.columns.str.strip().str.lower()
+    class_type_df = pd.DataFrame({
+        'class_type': ['1', '2', '3', '4'],
+        'class_type_description': ['Laboratory', 'Clinical', 'Claims attachments', 'Surveys'] }, dtype=str)
+    return loinc_df, part_df, class_type_df
 
 def split_part_table(part_df):
     """Split Part table into types."""
@@ -134,16 +113,6 @@ def finalize_and_export(df, output_path):
     final_df = df[list(final_cols.keys())].rename(columns=final_cols)
     final_df.to_csv(output_path, index=False, sep=',')
 
-
-def process_loinc(loinc_path, part_path, output_path):
-    """Main function to process LOINC data."""
-    class_types = load_reference_class_types()
-    loinc_df, part_df = load_loinc_data(loinc_path, part_path)
-    part_types = split_part_table(part_df)
-    merged_df = merge_loinc_parts(loinc_df, part_types, class_types)
-    enhanced_df = enhance_fields(merged_df)
-    finalize_and_export(enhanced_df, output_path)
-
 if __name__ == "__main__":
     '''
     LOINC
@@ -155,12 +124,15 @@ if __name__ == "__main__":
     │   ├── PartFile
     │   │   ├── Part.csv
     '''
-    loinc_path = '<<path for Loinc.csv file>>'
-    part_path = '<<path for Part.csv file>>'
-    output_path = '<<path for output file>>'
+    loinc_path = '<<path to Loinc.csv file>>'
+    part_path = '<<path to Part.csv file>>'
+    output_path = '<<path to output file with csv file name>>'
 
-    process_loinc(loinc_path, part_path, output_path)
-
+    loinc_df, part_df, class_types = load_data(loinc_path, part_path)
+    part_types = split_part_table(part_df)
+    merged_df = merge_loinc_parts(loinc_df, part_types, class_types)
+    enhanced_df = enhance_fields(merged_df)
+    finalize_and_export(enhanced_df, output_path)
 ```
 7. Import the CSV file into any data warehouse and upload the CSV file from the data warehouse to S3 (credentials with write permissions to the S3 bucket are required)
 
