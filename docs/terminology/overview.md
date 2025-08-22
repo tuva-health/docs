@@ -31,6 +31,13 @@ The **Last Updated** date in the table below is the date the codeset was release
   </thead>
   <tbody>
     <tr>
+      <td><a href="../terminology/act-site">Act Site</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/act_site.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/admit-source">Admit Source</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
@@ -176,6 +183,27 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td>Semi-annually occuring from (Oct 1 to Mar 31) and (Apr 1 to Sept 31)</td>
       <td>1/4/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_pcs.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-route-code">Immunization Route Code</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_route_code.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status">Immunization Status</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status-reason">Immunization Status Reason</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status_reason.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/loinc">LOINC</a></td>

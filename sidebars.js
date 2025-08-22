@@ -42,6 +42,7 @@ const sidebars =
             items: [
                 "terminology/overview",
                 "terminology/loading-terminology",
+                "terminology/act-site",
                 "terminology/admit-source",
                 "terminology/admit-type",
                 "terminology/ansi-fips-state",
@@ -63,6 +64,9 @@ const sidebars =
                 "terminology/icd-9-pcs",
                 "terminology/icd-10-cm",
                 "terminology/icd-10-pcs",
+                "terminology/immunization-route-code",
+                "terminology/immunization-status",
+                "terminology/immunization-status-reason",
                 "terminology/loinc-deprecated",
                 "terminology/loinc",
                 "terminology/mdc",
