@@ -102,6 +102,23 @@ The lab result table contains information about lab test results, including the 
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.lab_result.columns" />
 
+### immunization
+
+The immunization table contains information on immunizations administered to patients, including the vaccine code, description, and administration date.
+
+**Primary Key:**
+  * immunization_id
+
+**Foreign Keys:**
+  * patient_id
+  * person_id
+  * encounter_id
+  * location_id
+  * practitioner_id
+
+
+<JsonDataTable jsonPath="nodes.model\.input_layer\.immunization.columns" />
+
 ### location
 
 The location table contains information on practice and facility locations where patients receive medical care.  Each record in the table is intended to represent a unique location.
