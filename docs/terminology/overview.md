@@ -55,21 +55,21 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/appointment-cancellation-reason">Appointment Cancellation Reason</a></td>
       <td>HL7</td>
       <td></td>
-      <td></td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/appointment-status">Appointment Status</a></td>
       <td>HL7</td>
       <td></td>
-      <td></td>
+      <td>12/28/2020</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_status.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/appointment-type">Appointment Type</a></td>
       <td>HL7</td>
       <td></td>
-      <td></td>
+      <td>12/01/2019</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
