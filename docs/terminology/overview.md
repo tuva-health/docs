@@ -31,6 +31,13 @@ The **Last Updated** date in the table below is the date the codeset was release
   </thead>
   <tbody>
     <tr>
+      <td><a href="../terminology/act-site">Act Site</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/act_site.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/admit-source">Admit Source</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
@@ -115,6 +122,13 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/code_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/cvx">CVX</a></td>
+      <td>U.S. Centers for Disease Control and Prevention(CDC)</td>
+      <td>Regularly</td>
+      <td>08/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/cvx.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/discharge-disposition">Discharge Disposition</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
@@ -192,6 +206,27 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/immunization-route-code">Immunization Route Code</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_route_code.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status">Immunization Status</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status-reason">Immunization Status Reason</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status_reason.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/loinc">LOINC</a></td>
       <td>Regenstrief Institute</td>
       <td>Released twice a year, in February and August</td>
@@ -251,7 +286,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/ndc">NDC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ndc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -307,7 +342,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/rxnorm-to-atc">RxNorm to ATC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/rxnorm_to_atc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
