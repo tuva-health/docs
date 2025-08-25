@@ -230,7 +230,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/ndc">NDC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ndc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -286,7 +286,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/rxnorm-to-atc">RxNorm to ATC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/rxnorm_to_atc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
