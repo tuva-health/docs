@@ -46,6 +46,9 @@ const sidebars =
                 "terminology/admit-source",
                 "terminology/admit-type",
                 "terminology/ansi-fips-state",
+                "terminology/appointment-cancellation-reason",
+                "terminology/appointment-status",
+                "terminology/appointment-type",
                 "terminology/apr-drg",
                 "terminology/bill-type",
                 "terminology/calendar",
@@ -132,6 +135,7 @@ const sidebars =
                 type: "category",
                 label: "Core",
                 items: [
+                    "core-data-model/appointment",
                     "core-data-model/condition",
                     "core-data-model/eligibility",
                     "core-data-model/encounter",

@@ -61,6 +61,20 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 
 ## Clinical Input
 
+### appointment
+
+The appointment table contains information related to appointments at a healthcare facility. This table may include canceled, completed, or scheduled events.
+
+**Primary Key:**
+  * appointment_id
+
+**Foreign Keys:**
+  * patient_id
+  * person_id
+  * encounter_id
+
+<JsonDataTable jsonPath="nodes.model\.input_layer\.appointment.columns" />
+
 ### condition
 
 The condition table contains information related to medical conditions patients have, including problems and billable diagnosis codes.  Each record in the table is intended to document the occurrence of a unique condition for a specific patient at a specific point in time.
