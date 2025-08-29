@@ -17,6 +17,7 @@ const sidebars =
                     items: [
                         "connectors/cms-cclf",
                         "connectors/cms-lds",
+                        "connectors/aetna",
                         "connectors/fhir-inferno",
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
