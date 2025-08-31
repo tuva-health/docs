@@ -1,6 +1,6 @@
 ---
 id: providers
-title: "4. Providers"
+title: "D. Providers"
 ---
 
 Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.

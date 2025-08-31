@@ -98,11 +98,15 @@ const config = {
             label: 'Community',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'moreSidebar',
-            position: 'left',
-            label: '+ More',
-          },
+            to: '/blog',        // The blog page
+            label: 'Blog',      // Navbar label
+            position: 'left',   // or 'right' depending where you want it
+          },          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'moreSidebar',
+          //   position: 'left',
+          //   label: '+ More',
+          // },
           // {
           //   type: 'docSidebar',
           //   sidebarId: 'videoSidebar',

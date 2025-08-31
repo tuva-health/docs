@@ -1,6 +1,6 @@
 ---
 id: intro-to-claims
-title: "1. Intro to Claims"
+title: "A. Intro to Claims"
 description: This section describes how claims data is generated, including the entities and processes involved.
 ---
 Healthcare claims data is the oldest and most widely analyzed type of healthcare data.  In this section we provide an overview of the healthcare entities and overall process involved in the creation of claims data.
