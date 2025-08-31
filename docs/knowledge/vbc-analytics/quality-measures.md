@@ -1,6 +1,6 @@
 ---
 id: quality-measures
-title: "4. Quality Measures"
+title: "D. Quality Measures"
 ---
 
 Quality measures help us measure or quantify healthcare processes, outcomes, 

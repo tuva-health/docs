@@ -1,6 +1,6 @@
 ---
 id: service-categories
-title: "7. Service Categories"
+title: "i. Service Categories"
 ---
 
 In the Tuva Project, we've created a service category grouper to help us analyze payment and utilization metrics. We use it to categorize medical claim lines.

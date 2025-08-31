@@ -214,36 +214,55 @@ const sidebars =
     knowledgeSidebar:
     [
         "knowledge/introduction",
-        "knowledge/code-sets",
+        "knowledge/data-engineering-fundamentals",
+        "knowledge/tuva-fundamentals",
 
         {
             type: "category",
-            label: "Claims Data",
+            label: "3. Claims Data Fundamentals",
             collapsed: false,
             items: [
                 "knowledge/claims-data/intro-to-claims",
                 "knowledge/claims-data/claims-data-elements",
                 "knowledge/claims-data/adjustments-denials-reversals",
                 "knowledge/claims-data/providers",
-                "knowledge/claims-data/member-months",
-                "knowledge/claims-data/member-attribution",
-                "knowledge/claims-data/service-categories",
-                "knowledge/claims-data/encounters",
             ]
         },
 
         {
             type: "category",
-            label: "Advanced Topics",
+            label: "4. VBC Analytics",
             collapsed: false,
             items: [
-                "knowledge/advanced-topics/risk-adjustment",
-                "knowledge/advanced-topics/hospital-readmissions",
+            {
+                type: "category",
+                label: "A. Fundamentals",
+                collapsed: true,
+                items: [
+                    "knowledge/vbc-analytics/service-categories",
+                    "knowledge/vbc-analytics/encounters",
+                    "knowledge/vbc-analytics/member-months",
+                    "knowledge/vbc-analytics/attribution",
+                ]
+            },
+            {
+                type: "category",
+                label: "B. Cost Drivers",
+                collapsed: true,
+                items: [
+                    "knowledge/vbc-analytics/basic-pmpm",
+                    "knowledge/vbc-analytics/using-risk-adjusted-benchmarks",
+                    "knowledge/vbc-analytics/predicting-high-cost-members",  
+                ]
+            },
+                
+                // "knowledge/vbc-analytics/ed-analytics",
+                // "knowledge/vbc-analytics/aip-analytics",
+                "knowledge/vbc-analytics/hospital-readmissions",
+                "knowledge/vbc-analytics/quality-measures",
+                "knowledge/vbc-analytics/risk-adjustment",
             ]
         },
-
-
-
 
     ],
 
@@ -255,17 +274,6 @@ const sidebars =
 
     ],
 
-    moreSidebar:
-    [
-        {
-            type: 'link',
-            label: 'Blog', // This is the label for the sidebar entry
-            href: '/blog', // The route to your blog's main page
-        },
-        // "more/data-stories",
-        "more/videos",
-
-    ],
 };
 
 module.exports = sidebars;
