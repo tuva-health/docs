@@ -32,6 +32,7 @@ The Tuva Project also has a library of *Pre-Built Connectors* that you can use t
 **Claims Flat Files:**
 - [CMS CCLF](cms-cclf)
 - [CMS LDS](cms-lds)
+- [Aetna](aetna)
 
 **EHR Databases:**
 - [Athenahealth](athenahealth)
