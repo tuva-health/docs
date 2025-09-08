@@ -214,56 +214,66 @@ const sidebars =
     knowledgeSidebar:
     [
         "knowledge/introduction",
-        "knowledge/data-engineering-fundamentals",
-        "knowledge/tuva-fundamentals",
-
         {
-            type: "category",
-            label: "3. Claims Data Fundamentals",
-            collapsed: false,
-            items: [
-                "knowledge/claims-data/intro-to-claims",
-                "knowledge/claims-data/claims-data-elements",
-                "knowledge/claims-data/adjustments-denials-reversals",
-                "knowledge/claims-data/providers",
-            ]
+          type: 'category',
+          label: 'Getting Started',
+          collapsed: true,
+          items: [
+            "knowledge/data-engineering-fundamentals",
+            "knowledge/data-science-tools",
+            "knowledge/tuva-fundamentals",
+          ],
         },
 
         {
-            type: "category",
-            label: "4. VBC Analytics",
-            collapsed: false,
+            type: 'category',
+            label: 'Part 1: Data Sources',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
             items: [
-            {
-                type: "category",
-                label: "A. Fundamentals",
-                collapsed: true,
-                items: [
-                    "knowledge/vbc-analytics/service-categories",
-                    "knowledge/vbc-analytics/encounters",
-                    "knowledge/vbc-analytics/member-months",
-                    "knowledge/vbc-analytics/attribution",
-                ]
-            },
-            {
-                type: "category",
-                label: "B. Cost Drivers",
-                collapsed: true,
-                items: [
-                    "knowledge/vbc-analytics/basic-pmpm",
-                    "knowledge/vbc-analytics/using-risk-adjusted-benchmarks",
-                    "knowledge/vbc-analytics/predicting-high-cost-members",  
-                ]
-            },
-                
-                // "knowledge/vbc-analytics/ed-analytics",
-                // "knowledge/vbc-analytics/aip-analytics",
-                "knowledge/vbc-analytics/hospital-readmissions",
-                "knowledge/vbc-analytics/quality-measures",
-                "knowledge/vbc-analytics/risk-adjustment",
-            ]
+                'knowledge/data-sources/member-and-enrollment-data',
+                'knowledge/data-sources/medical-claims-data',
+                'knowledge/data-sources/pharmacy-claims-data',
+                'knowledge/data-sources/provider-data',
+                'knowledge/data-sources/clinical-data',
+            ],
         },
 
+        {
+            type: 'category',
+            label: 'Part 2: Claims Groupers & Algorithms',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                    "knowledge/claims-groupers-and-algos/service-categories",
+                    "knowledge/claims-groupers-and-algos/encounters",
+                    "knowledge/claims-groupers-and-algos/attribution",
+            ],
+        },
+
+        {
+            type: 'category',
+            label: 'Part 3: Analytics',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                {
+                    type: "category",
+                    label: "Cost & Utilization",
+                    collapsed: true,
+                    items: [
+                        "knowledge/analytics/member-months",
+                        "knowledge/analytics/basic-pmpm",
+                        "knowledge/analytics/utilization-metrics",
+                        "knowledge/analytics/ed-visits",
+                        "knowledge/analytics/acute-ip-visits",  
+                    ]
+                },
+                "knowledge/analytics/hospital-readmissions",
+                "knowledge/analytics/quality-measures",
+                "knowledge/analytics/risk-adjustment",
+            ],
+        },
     ],
 
     communitySidebar:

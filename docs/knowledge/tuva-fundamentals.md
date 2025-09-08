@@ -1,6 +1,6 @@
 ---
 id: tuva-fundamentals
-title: "2. Tuva Fundamentals"
+title: "Tuva Fundamentals"
 ---
 
 - Building a Connector

@@ -1,6 +1,6 @@
 ---
 id: attribution
-title: "iv. Attribution"
+title: "Attribution"
 ---
 
 Provider attribution is the means of attributing individual patients to a provider, often times a primary care 

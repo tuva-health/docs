@@ -1,6 +1,6 @@
 ---
 id: data-engineering-fundamentals
-title: "1. Data Engineering Fundamentals"
+title: "Data Engineering Tools"
 ---
 
 - dbt
