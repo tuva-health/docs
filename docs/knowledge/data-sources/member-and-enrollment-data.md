@@ -54,7 +54,10 @@ These retroactive changes complicate the tracking of eligibility and can also ha
         - Address, Email, Phone Numbers:
         - Other program eligibility (DUAL-coverage, subsidies eligibility, etc.)
     - **Age/Birth Date**: Age/birth date is also commonly used; however, there is nuance here that must be accounted for. When calculating a person's age, it's essential to determine whether the file is based on the age as of the date of file generation or the date of coverage for that particular record. Best practice is to calculate the member's age for the timeframe in question so that analytics are accurate when you are analyzing data based on the age of a member (past year's data reflecting the member's current age will mislead and cause issues)
-    - **Provider Alignment/PCP Election**:
+    - **Provider Alignment/PCP Election**: Often programs need to understand which provider a member is associated with in order to track performance or understand which provider gets to "take credit" for a member over a given time period. This is especially important under value based care and other financial agreements, but is also useful when understanding who is in the best position to help manage a particular patient. A variety of provider relationships are sometimes included in an eligibilty file:
+        - PCP Election: A member has proactively selected a physician as their PCP
+        - Provider Attribution: A member has been determined to be aligned to a physician based on their claims history (i.e. they see that provider most frequently)
+        - Provider Alignment: A member may be "assigned" to a particular physician, provider group, or health system based on contractual or other program specifications
 
 ### EMR Patient Data
 EMR patient data differs slightly from the information received on a traditional eligibility file, as its purpose is not to validate coverage but rather to store the most up-to-date information for that member. Many EMRs will have a history of changes in address and other demographic information for a member; however, the EMR patient data is often a snapshot in time, capturing only the latest demographic and health plan coverage information for a patient. You will need to account for this when creating historical analytics for a particular patient, and it may require combining the EMR data with other eligibility information (for instance, health plan eligibility files) to determine the history of coverage for a specific plan or program.
@@ -66,15 +69,7 @@ EMR patient data differs slightly from the information received on a traditional
 - NAIC
 
 ### A special note on Member Months
-No matter how eligibility and enrollment data is received, the data will need to be transformed into a "member month" format, which is the lingua franca of healthcare analytics and a corner stone to many of the different 
-
-### Other 
-- Key Relationships: Claims, EMR Data, Attributed/Assigned Providers, Provider Network Membership (Tied to Plan)
-
-Typical Health Plan Concepts (Member Month)
-        - When to count a member month (1st, 15th, last, etc…)
-    - Key elements
-        - Plan Information
-        - Subscriber Relationship
-        - Member Demographics & Geography
-        
+No matter how eligibility and enrollment data is received, the data will need to be transformed into a "member month" format, which is the lingua franca of healthcare analytics and a corner stone to many of the different healthcare measures like PMPM, Util/1000 and generally understanding the changing size of a population over time. One of the most common transformations that occurs in healthcare analytics is to transform eligibilty spans into member months, and this is a part of the Tuva Project core transformations as well. A couple of considerations to understand when creating a member months "view" of eligibility:
+- How much coverage is required for a member to be included in a particular member month?
+    - Frequent rules of thumb are that a member is included in a member month if they have any coverage during the month in question (even a single day), they must have coverage on a particular day (i.e. the 15th of the month), or they must have a full month's coverage to be included. Each methodology has it's pluses/minuses, the most important thing is that consistent rules are used and that stakeholders understand the criteria
+    - Often a member will be included in the member month table if they have any coverage, but separate "count" fields are included to allow stakeholders to count only members active on the 1st, 15th, last day, or full months coverage for different downstream use cases, this provides the most flexibility but can lead to inconsistencies in analysis if their is not alignment on which particular definition to use in different scenarios
