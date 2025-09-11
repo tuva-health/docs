@@ -1,10 +1,12 @@
 ---
 id: member-months
-title: "5. Member Months"
+title: "Member Months"
 description: This section describes 
 ---
 
-When trending population level statistics such as claims payments or utilization, it's often best to normalize for changes in patient enrollment i.e. eligibility.  The common way to do this is by computing member months and using this as the denominator.  Statistics that have been normalized changes in members months are often reported as "per-member-per-month" or "PMPM".  For example, one would typically look at ED visits PMPM.
+<iframe width="640" height="400" src="https://www.youtube.com/embed/UNjUwevyBDk?si=8rMBWMlH4g9Ee8rQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+When trending population level statistics such as claims payments or utilization, it's essential to normalize for changes in patient enrollment i.e. eligibility.  The common way to do this is by computing member months and using this as the denominator.  Statistics that have been normalized changes in members months are often reported as "per-member-per-month" or "PMPM".  For example, one would typically look at ED visits PMPM.
 
 In case it isn't obvious, the reason it's a best practice to normalize for changes in enrollment when trending these sorts of statistics is because things like claims payments and utilization will change month-to-month simply because the eligible population changes as members gain/lose eligibility due to changes in employment, birth, death, etc.
 

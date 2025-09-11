@@ -214,37 +214,82 @@ const sidebars =
     knowledgeSidebar:
     [
         "knowledge/introduction",
-        "knowledge/code-sets",
-
         {
-            type: "category",
-            label: "Claims Data",
-            collapsed: false,
-            items: [
-                "knowledge/claims-data/intro-to-claims",
-                "knowledge/claims-data/claims-data-elements",
-                "knowledge/claims-data/adjustments-denials-reversals",
-                "knowledge/claims-data/providers",
-                "knowledge/claims-data/member-months",
-                "knowledge/claims-data/member-attribution",
-                "knowledge/claims-data/service-categories",
-                "knowledge/claims-data/encounters",
-            ]
+          type: 'category',
+          label: 'Getting Started',
+          collapsed: true,
+          items: [
+            "knowledge/data-engineering-fundamentals",
+            "knowledge/data-science-tools",
+            "knowledge/tuva-fundamentals",
+          ],
         },
 
         {
-            type: "category",
-            label: "Advanced Topics",
-            collapsed: false,
+            type: 'category',
+            label: 'Part 1: Data Sources',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
             items: [
-                "knowledge/advanced-topics/risk-adjustment",
-                "knowledge/advanced-topics/hospital-readmissions",
-            ]
+                'knowledge/data-sources/member-and-enrollment-data',
+                {
+                    type: 'category',
+                    label: 'Medical Claims Data',
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        'knowledge/data-sources/claims-data/intro-to-claims',
+                        'knowledge/data-sources/claims-data/claims-data-elements',
+                        'knowledge/data-sources/claims-data/adjustments-denials-reversals',
+                        'knowledge/data-sources/claims-data/incurred-paid-runout',
+                        'knowledge/data-sources/claims-data/cost-field-relationships',
+                        'knowledge/data-sources/claims-data/claim-types-payment-codes',
+                        'knowledge/data-sources/claims-data/header-line',
+                        'knowledge/data-sources/claims-data/claims-data-sources',
+                        'knowledge/data-sources/claims-data/providers',
+                          ]
+                },
+                'knowledge/data-sources/pharmacy-claims-data',
+                'knowledge/data-sources/provider-data',
+                'knowledge/data-sources/clinical-data',
+            ],
         },
 
+        {
+            type: 'category',
+            label: 'Part 2: Claims Groupers & Algorithms',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                    "knowledge/claims-groupers-and-algos/service-categories",
+                    "knowledge/claims-groupers-and-algos/encounters",
+                    "knowledge/claims-groupers-and-algos/attribution",
+            ],
+        },
 
-
-
+        {
+            type: 'category',
+            label: 'Part 3: Analytics',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                {
+                    type: "category",
+                    label: "Cost & Utilization",
+                    collapsed: true,
+                    items: [
+                        "knowledge/analytics/member-months",
+                        "knowledge/analytics/basic-pmpm",
+                        "knowledge/analytics/utilization-metrics",
+                        "knowledge/analytics/ed-visits",
+                        "knowledge/analytics/acute-ip-visits",  
+                    ]
+                },
+                "knowledge/analytics/hospital-readmissions",
+                "knowledge/analytics/quality-measures",
+                "knowledge/analytics/risk-adjustment",
+            ],
+        },
     ],
 
     communitySidebar:
@@ -255,17 +300,6 @@ const sidebars =
 
     ],
 
-    moreSidebar:
-    [
-        {
-            type: 'link',
-            label: 'Blog', // This is the label for the sidebar entry
-            href: '/blog', // The route to your blog's main page
-        },
-        // "more/data-stories",
-        "more/videos",
-
-    ],
 };
 
 module.exports = sidebars;
