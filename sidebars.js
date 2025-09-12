@@ -219,9 +219,9 @@ const sidebars =
           label: 'Getting Started',
           collapsed: true,
           items: [
-            "knowledge/data-engineering-fundamentals",
-            "knowledge/data-science-tools",
-            "knowledge/tuva-fundamentals",
+            "knowledge/getting-started/data-engineering-tools",
+            "knowledge/getting-started/data-science-tools",
+            "knowledge/getting-started/tuva-fundamentals",
           ],
         },
 
