@@ -170,7 +170,7 @@ In line with The Tuva Project's philosophy of openness and collaboration, we hav
 
 ## Available Tuva Models
 
-The following list of available models are all concurrent models trained on the 2023 CMS Limited Data Set (5% file) and are designed to run on the output of The Tuva Project's benchmarking data mart.
+The following list of available models are available as both concurrent and prospective models trained on the 2023 CMS Limited Data Set (5% file) and are designed to run on the output of The Tuva Project's benchmarking data mart.
 
 <br />
 
