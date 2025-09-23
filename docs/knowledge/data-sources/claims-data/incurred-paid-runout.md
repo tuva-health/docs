@@ -28,14 +28,57 @@ The figure above shows an example of the impact of claims lag, where the medical
 
 ## Completion Factors
 
- A set of adjustment factors or weights that are applied to aggregate costs for each month, such that the costs are adjusted more in recent months. These factors are derived from historical analysis of the completeness of claims relative to a given point in time. The output of this analysis is commonly referred to as a lag traingle, which plots the percentage of incurred claims that have been paid in each month since the incurred month. This is done using historical data so the percentage of claims is truly known. In the table below, you can see that in past years, 60% of claims incurred in January were paid in January, 85% of claims incurred in January were paid by the end of February (1 month following incurred date), 93% of claims incurred in January were paid in March, and so on. As you can see in this example, it is possible for some claims to lag for very long periods of time. This is often due to pending manual review or disputes between providers and payers that result in delays in processing and payment of claims. Often, these lagging claims are higher cost claims, typically those reflecting inpatient admissions. For this reason, completion factors are sometimes calculated separately for different service categories (eg. Inpatient, Outpatient, Professional, Pharmacy, Other). 
+ A set of adjustment factors or weights that are applied to aggregate costs for each month, such that the costs are adjusted to account for lagging claims. The impact of these adjustments are greater in more in recent months. These factors are derived from historical analysis of the completeness of claims relative to a given point in time. The output of this analysis is commonly referred to as a *lag traingle*, which plots the percentage of incurred claims that have been paid in each month since the incurred month. This is done using historical data so the percentage of claims is truly known. 
+ 
+ In the table below, you can see that in past years, 60% of claims incurred in January were paid in January, 85% of claims incurred in January were paid by the end of February (1 month following incurred date), 93% of claims incurred in January were paid in March, and so on. As you can see in this example, it is possible for some claims to lag for very long periods of time (note that in some cases even 12 months out from the incurred date, the completion rate is less than 100%) This is often due to pending manual review or disputes between providers and payers that result in delays in processing and payment of claims. Often, these lagging claims are higher cost claims, typically those reflecting inpatient admissions. For this reason, completion factors are sometimes calculated separately for different service categories (eg. Inpatient, Outpatient, Professional, Pharmacy, Other). 
 
-| Incurred Month| Age of Claim at Time of Payment (Months Since Incurred Date) |      |      |      |      |      |      |      |      |      |      |      |      |
-|---------------|---------------------------------------------------------------|------|------|------|------|------|------|------|------|------|------|------|------|
-|               | 0   | 1   | 2   | 3   | 4   | 5    | 6    | 7    | 8    | 9    | 10   | 11   | 12   |
-| Jan           | 60% | 85% | 93% | 96% | 97% | 98%  | 98.5%| 99%  | 99.2%| 99.5%| 99.7%| 99.8%| 100% |
-| Feb           | 58% | 84% | 92% | 95% | 97% | 98%  | 98.5%| 99%  | 99.2%| 99.5%| 99.7%| 99.8%| 100% |
-| Mar           | 59% | 83% | 91% | 95% | 96% | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8%|
-| Apr           | 61% | 85% | 92% | 95% | 96% | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%|   –  |   –  |
-| May           | 60% | 84% | 91% | 94% | 96% | 97%  | 98%  | 98.5%| 99%  |   –  |   –  |   –  |   –  |
-| Jun           | 62% | 85% | 92% | 95% | 96% | 97%  | 98%  |   –  |   –  |   –  |   –  |   –  |   –  |
+<div style={{ textAlign: "center", marginBottom: "-2.75rem" }}>
+  <strong>Age of Claim in Months Since Incurred Date</strong>
+</div>
+| Incurred Month              | 0    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   | 11   | 12   |
+|-----------------------------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+| Jan                         | 60%  | 85%  | 93%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.2%| 99.5%| 99.7%| 99.8%| 100% |
+| Feb                         | 58%  | 84%  | 92%  | 95%  | 97%  | 98%  | 98.5%| 99%  | 99.2%| 99.5%| 99.7%| 99.8%| 100% |
+| Mar                         | 59%  | 83%  | 91%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Apr                         | 61%  | 85%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| May                         | 60%  | 84%  | 91%  | 94%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Jun                         | 62%  | 85%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Jul                         | 61%  | 84%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Aug                         | 60%  | 85%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Sep                         | 59%  | 84%  | 91%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.7%| 99.8% |
+| Oct                         | 60%  | 85%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%|   –  |   –  |
+| Nov                         | 61%  | 84%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%|   –  |   –  |   –  |   –  |   –  |
+| Dec                         | 60%  | 85%  | 92%  | 95%  | 96%  | 97%  |   –  |   –  |   –  |   –  |   –  |   –  |   –  |
+| **Completion Factor (Avg.)**| 60%  | 84%  | 92%  | 95%  | 96%  | 97%  | 98%  | 98.5%| 99%  | 99.3%| 99.5%| 99.8%| 100% |
+
+ The percentage of completeness in each column is averaged across all incurred months evaluated in the time period being analyzed to produce a *completion factor* as shown in the bottom row of the table. You can then *complete* claims by dividing the aggregate cost for each month by the completion factor for the age of that claim to get a projected cost. See the example below to see how this works in practice. 
+
+### Completion Factor Example: Analyzing a full year of incurred claims using completion factors (All data is illustrative only)
+
+**Incurred Dates:** January–December 2024
+**Paid Dates:** January-December 2024
+
+In this example, we are analyizing claims in January 2025 and want to make some estimates of claims completeness even though we don't yet have sufficient claims runout to consider the period complete. To do this, we will take the total cost aggregated for each incurred month and divide by the completion rate that corresponds to its **current age** (months since incurred date through December).  
+
+Formula: `Projected = Observed / Completion Factor`.
+
+| Incurred | Current Age | Unadjusted Cost        | Completion Factor | Completed Cost        |
+|:---------|------------:|-----------------------:|------------------:|----------------------:|
+| Jan      | 11          | $1,000,000             | 100.0%            | $1,000,000            |
+| Feb      | 10          | $1,000,000             | 100.0%            | $1,000,000            |
+| Mar      | 9           | $1,000,000             | 100.0%            | $1,000,000            |
+| Apr      | 8           | $1,000,000             | 100.0%            | $1,000,000            |
+| May      | 7           | $1,000,000             | 100.0%            | $1,000,000            |
+| Jun      | 6           | $1,000,000             | 100.0%            | $1,000,000            |
+| Jul      | 5           |   $996,000             | 99.6%             | $1,000,000            |
+| Aug      | 4           |   $990,000             | 99.0%             | $1,000,000            |
+| Sep      | 3           |   $960,000             | 96.0%             | $1,000,000            |
+| Oct      | 2           |   $930,000             | 93.0%             | $1,000,000            |
+| Nov      | 1           |   $850,000             | 85.0%             | $1,000,000            |
+| Dec      | 0           |   $600,000             | 60.0%             | $1,000,000            |
+| **Total**|             | **$11,326,000**        |                   | **$12,000,000**       |
+
+- **Unadjusted Cost** (what’s actually paid through Dec): **$11.326M**  
+- **Completed Cost** (what's projected after completion factors applied): **$12.000M**  
+
+
