@@ -1,6 +1,6 @@
 ---
 id: hcc-suspecting
-title: "HCC Suspecting"
+title: "HCC Gaps"
 ---
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
   <small><em>Last updated: 06-21-2025</em></small>
@@ -19,13 +19,13 @@ the following methods to identify these suspected conditions:
 **HCC Recapture:** uses billed claims history to evaluate whether recurring 
 diagnoses from prior years were captured during the current payment year.
 
-**HCC Capture/Discovery:** uses all available sources from clinical and claims data to 
+**HCC Suspecting:** uses all available sources from clinical and medical/rx claims data to 
 evaluate a patient's medical history, problems, comorbidities, lab results, 
 medications, or observations to capture new HCCs that have not been coded 
 before.
 
 The 2024 CMS HCC model has 115 HCCs. Each condition category requires careful 
-logic to identify suspecting conditions for capture. So far, we have built out 
+logic to identify potential undocumented diagnoses. So far, we have built out 
 the logic for the following conditions:
 
 * Chronic Kidney Disease (HCC 326-329) using eGFR lab results.
