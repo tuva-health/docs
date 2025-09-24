@@ -15,7 +15,7 @@ Healthcare data has amazing potential in terms of what we can learn from it.  Fo
 - How does cost and quality vary across different providers and geographic locations?
 
 However, analyzing raw healthcare data requires first transforming it into analytics-ready data.  This includes:
-- **Normalization:** Standardizing the format and the vocabulary of the data it's consistent across data sources.
+- **Normalization:** Standardizing the format and the vocabulary of the data so that it's consistent across data sources.
 - **Enrichment:** Adding new tables and columns to the data (e.g. service categories, encounter types, treatment periods, quality measures).
 - **Data Quality Testing:** Testing the data to identify data quality problems that will impact analytic results.
 

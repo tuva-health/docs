@@ -1,6 +1,6 @@
 ---
 id: encounters
-title: "8. Encounters"
+title: "Encounters"
 ---
 
 The Tuva encounter grouper organizes claims into encounters, assigning each claim and claim line to exactly one encounter. An encounter represents the interaction between a patient and a healthcare provider.  For inpatient encounters, this encompasses the entire duration of an inpatient stay, which spans multiple days.  Tuva consolidates all claims billed intermittently throughout a patient's stay into a single encounter, regardless of the number of claims involved.  In most outpatient and office-based settings, an encounter typically spans a single day and groups together all claims that occurred on that day within that specific care setting.

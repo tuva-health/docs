@@ -1,6 +1,6 @@
 ---
 id: risk-adjustment
-title: "9. Risk Adjustment"
+title: "HCCs & Risk Adjustment"
 ---
 
 ## What is risk adjustment?

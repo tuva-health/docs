@@ -1,6 +1,6 @@
 ---
 id: input-layer
-title: "Input Layer Data Dictionary"
+title: "Input Layer"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
@@ -8,6 +8,9 @@ import { JsonDataTable } from '@site/src/components/JsonDataTable';
 The `Input Layer` is like the API for the Tuva data model.  Once raw data sources (e.g. claims and medical records) are mapped to the `Input Layer` code automatically transforms that data into the Tuva data model (i.e. core data model and all the data marts).  
 
 The `Input Layer` is designed to accomodate both claims and clinical data sources.
+
+A patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
+
 
 ## Claims Input
 
@@ -33,6 +36,7 @@ The medical_claim table contains information on healthcare services and supplies
 **Primary Key:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
   * person_id
@@ -47,6 +51,7 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 **Primary Key:**
   * claim_id
   * claim_line_number
+  * data_source
 
 **Foreign Keys:**
   * person_id
@@ -54,11 +59,21 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
 
-### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).
-
-
 ## Clinical Input
+
+### appointment
+
+The appointment table contains information related to appointments at a healthcare facility. This table may include canceled, completed, or scheduled events.
+
+**Primary Key:**
+  * appointment_id
+
+**Foreign Keys:**
+  * patient_id
+  * person_id
+  * encounter_id
+
+<JsonDataTable jsonPath="nodes.model\.input_layer\.appointment.columns" />
 
 ### condition
 
@@ -100,6 +115,23 @@ The lab result table contains information about lab test results, including the 
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.lab_result.columns" />
+
+### immunization
+
+The immunization table contains information on immunizations administered to patients, including the vaccine code, description, and administration date.
+
+**Primary Key:**
+  * immunization_id
+
+**Foreign Keys:**
+  * patient_id
+  * person_id
+  * encounter_id
+  * location_id
+  * practitioner_id
+
+
+<JsonDataTable jsonPath="nodes.model\.input_layer\.immunization.columns" />
 
 ### location
 
@@ -171,6 +203,3 @@ The procedure table contains information on procedures that were performed on pa
   * practitioner_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.procedure.columns" />
-
-### person_id
-A new patient identifier field named `person_id` has been added to the Tuva data model for both claims and clinical sources. This is a required field and cannot be null. If you bought the Tuva MPI Engine or have your own patient matching solution, this field should be populated with the UUID (Universally Unique Identifier). If you do not have a UUID, we recommend mapping the source patient identifier to this field (`member_id` for claims, patient_id for `clincal`).

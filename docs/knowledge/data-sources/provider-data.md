@@ -1,7 +1,19 @@
 ---
-id: providers
-title: "4. Providers"
+id: provider-data
+title: "Provider Data"
 ---
+
+- Data Generation Process
+    - Claims Provider Fields
+    - NPI/NPPES
+    - Health Plan Directories
+    - Health System Directories
+- Provider Concepts
+    - Individual Practitioner
+    - Clinic or Group
+    - Billing Provider
+    - Hospital/Health System Affiliations
+    - Networks
 
 Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.
 

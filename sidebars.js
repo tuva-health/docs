@@ -6,63 +6,29 @@ const sidebars =
         "welcome",
         {
             type: "category",
-            label: "Getting Started",
-            items: [
-                "getting-started/overview",
-                {
-                    type: "category",
-                    label: "Data Warehouse Support",
-                    items: [
-                        "getting-started/data-warehouse-support",
-                        "getting-started/tuva-databricks",
-                    ]
-                },
-                "getting-started/mapping-guide",
-                "getting-started/terminology",
-                "getting-started/geo-coding-sdoh",
-            ]
-        },
-        {
-            type: "category",
             label: "1. Connectors",
             items: [
-                "connectors/overview",
-                "connectors/input-layer",
+                "connectors/connectors-overview",
+                "connectors/building-a-connector",
+                "connectors/claims-mapping-guide",
                 {
                     type: "category",
-                    label: "Claims",
+                    label: "Pre-Built Connectors",
                     items: [
                         "connectors/cms-cclf",
                         "connectors/cms-lds",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "FHIR",
-                    items: [
+                        "connectors/aetna",
                         "connectors/fhir-inferno",
                         "connectors/cms-bcda",
                         "connectors/health-gorilla",
                         "connectors/metriport",
                         "connectors/zus",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "Medical Records",
-                    items: [
                         "connectors/athenahealth",
                         "connectors/canvas",
                         "connectors/cerner",
                         "connectors/elation",
                         "connectors/epic",
                         "connectors/healthie",
-                    ]
-                },
-                {
-                    type: "category",
-                    label: "ADT",
-                    items: [
                         "connectors/bamboo",
                     ]
                 },
@@ -73,18 +39,24 @@ const sidebars =
         "data-quality",
         {
             type: "category",
-            label: "5. Terminology",
+            label: "5. Terminology Sets",
             items: [
                 "terminology/overview",
+                "terminology/loading-terminology",
+                "terminology/act-site",
                 "terminology/admit-source",
                 "terminology/admit-type",
                 "terminology/ansi-fips-state",
+                "terminology/appointment-cancellation-reason",
+                "terminology/appointment-status",
+                "terminology/appointment-type",
                 "terminology/apr-drg",
                 "terminology/bill-type",
                 "terminology/calendar",
                 "terminology/census-shape-files",
                 "terminology/claim-type",
                 "terminology/code-type",
+                "terminology/cvx",
                 "terminology/discharge-disposition",
                 "terminology/encounter-type",
                 "terminology/ethnicity",
@@ -96,6 +68,9 @@ const sidebars =
                 "terminology/icd-9-pcs",
                 "terminology/icd-10-cm",
                 "terminology/icd-10-pcs",
+                "terminology/immunization-route-code",
+                "terminology/immunization-status",
+                "terminology/immunization-status-reason",
                 "terminology/loinc-deprecated",
                 "terminology/loinc",
                 "terminology/mdc",
@@ -145,45 +120,70 @@ const sidebars =
 
         {
             type: "category",
-            label: "7. Core Data Model",
+            label: "7. Data Model",
             items: [
                 "core-data-model/overview",
-                "core-data-model/condition",
-                "core-data-model/eligibility",
-                "core-data-model/encounter",
-                "core-data-model/lab-result",
-                "core-data-model/location",
-                "core-data-model/medical-claim",
-                "core-data-model/medication",
-                "core-data-model/observation",
-                "core-data-model/patient",
-                "core-data-model/person_id_crosswalk",
-                "core-data-model/pharmacy-claim",
-                "core-data-model/practitioner",
-                "core-data-model/procedure",
+                "connectors/input-layer",
+                {
+                type: "category",
+                label: "Preprocessing",
+                items: [
+                    "data-marts/service-categories",
+                    "data-marts/encounter-types",
+                    ]
+                },
+                                {
+                type: "category",
+                label: "Core",
+                items: [
+                    "core-data-model/appointment",
+                    "core-data-model/condition",
+                    "core-data-model/eligibility",
+                    "core-data-model/encounter",
+                    "core-data-model/immunization",
+                    "core-data-model/lab-result",
+                    "core-data-model/location",
+                    "core-data-model/medical-claim",
+                    "core-data-model/medication",
+                    "core-data-model/observation",
+                    "core-data-model/patient",
+                    "core-data-model/person_id_crosswalk",
+                    "core-data-model/pharmacy-claim",
+                    "core-data-model/practitioner",
+                    "core-data-model/procedure",
+                    ]
+                },
+                                {
+                type: "category",
+                label: "Data Marts",
+                items: [
+                    "data-marts/ahrq-measures",
+                    "data-marts/ccsr",
+                    "data-marts/chronic-conditions",
+                    "data-marts/cms-hccs",
+                    "data-marts/ed-classification",
+                    "data-marts/fhir-preprocessing",
+                    "data-marts/financial-pmpm",
+                    "data-marts/hcc-suspecting",
+                    "data-marts/pharmacy",
+                    "data-marts/quality-measures",
+                    "data-marts/readmissions",
+                    ]
+                },
             ]
         },
 
         {
             type: "category",
-            label: "8. Data Marts",
+            label: "8. Analytics",
             items: [
-                "data-marts/overview",
-                "data-marts/ahrq-measures",
-                "data-marts/ccsr",
-                "data-marts/chronic-conditions",
-                "data-marts/cms-hccs",
-                "data-marts/ed-classification",
-                "data-marts/encounter-types",
-                "data-marts/fhir-preprocessing",
-                "data-marts/financial-pmpm",
-                "data-marts/hcc-suspecting",
-                "data-marts/pharmacy",
-                "data-marts/quality-measures",
-                "data-marts/readmissions",
-                "data-marts/service-categories",
+                "analytics/overview",
+                "analytics/dashboards",
+                "analytics/streamlit",
+                "analytics/notebooks"
             ]
         },
+        
         {
             type: "category",
             label: "9. Predictive Models",
@@ -195,20 +195,18 @@ const sidebars =
         },
         {
             type: "category",
-            label: "10. Analytics",
-            items: [
-                "analytics/overview",
-                "analytics/dashboards",
-                "analytics/streamlit",
-                "analytics/notebooks"
-            ]
-        },
-        {
-            type: "category",
             label: "Contributing",
             items: [
                 "contributing/contributing",
                 "contributing/style-guide",
+            ]
+        },
+        {
+            type: "category",
+            label: "Data Warehouse Support",
+            items: [
+                "data-warehouse-support/data-warehouse-support-overview",
+                "data-warehouse-support/tuva-databricks",
             ]
         },
         "help",
@@ -217,37 +215,82 @@ const sidebars =
     knowledgeSidebar:
     [
         "knowledge/introduction",
-        "knowledge/code-sets",
-
         {
-            type: "category",
-            label: "Claims Data",
-            collapsed: false,
-            items: [
-                "knowledge/claims-data/intro-to-claims",
-                "knowledge/claims-data/claims-data-elements",
-                "knowledge/claims-data/adjustments-denials-reversals",
-                "knowledge/claims-data/providers",
-                "knowledge/claims-data/member-months",
-                "knowledge/claims-data/member-attribution",
-                "knowledge/claims-data/service-categories",
-                "knowledge/claims-data/encounters",
-            ]
+          type: 'category',
+          label: 'Getting Started',
+          collapsed: true,
+          items: [
+            "knowledge/getting-started/data-engineering-tools",
+            "knowledge/getting-started/data-science-tools",
+            "knowledge/getting-started/tuva-fundamentals",
+          ],
         },
 
         {
-            type: "category",
-            label: "Advanced Topics",
-            collapsed: false,
+            type: 'category',
+            label: 'Part 1: Data Sources',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
             items: [
-                "knowledge/advanced-topics/risk-adjustment",
-                "knowledge/advanced-topics/hospital-readmissions",
-            ]
+                'knowledge/data-sources/member-and-enrollment-data',
+                {
+                    type: 'category',
+                    label: 'Medical Claims Data',
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        'knowledge/data-sources/claims-data/intro-to-claims',
+                        'knowledge/data-sources/claims-data/claims-data-elements',
+                        'knowledge/data-sources/claims-data/adjustments-denials-reversals',
+                        'knowledge/data-sources/claims-data/incurred-paid-runout',
+                        'knowledge/data-sources/claims-data/cost-field-relationships',
+                        'knowledge/data-sources/claims-data/claim-types-payment-codes',
+                        'knowledge/data-sources/claims-data/header-line',
+                        'knowledge/data-sources/claims-data/claims-data-sources',
+                        'knowledge/data-sources/claims-data/providers',
+                          ]
+                },
+                'knowledge/data-sources/pharmacy-claims-data',
+                'knowledge/data-sources/provider-data',
+                'knowledge/data-sources/clinical-data',
+            ],
         },
 
+        {
+            type: 'category',
+            label: 'Part 2: Claims Groupers & Algorithms',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                    "knowledge/claims-groupers-and-algos/service-categories",
+                    "knowledge/claims-groupers-and-algos/encounters",
+                    "knowledge/claims-groupers-and-algos/attribution",
+            ],
+        },
 
-
-
+        {
+            type: 'category',
+            label: 'Part 3: Analytics',
+            collapsible: false,            // static, no caret, no toggle
+            className: 'sidebar-chapter',  // for CSS (no indent)
+            items: [
+                {
+                    type: "category",
+                    label: "Cost & Utilization",
+                    collapsed: true,
+                    items: [
+                        "knowledge/analytics/member-months",
+                        "knowledge/analytics/basic-pmpm",
+                        "knowledge/analytics/utilization-metrics",
+                        "knowledge/analytics/ed-visits",
+                        "knowledge/analytics/acute-ip-visits",  
+                    ]
+                },
+                "knowledge/analytics/hospital-readmissions",
+                "knowledge/analytics/quality-measures",
+                "knowledge/analytics/risk-adjustment",
+            ],
+        },
     ],
 
     communitySidebar:
@@ -258,17 +301,6 @@ const sidebars =
 
     ],
 
-    moreSidebar:
-    [
-        {
-            type: 'link',
-            label: 'Blog', // This is the label for the sidebar entry
-            href: '/blog', // The route to your blog's main page
-        },
-        // "more/data-stories",
-        "more/videos",
-
-    ],
 };
 
 module.exports = sidebars;
