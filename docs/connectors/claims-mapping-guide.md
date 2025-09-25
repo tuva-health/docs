@@ -597,7 +597,7 @@ in the Tuva Project.
 #### procedure_code_type
 This field is a string that describes the type of ICD procedure codes
 used on this claim. It must have one of the following two values:
-'icd-9-pcs' or 'icd-10-pcs'. This is a header-level field, so
+'icd-9-pcs' or 'icd-10-pcs'. This is a header-level field on inpatient institutional claims, so
 its value must be the same for all lines in a given claim. This field should be populated
 for every row in the `medical_claim` table that has ICD procedure codes.
 
