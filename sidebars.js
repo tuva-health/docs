@@ -222,13 +222,12 @@ const sidebars =
           items: [
             "knowledge/getting-started/data-engineering-tools",
             "knowledge/getting-started/data-science-tools",
-            "knowledge/getting-started/tuva-fundamentals",
           ],
         },
 
         {
             type: 'category',
-            label: 'Part 1: Data Sources',
+            label: 'Part 1: Healthcare Data Sources',
             collapsible: false,            // static, no caret, no toggle
             className: 'sidebar-chapter',  // for CSS (no indent)
             items: [

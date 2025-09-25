@@ -33,8 +33,6 @@ In this example, patient B2468 has an enrollment span with 12 months of continuo
 Partial eligibility occurs whenever a patient does not have eligibility for an entire month.  A1234 has partial eligibility for the months of June 2022 and August 2022.  There are multiple methods for handling partial eligibility when computing member months, but the most common method is to assume full eligibility for the entire month.  Not every type of health insurance coverage works like this, but the majority do. In the example above we would give A1234 a full member month for both June 2022 and August 2022, following this method.  
 
 <iframe width="640" height="400" src="https://www.youtube.com/embed/y9toS1ErRXE?si=_cNwH7ANDWWQElip" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
-<br></br>
-<br></br>
 
 After converting the above enrollment spans to member months (e.g. by using the SQL at the end of this section), the data would look like this:
 
