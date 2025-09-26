@@ -1,6 +1,6 @@
 ---
 id: incurred-paid-runout
-title: "Claims Lag Issues"
+title: "Claims Lag"
 description: This section covers the time lag between the date that healthcare services are performed (i.e. claims are incurred) and when they are processed and paid, and common approaches to accounting for this lag in analytics. 
 ---
 
