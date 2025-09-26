@@ -1,6 +1,6 @@
 ---
 id: basic-pmpm
-title: "Per Member Per Month Cost"
+title: "Cost Metrics (PMPM)"
 ---
 
 - Per Member Per Month Cost

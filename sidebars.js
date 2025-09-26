@@ -239,19 +239,25 @@ const sidebars =
                     collapsed: true,
                     items: [
                         'knowledge/data-sources/claims-data/intro-to-claims',
-                        'knowledge/data-sources/claims-data/claims-data-elements',
+                        'knowledge/data-sources/claims-data/header-line',
+                        'knowledge/data-sources/claims-data/key-data-elements',
+                        // 'knowledge/data-sources/claims-data/claims-date-fields',
+                        // 'knowledge/data-sources/claims-data/cost-field-relationships',
                         'knowledge/data-sources/claims-data/adjustments-denials-reversals',
                         'knowledge/data-sources/claims-data/incurred-paid-runout',
-                        'knowledge/data-sources/claims-data/cost-field-relationships',
-                        'knowledge/data-sources/claims-data/claim-types-payment-codes',
-                        'knowledge/data-sources/claims-data/header-line',
-                        'knowledge/data-sources/claims-data/claims-data-sources',
-                        'knowledge/data-sources/claims-data/providers',
+
+                        // 'knowledge/data-sources/claims-data/claim-types-payment-codes',
+
+                        // 'knowledge/data-sources/claims-data/claims-data-sources',
+                        // 'knowledge/data-sources/claims-data/providers',
                           ]
                 },
                 'knowledge/data-sources/pharmacy-claims-data',
                 'knowledge/data-sources/provider-data',
-                'knowledge/data-sources/clinical-data',
+                'knowledge/data-sources/ehr-data',
+                'knowledge/data-sources/fhir-apis',
+                'knowledge/data-sources/adt-messages',
+                'knowledge/data-sources/lab-results',
             ],
         },
 
