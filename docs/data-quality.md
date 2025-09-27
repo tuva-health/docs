@@ -1,10 +1,10 @@
 ---
 id: data-quality
-title: "4. Data Quality"
+title: "4. Data Quality Testing"
 hide_title: true
 ---
 
-# 4. Data Quality
+# 4. Data Quality Testing
 
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
   <small><em>Last updated: 06-21-2025</em></small>
@@ -165,6 +165,14 @@ dbt test -s tag:dqi
 * `dqi_financial_pmpm`
 * `dqi_quality_measures`
 * `dqi_readmission`
+
+### List of severity level test tags
+
+* `tuva_dqi_sev_1`
+* `tuva_dqi_sev_2`
+* `tuva_dqi_sev_3`
+* `tuva_dqi_sev_4`
+* `tuva_dqi_sev_5`
 
 ### How to disable DQI
 

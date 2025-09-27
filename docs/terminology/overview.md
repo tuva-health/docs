@@ -8,7 +8,7 @@ description: The Tuva Project makes it easy to load useful terminology sets like
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
-# 5. Terminology
+# 5. Terminology Sets
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
   <small><em>Last updated: 06-21-2025</em></small>
 </div>
@@ -31,6 +31,13 @@ The **Last Updated** date in the table below is the date the codeset was release
   </thead>
   <tbody>
     <tr>
+      <td><a href="../terminology/act-site">Act Site</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/act_site.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/admit-source">Admit Source</a></td>
       <td>National Uniform Billing Committee</td>
       <td></td>
@@ -44,12 +51,33 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td>4/22/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/admit_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
-        <tr>
+    <tr>
       <td><a href="../terminology/ansi-fips-state">ANSI FIPS State</a></td>
       <td>ANSI</td>
       <td></td>
       <td></td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ansi_fips_state.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-cancellation-reason">Appointment Cancellation Reason</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td>8/25/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_cancellation_reason.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-status">Appointment Status</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td>12/28/2020</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_status.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/appointment-type">Appointment Type</a></td>
+      <td>HL7</td>
+      <td></td>
+      <td>12/01/2019</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/appointment_type.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/apr-drg">APR-DRG</a></td>
@@ -92,6 +120,13 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td></td>
       <td>4/19/2022</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/code_type.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/cvx">CVX</a></td>
+      <td>U.S. Centers for Disease Control and Prevention(CDC)</td>
+      <td>Regularly</td>
+      <td>08/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/cvx.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/discharge-disposition">Discharge Disposition</a></td>
@@ -171,6 +206,27 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
+      <td><a href="../terminology/immunization-route-code">Immunization Route Code</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_route_code.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status">Immunization Status</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="../terminology/immunization-status-reason">Immunization Status Reason</a></td>
+      <td>HL7 International Vocabulary/Terminology Work Group</td>
+      <td></td>
+      <td>8/20/2025</td>
+      <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/immunization_status_reason.csv_0_0_0.csv.gz">Link</a></td>
+    </tr>
+    <tr>
       <td><a href="../terminology/loinc">LOINC</a></td>
       <td>Regenstrief Institute</td>
       <td>Released twice a year, in February and August</td>
@@ -230,14 +286,14 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/ndc">NDC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/ndc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
       <td><a href="../terminology/other-provider-taxonomy">Other Provider Taxonomy</a></td>
       <td>NUCC / CMS</td>
       <td>Monthly</td>
-      <td>05/20/2025</td>
+      <td>09/08/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/other_provider_taxonomy_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -265,7 +321,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/provider">Provider</a></td>
       <td>NPPES</td>
       <td>Monthly</td>
-      <td>05/20/2025</td>
+      <td>09/08/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_provider_data/latest/provider_compressed.csv.gz">Link</a></td>
     </tr>
     <tr>
@@ -286,7 +342,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/rxnorm-to-atc">RxNorm to ATC</a></td>
       <td><a href="https://coderx.io/">CodeRx</a></td>
       <td>Weekly Update</td>
-      <td>5/21/2025</td>
+      <td>8/25/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/rxnorm_to_atc.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>

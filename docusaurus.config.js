@@ -16,6 +16,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  stylesheets: [require.resolve('./src/css/custom.css')],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -98,11 +99,15 @@ const config = {
             label: 'Community',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'moreSidebar',
-            position: 'left',
-            label: '+ More',
-          },
+            to: '/blog',        // The blog page
+            label: 'Blog',      // Navbar label
+            position: 'left',   // or 'right' depending where you want it
+          },          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'moreSidebar',
+          //   position: 'left',
+          //   label: '+ More',
+          // },
           // {
           //   type: 'docSidebar',
           //   sidebarId: 'videoSidebar',
