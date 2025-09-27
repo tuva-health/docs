@@ -12,11 +12,11 @@ import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
 ## What is LOINC?
 
-**LOINC** stands for *Logical Idendifiers Names and Codes*. It provides a universal code system for identifying laboratory and clincal observations, survey instruments, and documents in electronichealth records.
+**LOINC** stands for *Logical Observation Identifiers Names and Codes*. It provides a universal code system for identifying laboratory and clinical observations, survey instruments, and documents in electronic health records.
 
-LOINC enables consistent electronic exchance and pooling of clinical data like: lab test results or vital signs across different healthcare system and organization. 
+LOINC enables consistent electronic exchange and pooling of clinical data such as lab test results or vital signs across different healthcare systems and organizations.
 
-It helps to translate diverse local coding system into common vocabulary, facilitating interperability and accurate data sharing in healthcare, research, and public health.
+It helps translate diverse local coding systems into a common vocabulary, facilitating interoperability and accurate data sharing in healthcare, research, and public health.
 
 
 ## Tuva Seed File Update Process
