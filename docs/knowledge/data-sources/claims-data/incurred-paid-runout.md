@@ -60,8 +60,8 @@ Wait for sufficient time to elapse so that lagging claims show up in the data an
 **Incurred Dates:** January–December 2024
 **Paid Dates:** January-December 2024
 
-In this example, we are analyizing claims in January 2025 and want to make some estimates of claims completeness even though we don't yet have sufficient claims runout to consider the period complete. To do this, we will take the total cost aggregated for each incurred month and divide by the completion rate that corresponds to its **current age** (months since incurred date through December).  
-
+In this example, we are analyzing claims in January 2025 and want to make some estimates of claims completeness even though we don't yet have sufficient claims runout to consider the period complete.
+To do this, we will take the total cost aggregated for each incurred month and divide by the completion rate that corresponds to its **current age** (months since incurred date through December).  
 Formula: `Projected = Observed / Completion Factor`.
 
 | Incurred | Current Age | Unadjusted Cost        | Completion Factor | Completed Cost        |
