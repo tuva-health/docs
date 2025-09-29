@@ -2,8 +2,11 @@
 id: quality-measures
 title: "Quality Measures"
 ---
+
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
+
   <small><em>Last updated: 07-11-2025</em></small>
+
 </div>
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
@@ -134,15 +137,15 @@ vars:
     snapshots_enabled: true
 ```
 
-## Data Dictionary
+### Data Dictionary
 
-### summary_counts
+#### summary_counts
 
 Reporting measure counts with performance rates.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_counts.columns"  />
 
-### summary_long
+#### summary_long
 
 Long view of the results for the reporting version of all measures. Each row 
 represents the results a measure per patient. A null for the denominator 
@@ -150,7 +153,7 @@ indicates that the patient was not eligible for that measure.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_long.columns"  />
 
-### summary_wide
+#### summary_wide
 
 Wide view of the results for the reporting version of all measures. This model 
 pivots measures on the patient level (i.e. one row per patient with flags for 
@@ -159,7 +162,7 @@ been included in the pivot logic.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__summary_wide.columns"  />
 
-### Intermediate Tables
+#### Intermediate Tables
 
 The intermediate tables contain the logic for calculating each quality measure. 
 The subfolder for each quality measure contains that measure's specific logic 
@@ -167,6 +170,42 @@ for calculating the denominator, numerator, and exclusions. Many measures use
 the same logic for calculating exclusions, such as dementia or hospice. This 
 shared logic can be found in the shared exclusions subfolder.
 
+### Optional Input Sources
+
+In addition to the core claims and clinical data, the Quality Measures data mart can optionally incorporate input from HEDIS Digital Quality Measures (dQM). These inputs provide additional context and computation detail when enabled.
+
+These optional inputs and outputs only run when the variable `hedis_enabled` is set to true. It is disabled by default.
+
+```yaml
+vars:
+    hedis_enabled: true
+    # snapshots_enabled: true  # can be enabled to snapshot all final tables
+```
+
+#### Source models
+
+* **hedis_cql_engine_log**
+  Optional mart input containing a detailed log of computations of the CQL produced from HEDIS dQM. This data is useful for auditing and understanding the specific logic applied during measure calculation.
+
+* **hedis_measure_report**
+  Optional mart input containing quality measure report data from HEDIS dQM. This provides standardized reporting outputs that can be aligned with external benchmarks.
+
+#### Additional Final models
+
+#### **hedis_cql_engine_log**
+Deduplicated CQL computations produced from the external HEDIS dQM source.
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_cql_engine_log.columns"  />
+
+#### **hedis_summary_counts**
+Deduplicated quality measure results aggregated to the data source/measure level.
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_summary_counts.columns"  />
+
+#### **hedis_summary_long**
+Deduplicated quality measure results at the patient/measure level. A null denominator indicates a patient was not eligible for that measure.
+
+<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_summary_long.columns"  />
 
 ## Example SQL
 
