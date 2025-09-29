@@ -184,27 +184,29 @@ vars:
 
 #### Source models
 
-The format of these sources are determined by NCQA's Digital Content Services app. You can license this app from NCQA or through 
+##### **hedis_cql_engine_log**
+Optional mart input containing a detailed log of computations of the CQL produced from HEDIS dQM. This data is useful for auditing and understanding the specific logic applied during measure calculation.
 
-* **hedis_cql_engine_log**
-  Optional mart input containing a detailed log of computations of the CQL produced from HEDIS dQM. This data is useful for auditing and understanding the specific logic applied during measure calculation.
+<JsonDataTable jsonPath="nodes.model\.input_layer\.hedis_cql_engine_log.columns" />
 
-* **hedis_measure_report**
-  Optional mart input containing quality measure report data from HEDIS dQM. This provides standardized reporting outputs that can be aligned with external benchmarks.
+##### **hedis_measure_report**
+Optional mart input containing quality measure report data from HEDIS dQM. This provides standardized reporting outputs that can be aligned with external benchmarks.
+
+<JsonDataTable jsonPath="nodes.model\.input_layer\.hedis_measure_report.columns" />
 
 #### Additional Final models
 
-#### **hedis_cql_engine_log**
+##### **hedis_cql_engine_log**
 Deduplicated CQL computations produced from the external HEDIS dQM source.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_cql_engine_log.columns"  />
 
-#### **hedis_summary_counts**
+##### **hedis_summary_counts**
 Deduplicated quality measure results aggregated to the data source/measure level.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_summary_counts.columns"  />
 
-#### **hedis_summary_long**
+##### **hedis_summary_long**
 Deduplicated quality measure results at the patient/measure level. A null denominator indicates a patient was not eligible for that measure.
 
 <JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.quality_measures__hedis_summary_long.columns"  />
