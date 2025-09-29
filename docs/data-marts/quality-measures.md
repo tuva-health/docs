@@ -172,9 +172,9 @@ shared logic can be found in the shared exclusions subfolder.
 
 ### Optional Input Sources
 
-In addition to the core claims and clinical data, the Quality Measures data mart can optionally incorporate input from HEDIS Digital Quality Measures (dQM). These inputs provide additional context and computation detail when enabled.
+In addition to the core claims and clinical data, the Quality Measures data mart can optionally incorporate data from HEDIS Digital Quality Measures (dQM). These optional inputs and outputs only run when the variable `hedis_enabled` is set to true. It is disabled by default.
 
-These optional inputs and outputs only run when the variable `hedis_enabled` is set to true. It is disabled by default.
+**Prerequisite:** You must have HEDIS dQM results from NCQA or by purchasing the add-on from Tuva Health. 
 
 ```yaml
 vars:
@@ -183,6 +183,8 @@ vars:
 ```
 
 #### Source models
+
+The format of these sources are determined by NCQA's Digital Content Services app. You can license this app from NCQA or through 
 
 * **hedis_cql_engine_log**
   Optional mart input containing a detailed log of computations of the CQL produced from HEDIS dQM. This data is useful for auditing and understanding the specific logic applied during measure calculation.
