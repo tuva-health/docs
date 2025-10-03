@@ -1,14 +1,14 @@
 ---
-id: claims-data-elements
-title: "Claims Data Elements"
-description: This section describes the fundamentals of many atomic-level claims data elements such as discharge disposition, bill type code, place of service code, and others.
+id: key-data-elements
+title: "Key Data Elements"
+description: This section describes the fundamentals of many atomic-level claims data elements.
 ---
 
 Claims data is made up of several data elements that are important to analytics.  Here we describe the key data elements in some detail.
 
-## Administrative Codes
+## Administrative Fields
 
-One of the great things about claims data (compared to clinical data) is that they contain a number of fields with standard terminology that are (usually) well-populated.  We refer to these fields as Administrative Codes because they are used for billing (i.e. administrative) purposes as opposed for clinical purposes.  These fields contain valuable information about the services performed, where they were performed, and where the patient came from and went to before/after the service.  
+One of the great things about claims data (compared to clinical data) is that they contain a number of fields with standard terminology that are (usually) well-populated.  We refer to these fields as administrative or billing codes because they are used for billing (i.e. administrative) purposes as opposed for clinical purposes.  These fields contain valuable information about the services performed, where they were performed, and where the patient came from and went to before/after the service.  
 
 In this section we review these codes, their analytic use cases, and how you can identify common data quality problems in them.
 
@@ -104,8 +104,8 @@ Revenue center codes are maintained by the National Uniform Billing Committee (N
 
 You can find a complete listing of revenue center codes and their descriptions [here](/terminology/revenue-center).
 
+## Date Fields
 
-## Dates
 Claims data is longitudinal in nature i.e. it captures conditions, services and other healthcare events that occur over time to patients.  This makes claims data extremely useful for analyzing sequences of events e.g. did patients who received drug X have better or worse outcomes?  However the ability to reliably use claims data in this matter is predicated by the completeness and accuracy of a variety of key date fields found in claims data.
 
 The date fields listed below are the names we give to these fields in the Tuva Project, but there can be all sorts of different names for these fields in different claims datasets.  For example, in Medicare LDS the claim_end_date field is called clm_thru_dt.
@@ -113,7 +113,6 @@ The date fields listed below are the names we give to these fields in the Tuva P
 ### Medical Claims
 
 To understand the key date fields in medical claims, it's useful to consider an example of a patient who's been receiving care in a long-term care (i.e. skilled nursing) facility for 1 year, from January 1st to December 31st, and suppose the facility bills the insurer every month on the beginning of the month.
-
 
 - **claim_start_date:** The start date of the billable period for the claim.  In the example above this date would always be the first date of the month.
 - **claim_end_date:** The end date of the billable period for the claim.  In the example above this date would always be the last date of the month.
@@ -135,7 +134,7 @@ There are 2 other date fields in medical claims.  They are claim_line_start_date
 - **birth_date:**  The date the patient was born.  
 - **death_date:**  The date the patient died (if applicable).  Just because a patient does not have a death date does not mean they aren't deceased!  Many deaths do not occur in a healthcare facility and therefore are not captured in claims.  Sometimes the death date is captured in eligibility data, but often it is inferred by discharge_disposition_code = 20 (this field is found in institutional claims). 
 
-### Data Quality Issues
+### Data Quality Issues with Claims Date Fields
 
 As you might expect, the date fields in claims often suffer from data quality issues.  For example, date fields can be missing, or the dates can exist unnaturally far into the past or into the future.
 
@@ -149,3 +148,28 @@ order by 1
 
 <iframe width="640" height="400" src="https://www.youtube.com/embed/QE9N5FqeNd4?si=iRPvidLj43JwY7ag" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+## Financial Fields
+
+## Provider Fields
+
+Medical claims includes several fields containing information on providers. The fields vary based on the type of claim.
+
+**Institutional Claims [CMS-1450 or UB-04](https://www.cdc.gov/wtc/pdfs/policies/ub-40-P.pdf):**
+Provider information in the header of facility claims. In addition to the facility billing the service, these claims contain several fields for NPIs from up to four individual providers involved in the care (e.g., Attending Physician).
+- Box 1 Billing Provider Name and Address
+- 2 Pay-to Proivder Name and Address
+- 5  Federal Tax ID
+- 76 Attending Physician
+- 56 Billing Provider NPI
+- 57 Other Provider ID
+- 77 Operating Physician
+- 78 Other Physician
+- 79 Other Physician
+
+**Professional Claims [CMS-1500](https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms1500.pdf):** 
+Professional claims track the NPI of the provider who rendered each individual line item (i.e., CPT/HCPSCS code) in the claim. In addition, the claim header contains information on the organization submitting the claim. 
+- Box 17  Referring Provider
+- 24J Rendering Provider
+- 25 Federal Tax ID
+- 32 Service Facility Location Information
+- 33 Billing Provider

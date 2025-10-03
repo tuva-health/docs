@@ -167,7 +167,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/hcpcs-level-2">HCPCS Level II</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Updated quarterly: January, April, July, and October</td>
-      <td>3/26/2025</td>
+      <td>9/24/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/hcpcs_level_2.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
