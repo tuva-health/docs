@@ -195,7 +195,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/icd-10-cm">ICD-10-CM</a></td>
       <td>Centers for Disease Control and Prevention (CDC)</td>
       <td>Annually occuring from Oct 1</td>
-      <td>1/4/2025</td>
+      <td>10/07/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_cm.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
