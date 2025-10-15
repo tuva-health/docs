@@ -116,7 +116,11 @@ const config = {
           // },
           // { to: 'journal-club', label: 'Journal Club', position: 'left' },
           // { to: 'manifesto', label: 'Manifesto', position: 'left' },
-
+          {
+            href: 'https://terminology.thetuvaproject.com',
+            position: 'right',
+            label: 'Terminology Viewer',
+          },
           {
             href: 'https://tuvahealth.com',
             position: 'right',
