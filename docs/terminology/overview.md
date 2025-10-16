@@ -202,7 +202,7 @@ The **Last Updated** date in the table below is the date the codeset was release
       <td><a href="../terminology/icd-10-pcs">ICD-10-PCS</a></td>
       <td>Centers for Medicare & Medicaid Services (CMS)</td>
       <td>Semi-annually occuring from (Oct 1 to Mar 31) and (Apr 1 to Sept 31)</td>
-      <td>1/4/2025</td>
+      <td>10/07/2025</td>
       <td><a href="https://tuva-public-resources.s3.amazonaws.com/versioned_terminology/latest/icd_10_pcs.csv_0_0_0.csv.gz">Link</a></td>
     </tr>
     <tr>
