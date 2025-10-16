@@ -15,7 +15,7 @@ Before getting started, here are some good questions to consider related to prov
 
 - How do you determine if a provider is a primary care provider?
 - Should a blood draw or other lab test count in the attribution process?
-- If a patient doesn't visit a provider in a long time, should they be attributed to a provider?  How long it too long?
+- If a patient doesn't visit a provider in a long time, should they be attributed to a provider?  How long is too long?
 - How do you handle if a patient is seeing multiple providers in a short period of time?
 - What data fields are available to you from medical claims data that should be used in provider attribution?
 
