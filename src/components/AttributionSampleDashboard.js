@@ -38,6 +38,8 @@ export default function AttributionSampleDashboard({ currentCsvUrl, yearlyCsvUrl
           rankingCsvUrl ? fetch(rankingCsvUrl) : Promise.resolve({ ok: true, text: async () => '' })
         ]);
         if (!curRes.ok) throw new Error(`Failed to load current CSV: ${curRes.status}`);
+        if (yearlyCsvUrl && !yrRes.ok) throw new Error(`Failed to load yearly CSV: ${yrRes.status}`);
+        if (rankingCsvUrl && !rankRes.ok) throw new Error(`Failed to load ranking CSV: ${rankRes.status}`);
         const curText = await curRes.text();
         const curData = parseCsv(curText);
         const yrText = yearlyCsvUrl ? await yrRes.text() : '';
@@ -58,7 +60,7 @@ export default function AttributionSampleDashboard({ currentCsvUrl, yearlyCsvUrl
     }
     load();
     return () => { cancelled = true; };
-  }, [currentCsvUrl, rankingCsvUrl]);
+  }, [currentCsvUrl, yearlyCsvUrl, rankingCsvUrl]);
 
   const measurementOptions = useMemo(() => {
     if (scope === 'current') {
@@ -87,7 +89,7 @@ export default function AttributionSampleDashboard({ currentCsvUrl, yearlyCsvUrl
     if (!selectedPeriod || !measurementOptions.includes(selectedPeriod)) {
       setSelectedPeriod(measurementOptions[measurementOptions.length - 1]);
     }
-  }, [measurementOptions]);
+  }, [measurementOptions, selectedPeriod]);
 
   const filtered = useMemo(() => {
     if (scope === 'current') {

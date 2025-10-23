@@ -257,7 +257,7 @@ with pr as (
   , lookback_end_date
   , provider_id
   , provider_bucket
-  , step
+  , step as earliest_step
   , step_description
   , allowed_amount
   , visits
