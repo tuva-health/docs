@@ -168,10 +168,11 @@ const sidebars =
                     "data-marts/pharmacy",
                     "data-marts/quality-measures",
                     "data-marts/readmissions",
-                    ]
-                },
-            ]
-        },
+                    "data-marts/tuva-provider-attribution",
+                ]
+            },
+        ]
+    },
 
         {
             type: "category",
