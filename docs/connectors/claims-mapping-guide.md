@@ -31,7 +31,7 @@ have [here](../../connectors/input-layer)).
 
 To help you get started mapping, we have created a [connector template](https://github.com/tuva-health/connector_template).
 
-If you're building a claims connector, we have written a [guide](https://thetuvaproject.com/knowledge/claims-data/adjustments-denials-reversals) on Adjustments, Denials, and Reversals that may be helpful to you during the mapping process.
+If you're building a claims connector, we have written a [guide](https://thetuvaproject.com/knowledge/data-sources/claims-data/adjustments-denials-reversals) on Adjustments, Denials, and Reversals that may be helpful to you during the mapping process.
 
 If your data source doesn't have every field in the input layer, that's okay.
 Just map the fields that you have and leave the other fields empty (you still need
