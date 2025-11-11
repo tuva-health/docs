@@ -1,5 +1,5 @@
 ---
-id: overview
+id: terminology
 title: "6. Terminology"
 hide_title: true
 description: The Tuva Project makes it easy to load useful terminology sets like ICD-10 codes directly into your data warehouse where you need them for analytics.
@@ -8,16 +8,20 @@ description: The Tuva Project makes it easy to load useful terminology sets like
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
 import { JsonDataTableNoTerm } from '@site/src/components/JsonDataTableNoTerm';
 
-# 5. Terminology Sets
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
+# 6. Terminology 
 
-Terminology sets are reference code sets and descriptions used in claims and medical record data.  These code sets are maintained by many different organizations, updated on various frequencies, and often distributed in ways that make it a pain to load them into your data warehouse.  We do this work and take care of it in Tuva.
+Terminology includes code sets (e.g. ICD-10-CM, HCPCS), value sets (e.g. the ICD-10-CM codes that define Type 2 Diabetes), and reference datasets (e.g. provider NPI lookups).
 
-Most of the terminology sets are too large to maintain on GitHub so we maintain them on AWS S3.  You can download them using the links below or load them directly to your data warehouse using the Tuva package.
+These datasets are scattered all over the internet, maintained in different data formats, and updated on different frequencies.  The Tuva Community maintains these datasets and keeps them up to date.  
 
-The **Last Updated** date in the table below is the date the codeset was released by maintainer or if not available, the date we loaded it to Tuva.
+When you run Tuva the Terminology datasets are automatically loaded into your cloud data warehouse.
+
+The Tuva Project leverages Terminology in data quality tests (e.g. are these ICD-10-CM codes valid?) and in data marts (e.g. definintions for chronic conditions).
+
+Use the [Terminology Viewer](https://terminology.thetuvaproject.com) to view and search through all the datasets included in Terminology.
+
+
+<!-- The **Last Updated** date in the table below is the date the codeset was released by maintainer or if not available, the date we loaded it to Tuva.
 
 <table>
   <thead>
@@ -398,4 +402,4 @@ One way to get around these errors is by using [`gzip`](https://www.gzip.org/), 
 ```console
 # would extract terminology_file.csv to the same directory
 gzip -d path/to/your/file/terminology_file.csv.gz 
-```
+``` -->

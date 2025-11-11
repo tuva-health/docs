@@ -55,6 +55,7 @@ const sidebars = {
       type: "category",
       label: "4. Core Data Model",
       items: [
+        "core-data-model/core-data-model",
         "core-data-model/appointment",
         "core-data-model/condition",
         "core-data-model/eligibility",
@@ -96,7 +97,9 @@ const sidebars = {
         "data-marts/service-categories",
       ],
     },
-    "terminology/overview",
+    "terminology",
+    "dashboards",
+    "example-sql",
     // {
     //   type: "category",
     //   label: "6. Terminology Sets",
@@ -185,7 +188,6 @@ const sidebars = {
       label: "Additional Tools",
       collapsible: true,
       items: [
-        "analytics/dashboards",
         "tuva-empi",
         "predictive-models/risk-adjusted-benchmarking",
         "vocab-normalization",

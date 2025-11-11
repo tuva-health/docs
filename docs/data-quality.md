@@ -1,6 +1,6 @@
 ---
 id: data-quality
-title: "3. Data Quality"
+title: "3. Data Quality Tests"
 ---
 
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>

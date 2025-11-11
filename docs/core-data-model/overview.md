@@ -1,15 +1,10 @@
 ---
-id: overview
+id: core-data-model
 title: "Overview"
 hide_title: true
 ---
 
-# 7. Data Model 
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
-
-<iframe width="768" height="496" src="https://miro.com/app/live-embed/uXjVJaWV26M=/?focusWidget=3458764635647841328&embedMode=view_only_without_ui&embedId=559267041011" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+# 4. Core Data Model
 
 The Core Data Model is a common data model designed for unifying claims and clinical data into a single longitudinal patient record.  A common data model creates a single source of truth that analytics can be built on top of.  With a common data model all your data sources are in a common format (i.e. standard set of data tables).  This makes it possible for every data person in an organization to share a common language and approach for how they talk about and do analytics.  It also creates a standard layer that downstream algorithms (e.g. data marts, machine learning models) can be built on.
 
