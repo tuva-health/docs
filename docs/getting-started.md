@@ -1,6 +1,6 @@
 ---
-id: overview
-title: "Overview"
+id: getting-started
+title: "Getting Started"
 hide_title: true
 description: Instructions for getting started with the Tuva Project.
 ---
@@ -10,15 +10,14 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 Getting Started
 
-This video provides a short intro to Tuva to get you up and running.
+To use Tuva, you first need map your raw data into the *Tuva Input Layer*, a standardized schema designed for raw healthcare data. This mapping is done through *Connectors* -- data pipelines that transform your source data into the Input Layer format.
 
-<iframe width="760" height="440" src="https://www.youtube.com/embed/XGCWrrsXnKk?si=KEW295zK7EG-F2Ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
+To get started:
+- Visit the [Connectors](/docs/connectors/connectors-overview.md) section of this site.
+- Browse pre-built connectors for common data formats.
+- Or learn how to build a connector for your specific data sources.
 
-The slides below describe our standard approach to setting up multiple data sources on Tuva.
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTXPpfaH0z89ses1ItouCa-pwZ643J8Sa5PTc5FoVPYIAIFZgkN4qI7E8rVhdwxscxeRTVUCG-kGisC/embed?start=false&loop=false&delayms=3000" frameborder="0" width="760" height="440" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-The video below includes a more thorough overview of how to setup your claims data using Tuva.
+The video below provides an overview of how to setup your claims data using Tuva.
 
 <iframe width="760" height="440" src="https://www.youtube.com/embed/FWxbrt7Fgiw?si=dyo4uD_MTW4dmAGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
 
@@ -63,9 +62,9 @@ The next step is mapping your data to the [Tuva Input Layer](../connectors/input
 
 ### 4. dbt Build
 
-Next, run ```dbt build``` from the command line to build the entire project.  This will create hundreds of data tables in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology/overview) and [Value Sets](../value-sets/overview) will be loaded into your data warehouse.  This is pretty cool to see with a single command!
+Next, run ```dbt build``` from the command line to build the entire project.  This will create hundreds of data tables in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology) will be loaded into your data warehouse.  This is pretty cool to see with a single command!
 
-### 5. Data Quality Audit
+### 5. Data Quality Tests
 
 Next you need to run [Data Quality](../data-quality) to audit whether you mapped the data correctly.  Data Quality is our systematic approach for validating that we've mapped the source data correctly, identifying atomic-level data quality problems, and understanding the impact of those problems on analytics.
 

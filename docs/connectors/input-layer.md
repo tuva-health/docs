@@ -1,6 +1,6 @@
 ---
 id: input-layer
-title: "Input Layer"
+title: "2. Input Layer"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
