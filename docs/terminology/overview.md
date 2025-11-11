@@ -1,6 +1,6 @@
 ---
 id: overview
-title: "Overview"
+title: "6. Terminology"
 hide_title: true
 description: The Tuva Project makes it easy to load useful terminology sets like ICD-10 codes directly into your data warehouse where you need them for analytics.
 ---
