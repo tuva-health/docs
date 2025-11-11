@@ -55,7 +55,7 @@ const sidebars = {
       type: "category",
       label: "4. Core Data Model",
       items: [
-        "core-data-model/core-data-model",
+        "core-data-model/overview",
         "core-data-model/appointment",
         "core-data-model/condition",
         "core-data-model/eligibility",
@@ -77,6 +77,7 @@ const sidebars = {
       type: "category",
       label: "5. Data Marts",
       items: [
+        "data-marts/overview",
         "data-marts/ahrq-measures",
         "data-marts/ccsr",
         "data-marts/chronic-conditions",

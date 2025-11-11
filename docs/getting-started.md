@@ -62,9 +62,9 @@ The next step is mapping your data to the [Tuva Input Layer](../connectors/input
 
 ### 4. dbt Build
 
-Next, run ```dbt build``` from the command line to build the entire project.  This will create hundreds of data tables in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology/overview) and [Value Sets](../value-sets/overview) will be loaded into your data warehouse.  This is pretty cool to see with a single command!
+Next, run ```dbt build``` from the command line to build the entire project.  This will create hundreds of data tables in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology) will be loaded into your data warehouse.  This is pretty cool to see with a single command!
 
-### 5. Data Quality Audit
+### 5. Data Quality Tests
 
 Next you need to run [Data Quality](../data-quality) to audit whether you mapped the data correctly.  Data Quality is our systematic approach for validating that we've mapped the source data correctly, identifying atomic-level data quality problems, and understanding the impact of those problems on analytics.
 
