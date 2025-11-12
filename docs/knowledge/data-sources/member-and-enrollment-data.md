@@ -86,4 +86,4 @@ Here are some rules of thumb for how much coverage is required for a member to b
 - Frequent rules of thumb are that a member is included in a member month if they have any coverage during the month in question (even a single day), they must have coverage on a particular day (i.e. the 15th of the month), or they must have a full month's coverage to be included. Each methodology has it's pluses/minuses, the most important thing is that consistent rules are used and that stakeholders understand the criteria.
 - Often a member will be included in the member month table if they have any coverage, but separate "count" fields are included to allow stakeholders to count only members active on the 1st, 15th, last day, or full months coverage for different downstream use cases, this provides the most flexibility but can lead to inconsistencies in analysis if their is not alignment on which particular definition to use in different scenarios.
 
-See [here](../analytics/member-months.md) for a more complete description of member months.
+See [here](../../knowledge/analytics/member-months.md) for a more complete description of member months.
