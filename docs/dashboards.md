@@ -19,7 +19,7 @@ Dashboards run automatically on top of the Core Data Model and Data Marts.  The 
     </a>
 
   <div>
-    <h3 style={{ margin: "0 20px" }}>Cost Drivers</h3>
+    <h3 style={{ margin: "0 20px" }}>Cost & Utilization Drivers</h3>
     <p style={{ margin: "5px 20px", fontSize: "0.9em", lineHeight: "1.4em" }}>
       This dashboard demonstrates how you can use the Tuva service category, encounter, and condition groupers to drill into claims data to identify opportunities for improvement.
     </p>
@@ -74,6 +74,19 @@ Dashboards run automatically on top of the Core Data Model and Data Marts.  The 
     <h3 style={{ margin: "0 20px" }}>Risk-adjusted Benchmarks</h3>
     <p style={{ margin: "5px 20px", fontSize: "0.9em", lineHeight: "1.4em" }}>
       This dashboard shows the expected values produced by the benchmarking mart and compares them to actual values for analysis.
+    </p>
+  </div>
+</div>
+
+<div style={{ display: "flex", alignItems: "flex-start" }}> 
+    <a href="#" onClick={(e) => { window.open('https://app.powerbi.com/view?r=eyJrIjoiOGNmYjIzMTMtOTdlMC00OTk3LTgwMmItNmJlZTM4OGUwZmJlIiwidCI6ImJiM2M3Y2U1LTI2MjgtNGM5MS04Y2VmLTgwMTdjNjExNTk3OCIsImMiOjZ9', '_blank'); e.preventDefault(); }}>
+      <img src="/img/aco-analytics.png" alt="Video Thumbnail" style={{ width: "120px", height: "auto", cursor: "pointer", marginRight: "30px"}} />
+    </a>
+
+  <div>
+    <h3 style={{ margin: "0 20px" }}>Medicare ACO Analytics</h3>
+    <p style={{ margin: "5px 20px", fontSize: "0.9em", lineHeight: "1.4em" }}>
+      This dashboard demonstrates the type of analytics that are important for Medicare ACOs and other types of value-based care organizations.
     </p>
   </div>
 </div>
