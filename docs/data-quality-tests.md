@@ -1,5 +1,5 @@
 ---
-id: data-quality
+id: data-quality-tests
 title: "3. Data Quality Tests"
 ---
 

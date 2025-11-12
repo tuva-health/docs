@@ -1,5 +1,5 @@
 ---
-id: tuva-empi
+id: empi
 title: "EMPI"
 ---
 

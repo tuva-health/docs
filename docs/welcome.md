@@ -9,7 +9,13 @@ slug: /
 
 # 👋 Welcome
 
-Welcome to the Tuva Project! Our goal is to **democratize access to high-quality healthcare analytics** by open-sourcing the tools and knowledge needed to transform raw healthcare data into analytics-ready data. To learn more about why we started the Tuva Project read our manifesto [here](/community/manifesto).
+Welcome to the Tuva Project! Our goal is to **democratize access to high-quality healthcare analytics** by open-sourcing the tools and knowledge needed to transform raw healthcare data into analytics-ready data. To learn more about why we started the Tuva Project read our **manifesto [here](/community/manifesto)**.
+
+The current release of the Tuva Project (v0.15.4) includes:
+- **Pre-Built Connectors:** 14
+- **Data Quality Tests:** 1,014
+- **Data Transformation Models:** 896
+- **Terminology Datasets:** 111
 
 ![Tuva Project Overview](/img/the-tuva-project-3.jpg)
 

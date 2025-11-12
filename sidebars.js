@@ -18,6 +18,7 @@ const sidebars = {
         "connectors/connectors-overview",
         "connectors/building-a-connector",
         "connectors/claims-mapping-guide",
+        "connectors/fhir-inferno",
         {
           type: "category",
           label: "Pre-Built Connectors",
@@ -25,7 +26,6 @@ const sidebars = {
             "connectors/cms-cclf",
             "connectors/cms-lds",
             "connectors/aetna",
-            "connectors/fhir-inferno",
             "connectors/cms-bcda",
             "connectors/health-gorilla",
             "connectors/metriport",
@@ -46,11 +46,7 @@ const sidebars = {
       id: "connectors/input-layer",
       label: "2. Input Layer",
     },
-    {
-      type: "doc",
-      id: "data-quality",
-      label: "3. Data Quality Tests",
-    },
+    "data-quality-tests",
     {
       type: "category",
       label: "4. Core Data Model",
@@ -189,7 +185,7 @@ const sidebars = {
       label: "Additional Tools",
       collapsible: true,
       items: [
-        "tuva-empi",
+        "empi",
         "predictive-models/risk-adjusted-benchmarking",
         "vocab-normalization",
       ],
