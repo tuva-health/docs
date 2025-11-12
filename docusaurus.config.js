@@ -55,54 +55,6 @@ const config = {
             to: '/archive/geo-coding-sdoh',
           },
           {
-            from: '/value-sets/overview',
-            to: '/archive/value-sets/overview',
-          },
-          {
-            from: '/value-sets/ahrq-measures',
-            to: '/archive/value-sets/ahrq-measures',
-          },
-          {
-            from: '/value-sets/ccsr-groupers',
-            to: '/archive/value-sets/ccsr-groupers',
-          },
-          {
-            from: '/value-sets/chronic-conditions',
-            to: '/archive/value-sets/chronic-conditions',
-          },
-          {
-            from: '/value-sets/clinical-concepts',
-            to: '/archive/value-sets/clinical-concepts',
-          },
-          {
-            from: '/value-sets/cms-hccs',
-            to: '/archive/value-sets/cms-hccs',
-          },
-          {
-            from: '/value-sets/data-quality',
-            to: '/archive/value-sets/data-quality',
-          },
-          {
-            from: '/value-sets/ed-classification',
-            to: '/archive/value-sets/ed-classification',
-          },
-          {
-            from: '/value-sets/hcc-suspecting',
-            to: '/archive/value-sets/hcc-suspecting',
-          },
-          {
-            from: '/value-sets/quality-measures',
-            to: '/archive/value-sets/quality-measures',
-          },
-          {
-            from: '/value-sets/readmissions',
-            to: '/archive/value-sets/readmissions',
-          },
-          {
-            from: '/value-sets/service-categories',
-            to: '/archive/value-sets/service-categories',
-          },
-          {
             from: '/videos/community',
             to: '/archive/videos/community',
           },
