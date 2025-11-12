@@ -33,7 +33,166 @@ const config = {
     locales: ['en'],
   },
 
-  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+  plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          // Renamed files from PR #493
+          {
+            from: '/data-quality',
+            to: '/data-quality-tests',
+          },
+          {
+            from: '/tuva-empi',
+            to: '/empi',
+          },
+          
+          // Moved to archive
+          {
+            from: '/getting-started/geo-coding-sdoh',
+            to: '/archive/geo-coding-sdoh',
+          },
+          {
+            from: '/videos/community',
+            to: '/archive/videos/community',
+          },
+          {
+            from: '/videos/guides',
+            to: '/archive/videos/guides',
+          },
+          {
+            from: '/videos/knowledge',
+            to: '/archive/videos/knowledge',
+          },
+          
+          // Deleted use-cases pages - redirect to relevant data-marts pages
+          {
+            from: '/use-cases/overview',
+            to: '/data-marts/overview',
+          },
+          {
+            from: '/use-cases/acute-inpatient',
+            to: '/knowledge/analytics/acute-ip-visits',
+          },
+          {
+            from: '/use-cases/ahrq-measures',
+            to: '/data-marts/ahrq-measures',
+          },
+          {
+            from: '/use-cases/chronic-conditions',
+            to: '/data-marts/chronic-conditions',
+          },
+          {
+            from: '/use-cases/cms-hccs',
+            to: '/data-marts/cms-hccs',
+          },
+          {
+            from: '/use-cases/demographics',
+            to: '/core-data-model/patient',
+          },
+          {
+            from: '/use-cases/ed-visits',
+            to: '/knowledge/analytics/ed-visits',
+          },
+          {
+            from: '/use-cases/medical-pmpm',
+            to: '/data-marts/financial-pmpm',
+          },
+          {
+            from: '/use-cases/pharmacy',
+            to: '/data-marts/pharmacy',
+          },
+          {
+            from: '/use-cases/primary-care',
+            to: '/knowledge/analytics/utilization-metrics',
+          },
+          {
+            from: '/use-cases/urgent-care',
+            to: '/knowledge/analytics/utilization-metrics',
+          },
+          
+          // Deleted analytics pages - redirect to knowledge/analytics
+          {
+            from: '/analytics/overview',
+            to: '/knowledge/analytics/utilization-metrics',
+          },
+          {
+            from: '/analytics/notebooks',
+            to: '/knowledge/introduction',
+          },
+          {
+            from: '/analytics/streamlit',
+            to: '/dashboards',
+          },
+          {
+            from: '/analytics/dashboards',
+            to: '/dashboards',
+          },
+          
+          // Deleted guides pages - redirect to relevant new pages
+          {
+            from: '/guides/data-source-setup/overview',
+            to: '/connectors/connectors-overview',
+          },
+          {
+            from: '/guides/data-source-setup/configuration',
+            to: '/connectors/connectors-overview',
+          },
+          {
+            from: '/guides/data-source-setup/ingestion',
+            to: '/connectors/input-layer',
+          },
+          {
+            from: '/guides/data-source-setup/mapping',
+            to: '/connectors/claims-mapping-guide',
+          },
+          {
+            from: '/guides/data-source-setup/audit',
+            to: '/data-quality-tests',
+          },
+          {
+            from: '/guides/data-source-setup/deployment',
+            to: '/getting-started',
+          },
+          {
+            from: '/guides/mapping/fhir',
+            to: '/connectors/fhir-inferno',
+          },
+          
+          // Deleted getting-started pages
+          {
+            from: '/getting-started/customizations',
+            to: '/getting-started',
+          },
+          {
+            from: '/getting-started/synthetic-data-demo',
+            to: '/getting-started',
+          },
+          
+          // Deleted more pages
+          {
+            from: '/more/data-stories',
+            to: '/knowledge/introduction',
+          },
+          {
+            from: '/more/videos',
+            to: '/archive/videos/knowledge',
+          },
+        ],
+        createRedirects(existingPath) {
+          // Pattern-based redirects for any remaining value-sets pages
+          if (existingPath.includes('/archive/value-sets/')) {
+            return [
+              existingPath.replace('/archive/value-sets/', '/value-sets/'),
+            ];
+          }
+          return undefined;
+        },
+      },
+    ],
+  ],
 
   presets: [
     [

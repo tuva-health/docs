@@ -31,4 +31,4 @@ This table includes columns for data quality tests related to readmissions, so y
 
 ## value sets
 
-See the value set data dictionaries [here](value-sets#readmissions).
+See the value set data dictionaries [here](../value-sets/readmissions).
