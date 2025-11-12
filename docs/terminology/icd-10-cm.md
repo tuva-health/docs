@@ -108,7 +108,7 @@ Although headers are not directly used in claims, they serve multiple purposes:
 
 ### 📌 Notes for Data Analysts
 
-- ICD-10-CM codes are often joined to **hierarchical groupers** like [CCSR](../value-sets/ccsr-groupers) or [HCC](docs/value-sets/cms-hccs.md) for summarization.
+- ICD-10-CM codes are often joined to **hierarchical groupers** like CCSR or HCCs for summarization.
 - Strings may need **normalization** (e.g., removing periods or standardizing case). Tuva's source for this data does not currently contain periods, but some sources may have them and they are typically removed. 
 
 ## Tuva Seed File Update Process

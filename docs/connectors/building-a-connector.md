@@ -217,7 +217,7 @@ You now have a fully set-up connector repository, ready to convert raw claims da
   - The connector template is configured for claims data
   - You’re ready to begin writing transformation logic in `staging/` and `intermediate/` folders
 
-For examples of how to structure the actual models you will use to standardize your data take a look at our Pre-Built Connectors for examples. For a comprehensive guide to mapping claims data, take a look at the [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md). Additionally, once you have completed your connector and run it through the project successfully, be sure to leverage our [Data Quality Testing Suite](/docs/data-quality.md) to ensure your data is accurate prior to using for analytics. 
+For examples of how to structure the actual models you will use to standardize your data take a look at our Pre-Built Connectors for examples. For a comprehensive guide to mapping claims data, take a look at the [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md). Additionally, once you have completed your connector and run it through the project successfully, be sure to leverage our [Data Quality Testing Suite](/docs/data-quality-tests.md) to ensure your data is accurate prior to using for analytics. 
 
 ---
 

@@ -10,69 +10,70 @@ import TabItem from '@theme/TabItem';
 
 # 🏁 Getting Started
 
-To use Tuva, you first need map your raw data into the *Tuva Input Layer*, a standardized schema designed for raw healthcare data. This mapping is done through *Connectors* -- data pipelines that transform your source data into the Input Layer format.
+To run Tuva you need to do the following:
 
-To get started:
-- Visit the [Connectors](/docs/connectors/connectors-overview.md) section of this site.
-- Browse pre-built connectors for common data formats.
-- Or learn how to build a connector for your specific data sources.
+1. Load your healthcare data (e.g. claims, EHR) into a data warehouse (e.g. Snowflake, Databricks)
+2. Install [dbt](https://docs.getdbt.com/docs/core/installation-overview) -- a free open-source tool for transforming data inside your data warehouse
+3. Create a new dbt project and connect that project to your data warehouse
+4. Map your raw healthcare data to the Tuva [Input Layer](../connectors/input-layer)
+5. Import the Tuva package into your dbt project
+6. Run the entire dbt project (i.e. execute "dbt build")
 
-The video below provides an overview of how to setup your claims data using Tuva.
+Below we describe how to do this in more detail.  However, if you don't have access to healthcare data or you just want to play around with the Tuva data tables, run the [demo](https://github.com/tuva-health/demo) project (which uses synthetic data) as described in the video below (note this video is slightly out-dated but it should get you there).
 
-<iframe width="760" height="440" src="https://www.youtube.com/embed/FWxbrt7Fgiw?si=dyo4uD_MTW4dmAGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="true"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C6A1rxkqe_A?si=Rl74kyq9xhPiiVGL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
- ### 1. Pre-requisites
+## 1. Pre-requisites
 
- You need to start with claims data in a data warehouse and have dbt installed.  dbt is easy to install using any package manager like pip or homebrew.  You also need to connect dbt to your data warehouse.  You do this by configuring your ```profile.yml``` file.  dbt has instructions for how to do this which you can find on their docs site.
+In order to run Tuva you need healthcare data loaded into a data warehouse and dbt installed.  You'll need to consult documentation from your data warehouse and from dbt to do these things.
+
+dbt is easy to install using any package manager like pip or homebrew.  
 
 Ensure you're working with a data warehouse that Tuva supports. We officially and unofficially support several data warehouses and you can find the latest up to date info on our data warehouse support page.
 
+## 2. Create a dbt Project
 
- ### 2. dbt Setup
+The very first step is to setup a new dbt project.  Once dbt is installed you can do this by executing ```dbt init <project_name>``` where you replace ```<project_name>``` with the name of your project.
 
- The very first step is to setup a new dbt project.  Once dbt is installed you can do this by executing ```dbt init <project_name>``` where you replace ```<project_name>``` with the name of your project.
+Next you need to configure your ```dbt_project.yml``` file in the newly created dbt project.  This includes 3 steps:
 
- Next you need to configure your ```dbt_project.yml``` file in the newly created dbt project.  This includes 3 steps:
+- Setting your ```profile.yml```
+- Setting Tuva-specific variables
+- Setting the database and schema where dbt should write data to
 
- - Setting your profile
- - Setting Tuva-specific variables
- - Setting the database and schema where dbt should write data to
+Setting your ```profile.yml``` is how you connect your dbt project to your data warehouse.  dbt has instructions for how to do this which you can find on their docs site.
 
- See the video above for details on how to do this.
+Next, there are a few dbt variables that you'll need to set which are specific to Tuva.  In your dbt_project.yml, if you have only claims data you need to set `claims_enabled = true` and if you have clinical data you need to set `clinical_enabled = true`.  Add these variables to your dbt_project.yml file.
 
- In your dbt_project.yml, if you have only claims data you need to set `claims_enabled = true` and if you have clinical data you need to set `clinical_enabled = true`.  By default these variables are set to false.
+Next, you'll want to add a "generate schema" macro to your macros folder in the dbt project.  This step is optional, but if you don't do this your schema names will all be prefixed with your default schema e.g. "public_" which is typically annoying.  dbt has documentation on how to do this.
 
- Next you'll need to add a "generate schema" macro to your macros folder in the dbt project.  This is optional, but if you don't do this your schema names will all be prefixed with your default schema e.g. "public_" which is typically annoying.  dbt has documentation on how to do this or see our video above.
+## 3. Map Your Raw Data
 
- Finally you'll need to import Tuva by creating a ```packages.yml``` file and adding the following code:
+The next step is mapping your data to the [Tuva Input Layer](../connectors/input-layer).  Every healthcare dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  We call this "mapping".  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format. 
 
- ```yml
+The [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md) provides rules of thumb for how to do this for medical claims data.
+
+## 4. Import the Tuva Package
+
+Finally you'll need to import the Tuva dbt package by creating a ```packages.yml``` file inside your dbt project and adding the following code:
+
+```yml
 packages:
-  - package: tuva-health/the_tuva_project
-    version: [">=0.7.0","<0.8.0"]
-  - package: dbt-labs/dbt_utils
-    version: [ ">=0.9.2" ]
- ```
+- package: tuva-health/the_tuva_project
+  version: [">=0.12.0","<0.16.0"]
+- package: dbt-labs/dbt_utils
+  version: [ ">=0.9.2" ]
+```
 
-Then execute ```dbt deps``` from the command line to import Tuva.
+Then execute ```dbt deps``` from the command line to import the package.  This will create a new folder called dbt_packages and these packages will have been loaded into it.
 
-### 3. Map Your Data
+## 5. Execute dbt Build
 
-The next step is mapping your data to the [Tuva Input Layer](../connectors/input-layer).  Every claims and clinical dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format.  The [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md) provides rules of thumb for how to do this, with a focus on the most common use-case, medical claims. 
+Next, run ```dbt build``` from the command line to build the entire project.  This will create thousands of data tables and views in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology) datasets will be loaded into your data warehouse.  This is pretty cool to see with a single command!
 
-### 4. dbt Build
+## 6. Explore Data and Docs
 
-Next, run ```dbt build``` from the command line to build the entire project.  This will create hundreds of data tables in your data warehouse.  Your source data will be transformed into the [Core Data Model](../core-data-model/overview), all [Data Marts](../data-marts/overview) will be built, and all [Terminology](../terminology) will be loaded into your data warehouse.  This is pretty cool to see with a single command!
-
-### 5. Data Quality Tests
-
-Next you need to run [Data Quality](../data-quality) to audit whether you mapped the data correctly.  Data Quality is our systematic approach for validating that we've mapped the source data correctly, identifying atomic-level data quality problems, and understanding the impact of those problems on analytics.
-
-### 6. Explore Data and Docs
-
-At this point you have now transformed you data into the Tuva data model and are ready to do data analysis.  
-
-dbt also comes with awesome documentation built-in.  You can run ```dbt docs generate``` to generate the docs and then ```dbt docs serve``` to serve up the docs to your localhost.  A web browser will open when you do this and you can explore the docs.
+At this point you have now transformed you data into the Tuva data model and are ready to do data analysis!  Check out the [Example SQL](example-sql) or [Dashboards](dashboards) pages to see examples of the types of analytics you can do out of the box on your data.  
 
 
 
