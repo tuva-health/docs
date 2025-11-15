@@ -15,7 +15,7 @@ const sidebars = {
       type: "category",
       label: "1. Connectors",
       items: [
-        "connectors/connectors-overview",
+        "connectors/overview",
         "connectors/building-a-connector",
         "connectors/claims-mapping-guide",
         "connectors/fhir-inferno",
