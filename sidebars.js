@@ -15,11 +15,9 @@ const sidebars = {
       type: "category",
       label: "1. Connectors",
       items: [
-        "connectors/connectors-overview",
+        "connectors/overview",
         "connectors/building-a-connector",
-        "connectors/claims-mapping-guide",
-        "connectors/fhir-inferno",
-        {
+                {
           type: "category",
           label: "Pre-Built Connectors",
           items: [
@@ -39,13 +37,10 @@ const sidebars = {
             "connectors/bamboo",
           ],
         },
+        "connectors/fhir-inferno",
       ],
     },
-    {
-      type: "doc",
-      id: "connectors/input-layer",
-      label: "2. Input Layer",
-    },
+    "input-layer",
     "data-quality-tests",
     {
       type: "category",
