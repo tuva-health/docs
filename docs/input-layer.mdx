@@ -1,0 +1,137 @@
+---
+id: input-layer
+title: "2. Input Layer"
+---
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import claimsMappingGuide from '@site/src/data/claims-mapping-guide.json';
+
+Here we document the Input Layer.  The Input Layer is like the API for the Tuva Project.  Once raw data sources (e.g. claims and medical records) are mapped to the Input Layer the rest of the Tuva Project runs automatically (i.e. core data model and all the data marts).  
+
+The Input Layer is designed to accomodate both claims and clinical data sources.
+
+**Click on any row in the data dictionaries below to expand the table and reveal additional context useful for mapping data to that column.**
+
+## Claims Input
+
+### eligibility
+
+The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member). Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.  Each record in the table is intended to represent a unique eligibility (i.e. enrollment) span for a patient with a specific health plan.
+
+**Primary Key:**
+   * person_id
+   * member_id
+   * enrollment_start_date
+   * enrollment_end_date
+   * payer
+   * plan
+   * data_source
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.eligibility.columns"
+  tableData={claimsMappingGuide.eligibility}
+/>
+
+### medical_claim
+
+The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers. It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  Each record in the table is intended to represent a unique claim line.
+
+**Primary Key:**
+  * claim_id
+  * claim_line_number
+  * data_source
+
+**Foreign Keys:**
+  * person_id
+  * member_id
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.medical_claim.columns"
+  tableData={claimsMappingGuide.medical_claim}
+/>
+
+### pharmacy_claim
+
+The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.  Each record in the table is intended to represent a unique claim line.
+
+**Primary Key:**
+  * claim_id
+  * claim_line_number
+  * data_source
+
+**Foreign Keys:**
+  * person_id
+  * member_id
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns"
+  tableData={claimsMappingGuide.pharmacy_claim}
+/>
+
+## Clinical Input
+
+### appointment
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.appointment.columns"
+/>
+
+### condition
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.condition.columns"
+/>
+
+### encounter
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.encounter.columns"
+/>
+
+### lab_result
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.lab_result.columns"
+/>
+
+### immunization
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.immunization.columns"
+/>
+
+### location
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.location.columns"
+/>
+
+### medication
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.medication.columns"
+/>
+
+### observation
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.observation.columns"
+/>
+
+### patient
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.patient.columns"
+/>
+
+### practitioner
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.practitioner.columns"
+/>
+
+### procedure
+
+<ExpandableTable
+  jsonPath="nodes.model\.input_layer\.procedure.columns"
+/>

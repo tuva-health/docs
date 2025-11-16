@@ -129,7 +129,7 @@ You now have a fully set-up connector repository, ready to convert raw claims da
   - Your environment is set up
   - The connector template is configured for claims data
 
-You’re ready to begin writing transformation logic in `staging/` and `intermediate/` folders.  For examples of how to structure the actual models you will use to standardize your data take a look at our Pre-Built Connectors. For a comprehensive guide to mapping claims data, take a look at the [Claims Mapping Guide](/docs/connectors/claims-mapping-guide.md). 
+You’re ready to begin writing transformation logic in `staging/` and `intermediate/` folders.  For examples of how to structure the actual models you will use to standardize your data take a look at our Pre-Built Connectors.  
 
 Mapping a data source to the Input Layer means creating dbt models in your dbt project for each of the Input Layer tables. That means that if you have a claims data source you will create dbt models for each of the [claims input](input-layer#claims-input) tables, and if you have a clinical data source you will create dbt models for each of the [clinical input](input-layer#clinical-input) tables.
 
