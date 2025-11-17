@@ -22,21 +22,11 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
       type: value.type,
       index: value.index
     }));
-    var parsedDataMan = Object.entries(dataMan).map(([key, value]) => {
-      var result = {
-        name: key,
-        description: value.description,
-        data_type: value.data_type
-      };
-      if (value.meta && value.meta.terminology) {
-        result.terminology = value.meta.terminology;
-      };
-      if (value.meta && value.meta.terminology_note) {
-        result.terminology_note = value.meta.terminology_note;
-      }
-      return result;
-
-    });
+    var parsedDataMan = Object.entries(dataMan).map(([key, value]) => ({
+      name: key,
+      description: value.description,
+      data_type: value.data_type
+    }));
     var parsedData = [];
     for (let i = 0; i < parsedDataCat.length; i++) {
       var pth = parsedDataCat[i].name.toLowerCase();
@@ -44,9 +34,7 @@ function parseJsonData(jsonDataMan, jsonDataCat, jsonPath) {
       parsedData[i] = {
         name: manObj ? manObj.name : parsedDataCat[i].name,
         type: manObj && manObj.data_type ? manObj.data_type : ((parsedDataCat[i].type === "TEXT") ? "varchar" : parsedDataCat[i].type.toLowerCase()),
-        description: manObj ? manObj.description : undefined,
-        terminology: manObj && manObj.terminology ? manObj.terminology : undefined,
-        terminology_note: manObj && manObj.terminology_note ? manObj.terminology_note : undefined
+        description: manObj ? manObj.description : undefined
       }
     }
     ;

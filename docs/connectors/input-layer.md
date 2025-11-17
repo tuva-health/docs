@@ -4,6 +4,8 @@ title: "Input Layer"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import claimsMappingGuide from '@site/src/data/claims-mapping-guide.json';
 
 The `Input Layer` is like the API for the Tuva data model.  Once raw data sources (e.g. claims and medical records) are mapped to the `Input Layer` code automatically transforms that data into the Tuva data model (i.e. core data model and all the data marts).  
 
@@ -28,6 +30,7 @@ The eligibility table includes information about a patient's health insurance co
    * data_source
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.eligibility.columns" />
+<ExpandableTable tableData={claimsMappingGuide.eligibility} />
 
 ### medical_claim
 
@@ -43,6 +46,7 @@ The medical_claim table contains information on healthcare services and supplies
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.medical_claim.columns" />
+<ExpandableTable tableData={claimsMappingGuide.medical_claim} />
 
 ### pharmacy_claim
 
@@ -58,6 +62,7 @@ The pharmacy_claim table includes information about retail and specialty drug pr
   * member_id
 
 <JsonDataTable jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns" />
+<ExpandableTable tableData={claimsMappingGuide.pharmacy_claim} />
 
 ## Clinical Input
 

@@ -4,13 +4,13 @@ title: "FHIR Inferno"
 hide_title: false
 ---
 
-[Code on Github](https://github.com/tuva-health/FHIR_inferno)
+Check out the code on **[GitHub](https://github.com/tuva-health/FHIR_inferno)**.
 
 Fast Healthcare Interoperability Resources (FHIR) has become one of the most common standards for healthcare data exchange.  FHIR data typically comes in nested, hierarchical JSON formats, making it challenging to use for data analysis.
 
 FHIR Inferno is a python utility that flattens FHIR as JSON into CSVs.  We use FHIR Inferno whenever processing FHIR data to convert it into a relational format prior to mapping to the [Input Layer](input-layer).
  
-## Instructions
+## Overview
 The first step is using FHIR Inferno to flatten nested JSON into tabular CSVs.  FHIR Inferno is a Python-based utility designed for this specific purpose.  In this section of the guide, we'll walk through the basic setup, configuration, and implementation of the tool.
 
 The core function of FHIR Inferno, the `parse` function, focuses on flattening FHIR data and creating structured tables.  The function applies a config file (an ini formatted configuration detailing the desired table output) to a FHIR resource, transforms it to a tabular format, and either writes the file to disk or returns the object to the caller.  The function can also optionally keep track of any file paths that were present in the FHIR resource that weren't known when the config was created, and write those paths to a separate file so the user can adjust configs and reprocess files if needed.
@@ -32,7 +32,7 @@ A number of parameters can be passed to the function that affect its behavior:
 
 The utility comes with out-of-the-box [configurations](https://github.com/tuva-health/FHIR_inferno/tree/main/configurations) for some common FHIR formats.  It also comes with [helper scripts](https://github.com/tuva-health/FHIR_inferno/tree/main/helper_scripts) that can assist in creating new config files from scratch based on the structure of a set of FHIR resources.
 
-### Setup and Configuration
+## Setup and Configuration
 We'll start by downloading the existing [configurations](https://github.com/tuva-health/FHIR_inferno/tree/main/configurations/configuration_Health_Gorilla) for Health Gorilla's flavor of FHIR. 
 
 These config files will tell FHIR Inferno what one table's output structure should look like, and where in the FHIR resources to find the data for each column.  The config files have a `GenConfig` section that defines some top level configurations about the transformation, and a `Struct` section that defines the columns.  Note that all of the configurations that can be passed to the function can also be set in the GenConfig section.
@@ -52,7 +52,7 @@ any new paths or structure changes and take any appropriate actions necessary.  
 In addition to the core function, FHIR Inferno contains various [helper scripts](https://github.com/tuva-health/FHIR_inferno/tree/main/helper_scripts) to help with the setup, configuration, and various processing of FHIR resources.  It contains scripts to analyze a batch of resources and 
 create configuration files, scripts to build configuration files, and scripts on examples on how to fully implement the solution.
 
-### Implementation
+## Implementation
 Once we have the transformation configs built, it's time to put FHIR Inferno into action.  In this example we want the tabular data FHIR Inferno create to be delivered to an AWS S3 bucket, so we'll build a lambda function that will process the files.  Our function will primarily work by processing all resources for a patient for a particular file type, running once daily and procesing all of the patients who were added in the last day, but it will also be built to be able to process one file at a time when triggered by an S3 event, if we decide to stream the messages in the future.
 
 It's going to use the return outputMode, so we can aggregate the bulk processed files and write the data as parquet to a separate S3 bucket.  It will then write the output as parquet to an S3 bucket, and manage the sqs queue if necessary.  We will then set up a snowpipe from our output S3 bucket, so files can flow into our Snowflake environment in real time.

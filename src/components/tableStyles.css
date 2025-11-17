@@ -48,6 +48,30 @@ th {
   width: calc(100% - 195px) !important; /* Remaining width for the second column */
 }
 
+.custom-expandable-table th.data-type-column,
+.custom-expandable-table td.data-type-column {
+  min-width: 195px !important;
+  max-width: 195px !important;
+}
+
+.custom-expandable-table th.description-column,
+.custom-expandable-table td.description-column {
+  width: calc(100% - 390px) !important;
+}
+
+.table-overview {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+[data-theme='dark'] .table-overview {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
+
 tr:hover {
   background-color: #F2F2F2 !important;
 }
