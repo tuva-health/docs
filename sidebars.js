@@ -172,6 +172,7 @@ const sidebars = {
   ],
 
   communitySidebar: [
+    "community/community-overview",
     "community/community-meetups",
     "community/manifesto",
   ],
