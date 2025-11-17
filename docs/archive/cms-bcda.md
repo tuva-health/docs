@@ -16,8 +16,6 @@ This process allows you to transforms data from CMS BCDA into the Tuva Data Mode
 
 We also created a demo project that leverages the sample CMS BCDA data [BCDA demo project](https://github.com/tuva-health/bcda_demo/).
 
-## Instructions
-
 ### Step 1: Flatten FHIR to CSVs
 
 #### Create configs for BCDA JSON files

@@ -4,11 +4,6 @@ title: "Aetna"
 hide_title: false
 ---
 
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 08-29-2025</em></small>
-</div>
-
-[Code on GitHub](https://github.com/tuva-health/aetna_connector)
 
 ## Aetna Data Overview
 1. The data dictionaries used in building this connector can be found [here](https://www.aetna.com/info/aetinfo/). This is a connector for the Universal Medical Eligibility 1000 File Record Layout for `eligibility` and the Universal Medical/Dental 1480 File Record Layout for `medical_claim`.

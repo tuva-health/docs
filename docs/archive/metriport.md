@@ -8,11 +8,7 @@ hide_title: false
 
 [Metriport](https://www.metriport.com/) offers clinical data from the largest health information networks in the country, via a single open-source API.
 
-### DataFlow
-
 ![Metriport Data Flow](/img/metriport/metriport-data-flow.png)
-
-## Instructions
 
 Metriport provides clinical data in the FHIR R4 JSON format.
 
