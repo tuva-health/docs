@@ -1,6 +1,6 @@
 ---
-id: tuva-variables
-title: "Tuva Variables"
+id: dbt-variables
+title: "dbt Variables"
 ---
 
 The Tuva Project includes a number of Data Marts and some Data Marts have optional parameters.  We use dbt variables to control the behavior of these parameters.  This section describes these variables and how to use them.

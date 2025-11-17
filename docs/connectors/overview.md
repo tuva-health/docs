@@ -13,31 +13,7 @@ A connector is a dbt project that contains SQL-based logic for transforming raw 
 
 The video below describes more about connectors.  For more details on building a custom connector to map your own data to the Tuva Project Input Layer, visit the next section on [Building a Connector](/docs/connectors/building-a-connector.md). 
 
-<iframe width="600" height="400" src="https://www.youtube.com/embed/dxH_qWgCoik?si=XB5D_-2p82IaJo8R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-### Pre-Built Connectors
-
 The Tuva Project also has a library of **Pre-Built Connectors** that you can use to map common claims or clinical data sources to the Tuva Input Layer. 
 
-**Claims Flat Files:**
-- [CMS CCLF](cms-cclf)
-- [CMS LDS](cms-lds)
-- [Aetna](aetna)
+<iframe width="600" height="400" src="https://www.youtube.com/embed/dxH_qWgCoik?si=XB5D_-2p82IaJo8R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**EHR Databases:**
-- [Athenahealth](athenahealth)
-- [Canvas](canvas)
-- [Cerner](cerner)
-- [Elation](elation)
-- [Epic](epic)
-- [Healthie](healthie)
-
-**FHIR:**
-- [FHIR Inferno](fhir-inferno)
-- [CMS BCDA](cms-bcda)
-- [Health Gorilla](health-gorilla)
-- [Metriport](metriport)
-- [Zus](zus)
-
-**ADT Flat Files:**
-- [Bamboo](bamboo)

@@ -67,7 +67,7 @@ vars:
   clinical_enabled: false
 ```
 
-4. (Optional) Set Tuva Variables.  Tuva ships with a number of Data Marts that use dbt variables to control their behavior.  You may need to set these variables.  For information on these variables see [Tuva Variables](tuva-variables.md).
+4. (Optional) Set Tuva Variables.  Tuva ships with a number of Data Marts that use dbt variables to control their behavior.  You may need to set these variables.  For information on these variables see [dbt Variables](../dbt-variables.md).
 
 ## Step 3: Clean Up the Models
 
