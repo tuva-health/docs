@@ -26,7 +26,7 @@ The general formula is:
 
 Where:
 - **Total Cost** = the dollar value of interest (e.g., total paid claims, allowed charges, pharmacy spend, etc.)
-- **Member Months** = the denominator, calculated as the sum of all enrolled members across all months in the measurement period. see [member month section](docs/knowledge/analytics/member-months.md) for more details. 
+- **Member Months** = the denominator, calculated as the sum of all enrolled members across all months in the measurement period. See [member month section](docs/knowledge/analytics/member-months.md) for more details. 
 
 For example:
 - If 1,000 members are enrolled for the entire year, that equals **12,000 member months**.
@@ -39,8 +39,17 @@ PMPM = $10,000,000 / 12,000 = $833
 
 ### Contributive PMPM
 
-In most medical economic or actuarial analysis when the objective is to understand the drivers of healthcare cost in a given population, PMPM cost is summarized at a population level, and then broken down across different dimensions such as service categories or conditions to understand their contribution to the total PMPM. In this type of *contributive* PMPM, values are ALWAYS divided by the total population member months so that PMPM for all sub-groups sum to the total PMPM. See the example below
+In most medical economic or actuarial analysis when the objective is to understand the drivers of healthcare cost in a given population, PMPM cost is summarized at a population level, and then broken down across different dimensions such as service categories or conditions to understand their contribution to the total PMPM. In this type of *contributive* PMPM, values are ALWAYS divided by the total population member months so that PMPM for all sub-groups sum to the total PMPM.
 
+Taking our 1,000 member population enrolled for the entire year and total spend of $10,000,000 again as the example:
+
+- Total PMPM = $10,000,000 / 12,000 = $833
+- Inpatient PMPM = $4,000,000 / 12,000 = $333
+- Office-based PMPM = $2,500,000 / 12,000 = $208
+- Outpatient PMPM = $2,500,000 / 12,000 = $208
+- Ancillary PMPM = $500,000 / 12,000 = $42
+- Other PMPM = $500,000 / 12,000 = $42
+- The sum of each service category PMPM equals the total PMPM: $333 + $208 + $208 + $42 + $42 = $833
 
 ### Relative PMPM
 
