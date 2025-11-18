@@ -20,11 +20,10 @@ This community is for healthcare data practitioners (analysts, researchers, data
 - **Don’t Post PHI:** Avoid a HIPAA violation :slightly_smiling_face:
 
 **Key Channels:**
-- **#announcements:** This is where we post important updates about the project (e.g. releases)
-- **#buildersask:** This is where you can ask questions about the Tuva Project (e.g. dbt is giving me a weird error should I do?)
-- **#dev-talk:** This is where we discuss work related to improving the Tuva Project code and/or docs
-- **#jobs:** This is where you can share links to healthcare data and analytics job openings
-- **#news:** This is where you can share articles, podcasts, blogs, etc., related to healthcare data and analytics
-- **#plugsandpromos:** This is where you can post about events outside of Tuva
+- **#announcements:** Where we post important updates about the project (e.g. releases)
+- **#buildersask:** Ask questions about the Tuva Project (e.g. dbt is giving me a weird error should I do?)
+- **#jobs:** Share links to healthcare data and analytics job openings
+- **#news:** Share articles, podcasts, blogs, etc., related to healthcare data and analytics
+- **#plugsandpromos:** Post about events outside of Tuva
 - **#random:** Go nuts :slightly_smiling_face:
-- **#tuva-github-updates:** This is for notifications about GitHub issues and PRs in the Tuva Project
+- **#tuva-github-updates:** Follow notifications about GitHub issues and PRs in the Tuva Project
