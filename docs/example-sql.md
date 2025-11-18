@@ -4,9 +4,7 @@ title: "Example SQL"
 toc_max_heading_level: 2
 ---
 
-The following queries run against the Tuva data model.  We do our best to keep these queries up to date and in the future will be versioning the queries along with the code base.
-
-While we strive to ensure the queries are written in general-purpose SQL, some may need modification to run on your particular data warehouse.
+The following SQL queries run against the Tuva data model.  These queries were built and tested using **Snowflake** and **Tuva version 0.15.4**.
 
 ## Acute Inpatient
 
@@ -76,14 +74,15 @@ order by 1,2
 
 ```sql
 select
-  ms_drg_code
-, ms_drg_description
+  drg_code
+, drg_description
+, drg_code_type
 , count(1) as count
 , cast(100 * count(distinct encounter_id)/sum(count(distinct encounter_id)) over() as numeric(38,1)) as percent
 from core.encounter
 where encounter_type = 'acute inpatient'
-group by 1,2
-order by 4 desc
+group by 1,2,3
+order by 5 desc
 ```
 </details>
 
@@ -92,16 +91,15 @@ order by 4 desc
 
 ```sql
 select
-  a.facility_npi
-, b.provider_organization_name
+  facility_id
+, facility_name
+, facility_type
 , count(1) as count
 , cast(100 * count(distinct encounter_id)/sum(count(distinct encounter_id)) over() as numeric(38,1)) as percent
-from core.encounter a
-left join terminology.provider b
- on a.facility_npi = b.npi
+from core.encounter
 where encounter_type = 'acute inpatient'
-group by 1,2
-order by 1,2
+group by 1,2,3
+order by 5 desc
 ```
 </details>
 
@@ -126,7 +124,7 @@ select
   data_source
 , year_month
 , count(1) as member_months
-from financial_pmpm.member_months
+from core.member_months
 group by 1,2
 )
 select
@@ -164,7 +162,7 @@ select
   data_source
 , year_month
 , count(1) as member_months
-from financial_pmpm.member_months
+from core.member_months
 group by 1,2
 )
 select
@@ -294,23 +292,18 @@ order by year_month
 with readmit as 
 (
 select
-rs.ms_drg_code
-,drg.ms_drg_description
+  drg_code
 , sum(case when index_admission_flag = 1 then 1 else 0 end) as index_admissions
 , sum(case when index_admission_flag = 1 and unplanned_readmit_30_flag = 1 then 1 else 0 end) as readmissions
-from readmissions.readmission_summary rs
-left join terminology.ms_drg drg on rs.ms_drg_code = drg.ms_drg_code
-group by 
-rs.ms_drg_code
-,drg.ms_drg_description
+from readmissions.readmission_summary
+group by 1
 )
 
 select 
-ms_drg_code
-,ms_drg_description
-,index_admissions
-,readmissions
-,case when readmissions = 0 then 0 else readmissions / index_admissions end as readmission_rate
+  drg_code
+, index_admissions
+, readmissions
+, case when readmissions = 0 then 0 else readmissions / index_admissions end as readmission_rate
 from readmit
 order by index_admissions desc
 ```
@@ -338,7 +331,6 @@ where disqualified_encounter_flag = 1
 We can see the reason(s) why an encounter was disqualified by unpivoting the disqualification reason column.
 
 ```sql
-
 with disqualified_unpivot as (
     select encounter_id
     , disqualified_reason
@@ -347,13 +339,13 @@ with disqualified_unpivot as (
     unpivot(
         flagvalue for disqualified_reason in (
             invalid_discharge_disposition_code_flag
-            , invalid_ms_drg_flag
+            , invalid_drg_flag
             , invalid_primary_diagnosis_code_flag
             , missing_admit_date_flag
             , missing_discharge_date_flag
             , admit_after_discharge_flag
             , missing_discharge_disposition_code_flag
-            , missing_ms_drg_flag
+            , missing_drg_flag
             , missing_primary_diagnosis_flag
             , no_diagnosis_ccs_flag
             , overlaps_with_another_encounter_flag
@@ -451,16 +443,13 @@ To view the number of PQIs at each facility in our claims dataset, we can group 
 
 ```sql
   select p.data_source
-  , p.facility_npi
+  , p.facility_id
   , l.name
   , count(*) as pqi_encounters_count
   from ahrq_measures.pqi_summary p
-  left join core.location l on p.facility_npi = l.npi
-  group by 
-    p.data_source
-  , p.facility_npi
-  , l.name
-  order by pqi_encounters_count desc
+  left join core.location l on p.facility_id = l.npi
+  group by 1,2,3
+  order by 3 desc
 ```
 </details>
 
@@ -482,7 +471,6 @@ from ahrq_measures.pqi_rate
 If you would like to aggregate the rate to a different level, we can use the numerator and denominator tables and calculate the rate.
 
 ```sql
-
 with num as (
     select
         data_source
@@ -501,7 +489,7 @@ with num as (
         data_source
       , year_number
       , pqi_number
-      , count(patient_id) as denom_count
+      , count(person_id) as denom_count
     from ahrq_measures.pqi_denom_long 
     group by
         data_source
@@ -570,13 +558,12 @@ In this query we show how often each chronic condition occurs in the patient pop
 
 ```sql
 select
-  condition_family
-, condition
-, count(distinct patient_id) as total_patients
-, cast(count(distinct patient_id) * 100.0 / (select count(distinct patient_id) from core.patient) as numeric(38,2)) as percent_of_patients
+  condition
+, count(distinct person_id) as total_patients
+, cast(count(distinct person_id) * 100.0 / (select count(distinct person_id) from core.patient) as numeric(38,2)) as percent_of_patients
 from chronic_conditions.tuva_chronic_conditions_long
-group by 1,2
-order by 3 desc
+group by 1
+order by 2 desc
 ```
 
 </details>
@@ -588,23 +575,22 @@ In this query we show how many patients have 0 chronic conditions, how many pati
 
 ```sql
 with patients as (
-select patient_id
+select person_id
 from core.patient
 )
 
 , conditions as (
 select distinct
-  a.patient_id
-, b.condition_family
+  a.person_id
 , b.condition
 from patients a
 left join chronic_conditions.tuva_chronic_conditions_long b
- on a.patient_id = b.patient_id
+ on a.person_id = b.person_id
 )
 
 , condition_count as (
 select
-  patient_id
+  person_id
 , count(distinct condition) as condition_count
 from conditions
 group by 1
@@ -613,7 +599,7 @@ group by 1
 select 
   condition_count
 , count(1)
-, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+, cast(100 * count(distinct person_id)/sum(count(distinct person_id)) over() as numeric(38,1)) as percent
 from condition_count
 group by 1
 order by 1
@@ -630,7 +616,7 @@ CMS-HCC is the risk adjustment model used by CMS.  Analyzing risk scores based o
 
 ```sql
 select
-    count(distinct patient_id) as patient_count
+    count(distinct person_id) as patient_count
     , avg(blended_risk_score) as average_blended_risk_score
     , avg(normalized_risk_score) as average_normalized_risk_score
     , avg(payment_risk_score) as average_payment_risk_score
@@ -648,12 +634,12 @@ select
     , patient.zip_code
     , avg(risk.payment_risk_score) as average_payment_risk_score
 from cms_hcc.patient_risk_scores as risk
-    inner join core.patient as patient
-        on risk.patient_id = patient.patient_id
+inner join core.patient as patient
+    on risk.person_id = patient.person_id
 group by
       patient.state
     , patient.city
-    , patient.zip_code;
+    , patient.zip_code
 ```
 </details>
 
@@ -719,7 +705,7 @@ Here we demonstrate the different types of patient demographics in Tuva and how 
 with patient_age as (
 select
   data_source
-, patient_id
+, person_id
 , floor(datediff(day, birth_date, current_date)/365) as age
 from core.patient
 )
@@ -727,7 +713,7 @@ from core.patient
 , age_groups as (
 select
   data_source
-, patient_id
+, person_id
 , age
 , case 
     when age >= 0 and age < 2 then '00-02'
@@ -748,8 +734,8 @@ from patient_age
 select
   data_source
 , age_group
-, count(distinct patient_id) as patient_count
-, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+, count(distinct person_id) as patient_count
+, cast(100 * count(distinct person_id)/sum(count(distinct person_id)) over() as numeric(38,1)) as percent
 from age_groups
 group by 1,2
 order by 1,2
@@ -762,8 +748,8 @@ order by 1,2
 ```sql
 select
   sex
-, count(distinct patient_id) as count
-, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+, count(distinct person_id) as count
+, cast(100 * count(distinct person_id)/sum(count(distinct person_id)) over() as numeric(38,1)) as percent
 from core.patient
 group by 1
 order by 1
@@ -776,8 +762,8 @@ order by 1
 ```sql
 select
   race
-, count(distinct patient_id) as count
-, cast(100 * count(distinct patient_id)/sum(count(distinct patient_id)) over() as numeric(38,1)) as percent
+, count(distinct person_id) as count
+, cast(100 * count(distinct person_id)/sum(count(distinct person_id)) over() as numeric(38,1)) as percent
 from core.patient
 group by 1
 order by 1
@@ -827,7 +813,7 @@ select
   data_source
 , year_month
 , count(1) as member_months
-from financial_pmpm.member_months
+from core.member_months
 group by 
   data_source
 , year_month
@@ -874,16 +860,16 @@ order by data_source
 select 
 data_source
 , TO_CHAR(encounter_end_date, 'YYYY') AS year_nbr
-, patient_id
+, person_id
 , COUNT(*) AS ed_visits
 from core.encounter
 where encounter_type = 'emergency department'
 group by data_source
 , TO_CHAR(encounter_end_date, 'YYYY')
-, patient_id
+, person_id
 ORDER BY ed_visits desc
 , year_nbr
-, patient_id
+, person_id
 ;
 ```
 </details>
@@ -895,18 +881,18 @@ ORDER BY ed_visits desc
 with visits as (
 select 
 data_source
-, patient_id
+, person_id
 , COUNT(*) AS ed_visits
 from core.encounter
 where encounter_type = 'emergency department'
 group by data_source
-, patient_id
+, person_id
 )
 
 ,members as (
-select distinct patient_id
+select distinct person_id
 ,data_source
-from financial_pmpm.member_months
+from core.member_months
 )
 
 ,members_total as (
@@ -915,11 +901,11 @@ from members
 )
 
 ,members_with_visits as (
-select m.patient_id
+select m.person_id
 ,m.data_source
 ,coalesce(v.ed_visits,0) as ed_visits
 from members m
-left join visits v on m.patient_id = v.patient_id
+left join visits v on m.person_id = v.person_id
 and
 m.data_source = v.data_source
 )
@@ -941,7 +927,7 @@ order by ed_visits
 ```sql
 
 select data_source
- ,count(distinct facility_npi) as ed_facilities_count
+ ,count(distinct facility_id) as ed_facilities_count
 from core.encounter e
 where encounter_type = 'emergency department'
 group by 
@@ -955,14 +941,14 @@ order by ed_facilities_count desc
 
 ```sql
 select 
- facility_npi
+ facility_id
 , COUNT(*) AS ed_visits
 , sum(cast(e.paid_amount as decimal(18,2))) as paid_amount
 , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
 from core.encounter e
 where encounter_type = 'emergency department'
 group by 
- facility_npi
+ facility_id
 ORDER BY ed_visits desc
 ;
 ```
@@ -1023,7 +1009,7 @@ order by visit_count desc
 ```sql
 with enc as 
 (
-select e.patient_id
+select e.person_id
 ,left(year_month,4) as year_nbr
 ,data_source
 ,count(distinct e.encounter_id) as potentially_preventable
@@ -1031,7 +1017,7 @@ select e.patient_id
 from core.encounter e 
 inner join ed_classification.summary s on e.encounter_id = s.encounter_id
 where ed_classification_description in ('Emergent, Primary Care Treatable','Non-Emergent','Emergent, ED Care Needed, Preventable/Avoidable')
-group by e.patient_id
+group by e.person_id
 ,data_source
 ,left(year_month,4) 
 )
@@ -1039,7 +1025,7 @@ group by e.patient_id
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -1054,7 +1040,7 @@ left join enc on my.year_nbr = enc.year_nbr
 and
 enc.data_source = my.data_source
 and
-enc.patient_id = my.patient_id
+enc.person_id = my.person_id
 group by my.data_source
 ,my.year_nbr
 ```
@@ -1125,37 +1111,33 @@ Since members often have more than one chronic condition, encounters are duplica
 WITH chronic_condition_members as 
 (
 SELECT DISTINCT 
-patient_id
+person_id
 FROM chronic_conditions.tuva_chronic_conditions_long
 )
 
 ,chronic_conditions as (
-SELECT patient_id
-, condition_family
+SELECT person_id
 , condition
 FROM chronic_conditions.tuva_chronic_conditions_long
 
 UNION 
 
-SELECT p.patient_id
-, 'No Chronic Conditions' as condition_family
+SELECT p.person_id
 , 'No Chronic Conditions' as Condition
 FROM core.patient p
-LEFT JOIN chronic_condition_members ccm on p.patient_id=ccm.patient_id
-where ccm.patient_id is null
+LEFT JOIN chronic_condition_members ccm on p.person_id=ccm.person_id
+where ccm.person_id is null
 )
 
 select cc.condition
-, cc.condition_family
 , count(*) as visit_count
 , sum(cast(e.paid_amount as decimal(18,2))) as paid_amount
 , cast(sum(e.paid_amount)/count(*) as decimal(18,2))as paid_per_visit
 from core.encounter e 
-left join chronic_conditions cc on e.patient_id = cc.patient_id
+left join chronic_conditions cc on e.person_id = cc.person_id
 where encounter_type = 'emergency department'
 group by 
 cc.condition
-, cc.condition_family
 order by visit_count desc
 ;
 ```
@@ -1208,7 +1190,7 @@ select
 data_source
 ,year_month
 ,count(*) as member_months
-from financial_pmpm.member_months
+from core.member_months
 group by 
 data_source
 ,year_month
@@ -1221,7 +1203,7 @@ select
   , claim_type
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.medical_claim mc
-inner join financial_pmpm.member_months mm on mc.patient_id = mm.patient_id
+inner join core.member_months mm on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 and
@@ -1258,40 +1240,38 @@ Here we calculate PMPM by chronic condition. Since members can and do have more 
 WITH chronic_condition_members as 
 (
 select distinct 
-patient_id
+person_id
 from chronic_conditions.tuva_chronic_conditions_long
 )
 
 ,chronic_conditions as (
-select patient_id
-, condition_family
+select person_id
 , condition
 from chronic_conditions.tuva_chronic_conditions_long
 
 UNION 
 
-select p.patient_id
-, 'No Chronic Conditions' as condition_family
+select p.person_id
 , 'No Chronic Conditions' as Condition
 from core.patient p
-left join chronic_condition_members ccm on p.patient_id=ccm.patient_id
-where ccm.patient_id is null
+left join chronic_condition_members ccm on p.person_id=ccm.person_id
+where ccm.person_id is null
 )
 
 ,medical_claims as (
 select 
   mc.data_source
-  , mc.patient_id
+  , mc.person_id
   , to_char(claim_start_date, 'YYYYMM') AS year_month
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.medical_claim mc
-inner join financial_pmpm.member_months mm on mc.patient_id = mm.patient_id
+inner join core.member_months mm on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 and
 to_char(mc.claim_start_date, 'YYYYMM') = mm.year_month
 group by mc.data_source
-, mc.patient_id
+, mc.person_id
 , to_char(claim_start_date, 'YYYYMM')
 )
 
@@ -1299,13 +1279,12 @@ select
 mm.data_source
 //,mm.year_month uncomment to view at month level
 ,cc.condition
-,cc.condition_family
 ,count(*) as member_months
 ,sum(mc.paid_amount) as paid_amount
 ,cast(sum(mc.paid_amount) / count(*) as decimal(18,2)) as medical_pmpm
-from financial_pmpm.member_months mm
-left join chronic_conditions cc on mm.patient_id = cc.patient_id
-left join medical_claims mc on mm.patient_id = mc.patient_id
+from core.member_months mm
+left join chronic_conditions cc on mm.person_id = cc.person_id
+left join medical_claims mc on mm.person_id = mc.person_id
 and 
 mm.year_month = mc.year_month
 and
@@ -1314,7 +1293,6 @@ group by
 mm.data_source
 //,mm.year_month
 ,cc.condition
-,cc.condition_family
 order by member_months desc
 ```
 </details>
@@ -1333,22 +1311,22 @@ with medical_claim as
 (
 select 
   data_source
-  , patient_id
+  , person_id
   , to_char(claim_start_date, 'YYYYMM') AS year_month
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.medical_claim
 GROUP BY data_source
-, patient_id
+, person_id
 , to_char(claim_start_date, 'YYYYMM')
 )
 
 select mm.data_source
 , mm.year_month
-, sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+, sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 , count(*) as total_member_months
-, cast(sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
-from financial_pmpm.member_months mm 
-left join medical_claim mc on mm.patient_id = mc.patient_id
+, cast(sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
+from core.member_months mm 
+left join medical_claim mc on mm.person_id = mc.person_id
 and
 mm.data_source = mc.data_source
 and
@@ -1367,25 +1345,25 @@ order by data_source
 with medical_claims as (
 select 
   data_source
-  , patient_id
+  , person_id
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.medical_claim
 GROUP BY data_source
-, patient_id
+, person_id
 )
 
 , members as (
-select distinct patient_id
+select distinct person_id
 ,data_source
-from financial_pmpm.member_months
+from core.member_months
 )
 
 select mm.data_source
-,sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 ,count(*) as members
-,sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
 from members mm
-left join medical_claims mc on mc.patient_id = mm.patient_id
+left join medical_claims mc on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 group by mm.data_source
@@ -1401,11 +1379,11 @@ group by mm.data_source
 
 select 
   mc.data_source
-  , sum(case when mm.patient_id is not null then 1 else 0 end) as claims_with_enrollment
+  , sum(case when mm.person_id is not null then 1 else 0 end) as claims_with_enrollment
   , count(*) as claims
-  , cast(sum(case when mm.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
+  , cast(sum(case when mm.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
 from core.medical_claim mc
-left join financial_pmpm.member_months mm on mc.patient_id = mm.patient_id
+left join core.member_months mm on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 and
@@ -1426,22 +1404,22 @@ with pharmacy_claim as
 (
 select 
   data_source
-  , patient_id
+  , person_id
   , to_char(paid_date, 'YYYYMM') AS year_month
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.pharmacy_claim
 GROUP BY data_source
-, patient_id
+, person_id
 , to_char(paid_date, 'YYYYMM')
 )
 
 select mm.data_source
 , mm.year_month
-, sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+, sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 , count(*) as total_member_months
-, cast(sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
-from financial_pmpm.member_months mm 
-left join pharmacy_claim mc on mm.patient_id = mc.patient_id
+, cast(sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percent_members_with_claims
+from core.member_months mm 
+left join pharmacy_claim mc on mm.person_id = mc.person_id
 and
 mm.data_source = mc.data_source
 and
@@ -1460,25 +1438,25 @@ order by data_source
 with pharmacy_claim as (
 select 
   data_source
-  , patient_id
+  , person_id
   , cast(sum(paid_amount) as decimal(18,2)) AS paid_amount
 from core.pharmacy_claim
 GROUP BY data_source
-, patient_id
+, person_id
 )
 
 , members as (
-select distinct patient_id
+select distinct person_id
 ,data_source
-from financial_pmpm.member_months
+from core.member_months
 )
 
 select mm.data_source
-,sum(case when mc.patient_id is not null then 1 else 0 end) as members_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) as members_with_claims
 ,count(*) as members
-,sum(case when mc.patient_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
+,sum(case when mc.person_id is not null then 1 else 0 end) / count(*) as percentage_with_claims
 from members mm
-left join pharmacy_claim mc on mc.patient_id = mm.patient_id
+left join pharmacy_claim mc on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 group by mm.data_source
@@ -1493,11 +1471,11 @@ group by mm.data_source
   ```sql
 select 
   mc.data_source
-  , sum(case when mm.patient_id is not null then 1 else 0 end) as claims_with_enrollment
+  , sum(case when mm.person_id is not null then 1 else 0 end) as claims_with_enrollment
   , count(*) as claims
-  , cast(sum(case when mm.patient_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
+  , cast(sum(case when mm.person_id is not null then 1 else 0 end) / count(*) as decimal(18,2)) as percentage_claims_with_enrollment
 from core.pharmacy_claim mc
-left join financial_pmpm.member_months mm on mc.patient_id = mm.patient_id
+left join core.member_months mm on mc.person_id = mm.person_id
 and
 mc.data_source = mm.data_source
 and
@@ -1515,15 +1493,14 @@ GROUP BY mc.data_source
 ```sql
 select 
 data_source
-,prescribing_provider_npi
+,prescribing_provider_id
 ,sum(paid_amount) as pharmacy_paid_amount
 ,sum(days_supply) as pharmacy_days_supply
 from core.pharmacy_claim
 group by 
 data_source
-,prescribing_provider_npi
+,prescribing_provider_id
 order by pharmacy_paid_amount desc
-
 ```
 </details>
 
@@ -1533,11 +1510,11 @@ order by pharmacy_paid_amount desc
 ```sql
 select 
 data_source
-,dispensing_provider_npi
+,dispensing_provider_id
 ,sum(paid_amount) as pharmacy_paid_amount
 ,sum(days_supply) as pharmacy_days_supply
 from core.pharmacy_claim
-group by dispensing_provider_npi
+group by dispensing_provider_id
 ,data_source
 order by pharmacy_paid_amount desc
 ```
@@ -1594,7 +1571,7 @@ select
   , g.generic_prescribed_history
   , g.brand_paid_per_unit
   , g.generic_cost_per_unit
-  , sum(g.generic_available_total_opportunity) as generic_available_total_opportunity
+  , sum(e.generic_available_total_opportunity) as generic_available_total_opportunity
 from pharmacy.pharmacy_claim_expanded as e
 inner join pharmacy.generic_available_list as g
   on e.generic_available_sk = g.generic_available_sk
@@ -1628,7 +1605,7 @@ select
   , g.generic_prescribed_history
   , g.brand_paid_per_unit
   , g.generic_cost_per_unit
-  , sum(g.generic_available_total_opportunity) as generic_available_total_opportunity
+  , sum(e.generic_available_total_opportunity) as generic_available_total_opportunity
 from pharmacy.pharmacy_claim_expanded as e
 inner join pharmacy.generic_available_list as g
   on e.generic_available_sk = g.generic_available_sk
@@ -1667,8 +1644,8 @@ m.data_source
 ,TO_CHAR(claim_start_date, 'YYYYMM') AS year_month
 ,sum(paid_amount) as primary_care_paid_amount
 from core.medical_claim m
-inner join core.practitioner p on coalesce(m.rendering_npi,m.billing_npi) = p.npi
-inner join financial_pmpm.member_months mm on m.patient_id = mm.patient_id
+inner join core.practitioner p on coalesce(m.rendering_id,m.billing_id) = p.npi
+inner join core.member_months mm on m.person_id = mm.person_id
 and
 m.data_source = mm.data_source
 and
@@ -1722,10 +1699,10 @@ select
 m.data_source
 ,TO_CHAR(claim_start_date, 'YYYY') AS year_nbr
 ,count(distinct claim_id) as visit_count
-,m.patient_id
+,m.person_id
 from core.medical_claim m
-inner join core.practitioner p on coalesce(m.rendering_npi,m.billing_npi) = p.npi
-inner join financial_pmpm.member_months mm on m.patient_id = mm.patient_id
+inner join core.practitioner p on coalesce(m.rendering_id,m.billing_id) = p.npi
+inner join core.member_months mm on m.person_id = mm.person_id
 and
 m.data_source = mm.data_source
 and
@@ -1735,27 +1712,27 @@ and
 p.specialty in ('Family Medicine','Internal Medicine','Obstetrics & Gynecology','Pediatric Medicine','Physician Assistant','Nurse Practitioner')
 group by TO_CHAR(claim_start_date, 'YYYY')
 ,m.data_source
-,m.patient_id
+,m.person_id
 )
 
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
 select my.data_source
 ,my.year_nbr
 ,sum(pc.visit_count) as primary_visit_count
-,count(distinct my.patient_id) as member_count
-,sum(pc.visit_count)/count(distinct my.patient_id) as primary_care_visits_per_member
+,count(distinct my.person_id) as member_count
+,sum(pc.visit_count)/count(distinct my.person_id) as primary_care_visits_per_member
 from member_year my
 left join primary_care pc on my.data_source = pc.data_source
 and
 my.year_nbr = pc.year_nbr
 and
-my.patient_id = pc.patient_id
+my.person_id = pc.person_id
 group by 
 my.data_source
 ,my.year_nbr
@@ -1775,10 +1752,10 @@ select
 m.data_source
 ,TO_CHAR(claim_start_date, 'YYYY') AS year_nbr
 ,count(distinct claim_id) as visit_count
-,m.patient_id
+,m.person_id
 from core.medical_claim m
-inner join core.practitioner p on coalesce(m.rendering_npi,m.billing_npi) = p.npi
-inner join financial_pmpm.member_months mm on m.patient_id = mm.patient_id
+inner join core.practitioner p on coalesce(m.rendering_id,m.billing_id) = p.npi
+inner join core.member_months mm on m.person_id = mm.person_id
 and
 m.data_source = mm.data_source
 and
@@ -1788,13 +1765,13 @@ and
 p.specialty in ('Family Medicine','Internal Medicine','Obstetrics & Gynecology','Pediatric Medicine','Physician Assistant','Nurse Practitioner')
 group by TO_CHAR(claim_start_date, 'YYYY')
 ,m.data_source
-,m.patient_id
+,m.person_id
 )
 
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -1808,7 +1785,7 @@ left join primary_care pc on my.data_source = pc.data_source
 and
 my.year_nbr = pc.year_nbr
 and
-my.patient_id = pc.patient_id
+my.person_id = pc.person_id
 group by 
 my.data_source
 ,my.year_nbr
@@ -1827,16 +1804,16 @@ year_nbr
 
 ```sql
 select 
-coalesce(m.rendering_npi,m.billing_npi) as primary_care_provider_npi
+coalesce(m.rendering_id,m.billing_id) as primary_care_provider_npi
 ,p.provider_first_name || ' '|| provider_last_name as primary_care_provider_name
 ,count(distinct claim_id) as visit_count
 ,sum(paid_amount) as paid_amount
 from core.medical_claim m
-inner join core.practitioner p on coalesce(m.rendering_npi,m.billing_npi) = p.npi
+inner join core.practitioner p on coalesce(m.rendering_id,m.billing_id) = p.npi
 where service_category_2 in ('Office Visit','Outpatient Hospital or Clinic')
 and
 p.specialty in ('Family Medicine','Internal Medicine','Obstetrics & Gynecology','Pediatric Medicine','Physician Assistant','Nurse Practitioner')
-group by coalesce(m.rendering_npi,m.billing_npi) 
+group by coalesce(m.rendering_id,m.billing_id) 
 ,p.provider_first_name || ' '|| provider_last_name
 order by visit_count desc
 ```
@@ -1853,14 +1830,14 @@ Urgent Care serves as a low-cost solution when compared to the Emergency Departm
 
 ```sql
 select 
-mc.billing_npi
+mc.billing_id
 ,l.name
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as visits
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as visits
 ,sum(coalesce(mc.paid_amount,0)) as paid_amount
 from core.medical_claim mc
-left join core.location l on mc.billing_npi=l.npi
+left join core.location l on mc.billing_id=l.npi
 where service_category_2 = 'Urgent Care'
-group by mc.billing_npi
+group by mc.billing_id
 ,l.name
 order by paid_amount desc
 ```
@@ -1872,27 +1849,27 @@ order by paid_amount desc
 ```sql
 with uc as 
 (
-select mc.patient_id
+select mc.person_id
 ,mc.data_source
 ,to_char(claim_start_date, 'yyyy') as year_nbr
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as visits
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as visits
 ,sum(mc.paid_amount) as paid_amount
 from core.medical_claim mc
 where service_category_2 = 'Urgent Care'
-group by mc.patient_id
+group by mc.person_id
 ,mc.data_source
 ,to_char(claim_start_date, 'yyyy')
 )
 
 ,member_year as (
 select data_source
-,patient_id
+,person_id
 ,left(year_month,4) as year_nbr
 ,count(*) as member_months
 from financial_pmpm.pmpm_prep pmpm
 group by 
  data_source
-,patient_id
+,person_id
 ,left(year_month,4) 
 )
 
@@ -1906,7 +1883,7 @@ select my.data_source
 from member_year my 
 left join uc on uc.data_source = my.data_source
 and
-uc.patient_id = my.patient_id
+uc.person_id = my.person_id
 group by my.data_source
 ,my.year_nbr
 order by data_source
@@ -1922,14 +1899,14 @@ order by data_source
 
 with enc as 
 (
-select mc.patient_id
+select mc.person_id
 ,to_char(claim_start_date, 'yyyy') as year_nbr
 ,mc.data_source
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as urgent_care
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as urgent_care
 ,sum(mc.paid_amount) as paid_amount
 from core.medical_claim mc
 where service_category_2 = 'Urgent Care'
-group by mc.patient_id
+group by mc.person_id
 ,mc.data_source
 ,to_char(claim_start_date, 'yyyy')
 )
@@ -1937,7 +1914,7 @@ group by mc.patient_id
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -1952,7 +1929,7 @@ left join enc on my.year_nbr = enc.year_nbr
 and
 enc.data_source = my.data_source
 and
-enc.patient_id = my.patient_id
+enc.person_id = my.person_id
 group by my.data_source
 ,my.year_nbr
 ```
@@ -1969,26 +1946,26 @@ group by my.data_source
 
 with uc as 
 (
-select mc.patient_id
+select mc.person_id
 ,to_char(claim_start_date, 'yyyy') as year_nbr
 ,mc.data_source
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as visits
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as visits
 ,sum(mc.paid_amount) as paid_amount
 from core.medical_claim mc
 where service_category_2 = 'Urgent Care'
-group by mc.patient_id
+group by mc.person_id
 ,mc.data_source
 ,to_char(claim_start_date, 'yyyy')
 )
 
 ,ed as (
-select e.patient_id
+select e.person_id
 ,to_char(encounter_start_date, 'yyyy') as year_nbr
 ,data_source
 ,count(distinct e.encounter_id) as visits
 ,sum(e.paid_amount) as paid_amount
 from core.encounter e 
-group by e.patient_id
+group by e.person_id
 ,data_source
 ,to_char(encounter_start_date, 'yyyy')
 )
@@ -1996,7 +1973,7 @@ group by e.patient_id
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -2009,12 +1986,12 @@ left join ed on my.year_nbr = ed.year_nbr
 and
 ed.data_source = my.data_source
 and
-ed.patient_id = my.patient_id
+ed.person_id = my.person_id
 left join uc on my.year_nbr = uc.year_nbr
 and
 uc.data_source = my.data_source
 and
-uc.patient_id = my.patient_id
+uc.person_id = my.person_id
 group by my.data_source
 ,my.year_nbr
 ```
@@ -2027,34 +2004,34 @@ group by my.data_source
 
 with uc as 
 (
-select mc.patient_id
+select mc.person_id
 ,mc.data_source
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as visits
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as visits
 ,sum(mc.paid_amount) as paid_amount
 from core.medical_claim mc
 where service_category_2 = 'Urgent Care'
-group by mc.patient_id
+group by mc.person_id
 ,mc.data_source
 )
 
 ,ed as (
-select e.patient_id
+select e.person_id
 ,data_source
 ,count(distinct e.encounter_id) as visits
 ,sum(e.paid_amount) as paid_amount
 from core.encounter e 
-group by e.patient_id
+group by e.person_id
 ,data_source
 )
 
 ,member_year as (
 select distinct data_source
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
 select my.data_source
-,my.patient_id
+,my.person_id
 ,coalesce(uc.visits,0) as urgent_care_visits
 ,coalesce(ed.visits,0) as ed_visits
 ,cast(coalesce(uc.paid_amount,0) as decimal(18,2)) as urgent_care_paid_amount
@@ -2062,13 +2039,13 @@ select my.data_source
 from member_year my 
 left join ed on ed.data_source = my.data_source
 and
-ed.patient_id = my.patient_id
+ed.person_id = my.person_id
 left join uc on uc.data_source = my.data_source
 and
-uc.patient_id = my.patient_id
-where uc.patient_id is not null
+uc.person_id = my.person_id
+where uc.person_id is not null
 OR
-ed.patient_id is not null
+ed.person_id is not null
 order by ed_visits desc
 
 ```
@@ -2081,26 +2058,26 @@ order by ed_visits desc
 
 with uc as 
 (
-select mc.patient_id
+select mc.person_id
 ,to_char(claim_start_date, 'yyyy') as year_nbr
 ,mc.data_source
-,count(distinct concat(mc.patient_id,mc.data_source,claim_start_date)) as visits
+,count(distinct concat(mc.person_id,mc.data_source,claim_start_date)) as visits
 ,sum(mc.paid_amount) as paid_amount
 from core.medical_claim mc
 where service_category_2 = 'Urgent Care'
-group by mc.patient_id
+group by mc.person_id
 ,mc.data_source
 ,to_char(claim_start_date, 'yyyy')
 )
 
 ,ed as (
-select e.patient_id
+select e.person_id
 ,to_char(encounter_start_date, 'yyyy') as year_nbr
 ,data_source
 ,count(distinct e.encounter_id) as visits
 ,sum(e.paid_amount) as paid_amount
 from core.encounter e 
-group by e.patient_id
+group by e.person_id
 ,data_source
 ,to_char(encounter_start_date, 'yyyy')
 )
@@ -2108,7 +2085,7 @@ group by e.patient_id
 ,member_year as (
 select distinct data_source
 ,left(year_month,4) as year_nbr
-,patient_id
+,person_id
 from financial_pmpm.pmpm_prep pmpm
 )
 
@@ -2122,12 +2099,12 @@ left join ed on my.year_nbr = ed.year_nbr
 and
 ed.data_source = my.data_source
 and
-ed.patient_id = my.patient_id
+ed.person_id = my.person_id
 left join uc on my.year_nbr = uc.year_nbr
 and
 uc.data_source = my.data_source
 and
-uc.patient_id = my.patient_id
+uc.person_id = my.person_id
 group by my.data_source
 ,my.year_nbr
 ```
