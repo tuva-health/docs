@@ -20,13 +20,9 @@ The Core Data Model has many data tables that have similar representations to re
 
 ## Comparison to OMOP
 
-OMOP is one of the oldest and most well-known common data models in healthcare.  It was originally developed in 2007 as part of a drug safety surveillance project within the FDA and is now governed by the OHDSI project.  
+OMOP is one of the oldest and most well-known common data models in healthcare.  It was originally developed in 2007 as part of a drug safety surveillance project within the FDA and is now governed by the OHDSI project.  We were familiar with OMOP prior to starting Tuva, and at the very beginning of the project spent several months exploring and seriously considering the possibility of building on top of OMOP.
 
-We were familiar with OMOP prior to starting Tuva, and at the very beginning of the project spent several months exploring and seriously considering the possibility of building on top of OMOP.
-
-Ultimately we decided against this for a few reasons.  First, the way OMOP models claims data makes it difficult to import claims data into the model.  Claims data comes in many different formats, but typically includes a medical claim table, a pharmacy claim table, and eligibility table.  In OMOP there are no corresponding tables that are close to these entities.  While it is possible to map claims data to OMOP, it takes very significant transformation to do so.
-
-Second, it's difficult to build data marts that leverage claims information on top of OMOP.  Early in the Tuva project, a principal goal was to build a library of data marts that make it easy to do analytics in value based care.  The more we got into the design of these data marts, the more we realized that doing so on top of OMOP was going to be a square-peg-round-hole sort of problem.
+Ultimately we decided against using OMOP as our common data model because of the way OMOP handles claims data.  Specifically, the way OMOP models claims data makes it difficult to import claims data into the model.  Claims data comes in many different formats, but typically includes a medical claim table, a pharmacy claim table, and eligibility table.  In OMOP there are no corresponding tables that are close to these entities in terms of structure.  While it is possible to map claims data to OMOP, it takes very significant transformation to do so.
 
 
 
