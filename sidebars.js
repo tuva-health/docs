@@ -30,6 +30,7 @@ const sidebars = {
         "core-data-model/location",
         "core-data-model/medical-claim",
         "core-data-model/medication",
+        "core-data-model/member-months",
         "core-data-model/observation",
         "core-data-model/patient",
         "core-data-model/person_id_crosswalk",
