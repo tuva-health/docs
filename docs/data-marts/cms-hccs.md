@@ -26,7 +26,7 @@ In the diagram below we provide an overview explanation of how the data mart wor
 
 <iframe width="780" height="520" src="https://miro.com/app/live-embed/uXjVNq_Lq74=/?moveToViewport=-555,-812,2164,1037&embedId=161883269913" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
-In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../connectors/input-layer).  These are the only data elements required.
+In order to run the CMS-HCC data mart you need to map the following data elements to the [Input Layer](../input-layer).  These are the only data elements required.
 
 **Eligibility:**
 - person_id

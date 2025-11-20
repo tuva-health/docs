@@ -15,7 +15,7 @@ To run Tuva you need to do the following:
 1. Load your healthcare data (e.g. claims, EHR) into a data warehouse (e.g. Snowflake, Databricks)
 2. Install [dbt](https://docs.getdbt.com/docs/core/installation-overview) -- a free open-source tool for transforming data inside your data warehouse
 3. Create a new dbt project and connect that project to your data warehouse
-4. Map your raw healthcare data to the Tuva [Input Layer](../connectors/input-layer)
+4. Map your raw healthcare data to the Tuva [Input Layer](input-layer)
 5. Import the Tuva package into your dbt project
 6. Run the entire dbt project (i.e. execute "dbt build")
 
@@ -49,7 +49,7 @@ Next, you'll want to add a "generate schema" macro to your macros folder in the 
 
 ## 3. Map Your Raw Data
 
-The next step is mapping your data to the [Tuva Input Layer](../connectors/input-layer).  Every healthcare dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  We call this "mapping".  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format. 
+The next step is mapping your data to the [Tuva Input Layer](input-layer).  Every healthcare dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  We call this "mapping".  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format. 
 
 Check out the Input Layer data dictionaries for advice on mapping specific tables and columns.  
 
