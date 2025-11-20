@@ -49,7 +49,7 @@ Next, you'll want to add a "generate schema" macro to your macros folder in the 
 
 ## 3. Map Your Raw Data
 
-The next step is mapping your data to the [Tuva Input Layer](input-layer).  Every healthcare dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  We call this "mapping".  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format. 
+The next step is mapping your data to the [Tuva Input Layer](input-layer).  Every healthcare dataset comes in its own schema (i.e. set of tables and columns).  Before you can use Tuva you need to convert your schema to the Tuva Input Layer.  We call this "mapping".  Do this by creating models (i.e. SQL files) in your dbt project to transform your data into the Input Layer format.
 
 Check out the Input Layer data dictionaries for advice on mapping specific tables and columns.  
 

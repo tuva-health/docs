@@ -137,6 +137,10 @@ const config = {
             to: '/input-layer',
           },
           {
+            from: '/connectors/input-layer',
+            to: '/input-layer',
+          },
+          {
             from: '/guides/data-source-setup/audit',
             to: '/data-quality-tests',
           },
