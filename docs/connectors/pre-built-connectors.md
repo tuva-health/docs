@@ -161,7 +161,7 @@ From here you're ready to import the Tuva package and run `dbt build` to populat
 
 ## CMS CCLF
 
-The Medicare CCLF Connector maps CMS's Claim and Claim Line Feed (CCLF) data model to the Tuva [Input Layer](input-layer). CCLF data are claims data files that are made available to organizations that participate in value-based payment programs (e.g., the Medicare Shared Savings 
+The Medicare CCLF Connector maps CMS's Claim and Claim Line Feed (CCLF) data model to the Tuva [Input Layer](../input-layer). CCLF data are claims data files that are made available to organizations that participate in value-based payment programs (e.g., the Medicare Shared Savings 
 Program).
 
 Working with CCLF data can be challenging. The data will be duplicated in many ways. You will receive regular files and run-out files, which often overlap. The other challenge is that member and claim identifiers may shift over time.

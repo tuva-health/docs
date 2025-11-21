@@ -62,7 +62,7 @@ It's common for data providers to only share a subset of available data based on
 
 For example, is bill_type_code important?  Which use cases (e.g. metrics) can't I pursue if I don't get this field?  These are the types of questions you'll need to think through and be able to answer.
 
-It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](../connectors/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
+It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
 
 ## Adjustments, Denials, and Reversals
 

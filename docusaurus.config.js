@@ -134,7 +134,11 @@ const config = {
           // Deleted guides pages - redirect to relevant new pages
           {
             from: '/guides/data-source-setup/ingestion',
-            to: '/connectors/input-layer',
+            to: '/input-layer',
+          },
+          {
+            from: '/connectors/input-layer',
+            to: '/input-layer',
           },
           {
             from: '/guides/data-source-setup/audit',

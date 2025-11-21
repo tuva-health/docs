@@ -8,7 +8,7 @@ Check out the code on **[GitHub](https://github.com/tuva-health/FHIR_inferno)**.
 
 Fast Healthcare Interoperability Resources (FHIR) has become one of the most common standards for healthcare data exchange.  FHIR data typically comes in nested, hierarchical JSON formats, making it challenging to use for data analysis.
 
-FHIR Inferno is a python utility that flattens FHIR as JSON into CSVs.  We use FHIR Inferno whenever processing FHIR data to convert it into a relational format prior to mapping to the [Input Layer](input-layer).
+FHIR Inferno is a python utility that flattens FHIR as JSON into CSVs.  We use FHIR Inferno whenever processing FHIR data to convert it into a relational format prior to mapping to the [Input Layer](../input-layer).
  
 ## Overview
 The first step is using FHIR Inferno to flatten nested JSON into tabular CSVs.  FHIR Inferno is a Python-based utility designed for this specific purpose.  In this section of the guide, we'll walk through the basic setup, configuration, and implementation of the tool.

@@ -7,7 +7,7 @@ hide_title: true
 
 # 1. Connectors
 
-A connector is a dbt project that contains SQL-based logic for transforming raw healthcare data sources (e.g. claims data, EHR data) into the Tuva [Input Layer](input-layer.md).  The Tuva package expects data to be in the Input Layer format.  Once your data is transformed into the Input Layer format, you can run the entire Tuva package on your data with a single command.
+A connector is a dbt project that contains SQL-based logic for transforming raw healthcare data sources (e.g. claims data, EHR data) into the Tuva [Input Layer](../input-layer).  The Tuva package expects data to be in the Input Layer format.  Once your data is transformed into the Input Layer format, you can run the entire Tuva package on your data with a single command.
 
 ![Connectors](/img/Connectors.jpg)
 
