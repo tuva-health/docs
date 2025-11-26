@@ -4,9 +4,9 @@ title: "Appointment"
 ---
 
 import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { CoreModelDescription } from '@site/src/components/CoreModelDescription';
 
-The appointment table contains information related to appointments at a healthcare facility. 
-This table may include canceled, completed, or scheduled events.
+<CoreModelDescription modelName="core__appointment" />
 
 **Primary Key:**
   * appointment_id
@@ -17,6 +17,4 @@ This table may include canceled, completed, or scheduled events.
   * encounter_id
 
 <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__appointment.columns" />
-
-
 

@@ -5,6 +5,7 @@ title: "2. Input Layer"
 
 import ExpandableTable from '@site/src/components/ExpandableTable';
 import claimsMappingGuide from '@site/src/data/claims-mapping-guide.json';
+import { CoreModelDescription } from '@site/src/components/CoreModelDescription';
 
 Here we document the Input Layer.  The Input Layer is like the API for the Tuva Project.  Once raw data sources (e.g. claims and medical records) are mapped to the Input Layer the rest of the Tuva Project runs automatically (i.e. core data model and all the data marts).  
 
@@ -16,7 +17,10 @@ The Input Layer is designed to accomodate both claims and clinical data sources.
 
 ### eligibility
 
-The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member). Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.  Each record in the table is intended to represent a unique eligibility (i.e. enrollment) span for a patient with a specific health plan.
+<CoreModelDescription
+  modelName="input_layer__eligibility"
+  yamlPath="models/input_layer/input_layer__eligibility.yml"
+/>
 
 **Primary Key:**
    * person_id
