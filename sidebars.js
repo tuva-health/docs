@@ -15,7 +15,15 @@ const sidebars = {
       ],
     },
     "input-layer",
-    "data-quality-tests",
+    {
+      type: "category",
+      label: "3. Data Quality",
+      items: [
+        "data-quality-overview",
+        "data-pipeline-tests",
+        "data-quality-dashboard",
+      ],
+    },
     {
       type: "category",
       label: "4. Core Data Model",

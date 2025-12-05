@@ -50,8 +50,8 @@ th {
 
 .custom-expandable-table th.wide-column,
 .custom-expandable-table td.wide-column {
-  min-width: 220px !important;
-  width: 30% !important;
+  min-width: 160px !important;
+  width: 20% !important;
 }
 
 .custom-expandable-table th.narrow-column,
@@ -62,7 +62,7 @@ th {
 
 .custom-expandable-table th.description-column,
 .custom-expandable-table td.description-column {
-  width: calc(100% - 400px) !important;
+  width: calc(100% - 350px) !important;
 }
 
 .table-overview {
