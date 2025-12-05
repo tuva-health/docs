@@ -3,12 +3,15 @@ id: location
 title: "Location"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The location table contains information on practice and facility locations 
-where patients receive medical care.
+<TableDescription
+  modelName="core__location"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * location_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__location.columns" />
+<ExpandableTable
+  modelName="core__location"
+  yamlPath="models/core/core_models.yml"
+/>

@@ -43,7 +43,7 @@ async function loadModelDescription(modelName, yamlPath, branch) {
     .join(' ');
 }
 
-export function CoreModelDescription({
+export function TableDescription({
   modelName,
   yamlPath = DEFAULT_YAML_PATH,
   branch = DEFAULT_BRANCH,
@@ -82,4 +82,4 @@ export function CoreModelDescription({
   return description ? <p>{description}</p> : null;
 }
 
-export default CoreModelDescription;
+export default TableDescription;

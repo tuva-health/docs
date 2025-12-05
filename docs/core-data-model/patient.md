@@ -3,14 +3,15 @@ id: patient
 title: "Patient"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The patient table describes the attributes of a patient that are unchanging over 
-time (e.g. biological sex, birth date, etc.).  The vast majority of healthcare 
-analytics use cases involve analyzing things that happen to patients, so it's 
-critical to have a clean patient table that contains this information.
+<TableDescription
+  modelName="core__patient"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * person_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__patient.columns" />
+<ExpandableTable
+  modelName="core__patient"
+  yamlPath="models/core/core_models.yml"
+/>

@@ -3,18 +3,15 @@ id: lab-result
 title: "Lab Result"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The lab result table contains information about lab test results, 
-including the LOINC code and description, units, reference range, and 
-result.
+<TableDescription
+  modelName="core__lab_result"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * lab_result_id
-
-**Foreign Keys:**
-  * person_id
-  * patient_id
-  * encounter_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__lab_result.columns" />
+<ExpandableTable
+  modelName="core__lab_result"
+  yamlPath="models/core/core_models.yml"
+/>

@@ -3,6 +3,8 @@ id: data-quality-tests
 title: "3. Data Quality Tests"
 ---
 
+import DataQualityTestsTable from '@site/src/components/DataQualityTestsTable';
+
 <div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
   <small><em>Last updated: 06-21-2025</em></small>
 </div>
@@ -18,6 +20,73 @@ Data Quality in Tuva includes 3 main components:
 **Repository for Dashboard:** [https://github.com/tuva-health/tuva_dqi](https://github.com/tuva-health/tuva_dqi)
 
 Below we explain how to run Data Quality.
+
+## Data Quality Test Catalog (Preview)
+
+<DataQualityTestsTable
+  tables={[
+    {
+      modelName: "input_layer__eligibility",
+      yamlPath: "models/input_layer/input_layer__eligibility.yml"
+    },
+    {
+      modelName: "input_layer__appointment",
+      yamlPath: "models/input_layer/input_layer__appointment.yml"
+    },
+    {
+      modelName: "input_layer__condition",
+      yamlPath: "models/input_layer/input_layer__condition.yml"
+    },
+    {
+      modelName: "input_layer__encounter",
+      yamlPath: "models/input_layer/input_layer__encounter.yml"
+    },
+    {
+      modelName: "input_layer__immunization",
+      yamlPath: "models/input_layer/input_layer__immunization.yml"
+    },
+    {
+      modelName: "input_layer__lab_result",
+      yamlPath: "models/input_layer/input_layer__lab_result.yml"
+    },
+    {
+      modelName: "input_layer__location",
+      yamlPath: "models/input_layer/input_layer__location.yml"
+    },
+    {
+      modelName: "input_layer__medical_claim",
+      yamlPath: "models/input_layer/input_layer__medical_claim.yml"
+    },
+    {
+      modelName: "input_layer__medication",
+      yamlPath: "models/input_layer/input_layer__medication.yml"
+    },
+    {
+      modelName: "input_layer__observation",
+      yamlPath: "models/input_layer/input_layer__observation.yml"
+    },
+    {
+      modelName: "input_layer__patient",
+      yamlPath: "models/input_layer/input_layer__patient.yml"
+    },
+    {
+      modelName: "input_layer__pharmacy_claim",
+      yamlPath: "models/input_layer/input_layer__pharmacy_claim.yml"
+    },
+    {
+      modelName: "input_layer__practitioner",
+      yamlPath: "models/input_layer/input_layer__practitioner.yml"
+    },
+    {
+      modelName: "input_layer__procedure",
+      yamlPath: "models/input_layer/input_layer__procedure.yml"
+    },
+    {
+      modelName: "input_layer__provider_attribution",
+      yamlPath: "models/input_layer/input_layer__provider_attribution.yml"
+    }
+  ]}
+/>
 
 <iframe width="760" height="440" src="https://www.youtube.com/embed/gyw8ubqFnO4?si=wcNG8wix-3YJezjs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

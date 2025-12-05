@@ -3,17 +3,15 @@ id: person_id_crosswalk
 title: "Person ID Crosswalk"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The person_id_crosswalk table contains all source patient identifiers from 
-the input layer for claims and/or clinical.
+<TableDescription
+  modelName="core__person_id_crosswalk"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * person_id
-  * patient_id
-  * member_id
-  * payer
-  * plan
-  * data_source
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__person_id_crosswalk.columns" />
+<ExpandableTable
+  modelName="core__person_id_crosswalk"
+  yamlPath="models/core/core_models.yml"
+/>

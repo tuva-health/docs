@@ -3,17 +3,15 @@ id: medication
 title: "Medication"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The medication table contains information on medications ordered and/or 
-administered during a patient encounter.
+<TableDescription
+  modelName="core__medication"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * medication_id
-
-**Foreign Keys:**
-  * person_id
-  * patient_id
-  * encounter_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__medication.columns" />
+<ExpandableTable
+  modelName="core__medication"
+  yamlPath="models/core/core_models.yml"
+/>

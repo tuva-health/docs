@@ -3,18 +3,15 @@ id: appointment
 title: "Appointment"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
-import { CoreModelDescription } from '@site/src/components/CoreModelDescription';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-<CoreModelDescription modelName="core__appointment" />
+<TableDescription
+  modelName="core__appointment"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Key:**
-  * appointment_id
-
-**Foreign Keys:**
-  * patient_id
-  * person_id
-  * encounter_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__appointment.columns" />
-
+<ExpandableTable
+  modelName="core__appointment"
+  yamlPath="models/core/core_models.yml"
+/>

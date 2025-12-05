@@ -3,21 +3,15 @@ id: procedure
 title: "Procedure"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-Procedures are treatments performed by clinicians for patients to help manage or 
-alleviate conditions.  Important ancillary data related to procedures includes 
-the date performed and the performing clinician.  Common procedure codes include 
-ICD-10-PCS and HCPCS.
+<TableDescription
+  modelName="core__procedure"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * procedure_id
-
-**Foreign Keys:**
-  * person_id
-  * member_id
-  * patient_id
-  * encounter_id
-  * practitioner_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__procedure.columns" />
+<ExpandableTable
+  modelName="core__procedure"
+  yamlPath="models/core/core_models.yml"
+/>
