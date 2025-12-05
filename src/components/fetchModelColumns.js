@@ -1,7 +1,7 @@
 import yaml from 'js-yaml';
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
-export const DEFAULT_BRANCH = 'input-layer-expectations';
+export const DEFAULT_BRANCH = 'main';
 
 function buildYamlUrl(relativePath, branch = DEFAULT_BRANCH) {
   if (!relativePath) {
