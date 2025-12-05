@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import './tableStyles.css'; // Import your existing CSS file
+import { DEFAULT_BRANCH, fetchModelColumns } from './fetchModelColumns';
+
+// Change this value to point every ExpandableTable at a different branch by default.
+const EXPANDABLE_TABLE_BRANCH = DEFAULT_BRANCH;
 
 // Generate a short preview for the collapsed row
 const getPreview = (content) => {
@@ -125,9 +129,20 @@ const parseJsonData = (jsonDataMan, jsonDataCat, jsonPath) => {
     });
 };
 
+const truncateText = (text, limit = 100) => {
+    if (!text) {
+        return '';
+    }
+    if (text.length <= limit) {
+        return text;
+    }
+    return `${text.slice(0, limit).trim()}…`;
+};
+
 const metadataColumns = [
-    { key: 'name', label: 'Column Name', className: 'fixed-column' },
-    { key: 'type', label: 'Data Type', className: 'data-type-column' },
+    { key: 'name', label: 'Column Name', className: 'wide-column' },
+    { key: 'type', label: 'Data Type', className: 'narrow-column' },
+    { key: 'is_primary_key', label: 'Primary Key', className: 'narrow-column' },
     { key: 'description', label: 'Description', className: 'description-column' },
 ];
 
@@ -136,7 +151,14 @@ const defaultColumns = [
     { key: 'concept_type', label: 'Concept Type', className: 'expandable-column' },
 ];
 
-function ExpandableTable({ dataSourceUrl, tableData, jsonPath }) {
+function ExpandableTable({
+    dataSourceUrl,
+    tableData,
+    jsonPath,
+    modelName,
+    yamlPath,
+    branch = EXPANDABLE_TABLE_BRANCH,
+}) {
     const [data, setData] = useState([]);
     const [metadata, setMetadata] = useState([]);
     const [expandedRow, setExpandedRow] = useState(null);  // State to track expanded row
@@ -160,11 +182,27 @@ function ExpandableTable({ dataSourceUrl, tableData, jsonPath }) {
     }, [dataSourceUrl]);
 
     useEffect(() => {
-        if (!jsonPath || !ExecutionEnvironment.canUseDOM) {
+        if (!ExecutionEnvironment.canUseDOM) {
             return;
         }
+
+        if (!jsonPath && !useYamlMetadata) {
+            setMetadata([]);
+            return;
+        }
+
+        let isMounted = true;
+
         const fetchMetadata = async () => {
             try {
+                if (useYamlMetadata) {
+                    const columns = await fetchModelColumns({ modelName, yamlPath, branch });
+                    if (isMounted) {
+                        setMetadata(columns);
+                    }
+                    return;
+                }
+
                 const [responseMan, responseCat] = await Promise.all([
                     fetch('https://tuva-health.github.io/tuva/manifest.json'),
                     fetch('https://tuva-health.github.io/tuva/catalog.json'),
@@ -172,14 +210,23 @@ function ExpandableTable({ dataSourceUrl, tableData, jsonPath }) {
                 const jsonDataMan = await responseMan.json();
                 const jsonDataCat = await responseCat.json();
                 const parsed = parseJsonData(jsonDataMan, jsonDataCat, jsonPath);
-                setMetadata(parsed);
+                if (isMounted) {
+                    setMetadata(parsed);
+                }
             } catch (error) {
+                if (isMounted) {
+                    setMetadata([]);
+                }
                 console.error('Failed to fetch metadata:', error);
             }
         };
 
         fetchMetadata();
-    }, [jsonPath]);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [jsonPath, modelName, yamlPath, branch]);
 
     const tableDataMap = useMemo(() => {
         if (!tableData) {
@@ -198,23 +245,28 @@ function ExpandableTable({ dataSourceUrl, tableData, jsonPath }) {
         }, {});
     }, [tableData]);
 
+    const useYamlMetadata = Boolean(modelName && yamlPath);
+    const shouldUseMetadata = metadata.length > 0;
+
     const tableRows = useMemo(() => {
-        if (jsonPath && metadata.length) {
+        if (shouldUseMetadata) {
             return metadata.map((row) => {
-                const conceptScope = tableDataMap
-                    ? (tableDataMap[row.name] || tableDataMap[row.name.toLowerCase()])
-                    : undefined;
+                const fullDescription = row.description || '';
                 return {
                     ...row,
-                    concept_scope: conceptScope,
+                    description: truncateText(fullDescription),
+                    concept_scope: fullDescription,
                 };
             });
+        }
+        if (useYamlMetadata) {
+            return [];
         }
         if (tableData) {
             return formatTableData(tableData);
         }
         return data;
-    }, [data, tableData, metadata, tableDataMap, jsonPath]);
+    }, [data, tableData, metadata, shouldUseMetadata, useYamlMetadata]);
 
     const filteredData = useMemo(() => {
         const lowercasedFilter = searchInput.toLowerCase();
@@ -225,7 +277,7 @@ function ExpandableTable({ dataSourceUrl, tableData, jsonPath }) {
         );
     }, [tableRows, searchInput]);
 
-    const columns = jsonPath ? metadataColumns : defaultColumns;
+    const columns = useYamlMetadata ? metadataColumns : defaultColumns;
     const renderExpandedContent = (content) =>
         content ? content : 'No additional context available for this column.';
 

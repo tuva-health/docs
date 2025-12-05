@@ -3,19 +3,15 @@ id: immunization
 title: "Immunization"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The immunization table contains information on immunizations administered to patients, including the vaccine code, description, and administration date.
+<TableDescription
+  modelName="core__immunization"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Key:**
-  * immunization_id
-
-**Foreign Keys:**
-  * patient_id
-  * person_id
-  * encounter_id
-  * location_id
-  * practitioner_id
-
-
-<JsonDataTable jsonPath="nodes.model\.input_layer\.immunization.columns" />
+<ExpandableTable
+  modelName="core__immunization"
+  yamlPath="models/core/core_models.yml"
+/>

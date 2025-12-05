@@ -3,14 +3,15 @@ id: member-months
 title: "Member Months"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The Member Months table is commonly used for cost and utilization analysis when you need to normalize metrics to the covered population (i.e. by dividing the metric by member months).  
+<TableDescription
+  modelName="core__member_months"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * member_month_key
-
-**Foreign Keys:**
-  * person_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__member_months.columns" />
+<ExpandableTable
+  modelName="core__member_months"
+  yamlPath="models/core/core_models.yml"
+/>

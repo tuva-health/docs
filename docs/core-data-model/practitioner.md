@@ -3,12 +3,15 @@ id: practitioner
 title: "Practitioner"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The practitioner table includes information about individual practitioners (e.g. 
-physicians) and organizations.  
+<TableDescription
+  modelName="core__practitioner"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * practitioner_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__practitioner.columns" />
+<ExpandableTable
+  modelName="core__practitioner"
+  yamlPath="models/core/core_models.yml"
+/>

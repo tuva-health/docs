@@ -45,18 +45,24 @@ th {
 
 .custom-expandable-table th.expandable-column,
 .custom-expandable-table td.expandable-column {
-  width: calc(100% - 195px) !important; /* Remaining width for the second column */
+  width: calc(100% - 195px) !important;
 }
 
-.custom-expandable-table th.data-type-column,
-.custom-expandable-table td.data-type-column {
-  min-width: 195px !important;
-  max-width: 195px !important;
+.custom-expandable-table th.wide-column,
+.custom-expandable-table td.wide-column {
+  min-width: 160px !important;
+  width: 20% !important;
+}
+
+.custom-expandable-table th.narrow-column,
+.custom-expandable-table td.narrow-column {
+  min-width: 90px !important;
+  width: 12% !important;
 }
 
 .custom-expandable-table th.description-column,
 .custom-expandable-table td.description-column {
-  width: calc(100% - 390px) !important;
+  width: calc(100% - 350px) !important;
 }
 
 .table-overview {

@@ -3,17 +3,15 @@ id: observation
 title: "Observation"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The observation table contains information on measurements other than lab 
-tests e.g. blood pressure, height, and weight.
+<TableDescription
+  modelName="core__observation"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Keys:**
-  * observation_id
-
-**Foreign Keys:**
-  * person_id
-  * patient_id
-  * encounter_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__observation.columns" />
+<ExpandableTable
+  modelName="core__observation"
+  yamlPath="models/core/core_models.yml"
+/>

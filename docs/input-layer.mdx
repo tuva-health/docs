@@ -4,68 +4,57 @@ title: "2. Input Layer"
 ---
 
 import ExpandableTable from '@site/src/components/ExpandableTable';
-import claimsMappingGuide from '@site/src/data/claims-mapping-guide.json';
+import { TableDescription } from '@site/src/components/TableDescription';
 
-Here we document the Input Layer.  The Input Layer is like the API for the Tuva Project.  Once raw data sources (e.g. claims and medical records) are mapped to the Input Layer the rest of the Tuva Project runs automatically (i.e. core data model and all the data marts).  
+Here we document the Input Layer.  The Input Layer is like the API for the Tuva Project.  It's designed to accomodate both claims and clinical data sources.  Once raw data sources (e.g. claims and medical records) are mapped to the Input Layer the rest of the Tuva Project runs automatically (i.e. core data model and all the data marts).
 
-The Input Layer is designed to accomodate both claims and clinical data sources.
-
-**Click on any row in the data dictionaries below to expand the table and reveal additional context useful for mapping data to that column.**
+:::note
+Click on any row in the data dictionaries below to expand the row and read a longer description with additional context about the column.
+:::
 
 ## Claims Input
 
+The Claims Input Layer is used for mapping data sources you would typically receive from a payer including medical and pharmacy claims,
+eligibility (also known as enrollment), and provider attribution data.
+
+:::note
+To use the Claims Input Layer tables, you must set the dbt variable `claims_input_enabled` to `true`.
+:::
+
 ### eligibility
 
-The eligibility table includes information about a patient's health insurance coverage and demographics (note: we use the word patient as a synonym for member). Every claims dataset should include some sort of eligibility data, otherwise it's impossible to calculate member months, which are needed to calculate measures like PMPM.  Each record in the table is intended to represent a unique eligibility (i.e. enrollment) span for a patient with a specific health plan.
-
-**Primary Key:**
-   * person_id
-   * member_id
-   * enrollment_start_date
-   * enrollment_end_date
-   * payer
-   * plan
-   * data_source
+<TableDescription
+  modelName="input_layer__eligibility"
+  yamlPath="models/input_layer/input_layer__eligibility.yml"
+/>
 
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.eligibility.columns"
-  tableData={claimsMappingGuide.eligibility}
+  modelName="input_layer__eligibility"
+  yamlPath="models/input_layer/input_layer__eligibility.yml"
 />
 
 ### medical_claim
 
-The medical_claim table contains information on healthcare services and supplies provided to patients, billed by providers, and paid for by health insurers. It includes information on the provider who rendered the service, the amount paid for the service by the health insurer, and the underlying reason for the service (i.e. diagnosis).  Each record in the table is intended to represent a unique claim line.
-
-**Primary Key:**
-  * claim_id
-  * claim_line_number
-  * data_source
-
-**Foreign Keys:**
-  * person_id
-  * member_id
+<TableDescription
+  modelName="input_layer__medical_claim"
+  yamlPath="models/input_layer/input_layer__medical_claim.yml"
+/>
 
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.medical_claim.columns"
-  tableData={claimsMappingGuide.medical_claim}
+  modelName="input_layer__medical_claim"
+  yamlPath="models/input_layer/input_layer__medical_claim.yml"
 />
 
 ### pharmacy_claim
 
-The pharmacy_claim table includes information about retail and specialty drug prescriptions that have been filled by a patient, billed by a pharmacy, and paid by an insurer.  Each record in the table is intended to represent a unique claim line.
-
-**Primary Key:**
-  * claim_id
-  * claim_line_number
-  * data_source
-
-**Foreign Keys:**
-  * person_id
-  * member_id
+<TableDescription
+  modelName="input_layer__pharmacy_claim"
+  yamlPath="models/input_layer/input_layer__pharmacy_claim.yml"
+/>
 
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.pharmacy_claim.columns"
-  tableData={claimsMappingGuide.pharmacy_claim}
+  modelName="input_layer__pharmacy_claim"
+  yamlPath="models/input_layer/input_layer__pharmacy_claim.yml"
 />
 
 ### provider_attribution
@@ -74,88 +63,153 @@ The pharmacy_claim table includes information about retail and specialty drug pr
 To use the provider_attribution table, you must set the dbt variable `provider_attribution_enabled` to `true`.
 :::
 
-The provider_attribution table assigns a provider to each patient-member_month of eligibility. The user may assign both a payer-attributed provider (as typically assigned by the payer in VBC contracts) as well as custom-attributed provider (typically determined by the user). Fields related to each attributed provider (practice, organization, line of business) are also present.  Each record in the table is intended to represent a unique provider attribution for a patient in a specific month with a specific health plan.
-
-**Primary Key:**
-  * person_id
-  * payer
-  * plan
-  * year_month
-  * data_source
-
-**Foreign Keys:**
-  * person_id
-  * patient_id
+<TableDescription
+  modelName="input_layer__provider_attribution"
+  yamlPath="models/input_layer/input_layer__provider_attribution.yml"
+/>
 
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.provider_attribution.columns"
-  tableData={claimsMappingGuide.provider_attribution}
+  modelName="input_layer__provider_attribution"
+  yamlPath="models/input_layer/input_layer__provider_attribution.yml"
 />
 
 ## Clinical Input
 
+The Clinical Input Layer is used for mapping clinical data sources, including EHR, HIE data via FHIR APIs, ADT messages,
+and lab results.
+
+:::note
+To use the Clinical Input Layer tables, you must set the dbt variable `clinical_input_enabled` to `true`.
+:::
+
 ### appointment
 
+<TableDescription
+  modelName="input_layer__appointment"
+  yamlPath="models/input_layer/input_layer__appointment.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.appointment.columns"
+  modelName="input_layer__appointment"
+  yamlPath="models/input_layer/input_layer__appointment.yml"
 />
 
 ### condition
 
+<TableDescription
+  modelName="input_layer__condition"
+  yamlPath="models/input_layer/input_layer__condition.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.condition.columns"
+  modelName="input_layer__condition"
+  yamlPath="models/input_layer/input_layer__condition.yml"
 />
 
 ### encounter
 
+<TableDescription
+  modelName="input_layer__encounter"
+  yamlPath="models/input_layer/input_layer__encounter.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.encounter.columns"
+  modelName="input_layer__encounter"
+  yamlPath="models/input_layer/input_layer__encounter.yml"
 />
 
 ### lab_result
 
+<TableDescription
+  modelName="input_layer__lab_result"
+  yamlPath="models/input_layer/input_layer__lab_result.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.lab_result.columns"
+  modelName="input_layer__lab_result"
+  yamlPath="models/input_layer/input_layer__lab_result.yml"
 />
 
 ### immunization
 
+<TableDescription
+  modelName="input_layer__immunization"
+  yamlPath="models/input_layer/input_layer__immunization.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.immunization.columns"
+  modelName="input_layer__immunization"
+  yamlPath="models/input_layer/input_layer__immunization.yml"
 />
 
 ### location
 
+<TableDescription
+  modelName="input_layer__location"
+  yamlPath="models/input_layer/input_layer__location.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.location.columns"
+  modelName="input_layer__location"
+  yamlPath="models/input_layer/input_layer__location.yml"
 />
 
 ### medication
 
+<TableDescription
+  modelName="input_layer__medication"
+  yamlPath="models/input_layer/input_layer__medication.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.medication.columns"
+  modelName="input_layer__medication"
+  yamlPath="models/input_layer/input_layer__medication.yml"
 />
 
 ### observation
 
+<TableDescription
+  modelName="input_layer__observation"
+  yamlPath="models/input_layer/input_layer__observation.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.observation.columns"
+  modelName="input_layer__observation"
+  yamlPath="models/input_layer/input_layer__observation.yml"
 />
 
 ### patient
 
+<TableDescription
+  modelName="input_layer__patient"
+  yamlPath="models/input_layer/input_layer__patient.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.patient.columns"
+  modelName="input_layer__patient"
+  yamlPath="models/input_layer/input_layer__patient.yml"
 />
 
 ### practitioner
 
+<TableDescription
+  modelName="input_layer__practitioner"
+  yamlPath="models/input_layer/input_layer__practitioner.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.practitioner.columns"
+  modelName="input_layer__practitioner"
+  yamlPath="models/input_layer/input_layer__practitioner.yml"
 />
 
 ### procedure
 
+<TableDescription
+  modelName="input_layer__procedure"
+  yamlPath="models/input_layer/input_layer__procedure.yml"
+/>
+
 <ExpandableTable
-  jsonPath="nodes.model\.input_layer\.procedure.columns"
+  modelName="input_layer__procedure"
+  yamlPath="models/input_layer/input_layer__procedure.yml"
 />

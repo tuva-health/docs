@@ -3,20 +3,15 @@ id: appointment
 title: "Appointment"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+import ExpandableTable from '@site/src/components/ExpandableTable';
 
-The appointment table contains information related to appointments at a healthcare facility. 
-This table may include canceled, completed, or scheduled events.
+<TableDescription
+  modelName="core__appointment"
+  yamlPath="models/core/core_models.yml"
+/>
 
-**Primary Key:**
-  * appointment_id
-
-**Foreign Keys:**
-  * patient_id
-  * person_id
-  * encounter_id
-
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.core__appointment.columns" />
-
-
-
+<ExpandableTable
+  modelName="core__appointment"
+  yamlPath="models/core/core_models.yml"
+/>
