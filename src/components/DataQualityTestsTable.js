@@ -45,7 +45,8 @@ function extractTestLineNumbers(fileContent) {
     const indent = indentMatch ? indentMatch.index : 0;
 
     if (trimmed.startsWith('- name:')) {
-      const value = trimmed.split(':', 1)[1]?.trim() || null;
+      const colonIndex = trimmed.indexOf(':');
+      const value = colonIndex !== -1 ? trimmed.slice(colonIndex + 1).trim() : null;
       currentColumn = value;
       inTests = false;
       testItemIndent = null;
@@ -59,9 +60,6 @@ function extractTestLineNumbers(fileContent) {
       inTests = true;
       testsIndent = indent;
       testItemIndent = null;
-      if (!lineMap[currentColumn]) {
-        lineMap[currentColumn] = [];
-      }
       return;
     }
 
@@ -81,7 +79,18 @@ function extractTestLineNumbers(fileContent) {
           testItemIndent = indent;
         }
         if (indent === testItemIndent) {
-          lineMap[currentColumn].push(index + 1);
+          const bullet = trimmed.slice(2).trim();
+          const normalizedName = bullet.endsWith(':')
+            ? bullet.slice(0, -1).trim()
+            : bullet;
+          if (!lineMap[currentColumn]) {
+            lineMap[currentColumn] = [];
+          }
+          lineMap[currentColumn].push({
+            name: normalizedName,
+            line: index + 1,
+            used: false,
+          });
         }
         return;
       }
@@ -89,6 +98,32 @@ function extractTestLineNumbers(fileContent) {
   });
 
   return lineMap;
+}
+
+function consumeLineNumber(entries = [], testName) {
+  if (!entries || !entries.length) {
+    return null;
+  }
+
+  const exactIndex = entries.findIndex((entry) => !entry.used && entry.name === testName);
+  if (exactIndex !== -1) {
+    entries[exactIndex].used = true;
+    return entries[exactIndex].line;
+  }
+
+  const looseMatch = entries.find((entry) => entry.name === testName);
+  if (looseMatch && !looseMatch.used) {
+    looseMatch.used = true;
+    return looseMatch.line;
+  }
+
+  const firstUnused = entries.find((entry) => !entry.used);
+  if (firstUnused) {
+    firstUnused.used = true;
+    return firstUnused.line;
+  }
+
+  return entries[entries.length - 1].line;
 }
 
 export function DataQualityTestsTable() {
@@ -135,33 +170,35 @@ export function DataQualityTestsTable() {
 
           (model.columns || []).forEach((column) => {
             const columnName = column.name;
-            const lineNumbers = lineLookup[columnName] || [];
+            const columnLineEntries = lineLookup[columnName];
 
-            (column.tests || []).forEach((test, index) => {
-              let testName = '';
+            (column.tests || []).forEach((test) => {
+              let rawTestName = '';
               let description = '';
               let severity = '';
 
               if (typeof test === 'string') {
-                testName = test;
+                rawTestName = test;
               } else if (typeof test === 'object' && test !== null) {
                 const [name, details] = Object.entries(test)[0];
-                testName = name;
+                rawTestName = name;
                 description = details?.description || details?.config?.description || '';
                 severity = details?.config?.severity || '';
               }
+
+              const lineNumber = consumeLineNumber(columnLineEntries, rawTestName);
 
               aggregated.push({
                 schemaName: modelName.split('__')[0] || 'Unknown',
                 tableName: modelName,
                 displayTableName: cleanTableName(modelName),
                 columnName,
-                testName: testName.replace(/^the_tuva_project\./, ''),
+                testName: rawTestName.replace(/^the_tuva_project\./, ''),
                 description,
                 severity,
                 yamlPath,
                 branch,
-                lineNumber: lineNumbers[index] || lineNumbers[lineNumbers.length - 1] || null,
+                lineNumber: lineNumber || null,
               });
             });
           });
