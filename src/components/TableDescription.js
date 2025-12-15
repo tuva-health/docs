@@ -5,6 +5,7 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
 const DEFAULT_BRANCH = 'main';
 const DEFAULT_YAML_PATH = 'models/core/core_models.yml';
+const YAML_LOAD_OPTIONS = { json: true };
 
 function buildYamlUrl(relativePath, branch) {
   if (!relativePath) {
@@ -29,7 +30,7 @@ async function loadModelDescription(modelName, yamlPath, branch) {
     throw new Error(`Failed to fetch ${url}: ${response.status}`);
   }
 
-  const parsed = yaml.load(await response.text());
+  const parsed = yaml.load(await response.text(), YAML_LOAD_OPTIONS);
   const model = parsed?.models?.find((entry) => entry.name === modelName);
 
   if (!model || !model.description) {

@@ -2,6 +2,7 @@ import yaml from 'js-yaml';
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
 export const DEFAULT_BRANCH = 'main';
+const YAML_LOAD_OPTIONS = { json: true };
 
 function buildYamlUrl(relativePath, branch = DEFAULT_BRANCH) {
   if (!relativePath) {
@@ -41,7 +42,7 @@ export async function fetchModelColumns({ modelName, yamlPath, branch = DEFAULT_
     throw new Error(`Failed to fetch ${url}: ${response.status}`);
   }
 
-  const parsed = yaml.load(await response.text());
+  const parsed = yaml.load(await response.text(), YAML_LOAD_OPTIONS);
   const model = parsed?.models?.find((entry) => entry.name === modelName);
 
   if (!model || !Array.isArray(model.columns)) {
