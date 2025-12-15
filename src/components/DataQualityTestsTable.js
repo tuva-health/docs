@@ -5,6 +5,7 @@ import { DEFAULT_BRANCH } from './fetchModelColumns';
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
 const GITHUB_BASE_URL = 'https://github.com/tuva-health/tuva/blob';
+const YAML_LOAD_OPTIONS = { json: true };
 
 const yamlCache = new Map();
 
@@ -155,7 +156,7 @@ export function DataQualityTestsTable() {
 
           let parsed;
           try {
-            parsed = yaml.load(fileContent);
+            parsed = yaml.load(fileContent, YAML_LOAD_OPTIONS);
           } catch (err) {
             console.error(`Failed to parse ${yamlPath}`, err);
             continue;
