@@ -3,7 +3,7 @@ import yaml from 'js-yaml';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
-const DEFAULT_BRANCH = 'input-layer-expectations';
+const DEFAULT_BRANCH = 'main';
 const DEFAULT_YAML_PATH = 'models/core/core_models.yml';
 
 function buildYamlUrl(relativePath, branch) {
