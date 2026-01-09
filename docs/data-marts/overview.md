@@ -5,9 +5,6 @@ hide_title: true
 ---
 
 # 5. Data Marts
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
 Data Marts run automatically on top of the Core Data Model to further enrich the data with higher-level concepts for analytics.  They create concepts like measures (cost, utilization, quality, outcomes), groupers (service categories, encounters, chronic conditions), and risk models (HCC Scores, RAFs, Suspecting).  
 

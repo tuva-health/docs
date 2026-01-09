@@ -3,10 +3,6 @@ id: empi
 title: "EMPI"
 ---
 
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
-
 Tuva EMPI is an open-source enterprise master patient index (EMPI) software application that creates master patient IDs across all your data sources in the Tuva data model:
 
 - [Tuva EMPI Docs](https://tuva-health.github.io/tuva_empi/docs/)

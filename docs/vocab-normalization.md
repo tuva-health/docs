@@ -2,9 +2,6 @@
 id: vocab-normalization
 title: "Vocabulary Normalization"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
 Vocabulary normalization is the process of standardizing the codes that make up healthcare data.  Healthcare data is made up of millions of atomic-level codes from a number of coding systems (e.g.  SNOMED-CT, RxNorm, LOINC, and ICD-10).  These codes are frequently missing from raw healthcare data sources because the source systems that generate the data are not setup properly.  As a result, raw data sources may include descriptions (e.g. Fasting Glucose) but not have the associated standard codes (e.g. the LOINC for Fasting Glucose).  Because nearly all downstream analytics and research use cases depend on these standard codes, this severely limits the utility of your data.
 

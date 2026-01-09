@@ -4,9 +4,6 @@ title: "Dashboards"
 hide_title: false
 toc: false
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
 Dashboards run automatically on top of the Core Data Model and Data Marts.  The dashboards below are hosted by Tuva and run on synthetic datasets.  The code for these dashboards can be found [here](https://github.com/tuva-health/analytics_gallery).
 
