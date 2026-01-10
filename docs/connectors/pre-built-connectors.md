@@ -14,6 +14,7 @@ title: "Pre-built Connectors"
 | CMS BCDA | Claims | FHIR | [Link](https://github.com/tuva-health/bcda_connector) |
 | CMS CCLF | Claims | Flat File | [Link](https://github.com/tuva-health/medicare_cclf_connector) |
 | CMS LDS | Claims | Flat File | [Link](https://github.com/tuva-health/medicare_lds_connector) |
+| eClinicalWorks | EHR | Database | [Link](https://github.com/tuva-health/ecw_connector) |
 | Elation | EHR | Database | [Link](https://github.com/tuva-health/elation_connector) |
 | Epic (Clarity) | EHR | Database | [Link](https://github.com/tuva-health/epic_connector) |
 | Health Gorilla | Clinical | FHIR | [Link](https://github.com/tuva-health/health_gorilla_connector) |

@@ -285,7 +285,7 @@ const config = {
             'aria-label': 'YouTube',
           },
           {
-            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-35lhyb3as-moCo~~7A3el1oG1vSyIPHQ',
+            href: 'https://join.slack.com/t/thetuvaproject/shared_invite/zt-35dtjo7sz-QnTKVZJaEErr35cxFZ2QMA',
             position: 'right',
             className: 'header-slack-link',
             'aria-label': 'Slack Community',
