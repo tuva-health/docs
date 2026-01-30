@@ -250,6 +250,12 @@ const config = {
             label: 'Community',
           },
           {
+            href: 'https://thetuvaproject.substack.com/',
+            label: 'Newsletter',
+            position: 'left',
+            hideExternalLinkIcon: true,
+          },
+          {
             to: '/blog',        // The blog page
             label: 'Blog',      // Navbar label
             position: 'left',   // or 'right' depending where you want it
