@@ -3,7 +3,8 @@ id: hcc-recapture
 title: "HCC Recapture"
 ---
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## What is HCC Recapture?
 
@@ -45,33 +46,63 @@ All of the models below are the final models output from the HCC recapture data 
 
 ### gap_status
 
-Displays the HCCs gap status for a given patient.
+<TableDescription
+  modelName="hcc_recapture__gap_status"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_recapture__gap_status.columns" />
+<ExpandableTable
+  modelName="hcc_recapture__gap_status"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
 ### hcc_status
 
-Combines claims data with HCC gap status.
+<TableDescription
+  modelName="hcc_recapture__hcc_status"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_recapture__hcc_status.columns" />
+<ExpandableTable
+  modelName="hcc_recapture__hcc_status"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
 ### recapture_rates
 
-HCC recapture rates by payment year.
+<TableDescription
+  modelName="hcc_recapture__recapture_rates"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_recapture__recapture_rates.columns" />
+<ExpandableTable
+  modelName="hcc_recapture__recapture_rates"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
 ### recapture_rates_monthly
 
-HCC recapture rates by payment year month.
+<TableDescription
+  modelName="hcc_recapture__recapture_rates_monthly"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_recapture__recapture_rates_monthly.columns" />
+<ExpandableTable
+  modelName="hcc_recapture__recapture_rates_monthly"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
 ### recapture_rates_monthly_ytd
 
-HCC recapture rates by payment month year-to-date.
+<TableDescription
+  modelName="hcc_recapture__recapture_rates_monthly_ytd"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_recapture__recapture_rates_monthly_ytd.columns" />
+<ExpandableTable
+  modelName="hcc_recapture__recapture_rates_monthly_ytd"
+  yamlPath="models/hcc_recapture/final_models.yml"
+/>
 
 ## Example SQL
 
