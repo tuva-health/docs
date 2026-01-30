@@ -60,6 +60,7 @@ const sidebars = {
         "data-marts/encounter-types",
         "data-marts/fhir-preprocessing",
         "data-marts/financial-pmpm",
+        "data-marts/hcc-recapture",
         "data-marts/hcc-suspecting",
         "data-marts/pharmacy",
         {

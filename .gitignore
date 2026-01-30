@@ -23,6 +23,7 @@ yarn-error.log*
 
 # IDEs
 .idea/
+.vscode/
 
 website/
 docs-example-from-docusaurus/
