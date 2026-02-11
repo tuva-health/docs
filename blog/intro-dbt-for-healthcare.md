@@ -1,6 +1,8 @@
 ---
 id: intro-dbt-for-healthcare
 title: Intro to dbt for Healthcare
+description: "An implementation-oriented introduction to dbt for healthcare data teams, focused on project structure, warehouse execution, Git workflows, and built-in testing/documentation. The post explains why these software engineering patterns materially improve analytics reliability and delivery speed."
+image: /img/talk_about_dbt.png
 authors:
   - name: Aaron Neiderhiser
     title: Co-founder of the Tuva Project
