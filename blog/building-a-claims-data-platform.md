@@ -1,5 +1,7 @@
 ---
 title: Building a Claims Data Platform
+description: "A practical architecture guide for building claims analytics platforms, covering ingestion, normalization, data quality, adjustment handling, and analytics-ready models. It outlines implementation tradeoffs and concrete design decisions for scaling payer and value-based care use cases."
+image: /img/you-shall-not-access.jpg
 authors:
   - name: Aaron Neiderhiser
     title: Co-founder of the Tuva Project
@@ -168,8 +170,6 @@ The most common failure-mode I see is a ton of time and effort spent setting up 
 3. Work backwards from the analysis-ready data tables to determine the raw claims data elements that are needed to do the analysis.  
 
 If you spend the time following this exercise and build your data platform accordingly, I pretty much guarantee you'll avoid wasting time and resources building a claims data platform no one uses and everyone hates :-)
-
-
 
 
 

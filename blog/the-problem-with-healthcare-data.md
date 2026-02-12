@@ -1,5 +1,7 @@
 ---
 title: The Problem with Healthcare Data
+description: "A technical breakdown of the three core barriers to reliable healthcare analytics: normalization, data quality, and high-level concept generation. It frames why these issues persist across claims and clinical data and why they must be addressed in the data model itself."
+image: /img/vocab_normalization_example1.png
 authors:
   - name: Aaron Neiderhiser
     title: Co-founder of the Tuva Project
