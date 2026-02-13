@@ -80,19 +80,19 @@ The date field used in the encounter algorithm is determined using the following
 
 ### Inpatient
 
-Inpatient encounters are created when an institutional claim with the service category corresponding to one of the inpatient encounter types occurs. The Date/NPI continuity algorithm checks if a claim overlaps with another claim, with the same facility NPI, person_id, and data_source. It also adds a specific check for the case where the end date and start date of two claims are within a day, checking if the discharge disposition code is 30 (still patient). This logic is in place to avoid grouping together claims where a patient is discharged and readmitted on the same day.
+Inpatient encounters are created when an institutional claim with the service category corresponding to one of the inpatient encounter types occurs. The Patient/Date/NPI continuity algorithm checks if a claim overlaps with another claim, with the same facility NPI, person_id, and data_source. It also adds a specific check for the case where the end date and start date of two claims are within a day, checking if the discharge disposition code is 30 (still patient). This logic is in place to avoid grouping together claims where a patient is discharged and readmitted on the same day.
 
 Each inpatient encounter type is listed below with the algorithm, anchor, and anchor claim type.
 
 
 | ENCOUNTER_GROUP | ENCOUNTER_TYPE                      | Algorithm Type    | Service Category Anchor     | Anchor Claim Type |
 |-----------------|-------------------------------------|-------------------|-----------------------------|-------------------|
-| inpatient       | acute inpatient                     | date/npi continuity| acute inpatient             | institutional only|
-| inpatient       | inpatient hospice                   | date/npi continuity| inpatient hospice           | institutional only|
-| inpatient       | inpatient psych                     | date/npi continuity| inpatient psychiatric       | institutional only|
-| inpatient       | inpatient skilled nursing           | date/npi continuity| skilled nursing             | institutional only|
-| inpatient       | inpatient substance use             | date/npi continuity| inpatient substance use     | institutional only|
-| inpatient       | inpatient rehabilitation            | date/npi continuity| inpatient rehabilitation    | institutional only|
+| inpatient       | acute inpatient                     | patient/date/npi continuity| acute inpatient             | institutional only|
+| inpatient       | inpatient hospice                   | patient/date/npi continuity| inpatient hospice           | institutional only|
+| inpatient       | inpatient psych                     | patient/date/npi continuity| inpatient psychiatric       | institutional only|
+| inpatient       | inpatient skilled nursing           | patient/date/npi continuity| skilled nursing             | institutional only|
+| inpatient       | inpatient substance use             | patient/date/npi continuity| inpatient substance use     | institutional only|
+| inpatient       | inpatient rehabilitation            | patient/date/npi continuity| inpatient rehabilitation    | institutional only|
 
 A simplified example of the algorithm is shown below. These 3 claims would be joined together into one encounter:
 
@@ -128,7 +128,7 @@ Most outpatient encounters are formed with the combination of a person_id, data_
 |-----------------|-------------------------------------|-------------------|-----------------------------|-------------------|
 | outpatient      | ambulatory surgery center           | date continuity   | ambulatory surgery center   | both prof and inst|
 | outpatient      | dialysis                            | patient/date      | dialysis                    | both prof and inst|
-| outpatient      | emergency department                | date/npi continuity| emergency department       | both prof and inst|
+| outpatient      | emergency department                | patient/date/npi continuity| emergency department       | both prof and inst|
 | outpatient      | home health                         | patient/date      | home health                 | both prof and inst|
 | outpatient      | outpatient hospital or clinic       | patient/date      | outpatient hospital or clinic| both prof and inst|
 | outpatient      | outpatient hospice                  | patient/date      | outpatient hospice          | both prof and inst|
