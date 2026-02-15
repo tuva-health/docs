@@ -46,7 +46,7 @@ The FHIR Preprocessing mart outputs a table per FHIR resource.
 
 ### condition
 
-Final mapping for Condition FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
 <TableDescription
   modelName="fhir_preprocessing__condition"
@@ -60,7 +60,7 @@ Final mapping for Condition FHIR resource. Clinical data sources only.
 
 ### coverage
 
-Final mapping for Coverage FHIR resource. Claims data sources only.
+Claims data sources only.
 
 <TableDescription
   modelName="fhir_preprocessing__coverage"
@@ -74,7 +74,6 @@ Final mapping for Coverage FHIR resource. Claims data sources only.
 
 ### explanation_of_benefit
 
-Final mapping for Explanation of Benefit FHIR resource. Combines medical and pharmacy claims.
 Claims data sources only.
 
 <TableDescription
@@ -89,7 +88,7 @@ Claims data sources only.
 
 ### medication_dispense
 
-Final mapping for Medication Dispense FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
 <TableDescription
   modelName="fhir_preprocessing__medication_dispense"
@@ -103,7 +102,6 @@ Final mapping for Medication Dispense FHIR resource. Clinical data sources only.
 
 ### observation
 
-Final mapping for Observation FHIR resource. Combines observations and lab results. 
 Clinical data sources only.
 
 <TableDescription
@@ -118,8 +116,6 @@ Clinical data sources only.
 
 ### patient
 
-Final mapping for Patient FHIR resource.
-
 <TableDescription
   modelName="fhir_preprocessing__patient"
   yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
@@ -132,7 +128,7 @@ Final mapping for Patient FHIR resource.
 
 ### procedure
 
-Final mapping for Procedure FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
 <TableDescription
   modelName="fhir_preprocessing__procedure"

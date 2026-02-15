@@ -31,8 +31,6 @@ This mart builds off of the Core Encounter table and classifies emergency depart
 
 ### summary
 
-ED Classification as a cube that can be summarized.
-
 <TableDescription
   modelName="ed_classification__summary"
   yamlPath="models/ed_classification/ed_classification_models.yml"

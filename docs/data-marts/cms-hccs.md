@@ -85,9 +85,6 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 
 ### patient_risk_factors
 
-This final model displays the contributing demographic and disease risk 
-factors, interactions, and HCCs for each enrollee in the payment year.
-
 <TableDescription
   modelName="cms_hcc__patient_risk_factors"
   yamlPath="models/cms_hcc/cms_hcc_models.yml"
@@ -99,9 +96,6 @@ factors, interactions, and HCCs for each enrollee in the payment year.
 />
 
 ### patient_risk_factors_monthly
-
-This final model displays the contributing demographic and disease risk factors, 
-interactions, and HCCs for each enrollee in the payment year and collection period.
 
 <TableDescription
   modelName="cms_hcc__patient_risk_factors_monthly"
@@ -115,9 +109,6 @@ interactions, and HCCs for each enrollee in the payment year and collection peri
 
 ### patient_risk_scores
 
-This final model calculates the CMS HCC raw risk score, normalized risk score, 
-and payment risk score for each enrollee in the payment year.
-
 <TableDescription
   modelName="cms_hcc__patient_risk_scores"
   yamlPath="models/cms_hcc/cms_hcc_models.yml"
@@ -129,10 +120,6 @@ and payment risk score for each enrollee in the payment year.
 />
 
 ### patient_risk_scores_monthly
-
-This final model calculates the CMS HCC raw risk score, blended risk score,
-normalized risk score, and payment risk score for each enrollee in the 
-payment year and collection period.
 
 <TableDescription
   modelName="cms_hcc__patient_risk_scores_monthly"

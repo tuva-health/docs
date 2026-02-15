@@ -58,9 +58,6 @@ the reason and contributing factors.
 
 ### list_rollup
 
-This final model displays the list of suspecting conditions per patient and 
-hcc with the latest contributing factor rolled up.
-
 <TableDescription
   modelName="hcc_suspecting__list_rollup"
   yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
@@ -72,8 +69,6 @@ hcc with the latest contributing factor rolled up.
 />
 
 ### summary
-
-This final model displays a rollup of suspecting conditions per patient.
 
 <TableDescription
   modelName="hcc_suspecting__summary"
