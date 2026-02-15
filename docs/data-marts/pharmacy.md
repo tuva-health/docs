@@ -2,11 +2,10 @@
 id: pharmacy
 title: "Pharmacy"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -43,7 +42,15 @@ This model contains a row for each claim and line number of each brand that had 
   * claim_line_number
   
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.pharmacy__brand_generic_opportunity.columns" />
+  <TableDescription
+  modelName="pharmacy__brand_generic_opportunity"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
+
+<ExpandableTable
+  modelName="pharmacy__brand_generic_opportunity"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
 </div>
 
 ### generic_available_list
@@ -55,7 +62,15 @@ This model contains a row for each generic ndc that is available (for a given br
   * generic_ndc
     
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.pharmacy__generic_available_list.columns" />
+  <TableDescription
+  modelName="pharmacy__generic_available_list"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
+
+<ExpandableTable
+  modelName="pharmacy__generic_available_list"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
 </div>
 
 ### pharmacy_claim_expanded
@@ -68,7 +83,15 @@ This model contains a row for pharmacy claim and line. It includes the columns f
   * claim_line_number
     
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.pharmacy__pharmacy_claim_expanded.columns" />
+  <TableDescription
+  modelName="pharmacy__pharmacy_claim_expanded"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
+
+<ExpandableTable
+  modelName="pharmacy__pharmacy_claim_expanded"
+  yamlPath="models/pharmacy/pharmacy_models.yml"
+/>
 </div>
 
 ## Example SQL

@@ -2,11 +2,10 @@
 id: financial-pmpm
 title: "Financial PMPM"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -26,7 +25,15 @@ A table that computes all the paid and allowed statistics for every person_id an
   * plan 
   * data_source
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.financial_pmpm__pmpm_prep.columns" />
+<TableDescription
+  modelName="financial_pmpm__pmpm_prep"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
+
+<ExpandableTable
+  modelName="financial_pmpm__pmpm_prep"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
 
 ### pmpm_payer_plan
 
@@ -38,7 +45,15 @@ A table that computes per member per month statistics for every service category
   * plan 
   * data_source
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.financial_pmpm__pmpm_payer_plan.columns" />
+<TableDescription
+  modelName="financial_pmpm__pmpm_payer_plan"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
+
+<ExpandableTable
+  modelName="financial_pmpm__pmpm_payer_plan"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
 
 ### pmpm_payer
 
@@ -49,7 +64,15 @@ A table that computes per member per month statistics for every service category
   * payer
   * data_source
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.financial_pmpm__pmpm_payer.columns" />
+<TableDescription
+  modelName="financial_pmpm__pmpm_payer"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
+
+<ExpandableTable
+  modelName="financial_pmpm__pmpm_payer"
+  yamlPath="models/financial_pmpm/financial_pmpm_models.yml"
+/>
 
 ## Example SQL
 

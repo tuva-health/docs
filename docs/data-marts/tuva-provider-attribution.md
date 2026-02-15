@@ -2,11 +2,10 @@
 id: tuva-provider-attribution
 title: "Tuva Provider Attribution"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 10-23-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 import AttributionSampleDashboard from '@site/src/components/AttributionSampleDashboard';
 
 ## Methods
@@ -117,7 +116,15 @@ Grain: person_id + as_of_date (via `attribution_key`)
 Primary Keys:
 - attribution_key
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.provider_attribution__assigned_beneficiaries_current.columns" />
+<TableDescription
+  modelName="provider_attribution__assigned_beneficiaries_current"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
+
+<ExpandableTable
+  modelName="provider_attribution__assigned_beneficiaries_current"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
 
 ### assigned_beneficiaries_yearly
 
@@ -129,7 +136,15 @@ Grain: person_id + performance_year (via `attribution_key`)
 Primary Keys:
 - attribution_key
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.provider_attribution__assigned_beneficiaries_yearly.columns" />
+<TableDescription
+  modelName="provider_attribution__assigned_beneficiaries_yearly"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
+
+<ExpandableTable
+  modelName="provider_attribution__assigned_beneficiaries_yearly"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
 
 ### provider_ranking
 
@@ -144,7 +159,15 @@ Primary Keys:
 - attribution_key
 - provider_id
 
-<JsonDataTable jsonPath="nodes.model\.the_tuva_project\.provider_attribution__provider_ranking.columns" />
+<TableDescription
+  modelName="provider_attribution__provider_ranking"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
+
+<ExpandableTable
+  modelName="provider_attribution__provider_ranking"
+  yamlPath="models/provider_attribution/provider_attribution_models.yml"
+/>
 
 ## Example SQL
 

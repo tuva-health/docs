@@ -2,11 +2,10 @@
 id: cms-hccs
 title: "CMS-HCCs"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -89,21 +88,45 @@ dbt build --select tag:cms_hcc --vars '{cms_hcc_payment_year: 2020, snapshots_en
 This final model displays the contributing demographic and disease risk 
 factors, interactions, and HCCs for each enrollee in the payment year.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_factors.columns" />
+<TableDescription
+  modelName="cms_hcc__patient_risk_factors"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
+
+<ExpandableTable
+  modelName="cms_hcc__patient_risk_factors"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
 
 ### patient_risk_factors_monthly
 
 This final model displays the contributing demographic and disease risk factors, 
 interactions, and HCCs for each enrollee in the payment year and collection period.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_factors_monthly.columns" />
+<TableDescription
+  modelName="cms_hcc__patient_risk_factors_monthly"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
+
+<ExpandableTable
+  modelName="cms_hcc__patient_risk_factors_monthly"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
 
 ### patient_risk_scores
 
 This final model calculates the CMS HCC raw risk score, normalized risk score, 
 and payment risk score for each enrollee in the payment year.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores.columns" />
+<TableDescription
+  modelName="cms_hcc__patient_risk_scores"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
+
+<ExpandableTable
+  modelName="cms_hcc__patient_risk_scores"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
 
 ### patient_risk_scores_monthly
 
@@ -111,7 +134,15 @@ This final model calculates the CMS HCC raw risk score, blended risk score,
 normalized risk score, and payment risk score for each enrollee in the 
 payment year and collection period.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.cms_hcc__patient_risk_scores_monthly.columns" />
+<TableDescription
+  modelName="cms_hcc__patient_risk_scores_monthly"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
+
+<ExpandableTable
+  modelName="cms_hcc__patient_risk_scores_monthly"
+  yamlPath="models/cms_hcc/cms_hcc_models.yml"
+/>
 
 ## Example SQL
 
