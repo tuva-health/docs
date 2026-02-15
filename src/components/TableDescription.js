@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import yaml from 'js-yaml';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-import { DEFAULT_BRANCH, fetchYamlFile } from './fetchModelColumns';
+import { DEFAULT_BRANCH, fetchModelDefinition } from './fetchModelColumns';
 
 const DEFAULT_YAML_PATH = 'models/core/core_models.yml';
-const YAML_LOAD_OPTIONS = { json: true };
 
 async function loadModelDescription(modelName, yamlPath, branch) {
-  const { text } = await fetchYamlFile(yamlPath, branch || DEFAULT_BRANCH);
-  const parsed = yaml.load(text, YAML_LOAD_OPTIONS);
-  const model = parsed?.models?.find((entry) => entry.name === modelName);
-
-  if (!model) {
-    throw new Error(`Model "${modelName}" not found in ${yamlPath}`);
-  }
-
-  return (model.description || '')
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .join(' ');
+  const { modelDescription } = await fetchModelDefinition({
+    modelName,
+    yamlPath,
+    branch: branch || DEFAULT_BRANCH,
+  });
+  return modelDescription;
 }
 
 export function TableDescription({

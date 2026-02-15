@@ -2,11 +2,10 @@
 id: hcc-suspecting
 title: "HCC Suspecting"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -47,20 +46,39 @@ applied if nothing further is known about the patient’s condition.
 This final model displays the list of suspecting conditions per patient with 
 the reason and contributing factors.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_suspecting__list.columns" />
+<TableDescription
+  modelName="hcc_suspecting__list"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
+
+<ExpandableTable
+  modelName="hcc_suspecting__list"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
 
 ### list_rollup
 
-This final model displays the list of suspecting conditions per patient and 
-hcc with the latest contributing factor rolled up.
+<TableDescription
+  modelName="hcc_suspecting__list_rollup"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_suspecting__list_rollup.columns" />
+<ExpandableTable
+  modelName="hcc_suspecting__list_rollup"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
 
 ### summary
 
-This final model displays a rollup of suspecting conditions per patient.
+<TableDescription
+  modelName="hcc_suspecting__summary"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.hcc_suspecting__summary.columns" />
+<ExpandableTable
+  modelName="hcc_suspecting__summary"
+  yamlPath="models/hcc_suspecting/hcc_suspecting_models.yml"
+/>
 
 ## Example SQL
 

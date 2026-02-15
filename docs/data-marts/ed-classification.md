@@ -2,11 +2,10 @@
 id: ed-classification
 title: "ED Classification"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -32,9 +31,15 @@ This mart builds off of the Core Encounter table and classifies emergency depart
 
 ### summary
 
-ED Classification as a cube that can be summarized.
+<TableDescription
+  modelName="ed_classification__summary"
+  yamlPath="models/ed_classification/ed_classification_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ed_classification__summary.columns"  />
+<ExpandableTable
+  modelName="ed_classification__summary"
+  yamlPath="models/ed_classification/ed_classification_models.yml"
+/>
 
 ## Example SQL
 

@@ -4,11 +4,10 @@ title: "FHIR Preprocessing"
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 05-29-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Overview
 
@@ -47,44 +46,96 @@ The FHIR Preprocessing mart outputs a table per FHIR resource.
 
 ### condition
 
-Final mapping for Condition FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__condition.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__condition"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__condition"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### coverage
 
-Final mapping for Coverage FHIR resource. Claims data sources only.
+Claims data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__coverage.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__coverage"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__coverage"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### explanation_of_benefit
 
-Final mapping for Explanation of Benefit FHIR resource. Combines medical and pharmacy claims.
 Claims data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__explanation_of_benefit.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__explanation_of_benefit"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__explanation_of_benefit"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### medication_dispense
 
-Final mapping for Medication Dispense FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__medication_dispense.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__medication_dispense"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__medication_dispense"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### observation
 
-Final mapping for Observation FHIR resource. Combines observations and lab results. 
 Clinical data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__observation.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__observation"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__observation"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### patient
 
-Final mapping for Patient FHIR resource.
+<TableDescription
+  modelName="fhir_preprocessing__patient"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__patient.columns" />
+<ExpandableTable
+  modelName="fhir_preprocessing__patient"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
 
 ### procedure
 
-Final mapping for Procedure FHIR resource. Clinical data sources only.
+Clinical data sources only.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.fhir_preprocessing__procedure.columns" />
+<TableDescription
+  modelName="fhir_preprocessing__procedure"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>
+
+<ExpandableTable
+  modelName="fhir_preprocessing__procedure"
+  yamlPath="models/fhir_preprocessing/fhir_preprocessing_models.yml"
+/>

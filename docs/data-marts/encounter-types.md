@@ -2,11 +2,10 @@
 id: encounter-types
 title: "Encounter Grouper"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -178,7 +177,15 @@ Other orphaned claims are claims that don't produce an anchor event on their own
 
 The output of the encounter grouper is the Encounter table in the Core Data Model, which we reproduce below for convenience.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.core__encounter.columns"  />
+<TableDescription
+  modelName="core__encounter"
+  yamlPath="models/core/core_models.yml"
+/>
+
+<ExpandableTable
+  modelName="core__encounter"
+  yamlPath="models/core/core_models.yml"
+/>
 
 ## Example SQL
 
