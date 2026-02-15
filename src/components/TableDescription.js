@@ -1,43 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import yaml from 'js-yaml';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import { DEFAULT_BRANCH, fetchYamlFile } from './fetchModelColumns';
 
-const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
-const DEFAULT_BRANCH = 'main';
 const DEFAULT_YAML_PATH = 'models/core/core_models.yml';
 const YAML_LOAD_OPTIONS = { json: true };
 
-function buildYamlUrl(relativePath, branch) {
-  if (!relativePath) {
-    throw new Error('yamlPath must be provided');
-  }
-
-  const cleanedPath = relativePath.replace(/^\/+/, '');
-
-  if (!cleanedPath.startsWith('models/')) {
-    throw new Error('yamlPath must reside within the "models" directory');
-  }
-
-  const safeBranch = branch || DEFAULT_BRANCH;
-  return `${RAW_BASE_URL}/${safeBranch}/${cleanedPath}`;
-}
-
 async function loadModelDescription(modelName, yamlPath, branch) {
-  const url = buildYamlUrl(yamlPath, branch);
-  const response = await fetch(url, { cache: 'no-cache' });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status}`);
-  }
-
-  const parsed = yaml.load(await response.text(), YAML_LOAD_OPTIONS);
+  const { text } = await fetchYamlFile(yamlPath, branch || DEFAULT_BRANCH);
+  const parsed = yaml.load(text, YAML_LOAD_OPTIONS);
   const model = parsed?.models?.find((entry) => entry.name === modelName);
 
-  if (!model || !model.description) {
+  if (!model) {
     throw new Error(`Model "${modelName}" not found in ${yamlPath}`);
   }
 
-  return model.description
+  return (model.description || '')
     .split('\n')
     .map((line) => line.trim())
     .filter(Boolean)
