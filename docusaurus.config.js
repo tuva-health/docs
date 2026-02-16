@@ -285,7 +285,7 @@ const config = {
             'aria-label': 'Tuva Health',
           },
           {
-            href: 'https://www.youtube.com/@tuvahealth',
+            href: 'https://www.youtube.com/@thetuvaproject',
             position: 'right',
             className: 'header-youtube-link',
             'aria-label': 'YouTube',
