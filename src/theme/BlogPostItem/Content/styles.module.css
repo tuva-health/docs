@@ -18,3 +18,10 @@
   margin: 0;
   color: var(--ifm-color-emphasis-700);
 }
+
+.postSubtitle {
+  margin: 0 0 1.25rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}

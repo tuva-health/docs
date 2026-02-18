@@ -33,7 +33,8 @@ function BlogListPreview({className}) {
 }
 
 export default function BlogPostItemContent({children, className}) {
-  const {isBlogPostPage} = useBlogPost();
+  const {isBlogPostPage, metadata} = useBlogPost();
+  const subtitle = metadata.frontMatter?.subtitle;
 
   if (!isBlogPostPage) {
     return <BlogListPreview className={className} />;
@@ -44,6 +45,7 @@ export default function BlogPostItemContent({children, className}) {
       // This ID is used for feed generation to locate the main content.
       id={blogPostContainerID}
       className={clsx('markdown', className)}>
+      {subtitle && <p className={styles.postSubtitle}>{subtitle}</p>}
       <MDXContent>{children}</MDXContent>
     </div>
   );
