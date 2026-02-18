@@ -13,7 +13,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
 
-_[Mike Krahulec](https://www.linkedin.com/in/mike-krahulec-62867410/) is Co-Founder and Principal Consultant at Z2 Health Insights, a healthcare data & analytics consulting firm. Previously he led data and analytics at multiple healthcare organizations including TailorCare and Bright Health. This work was funded in part by UPenn via a generous philanthropic gift._
+**_[Mike Krahulec](https://www.linkedin.com/in/mike-krahulec-62867410/) is Co-Founder and Principal Consultant at Z2 Health Insights, a healthcare data & analytics consulting firm. Previously he led data and analytics at multiple healthcare organizations including TailorCare and Bright Health. This work was funded in part by UPenn via a generous philanthropic gift._**
 
 If you are involved in the data operations of a Medicare Shared Savings Program (MSSP) ACO, you live in a world of zip files, CSVs, and Excel docs. You’re constantly working to combine information across disparate data sets to understand the performance of your assigned beneficiaries. Unfortunately, each of these data sources and reports was originally created for slightly different use cases, and combining them is challenging and requires a thorough understanding of each file set and its limitations.
 
@@ -39,7 +39,7 @@ First, let’s restate the obvious: if you are using preliminary prospective ass
 2. Benchmark ALRs: Historical files used to understand your patient’s historical enrollment and utilization.
 3. Quarterly ALRs: Updates provided throughout the year as your roster changes.
 
-Here is the crucial challenge: Every time you receive a Quarterly ALR, CMS effectively restates your assigned patients for the entire performance year (a restatement referred to in the healthcare industry as “retroactivity”). A Quarterly ALR is a snapshot in time. The primary most recent ALR report shows who CMS preliminarily assigns to your ACO at that moment, based on the most recent claims lookback period.
+Here is the crucial challenge: Every time you receive a Quarterly ALR, CMS effectively restates your assigned patients for the entire performance year (a restatement referred to in the healthcare industry as “retroactivity”). Each Quarterly ALR is a snapshot in time, with the most recent QALR report showing who CMS would currently assign to your ACO based on the most recent claims look back period.
 
 However, note that although you’ll frequently hear the ALR report referred to as a single entity, an ALR report is NOT a single data file; instead, it’s a set of six separate files that need to be combined. The 6 disparate reports need to be preprocessed and combined to create the unified view we’d like to see when tracking a patient, their demographics, and the provider, TIN and CCN responsible for their care.
 
