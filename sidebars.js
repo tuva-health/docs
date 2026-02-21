@@ -95,16 +95,6 @@ const sidebars = {
         "vocab-normalization",
       ],
     },
-    {
-      type: "category",
-      label: "Contribution Guide",
-      items: [
-        "contributing/contributing",
-        "contributing/style-guide",
-      ],
-    },
-
-    "help",
   ],
   knowledgeSidebar: [
     "knowledge/introduction",
