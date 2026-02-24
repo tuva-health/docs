@@ -120,7 +120,7 @@ const config = {
           },
           {
             from: '/analytics/notebooks',
-            to: '/knowledge/introduction',
+            to: '/notebooks',
           },
           {
             from: '/analytics/streamlit',
@@ -253,6 +253,7 @@ const config = {
             href: 'https://thetuvaproject.substack.com/',
             label: 'Newsletter',
             position: 'left',
+            className: 'navbar-no-ext-icon',
             hideExternalLinkIcon: true,
           },
           {
@@ -277,6 +278,8 @@ const config = {
             href: 'https://terminology.thetuvaproject.com',
             position: 'right',
             label: 'Terminology Viewer',
+            className: 'navbar-no-ext-icon',
+            hideExternalLinkIcon: true,
           },
           {
             href: 'https://tuvahealth.com',
