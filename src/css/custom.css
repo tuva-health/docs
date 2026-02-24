@@ -209,3 +209,34 @@ table.dataTable {
   font-weight: 700 !important; /* bold text */
   font-size: 1.10rem !important; /* increase font size (adjust up/down) */
 }
+
+/* Docs sidebar section headings (Core Platform, Additional Tools, Miscellaneous) */
+.theme-doc-sidebar-menu :is(
+  .menu__list-item.sidebar-section,
+  .menu__list-item-collapsible.sidebar-section,
+  .menu__link.sidebar-section
+) {
+  margin-top: 18px !important;
+}
+
+.theme-doc-sidebar-menu :is(
+  .menu__list-item.sidebar-section > .menu__list-item-collapsible > .menu__link,
+  .menu__list-item-collapsible.sidebar-section > .menu__link,
+  .menu__link.sidebar-section
+) {
+  font-weight: 700 !important;
+  font-size: 1.02rem !important;
+}
+
+.theme-doc-sidebar-menu
+  :is(.menu__list-item.sidebar-section, .menu__list-item-collapsible.sidebar-section)
+  .menu__link {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+/* Hide external-link icon for specific navbar links */
+a.navbar-no-ext-icon svg[aria-label="(opens in new tab)"],
+a.navbar-no-ext-icon [class*="iconExternalLink"] {
+  display: none !important;
+}
