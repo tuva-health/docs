@@ -3744,38 +3744,6 @@
     "yamlPath": "models/quality_measures/quality_measures_models.yml"
   },
   {
-    "modelName": "quality_measures__hedis_cql_engine_log",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__hedis_summary_counts",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__hedis_summary_long",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__int_hedis_cql_engine_log",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__int_hedis_measure_report",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__int_hedis_measure_normalize",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__stg_hedis_cql_engine_log",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
-    "modelName": "quality_measures__stg_hedis_measure_report",
-    "yamlPath": "models/quality_measures/hedis_dqm_results/hedis_dqm_results_models.yml"
-  },
-  {
     "modelName": "ahrq_measures__pqi_denom_long",
     "yamlPath": "models/ahrq_measures/pqi/pqi_models.yml"
   },

@@ -2,11 +2,10 @@
 id: chronic-conditions
 title: "Chronic Conditions"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -36,7 +35,15 @@ that's been mapped to the core data model.
 **Foreign Keys:**
   * claim_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__cms_chronic_conditions_long.columns" />
+<TableDescription
+  modelName="chronic_conditions__cms_chronic_conditions_long"
+  yamlPath="models/chronic_conditions/cms_chronic_conditions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="chronic_conditions__cms_chronic_conditions_long"
+  yamlPath="models/chronic_conditions/cms_chronic_conditions_models.yml"
+/>
 
 ### cms_chronic_conditions_wide
 
@@ -48,7 +55,15 @@ particular chronic condition they will have a 1 in that particular column and
 **Primary Keys:**
   * person_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__cms_chronic_conditions_wide.columns"  />
+<TableDescription
+  modelName="chronic_conditions__cms_chronic_conditions_wide"
+  yamlPath="models/chronic_conditions/cms_chronic_conditions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="chronic_conditions__cms_chronic_conditions_wide"
+  yamlPath="models/chronic_conditions/cms_chronic_conditions_models.yml"
+/>
 
 ### tuva_chronic_conditions_long
 
@@ -62,7 +77,15 @@ that are relevant for the condition.
   * person_id
   * condition
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_long.columns" />
+<TableDescription
+  modelName="chronic_conditions__tuva_chronic_conditions_long"
+  yamlPath="models/chronic_conditions/tuva_chronic_conditions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="chronic_conditions__tuva_chronic_conditions_long"
+  yamlPath="models/chronic_conditions/tuva_chronic_conditions_models.yml"
+/>
 
 ### tuva_chronic_conditions_wide
 
@@ -74,7 +97,15 @@ particular chronic condition they will have a 1 in that particular column and
 **Primary Keys:**
   * person_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.chronic_conditions__tuva_chronic_conditions_wide.columns"  />
+<TableDescription
+  modelName="chronic_conditions__tuva_chronic_conditions_wide"
+  yamlPath="models/chronic_conditions/tuva_chronic_conditions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="chronic_conditions__tuva_chronic_conditions_wide"
+  yamlPath="models/chronic_conditions/tuva_chronic_conditions_models.yml"
+/>
 
 ## Example SQL
 

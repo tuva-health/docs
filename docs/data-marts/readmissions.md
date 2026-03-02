@@ -2,19 +2,16 @@
 id: readmissions
 title: "Readmissions"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
 
-## Methods
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
+
+## Overview
 
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/readmissions)
 
 Hospital readmissions are one of the most common healthcare concepts.  They are also one of the most complicated concepts to define and implement as code.  Here we provide a general overview of how to calculate a hospital readmission measure.
-
-### Overview
 
 There are many different ways to define hospital readmission measures.  However every readmission measure is built on two underlying concepts: the index admission and the readmission.  The index admission is a hospitalization that qualifies to be included in the readmission measure. Not all hospitalizations will meet the criteria to be index admissions and will therefore not be included in the readmission measure. For example, if a patient dies during a hospitalization, that hospitalization will not be an index admission, and will not be included in the readmission measure. There are many more pieces of logic to define if a hospitalization counts as an index admission for each different readmission measure. For example, hospitalizations for medical treatment of cancer are not index admissions.  We explain each piece of logic further below.
 
@@ -212,7 +209,15 @@ The `readmission_summary` table is at the encounter grain, but we exclude encoun
 - encounter_id (join to core.encounter)
 - person_id (join to core.patient)
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.readmissions__readmission_summary.columns"  />
+<TableDescription
+  modelName="readmissions__readmission_summary"
+  yamlPath="models/readmissions/readmissions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="readmissions__readmission_summary"
+  yamlPath="models/readmissions/readmissions_models.yml"
+/>
 
 ### encounter_augmented
 
@@ -223,7 +228,15 @@ This table includes columns for data quality tests related to readmissions, so y
 **Primary Key:**
   * encounter_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.readmissions__encounter_augmented.columns"  />
+<TableDescription
+  modelName="readmissions__encounter_augmented"
+  yamlPath="models/readmissions/readmissions_models.yml"
+/>
+
+<ExpandableTable
+  modelName="readmissions__encounter_augmented"
+  yamlPath="models/readmissions/readmissions_models.yml"
+/>
 
 
 ## Example SQL

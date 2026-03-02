@@ -1,10 +1,13 @@
 import yaml from 'js-yaml';
 
-const RAW_BASE_URL = 'https://raw.githubusercontent.com/tuva-health/tuva';
+const RAW_BASE_URLS = [
+  'https://raw.githubusercontent.com/tuva-health/tuva',
+  'https://raw.githubusercontent.com/tuva-health/the_tuva_project',
+];
 export const DEFAULT_BRANCH = 'main';
 const YAML_LOAD_OPTIONS = { json: true };
 
-function buildYamlUrl(relativePath, branch = DEFAULT_BRANCH) {
+function normalizeYamlPath(relativePath) {
   if (!relativePath) {
     throw new Error('yamlPath must be provided');
   }
@@ -15,7 +18,33 @@ function buildYamlUrl(relativePath, branch = DEFAULT_BRANCH) {
     throw new Error('yamlPath must reside within the "models" directory');
   }
 
-  return `${RAW_BASE_URL}/${branch}/${cleanedPath}`;
+  return cleanedPath;
+}
+
+export async function fetchYamlFile(yamlPath, branch = DEFAULT_BRANCH) {
+  const cleanedPath = normalizeYamlPath(yamlPath);
+  let lastError;
+
+  for (const baseUrl of RAW_BASE_URLS) {
+    const url = `${baseUrl}/${branch}/${cleanedPath}`;
+
+    try {
+      const response = await fetch(url, { cache: 'no-cache' });
+      if (!response.ok) {
+        lastError = new Error(`Failed to fetch ${url}: ${response.status}`);
+        continue;
+      }
+
+      return {
+        text: await response.text(),
+        url,
+      };
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error(`Failed to fetch ${cleanedPath} from all configured sources`);
 }
 
 function normalizeDescription(text) {
@@ -30,31 +59,78 @@ function normalizeDescription(text) {
     .join(' ');
 }
 
-export async function fetchModelColumns({ modelName, yamlPath, branch = DEFAULT_BRANCH }) {
+function mapColumns(columns = []) {
+  return columns.map((column) => ({
+    name: column.name,
+    type:
+      column.config?.meta?.data_type ||
+      column.meta?.data_type ||
+      column.config?.data_type ||
+      column.data_type ||
+      '',
+    description: normalizeDescription(column.description),
+    is_primary_key:
+      column.config?.meta?.is_primary_key === true || column.meta?.is_primary_key === true
+        ? 'Yes'
+        : 'No',
+  }));
+}
+
+function hasUsableColumnMetadata(columns = []) {
+  return columns.some((column) => column.type || column.description);
+}
+
+export async function fetchModelDefinition({ modelName, yamlPath, branch = DEFAULT_BRANCH }) {
   if (!modelName) {
     throw new Error('modelName must be provided');
   }
 
-  const url = buildYamlUrl(yamlPath, branch);
-  const response = await fetch(url, { cache: 'no-cache' });
+  const cleanedPath = normalizeYamlPath(yamlPath);
+  let fallbackMatch = null;
+  let lastError = null;
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  for (const baseUrl of RAW_BASE_URLS) {
+    const url = `${baseUrl}/${branch}/${cleanedPath}`;
+
+    try {
+      const response = await fetch(url, { cache: 'no-cache' });
+      if (!response.ok) {
+        lastError = new Error(`Failed to fetch ${url}: ${response.status}`);
+        continue;
+      }
+
+      const parsed = yaml.load(await response.text(), YAML_LOAD_OPTIONS);
+      const model = parsed?.models?.find((entry) => entry.name === modelName);
+      if (!model || !Array.isArray(model.columns)) {
+        continue;
+      }
+
+      const columns = mapColumns(model.columns);
+      const modelDescription = normalizeDescription(model.description);
+      const usableMetadata = hasUsableColumnMetadata(columns) || Boolean(modelDescription);
+
+      const currentMatch = { model, columns, modelDescription, url };
+      if (usableMetadata) {
+        return currentMatch;
+      }
+
+      // Keep a model match even if metadata is sparse, in case no better source exists.
+      fallbackMatch = currentMatch;
+    } catch (error) {
+      lastError = error;
+    }
   }
 
-  const parsed = yaml.load(await response.text(), YAML_LOAD_OPTIONS);
-  const model = parsed?.models?.find((entry) => entry.name === modelName);
-
-  if (!model || !Array.isArray(model.columns)) {
-    throw new Error(`Model "${modelName}" not found in ${yamlPath}`);
+  if (fallbackMatch) {
+    return fallbackMatch;
   }
 
-  return model.columns.map((column) => ({
-    name: column.name,
-    type: column.meta?.data_type || column.data_type || '',
-    description: normalizeDescription(column.description),
-    is_primary_key: column.meta?.is_primary_key === true ? 'Yes' : 'No',
-  }));
+  throw lastError || new Error(`Model "${modelName}" not found in ${yamlPath}`);
+}
+
+export async function fetchModelColumns({ modelName, yamlPath, branch = DEFAULT_BRANCH }) {
+  const { columns } = await fetchModelDefinition({ modelName, yamlPath, branch });
+  return columns;
 }
 
 export default fetchModelColumns;

@@ -2,11 +2,10 @@
 id: ccsr
 title: "CCSR"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 [Code on Github](https://github.com/tuva-health/tuva/tree/main/models/ccsr)
@@ -33,7 +32,15 @@ Option 1 - Vertical File Output.
   * encounter_id
   * claim_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__long_condition_category.columns" />
+<TableDescription
+  modelName="ccsr__long_condition_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ccsr__long_condition_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
 
 ### long_procedure_category
 
@@ -50,7 +57,15 @@ CCSR's Output Option 1 - Vertical File Output.
 **Foreign Keys:**
   * encounter_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__long_procedure_category.columns" />
+<TableDescription
+  modelName="ccsr__long_procedure_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ccsr__long_procedure_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
 
 ### singular_condition_category
 
@@ -65,7 +80,15 @@ ICD-10 code, and only for the first-listed ICD-10 code (`diagnosis_code = 1`).
   * encounter_id
   * claim_id
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.ccsr__singular_condition_category.columns" />
+<TableDescription
+  modelName="ccsr__singular_condition_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ccsr__singular_condition_category"
+  yamlPath="models/ccsr/ccsr_models.yml"
+/>
 
 ## Example SQL
 

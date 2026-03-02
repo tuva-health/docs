@@ -2,11 +2,10 @@
 id: ahrq-measures
 title: "AHRQ Measures"
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -93,7 +92,15 @@ This model contains a row for each patient and data_source combination that is e
   * year_number
 
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_denom_long.columns" />
+  <TableDescription
+  modelName="ahrq_measures__pqi_denom_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ahrq_measures__pqi_denom_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
 </div>
 
 ### pqi_exclusion_long
@@ -107,7 +114,15 @@ This model contains a list of all the exclusions an encounter qualified for. An 
   * pqi_number
 
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_exclusion_long.columns" />
+  <TableDescription
+  modelName="ahrq_measures__pqi_exclusion_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ahrq_measures__pqi_exclusion_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
 </div>
 
 ### pqi_num_long
@@ -120,7 +135,15 @@ This model contains a list of all encounters that qualified for a pqi. The perso
   * pqi_number
 
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_num_long.columns" />
+  <TableDescription
+  modelName="ahrq_measures__pqi_num_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ahrq_measures__pqi_num_long"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
 </div>
 
 ### pqi_rate
@@ -133,7 +156,15 @@ This model pre calculates the rate (as a per 100,000 members) for each pqi and y
   * pqi_number
 
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_rate.columns" />
+  <TableDescription
+  modelName="ahrq_measures__pqi_rate"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ahrq_measures__pqi_rate"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
 </div>
 
 ### pqi_summary
@@ -147,7 +178,15 @@ This model is designed to be useful for analytics on pqis in your claims data se
   * year_number
 
 <div class="data_dictionary_table">
-  <JsonDataTable jsonPath="nodes.model\.the_tuva_project\.ahrq_measures__pqi_summary.columns" />
+  <TableDescription
+  modelName="ahrq_measures__pqi_summary"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
+
+<ExpandableTable
+  modelName="ahrq_measures__pqi_summary"
+  yamlPath="models/ahrq_measures/pqi/pqi_models.yml"
+/>
 </div>
 
 ## Example SQL

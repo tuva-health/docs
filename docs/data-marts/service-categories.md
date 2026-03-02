@@ -4,11 +4,10 @@ title: "Service Category Grouper"
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
-<div style={{ marginTop: "-2rem", marginBottom: "1.5rem" }}>
-  <small><em>Last updated: 06-21-2025</em></small>
-</div>
 
-import { JsonDataTable } from '@site/src/components/JsonDataTable';
+
+import ExpandableTable from '@site/src/components/ExpandableTable';
+import { TableDescription } from '@site/src/components/TableDescription';
 
 ## Methods
 
@@ -733,7 +732,15 @@ Any claim/claim line that does not roll up to any of the previous categories. Th
 
 The output of the service category grouper is the table below.  However, for analytics you'll find the service category columns in core.medical_claim and the Financial PMPM data mart.
 
-<JsonDataTable  jsonPath="nodes.model\.the_tuva_project\.service_category__service_category_grouper.columns"  />
+<TableDescription
+  modelName="service_category__service_category_grouper"
+  yamlPath="models/claims_preprocessing/service_category/service_category_models.yml"
+/>
+
+<ExpandableTable
+  modelName="service_category__service_category_grouper"
+  yamlPath="models/claims_preprocessing/service_category/service_category_models.yml"
+/>
 
 ## Example SQL
 
