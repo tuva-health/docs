@@ -257,9 +257,11 @@ const config = {
             hideExternalLinkIcon: true,
           },
           {
-            to: '/blog',        // The blog page
-            label: 'Blog',      // Navbar label
-            position: 'left',   // or 'right' depending where you want it
+            href: 'https://www.thetuvaproject.com/blog',
+            label: 'Blog',
+            position: 'left',
+            className: 'navbar-no-ext-icon',
+            hideExternalLinkIcon: true,
           },          // {
           //   type: 'docSidebar',
           //   sidebarId: 'moreSidebar',
