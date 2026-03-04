@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/blog"
-  to = "https://tuva-blog.netlify.app/"
-  status = 200
+  to = "/blog/"
+  status = 301
   force = true
 
 [[redirects]]
