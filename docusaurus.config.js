@@ -257,7 +257,7 @@ const config = {
             hideExternalLinkIcon: true,
           },
           {
-            href: 'https://www.thetuvaproject.com/blog',
+            href: 'https://www.thetuvaproject.com/blog/',
             label: 'Blog',
             position: 'left',
             className: 'navbar-no-ext-icon',
