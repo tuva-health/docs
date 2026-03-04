@@ -198,6 +198,7 @@ const config = {
           editUrl:
             'https://github.com/tuva-health/docs/edit/main/'
         },
+        blog: false,
 
         // blog: {
         //   blogTitle: 'Decoding Healthcare Analytics',

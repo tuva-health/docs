@@ -4,6 +4,12 @@
   status = 301
 
 [[redirects]]
+  from = "/blog/"
+  to = "https://tuva-blog.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/blog/*"
   to = "https://tuva-blog.netlify.app/:splat"
   status = 200
